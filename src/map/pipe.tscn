@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2rc3h6yo2agm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0lqk"]
+size = Vector2(40, 40)
+
+[node name="Pipe" type="ColorRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 1, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_b0lqk")
+
+[node name="hovered" type="ColorRect" parent="."]
+visible = false
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 42.0
+offset_bottom = 42.0

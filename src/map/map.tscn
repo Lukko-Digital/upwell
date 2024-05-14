@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dehvliuxtnep4"]
+
+[ext_resource type="PackedScene" uid="uid://b2rc3h6yo2agm" path="res://src/map/pipe.tscn" id="1_0a607"]
+[ext_resource type="PackedScene" uid="uid://w0qn00118ti6" path="res://src/map/player.tscn" id="2_l18lf"]
+
+[node name="Map" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pipe" parent="." instance=ExtResource("1_0a607")]
+layout_mode = 0
+offset_left = 433.0
+offset_top = 429.0
+offset_right = 473.0
+offset_bottom = 469.0
+
+[node name="Player" parent="." instance=ExtResource("2_l18lf")]
+position = Vector2(606, 480)
