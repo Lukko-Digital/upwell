@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cii4j2rcbjukv"]
+
+[ext_resource type="Script" path="res://src/inventory/inventory_icon.gd" id="1_67tmr"]
+
+[node name="InventorySlot" type="ColorRect"]
+custom_minimum_size = Vector2(100, 100)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+script = ExtResource("1_67tmr")
