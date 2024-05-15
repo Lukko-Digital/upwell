@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2rc3h6yo2agm"]
+
+[ext_resource type="Script" path="res://src/map/pipe.gd" id="1_weua2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0lqk"]
+size = Vector2(40, 40)
+
+[node name="Pipe" type="ColorRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 1, 1)
+script = ExtResource("1_weua2")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_b0lqk")
+
+[node name="Hovered" type="ColorRect" parent="."]
+visible = false
+z_index = -1
+layout_mode = 0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 44.0
+offset_bottom = 44.0
+mouse_filter = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
