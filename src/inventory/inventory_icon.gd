@@ -1,15 +1,15 @@
-extends TextureRect
+extends ColorRect
 class_name Inventory_Icon
 
-var item: String = ""
-var count: int = 0
+var item_name: String = ""
+var item_count: int = 0
+@onready var count_label: Label = $Label
 
 func _get_drag_data(at_position):
-	var data = {}
+	var data = {"index": get_parent().name.to_int()}
 
-	var drag_texture = TextureRect.new()
-	drag_texture.expand_mode = EXPAND_FIT_WIDTH
-	drag_texture.texture = texture
+	var drag_texture = ColorRect.new()
+	drag_texture.color = color
 	drag_texture.set_size(size)
 
 	var control = Control.new()
@@ -17,28 +17,23 @@ func _get_drag_data(at_position):
 	drag_texture.set_position( - 0.5 * drag_texture.size)
 	set_drag_preview(control)
 
-	data["node"] = self
-
 	return data
 
 func _can_drop_data(at_position, data):
 	return true
 
 func _drop_data(at_position, data):
-	swap(data["node"])
-
-func is_empty() -> bool:
-	return count == 0 and item == ""
-
-func swap(other: Inventory_Icon):
-	var _item = item
-	var _texture = texture
-	var _count = count
-
-	item = other.item
-	texture = other.texture
-	count = other.count
-
-	other.item = _item
-	other.texture = _texture
-	other.count = _count
+	var i = get_parent().name.to_int()
+	get_parent().get_parent().get_parent().swap(i, data["index"])
+	
+func update(data):
+	if data == null:
+		item_count = 0
+		item_name = ""
+		color = Color("ffffff00")
+		count_label.text = ""
+	else:
+		color = data["texture"]
+		item_count = data["count"]
+		item_name = data["name"]
+		count_label.text = str(item_count) if item_count > 1 else ""
