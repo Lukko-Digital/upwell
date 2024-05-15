@@ -11,10 +11,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Player" parent="." instance=ExtResource("2_l18lf")]
-z_index = 1
-position = Vector2(614, 574)
-
 [node name="Pipes" type="Node" parent="."]
 
 [node name="Pipe" parent="Pipes" instance=ExtResource("1_0a607")]
@@ -70,3 +66,7 @@ offset_left = 113.0
 offset_top = 532.0
 offset_right = 153.0
 offset_bottom = 572.0
+
+[node name="Player" parent="." instance=ExtResource("2_l18lf")]
+z_index = 1
+position = Vector2(614, 574)

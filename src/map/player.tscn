@@ -1,9 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://w0qn00118ti6"]
+[gd_scene load_steps=5 format=3 uid="uid://w0qn00118ti6"]
 
 [ext_resource type="Texture2D" uid="uid://dkkvt3ugn7wjm" path="res://icon.svg" id="1_e7h0t"]
 [ext_resource type="Script" path="res://src/map/player.gd" id="2_45e2i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nm25o"]
+radius = 810.007
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j20ql"]
+radius = 1310.0
 
 [node name="Player" type="Sprite2D"]
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_e7h0t")
 script = ExtResource("2_45e2i")
+
+[node name="MovementRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MovementRadius"]
+shape = SubResource("CircleShape2D_nm25o")
+
+[node name="VisionRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionRadius"]
+shape = SubResource("CircleShape2D_j20ql")
