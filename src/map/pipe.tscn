@@ -28,6 +28,41 @@ offset_right = 44.0
 offset_bottom = 44.0
 mouse_filter = 2
 
+[node name="InfoTag" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 45.0
+offset_right = 184.0
+offset_bottom = 78.0
+color = Color(0, 0, 1, 0.215686)
+
+[node name="Unknown" type="Label" parent="InfoTag"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 5.0
+offset_right = 91.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 30
+text = "???"
+
+[node name="PipeInfo" type="Label" parent="InfoTag"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 134.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 14
+text = "oxygen level: 96%
+lifeform activity: 12"
+
+[node name="TooFar" type="Label" parent="InfoTag"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 53.0
+offset_right = 128.0
+offset_bottom = 76.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "PIPE TOO FAR"
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
