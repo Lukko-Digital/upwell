@@ -36,7 +36,7 @@ func _ready():
 		resources[resource] = attributes.resources[resource]
 	resources_text = attributes.get_info()
 
-	hide()
+	# hide()
 	info_tag.hide()
 	pipe_info.hide()
 

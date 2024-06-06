@@ -4,10 +4,10 @@
 [ext_resource type="Script" path="res://src/map/player.gd" id="2_45e2i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nm25o"]
-radius = 810.007
+radius = 800.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j20ql"]
-radius = 1310.0
+radius = 1800.0
 
 [node name="Player" type="Sprite2D"]
 scale = Vector2(0.3, 0.3)
