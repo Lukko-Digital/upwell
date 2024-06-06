@@ -14,4 +14,7 @@ func move_to(pipe: Pipe):
 
 	for resource in pipe.resources:
 		resources[resource] += pipe.resources[resource]
+		pipe.resources[resource] = 0
+		pipe.resources_text = "harvested"
+		resources[resource] = min(resources[resource], 10.0)
 		print(resource, ": ", resources[resource])

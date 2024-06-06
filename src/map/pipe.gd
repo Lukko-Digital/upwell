@@ -20,6 +20,7 @@ const info_template = "kind: %s \ncost: %.1f fuel, %.1f drill \nresources: %s"
 
 var cost = {"fuel" = 0, "drill" = 0}
 var resources = {"fuel" = 0, "drill" = 0, "water" = 0}
+var resources_text = ""
 var attributes: PipeAttributes
 
 const ATTRIBUTES_LIST: Array[PipeAttributes] = [
@@ -33,6 +34,7 @@ func _ready():
 	attributes = ATTRIBUTES_LIST[randi() % ATTRIBUTES_LIST.size()]
 	for resource in attributes.resources:
 		resources[resource] = attributes.resources[resource]
+	resources_text = attributes.get_info()
 
 	hide()
 	info_tag.hide()
@@ -83,12 +85,8 @@ func _on_hitbox_area_exited(area):
 		"MovementRadius":
 			player_can_move = false
 			too_far.show()
-		"VisionRadius":
-			player_can_see = false
-			pipe_info.hide()
-			info_unknown.show()
 
 func update_cost(pipe: Pipe=null):
-	cost["fuel"] = position.distance_to(player.position) / 200
-	cost["drill"] = position.distance_to(player.position) / 200
-	pipe_info.text = info_template % [attributes.resource_name, cost["fuel"],cost["drill"],attributes.get_info()]
+	cost["fuel"] = position.distance_to(player.position) / 150
+	cost["drill"] = position.distance_to(player.position) / 150
+	pipe_info.text = info_template % [attributes.name, cost["fuel"],cost["drill"],resources_text]
