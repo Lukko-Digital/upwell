@@ -16,11 +16,24 @@ signal clicked(pipe)
 var player_can_see = false
 var player_can_move = false
 
-static var info_template = "cost: %.1f fuel, %.1f drill \nresources: %s"
+const info_template = "kind: %s \ncost: %.1f fuel, %.1f drill \nresources: %s"
 
 var cost = {"fuel" = 0, "drill" = 0}
+var resources = {"fuel" = 0, "drill" = 0, "water" = 0}
+var attributes: PipeAttributes
+
+const ATTRIBUTES_LIST: Array[PipeAttributes] = [
+	preload ("res://src/map/pipe_types/lore.tres"),
+	preload ("res://src/map/pipe_types/plants.tres"),
+	preload ("res://src/map/pipe_types/rocks.tres"),
+	preload ("res://src/map/pipe_types/village.tres"),
+]
 
 func _ready():
+	attributes = ATTRIBUTES_LIST[randi() % ATTRIBUTES_LIST.size()]
+	for resource in attributes.resources:
+		resources[resource] = attributes.resources[resource]
+
 	hide()
 	info_tag.hide()
 	pipe_info.hide()
@@ -42,7 +55,7 @@ func can_move() -> bool:
 	for resource in cost:
 		if player.resources[resource] < cost[resource]:
 			return false
-	return player_can_move
+	return player_can_move and player.position.distance_squared_to(position) > 1
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton:
@@ -76,6 +89,6 @@ func _on_hitbox_area_exited(area):
 			info_unknown.show()
 
 func update_cost(pipe: Pipe=null):
-	cost["fuel"] = position.distance_to(player.position) / 100
-	cost["drill"] = position.distance_to(player.position) / 100
-	pipe_info.text = info_template % [cost["fuel"],cost["drill"],"none"]
+	cost["fuel"] = position.distance_to(player.position) / 200
+	cost["drill"] = position.distance_to(player.position) / 200
+	pipe_info.text = info_template % [attributes.resource_name, cost["fuel"],cost["drill"],attributes.get_info()]

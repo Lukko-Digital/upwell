@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PipeAttributes" load_steps=2 format=3 uid="uid://bbrpok0ear7am"]
+
+[ext_resource type="Script" path="res://src/map/pipe_types/pipe_attributes.gd" id="1_snbhk"]
+
+[resource]
+script = ExtResource("1_snbhk")
+name = "Village"
+resources = {
+"drill": 1.0,
+"fuel": 1.0,
+"water": 5.0
+}

@@ -11,4 +11,7 @@ func move_to(pipe: Pipe):
 
 	for resource in pipe.cost:
 		resources[resource] -= pipe.cost[resource]
+
+	for resource in pipe.resources:
+		resources[resource] += pipe.resources[resource]
 		print(resource, ": ", resources[resource])
