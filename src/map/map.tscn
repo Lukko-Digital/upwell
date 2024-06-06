@@ -70,3 +70,5 @@ offset_bottom = 572.0
 [node name="Player" parent="." instance=ExtResource("2_l18lf")]
 z_index = 1
 position = Vector2(614, 574)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]

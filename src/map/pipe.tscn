@@ -45,13 +45,14 @@ theme_override_font_sizes/font_size = 30
 text = "???"
 
 [node name="PipeInfo" type="Label" parent="InfoTag"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 134.0
 offset_bottom = 47.0
 theme_override_font_sizes/font_size = 14
-text = "oxygen level: 96%
-lifeform activity: 12"
+text = "cost: _ fuel, _ drill
+resources: "
 
 [node name="TooFar" type="Label" parent="InfoTag"]
 layout_mode = 0

@@ -1,8 +1,14 @@
 extends Sprite2D
 
-func _ready():
-	for pipe: Pipe in get_parent().get_node("Pipes").get_children():
-		pipe.clicked.connect(_pipe_selected)
+var resources = {
+	"fuel": 10.0,
+	"drill": 10.0,
+	"water": 10.0
+}
 
-func _pipe_selected(pipe: Pipe):
+func move_to(pipe: Pipe):
 	position = pipe.position
+
+	for resource in pipe.cost:
+		resources[resource] -= pipe.cost[resource]
+		print(resource, ": ", resources[resource])
