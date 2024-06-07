@@ -32,16 +32,16 @@ mouse_filter = 2
 z_index = 1
 layout_mode = 0
 offset_left = 45.0
-offset_right = 214.0
-offset_bottom = 106.0
+offset_right = 170.0
+offset_bottom = 158.0
 color = Color(0, 0, 1, 0.215686)
 
 [node name="PipeInfo" type="Label" parent="InfoTag"]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 134.0
-offset_bottom = 47.0
+offset_left = 6.0
+offset_top = 8.0
+offset_right = 136.0
+offset_bottom = 74.0
 theme_override_font_sizes/font_size = 14
 text = "kind: 
 cost: _ fuel, _ drill
@@ -59,10 +59,10 @@ text = "???"
 
 [node name="TooFar" type="Label" parent="InfoTag"]
 layout_mode = 0
-offset_left = 18.0
-offset_top = 74.0
-offset_right = 124.0
-offset_bottom = 97.0
+offset_left = 10.0
+offset_top = 6.0
+offset_right = 116.0
+offset_bottom = 29.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 14
 text = "PIPE TOO FAR"

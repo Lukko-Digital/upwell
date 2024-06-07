@@ -11,4 +11,4 @@ resources = {
 "water": 5.0
 }
 color = Color(0.0930073, 0.330486, 1, 1)
-drill_cost = 1.0
+drill_cost = 0.5

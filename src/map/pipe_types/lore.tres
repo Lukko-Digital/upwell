@@ -6,7 +6,7 @@
 script = ExtResource("1_80ynw")
 name = "Lore"
 resources = {
-"drill": 1.0,
+"drill": 0.0,
 "fuel": 1.0,
 "water": 0.0
 }

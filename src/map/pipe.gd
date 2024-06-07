@@ -15,8 +15,10 @@ signal clicked(pipe)
 
 var player_can_see = false
 var player_can_move = false
+var visited: bool = false
+var harvested: bool = false
 
-const info_template = "kind: %s \ncost: %.1f fuel, %.1f drill \nresources: %s"
+const info_template = "kind: %s \ncost: %.0f fuel, %.0f drill \nresources: \n%s"
 
 var cost = {"fuel" = 0, "drill" = 0}
 var resources = {"fuel" = 0, "drill" = 0, "water" = 0}
@@ -33,8 +35,9 @@ const ATTRIBUTES_LIST: Array[PipeAttributes] = [
 func _ready():
 	attributes = ATTRIBUTES_LIST[randi() % ATTRIBUTES_LIST.size()]
 	for resource in attributes.resources:
-		resources[resource] = attributes.resources[resource]
-	resources_text = attributes.get_info()
+		resources[resource] = max(0, attributes.resources[resource] + randf_range( - 1, 1))
+
+	resources_text = get_info()
 
 	color = attributes.color
 	cost["drill"] = attributes.drill_cost
@@ -92,4 +95,11 @@ func _on_hitbox_area_exited(area):
 
 func update_cost(_pipe: Pipe=null):
 	cost["fuel"] = position.distance_to(player.position) / 150
-	pipe_info.text = info_template % [attributes.name, cost["fuel"],cost["drill"],resources_text]
+	pipe_info.text = info_template % [attributes.name, cost["fuel"] * 10, cost["drill"] * 10, resources_text]
+
+func get_info() -> String:
+	var info = ""
+	for resource in resources:
+		if resources[resource] > 0:
+			info += " %.0f %s\n" % [resources[resource] * 10, resource]
+	return info

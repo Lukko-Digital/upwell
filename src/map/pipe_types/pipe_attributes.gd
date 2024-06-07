@@ -6,10 +6,3 @@ class_name PipeAttributes
 @export var color: Color
 
 @export var drill_cost: float = 1
-
-func get_info() -> String:
-    var info = ""
-    for resource in resources:
-        if resources[resource] > 0:
-            info += "%.1f %s, " % [resources[resource],resource]
-    return info

@@ -7,9 +7,9 @@ var pipe = preload ("res://src/map/pipe.tscn")
 @export var angle_variance = PI / 6
 @export var separation_angle = PI / 3
 @export var roots = 5
-@export var depth = 100
+@export var depth = 10
 @export var distance_variance = 50
-@export var child_distribution = [3, 4, 1, 0, 1]
+@export var child_distribution = [8, 4, 1, 1, 1]
 
 var direction = Vector2.UP
 var distance = 180
@@ -30,14 +30,14 @@ func _ready():
 
 		add_child(pipe_instance)
 
-		generate_tree(pipe_instance.position, direction, depth)
+		generate_tree(pipe_instance.position, direction, 0)
 
 		direction = direction.rotated(2 * PI / roots)
 
 	done_generating.emit()
 
 func generate_tree(pos: Vector2, dir: Vector2, d: int):
-	if d == 0:
+	if d == depth:
 		return
 	
 	var pipe_instance = pipe.instantiate()
@@ -48,8 +48,12 @@ func generate_tree(pos: Vector2, dir: Vector2, d: int):
 
 	add_child(pipe_instance)
 
-	var num_children = child_distribution[randi() % child_distribution.size()]
+	var num_children
+	if d <= 1:
+		num_children = randi() % 2 + 1
+	else:
+		num_children = child_distribution[randi() % child_distribution.size()]
 
 	for i in range(num_children):
 		var new_dir = dir.rotated(separation_angle * (i - num_children / 2.0) + randf_range( - angle_variance, angle_variance))
-		generate_tree(pipe_instance.position, new_dir, d - 1)
+		generate_tree(pipe_instance.position, new_dir, d + 1)
