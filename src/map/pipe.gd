@@ -36,14 +36,18 @@ func _ready():
 		resources[resource] = attributes.resources[resource]
 	resources_text = attributes.get_info()
 
-	# hide()
+	color = attributes.color
+	cost["drill"] = attributes.drill_cost
+
+	hide()
 	info_tag.hide()
 	pipe_info.hide()
 
+	update_cost()
+
+func connect_click_signal():
 	for pipe: Pipe in get_parent().get_children():
 		pipe.clicked.connect(update_cost)
-
-	update_cost()
 
 func _on_mouse_entered():
 	hovered_box.show()
@@ -88,5 +92,4 @@ func _on_hitbox_area_exited(area):
 
 func update_cost(pipe: Pipe=null):
 	cost["fuel"] = position.distance_to(player.position) / 150
-	cost["drill"] = position.distance_to(player.position) / 150
 	pipe_info.text = info_template % [attributes.name, cost["fuel"],cost["drill"],resources_text]

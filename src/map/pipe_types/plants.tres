@@ -10,3 +10,4 @@ resources = {
 "fuel": 5.0,
 "water": 2.0
 }
+color = Color(0, 0.540633, 0, 1)

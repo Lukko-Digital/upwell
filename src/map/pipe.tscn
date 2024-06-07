@@ -29,6 +29,7 @@ offset_bottom = 44.0
 mouse_filter = 2
 
 [node name="InfoTag" type="ColorRect" parent="."]
+z_index = 1
 layout_mode = 0
 offset_left = 45.0
 offset_right = 214.0
