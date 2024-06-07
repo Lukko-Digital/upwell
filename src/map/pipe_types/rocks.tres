@@ -6,9 +6,9 @@
 script = ExtResource("1_xurmy")
 name = "Rocks"
 resources = {
-"drill": 5.0,
+"drill": 45.0,
 "fuel": 0.0,
 "water": 0.0
 }
 color = Color(0.505344, 0.505344, 0.505344, 1)
-drill_cost = 1.0
+drill_cost = 10.0

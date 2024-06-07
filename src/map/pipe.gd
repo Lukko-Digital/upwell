@@ -35,7 +35,7 @@ const ATTRIBUTES_LIST: Array[PipeAttributes] = [
 func _ready():
 	attributes = ATTRIBUTES_LIST[randi() % ATTRIBUTES_LIST.size()]
 	for resource in attributes.resources:
-		resources[resource] = max(0, attributes.resources[resource] + randf_range( - 1, 1))
+		resources[resource] = max(0, attributes.resources[resource] + randf_range( - 10, 10))
 
 	resources_text = get_info()
 
@@ -94,12 +94,12 @@ func _on_hitbox_area_exited(area):
 			too_far.show()
 
 func update_cost(_pipe: Pipe=null):
-	cost["fuel"] = position.distance_to(player.position) / 150
-	pipe_info.text = info_template % [attributes.name, cost["fuel"] * 10, cost["drill"] * 10, resources_text]
+	cost["fuel"] = position.distance_to(player.position) / 15
+	pipe_info.text = info_template % [attributes.name, cost["fuel"],cost["drill"],resources_text]
 
 func get_info() -> String:
 	var info = ""
 	for resource in resources:
 		if resources[resource] > 0:
-			info += " %.0f %s\n" % [resources[resource] * 10, resource]
+			info += " %.0f %s\n" % [resources[resource],resource]
 	return info

@@ -7,9 +7,9 @@ var pipe = preload ("res://src/map/pipe.tscn")
 @export var angle_variance = PI / 6
 @export var separation_angle = PI / 3
 @export var roots = 5
-@export var depth = 10
+@export var depth = 15
 @export var distance_variance = 50
-@export var child_distribution = [8, 4, 1, 1, 1]
+@export var child_distribution = [10, 6, 2, 1, 1]
 
 var direction = Vector2.UP
 var distance = 180
@@ -50,7 +50,7 @@ func generate_tree(pos: Vector2, dir: Vector2, d: int):
 
 	var num_children
 	if d <= 1:
-		num_children = randi() % 2 + 1
+		num_children = 1
 	else:
 		num_children = child_distribution[randi() % child_distribution.size()]
 

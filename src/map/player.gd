@@ -6,9 +6,9 @@ extends Sprite2D
 var current_pipe: Pipe = null
 
 var resources = {
-	"fuel": 10.0,
-	"drill": 10.0,
-	"water": 10.0
+	"fuel": 100.0,
+	"drill": 100.0,
+	"water": 100.0
 }
 
 var lore: int = 0:
@@ -22,24 +22,27 @@ func move_to(pipe: Pipe):
 	
 	for resource in pipe.cost:
 		resources[resource] -= current_pipe.cost[resource]
+		print(resource, resources[resource])
 
 	update_resources()
 
 	if current_pipe.attributes.name == "Lore" and not current_pipe.visited:
+		current_pipe.color.a = 0.75
 		lore += 1
 
 	current_pipe.visited = true
+	current_pipe.cost["drill"] = min(5, current_pipe.cost["drill"])
 
-func _process(delta):
-	resources["water"] -= delta * 0.25
+func _process(_delta):
+	# resources["water"] -= delta * 2.5
 	resource_bars.get_node("water").value = resources["water"]
 
 func gather():
-	if resources["drill"] < 1:
+	if resources["drill"] < 5:
 		return
 
 	if not current_pipe.harvested:
-		resources["drill"] -= 1
+		resources["drill"] -= 5
 
 	for resource in current_pipe.resources:
 		resources[resource] += current_pipe.resources[resource]
@@ -54,5 +57,5 @@ func gather():
 
 func update_resources():
 	for resource in current_pipe.resources:
-		resources[resource] = min(resources[resource], 10.0)
+		resources[resource] = min(resources[resource], 100.0)
 		resource_bars.get_node(resource).value = resources[resource]

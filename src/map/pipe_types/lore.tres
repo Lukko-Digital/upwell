@@ -7,8 +7,8 @@ script = ExtResource("1_80ynw")
 name = "Lore"
 resources = {
 "drill": 0.0,
-"fuel": 1.0,
+"fuel": 10.0,
 "water": 0.0
 }
 color = Color(0.709833, 0, 0.105861, 1)
-drill_cost = 3.0
+drill_cost = 35.0
