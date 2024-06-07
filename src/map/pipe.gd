@@ -90,6 +90,6 @@ func _on_hitbox_area_exited(area):
 			player_can_move = false
 			too_far.show()
 
-func update_cost(pipe: Pipe=null):
+func update_cost(_pipe: Pipe=null):
 	cost["fuel"] = position.distance_to(player.position) / 150
 	pipe_info.text = info_template % [attributes.name, cost["fuel"],cost["drill"],resources_text]

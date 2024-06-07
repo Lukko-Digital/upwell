@@ -6,8 +6,9 @@
 script = ExtResource("1_snbhk")
 name = "Village"
 resources = {
-"drill": 1.0,
+"drill": 2.0,
 "fuel": 1.0,
 "water": 5.0
 }
 color = Color(0.0930073, 0.330486, 1, 1)
+drill_cost = 1.0

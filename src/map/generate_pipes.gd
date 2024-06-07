@@ -7,12 +7,12 @@ var pipe = preload ("res://src/map/pipe.tscn")
 @export var angle_variance = PI / 6
 @export var separation_angle = PI / 3
 @export var roots = 5
-@export var depth = 10
+@export var depth = 100
 @export var distance_variance = 50
-@export var child_distribution = [5, 9, 2]
+@export var child_distribution = [3, 4, 1, 0, 1]
 
 var direction = Vector2.UP
-var distance = 200
+var distance = 180
 
 func _ready():
 	var temp = []
