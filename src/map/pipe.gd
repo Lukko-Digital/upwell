@@ -18,29 +18,22 @@ var player_can_move = false
 var visited: bool = false
 var harvested: bool = false
 
-const info_template = "kind: %s \ncost: %.0f fuel, %.0f drill \nresources: \n%s"
-
+const info_template = "Fuel Cost: %.0f \nDanger: %d/3 \nLife Forms: %d/5 \nResources: %d/4"
 var cost = {"fuel" = 0, "drill" = 0}
-var resources = {"fuel" = 0, "drill" = 0, "water" = 0}
-var resources_text = ""
-var attributes: PipeAttributes
+var attributes: PipeType
 
-const ATTRIBUTES_LIST: Array[PipeAttributes] = [
-	preload ("res://src/map/pipe_types/lore.tres"),
-	preload ("res://src/map/pipe_types/plants.tres"),
-	preload ("res://src/map/pipe_types/rocks.tres"),
-	preload ("res://src/map/pipe_types/village.tres"),
+const PIPE_TYPES: Array[PipeType] = [
+
 ]
 
+var points_of_interest: Array[Encounter]
+var completed_encounters: Array[Encounter] = []
+
 func _ready():
-	attributes = ATTRIBUTES_LIST[randi() % ATTRIBUTES_LIST.size()]
-	for resource in attributes.resources:
-		resources[resource] = max(0, attributes.resources[resource] + randf_range( - 10, 10))
+	# attributes = PIPE_TYPES[randi() % PIPE_TYPES.size()]
+	# points_of_interest = attributes.points_of_interest
 
-	resources_text = get_info()
-
-	color = attributes.color
-	cost["drill"] = attributes.drill_cost
+	# cost["drill"] = attributes.drill_cost
 
 	hide()
 	info_tag.hide()
@@ -95,11 +88,4 @@ func _on_hitbox_area_exited(area):
 
 func update_cost(_pipe: Pipe=null):
 	cost["fuel"] = position.distance_to(player.position) / 15
-	pipe_info.text = info_template % [attributes.name, cost["fuel"],cost["drill"],resources_text]
-
-func get_info() -> String:
-	var info = ""
-	for resource in resources:
-		if resources[resource] > 0:
-			info += " %.0f %s\n" % [resources[resource],resource]
-	return info
+	pipe_info.text = info_template % [cost["fuel"]]
