@@ -11,6 +11,10 @@ class_name Pipe
 
 @onready var player = get_parent().get_parent().get_node("Player")
 
+@onready var encounters = $CanvasLayer/EncounterContainer/ScrollContainer/Encounters
+
+var pipe_encounter = preload ("res://src/map/pipe_encounter.tscn")
+
 signal clicked(pipe)
 
 var player_can_see = false
@@ -23,17 +27,22 @@ var cost = {"fuel" = 0, "drill" = 0}
 var attributes: PipeType
 
 const PIPE_TYPES: Array[PipeType] = [
-
+	preload ("res://src/map/pipe_types/grass_field.tres"),
 ]
 
 var points_of_interest: Array[Encounter]
 var completed_encounters: Array[Encounter] = []
 
 func _ready():
-	# attributes = PIPE_TYPES[randi() % PIPE_TYPES.size()]
-	# points_of_interest = attributes.points_of_interest
+	attributes = PIPE_TYPES[randi() % PIPE_TYPES.size()]
+	points_of_interest = attributes.points_of_interest
 
-	# cost["drill"] = attributes.drill_cost
+	for e in points_of_interest:
+		var encounter = pipe_encounter.instantiate()
+		await encounter.set_text(e)
+		encounters.add_child(encounter)
+
+	cost["drill"] = attributes.drill_cost
 
 	hide()
 	info_tag.hide()
@@ -66,6 +75,7 @@ func _on_gui_input(event):
 			event.pressed and
 			can_move()
 		):
+			$CanvasLayer/EncounterContainer.show()
 			player.move_to(self)
 			clicked.emit(self)
 
@@ -89,3 +99,6 @@ func _on_hitbox_area_exited(area):
 func update_cost(_pipe: Pipe=null):
 	cost["fuel"] = position.distance_to(player.position) / 15
 	pipe_info.text = info_template % [cost["fuel"]]
+
+func leave_encounter():
+	$CanvasLayer/EncounterContainer.hide()

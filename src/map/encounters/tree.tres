@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Encounter" load_steps=3 format=3 uid="uid://cd7q1cr8lfm7i"]
+
+[ext_resource type="Resource" uid="uid://d35icivg6j166" path="res://src/map/encounters/climb_tree.tres" id="1_dtyb6"]
+[ext_resource type="Script" path="res://src/map/encounters/encounter.gd" id="1_f5nac"]
+
+[resource]
+script = ExtResource("1_f5nac")
+prereq = {}
+button_text = "Go to the tree."
+enter_text = "You arrive at the tree."
+cost = {}
+reward = {}
+next_encounters = Array[ExtResource("1_f5nac")]([ExtResource("1_dtyb6")])
