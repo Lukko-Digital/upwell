@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbds6oh6j3ma5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_f5q8g"]
+flip_faces = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_btn0n"]
+flip_faces = true
+radius = 1.0
+
+[node name="Map" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4218, 0, 0)
+mesh = SubResource("CapsuleMesh_f5q8g")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.29648, -2.38419e-07, 3.27519)
+mesh = SubResource("CapsuleMesh_f5q8g")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.903094, 0, 2.21266)
+mesh = SubResource("CapsuleMesh_btn0n")
+skeleton = NodePath("../MeshInstance3D2")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.356051, -0.114536, -1.00307)
+mesh = SubResource("CapsuleMesh_f5q8g")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69184, 0.745886, 2.95855)
+mesh = SubResource("CapsuleMesh_f5q8g")
+skeleton = NodePath("../MeshInstance3D4")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.41817, 0.953968, -0.262286)
+mesh = SubResource("CapsuleMesh_btn0n")
+skeleton = NodePath("../MeshInstance3D2")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09798, 1.32943, -0.539431)
+mesh = SubResource("CapsuleMesh_f5q8g")
+skeleton = NodePath("../MeshInstance3D5")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 15, 0)
+light_energy = 16.0
+spot_range = 36.4741
