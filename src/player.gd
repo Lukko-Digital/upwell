@@ -2,24 +2,41 @@ extends CharacterBody2D
 
 const SPEED = 60.0
 
+enum MODE {
+	TOP_DOWN,
+	SIDE_SCROLL
+}
+
 @onready var sprite = $AnimatedSprite2D
 
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var idle_dir: Vector2 = Vector2.DOWN
+var mode = MODE.SIDE_SCROLL
 
 func _physics_process(delta):
-	handle_movement()
-	handle_animation()
+	handle_gravity(delta)
+	var input_dir = handle_movement()
+	handle_animation(input_dir)
 	move_and_slide()
 
-func handle_movement():
-	var direction = Vector2(
-		Input.get_axis("left", "right"), Input.get_axis("up", "down")
-	).normalized()
-	velocity = direction * SPEED
+func handle_gravity(delta):
+	if mode == MODE.SIDE_SCROLL:
+		velocity.y += gravity * delta
 
-func handle_animation():
-	var direction = velocity.normalized().round()
-	match direction:
+func handle_movement() -> Vector2:
+	var direction: Vector2 = Vector2(
+		Input.get_axis("left", "right"),
+		Input.get_axis("up", "down") if mode == MODE.TOP_DOWN else 0.0
+	)
+	match mode:
+		MODE.TOP_DOWN:
+			velocity = direction.normalized() * SPEED
+		MODE.SIDE_SCROLL:
+			velocity.x = direction.x * SPEED
+	return direction
+
+func handle_animation(input_dir):
+	match input_dir:
 		Vector2.ZERO:
 			if idle_dir == Vector2.DOWN:
 				sprite.play("idle_down")
@@ -36,13 +53,11 @@ func handle_animation():
 		Vector2.UP:
 			sprite.play("run_up")
 	
-	if direction.x < 0:
+	if input_dir.x < 0:
 		sprite.flip_h = true
 	else: sprite.flip_h = false
 	
-	if direction.y < 0:
-		print("up")
+	if input_dir.y < 0:
 		idle_dir = Vector2.UP
-	elif direction:
-		print("down")
+	elif input_dir:
 		idle_dir = Vector2.DOWN
