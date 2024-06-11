@@ -8,6 +8,11 @@
 [node name="Map" type="Sprite2D" parent="."]
 texture = ExtResource("1_1lucs")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="Map"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/StaticBody2D"]
+polygon = PackedVector2Array(-301, 79, -296, 85, -258, 95, -215, 98, -172, 89, -155, 85, -145, 77, -132, 72, -113, 69, -85, 68, 17, 68, 36, 60, 87, 60, 98, 54, 137, 54, 151, 61, 182, 64, 229, 73, 260, 77, 292, 76, 301, 72, 312, 60, 314, 45, 340, 45, 337, 127, -315, 132)
+
 [node name="Player" parent="." instance=ExtResource("2_owwjj")]
 position = Vector2(-226, 51)
 
