@@ -1,4 +1,4 @@
 extends Camera3D
 
-func change_height(change: int):
+func change_height(change: float):
 	position.y += change

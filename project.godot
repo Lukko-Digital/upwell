@@ -14,3 +14,10 @@ config/name="upwell"
 run/main_scene="res://src/map/map_ui.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[shader_globals]
+
+top_down_camera_depth={
+"type": "float",
+"value": 0.0
+}
