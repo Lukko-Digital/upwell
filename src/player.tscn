@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://1ejs72lqbam6"]
+[gd_scene load_steps=38 format=3 uid="uid://1ejs72lqbam6"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_lbj7m"]
 [ext_resource type="Texture2D" uid="uid://bt3ajtndp30hh" path="res://assets/reeds_player.png" id="2_wj0wt"]
@@ -263,6 +263,10 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_vjf4g"]
 radius = 4.28571
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o6flf"]
+radius = 5.71429
+height = 37.1429
+
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.7, 0.7)
 collision_layer = 0
@@ -272,8 +276,15 @@ script = ExtResource("1_lbj7m")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4dqer")
 animation = &"idle_down"
-frame_progress = 0.152336
+frame_progress = 0.757066
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 14)
 shape = SubResource("CircleShape2D_vjf4g")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_o6flf")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

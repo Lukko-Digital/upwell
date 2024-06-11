@@ -61,3 +61,13 @@ func handle_animation(input_dir):
 		idle_dir = Vector2.UP
 	elif input_dir:
 		idle_dir = Vector2.DOWN
+
+func swap_mode():
+	if mode == MODE.TOP_DOWN:
+		mode = MODE.SIDE_SCROLL
+	else:
+		mode = MODE.TOP_DOWN
+
+func _on_area_2d_area_entered(area: Area2D):
+	if area is ModeSwap:
+		swap_mode()

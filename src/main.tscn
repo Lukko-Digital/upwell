@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://evb0tcbuadgk"]
+[gd_scene load_steps=8 format=3 uid="uid://evb0tcbuadgk"]
 
 [ext_resource type="Texture2D" uid="uid://ft51bnwhb68w" path="res://assets/map.png" id="1_1lucs"]
 [ext_resource type="PackedScene" uid="uid://1ejs72lqbam6" path="res://src/player.tscn" id="2_owwjj"]
+[ext_resource type="Script" path="res://src/mode_swap.gd" id="3_8h4gs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hhoh2"]
+size = Vector2(25, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xwkhe"]
+size = Vector2(29, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_746ry"]
+size = Vector2(24, 1)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_mejee"]
+b = Vector2(0, 44)
 
 [node name="Main" type="Node2D"]
 
@@ -11,10 +24,51 @@ texture = ExtResource("1_1lucs")
 [node name="StaticBody2D" type="StaticBody2D" parent="Map"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/StaticBody2D"]
-polygon = PackedVector2Array(-301, 79, -296, 85, -258, 95, -215, 98, -172, 89, -155, 85, -145, 77, -132, 72, -113, 69, -85, 68, 17, 68, 36, 60, 87, 60, 98, 54, 137, 54, 151, 61, 182, 64, 229, 73, 260, 77, 292, 76, 301, 72, 312, 60, 314, 45, 340, 45, 337, 127, -315, 132)
+polygon = PackedVector2Array(-301, 79, -296, 85, -258, 95, -215, 98, -172, 89, -155, 85, -145, 77, -132, 72, -113, 69, -85, 68, 17, 68, 36, 60, 87, 60, 98, 54, 137, 54, 151, 61, 182, 64, 229, 73, 260, 77, 292, 76, 301, 72, 312, 60, 314, 45, 307, 28, 280, 20, 224, 11, 212, 5, 211, 2, 220, -5, 246, -12, 284, -16, 297, -18, 305, -23, 306, -34, 300, -43, 285, -48, 285, -77, 339, -74, 340, 45, 337, 127, -315, 132, -316, 36, -145, 31, -152, 73, -175, 72, -208, 64, -232, 61, -296, 73)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Map/StaticBody2D"]
+polygon = PackedVector2Array(201, 61, 233, 57, 274, 50, 281, 45, 279, 38, 266, 31, 203, 17, 190, 11, 187, -1, 200, -13, 242, -23, 272, -24, 287, -24, 295, -27, 296, -31, 292, -36, 278, -41, 254, -48, 208, -54, 59, -54, 56, -51, 56, -38, 37, -38, 37, -36, 185, -36, 186, 7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/StaticBody2D"]
+position = Vector2(10.5, -17)
+shape = SubResource("RectangleShape2D_hhoh2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Map/StaticBody2D"]
+position = Vector2(38.5, 13)
+shape = SubResource("RectangleShape2D_xwkhe")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Map/StaticBody2D"]
+position = Vector2(-14, 36)
+shape = SubResource("RectangleShape2D_746ry")
 
 [node name="Player" parent="." instance=ExtResource("2_owwjj")]
-position = Vector2(-226, 51)
+position = Vector2(-19.9999, 52)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(3, 3)
+
+[node name="ModeSwaps" type="Node" parent="."]
+
+[node name="ModeSwap" type="Area2D" parent="ModeSwaps"]
+position = Vector2(-151, 57)
+script = ExtResource("3_8h4gs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ModeSwaps/ModeSwap"]
+position = Vector2(2, -19)
+shape = SubResource("SegmentShape2D_mejee")
+
+[node name="ModeSwap2" type="Area2D" parent="ModeSwaps"]
+position = Vector2(200, 43)
+script = ExtResource("3_8h4gs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ModeSwaps/ModeSwap2"]
+position = Vector2(2, -19)
+shape = SubResource("SegmentShape2D_mejee")
+
+[node name="ModeSwap3" type="Area2D" parent="ModeSwaps"]
+position = Vector2(282, -63)
+script = ExtResource("3_8h4gs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ModeSwaps/ModeSwap3"]
+position = Vector2(2, -19)
+shape = SubResource("SegmentShape2D_mejee")
