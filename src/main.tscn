@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://evb0tcbuadgk"]
+[gd_scene load_steps=3 format=3 uid="uid://evb0tcbuadgk"]
 
 [ext_resource type="Texture2D" uid="uid://ft51bnwhb68w" path="res://assets/map.png" id="1_1lucs"]
+[ext_resource type="PackedScene" uid="uid://1ejs72lqbam6" path="res://src/player.tscn" id="2_owwjj"]
 
 [node name="Main" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Map" type="Sprite2D" parent="."]
 texture = ExtResource("1_1lucs")
+
+[node name="Player" parent="." instance=ExtResource("2_owwjj")]
+position = Vector2(-226, 51)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(3, 3)
