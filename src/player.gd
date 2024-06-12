@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 60.0
+const JUMP_VELOCITY = 300.0
 
 enum MODE {
 	TOP_DOWN,
@@ -18,6 +19,10 @@ func _physics_process(delta):
 	var input_dir = handle_movement()
 	handle_animation(input_dir)
 	move_and_slide()
+
+func _unhandled_input(event):
+	if event.is_action_pressed("jump"):
+		jump()
 
 func handle_gravity(delta):
 	if mode == MODE.SIDE_SCROLL:
@@ -61,6 +66,10 @@ func handle_animation(input_dir):
 		idle_dir = Vector2.UP
 	elif input_dir:
 		idle_dir = Vector2.DOWN
+
+func jump():
+	if mode == MODE.SIDE_SCROLL and is_on_floor():
+		velocity.y = -JUMP_VELOCITY
 
 func swap_mode():
 	if mode == MODE.TOP_DOWN:
