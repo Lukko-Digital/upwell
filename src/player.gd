@@ -24,7 +24,8 @@ func handle_movement():
 	velocity.x = direction * SPEED
 
 func jump():
-	velocity.y = JUMP_VELOCITY
+	if is_on_floor():
+		velocity.y = JUMP_VELOCITY
 
 func shoot():
 	var instance: RigidBody2D = drill_scene.instantiate()
