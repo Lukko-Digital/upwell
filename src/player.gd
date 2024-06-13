@@ -8,7 +8,8 @@ const PLAYER = {
 }
 const DRILL = {
 	LAUNCH_SPEED = 600.0,
-	ATTRACT_FORCE = 1200.0
+	ATTRACT_FORCE = 400.0,
+	INITIAL_ATTRACT_SPEED = 400.0
 }
 
 @onready var drill_scene = preload ("res://src/drill_bit.tscn")
@@ -26,8 +27,12 @@ func handle_gravity(delta):
 
 func handle_movement(delta):
 	# magnet attraction
-	if drill and Input.is_action_pressed("attract"):
-		velocity += (drill.global_position - global_position).normalized() * DRILL.ATTRACT_FORCE * delta
+	if drill:
+		var vec_to_drill = (drill.global_position - global_position).normalized()
+		if Input.is_action_just_pressed("attract"):
+			velocity += vec_to_drill * DRILL.INITIAL_ATTRACT_SPEED
+		if Input.is_action_pressed("attract"):
+			velocity += vec_to_drill * DRILL.ATTRACT_FORCE * delta
 
 	# friction
 	if abs(velocity.x) > PLAYER.SPEED and is_on_floor():
