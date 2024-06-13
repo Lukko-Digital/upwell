@@ -21,6 +21,7 @@ var drill: RigidBody2D = null
 
 func _physics_process(delta):
 	handle_gravity(delta)
+	handle_attraction(delta)
 	handle_movement(delta)
 	move_and_slide()
 
@@ -28,23 +29,28 @@ func handle_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-func handle_movement(delta):
-	# magnet attraction
-	if drill:
-		var vec_to_drill = (drill.global_position - global_position).normalized()
-		if Input.is_action_pressed("down"):
-			if Input.is_action_pressed("attract"):
-				drill.set_axis_velocity( - vec_to_drill * DRILL.ATTRACT_FORCE)
-				# drill.apply_central_force( - vec_to_drill * DRILL.ATTRACT_FORCE * 4)
-		else:
-			if Input.is_action_just_pressed("attract"):
-				velocity += vec_to_drill * DRILL.INITIAL_ATTRACT_SPEED
-			if Input.is_action_pressed("attract"):
-				velocity += vec_to_drill * DRILL.ATTRACT_FORCE * delta
-		if drill in pickup_area.get_overlapping_bodies() and Input.is_action_pressed("attract"):
-			drill.queue_free()
-			drill = null
+func handle_attraction(delta):
+	if not drill:
+		return
 
+	var vec_to_drill = (drill.global_position - global_position).normalized()
+	if Input.is_action_pressed("down"):
+		# recall drill
+		if Input.is_action_pressed("attract"):
+			drill.set_axis_velocity( - vec_to_drill * DRILL.ATTRACT_FORCE)
+			# drill.apply_central_force( - vec_to_drill * DRILL.ATTRACT_FORCE * 4)
+	else:
+		# attraction movement
+		if Input.is_action_just_pressed("attract"):
+			velocity += vec_to_drill * DRILL.INITIAL_ATTRACT_SPEED
+		if Input.is_action_pressed("attract"):
+			velocity += vec_to_drill * DRILL.ATTRACT_FORCE * delta
+	if drill in pickup_area.get_overlapping_bodies() and Input.is_action_pressed("attract"):
+		# "reattach" drill bit to player
+		drill.queue_free()
+		drill = null
+
+func handle_movement(delta):
 	# friction
 	if abs(velocity.x) > PLAYER.SPEED and is_on_floor():
 		# if moving over top speed and on ground
