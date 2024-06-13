@@ -1,10 +1,15 @@
 extends CharacterBody2D
 
+const PLAYER = {
+	SPEED = 150.0,
+	ACCELERATION = 800.0,
+	JUMP_VELOCITY = -300.0
+}
 const SPEED = 100.0
 const JUMP_VELOCITY = -300.0
 const DRILL = {
 	LAUNCH_SPEED = 600.0,
-	ATTRACT_FORCE = 1000.0
+	ATTRACT_FORCE = 1200.0
 }
 
 @onready var drill_scene = preload ("res://src/drill_bit.tscn")
@@ -14,29 +19,25 @@ var drill = null
 func _physics_process(delta):
 	handle_gravity(delta)
 	handle_movement(delta)
-	# handle_attraction(delta)
 	move_and_slide()
 
 func handle_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-var STRAFE_TOP_SPEED = 100.0
-var STRAFE_ACCEL
-
 func handle_movement(delta):
 	if drill and Input.is_action_pressed("attract"):
 		velocity += (drill.global_position - global_position).normalized() * DRILL.ATTRACT_FORCE * delta
 
 	var direction = Input.get_axis("left", "right")
-	
-	# velocity.x = direction * SPEED
-
-	# holding right while moving left, slow down
-
-# func handle_attraction(delta):
-# 	if drill and Input.is_action_pressed("attract"):
-# 		velocity += (drill.global_position - global_position).normalized() * DRILL.ATTRACT_FORCE * delta
+	if sign(velocity.x) == sign(direction):
+		# if input in direction of movement
+		if abs(velocity.x) < PLAYER.SPEED:
+			# if moving slower than top input speed
+			velocity.x = move_toward(velocity.x, PLAYER.SPEED * direction, PLAYER.ACCELERATION * delta)
+	else:
+		# if input in opposite direction of movement
+		velocity.x = move_toward(velocity.x, PLAYER.SPEED * direction, PLAYER.ACCELERATION * delta)
 
 func jump():
 	if is_on_floor():
