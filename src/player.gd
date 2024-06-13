@@ -30,13 +30,9 @@ func handle_movement(delta):
 		velocity += (drill.global_position - global_position).normalized() * DRILL.ATTRACT_FORCE * delta
 
 	var direction = Input.get_axis("left", "right")
-	if sign(velocity.x) == sign(direction):
-		# if input in direction of movement
-		if abs(velocity.x) < PLAYER.SPEED:
-			# if moving slower than top input speed
-			velocity.x = move_toward(velocity.x, PLAYER.SPEED * direction, PLAYER.ACCELERATION * delta)
-	else:
-		# if input in opposite direction of movement
+
+	if abs(velocity.x) < PLAYER.SPEED or sign(velocity.x) != sign(direction):
+		# if moving under top speed or input is in direction opposite to movement
 		velocity.x = move_toward(velocity.x, PLAYER.SPEED * direction, PLAYER.ACCELERATION * delta)
 
 func jump():
