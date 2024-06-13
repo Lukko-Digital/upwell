@@ -10,7 +10,7 @@ const PLAYER = {
 const DRILL = {
 	LAUNCH_SPEED = 600.0,
 	ATTRACT_FORCE = 400.0,
-	INITIAL_ATTRACT_SPEED = 400.0
+	INITIAL_ATTRACT_SPEED = 300.0
 }
 
 @onready var drill_scene = preload ("res://src/drill_bit.tscn")
@@ -23,8 +23,6 @@ func _physics_process(delta):
 	handle_gravity(delta)
 	handle_movement(delta)
 	move_and_slide()
-	if drill:
-		print(drill.linear_velocity)
 
 func handle_gravity(delta):
 	if not is_on_floor():
@@ -36,15 +34,16 @@ func handle_movement(delta):
 		var vec_to_drill = (drill.global_position - global_position).normalized()
 		if Input.is_action_pressed("down"):
 			if Input.is_action_pressed("attract"):
-				drill.apply_central_force( - vec_to_drill * DRILL.ATTRACT_FORCE * 4)
-				if drill in pickup_area.get_overlapping_bodies():
-					drill.queue_free()
-					drill = null
+				drill.set_axis_velocity( - vec_to_drill * DRILL.ATTRACT_FORCE)
+				# drill.apply_central_force( - vec_to_drill * DRILL.ATTRACT_FORCE * 4)
 		else:
 			if Input.is_action_just_pressed("attract"):
 				velocity += vec_to_drill * DRILL.INITIAL_ATTRACT_SPEED
 			if Input.is_action_pressed("attract"):
 				velocity += vec_to_drill * DRILL.ATTRACT_FORCE * delta
+		if drill in pickup_area.get_overlapping_bodies() and Input.is_action_pressed("attract"):
+			drill.queue_free()
+			drill = null
 
 	# friction
 	if abs(velocity.x) > PLAYER.SPEED and is_on_floor():
