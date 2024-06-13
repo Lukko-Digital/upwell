@@ -3,6 +3,7 @@ extends CharacterBody2D
 const PLAYER = {
 	SPEED = 150.0,
 	ACCELERATION = 800.0,
+	FRICTION_DECEL = 1500.0,
 	JUMP_VELOCITY = -300.0
 }
 const SPEED = 100.0
@@ -26,11 +27,17 @@ func handle_gravity(delta):
 		velocity.y += gravity * delta
 
 func handle_movement(delta):
+	# magnet attraction
 	if drill and Input.is_action_pressed("attract"):
 		velocity += (drill.global_position - global_position).normalized() * DRILL.ATTRACT_FORCE * delta
 
-	var direction = Input.get_axis("left", "right")
+	# friction
+	if abs(velocity.x) > PLAYER.SPEED and is_on_floor():
+		# if moving over top speed and on ground
+		velocity.x = move_toward(velocity.x, 0, PLAYER.FRICTION_DECEL * delta)
 
+	# directional input
+	var direction = Input.get_axis("left", "right")
 	if abs(velocity.x) < PLAYER.SPEED or sign(velocity.x) != sign(direction):
 		# if moving under top speed or input is in direction opposite to movement
 		velocity.x = move_toward(velocity.x, PLAYER.SPEED * direction, PLAYER.ACCELERATION * delta)
