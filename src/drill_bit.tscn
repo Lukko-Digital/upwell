@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c20m60j07xy7v"]
+[gd_scene load_steps=3 format=3 uid="uid://cl2876orp5fiy"]
 
 [ext_resource type="Script" path="res://src/drill_bit.gd" id="1_586he"]
 
@@ -6,7 +6,7 @@
 size = Vector2(10, 10)
 
 [node name="DrillBit" type="RigidBody2D"]
-collision_layer = 0
+collision_layer = 4
 script = ExtResource("1_586he")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

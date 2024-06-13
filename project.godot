@@ -57,6 +57,7 @@ attract={
 
 2d_physics/layer_1="TERRAIN"
 2d_physics/layer_2="PLAYER"
+2d_physics/layer_3="DRILL"
 
 [rendering]
 

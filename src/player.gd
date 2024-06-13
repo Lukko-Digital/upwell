@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 const PLAYER = {
 	SPEED = 150.0,
@@ -13,13 +14,17 @@ const DRILL = {
 }
 
 @onready var drill_scene = preload ("res://src/drill_bit.tscn")
+@onready var pickup_area: Area2D = $PickupArea
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var drill = null
+var drill: RigidBody2D = null
 
 func _physics_process(delta):
 	handle_gravity(delta)
 	handle_movement(delta)
 	move_and_slide()
+	if drill:
+		print(drill.linear_velocity)
 
 func handle_gravity(delta):
 	if not is_on_floor():
@@ -29,10 +34,17 @@ func handle_movement(delta):
 	# magnet attraction
 	if drill:
 		var vec_to_drill = (drill.global_position - global_position).normalized()
-		if Input.is_action_just_pressed("attract"):
-			velocity += vec_to_drill * DRILL.INITIAL_ATTRACT_SPEED
-		if Input.is_action_pressed("attract"):
-			velocity += vec_to_drill * DRILL.ATTRACT_FORCE * delta
+		if Input.is_action_pressed("down"):
+			if Input.is_action_pressed("attract"):
+				drill.apply_central_force( - vec_to_drill * DRILL.ATTRACT_FORCE * 4)
+				if drill in pickup_area.get_overlapping_bodies():
+					drill.queue_free()
+					drill = null
+		else:
+			if Input.is_action_just_pressed("attract"):
+				velocity += vec_to_drill * DRILL.INITIAL_ATTRACT_SPEED
+			if Input.is_action_pressed("attract"):
+				velocity += vec_to_drill * DRILL.ATTRACT_FORCE * delta
 
 	# friction
 	if abs(velocity.x) > PLAYER.SPEED and is_on_floor():
@@ -50,9 +62,11 @@ func jump():
 		velocity.y = PLAYER.JUMP_VELOCITY
 
 func shoot():
+	if drill:
+		return
 	var instance: RigidBody2D = drill_scene.instantiate()
 	instance.position = global_position
-	instance.set_axis_velocity((get_global_mouse_position() - global_position).normalized() * DRILL.LAUNCH_SPEED)
+	instance.apply_central_impulse((get_global_mouse_position() - global_position).normalized() * DRILL.LAUNCH_SPEED)
 	get_parent().add_child(instance)
 	drill = instance
 
