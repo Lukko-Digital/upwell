@@ -8,10 +8,10 @@ const PLAYER = {
 	JUMP_VELOCITY = -300.0
 }
 const DRILL = {
-	LAUNCH_SPEED = 600.0,
-	ATTRACT_FORCE = 1400.0,
-	INITIAL_ATTRACT_SPEED = 300.0,
-	REPEL_FORCE = 1400.0
+	LAUNCH_SPEED = 1000.0,
+	ATTRACT_SPEED = 600.0,
+	REPEL_SPEED = 600.0,
+	RECALL_SPEED = 8.0
 }
 
 @onready var drill_scene = preload ("res://src/drill_bit.tscn")
@@ -22,23 +22,20 @@ var drill: RigidBody2D = null
 
 func _physics_process(delta):
 	handle_gravity(delta)
-	handle_repel(delta)
-	handle_attract(delta)
 	handle_movement(delta)
+	# handle_recall()
 	move_and_slide()
 
 func handle_gravity(delta):
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += gravity * delta / 1.5
 
-func handle_repel(delta):
+func repel():
 	if not drill:
-		if Input.is_action_just_pressed("repel"):
-			shoot()
+		shoot()
 	else:
-		var vec_to_drill = drill.global_position - global_position
-		if Input.is_action_pressed("repel"):
-			velocity += - vec_to_drill.normalized() * delta * clamp(DRILL.REPEL_FORCE * 100 / vec_to_drill.length(), 0, 2000)
+		var vec_to_drill = (drill.global_position - global_position).normalized()
+		velocity = -vec_to_drill * DRILL.REPEL_SPEED
 
 func shoot():
 	var instance: RigidBody2D = drill_scene.instantiate()
@@ -47,27 +44,26 @@ func shoot():
 	get_parent().add_child(instance)
 	drill = instance
 
-func handle_attract(delta):
+func attract():
 	if not drill:
 		return
-
 	var vec_to_drill = (drill.global_position - global_position).normalized()
-	if Input.is_action_pressed("down"):
-		# recall drill
-		if Input.is_action_pressed("attract"):
-			drill.freeze = false
-			drill.set_axis_velocity( - vec_to_drill * DRILL.ATTRACT_FORCE / 4)
-			# drill.apply_central_force( - vec_to_drill * DRILL.ATTRACT_FORCE * 4)
-	else:
-		# attraction movement
-		if Input.is_action_just_pressed("attract"):
-			velocity += vec_to_drill * DRILL.INITIAL_ATTRACT_SPEED
-		if Input.is_action_pressed("attract"):
-			velocity += vec_to_drill * DRILL.ATTRACT_FORCE * delta
-	if drill in pickup_area.get_overlapping_bodies() and Input.is_action_pressed("attract"):
-		# "reattach" drill bit to player
-		drill.queue_free()
-		drill = null
+	velocity = vec_to_drill * DRILL.ATTRACT_SPEED
+
+# func handle_recall():
+# 	if not drill:
+# 		return
+# 	if Input.is_action_pressed("recall"):
+# 		drill.freeze = false
+# 		drill.gravity_scale = 0
+# 		var vec_to_drill = (drill.global_position - global_position)
+# 		print(clamp(vec_to_drill.length() * DRILL.RECALL_SPEED, 300, INF))
+# 		drill.set_axis_velocity( - vec_to_drill.normalized() * clamp(vec_to_drill.length() * DRILL.RECALL_SPEED, 300, INF))
+		
+# 		if drill in pickup_area.get_overlapping_bodies():
+# 			# "reattach" drill bit to player
+# 			drill.queue_free()
+# 			drill = null
 
 func handle_movement(delta):
 	# friction
@@ -88,3 +84,11 @@ func jump():
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump()
+	if event.is_action_pressed("repel"):
+		repel()
+	if event.is_action_pressed("attract"):
+		attract()
+	if event.is_action_pressed("recall"):
+		if drill:
+			drill.queue_free()
+			drill = null
