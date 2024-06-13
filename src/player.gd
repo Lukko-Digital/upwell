@@ -36,9 +36,9 @@ func handle_repel(delta):
 		if Input.is_action_just_pressed("repel"):
 			shoot()
 	else:
-		var vec_to_drill = (drill.global_position - global_position).normalized()
+		var vec_to_drill = drill.global_position - global_position
 		if Input.is_action_pressed("repel"):
-			velocity += - vec_to_drill * DRILL.REPEL_FORCE * delta
+			velocity += - vec_to_drill.normalized() * delta * clamp(DRILL.REPEL_FORCE * 100 / vec_to_drill.length(), 0, 2000)
 
 func shoot():
 	var instance: RigidBody2D = drill_scene.instantiate()
