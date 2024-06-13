@@ -55,6 +55,7 @@ func handle_attract(delta):
 	if Input.is_action_pressed("down"):
 		# recall drill
 		if Input.is_action_pressed("attract"):
+			drill.freeze = false
 			drill.set_axis_velocity( - vec_to_drill * DRILL.ATTRACT_FORCE / 4)
 			# drill.apply_central_force( - vec_to_drill * DRILL.ATTRACT_FORCE * 4)
 	else:

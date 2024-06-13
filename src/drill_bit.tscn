@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://c20m60j07xy7v"]
+[gd_scene load_steps=4 format=3 uid="uid://c20m60j07xy7v"]
 
 [ext_resource type="Script" path="res://src/drill_bit.gd" id="1_586he"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g5a4n"]
 size = Vector2(10, 10)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rh7n6"]
+size = Vector2(12, 12)
+
 [node name="DrillBit" type="RigidBody2D"]
 collision_layer = 4
+freeze_mode = 1
 script = ExtResource("1_586he")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -17,3 +21,12 @@ offset_left = -5.0
 offset_top = -5.0
 offset_right = 5.0
 offset_bottom = 5.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_rh7n6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
