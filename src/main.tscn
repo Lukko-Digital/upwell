@@ -28,4 +28,3 @@ layer_0/tile_data = PackedInt32Array(65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 6553
 position = Vector2(4, -14)
 
 [node name="Camera2D" type="Camera2D" parent="TileMap/Player"]
-zoom = Vector2(2.5, 2.5)

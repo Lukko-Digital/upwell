@@ -9,8 +9,9 @@ const PLAYER = {
 }
 const DRILL = {
 	LAUNCH_SPEED = 600.0,
-	ATTRACT_FORCE = 400.0,
-	INITIAL_ATTRACT_SPEED = 300.0
+	ATTRACT_FORCE = 1400.0,
+	INITIAL_ATTRACT_SPEED = 300.0,
+	REPEL_FORCE = 1400.0
 }
 
 @onready var drill_scene = preload ("res://src/drill_bit.tscn")
@@ -21,7 +22,8 @@ var drill: RigidBody2D = null
 
 func _physics_process(delta):
 	handle_gravity(delta)
-	handle_attraction(delta)
+	handle_repel(delta)
+	handle_attract(delta)
 	handle_movement(delta)
 	move_and_slide()
 
@@ -29,7 +31,23 @@ func handle_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-func handle_attraction(delta):
+func handle_repel(delta):
+	if not drill:
+		if Input.is_action_just_pressed("repel"):
+			shoot()
+	else:
+		var vec_to_drill = (drill.global_position - global_position).normalized()
+		if Input.is_action_pressed("repel"):
+			velocity += - vec_to_drill * DRILL.REPEL_FORCE * delta
+
+func shoot():
+	var instance: RigidBody2D = drill_scene.instantiate()
+	instance.position = global_position
+	instance.apply_central_impulse((get_global_mouse_position() - global_position).normalized() * DRILL.LAUNCH_SPEED)
+	get_parent().add_child(instance)
+	drill = instance
+
+func handle_attract(delta):
 	if not drill:
 		return
 
@@ -37,7 +55,7 @@ func handle_attraction(delta):
 	if Input.is_action_pressed("down"):
 		# recall drill
 		if Input.is_action_pressed("attract"):
-			drill.set_axis_velocity( - vec_to_drill * DRILL.ATTRACT_FORCE)
+			drill.set_axis_velocity( - vec_to_drill * DRILL.ATTRACT_FORCE / 4)
 			# drill.apply_central_force( - vec_to_drill * DRILL.ATTRACT_FORCE * 4)
 	else:
 		# attraction movement
@@ -66,17 +84,6 @@ func jump():
 	if is_on_floor():
 		velocity.y = PLAYER.JUMP_VELOCITY
 
-func shoot():
-	if drill:
-		return
-	var instance: RigidBody2D = drill_scene.instantiate()
-	instance.position = global_position
-	instance.apply_central_impulse((get_global_mouse_position() - global_position).normalized() * DRILL.LAUNCH_SPEED)
-	get_parent().add_child(instance)
-	drill = instance
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump()
-	elif event.is_action_pressed("shoot"):
-		shoot()
