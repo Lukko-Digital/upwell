@@ -6,8 +6,6 @@ const PLAYER = {
 	FRICTION_DECEL = 1500.0,
 	JUMP_VELOCITY = -300.0
 }
-const SPEED = 100.0
-const JUMP_VELOCITY = -300.0
 const DRILL = {
 	LAUNCH_SPEED = 600.0,
 	ATTRACT_FORCE = 1200.0
@@ -44,7 +42,7 @@ func handle_movement(delta):
 
 func jump():
 	if is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		velocity.y = PLAYER.JUMP_VELOCITY
 
 func shoot():
 	var instance: RigidBody2D = drill_scene.instantiate()
