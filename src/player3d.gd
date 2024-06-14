@@ -22,7 +22,7 @@ func _physics_process(delta):
 
 func handle_gravity(delta):
 	if not is_on_floor():
-		velocity.y -= gravity * delta * 2
+		velocity.y -= gravity * delta
 
 func handle_movement(_delta):
 	var direction = Input.get_axis("left", "right")
