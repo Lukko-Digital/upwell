@@ -61,8 +61,15 @@ recall={
 [layer_names]
 
 2d_physics/layer_1="TERRAIN"
+3d_physics/layer_1="TERRAIN"
 2d_physics/layer_2="PLAYER"
+3d_physics/layer_2="PLAYER"
 2d_physics/layer_3="DRILL"
+3d_physics/layer_3="DRILL"
+
+[physics]
+
+3d/default_gravity=19.0
 
 [rendering]
 
