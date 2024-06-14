@@ -63,6 +63,8 @@ recall={
 2d_physics/layer_1="TERRAIN"
 2d_physics/layer_2="PLAYER"
 2d_physics/layer_3="DRILL"
+2d_physics/layer_4="ROCK"
+2d_physics/layer_5="DIRT"
 
 [rendering]
 
