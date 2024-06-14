@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjx3erv8f1v78"]
+
+[ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player.tscn" id="2_labfs"]
+[ext_resource type="Texture2D" uid="uid://bxy7mphy3okcu" path="res://assets/Test_Level/ground.png" id="3_2t18n"]
+[ext_resource type="Texture2D" uid="uid://fl1ublau88my" path="res://assets/Test_Level/floor.png" id="3_g4lf3"]
+[ext_resource type="Texture2D" uid="uid://bjicl8csfkmw2" path="res://assets/Test_Level/floor5.png" id="4_i6n7a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5c5ng"]
+size = Vector2(3840, 508)
+
+[node name="Main2" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 254)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_5c5ng")
+
+[node name="Player" parent="." instance=ExtResource("2_labfs")]
+z_index = -1
+position = Vector2(0, -121)
+scale = Vector2(8, 8)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.4, 0.4)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Floor" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Floor"]
+position = Vector2(0, 259)
+texture = ExtResource("3_g4lf3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/Floor"]
+texture = ExtResource("3_2t18n")
+
+[node name="Floor2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Floor2"]
+position = Vector2(0, 71)
+texture = ExtResource("4_i6n7a")
