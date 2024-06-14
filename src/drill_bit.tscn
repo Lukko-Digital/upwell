@@ -1,14 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqhg81mkdfd3t"]
+[gd_scene load_steps=5 format=3 uid="uid://cqhg81mkdfd3t"]
+
+[ext_resource type="Script" path="res://src/drill_bit.gd" id="1_586he"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_7cf8e"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_k0v8f"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_gmcvt"]
+radius = 0.6
+
 [node name="DrillBit" type="RigidBody3D"]
 collision_layer = 0
+script = ExtResource("1_586he")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_7cf8e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_k0v8f")
+
+[node name="WallDetectionArea" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallDetectionArea"]
+shape = SubResource("SphereShape3D_gmcvt")
+
+[connection signal="body_entered" from="WallDetectionArea" to="." method="_on_wall_detection_area_body_entered"]
