@@ -1,9 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjx3erv8f1v78"]
+[gd_scene load_steps=14 format=3 uid="uid://cjx3erv8f1v78"]
 
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player.tscn" id="2_labfs"]
+[ext_resource type="Texture2D" uid="uid://dihewiwmnn6k4" path="res://assets/Test_Level/house_bg_5.png" id="2_oyygt"]
 [ext_resource type="Texture2D" uid="uid://bxy7mphy3okcu" path="res://assets/Test_Level/ground.png" id="3_2t18n"]
 [ext_resource type="Texture2D" uid="uid://fl1ublau88my" path="res://assets/Test_Level/floor.png" id="3_g4lf3"]
+[ext_resource type="Texture2D" uid="uid://bfpiq463rdm4l" path="res://assets/Test_Level/houses.png" id="3_ql3pc"]
 [ext_resource type="Texture2D" uid="uid://bjicl8csfkmw2" path="res://assets/Test_Level/floor5.png" id="4_i6n7a"]
+[ext_resource type="Texture2D" uid="uid://rklutnjhw6xs" path="res://assets/Test_Level/fliers.png" id="5_vpdek"]
+[ext_resource type="Texture2D" uid="uid://davaibv6mndpn" path="res://assets/Test_Level/well.png" id="7_pmldb"]
+[ext_resource type="Texture2D" uid="uid://cilgcb7bjixkb" path="res://assets/Test_Level/plyr.png" id="8_pdfk8"]
+[ext_resource type="Texture2D" uid="uid://nl3afbhplomy" path="res://assets/Test_Level/plyrglow.png" id="9_bfepo"]
+[ext_resource type="Texture2D" uid="uid://ddm11uaafts7w" path="res://assets/Test_Level/floor_55.png" id="11_g2fci"]
+[ext_resource type="Texture2D" uid="uid://direco4vflc55" path="res://assets/Test_Level/fg.png" id="12_xay4x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5c5ng"]
 size = Vector2(3840, 508)
@@ -11,6 +19,7 @@ size = Vector2(3840, 508)
 [node name="Main2" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(0, 254)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -22,21 +31,75 @@ position = Vector2(0, -121)
 scale = Vector2(8, 8)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-1.75, -43.625)
 zoom = Vector2(0.4, 0.4)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="Floor" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="-1" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = -2
+motion_scale = Vector2(0.8, 0.8)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Floor"]
+[node name="HouseBg5" type="Sprite2D" parent="ParallaxBackground/-1"]
+position = Vector2(1058, -835)
+texture = ExtResource("2_oyygt")
+
+[node name="HouseBg7" type="Sprite2D" parent="ParallaxBackground/-1"]
+position = Vector2(-431, -898)
+texture = ExtResource("2_oyygt")
+
+[node name="HouseBg6" type="Sprite2D" parent="ParallaxBackground/-1"]
+position = Vector2(-2467, -851)
+texture = ExtResource("2_oyygt")
+
+[node name="0" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = -2
+motion_scale = Vector2(0.9, 0.9)
+
+[node name="Houses" type="Sprite2D" parent="ParallaxBackground/0"]
+position = Vector2(8, -789)
+texture = ExtResource("3_ql3pc")
+
+[node name="1" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/1"]
 position = Vector2(0, 259)
 texture = ExtResource("3_g4lf3")
 
-[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/Floor"]
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/1"]
+position = Vector2(0, -61)
+texture = ExtResource("5_vpdek")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/1"]
 texture = ExtResource("3_2t18n")
 
-[node name="Floor2" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="Well" type="Sprite2D" parent="ParallaxBackground/1"]
+position = Vector2(534, -194)
+texture = ExtResource("7_pmldb")
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Floor2"]
+[node name="Plyr" type="Sprite2D" parent="ParallaxBackground/1"]
+position = Vector2(220, -139)
+texture = ExtResource("8_pdfk8")
+
+[node name="Plyrglow" type="Sprite2D" parent="ParallaxBackground/1/Plyr"]
+z_index = -1
+position = Vector2(-7, -105)
+texture = ExtResource("9_bfepo")
+
+[node name="2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/2"]
 position = Vector2(0, 71)
 texture = ExtResource("4_i6n7a")
+
+[node name="3" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/3"]
+position = Vector2(0, 189)
+texture = ExtResource("11_g2fci")
+
+[node name="4" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/4"]
+position = Vector2(0, -573)
+texture = ExtResource("12_xay4x")
