@@ -11,7 +11,8 @@ const DRILL = {
 	LAUNCH_SPEED = 1000.0,
 	ATTRACT_SPEED = 400.0,
 	REPEL_SPEED = 400.0,
-	RECALL_SPEED = 8.0
+	RECALL_SPEED = 8.0,
+	ACCEL = 0.1
 }
 
 @onready var drill_scene = preload ("res://src/drill_bit.tscn")
@@ -21,21 +22,29 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var drill: RigidBody2D = null
 
 func _physics_process(delta):
-	handle_gravity(delta)
+	var repelling = repel()
+	var attracting = attract()
+	handle_gravity(delta, attracting, repelling)
 	handle_movement(delta)
 	# handle_recall()
 	move_and_slide()
 
-func handle_gravity(delta):
+func handle_gravity(delta, attracting, repelling):
+	if attracting or repelling:
+		return
 	if not is_on_floor():
 		velocity.y += gravity * delta / 1.5
 
-func repel():
+func repel() -> bool:
 	if not drill:
-		shoot()
-	else:
+		if Input.is_action_just_pressed("repel"):
+			shoot()
+		return false
+	if Input.is_action_pressed("repel") and not pickup_area.get_overlapping_areas().is_empty():
 		var vec_to_drill = (drill.global_position - global_position).normalized()
-		velocity = -vec_to_drill * DRILL.REPEL_SPEED
+		velocity = velocity.lerp( - vec_to_drill * DRILL.ATTRACT_SPEED, DRILL.ACCEL)
+		return true
+	return false
 
 func shoot():
 	var instance: RigidBody2D = drill_scene.instantiate()
@@ -44,11 +53,14 @@ func shoot():
 	get_parent().add_child(instance)
 	drill = instance
 
-func attract():
+func attract() -> bool:
 	if not drill:
-		return
-	var vec_to_drill = (drill.global_position - global_position).normalized()
-	velocity = vec_to_drill * DRILL.ATTRACT_SPEED
+		return false
+	if Input.is_action_pressed("attract") and not pickup_area.get_overlapping_areas().is_empty():
+		var vec_to_drill = (drill.global_position - global_position).normalized()
+		velocity = velocity.lerp(vec_to_drill * DRILL.ATTRACT_SPEED, DRILL.ACCEL)
+		return true
+	return false
 
 # func handle_recall():
 # 	if not drill:
@@ -84,10 +96,6 @@ func jump():
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump()
-	if event.is_action_pressed("repel"):
-		repel()
-	if event.is_action_pressed("attract"):
-		attract()
 	if event.is_action_pressed("recall"):
 		if drill:
 			drill.queue_free()
