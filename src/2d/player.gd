@@ -16,7 +16,7 @@ const DRILL = {
 	RECALL_BOOST = 400
 }
 
-@onready var drill_scene = preload ("res://src/drill_bit.tscn")
+@onready var drill_scene = preload ("res://src/2d/drill_bit.tscn")
 @onready var pickup_area: Area2D = $PickupArea
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")

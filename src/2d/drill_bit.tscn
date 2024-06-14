@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c20m60j07xy7v"]
 
-[ext_resource type="Script" path="res://src/drill_bit.gd" id="1_586he"]
+[ext_resource type="Script" path="res://src/2d/drill_bit.gd" id="1_ab62w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g5a4n"]
 size = Vector2(10, 10)
@@ -15,7 +15,7 @@ radius = 172.012
 collision_layer = 4
 collision_mask = 0
 freeze_mode = 1
-script = ExtResource("1_586he")
+script = ExtResource("1_ab62w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g5a4n")
