@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://uojqhmwcibd1"]
+[gd_scene load_steps=4 format=3 uid="uid://uojqhmwcibd1"]
 
 [ext_resource type="MeshLibrary" uid="uid://bb4tos8t4smd4" path="res://assets/tiles.tres" id="1_memsf"]
 [ext_resource type="PackedScene" uid="uid://b4tc7alhrf0i" path="res://src/player3d.tscn" id="2_75t0f"]
+[ext_resource type="Texture2D" uid="uid://fl1ublau88my" path="res://assets/Test_Level/floor.png" id="3_g4lf3"]
 
 [node name="Main2" type="Node3D"]
 
@@ -15,3 +16,9 @@ data = {
 
 [node name="Player3d" parent="." instance=ExtResource("2_75t0f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="Node" type="Node" parent="."]
+
+[node name="floor" type="Sprite3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
+texture = ExtResource("3_g4lf3")
