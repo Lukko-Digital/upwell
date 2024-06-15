@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcf1k6whcfars"]
+[gd_scene load_steps=4 format=3 uid="uid://dcf1k6whcfars"]
 
 [ext_resource type="PackedScene" uid="uid://c7h28mip32chm" path="res://src/tile_map.tscn" id="1_vqvly"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player.tscn" id="2_owwjj"]
+[ext_resource type="PackedScene" uid="uid://6aouvsx0hvfm" path="res://src/dad.tscn" id="3_g6c41"]
 
 [node name="Main" type="Node2D"]
 
@@ -12,3 +13,6 @@ position = Vector2(-171, -21)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(2, 2)
+
+[node name="Dad" parent="." instance=ExtResource("3_g6c41")]
+position = Vector2(-27, -8)
