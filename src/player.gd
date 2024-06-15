@@ -2,10 +2,10 @@ extends CharacterBody2D
 class_name Player
 
 const PLAYER = {
-	SPEED = 1500.0,
-	ACCELERATION = 10000.0,
-	FRICTION_DECEL = 29000.0,
-	JUMP_VELOCITY = -800.0
+	SPEED = 1100.0,
+	ACCELERATION = 9000.0,
+	FRICTION_DECEL = 50000.0,
+	JUMP_VELOCITY = -2000.0
 }
 const DRILL = {
 	LAUNCH_SPEED = 1000.0,
@@ -36,7 +36,7 @@ func handle_gravity(delta, attracting, repelling):
 	if attracting or repelling:
 		return
 	if not is_on_floor():
-		velocity.y += gravity * delta / 1.5
+		velocity.y += gravity * delta * 3
 
 func repel() -> bool:
 	if not drill:
