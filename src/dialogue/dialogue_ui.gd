@@ -17,11 +17,11 @@ var default_branch = "A1"
 
 var current_conversation: Conversation
 var display_in_progress: bool = false
+var response_button_queue := {}
+var next_branch: String
 
 func _ready():
-	for button in response_box.get_children():
-		response_box.remove_child(button)
-		button.queue_free()
+	clear_responses()
 
 func _process(_delta):
 	animate_duration_bar()
@@ -32,23 +32,16 @@ func start_dialogue(npc: Interactable):
 	play_branch(default_branch)
 
 func play_branch(branch_id: String):
+	clear_responses()
 	var branch: ConversationBranch = current_conversation.branches[branch_id]
 	var display_time = branch.dialogue_line.length() * TEXT_SPEED
 
 	label.text = branch.dialogue_line
 	duration_timer.start(display_time * branch.duration)
+	next_branch = branch.next_branch_id
 	for response in branch.responses:
 		spawn_reponse(response, display_time)
-	
 	animate_display()
-
-	await duration_timer.timeout
-
-	var next = branch.next_branch_id
-	if next == "EXIT":
-		exit_dialogue()
-	else:
-		play_branch(next)
 
 func animate_display():
 	label.visible_characters = 0
@@ -58,15 +51,28 @@ func animate_display():
 		await display_timer.timeout
 
 func spawn_reponse(response: Response, display_time: float):
-	await get_tree().create_timer(response.spawn_time * display_time).timeout
 	var instance: ResponseButton = response_button_scene.instantiate()
+	response_button_queue[instance] = null
+	await get_tree().create_timer(response.spawn_time * display_time).timeout
+
+	if not response_button_queue.has(instance):
+		return
+	
+	response_button_queue.erase(instance)
 	instance.text = response.response_text
 	var despawn_time_seconds = (
 		response.despawn_time * display_time if response.despawn_time != INF
 		else duration_timer.time_left
 	)
-	instance.start(despawn_time_seconds)
+	instance.start(despawn_time_seconds, response.next_branch_id)
 	response_box.add_child(instance)
+	instance.response_selected.connect(_response_button_pressed)
+
+func clear_responses():
+	response_button_queue.clear()
+	for button in response_box.get_children():
+		response_box.remove_child(button)
+		button.queue_free()
 
 func animate_duration_bar():
 	duration_bar.max_value = duration_timer.wait_time
@@ -74,3 +80,12 @@ func animate_duration_bar():
 
 func exit_dialogue():
 	pass
+
+func _response_button_pressed(branch_id: String):
+	play_branch(branch_id)
+
+func _on_duration_timer_timeout():
+	if next_branch == "EXIT":
+		exit_dialogue()
+	else:
+		play_branch(next_branch)

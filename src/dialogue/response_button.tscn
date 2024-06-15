@@ -21,4 +21,5 @@ show_percentage = false
 [node name="DespawnTimer" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="pressed" from="." to="." method="_on_pressed"]
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
