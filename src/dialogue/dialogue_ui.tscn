@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://br8qm13yce4pr"]
+
+[ext_resource type="Texture2D" uid="uid://1dye0h6jrhxe" path="res://assets/guy.png" id="1_38lb6"]
+[ext_resource type="Texture2D" uid="uid://bp0arfyn6yrd0" path="res://assets/speechbubble.png" id="2_nams7"]
+[ext_resource type="PackedScene" uid="uid://xgi8pcnjfsvh" path="res://src/dialogue/response_button.tscn" id="3_y57cq"]
+
+[node name="DialogueUi" type="CanvasLayer"]
+
+[node name="Guy" type="TextureRect" parent="."]
+offset_left = 131.0
+offset_top = 203.0
+offset_right = 484.0
+offset_bottom = 631.0
+texture = ExtResource("1_38lb6")
+
+[node name="SpeechBubble" type="TextureRect" parent="."]
+offset_left = 539.0
+offset_top = 41.0
+offset_right = 1106.0
+offset_bottom = 263.0
+texture = ExtResource("2_nams7")
+
+[node name="Label" type="Label" parent="SpeechBubble"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 52.0
+offset_right = 499.0
+offset_bottom = 149.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "asdfasdf asdkjlfh asdifj  qoiwejfakjsd hf pqoiwehfgpo"
+autowrap_mode = 3
+text_overrun_behavior = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 586.0
+offset_top = 315.0
+offset_right = 1040.0
+offset_bottom = 565.0
+
+[node name="ResponseButton" parent="VBoxContainer" instance=ExtResource("3_y57cq")]
+layout_mode = 2
+text = "response 1"
+
+[node name="ResponseButton2" parent="VBoxContainer" instance=ExtResource("3_y57cq")]
+layout_mode = 2
+text = "response 2"
+
+[node name="ResponseButton3" parent="VBoxContainer" instance=ExtResource("3_y57cq")]
+layout_mode = 2
+text = "response 3"
