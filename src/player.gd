@@ -18,13 +18,21 @@ const DRILL = {
 
 @onready var drill_scene = preload ("res://src/drill_bit.tscn")
 @onready var pickup_area: Area2D = $PickupArea
+@onready var interactable_detector: Area2D = $InteractableDetector
+@onready var dialogue_ui: DialogueUI = $DialogueUi
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var drill: RigidBody2D = null
 var recalling: bool = false
 var recall_dir: Vector2
+var interacting: bool = false
+
+func _ready() -> void:
+	dialogue_ui.hide()
 
 func _physics_process(delta):
+	if interacting:
+		return
 	var repelling = repel()
 	var attracting = attract()
 	handle_gravity(delta, attracting, repelling)
@@ -103,8 +111,16 @@ func jump():
 	if is_on_floor():
 		velocity.y = PLAYER.JUMP_VELOCITY
 
+func interact():
+	if interactable_detector.get_overlapping_areas().is_empty():
+		return
+	interacting = true
+	dialogue_ui.show()
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump()
 	if event.is_action_pressed("recall"):
 		begin_recall()
+	if event.is_action_pressed("interact"):
+		interact()

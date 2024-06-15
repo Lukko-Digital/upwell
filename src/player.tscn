@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://tfy83b2uc6hh"]
+[gd_scene load_steps=6 format=3 uid="uid://tfy83b2uc6hh"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_lbj7m"]
+[ext_resource type="PackedScene" uid="uid://br8qm13yce4pr" path="res://src/dialogue/dialogue_ui.tscn" id="2_cft6f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_piej1"]
 size = Vector2(16, 16)
@@ -37,3 +38,5 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableDetector"]
 shape = SubResource("RectangleShape2D_d8ltk")
+
+[node name="DialogueUi" parent="." instance=ExtResource("2_cft6f")]
