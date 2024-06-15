@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://tfy83b2uc6hh"]
+[gd_scene load_steps=5 format=3 uid="uid://tfy83b2uc6hh"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_lbj7m"]
 
@@ -7,8 +7,11 @@ size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_163mm"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8ltk"]
+size = Vector2(16, 16)
+
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 0
+collision_layer = 2
 script = ExtResource("1_lbj7m")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -27,3 +30,10 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 shape = SubResource("RectangleShape2D_163mm")
+
+[node name="InteractableDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableDetector"]
+shape = SubResource("RectangleShape2D_d8ltk")
