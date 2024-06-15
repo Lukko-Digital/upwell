@@ -161,9 +161,8 @@ color_ramp = SubResource("GradientTexture1D_mivn7")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ypp2t"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
-emission_shape_scale = Vector3(1000, 1000, 1)
 emission_shape = 3
-emission_box_extents = Vector3(6, 6, 1)
+emission_box_extents = Vector3(200, 200, 200)
 spread = 180.0
 initial_velocity_min = 15.15
 initial_velocity_max = 15.15
@@ -237,6 +236,7 @@ scale = Vector2(8.55116, 8.55116)
 texture = ExtResource("4_5e6r6")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="-2"]
+visible = false
 modulate = Color(1, 1, 1, 0.529412)
 material = SubResource("CanvasItemMaterial_swof7")
 position = Vector2(-9, -742)
@@ -284,6 +284,7 @@ position = Vector2(-26, -1275)
 texture = ExtResource("6_aqicl")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="1"]
+visible = false
 modulate = Color(1, 1, 1, 0.529412)
 material = SubResource("CanvasItemMaterial_swof7")
 position = Vector2(-9, -742)
@@ -307,6 +308,7 @@ layer_0/tile_data = PackedInt32Array(65528, 327680, 1, 65529, 327680, 1, 65530, 
 
 [node name="3" type="CanvasLayer" parent="."]
 layer = 3
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 1.23
 
@@ -323,6 +325,7 @@ scale = Vector2(1.36794, 1.36794)
 texture = ExtResource("7_j273i")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="3"]
+visible = false
 modulate = Color(1, 1, 1, 0.529412)
 material = SubResource("CanvasItemMaterial_swof7")
 position = Vector2(-9, -742)
@@ -340,7 +343,7 @@ follow_viewport_scale = 2.0
 [node name="GPUParticles2D" type="GPUParticles2D" parent="4"]
 modulate = Color(1, 1, 1, 0.529412)
 material = SubResource("CanvasItemMaterial_swof7")
-position = Vector2(-9, -742)
+position = Vector2(-1.5, -153.5)
 amount = 1024
 process_material = SubResource("ParticleProcessMaterial_ypp2t")
 texture = ExtResource("5_xklqx")
