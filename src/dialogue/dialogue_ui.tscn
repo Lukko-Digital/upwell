@@ -8,6 +8,12 @@
 [node name="DialogueUi" type="CanvasLayer"]
 script = ExtResource("1_28e40")
 
+[node name="DurationTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DisplayTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="Guy" type="TextureRect" parent="."]
 offset_left = 131.0
 offset_top = 203.0
@@ -24,15 +30,24 @@ texture = ExtResource("2_nams7")
 
 [node name="Label" type="Label" parent="SpeechBubble"]
 layout_mode = 0
-offset_left = 111.0
-offset_top = 52.0
-offset_right = 499.0
-offset_bottom = 149.0
+offset_left = 112.0
+offset_top = 57.0
+offset_right = 504.0
+offset_bottom = 133.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-text = "asdfasdf asdkjlfh asdifj  qoiwejfakjsd hf pqoiwehfgpo"
+theme_override_font_sizes/font_size = 24
+text = "feeling quiet today huh? I think you could visit rigatoni town"
 autowrap_mode = 3
 text_overrun_behavior = 1
+
+[node name="DurationBar" type="ProgressBar" parent="SpeechBubble"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 143.0
+offset_right = 447.0
+offset_bottom = 156.0
+value = 10.0
+show_percentage = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_left = 586.0
