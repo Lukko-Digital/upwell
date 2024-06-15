@@ -1,0 +1,5 @@
+conversation,branch,dialogue,duration (multiplier),next,r1,r1 spawn time,r1 despawn time,r1 dest,r2,r2 spawn time,r2 despawn time,r2 dest,r3,r3 spawn time,r2 despawn time,r3 dest
+NAR1,A1,how ya doin,3,A2,,,,,,,,,,,,
+NAR1,A2,where are you planning to go?,4,,fuck you,0.1,1,B,hmm not sure,1,,C,where do you think?,1,,C
+NAR1,B,bro wtf,2,EXIT,,,,,,,,,,,,
+NAR1,C,you should go to RIGATONI TOWN,2,EXIT,,,,,,,,,,,,
