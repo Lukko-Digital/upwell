@@ -25,6 +25,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var drill: RigidBody2D = null
 var recalling: bool = false
 var recall_dir: Vector2
+
+# PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
 var interacting: bool = false
 
 func _ready() -> void:
@@ -45,7 +47,7 @@ func handle_gravity(delta, attracting, repelling):
 		return
 	if not is_on_floor():
 		velocity.y += gravity * delta / 1.5
-
+ 
 func repel() -> bool:
 	if not drill:
 		if Input.is_action_just_pressed("repel"):
@@ -125,3 +127,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		begin_recall()
 	if event.is_action_pressed("interact"):
 		interact()
+
+func _on_dialogue_ui_dialogue_finished() -> void:
+	interacting = false

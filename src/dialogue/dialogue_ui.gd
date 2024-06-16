@@ -20,6 +20,8 @@ var display_in_progress: bool = false
 var response_button_queue := {}
 var next_branch: String
 
+signal dialogue_finished
+
 func _ready():
 	clear_responses()
 
@@ -79,7 +81,8 @@ func animate_duration_bar():
 	duration_bar.value = duration_timer.wait_time - duration_timer.time_left
 
 func exit_dialogue():
-	pass
+	hide()
+	dialogue_finished.emit()
 
 func _response_button_pressed(branch_id: String):
 	play_branch(branch_id)
