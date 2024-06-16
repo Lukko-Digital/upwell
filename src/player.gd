@@ -8,7 +8,7 @@ const PLAYER = {
 	JUMP_VELOCITY = -300.0
 }
 const ARTIFICIAL_GRAVITY = {
-	SPEED = 350.0,
+	SPEED = 380.0,
 	ACCEL = 0.1,
 }
 
