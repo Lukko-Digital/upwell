@@ -7,13 +7,9 @@ const PLAYER = {
 	FRICTION_DECEL = 1500.0,
 	JUMP_VELOCITY = -300.0
 }
-const DRILL = {
-	LAUNCH_SPEED = 1000.0,
-	ATTRACT_SPEED = 400.0,
-	REPEL_SPEED = 400.0,
-	RECALL_SPEED = 8.0,
+const ARTIFICIAL_GRAVITY = {
+	SPEED = 350.0,
 	ACCEL = 0.1,
-	RECALL_BOOST = 400
 }
 
 @onready var gravity_detector: Area2D = $GravityDetector
@@ -28,33 +24,27 @@ var interacting: bool = false
 func _physics_process(delta):
 	if interacting:
 		return
-	var repelling = repel()
-	var attracting = attract()
-	handle_gravity(delta, attracting, repelling)
+	repel()
+	attract()
+	handle_gravity(delta)
 	handle_movement(delta)
 	move_and_slide()
 
-func handle_gravity(delta, attracting, repelling):
-	if attracting or repelling:
-		return
+func handle_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta / 1.5
  
-func repel() -> bool:
+func repel():
 	var gravity_regions: Array[Area2D] = gravity_detector.get_overlapping_areas()
 	if Input.is_action_pressed("repel") and not gravity_regions.is_empty():
 		var vec_to_gravity = (gravity_regions[0].global_position - global_position).normalized()
-		velocity = velocity.lerp( - vec_to_gravity * DRILL.ATTRACT_SPEED, DRILL.ACCEL)
-		return true
-	return false
+		velocity = velocity.lerp( - vec_to_gravity * ARTIFICIAL_GRAVITY.SPEED, ARTIFICIAL_GRAVITY.ACCEL)
 
-func attract() -> bool:
+func attract():
 	var gravity_regions: Array[Area2D] = gravity_detector.get_overlapping_areas()
 	if Input.is_action_pressed("attract") and not gravity_regions.is_empty():
 		var vec_to_gravity = (gravity_regions[0].global_position - global_position).normalized()
-		velocity = velocity.lerp(vec_to_gravity * DRILL.ATTRACT_SPEED, DRILL.ACCEL)
-		return true
-	return false
+		velocity = velocity.lerp(vec_to_gravity * ARTIFICIAL_GRAVITY.SPEED, ARTIFICIAL_GRAVITY.ACCEL)
 
 func handle_movement(delta):
 	# friction
