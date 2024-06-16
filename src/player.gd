@@ -10,6 +10,7 @@ const PLAYER = {
 const ARTIFICIAL_GRAVITY = {
 	SPEED = 380.0,
 	ACCEL = 0.1,
+	DEADZONE_SIZE = 15.0,
 }
 
 @onready var gravity_detector: Area2D = $GravityDetector
@@ -37,14 +38,18 @@ func handle_gravity(delta):
 func repel():
 	var gravity_regions: Array[Area2D] = gravity_detector.get_overlapping_areas()
 	if Input.is_action_pressed("repel") and not gravity_regions.is_empty():
-		var vec_to_gravity = (gravity_regions[0].global_position - global_position).normalized()
-		velocity = velocity.lerp( - vec_to_gravity * ARTIFICIAL_GRAVITY.SPEED, ARTIFICIAL_GRAVITY.ACCEL)
+		var vec_to_gravity = gravity_regions[0].global_position - global_position
+		if vec_to_gravity.length() < ARTIFICIAL_GRAVITY.DEADZONE_SIZE:
+			return
+		velocity = velocity.lerp( - vec_to_gravity.normalized() * ARTIFICIAL_GRAVITY.SPEED, ARTIFICIAL_GRAVITY.ACCEL)
 
 func attract():
 	var gravity_regions: Array[Area2D] = gravity_detector.get_overlapping_areas()
 	if Input.is_action_pressed("attract") and not gravity_regions.is_empty():
-		var vec_to_gravity = (gravity_regions[0].global_position - global_position).normalized()
-		velocity = velocity.lerp(vec_to_gravity * ARTIFICIAL_GRAVITY.SPEED, ARTIFICIAL_GRAVITY.ACCEL)
+		var vec_to_gravity = gravity_regions[0].global_position - global_position
+		if vec_to_gravity.length() < ARTIFICIAL_GRAVITY.DEADZONE_SIZE:
+			return
+		velocity = velocity.lerp(vec_to_gravity.normalized() * ARTIFICIAL_GRAVITY.SPEED, ARTIFICIAL_GRAVITY.ACCEL)
 
 func handle_movement(delta):
 	# friction
