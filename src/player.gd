@@ -9,7 +9,7 @@ const PLAYER = {
 }
 const ARTIFICIAL_GRAVITY = {
 	SPEED = 380.0,
-	ACCEL = 0.1,
+	ACCEL = 6.0,
 	DEADZONE_SIZE = 15.0,
 }
 
@@ -44,9 +44,9 @@ func handle_artificial_gravity(delta):
 		return
 	
 	if Input.is_action_pressed("repel"):
-		velocity = velocity.lerp( - vec_to_gravity.normalized() * ARTIFICIAL_GRAVITY.SPEED, ARTIFICIAL_GRAVITY.ACCEL)
+		velocity = velocity.lerp( - vec_to_gravity.normalized() * ARTIFICIAL_GRAVITY.SPEED, ARTIFICIAL_GRAVITY.ACCEL * delta)
 	if Input.is_action_pressed("attract"):
-		velocity = velocity.lerp(vec_to_gravity.normalized() * ARTIFICIAL_GRAVITY.SPEED, ARTIFICIAL_GRAVITY.ACCEL)
+		velocity = velocity.lerp(vec_to_gravity.normalized() * ARTIFICIAL_GRAVITY.SPEED, ARTIFICIAL_GRAVITY.ACCEL * delta)
 
 func handle_movement(delta):
 	# friction
