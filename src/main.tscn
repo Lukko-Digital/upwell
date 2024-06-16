@@ -24,6 +24,8 @@ position = Vector2(-27, -8)
 
 [node name="ArtificialGravity" type="Area2D" parent="."]
 position = Vector2(-241, -104)
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("4_6cyqj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ArtificialGravity"]

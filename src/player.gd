@@ -16,7 +16,7 @@ const DRILL = {
 	RECALL_BOOST = 400
 }
 
-@onready var pickup_area: Area2D = $PickupArea
+@onready var gravity_detector: Area2D = $GravityDetector
 @onready var interactable_detector: Area2D = $InteractableDetector
 @onready var dialogue_ui: DialogueUI = $DialogueUi
 
@@ -24,9 +24,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
 var interacting: bool = false
-
-func _ready() -> void:
-	dialogue_ui.hide()
 
 func _physics_process(delta):
 	if interacting:
@@ -44,18 +41,18 @@ func handle_gravity(delta, attracting, repelling):
 		velocity.y += gravity * delta / 1.5
  
 func repel() -> bool:
-	if Input.is_action_pressed("repel") and not pickup_area.get_overlapping_areas().is_empty() and not recalling:
-		var vec_to_drill = (drill.global_position - global_position).normalized()
-		velocity = velocity.lerp( - vec_to_drill * DRILL.ATTRACT_SPEED, DRILL.ACCEL)
+	var gravity_regions: Array[Area2D] = gravity_detector.get_overlapping_areas()
+	if Input.is_action_pressed("repel") and not gravity_regions.is_empty():
+		var vec_to_gravity = (gravity_regions[0].global_position - global_position).normalized()
+		velocity = velocity.lerp( - vec_to_gravity * DRILL.ATTRACT_SPEED, DRILL.ACCEL)
 		return true
 	return false
 
 func attract() -> bool:
-	if not drill:
-		return false
-	if Input.is_action_pressed("attract") and not pickup_area.get_overlapping_areas().is_empty() and not recalling:
-		var vec_to_drill = (drill.global_position - global_position).normalized()
-		velocity = velocity.lerp(vec_to_drill * DRILL.ATTRACT_SPEED, DRILL.ACCEL)
+	var gravity_regions: Array[Area2D] = gravity_detector.get_overlapping_areas()
+	if Input.is_action_pressed("attract") and not gravity_regions.is_empty():
+		var vec_to_gravity = (gravity_regions[0].global_position - global_position).normalized()
+		velocity = velocity.lerp(vec_to_gravity * DRILL.ATTRACT_SPEED, DRILL.ACCEL)
 		return true
 	return false
 
