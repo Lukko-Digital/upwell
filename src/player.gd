@@ -25,8 +25,7 @@ var interacting: bool = false
 func _physics_process(delta):
 	if interacting:
 		return
-	repel()
-	attract()
+	handle_artificial_gravity(delta)
 	handle_world_gravity(delta)
 	handle_movement(delta)
 	move_and_slide()
@@ -35,20 +34,18 @@ func handle_world_gravity(delta):
 	if not is_on_floor():
 		velocity.y += world_gravity * delta / 1.5
  
-func repel():
+func handle_artificial_gravity(delta):
 	var gravity_regions: Array[Area2D] = gravity_detector.get_overlapping_areas()
-	if Input.is_action_pressed("repel") and not gravity_regions.is_empty():
-		var vec_to_gravity = gravity_regions[0].global_position - global_position
-		if vec_to_gravity.length() < ARTIFICIAL_GRAVITY.DEADZONE_SIZE:
-			return
+	if gravity_regions.is_empty():
+		return
+	
+	var vec_to_gravity = gravity_regions[0].global_position - global_position
+	if vec_to_gravity.length() < ARTIFICIAL_GRAVITY.DEADZONE_SIZE:
+		return
+	
+	if Input.is_action_pressed("repel"):
 		velocity = velocity.lerp( - vec_to_gravity.normalized() * ARTIFICIAL_GRAVITY.SPEED, ARTIFICIAL_GRAVITY.ACCEL)
-
-func attract():
-	var gravity_regions: Array[Area2D] = gravity_detector.get_overlapping_areas()
-	if Input.is_action_pressed("attract") and not gravity_regions.is_empty():
-		var vec_to_gravity = gravity_regions[0].global_position - global_position
-		if vec_to_gravity.length() < ARTIFICIAL_GRAVITY.DEADZONE_SIZE:
-			return
+	if Input.is_action_pressed("attract"):
 		velocity = velocity.lerp(vec_to_gravity.normalized() * ARTIFICIAL_GRAVITY.SPEED, ARTIFICIAL_GRAVITY.ACCEL)
 
 func handle_movement(delta):
