@@ -23,6 +23,7 @@ var next_branch: String
 signal dialogue_finished
 
 func _ready():
+	hide()
 	clear_responses()
 
 func _process(_delta):
