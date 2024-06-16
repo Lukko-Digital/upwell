@@ -26,7 +26,7 @@ zoom = Vector2(2, 2)
 position = Vector2(-27, -8)
 
 [node name="ArtificialGravity" type="Area2D" parent="."]
-position = Vector2(-241, -104)
+position = Vector2(-239, -116)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("4_6cyqj")
@@ -35,10 +35,11 @@ script = ExtResource("4_6cyqj")
 shape = SubResource("CircleShape2D_o7lrq")
 
 [node name="ArtificialGravity2" type="Area2D" parent="."]
-position = Vector2(-528, -100)
+position = Vector2(-537, -100)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("4_6cyqj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ArtificialGravity2"]
+position = Vector2(-1, 0)
 shape = SubResource("CircleShape2D_kksix")
