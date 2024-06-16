@@ -17,7 +17,7 @@ const ARTIFICIAL_GRAVITY = {
 @onready var interactable_detector: Area2D = $InteractableDetector
 @onready var dialogue_ui: DialogueUI = $DialogueUi
 
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var world_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
 var interacting: bool = false
@@ -27,13 +27,13 @@ func _physics_process(delta):
 		return
 	repel()
 	attract()
-	handle_gravity(delta)
+	handle_world_gravity(delta)
 	handle_movement(delta)
 	move_and_slide()
 
-func handle_gravity(delta):
+func handle_world_gravity(delta):
 	if not is_on_floor():
-		velocity.y += gravity * delta / 1.5
+		velocity.y += world_gravity * delta / 1.5
  
 func repel():
 	var gravity_regions: Array[Area2D] = gravity_detector.get_overlapping_areas()
