@@ -89,4 +89,5 @@ script = ExtResource("4_6cyqj")
 shape = SubResource("CircleShape2D_lj5bo")
 
 [node name="ClickerHolder" parent="." instance=ExtResource("5_iwbtf")]
+z_index = -1
 position = Vector2(-146, 0)
