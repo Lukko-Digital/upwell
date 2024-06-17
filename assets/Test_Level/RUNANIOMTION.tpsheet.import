@@ -7,10 +7,10 @@ path="res://.godot/imported/RUNANIOMTION.tpsheet-3520def9d8d196c4340363b3e989202
 
 [deps]
 
-files=["res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0000.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0001.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0002.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0003.tres"]
+files=["res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0001.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0000.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0002.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0004.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0003.tres"]
 
 source_file="res://assets/Test_Level/RUNANIOMTION.tpsheet"
-dest_files=["res://.godot/imported/RUNANIOMTION.tpsheet-3520def9d8d196c4340363b3e9892020.res", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0000.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0001.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0002.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0003.tres"]
+dest_files=["res://.godot/imported/RUNANIOMTION.tpsheet-3520def9d8d196c4340363b3e9892020.res", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0001.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0000.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0002.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0004.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0003.tres"]
 
 [params]
 
