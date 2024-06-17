@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://6aouvsx0hvfm"]
 
-[ext_resource type="Script" path="res://src/interactable.gd" id="1_48rw4"]
+[ext_resource type="Script" path="res://src/abstract_base_classes/npc.gd" id="1_wmwre"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6qdgt"]
 radius = 35.3553
@@ -8,7 +8,7 @@ radius = 35.3553
 [node name="Dad" type="Area2D"]
 collision_layer = 8
 collision_mask = 2
-script = ExtResource("1_48rw4")
+script = ExtResource("1_wmwre")
 dialogue_file = "res://assets/test1.csv"
 
 [node name="ColorRect" type="ColorRect" parent="."]
