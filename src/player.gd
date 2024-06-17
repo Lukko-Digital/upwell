@@ -52,7 +52,11 @@ func handle_artificial_gravity(delta):
 	if gravity_regions.is_empty():
 		return
 	
-	var vec_to_gravity = gravity_regions[0].global_position - global_position
+	var gravity_well: ArtificialGravity = gravity_regions[0]
+	if not gravity_well.enabled:
+		return
+	
+	var vec_to_gravity = gravity_well.global_position - global_position
 	if vec_to_gravity.length() < ARTIFICIAL_GRAVITY.DEADZONE_SIZE:
 		return
 	
@@ -72,6 +76,7 @@ func handle_artificial_gravity(delta):
 		if active_direction == Vector2.ZERO:
 			return
 		velocity += active_direction * ARTIFICIAL_GRAVITY.BOOST_VELOCITY
+		gravity_well.disable()
 
 func handle_movement(delta):
 	# friction
