@@ -29,7 +29,7 @@ func _ready():
 func _process(_delta):
 	animate_duration_bar()
 
-func start_dialogue(npc: Interactable):
+func start_dialogue(npc: NPC):
 	show()
 	current_conversation = npc.conversations[default_conversation]
 	play_branch(default_branch)

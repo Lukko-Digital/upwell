@@ -68,8 +68,9 @@ func interact():
 	var nearby_interactables = interactable_detector.get_overlapping_areas()
 	if nearby_interactables.is_empty():
 		return
-	interacting = true
-	dialogue_ui.start_dialogue(nearby_interactables[0])
+	nearby_interactables[0].interact(self)
+	# interacting = true
+	# dialogue_ui.start_dialogue(nearby_interactables[0])
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):

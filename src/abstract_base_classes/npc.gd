@@ -1,15 +1,16 @@
-extends Area2D
-class_name Interactable
+extends Interactable
+class_name NPC
 
 @export_file("*.csv") var dialogue_file
-
-@onready var interact_label: Label = $InteractLabel
 
 var conversations := {}
 
 func _ready() -> void:
-	interact_label.hide()
+	super()
 	parse_csv()
+
+func interact(player: Player):
+	player.dialogue_ui.start_dialogue(self)
 
 func parse_csv():
 	var file = FileAccess.open(dialogue_file, FileAccess.READ)
@@ -50,11 +51,3 @@ func parse_csv():
 			get_key.call(line, "next"),
 			responses
 		)
-
-func _on_body_entered(body: Node2D) -> void:
-	if body is Player:
-		interact_label.show()
-
-func _on_body_exited(body: Node2D) -> void:
-	if body is Player:
-		interact_label.hide()
