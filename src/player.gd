@@ -41,6 +41,9 @@ func handle_world_gravity(delta):
 		velocity.y = move_toward(velocity.y, PLAYER.MAX_FALL_SPEED, world_gravity * delta / 1.5)
  
 func handle_artificial_gravity(delta):
+	if not has_clicker:
+		return
+
 	var gravity_regions: Array[Area2D] = gravity_detector.get_overlapping_areas()
 	if gravity_regions.is_empty():
 		return

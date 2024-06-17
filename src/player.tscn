@@ -44,6 +44,7 @@ shape = SubResource("RectangleShape2D_d8ltk")
 [node name="DialogueUi" parent="." instance=ExtResource("2_cft6f")]
 
 [node name="Clicker" parent="." instance=ExtResource("3_joqfy")]
+visible = false
 offset_left = 3.0
 offset_top = -9.0
 offset_right = 11.0
