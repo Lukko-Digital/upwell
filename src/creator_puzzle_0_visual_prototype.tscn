@@ -1,11 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvtjc4thaq1wj"]
+[gd_scene load_steps=6 format=3 uid="uid://cvtjc4thaq1wj"]
 
-[ext_resource type="PackedScene" uid="uid://c7h28mip32chm" path="res://src/level_elements/tile_map.tscn" id="1_a1xtk"]
-[ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player.tscn" id="2_c64qk"]
+[ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player.tscn" id="1_2d0w6"]
+[ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tile_map_brick.tscn" id="1_opdt1"]
+[ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity.tscn" id="2_agv78"]
+[ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/clicker_holder.tscn" id="4_trnax"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cbsp5"]
+radius = 1347.16
 
 [node name="CreatorPuzzle0" type="Node2D"]
 
-[node name="TileMap" parent="." instance=ExtResource("1_a1xtk")]
-layer_0/tile_data = PackedInt32Array()
+[node name="TileMap" parent="." instance=ExtResource("1_opdt1")]
+position = Vector2(-16, 480)
 
-[node name="Player" parent="." instance=ExtResource("2_c64qk")]
+[node name="Player" parent="." instance=ExtResource("1_2d0w6")]
+position = Vector2(0, 223)
+scale = Vector2(0.454594, 0.454594)
+
+[node name="Camera2D2" type="Camera2D" parent="Player"]
+position = Vector2(0, -851.309)
+scale = Vector2(0.772846, 0.772846)
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+
+[node name="ArtificialGravity" parent="." instance=ExtResource("2_agv78")]
+position = Vector2(-53, -1450)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArtificialGravity"]
+shape = SubResource("CircleShape2D_cbsp5")
+
+[node name="ClickerHolder" parent="." instance=ExtResource("4_trnax")]
+position = Vector2(-550, 429)
