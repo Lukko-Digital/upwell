@@ -1,5 +1,5 @@
 extends Area2D
-class_name ArtificialGravity
+class_name Interactable
 
 func _draw() -> void:
     draw_circle(Vector2.ZERO, 4, Color.GREEN)
