@@ -10,7 +10,7 @@ func _ready() -> void:
 	parse_csv()
 
 func interact(player: Player):
-	player.dialogue_ui.start_dialogue(self)
+	player.start_dialogue(self)
 
 func parse_csv():
 	var file = FileAccess.open(dialogue_file, FileAccess.READ)

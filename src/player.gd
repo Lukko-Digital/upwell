@@ -20,10 +20,10 @@ const ARTIFICIAL_GRAVITY = {
 var world_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
-var interacting: bool = false
+var in_dialogue: bool = false
 
 func _physics_process(delta):
-	if interacting:
+	if in_dialogue:
 		return
 	handle_artificial_gravity(delta)
 	handle_world_gravity(delta)
@@ -69,8 +69,10 @@ func interact():
 	if nearby_interactables.is_empty():
 		return
 	nearby_interactables[0].interact(self)
-	# interacting = true
-	# dialogue_ui.start_dialogue(nearby_interactables[0])
+
+func start_dialogue(npc: NPC):
+	dialogue_ui.start_dialogue(npc)
+	in_dialogue = true
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
@@ -79,4 +81,4 @@ func _unhandled_input(event: InputEvent) -> void:
 		interact()
 
 func _on_dialogue_ui_dialogue_finished() -> void:
-	interacting = false
+	in_dialogue = false
