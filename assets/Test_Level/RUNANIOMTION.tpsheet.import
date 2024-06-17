@@ -1,0 +1,16 @@
+[remap]
+
+importer="codeandweb.texturepacker_import_spritesheet"
+type="Resource"
+uid="uid://b00xujhwqh5sk"
+path="res://.godot/imported/RUNANIOMTION.tpsheet-3520def9d8d196c4340363b3e9892020.res"
+
+[deps]
+
+files=["res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0001.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0000.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0002.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0004.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0003.tres"]
+
+source_file="res://assets/Test_Level/RUNANIOMTION.tpsheet"
+dest_files=["res://.godot/imported/RUNANIOMTION.tpsheet-3520def9d8d196c4340363b3e9892020.res", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0001.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0000.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0002.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0004.tres", "res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0003.tres"]
+
+[params]
+
