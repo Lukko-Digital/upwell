@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://cer8t0kfpov7b"]
+
+[ext_resource type="PackedScene" uid="uid://tuityuo8eefb" path="res://src/level_elements/clicker.tscn" id="1_dgxpk"]
+[ext_resource type="Script" path="res://src/level_elements/clicker_holder.gd" id="1_rct6y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eoxif"]
+radius = 37.1214
+
+[node name="ClickerHolder" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_rct6y")
+
+[node name="Cutout" type="ColorRect" parent="."]
+offset_top = -30.0
+offset_right = 22.0
+color = Color(0, 0.0235294, 0, 1)
+
+[node name="Main" type="ColorRect" parent="."]
+offset_left = 5.0
+offset_top = -25.0
+offset_right = 17.0
+offset_bottom = -13.0
+color = Color(0.301961, 0.301961, 0.301961, 1)
+
+[node name="Clicker" parent="." instance=ExtResource("1_dgxpk")]
+offset_left = 7.0
+offset_top = -23.0
+offset_right = 15.0
+offset_bottom = -15.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(11, -16)
+shape = SubResource("CircleShape2D_eoxif")
+
+[node name="InteractLabel" type="Label" parent="."]
+offset_top = -53.0
+offset_right = 22.0
+offset_bottom = -30.0
+text = "V"
+horizontal_alignment = 1
