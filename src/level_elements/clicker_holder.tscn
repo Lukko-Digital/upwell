@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/level_elements/clicker_holder.gd" id="1_rct6y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eoxif"]
-radius = 37.1214
+radius = 25.02
 
 [node name="ClickerHolder" type="Area2D"]
 collision_layer = 8
