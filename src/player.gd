@@ -2,24 +2,24 @@ extends CharacterBody2D
 class_name Player
 
 const PLAYER = {
-	SPEED = 150.0,
-	ACCELERATION = 800.0,
-	FRICTION_DECEL = 1500.0,
-	JUMP_VELOCITY = -300.0,
-	MAX_FALL_SPEED = 600,
+	SPEED = 1100.0,
+	ACCELERATION = 9000.0,
+	FRICTION_DECEL = 50000.0,
+	JUMP_VELOCITY = -2000.0,
+	MAX_FALL_SPEED = 2000,
+	WORLD_GRAVITY = 3000.0,
 }
+
 const ARTIFICIAL_GRAVITY = {
-	SPEED = 380.0,
+	SPEED = 380.0*5,
 	ACCEL = 6.0,
 	BOOST_VELOCITY = 300.0,
-	DEADZONE_SIZE = 15.0,
+	DEADZONE_SIZE = 0,
 }
 
 @onready var gravity_detector: Area2D = $GravityDetector
 @onready var interactable_detector: Area2D = $InteractableDetector
 @onready var dialogue_ui: DialogueUI = $DialogueUi
-
-var world_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
 var in_dialogue: bool = false
@@ -30,7 +30,7 @@ var has_clicker: bool:
 		has_clicker = value
 
 func _ready() -> void:
-	has_clicker = false
+	has_clicker = true # DONT FORGET ABOUT THIS
 
 func _physics_process(delta):
 	if in_dialogue:
@@ -42,7 +42,7 @@ func _physics_process(delta):
 
 func handle_world_gravity(delta):
 	if not is_on_floor():
-		velocity.y = move_toward(velocity.y, PLAYER.MAX_FALL_SPEED, world_gravity * delta / 1.5)
+		velocity.y = move_toward(velocity.y, PLAYER.MAX_FALL_SPEED, PLAYER.WORLD_GRAVITY * delta)
  
 func handle_artificial_gravity(delta):
 	if not has_clicker:

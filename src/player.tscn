@@ -1,28 +1,49 @@
-[gd_scene load_steps=7 format=3 uid="uid://tfy83b2uc6hh"]
+[gd_scene load_steps=13 format=3 uid="uid://tfy83b2uc6hh"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_lbj7m"]
 [ext_resource type="PackedScene" uid="uid://br8qm13yce4pr" path="res://src/dialogue/dialogue_ui.tscn" id="2_cft6f"]
 [ext_resource type="PackedScene" uid="uid://tuityuo8eefb" path="res://src/level_elements/clicker.tscn" id="3_joqfy"]
+[ext_resource type="Texture2D" uid="uid://d0ia8s4mk2lxp" path="res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0000.tres" id="4_ijvsq"]
+[ext_resource type="Texture2D" uid="uid://c4a6yn3m6cqu7" path="res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0001.tres" id="5_axkyq"]
+[ext_resource type="Texture2D" uid="uid://cofilntnikxkk" path="res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0002.tres" id="6_8mvkx"]
+[ext_resource type="Texture2D" uid="uid://cu0a3y6hvwid8" path="res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0003.tres" id="7_ovnhs"]
+[ext_resource type="Texture2D" uid="uid://18umykqfhyo5" path="res://assets/Test_Level/RUNANIOMTION.sprites/Timeline 1_0004.tres" id="8_gmn1p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_piej1"]
-size = Vector2(16, 16)
+size = Vector2(416, 960)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_163mm"]
-size = Vector2(16, 16)
+size = Vector2(416, 960)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d8ltk"]
-size = Vector2(16, 16)
+size = Vector2(416, 960)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_01xa3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ijvsq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_axkyq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8mvkx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ovnhs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gmn1p")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_lbj7m")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
-color = Color(1, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_piej1")
@@ -42,6 +63,7 @@ collision_mask = 8
 shape = SubResource("RectangleShape2D_d8ltk")
 
 [node name="DialogueUi" parent="." instance=ExtResource("2_cft6f")]
+visible = false
 
 [node name="Clicker" parent="." instance=ExtResource("3_joqfy")]
 visible = false
@@ -49,5 +71,11 @@ offset_left = 3.0
 offset_top = -9.0
 offset_right = 11.0
 offset_bottom = -1.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(198, 0)
+sprite_frames = SubResource("SpriteFrames_01xa3")
+animation = &"Run"
+autoplay = "Run"
 
 [connection signal="dialogue_finished" from="DialogueUi" to="." method="_on_dialogue_ui_dialogue_finished"]
