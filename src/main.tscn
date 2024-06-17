@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://dcf1k6whcfars"]
 
-[ext_resource type="PackedScene" uid="uid://c7h28mip32chm" path="res://src/tile_map.tscn" id="1_vqvly"]
+[ext_resource type="PackedScene" uid="uid://c7h28mip32chm" path="res://src/level_elements/tile_map.tscn" id="1_vqvly"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player.tscn" id="2_owwjj"]
 [ext_resource type="PackedScene" uid="uid://6aouvsx0hvfm" path="res://src/dad.tscn" id="3_g6c41"]
-[ext_resource type="Script" path="res://src/artificial_gravity.gd" id="4_6cyqj"]
+[ext_resource type="Script" path="res://src/level_elements/artificial_gravity.gd" id="4_6cyqj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7lrq"]
 radius = 86.0058
