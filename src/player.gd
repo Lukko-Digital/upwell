@@ -5,7 +5,8 @@ const PLAYER = {
 	SPEED = 150.0,
 	ACCELERATION = 800.0,
 	FRICTION_DECEL = 1500.0,
-	JUMP_VELOCITY = -300.0
+	JUMP_VELOCITY = -300.0,
+	MAX_FALL_SPEED = 600,
 }
 const ARTIFICIAL_GRAVITY = {
 	SPEED = 380.0,
@@ -32,7 +33,7 @@ func _physics_process(delta):
 
 func handle_world_gravity(delta):
 	if not is_on_floor():
-		velocity.y += world_gravity * delta / 1.5
+		velocity.y = move_toward(velocity.y, PLAYER.MAX_FALL_SPEED, world_gravity * delta / 1.5)
  
 func handle_artificial_gravity(delta):
 	var gravity_regions: Array[Area2D] = gravity_detector.get_overlapping_areas()
