@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvtjc4thaq1wj"]
+
+[ext_resource type="PackedScene" uid="uid://c7h28mip32chm" path="res://src/level_elements/tile_map.tscn" id="1_a1xtk"]
+[ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player.tscn" id="2_c64qk"]
+
+[node name="CreatorPuzzle0" type="Node2D"]
+
+[node name="TileMap" parent="." instance=ExtResource("1_a1xtk")]
+layer_0/tile_data = PackedInt32Array()
+
+[node name="Player" parent="." instance=ExtResource("2_c64qk")]
