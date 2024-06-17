@@ -23,10 +23,13 @@ var world_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 # PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
 var in_dialogue: bool = false
 
-var has_clicker: bool = false:
+var has_clicker: bool:
 	set(value):
 		$Clicker.visible = value
 		has_clicker = value
+
+func _ready() -> void:
+	has_clicker = false
 
 func _physics_process(delta):
 	if in_dialogue:
