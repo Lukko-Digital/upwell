@@ -10,3 +10,4 @@ func interact(player: Player):
 	if has_clicker != player.has_clicker:
 		player.has_clicker = has_clicker
 		has_clicker = !has_clicker
+		get_tree().call_group("AGs", "enable")
