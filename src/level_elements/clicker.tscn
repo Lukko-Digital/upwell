@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://tuityuo8eefb"]
+[gd_scene load_steps=2 format=3 uid="uid://tuityuo8eefb"]
+
+[ext_resource type="Texture2D" uid="uid://wub142n7anf3" path="res://assets/Creator_Puzzle/clicker.png" id="1_s7ecf"]
 
 [node name="Clicker" type="ColorRect"]
 offset_left = -4.0
@@ -6,10 +8,6 @@ offset_top = -4.0
 offset_right = 4.0
 offset_bottom = 4.0
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 7.0
-offset_bottom = 7.0
-color = Color(0, 0, 0, 1)
+[node name="Clicker" type="Sprite2D" parent="."]
+position = Vector2(4, 3)
+texture = ExtResource("1_s7ecf")

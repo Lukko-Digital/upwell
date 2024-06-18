@@ -4,16 +4,16 @@ class_name Player
 const PLAYER = {
 	SPEED = 1100.0,
 	ACCELERATION = 9000.0,
-	FRICTION_DECEL = 50000.0,
+	FRICTION_DECEL = 5000.0,
 	JUMP_VELOCITY = -2000.0,
 	MAX_FALL_SPEED = 2000,
 	WORLD_GRAVITY = 3000.0,
 }
 
 const ARTIFICIAL_GRAVITY = {
-	SPEED = 380.0*5,
-	ACCEL = 6.0,
-	BOOST_VELOCITY = 300.0,
+	SPEED = 380.0*8,
+	ACCEL = 5.0,
+	BOOST_VELOCITY = 3000.0,
 	DEADZONE_SIZE = 0,
 }
 
@@ -30,7 +30,7 @@ var has_clicker: bool:
 		has_clicker = value
 
 func _ready() -> void:
-	has_clicker = true # DONT FORGET ABOUT THIS
+	has_clicker = false
 
 func _physics_process(delta):
 	if in_dialogue:
