@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://tuityuo8eefb"]
 
-[ext_resource type="Texture2D" uid="uid://wub142n7anf3" path="res://assets/Creator_Puzzle/clicker.png" id="1_s7ecf"]
+[ext_resource type="Texture2D" uid="uid://wub142n7anf3" path="res://assets/creator_puzzle/clicker.png" id="1_s7ecf"]
 
 [node name="Clicker" type="ColorRect"]
 offset_left = -4.0
