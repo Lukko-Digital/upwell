@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://tuityuo8eefb" path="res://src/level_elements/clicker.tscn" id="1_dgxpk"]
 [ext_resource type="Script" path="res://src/level_elements/clicker_holder.gd" id="1_rct6y"]
-[ext_resource type="Texture2D" uid="uid://b61a0ttyd4ybr" path="res://assets/creator_puzzle/hook-sheet.png" id="2_ito5j"]
+[ext_resource type="Texture2D" uid="uid://b61a0ttyd4ybr" path="res://assets/creator_puzzle/hook-sheet.png" id="2_eerrr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eoxif"]
 radius = 173.026
@@ -14,7 +14,7 @@ script = ExtResource("1_rct6y")
 
 [node name="Hook-sheet" type="Sprite2D" parent="."]
 position = Vector2(0, -3)
-texture = ExtResource("2_ito5j")
+texture = ExtResource("2_eerrr")
 hframes = 2
 frame = 1
 
