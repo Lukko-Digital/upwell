@@ -116,7 +116,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		interact()
 	if event.is_action_pressed("map"):
-		# print(game)
 		game.map_layer.visible = !game.map_layer.visible
 		in_map = game.map_layer.visible
 
