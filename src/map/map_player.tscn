@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d0rlssnvit7w4"]
 
-[ext_resource type="Texture2D" uid="uid://clxbaoorybeod" path="res://assets/black_circle.png" id="1_yqatj"]
+[ext_resource type="Texture2D" uid="uid://clxbaoorybeod" path="res://assets/shitty_assets/black_circle.png" id="1_yqatj"]
 
 [node name="MapPlayer" type="Node2D"]
 

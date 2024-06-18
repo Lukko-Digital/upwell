@@ -1,31 +1,31 @@
-[gd_scene load_steps=39 format=3 uid="uid://cvtjc4thaq1wj"]
+[gd_scene load_steps=41 format=3 uid="uid://cvtjc4thaq1wj"]
 
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player.tscn" id="1_2d0w6"]
 [ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity.tscn" id="2_agv78"]
-[ext_resource type="Texture2D" uid="uid://c66sojduddw1m" path="res://assets/Creator_Puzzle/ground_tile.png" id="2_fyga0"]
-[ext_resource type="Texture2D" uid="uid://crv5nu2k05ddm" path="res://assets/Creator_Puzzle/ag_core.png" id="4_8bv0x"]
+[ext_resource type="Texture2D" uid="uid://c66sojduddw1m" path="res://assets/creator_puzzle/ground_tile.png" id="2_fyga0"]
+[ext_resource type="Texture2D" uid="uid://crv5nu2k05ddm" path="res://assets/creator_puzzle/ag_core.png" id="4_8bv0x"]
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/clicker_holder.tscn" id="4_trnax"]
-[ext_resource type="Texture2D" uid="uid://dc6nfaju78e60" path="res://assets/Test_Level/particle_softest.png" id="4_y0n7i"]
-[ext_resource type="Texture2D" uid="uid://cd843374n1h0y" path="res://assets/Test_Level/Layer 20.png" id="5_2d7qf"]
-[ext_resource type="Texture2D" uid="uid://dqaefix7e65sy" path="res://assets/Creator_Puzzle/tablet_large_1.png" id="5_7w5gx"]
-[ext_resource type="Texture2D" uid="uid://bo7erajxsocyl" path="res://assets/Creator_Puzzle/ag_glow.png" id="5_h528f"]
-[ext_resource type="Texture2D" uid="uid://c0vw8hk7cm6yg" path="res://assets/Creator_Puzzle/tablet_large_2.png" id="6_a4n7h"]
-[ext_resource type="Texture2D" uid="uid://bx3f76pvi4k4q" path="res://assets/Test_Level/particle_hard.png" id="7_4mvyq"]
-[ext_resource type="Texture2D" uid="uid://byoh7xfim3bjw" path="res://assets/Creator_Puzzle/rocK_1_light.png" id="7_pti0j"]
-[ext_resource type="Texture2D" uid="uid://pibf6admq31o" path="res://assets/Test_Level/particle_soft.png" id="8_5rr7c"]
-[ext_resource type="Texture2D" uid="uid://caikg6rcf8nk0" path="res://assets/Creator_Puzzle/rock_2_light.png" id="8_jc4gi"]
-[ext_resource type="Texture2D" uid="uid://842vjomoeag3" path="res://assets/Creator_Puzzle/platform.png" id="9_1hpl4"]
-[ext_resource type="Texture2D" uid="uid://dlrcluufkhr1s" path="res://assets/Creator_Puzzle/bg_focus.png" id="9_6uhny"]
-[ext_resource type="Texture2D" uid="uid://dyq1mgt55xt66" path="res://assets/Creator_Puzzle/rock_1.png" id="12_7igdy"]
-[ext_resource type="Texture2D" uid="uid://bo7pic6m4g6wt" path="res://assets/Creator_Puzzle/rock_2.png" id="13_ktrmi"]
-[ext_resource type="Texture2D" uid="uid://c1k746bac6hj8" path="res://assets/Creator_Puzzle/rock_1_blur.png" id="15_eo43y"]
-[ext_resource type="Texture2D" uid="uid://bye5kyi5emai6" path="res://assets/Creator_Puzzle/rope_3.png" id="15_f6jtv"]
-[ext_resource type="Texture2D" uid="uid://d3xpjdkcu2pvn" path="res://assets/Creator_Puzzle/rock_2_blur.png" id="16_ljoig"]
-[ext_resource type="Texture2D" uid="uid://d1vlutg4e8763" path="res://assets/Creator_Puzzle/rope_1_blur.png" id="17_04esr"]
-[ext_resource type="Texture2D" uid="uid://mxc6xb8jhdhp" path="res://assets/Creator_Puzzle/tablet.png" id="18_euccd"]
-[ext_resource type="Texture2D" uid="uid://cbj7idv1awhls" path="res://assets/Creator_Puzzle/tablet_blur.png" id="19_mhpck"]
-[ext_resource type="Texture2D" uid="uid://dgkye25jqv6wj" path="res://assets/Creator_Puzzle/rope_5.png" id="19_sgwax"]
-[ext_resource type="Texture2D" uid="uid://beonmtuhjydbf" path="res://assets/Creator_Puzzle/rope_2.png" id="25_kxynt"]
+[ext_resource type="Texture2D" uid="uid://dc6nfaju78e60" path="res://assets/test_level/particle_softest.png" id="4_y0n7i"]
+[ext_resource type="Texture2D" uid="uid://cd843374n1h0y" path="res://assets/test_level/Layer 20.png" id="5_2d7qf"]
+[ext_resource type="Texture2D" uid="uid://dqaefix7e65sy" path="res://assets/creator_puzzle/tablet_large_1.png" id="5_7w5gx"]
+[ext_resource type="Texture2D" uid="uid://bo7erajxsocyl" path="res://assets/creator_puzzle/ag_glow.png" id="5_h528f"]
+[ext_resource type="Texture2D" uid="uid://c0vw8hk7cm6yg" path="res://assets/creator_puzzle/tablet_large_2.png" id="6_a4n7h"]
+[ext_resource type="Texture2D" uid="uid://bx3f76pvi4k4q" path="res://assets/test_level/particle_hard.png" id="7_4mvyq"]
+[ext_resource type="Texture2D" uid="uid://byoh7xfim3bjw" path="res://assets/creator_puzzle/rocK_1_light.png" id="7_pti0j"]
+[ext_resource type="Texture2D" uid="uid://pibf6admq31o" path="res://assets/test_level/particle_soft.png" id="8_5rr7c"]
+[ext_resource type="Texture2D" uid="uid://caikg6rcf8nk0" path="res://assets/creator_puzzle/rock_2_light.png" id="8_jc4gi"]
+[ext_resource type="Texture2D" uid="uid://842vjomoeag3" path="res://assets/creator_puzzle/platform.png" id="9_1hpl4"]
+[ext_resource type="Texture2D" uid="uid://dlrcluufkhr1s" path="res://assets/creator_puzzle/bg_focus.png" id="9_6uhny"]
+[ext_resource type="Texture2D" uid="uid://dyq1mgt55xt66" path="res://assets/creator_puzzle/rock_1.png" id="12_7igdy"]
+[ext_resource type="Texture2D" uid="uid://bo7pic6m4g6wt" path="res://assets/creator_puzzle/rock_2.png" id="13_ktrmi"]
+[ext_resource type="Texture2D" uid="uid://c1k746bac6hj8" path="res://assets/creator_puzzle/rock_1_blur.png" id="15_eo43y"]
+[ext_resource type="Texture2D" uid="uid://bye5kyi5emai6" path="res://assets/creator_puzzle/rope_3.png" id="15_f6jtv"]
+[ext_resource type="Texture2D" uid="uid://d3xpjdkcu2pvn" path="res://assets/creator_puzzle/rock_2_blur.png" id="16_ljoig"]
+[ext_resource type="Texture2D" uid="uid://d1vlutg4e8763" path="res://assets/creator_puzzle/rope_1_blur.png" id="17_04esr"]
+[ext_resource type="Texture2D" uid="uid://mxc6xb8jhdhp" path="res://assets/creator_puzzle/tablet.png" id="18_euccd"]
+[ext_resource type="Texture2D" uid="uid://cbj7idv1awhls" path="res://assets/creator_puzzle/tablet_blur.png" id="19_mhpck"]
+[ext_resource type="Texture2D" uid="uid://dgkye25jqv6wj" path="res://assets/creator_puzzle/rope_5.png" id="19_sgwax"]
+[ext_resource type="Texture2D" uid="uid://beonmtuhjydbf" path="res://assets/creator_puzzle/rope_2.png" id="25_kxynt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cbsp5"]
 radius = 766.288
@@ -37,7 +37,7 @@ blend_mode = 1
 offsets = PackedFloat32Array(0, 0.320856, 0.486631, 0.654189, 1)
 colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1, 1, 1, 1, 1, 1, 1, 0.90625, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_mivn7"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kcjiq"]
 gradient = SubResource("Gradient_8nj1y")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d2gji"]
@@ -53,10 +53,17 @@ gravity = Vector3(0, 0, 0)
 scale_min = 0.01
 scale_max = 0.1
 color = Color(1, 1, 1, 0.317647)
-color_ramp = SubResource("GradientTexture1D_mivn7")
+color_ramp = SubResource("GradientTexture1D_kcjiq")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w3nv1"]
 blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_sh3dq"]
+offsets = PackedFloat32Array(0, 0.320856, 0.486631, 0.654189, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1, 1, 1, 1, 1, 1, 1, 0.90625, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mivn7"]
+gradient = SubResource("Gradient_sh3dq")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6jr5j"]
 lifetime_randomness = 0.56
@@ -119,11 +126,10 @@ color_ramp = SubResource("GradientTexture1D_mivn7")
 [node name="CreatorPuzzle0" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_2d0w6")]
-position = Vector2(-1678, -59.9999)
-scale = Vector2(0.454594, 0.454594)
+position = Vector2(-1678, 149)
 
 [node name="Camera2D2" type="Camera2D" parent="Player"]
-position = Vector2(0, -851.309)
+position = Vector2(0, -543)
 scale = Vector2(0.772846, 0.772846)
 zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true

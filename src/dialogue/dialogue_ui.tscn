@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://br8qm13yce4pr"]
 
 [ext_resource type="Script" path="res://src/dialogue/dialogue_ui.gd" id="1_28e40"]
-[ext_resource type="Texture2D" uid="uid://1dye0h6jrhxe" path="res://assets/guy.png" id="1_38lb6"]
-[ext_resource type="Texture2D" uid="uid://bp0arfyn6yrd0" path="res://assets/speechbubble.png" id="2_nams7"]
+[ext_resource type="Texture2D" uid="uid://1dye0h6jrhxe" path="res://assets/shitty_assets/guy.png" id="1_38lb6"]
+[ext_resource type="Texture2D" uid="uid://bp0arfyn6yrd0" path="res://assets/shitty_assets/speechbubble.png" id="2_nams7"]
 [ext_resource type="PackedScene" uid="uid://xgi8pcnjfsvh" path="res://src/dialogue/response_button.tscn" id="3_y57cq"]
 
 [node name="DialogueUi" type="CanvasLayer"]
