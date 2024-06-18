@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clxbaoorybeod"
-path="res://.godot/imported/black_circle.png-bf9746e7cf021c52dc152d4fda7cec01.ctex"
+uid="uid://1dye0h6jrhxe"
+path="res://.godot/imported/guy.png-25aa2521de70b05cd04a0678fe719a8a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/black_circle.png"
-dest_files=["res://.godot/imported/black_circle.png-bf9746e7cf021c52dc152d4fda7cec01.ctex"]
+source_file="res://assets/shitty_assets/guy.png"
+dest_files=["res://.godot/imported/guy.png-25aa2521de70b05cd04a0678fe719a8a.ctex"]
 
 [params]
 

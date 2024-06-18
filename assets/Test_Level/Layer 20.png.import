@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cd843374n1h0y"
-path="res://.godot/imported/Layer 20.png-e7852991f7b035a943e3e95536ec7052.ctex"
+path="res://.godot/imported/Layer 20.png-1520002c94d6a86a0246521000482a05.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Test_Level/Layer 20.png"
-dest_files=["res://.godot/imported/Layer 20.png-e7852991f7b035a943e3e95536ec7052.ctex"]
+source_file="res://assets/test_level/Layer 20.png"
+dest_files=["res://.godot/imported/Layer 20.png-1520002c94d6a86a0246521000482a05.ctex"]
 
 [params]
 

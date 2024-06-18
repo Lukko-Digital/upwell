@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://wub142n7anf3"
-path="res://.godot/imported/clicker.png-f4a78ea82206908a89c8b0a222b7a050.ctex"
+path="res://.godot/imported/clicker.png-c2cbdd5cadf59579863899a62b2a9cb4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Creator_Puzzle/clicker.png"
-dest_files=["res://.godot/imported/clicker.png-f4a78ea82206908a89c8b0a222b7a050.ctex"]
+source_file="res://assets/creator_puzzle/clicker.png"
+dest_files=["res://.godot/imported/clicker.png-c2cbdd5cadf59579863899a62b2a9cb4.ctex"]
 
 [params]
 

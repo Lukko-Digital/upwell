@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0vw8hk7cm6yg"
-path="res://.godot/imported/tablet_large_2.png-98abc5f98a30ad136e939e2f8ff0a47a.ctex"
+path="res://.godot/imported/tablet_large_2.png-13450e3deeddd29ab5d422b20d3d43e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Creator_Puzzle/tablet_large_2.png"
-dest_files=["res://.godot/imported/tablet_large_2.png-98abc5f98a30ad136e939e2f8ff0a47a.ctex"]
+source_file="res://assets/creator_puzzle/tablet_large_2.png"
+dest_files=["res://.godot/imported/tablet_large_2.png-13450e3deeddd29ab5d422b20d3d43e1.ctex"]
 
 [params]
 
