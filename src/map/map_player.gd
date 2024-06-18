@@ -5,6 +5,12 @@ class_name MapPlayer
 
 var moving = false
 var destination: MapLocation
+var game: Game
+
+func _ready() -> void:
+	var current_scene = get_tree().get_current_scene()
+	if current_scene is Game:
+		game = current_scene
 
 func _process(_delta: float) -> void:
 	if moving:
@@ -36,3 +42,4 @@ func location_reached():
 	moving = false
 	if line.get_point_count() > 1:
 		line.remove_point(1)
+	game.change_level(destination.level)
