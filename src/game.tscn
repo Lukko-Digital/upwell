@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dnrwuscuadbgg"]
 
 [ext_resource type="PackedScene" uid="uid://yssibyguycqc" path="res://src/creator_puzzles/creator_puzzle_0.tscn" id="1_5diu8"]
-[ext_resource type="Script" path="res://src/global.gd" id="1_5wj68"]
+[ext_resource type="Script" path="res://src/game.gd" id="1_5wj68"]
 [ext_resource type="PackedScene" uid="uid://bb68hmcptqlgt" path="res://src/map/map.tscn" id="2_ceyqw"]
 
 [node name="Game" type="Control" node_paths=PackedStringArray("map_layer")]

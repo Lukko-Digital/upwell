@@ -11,7 +11,7 @@ const PLAYER = {
 }
 
 const ARTIFICIAL_GRAVITY = {
-	SPEED = 380.0*8,
+	SPEED = 380.0 * 8,
 	ACCEL = 4.0,
 	BOOST_VELOCITY = 3000.0,
 	DEADZONE_SIZE = 0,
@@ -20,6 +20,7 @@ const ARTIFICIAL_GRAVITY = {
 @onready var gravity_detector: Area2D = $GravityDetector
 @onready var interactable_detector: Area2D = $InteractableDetector
 @onready var dialogue_ui: DialogueUI = $DialogueUi
+@onready var game: Game = get_tree().get_current_scene()
 
 # PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
 var in_dialogue: bool = false
@@ -109,6 +110,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		jump()
 	if event.is_action_pressed("interact"):
 		interact()
+	if event.is_action_pressed("map"):
+		# print(game)
+		game.map_layer.visible = !game.map_layer.visible
 
 func _on_dialogue_ui_dialogue_finished() -> void:
 	in_dialogue = false
