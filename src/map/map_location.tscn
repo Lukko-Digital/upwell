@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ql7gm3yuyicr"]
 
 [ext_resource type="Script" path="res://src/map/map_location.gd" id="1_6ecw0"]
-[ext_resource type="Texture2D" uid="uid://1rj6mhwwxhfv" path="res://assets/shitty_assets/white_circle.png" id="1_6qa6q"]
+[ext_resource type="Texture2D" uid="uid://1rj6mhwwxhfv" path="res://assets/shitty_assets/white_circle.png" id="2_8pp8d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i25tr"]
 radius = 150.0
@@ -10,7 +10,7 @@ radius = 150.0
 script = ExtResource("1_6ecw0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_6qa6q")
+texture = ExtResource("2_8pp8d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_i25tr")
