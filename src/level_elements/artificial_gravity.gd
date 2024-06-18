@@ -14,7 +14,7 @@ func disable():
 	enabled = false
 	queue_redraw()
 
-func _draw() -> void:
-	var color = Color.GREEN if enabled else Color.RED
-	draw_circle(Vector2.ZERO, 4, color)
-	draw_arc(Vector2.ZERO, $CollisionShape2D.shape.radius, 0, TAU, 20, color, 2)
+#func _draw() -> void:
+	#var color = Color.GREEN if enabled else Color.RED
+	#draw_circle(Vector2.ZERO, 4, color)
+	#draw_arc(Vector2.ZERO, $CollisionShape2D.shape.radius, 0, TAU, 20, color, 2)
