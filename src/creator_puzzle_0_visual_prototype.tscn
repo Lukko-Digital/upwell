@@ -142,7 +142,6 @@ rotation = -1.57673
 [node name="ClickerHolder2" parent="." instance=ExtResource("4_trnax")]
 position = Vector2(326, -1834)
 rotation = 3.1296
-scale = Vector2(1, 1)
 has_clicker = false
 
 [node name="AgCore" type="Sprite2D" parent="."]
@@ -330,7 +329,7 @@ texture = ExtResource("9_6uhny")
 
 [node name="Layer21" type="Sprite2D" parent="-1"]
 modulate = Color(1, 1, 1, 0.101961)
-position = Vector2(760.56, -2460.28)
+position = Vector2(803.75, -2462.5)
 scale = Vector2(39.4641, 15.8391)
 texture = ExtResource("5_2d7qf")
 
@@ -374,7 +373,6 @@ texture = ExtResource("12_7igdy")
 [node name="Rock5" type="Sprite2D" parent="1"]
 position = Vector2(-1662, -946)
 rotation = 0.90407
-scale = Vector2(1, 1)
 texture = ExtResource("12_7igdy")
 
 [node name="Rock3" type="Sprite2D" parent="1"]
