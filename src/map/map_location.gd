@@ -1,11 +1,9 @@
 extends Area2D
 class_name MapLocation
 
-@onready var player: MapPlayer = get_tree().get_current_scene().get_node("MapPlayer")
+@export var level: PackedScene
 
-# func _ready() -> void:
-# 	print(get_tree().get_current_scene())
-# 	print(get_parent())
+@onready var player: MapPlayer = get_tree().get_current_scene().get_node("MapPlayer")
 
 func _on_mouse_entered() -> void:
 	player.location_hovered(self)
