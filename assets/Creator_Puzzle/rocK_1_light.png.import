@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://byoh7xfim3bjw"
-path="res://.godot/imported/rocK_1_light.png-10f1292473966006bbe16f98b402a377.ctex"
+path="res://.godot/imported/rocK_1_light.png-b2011345c4f60d550eb2a6363244e871.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Creator_Puzzle/rocK_1_light.png"
-dest_files=["res://.godot/imported/rocK_1_light.png-10f1292473966006bbe16f98b402a377.ctex"]
+source_file="res://assets/creator_puzzle/rocK_1_light.png"
+dest_files=["res://.godot/imported/rocK_1_light.png-b2011345c4f60d550eb2a6363244e871.ctex"]
 
 [params]
 
