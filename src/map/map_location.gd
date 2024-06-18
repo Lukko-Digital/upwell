@@ -1,18 +1,19 @@
 extends Area2D
+class_name MapLocation
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@onready var player: MapPlayer = get_tree().get_current_scene().get_node("MapPlayer")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+# func _ready() -> void:
+# 	print(get_tree().get_current_scene())
+# 	print(get_parent())
 
 func _on_mouse_entered() -> void:
-	pass # Replace with function body.
+	player.location_hovered(self)
 
 func _on_mouse_exited() -> void:
-	pass # Replace with function body.
+	player.location_unhovered(self)
 
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	pass # Replace with function body.
+func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			player.location_selected(self)

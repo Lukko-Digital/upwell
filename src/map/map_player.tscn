@@ -1,9 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0rlssnvit7w4"]
+[gd_scene load_steps=4 format=3 uid="uid://d0rlssnvit7w4"]
 
+[ext_resource type="Script" path="res://src/map/map_player.gd" id="1_5l3ko"]
 [ext_resource type="Texture2D" uid="uid://clxbaoorybeod" path="res://assets/black_circle.png" id="1_yqatj"]
+[ext_resource type="Texture2D" uid="uid://f0ynwde2b4kt" path="res://assets/tilemap.png" id="2_4tvbb"]
 
 [node name="MapPlayer" type="Node2D"]
+script = ExtResource("1_5l3ko")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_yqatj")
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = -1
+points = PackedVector2Array(0, 0)
+texture = ExtResource("2_4tvbb")
+texture_mode = 1
