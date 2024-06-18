@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://beonmtuhjydbf"
-path="res://.godot/imported/rope_2.png-a632701fc79b0916890703446dd4a8ae.ctex"
+path="res://.godot/imported/rope_2.png-b23d9a47d5c994e620daebc968d8d1ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/creator_puzzle/rope_2.png"
-dest_files=["res://.godot/imported/rope_2.png-a632701fc79b0916890703446dd4a8ae.ctex"]
+source_file="res://assets/Creator_Puzzle/rope_2.png"
+dest_files=["res://.godot/imported/rope_2.png-b23d9a47d5c994e620daebc968d8d1ac.ctex"]
 
 [params]
 

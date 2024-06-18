@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://6glou3g8lbyc"
-path="res://.godot/imported/RUNANIOMTION.png-bf6c53bd2af94f369170b39b054eb437.ctex"
+path="res://.godot/imported/RUNANIOMTION.png-ac1d0b96736882f3513b0863857d13fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/test_level/RUNANIOMTION.png"
-dest_files=["res://.godot/imported/RUNANIOMTION.png-bf6c53bd2af94f369170b39b054eb437.ctex"]
+source_file="res://assets/Test_Level/RUNANIOMTION.png"
+dest_files=["res://.godot/imported/RUNANIOMTION.png-ac1d0b96736882f3513b0863857d13fa.ctex"]
 
 [params]
 

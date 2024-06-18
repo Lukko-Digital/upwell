@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlrcluufkhr1s"
-path="res://.godot/imported/bg_focus.png-7f6b380cf5e3836ee3e45cac31550df0.ctex"
+path="res://.godot/imported/bg_focus.png-ee7561b161b00060a2fa31d3727a54ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/creator_puzzle/bg_focus.png"
-dest_files=["res://.godot/imported/bg_focus.png-7f6b380cf5e3836ee3e45cac31550df0.ctex"]
+source_file="res://assets/Creator_Puzzle/bg_focus.png"
+dest_files=["res://.godot/imported/bg_focus.png-ee7561b161b00060a2fa31d3727a54ed.ctex"]
 
 [params]
 

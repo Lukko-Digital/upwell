@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bo7erajxsocyl"
-path="res://.godot/imported/ag_glow.png-9cd607eaec77390a418d3da671ea4a94.ctex"
+path="res://.godot/imported/ag_glow.png-99127ca1a8f72ead5e20b781cff6174c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/creator_puzzle/ag_glow.png"
-dest_files=["res://.godot/imported/ag_glow.png-9cd607eaec77390a418d3da671ea4a94.ctex"]
+source_file="res://assets/Creator_Puzzle/ag_glow.png"
+dest_files=["res://.godot/imported/ag_glow.png-99127ca1a8f72ead5e20b781cff6174c.ctex"]
 
 [params]
 
