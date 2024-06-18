@@ -20,7 +20,8 @@ const ARTIFICIAL_GRAVITY = {
 @onready var gravity_detector: Area2D = $GravityDetector
 @onready var interactable_detector: Area2D = $InteractableDetector
 @onready var dialogue_ui: DialogueUI = $DialogueUi
-@onready var game: Game = get_tree().get_current_scene()
+
+var game: Game
 
 # PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
 var in_dialogue: bool = false
@@ -32,6 +33,9 @@ var has_clicker: bool:
 
 func _ready() -> void:
 	has_clicker = false
+	var current_scene = get_tree().get_current_scene()
+	if current_scene is Game:
+		game = current_scene
 
 func _physics_process(delta):
 	if in_dialogue:
