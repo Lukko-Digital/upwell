@@ -3,7 +3,7 @@ class_name MapLocation
 
 @export var level: PackedScene
 
-@onready var player: MapPlayer = get_tree().get_current_scene().get_node("MapPlayer")
+@onready var player: MapPlayer = owner.get_node("MapPlayer")
 
 func _on_mouse_entered() -> void:
 	player.location_hovered(self)
