@@ -7,10 +7,11 @@
 script = ExtResource("1_5l3ko")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_x6hgs")
 
 [node name="Line2D" type="Line2D" parent="."]
 z_index = -1
 points = PackedVector2Array(0, 0)
+width = 20.0
 texture_mode = 1
