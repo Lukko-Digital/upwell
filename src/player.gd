@@ -25,6 +25,7 @@ var game: Game
 
 # PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
 var in_dialogue: bool = false
+var in_map: bool = false
 
 var has_clicker: bool:
 	set(value):
@@ -38,7 +39,7 @@ func _ready() -> void:
 		game = current_scene
 
 func _physics_process(delta):
-	if in_dialogue:
+	if in_dialogue or in_map:
 		return
 	handle_artificial_gravity(delta)
 	handle_world_gravity(delta)
@@ -117,6 +118,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("map"):
 		# print(game)
 		game.map_layer.visible = !game.map_layer.visible
+		in_map = game.map_layer.visible
 
 func _on_dialogue_ui_dialogue_finished() -> void:
 	in_dialogue = false
