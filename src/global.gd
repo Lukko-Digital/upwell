@@ -1,5 +1,6 @@
 extends Node
 
+var player_has_clicker = false
 var clicker_state = {}
 var level_unlocks = {}
 

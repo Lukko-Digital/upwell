@@ -30,10 +30,11 @@ var in_map: bool = false
 var has_clicker: bool:
 	set(value):
 		$Clicker.visible = value
+		Global.player_has_clicker = value
 		has_clicker = value
 
 func _ready() -> void:
-	has_clicker = false
+	has_clicker = Global.player_has_clicker
 	var current_scene = get_tree().get_current_scene()
 	if current_scene is Game:
 		game = current_scene
