@@ -5,15 +5,16 @@ class_name ClickerHolder
 	set(value):
 		$Clicker.visible = value
 		if value:
-			$"Hook-sheet".frame = 0
+			$HookSheet.frame = 0
 		else:
-			$"Hook-sheet".frame = 1
+			$HookSheet.frame = 1
 		has_clicker = value
 @export var unlocks_level: String
 
 @onready var id: String = owner.name + name
 
 func _ready():
+	has_clicker = has_clicker # Allows glowing frame on spawn
 	super()
 	if id not in Global.clicker_state:
 		# Add state to Global state
