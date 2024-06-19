@@ -1,8 +1,0 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://mdruiccy2mxd"]
-
-[ext_resource type="Texture2D" uid="uid://h8sr0actr0bi" path="res://assets/character/player/animations/player-sheet_0.png" id="1_muvip"]
-
-[resource]
-atlas = ExtResource("1_muvip")
-region = Rect2(588, 2318, 591, 1270)
-margin = Rect2(1771, 417, 3249, 890)

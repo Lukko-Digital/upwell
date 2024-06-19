@@ -1,0 +1,16 @@
+[remap]
+
+importer="codeandweb.texturepacker_import_spritesheet"
+type="Resource"
+uid="uid://depcitkael3de"
+path="res://.godot/imported/player_walk-sheet.tpsheet-a96821e45b5353429c5c45b1a14d1230.res"
+
+[deps]
+
+files=["res://assets/character/player/sprite/animations/player_walk-sheet.sprites/final-0007.tres", "res://assets/character/player/sprite/animations/player_walk-sheet.sprites/final-0003.tres", "res://assets/character/player/sprite/animations/player_walk-sheet.sprites/final-0005.tres", "res://assets/character/player/sprite/animations/player_walk-sheet.sprites/final-0001.tres", "res://assets/character/player/sprite/animations/player_walk-sheet.sprites/final-0004.tres", "res://assets/character/player/sprite/animations/player_walk-sheet.sprites/final-0006.tres", "res://assets/character/player/sprite/animations/player_walk-sheet.sprites/final-0002.tres", "res://assets/character/player/sprite/animations/player_walk-sheet.sprites/final-0008.tres"]
+
+source_file="res://assets/character/player/sprite/animations/player_walk-sheet.tpsheet"
+dest_files=["res://.godot/imported/player_walk-sheet.tpsheet-a96821e45b5353429c5c45b1a14d1230.res", "res://assets/character/player/sprite/animations/player_walk-sheet.sprites/final-0007.tres", "res://assets/character/player/sprite/animations/player_walk-sheet.sprites/final-0003.tres", "res://assets/character/player/sprite/animations/player_walk-sheet.sprites/final-0005.tres", "res://assets/character/player/sprite/animations/player_walk-sheet.sprites/final-0001.tres", "res://assets/character/player/sprite/animations/player_walk-sheet.sprites/final-0004.tres", "res://assets/character/player/sprite/animations/player_walk-sheet.sprites/final-0006.tres", "res://assets/character/player/sprite/animations/player_walk-sheet.sprites/final-0002.tres", "res://assets/character/player/sprite/animations/player_walk-sheet.sprites/final-0008.tres"]
+
+[params]
+
