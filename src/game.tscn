@@ -16,7 +16,8 @@ map_layer = NodePath("MapLayer")
 
 [node name="ActiveLevel" type="Node" parent="."]
 
-[node name="Node2D" parent="ActiveLevel" instance=ExtResource("2_yhcc3")]
+[node name="Puzzle0" parent="ActiveLevel" instance=ExtResource("2_yhcc3")]
+position = Vector2(-370.443, -1719.88)
 
 [node name="MapLayer" type="CanvasLayer" parent="."]
 visible = false
