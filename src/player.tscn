@@ -1,23 +1,65 @@
-[gd_scene load_steps=7 format=3 uid="uid://tfy83b2uc6hh"]
+[gd_scene load_steps=17 format=3 uid="uid://tfy83b2uc6hh"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_lbj7m"]
 [ext_resource type="PackedScene" uid="uid://br8qm13yce4pr" path="res://src/dialogue/dialogue_ui.tscn" id="2_cft6f"]
 [ext_resource type="PackedScene" uid="uid://tuityuo8eefb" path="res://src/level_elements/clicker.tscn" id="3_joqfy"]
+[ext_resource type="Texture2D" uid="uid://td4hlia55tqf" path="res://assets/character/player/animations/player_walk-sheet.sprites/final-0001.tres" id="4_psdu5"]
+[ext_resource type="Texture2D" uid="uid://dwdkvxx3rcipa" path="res://assets/character/player/animations/player_walk-sheet.sprites/final-0002.tres" id="5_l121o"]
+[ext_resource type="Texture2D" uid="uid://cnle2vw5heclc" path="res://assets/character/player/animations/player_walk-sheet.sprites/final-0003.tres" id="6_k3l3d"]
+[ext_resource type="Texture2D" uid="uid://d2krl1ty3tvjw" path="res://assets/character/player/animations/player_walk-sheet.sprites/final-0004.tres" id="7_ig75j"]
+[ext_resource type="Texture2D" uid="uid://cb7tx1k7vx5eq" path="res://assets/character/player/animations/player_walk-sheet.sprites/final-0005.tres" id="8_0bujc"]
+[ext_resource type="Texture2D" uid="uid://c1i3mr2b4lyhk" path="res://assets/character/player/animations/player_walk-sheet.sprites/final-0006.tres" id="9_knudc"]
+[ext_resource type="Texture2D" uid="uid://bjqnj7cieom0n" path="res://assets/character/player/animations/player_walk-sheet.sprites/final-0007.tres" id="10_p8w53"]
+[ext_resource type="Texture2D" uid="uid://ds38iioqk1f5s" path="res://assets/character/player/animations/player_walk-sheet.sprites/final-0008.tres" id="11_jokki"]
+[ext_resource type="Texture2D" uid="uid://6vmmwtxxfxev" path="res://assets/character/player/temp.png" id="12_rkci4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_piej1"]
-size = Vector2(112, 224)
+size = Vector2(112, 240)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_163mm"]
-size = Vector2(112, 224)
+size = Vector2(112, 240)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d8ltk"]
-size = Vector2(112, 224)
+size = Vector2(112, 240)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dqdgk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_psdu5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_l121o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_k3l3d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ig75j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_0bujc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_knudc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_p8w53")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jokki")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_lbj7m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_piej1")
 
 [node name="GravityDetector" type="Area2D" parent="."]
@@ -25,6 +67,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GravityDetector"]
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_163mm")
 
 [node name="InteractableDetector" type="Area2D" parent="."]
@@ -32,6 +75,7 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableDetector"]
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_d8ltk")
 
 [node name="DialogueUi" parent="." instance=ExtResource("2_cft6f")]
@@ -64,15 +108,30 @@ theme_override_font_sizes/font_size = 60
 text = "your map has been updated"
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_left = -56.0
 offset_top = -112.0
 offset_right = 56.0
 offset_bottom = 113.0
 
 [node name="Clicker" parent="." instance=ExtResource("3_joqfy")]
-offset_left = 3.0
-offset_top = -9.0
-offset_right = 11.0
-offset_bottom = -1.0
+offset_left = -16.0
+offset_top = -40.0
+offset_right = -8.0
+offset_bottom = -32.0
+scale = Vector2(1.93323, 1.93323)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -56)
+scale = Vector2(0.200282, 0.200282)
+sprite_frames = SubResource("SpriteFrames_dqdgk")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.536522
+
+[node name="Temp" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+texture = ExtResource("12_rkci4")
 
 [connection signal="dialogue_finished" from="DialogueUi" to="." method="_on_dialogue_ui_dialogue_finished"]
