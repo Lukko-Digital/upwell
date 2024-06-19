@@ -1,10 +1,15 @@
 extends Area2D
 class_name ArtificialGravity
 
+const DEFAULT_RADIUS = 322
+
+@onready var glow: Sprite2D = $Glow
+
 var enabled: bool = true
 
 func _ready() -> void:
 	add_to_group("AGs")
+	glow.scale = Vector2.ONE * $CollisionShape2D.shape.radius / DEFAULT_RADIUS
 
 func enable():
 	enabled = true
@@ -13,8 +18,3 @@ func enable():
 func disable():
 	enabled = false
 	queue_redraw()
-
-#func _draw() -> void:
-	#var color = Color.GREEN if enabled else Color.RED
-	#draw_circle(Vector2.ZERO, 4, color)
-	#draw_arc(Vector2.ZERO, $CollisionShape2D.shape.radius, 0, TAU, 20, color, 2)

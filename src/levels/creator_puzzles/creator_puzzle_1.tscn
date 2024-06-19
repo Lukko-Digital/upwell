@@ -24,7 +24,7 @@ shader_parameter/blur_amount = 1.307
 blend_mode = 3
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_shfwl"]
-radius = 599.053
+radius = 546.206
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_reg6l"]
 radius = 930.138
@@ -228,15 +228,6 @@ drag_bottom_margin = 0.0
 [node name="ArtificialGravity" parent="." instance=ExtResource("9_fclwj")]
 position = Vector2(-803, -1026)
 
-[node name="AgGlow" type="Sprite2D" parent="ArtificialGravity"]
-position = Vector2(-3, 4)
-scale = Vector2(1.61822, 1.61822)
-texture = ExtResource("10_seffm")
-
-[node name="AgCore" type="Sprite2D" parent="ArtificialGravity"]
-position = Vector2(-20, -8)
-texture = ExtResource("11_0ou27")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ArtificialGravity"]
 shape = SubResource("CircleShape2D_shfwl")
 debug_color = Color(0, 0.6, 0.701961, 0.345098)
@@ -245,13 +236,13 @@ debug_color = Color(0, 0.6, 0.701961, 0.345098)
 visible = false
 position = Vector2(15, 1048)
 
-[node name="AgGlow" type="Sprite2D" parent="ArtificialGravity2"]
+[node name="AgGlow2" type="Sprite2D" parent="ArtificialGravity2"]
 position = Vector2(17, -19)
 rotation = -2.57048
 scale = Vector2(2.81839, 2.81839)
 texture = ExtResource("10_seffm")
 
-[node name="AgCore" type="Sprite2D" parent="ArtificialGravity2"]
+[node name="AgCore2" type="Sprite2D" parent="ArtificialGravity2"]
 position = Vector2(-20, -8)
 texture = ExtResource("11_0ou27")
 
