@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://842vjomoeag3"
-path="res://.godot/imported/platform.png-e8573239bc2ceb2ad7b788a865aba2e1.ctex"
+uid="uid://dlrcluufkhr1s"
+path="res://.godot/imported/bg_focus.png-7f6b380cf5e3836ee3e45cac31550df0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Creator_Puzzle/platform.png"
-dest_files=["res://.godot/imported/platform.png-e8573239bc2ceb2ad7b788a865aba2e1.ctex"]
+source_file="res://assets/creator_puzzle/bg_focus.png"
+dest_files=["res://.godot/imported/bg_focus.png-7f6b380cf5e3836ee3e45cac31550df0.ctex"]
 
 [params]
 

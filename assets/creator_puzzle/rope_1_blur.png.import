@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvskijoo6qo7g"
-path="res://.godot/imported/rope_4.png-0744f733474284f3b47eaa26eba3ac4b.ctex"
+uid="uid://d1vlutg4e8763"
+path="res://.godot/imported/rope_1_blur.png-c311e907ecc52c35c0a77a27bd932d23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Creator_Puzzle/rope_4.png"
-dest_files=["res://.godot/imported/rope_4.png-0744f733474284f3b47eaa26eba3ac4b.ctex"]
+source_file="res://assets/creator_puzzle/rope_1_blur.png"
+dest_files=["res://.godot/imported/rope_1_blur.png-c311e907ecc52c35c0a77a27bd932d23.ctex"]
 
 [params]
 

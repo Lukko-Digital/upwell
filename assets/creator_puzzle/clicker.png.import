@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b61a0ttyd4ybr"
-path="res://.godot/imported/hook-sheet.png-27d0c216b66001ecbc65a24f1a306982.ctex"
+uid="uid://wub142n7anf3"
+path="res://.godot/imported/clicker.png-c2cbdd5cadf59579863899a62b2a9cb4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Creator_Puzzle/hook-sheet.png"
-dest_files=["res://.godot/imported/hook-sheet.png-27d0c216b66001ecbc65a24f1a306982.ctex"]
+source_file="res://assets/creator_puzzle/clicker.png"
+dest_files=["res://.godot/imported/clicker.png-c2cbdd5cadf59579863899a62b2a9cb4.ctex"]
 
 [params]
 

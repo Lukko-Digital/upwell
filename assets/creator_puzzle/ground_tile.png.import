@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wub142n7anf3"
-path="res://.godot/imported/clicker.png-f4a78ea82206908a89c8b0a222b7a050.ctex"
+uid="uid://c66sojduddw1m"
+path="res://.godot/imported/ground_tile.png-9f6bd4ab6a28f14e62898ea397123cca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Creator_Puzzle/clicker.png"
-dest_files=["res://.godot/imported/clicker.png-f4a78ea82206908a89c8b0a222b7a050.ctex"]
+source_file="res://assets/creator_puzzle/ground_tile.png"
+dest_files=["res://.godot/imported/ground_tile.png-9f6bd4ab6a28f14e62898ea397123cca.ctex"]
 
 [params]
 

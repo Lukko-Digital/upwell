@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byoh7xfim3bjw"
-path="res://.godot/imported/rocK_1_light.png-10f1292473966006bbe16f98b402a377.ctex"
+uid="uid://bo7pic6m4g6wt"
+path="res://.godot/imported/rock_2.png-c3668c7f57885026544d3775b5c24f5e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Creator_Puzzle/rocK_1_light.png"
-dest_files=["res://.godot/imported/rocK_1_light.png-10f1292473966006bbe16f98b402a377.ctex"]
+source_file="res://assets/creator_puzzle/rock_2.png"
+dest_files=["res://.godot/imported/rock_2.png-c3668c7f57885026544d3775b5c24f5e.ctex"]
 
 [params]
 

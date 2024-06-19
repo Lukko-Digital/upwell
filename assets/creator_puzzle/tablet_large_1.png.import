@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlrcluufkhr1s"
-path="res://.godot/imported/bg_focus.png-ee7561b161b00060a2fa31d3727a54ed.ctex"
+uid="uid://dqaefix7e65sy"
+path="res://.godot/imported/tablet_large_1.png-10e5d13582fcd7dd9f0e829eee49ee63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Creator_Puzzle/bg_focus.png"
-dest_files=["res://.godot/imported/bg_focus.png-ee7561b161b00060a2fa31d3727a54ed.ctex"]
+source_file="res://assets/creator_puzzle/tablet_large_1.png"
+dest_files=["res://.godot/imported/tablet_large_1.png-10e5d13582fcd7dd9f0e829eee49ee63.ctex"]
 
 [params]
 

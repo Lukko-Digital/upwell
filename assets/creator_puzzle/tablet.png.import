@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1vlutg4e8763"
-path="res://.godot/imported/rope_1_blur.png-83f4cbb46ba19991f433c522503d9158.ctex"
+uid="uid://mxc6xb8jhdhp"
+path="res://.godot/imported/tablet.png-7bea2af1d296e25bcc1a3b9e8cf6d080.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Creator_Puzzle/rope_1_blur.png"
-dest_files=["res://.godot/imported/rope_1_blur.png-83f4cbb46ba19991f433c522503d9158.ctex"]
+source_file="res://assets/creator_puzzle/tablet.png"
+dest_files=["res://.godot/imported/tablet.png-7bea2af1d296e25bcc1a3b9e8cf6d080.ctex"]
 
 [params]
 

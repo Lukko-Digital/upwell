@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbj7idv1awhls"
-path="res://.godot/imported/tablet_blur.png-c83edc9dbcc066ee05475522e56518ff.ctex"
+uid="uid://c0vw8hk7cm6yg"
+path="res://.godot/imported/tablet_large_2.png-13450e3deeddd29ab5d422b20d3d43e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Creator_Puzzle/tablet_blur.png"
-dest_files=["res://.godot/imported/tablet_blur.png-c83edc9dbcc066ee05475522e56518ff.ctex"]
+source_file="res://assets/creator_puzzle/tablet_large_2.png"
+dest_files=["res://.godot/imported/tablet_large_2.png-13450e3deeddd29ab5d422b20d3d43e1.ctex"]
 
 [params]
 
