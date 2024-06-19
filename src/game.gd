@@ -11,3 +11,4 @@ func change_level(level: PackedScene):
 	current_level.queue_free()
 	var new_level = level.instantiate()
 	active_level.add_child(new_level)
+	map_layer.hide()
