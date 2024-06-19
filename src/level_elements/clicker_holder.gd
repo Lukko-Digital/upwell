@@ -10,6 +10,7 @@ class_name ClickerHolder
 @onready var id: String = owner.name + name
 
 func _ready():
+	super()
 	if id not in Global.clicker_state:
 		# Add state to Global state
 		Global.clicker_state[id] = has_clicker
