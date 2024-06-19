@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_5wj68"]
 [ext_resource type="PackedScene" uid="uid://bb68hmcptqlgt" path="res://src/map/map.tscn" id="2_ceyqw"]
-[ext_resource type="PackedScene" uid="uid://cfljhh1nxifqe" path="res://src/creator_puzzles/creator_puzzle_0.tscn" id="2_yhcc3"]
+[ext_resource type="PackedScene" uid="uid://cfljhh1nxifqe" path="res://src/levels/creator_puzzles/creator_puzzle_0.tscn" id="2_yhcc3"]
 
 [node name="Game" type="Control" node_paths=PackedStringArray("map_layer")]
 layout_mode = 3
