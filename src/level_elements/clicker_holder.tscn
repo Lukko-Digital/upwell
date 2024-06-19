@@ -29,9 +29,10 @@ position = Vector2(28, -90)
 shape = SubResource("CircleShape2D_eoxif")
 
 [node name="InteractLabel" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.466667)
 offset_left = -22.0
 offset_top = -254.0
 offset_bottom = -231.0
 scale = Vector2(3.05878, 3.05878)
-text = "<press E>"
+text = "<E>"
 horizontal_alignment = 1
