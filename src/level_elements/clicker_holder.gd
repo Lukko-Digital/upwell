@@ -4,6 +4,10 @@ class_name ClickerHolder
 @export var has_clicker: bool = true:
 	set(value):
 		$Clicker.visible = value
+		if value:
+			$"Hook-sheet".frame = 0
+		else:
+			$"Hook-sheet".frame = 1
 		has_clicker = value
 @export var unlocks_level: String
 
