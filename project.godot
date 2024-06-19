@@ -29,6 +29,10 @@ window/size/mode=3
 window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/codeandweb.texturepacker/plugin.cfg")
+
 [input]
 
 up={
