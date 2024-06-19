@@ -34,6 +34,7 @@ var has_clicker: bool:
 		has_clicker = value
 
 func _ready() -> void:
+	Global.level_unlocked.connect(_on_level_unlocked)
 	has_clicker = Global.player_has_clicker
 	var current_scene = get_tree().get_current_scene()
 	if current_scene is Game:
@@ -122,3 +123,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_dialogue_ui_dialogue_finished() -> void:
 	in_dialogue = false
+
+func _on_level_unlocked(_level_name: String):
+	var ui = $Ui
+	ui.show()
+	await get_tree().create_timer(2).timeout
+	ui.hide()
