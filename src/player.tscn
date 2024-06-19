@@ -36,6 +36,17 @@ size = Vector2(112, 336)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("20_f8qss")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_j6vg2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("4_fwoxo")
 }, {
 "duration": 1.0,
@@ -66,8 +77,8 @@ animations = [{
 "texture": ExtResource("13_hvcsb")
 }],
 "loop": true,
-"name": &"new_animation",
-"speed": 5.0
+"name": &"run",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -88,20 +99,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("19_0017b")
 }],
-"loop": true,
-"name": &"new_animation_1",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("20_f8qss")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_j6vg2")
-}],
-"loop": true,
-"name": &"new_animation_2",
-"speed": 5.0
+"loop": false,
+"name": &"stop",
+"speed": 8.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
@@ -175,9 +175,8 @@ offset_bottom = 113.0
 position = Vector2(8, -40)
 scale = Vector2(0.254105, 0.254105)
 sprite_frames = SubResource("SpriteFrames_dqdgk")
-animation = &"new_animation_2"
-autoplay = "new_animation_2"
-frame_progress = 0.0791487
+animation = &"idle"
+frame_progress = 0.662331
 
 [node name="Temp" type="Sprite2D" parent="."]
 visible = false

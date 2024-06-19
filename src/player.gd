@@ -17,6 +17,7 @@ const ARTIFICIAL_GRAVITY = {
 	DEADZONE_SIZE = 0,
 }
 
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var gravity_detector: Area2D = $GravityDetector
 @onready var interactable_detector: Area2D = $InteractableDetector
 @onready var dialogue_ui: DialogueUI = $DialogueUi
@@ -33,6 +34,8 @@ var has_clicker: bool:
 		Global.player_has_clicker = value
 		has_clicker = value
 
+var was_moving: bool = false
+
 func _ready() -> void:
 	Global.level_unlocked.connect(_on_level_unlocked)
 	has_clicker = Global.player_has_clicker
@@ -45,7 +48,8 @@ func _physics_process(delta):
 		return
 	handle_artificial_gravity(delta)
 	handle_world_gravity(delta)
-	handle_movement(delta)
+	var input_dir = handle_movement(delta)
+	handle_animation(input_dir)
 	move_and_slide()
 
 func handle_world_gravity(delta):
@@ -86,7 +90,7 @@ func handle_artificial_gravity(delta):
 		velocity += active_direction * ARTIFICIAL_GRAVITY.BOOST_VELOCITY
 		gravity_well.disable()
 
-func handle_movement(delta):
+func handle_movement(delta) -> float:
 	# friction
 	if abs(velocity.x) > PLAYER.SPEED and is_on_floor():
 		# if moving over top speed and on ground
@@ -97,6 +101,23 @@ func handle_movement(delta):
 	if abs(velocity.x) < PLAYER.SPEED or sign(velocity.x) != sign(direction):
 		# if moving under top speed or input is in direction opposite to movement
 		velocity.x = move_toward(velocity.x, PLAYER.SPEED * direction, PLAYER.ACCELERATION * delta)
+	return direction
+
+func handle_animation(direction: float):
+	if direction == 0 or not is_on_floor():
+		if was_moving:
+			if not is_on_floor():
+				sprite.flip_h = !sprite.flip_h
+			sprite.play("stop")
+		else:
+			if sprite.is_playing():
+				return
+			sprite.play("idle")
+		was_moving = false
+	else:
+		sprite.play("run")
+		sprite.flip_h = (direction == -1)
+		was_moving = true
 
 func jump():
 	if is_on_floor():
