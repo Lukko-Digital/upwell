@@ -208,8 +208,8 @@ shape = SubResource("CircleShape2D_shfwl")
 debug_color = Color(0, 0.6, 0.701961, 0.345098)
 
 [node name="Platform" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(-829.263, -1388)
-scale = Vector2(1.25389, 1.25389)
+position = Vector2(-829.263, -1322)
+scale = Vector2(0.992984, 0.992984)
 texture = ExtResource("16_vad77")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="CanvasLayer/Platform"]
