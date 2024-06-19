@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pibf6admq31o"
-path="res://.godot/imported/particle_soft.png-dcfcd2310fa994c7ee1adea465a9343a.ctex"
+uid="uid://q3twu0nni1h0"
+path="res://.godot/imported/does this work for godot.png-8c8c1d0a12149bcd6ba49751188dd55b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Test_Level/particle_soft.png"
-dest_files=["res://.godot/imported/particle_soft.png-dcfcd2310fa994c7ee1adea465a9343a.ctex"]
+source_file="res://assets/test_level/does this work for godot.png"
+dest_files=["res://.godot/imported/does this work for godot.png-8c8c1d0a12149bcd6ba49751188dd55b.ctex"]
 
 [params]
 

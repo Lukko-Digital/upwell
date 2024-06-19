@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dihewiwmnn6k4"
-path="res://.godot/imported/house_bg_5.png-2d02a8b3cb8eb32221e810a28a185bad.ctex"
+uid="uid://nl3afbhplomy"
+path="res://.godot/imported/plyrglow.png-85221ea2ffc658834e9cd91bb9f60863.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Test_Level/house_bg_5.png"
-dest_files=["res://.godot/imported/house_bg_5.png-2d02a8b3cb8eb32221e810a28a185bad.ctex"]
+source_file="res://assets/test_level/plyrglow.png"
+dest_files=["res://.godot/imported/plyrglow.png-85221ea2ffc658834e9cd91bb9f60863.ctex"]
 
 [params]
 

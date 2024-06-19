@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nl3afbhplomy"
-path="res://.godot/imported/plyrglow.png-7406efa5669799ca41ef1dff5eb30e99.ctex"
+uid="uid://cdutt7tsrwksx"
+path="res://.godot/imported/title.png-bf418fbdb657b4c5719c431122f9c8e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Test_Level/plyrglow.png"
-dest_files=["res://.godot/imported/plyrglow.png-7406efa5669799ca41ef1dff5eb30e99.ctex"]
+source_file="res://assets/test_level/title.png"
+dest_files=["res://.godot/imported/title.png-bf418fbdb657b4c5719c431122f9c8e6.ctex"]
 
 [params]
 

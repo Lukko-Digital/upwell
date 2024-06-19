@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6glou3g8lbyc"
-path="res://.godot/imported/RUNANIOMTION.png-ac1d0b96736882f3513b0863857d13fa.ctex"
+uid="uid://bx3f76pvi4k4q"
+path="res://.godot/imported/particle_hard.png-0bf2b09d5eb506b343ef542dcaebcee9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Test_Level/RUNANIOMTION.png"
-dest_files=["res://.godot/imported/RUNANIOMTION.png-ac1d0b96736882f3513b0863857d13fa.ctex"]
+source_file="res://assets/test_level/particle_hard.png"
+dest_files=["res://.godot/imported/particle_hard.png-0bf2b09d5eb506b343ef542dcaebcee9.ctex"]
 
 [params]
 

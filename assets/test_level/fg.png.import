@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://davaibv6mndpn"
-path="res://.godot/imported/well.png-7846abfc6731aaf5f2d04f1a44ce908b.ctex"
+uid="uid://direco4vflc55"
+path="res://.godot/imported/fg.png-25662b7d7e7fa20c9754d331a7f86cdb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Test_Level/well.png"
-dest_files=["res://.godot/imported/well.png-7846abfc6731aaf5f2d04f1a44ce908b.ctex"]
+source_file="res://assets/test_level/fg.png"
+dest_files=["res://.godot/imported/fg.png-25662b7d7e7fa20c9754d331a7f86cdb.ctex"]
 
 [params]
 

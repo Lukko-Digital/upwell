@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rklutnjhw6xs"
-path="res://.godot/imported/fliers.png-0a846c0b565a9c5cf7c432fbd71a86ae.ctex"
+uid="uid://bfpiq463rdm4l"
+path="res://.godot/imported/houses.png-8c769d1f0038e51f92edc09bfead2cb0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Test_Level/fliers.png"
-dest_files=["res://.godot/imported/fliers.png-0a846c0b565a9c5cf7c432fbd71a86ae.ctex"]
+source_file="res://assets/test_level/houses.png"
+dest_files=["res://.godot/imported/houses.png-8c769d1f0038e51f92edc09bfead2cb0.ctex"]
 
 [params]
 
