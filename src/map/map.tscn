@@ -23,18 +23,22 @@ level = ExtResource("3_kwmnh")
 position = Vector2(326, -246)
 scale = Vector2(0.5, 0.5)
 level = ExtResource("4_2bob3")
+locked_level_name = "level0a"
 
 [node name="MapLocation3" parent="." instance=ExtResource("2_1tail")]
 position = Vector2(526, 65)
 scale = Vector2(0.3, 0.3)
 level = ExtResource("3_7gyr0")
+locked_level_name = "level1"
 
 [node name="MapLocation4" parent="." instance=ExtResource("2_1tail")]
 position = Vector2(414, 412)
 scale = Vector2(0.6, 0.6)
 level = ExtResource("6_cwsf1")
+locked_level_name = "level2"
 
 [node name="MapLocation5" parent="." instance=ExtResource("2_1tail")]
 position = Vector2(785, 503)
 scale = Vector2(0.4, 0.4)
 level = ExtResource("7_op0kk")
+locked_level_name = "level3"
