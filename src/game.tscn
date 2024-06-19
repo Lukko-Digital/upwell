@@ -20,6 +20,7 @@ map_layer = NodePath("MapLayer")
 position = Vector2(-370.443, -1719.88)
 
 [node name="MapLayer" type="CanvasLayer" parent="."]
+layer = 20
 visible = false
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="MapLayer"]
