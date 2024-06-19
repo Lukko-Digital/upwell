@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://nl3afbhplomy"
-path="res://.godot/imported/plyrglow.png-85221ea2ffc658834e9cd91bb9f60863.ctex"
+path="res://.godot/imported/plyrglow.png-7406efa5669799ca41ef1dff5eb30e99.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/test_level/plyrglow.png"
-dest_files=["res://.godot/imported/plyrglow.png-85221ea2ffc658834e9cd91bb9f60863.ctex"]
+source_file="res://assets/Test_Level/plyrglow.png"
+dest_files=["res://.godot/imported/plyrglow.png-7406efa5669799ca41ef1dff5eb30e99.ctex"]
 
 [params]
 

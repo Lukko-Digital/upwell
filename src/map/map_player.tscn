@@ -1,9 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0rlssnvit7w4"]
+[gd_scene load_steps=3 format=3 uid="uid://d0rlssnvit7w4"]
 
-[ext_resource type="Texture2D" uid="uid://clxbaoorybeod" path="res://assets/shitty_assets/black_circle.png" id="1_yqatj"]
+[ext_resource type="Script" path="res://src/map/map_player.gd" id="1_5l3ko"]
+[ext_resource type="Texture2D" uid="uid://clxbaoorybeod" path="res://assets/shitty_assets/black_circle.png" id="2_x6hgs"]
 
 [node name="MapPlayer" type="Node2D"]
+script = ExtResource("1_5l3ko")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_yqatj")
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_x6hgs")
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = -1
+points = PackedVector2Array(0, 0)
+width = 20.0
+texture_mode = 1

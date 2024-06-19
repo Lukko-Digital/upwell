@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bb68hmcptqlgt"]
+[gd_scene load_steps=4 format=3 uid="uid://bb68hmcptqlgt"]
 
 [ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player.tscn" id="1_8n3xw"]
 [ext_resource type="PackedScene" uid="uid://ql7gm3yuyicr" path="res://src/map/map_location.tscn" id="2_1tail"]
+[ext_resource type="PackedScene" uid="uid://5m5se54m7bsd" path="res://src/creator_puzzles/creator_puzzle_1.tscn" id="3_7gyr0"]
 
 [node name="Map" type="Node2D"]
 
@@ -11,10 +12,13 @@ z_index = 1
 [node name="Camera2D" type="Camera2D" parent="MapPlayer"]
 
 [node name="MapLocation" parent="." instance=ExtResource("2_1tail")]
-position = Vector2(0, 3)
+scale = Vector2(0.4, 0.4)
 
 [node name="MapLocation2" parent="." instance=ExtResource("2_1tail")]
-position = Vector2(402, -390)
+position = Vector2(408, -396)
+scale = Vector2(0.5, 0.5)
+level = ExtResource("3_7gyr0")
 
 [node name="MapLocation3" parent="." instance=ExtResource("2_1tail")]
 position = Vector2(682, 131)
+scale = Vector2(0.6, 0.6)
