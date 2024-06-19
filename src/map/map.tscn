@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://bb68hmcptqlgt"]
+[gd_scene load_steps=8 format=3 uid="uid://bb68hmcptqlgt"]
 
 [ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player.tscn" id="1_8n3xw"]
 [ext_resource type="PackedScene" uid="uid://ql7gm3yuyicr" path="res://src/map/map_location.tscn" id="2_1tail"]
 [ext_resource type="PackedScene" uid="uid://5m5se54m7bsd" path="res://src/creator_puzzles/creator_puzzle_1.tscn" id="3_7gyr0"]
+[ext_resource type="PackedScene" uid="uid://cfljhh1nxifqe" path="res://src/creator_puzzles/creator_puzzle_0.tscn" id="3_kwmnh"]
+[ext_resource type="PackedScene" uid="uid://bfsfftagdiqxe" path="res://src/creator_puzzles/creator_puzzle_0a.tscn" id="4_2bob3"]
+[ext_resource type="PackedScene" uid="uid://yssibyguycqc" path="res://src/creator_puzzles/creator_puzzle_2.tscn" id="6_cwsf1"]
+[ext_resource type="PackedScene" uid="uid://diahbkrkxdoj3" path="res://src/creator_puzzles/creator_puzzle_3.tscn" id="7_op0kk"]
 
 [node name="Map" type="Node2D"]
 
@@ -13,12 +17,24 @@ z_index = 1
 
 [node name="MapLocation" parent="." instance=ExtResource("2_1tail")]
 scale = Vector2(0.4, 0.4)
+level = ExtResource("3_kwmnh")
 
 [node name="MapLocation2" parent="." instance=ExtResource("2_1tail")]
-position = Vector2(408, -396)
+position = Vector2(326, -246)
 scale = Vector2(0.5, 0.5)
-level = ExtResource("3_7gyr0")
+level = ExtResource("4_2bob3")
 
 [node name="MapLocation3" parent="." instance=ExtResource("2_1tail")]
-position = Vector2(682, 131)
+position = Vector2(526, 65)
+scale = Vector2(0.3, 0.3)
+level = ExtResource("3_7gyr0")
+
+[node name="MapLocation4" parent="." instance=ExtResource("2_1tail")]
+position = Vector2(414, 412)
 scale = Vector2(0.6, 0.6)
+level = ExtResource("6_cwsf1")
+
+[node name="MapLocation5" parent="." instance=ExtResource("2_1tail")]
+position = Vector2(785, 503)
+scale = Vector2(0.4, 0.4)
+level = ExtResource("7_op0kk")
