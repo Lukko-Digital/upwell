@@ -204,6 +204,7 @@ position = Vector2(54, -1101)
 rotation = -0.0247006
 scale = Vector2(-1, 1)
 has_clicker = false
+unlocks_level = "level0a"
 
 [node name="ClickerHolder" parent="." instance=ExtResource("8_nbghe")]
 position = Vector2(-1929, -329)
