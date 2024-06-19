@@ -201,7 +201,7 @@ texture = ExtResource("7_46jq4")
 follow_viewport_enabled = true
 
 [node name="ArtificialGravity" parent="CanvasLayer" instance=ExtResource("11_gnst2")]
-position = Vector2(-821.263, -1008.57)
+position = Vector2(-821.263, -1040)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/ArtificialGravity"]
 shape = SubResource("CircleShape2D_shfwl")
