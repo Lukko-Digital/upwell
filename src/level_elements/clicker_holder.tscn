@@ -12,7 +12,7 @@ collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_rct6y")
 
-[node name="Hook-sheet" type="Sprite2D" parent="."]
+[node name="HookSheet" type="Sprite2D" parent="."]
 position = Vector2(0, -3)
 texture = ExtResource("2_eerrr")
 hframes = 2
