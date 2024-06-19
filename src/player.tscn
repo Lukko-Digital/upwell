@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://tfy83b2uc6hh"]
+[gd_scene load_steps=26 format=3 uid="uid://tfy83b2uc6hh"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_lbj7m"]
 [ext_resource type="Texture2D" uid="uid://crv5nu2k05ddm" path="res://assets/environment/creator_puzzle/ag_core.png" id="2_38y5b"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://r5p224n8pedn" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0005.tres" id="9_w5lr8"]
 [ext_resource type="Texture2D" uid="uid://bk10kt18aa8nl" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0006.tres" id="10_verrk"]
 [ext_resource type="Texture2D" uid="uid://dw0qgri35xeyf" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0007.tres" id="11_8w52l"]
-[ext_resource type="Texture2D" uid="uid://6vmmwtxxfxev" path="res://assets/character/player/sprite/temp.png" id="12_rkci4"]
 [ext_resource type="Texture2D" uid="uid://oeocvhyn1g1g" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0008.tres" id="12_yqyia"]
 [ext_resource type="Texture2D" uid="uid://gd2ia1uwfqjo" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0009.tres" id="13_hvcsb"]
 [ext_resource type="Texture2D" uid="uid://t5aaef2371c7" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0010.tres" id="14_4cgbu"]
@@ -22,15 +21,6 @@
 [ext_resource type="Texture2D" uid="uid://cb4gim6qcqm3h" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0015.tres" id="19_0017b"]
 [ext_resource type="Texture2D" uid="uid://duit5y686on5p" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0016.tres" id="20_f8qss"]
 [ext_resource type="Texture2D" uid="uid://cvypp2fr2f8fb" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0017.tres" id="21_j6vg2"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_piej1"]
-size = Vector2(112, 336)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_163mm"]
-size = Vector2(112, 336)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8ltk"]
-size = Vector2(112, 336)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dqdgk"]
 animations = [{
@@ -104,22 +94,37 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_piej1"]
+size = Vector2(112, 336)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_163mm"]
+size = Vector2(112, 336)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8ltk"]
+size = Vector2(112, 336)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_lbj7m")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(7.88236, 55.2887)
+scale = Vector2(0.254105, 0.254105)
+sprite_frames = SubResource("SpriteFrames_dqdgk")
+animation = &"idle"
+frame_progress = 0.445332
+
 [node name="Clicker" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.623529)
-position = Vector2(-16, -48)
-rotation = 3.14159
-scale = Vector2(-1.65575, -1.65575)
+position = Vector2(-24, 1.7053e-13)
+scale = Vector2(1.65575, 1.65575)
 texture = ExtResource("2_38y5b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -56)
+position = Vector2(-0.117645, 39.2887)
 shape = SubResource("RectangleShape2D_piej1")
 
 [node name="GravityDetector" type="Area2D" parent="."]
+position = Vector2(-0.117645, 95.2887)
 collision_layer = 0
 collision_mask = 4
 
@@ -128,6 +133,7 @@ position = Vector2(0, -56)
 shape = SubResource("RectangleShape2D_163mm")
 
 [node name="InteractableDetector" type="Area2D" parent="."]
+position = Vector2(-0.117645, 95.2887)
 collision_layer = 0
 collision_mask = 8
 
@@ -163,24 +169,5 @@ offset_bottom = 292.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 60
 text = "your map has been updated"
-
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-offset_left = -56.0
-offset_top = -112.0
-offset_right = 56.0
-offset_bottom = 113.0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(8, -40)
-scale = Vector2(0.254105, 0.254105)
-sprite_frames = SubResource("SpriteFrames_dqdgk")
-animation = &"idle"
-frame_progress = 0.662331
-
-[node name="Temp" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, -24)
-texture = ExtResource("12_rkci4")
 
 [connection signal="dialogue_finished" from="DialogueUi" to="." method="_on_dialogue_ui_dialogue_finished"]
