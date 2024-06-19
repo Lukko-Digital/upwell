@@ -211,6 +211,7 @@ texture = ExtResource("7_5u3o1")
 position = Vector2(323, -4356)
 rotation = -3.12217
 has_clicker = false
+unlocks_level = "win"
 
 [node name="ClickerHolder" parent="." instance=ExtResource("8_1a3v2")]
 position = Vector2(951, 238)

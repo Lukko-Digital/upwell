@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://behbqi0dtsxkv"]
+
+[ext_resource type="Texture2D" uid="uid://1dye0h6jrhxe" path="res://assets/shitty_assets/guy.png" id="1_o24qu"]
+
+[node name="Win" type="Node2D"]
+
+[node name="Guy" type="Sprite2D" parent="."]
+position = Vector2(537, 564)
+scale = Vector2(1.96818, 1.96818)
+texture = ExtResource("1_o24qu")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 920.0
+offset_top = 482.0
+offset_right = 1510.0
+offset_bottom = 592.0
+theme_override_font_sizes/font_size = 80
+text = "you win!1!!!!!!!!!!"

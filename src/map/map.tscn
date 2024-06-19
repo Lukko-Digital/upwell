@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bb68hmcptqlgt"]
+[gd_scene load_steps=9 format=3 uid="uid://bb68hmcptqlgt"]
 
 [ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player.tscn" id="1_8n3xw"]
 [ext_resource type="PackedScene" uid="uid://ql7gm3yuyicr" path="res://src/map/map_location.tscn" id="2_1tail"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bfsfftagdiqxe" path="res://src/levels/creator_puzzles/creator_puzzle_0a.tscn" id="4_2bob3"]
 [ext_resource type="PackedScene" uid="uid://yssibyguycqc" path="res://src/levels/creator_puzzles/creator_puzzle_2.tscn" id="6_cwsf1"]
 [ext_resource type="PackedScene" uid="uid://diahbkrkxdoj3" path="res://src/levels/creator_puzzles/creator_puzzle_3.tscn" id="7_op0kk"]
+[ext_resource type="PackedScene" uid="uid://behbqi0dtsxkv" path="res://src/levels/win.tscn" id="8_achlo"]
 
 [node name="Map" type="Node2D"]
 
@@ -42,3 +43,10 @@ position = Vector2(785, 503)
 scale = Vector2(0.4, 0.4)
 level = ExtResource("7_op0kk")
 locked_level_name = "level3"
+
+[node name="MapLocation6" parent="." instance=ExtResource("2_1tail")]
+modulate = Color(0.847059, 0, 0, 1)
+position = Vector2(1092, 340)
+scale = Vector2(0.45, 0.45)
+level = ExtResource("8_achlo")
+locked_level_name = "win"
