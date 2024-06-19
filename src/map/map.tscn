@@ -27,7 +27,7 @@ locked_level_name = "level0a"
 
 [node name="MapLocation3" parent="." instance=ExtResource("2_1tail")]
 position = Vector2(526, 65)
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.35, 0.35)
 level = ExtResource("3_7gyr0")
 locked_level_name = "level1"
 
