@@ -201,15 +201,15 @@ texture = ExtResource("7_46jq4")
 follow_viewport_enabled = true
 
 [node name="ArtificialGravity" parent="CanvasLayer" instance=ExtResource("11_gnst2")]
-position = Vector2(-821.263, -1040)
+position = Vector2(-821.263, -1080)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/ArtificialGravity"]
 shape = SubResource("CircleShape2D_shfwl")
 debug_color = Color(0, 0.6, 0.701961, 0.345098)
 
 [node name="Platform" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(-829.263, -1322)
-scale = Vector2(0.992984, 0.992984)
+position = Vector2(-829.263, -1291)
+scale = Vector2(1.08478, 1.08478)
 texture = ExtResource("16_vad77")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="CanvasLayer/Platform"]
@@ -221,6 +221,7 @@ one_way_collision = true
 
 [node name="tutorial" type="RichTextLabel" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0.278431)
+z_index = 1
 offset_left = -1183.0
 offset_top = -40.0
 offset_right = -919.0

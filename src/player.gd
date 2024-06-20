@@ -5,7 +5,8 @@ const PLAYER = {
 	SPEED = 900.0,
 	ACCELERATION = 7000.0,
 	FRICTION_DECEL = 5000.0,
-	JUMP_VELOCITY = -1800.0,
+	JUMP_VELOCITY = 1800.0,
+	JUMP_RELEASE_SLOWDOWN = 0.5,
 	MAX_FALL_SPEED = 2600,
 	WORLD_GRAVITY = 5000.0,
 }
@@ -116,12 +117,16 @@ func handle_animation(direction: float):
 		was_moving = false
 	else:
 		sprite.play("run")
-		sprite.flip_h = (direction == -1)
+		sprite.flip_h = (direction == - 1)
 		was_moving = true
 
 func jump():
 	if is_on_floor():
-		velocity.y = PLAYER.JUMP_VELOCITY
+		velocity.y = -PLAYER.JUMP_VELOCITY
+
+func jump_end():
+	if velocity.y < 0:
+		velocity.y -= PLAYER.JUMP_RELEASE_SLOWDOWN * velocity.y
 
 func interact():
 	var nearby_interactables = interactable_detector.get_overlapping_areas()
@@ -136,6 +141,8 @@ func start_dialogue(npc: NPC):
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump()
+	if event.is_action_released("jump"):
+		jump_end()
 	if event.is_action_pressed("interact"):
 		interact()
 	if event.is_action_pressed("map"):
