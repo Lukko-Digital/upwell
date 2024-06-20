@@ -148,6 +148,7 @@ func interact():
 	nearby_interactables[0].interact(self)
 
 func start_dialogue(npc: NPC):
+	sprite.play("idle")
 	dialogue_ui.start_dialogue(npc)
 	in_dialogue = true
 
