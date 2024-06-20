@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_5wj68"]
 [ext_resource type="PackedScene" uid="uid://bb68hmcptqlgt" path="res://src/map/map.tscn" id="2_ceyqw"]
-[ext_resource type="PackedScene" uid="uid://cubg5maeimkki" path="res://src/levels/creator_puzzles/dad_level.tscn" id="2_noreg"]
+[ext_resource type="PackedScene" path="res://src/levels/creator_puzzles/dad_level.tscn" id="2_noreg"]
 
-[node name="Game" type="Control" node_paths=PackedStringArray("map_layer")]
+[node name="Game" type="Control" node_paths=PackedStringArray("map_canvas_layer", "map")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +12,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5wj68")
-map_layer = NodePath("MapLayer")
+map_canvas_layer = NodePath("MapLayer")
+map = NodePath("MapLayer/SubViewportContainer/SubViewport/Map")
 
 [node name="ActiveLevel" type="Node" parent="."]
 

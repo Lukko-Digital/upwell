@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bb68hmcptqlgt"]
+[gd_scene load_steps=15 format=3 uid="uid://bb68hmcptqlgt"]
 
 [ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player.tscn" id="1_8n3xw"]
+[ext_resource type="Script" path="res://src/map/map.gd" id="1_ithwi"]
 [ext_resource type="PackedScene" uid="uid://ql7gm3yuyicr" path="res://src/map/map_location.tscn" id="2_1tail"]
 [ext_resource type="PackedScene" uid="uid://5m5se54m7bsd" path="res://src/levels/creator_puzzles/creator_puzzle_1.tscn" id="3_7gyr0"]
 [ext_resource type="PackedScene" uid="uid://cfljhh1nxifqe" path="res://src/levels/creator_puzzles/creator_puzzle_0.tscn" id="3_kwmnh"]
-[ext_resource type="PackedScene" uid="uid://cubg5maeimkki" path="res://src/levels/creator_puzzles/dad_level.tscn" id="3_s3bh4"]
+[ext_resource type="PackedScene" path="res://src/levels/creator_puzzles/dad_level.tscn" id="3_s3bh4"]
 [ext_resource type="PackedScene" uid="uid://bfsfftagdiqxe" path="res://src/levels/creator_puzzles/creator_puzzle_0a.tscn" id="4_2bob3"]
 [ext_resource type="PackedScene" uid="uid://yssibyguycqc" path="res://src/levels/creator_puzzles/creator_puzzle_2.tscn" id="6_cwsf1"]
 [ext_resource type="PackedScene" uid="uid://diahbkrkxdoj3" path="res://src/levels/creator_puzzles/creator_puzzle_3.tscn" id="7_op0kk"]
@@ -17,6 +18,7 @@
 blend_mode = 3
 
 [node name="Map" type="Node2D"]
+script = ExtResource("1_ithwi")
 
 [node name="MapPlayer" parent="." instance=ExtResource("1_8n3xw")]
 z_index = 1
