@@ -9,6 +9,7 @@ const PLAYER = {
 	JUMP_RELEASE_SLOWDOWN = 0.5,
 	MAX_FALL_SPEED = 2600,
 	WORLD_GRAVITY = 5000.0,
+	NUDGE_DISTANCE = 50.0,
 }
 
 const ARTIFICIAL_GRAVITY = {
@@ -17,7 +18,7 @@ const ARTIFICIAL_GRAVITY = {
 	BOOST_VELOCITY = 2500.0
 }
 
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sprite: AnimatedSprite2D = $NudgePosition/AnimatedSprite2D
 @onready var gravity_detector: Area2D = $GravityDetector
 @onready var interactable_detector: Area2D = $InteractableDetector
 @onready var dialogue_ui: DialogueUI = $DialogueUi
@@ -30,11 +31,16 @@ var in_map: bool = false
 
 var has_clicker: bool:
 	set(value):
-		$Clicker.visible = value
+		$NudgePosition/Clicker.visible = value
 		Global.player_has_clicker = value
 		has_clicker = value
 
 var was_moving: bool = false
+
+var nudge_position: Vector2 = Vector2.ZERO:
+	set(value):
+		$NudgePosition.position = value
+		nudge_position = value
 
 func _ready() -> void:
 	Global.level_unlocked.connect(_on_level_unlocked)
@@ -46,9 +52,9 @@ func _ready() -> void:
 func _physics_process(delta):
 	if in_dialogue or in_map:
 		return
-	handle_artificial_gravity(delta)
+	var gravitized = handle_artificial_gravity(delta)
 	handle_world_gravity(delta)
-	var input_dir = handle_movement(delta)
+	var input_dir = handle_movement(delta, gravitized)
 	handle_animation(input_dir)
 	move_and_slide()
 
@@ -56,38 +62,47 @@ func handle_world_gravity(delta):
 	if not is_on_floor():
 		velocity.y = move_toward(velocity.y, PLAYER.MAX_FALL_SPEED, PLAYER.WORLD_GRAVITY * delta)
  
-func handle_artificial_gravity(delta):
+# Return true if attracting or repelling, false otherwise
+func handle_artificial_gravity(delta) -> bool:
 	if not has_clicker:
-		return
+		return false
 
 	var gravity_regions: Array[Area2D] = gravity_detector.get_overlapping_areas()
 	if gravity_regions.is_empty():
-		return
+		return false
 	
 	var gravity_well: ArtificialGravity = gravity_regions[0]
 	if not gravity_well.enabled:
-		return
+		return false
 	
-	var vec_to_gravity = (gravity_well.global_position - global_position).normalized()
+	var vec_to_gravity = gravity_well.global_position - global_position
 
 	# Push and pull
 	var active_direction = Vector2.ZERO
 	if Input.is_action_pressed("attract"):
-		active_direction += vec_to_gravity
+		active_direction += vec_to_gravity.normalized()
 	if Input.is_action_pressed("repel"):
-		active_direction -= vec_to_gravity
+		active_direction += (-vec_to_gravity + nudge_position).normalized()
 	velocity = velocity.lerp(active_direction * ARTIFICIAL_GRAVITY.SPEED, ARTIFICIAL_GRAVITY.ACCEL * delta)
 	
 	# Boost
 	if Input.is_action_just_pressed("boost"):
-		velocity -= vec_to_gravity * ARTIFICIAL_GRAVITY.BOOST_VELOCITY
+		velocity += (-vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.BOOST_VELOCITY
 		gravity_well.disable()
+	
+	return active_direction != Vector2.ZERO
 
-func handle_movement(delta) -> float:
+func handle_movement(delta: float, gravitized: bool) -> float:
 	# friction
 	if abs(velocity.x) > PLAYER.SPEED and is_on_floor():
 		# if moving over top speed and on ground
 		velocity.x = move_toward(velocity.x, 0, PLAYER.FRICTION_DECEL * delta)
+
+	# nudge input
+	if gravitized:
+		var nudge_input = Input.get_vector("left", "right", "up", "down")
+		nudge_position = nudge_position.lerp(nudge_input * PLAYER.NUDGE_DISTANCE, 0.1)
+		return 0
 
 	# directional input
 	var direction = Input.get_axis("left", "right")
