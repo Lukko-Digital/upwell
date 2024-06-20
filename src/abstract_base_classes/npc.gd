@@ -2,12 +2,14 @@ extends Interactable
 class_name NPC
 
 @export_file("*.csv") var dialogue_file
+@export var initial_conversation_id: String
 
 var conversations := {}
 
 func _ready() -> void:
 	super()
 	parse_csv()
+	init_global()
 
 func interact(player: Player):
 	player.start_dialogue(self)
@@ -51,3 +53,8 @@ func parse_csv():
 			get_key.call(line, "next"),
 			responses
 		)
+
+func init_global():
+	if name not in Global.npc_conversation_state:
+		# Add state to Global state
+		Global.npc_conversation_state[name] = initial_conversation_id

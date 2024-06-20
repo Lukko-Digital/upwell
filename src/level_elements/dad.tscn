@@ -11,6 +11,7 @@ collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_wmwre")
 dialogue_file = "res://assets/test1.csv"
+initial_conversation_id = "NAR1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6qdgt")

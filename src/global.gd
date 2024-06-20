@@ -3,6 +3,7 @@ extends Node
 var player_has_clicker = false
 var clicker_state = {}
 var level_unlocks = {}
+var npc_conversation_state = {}
 
 signal level_unlocked(level_name)
 

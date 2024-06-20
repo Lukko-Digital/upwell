@@ -12,7 +12,6 @@ const TEXT_SPEED = 0.04
 @onready var response_box: VBoxContainer = $ResponseBox
 @onready var response_button_scene = preload ("res://src/dialogue/response_button.tscn")
 
-var default_conversation = "NAR1"
 var default_branch = "A1"
 
 var current_conversation: Conversation
@@ -31,7 +30,8 @@ func _process(_delta):
 
 func start_dialogue(npc: NPC):
 	show()
-	current_conversation = npc.conversations[default_conversation]
+	var conversation_id: String = Global.npc_conversation_state[npc.name]
+	current_conversation = npc.conversations[conversation_id]
 	play_branch(default_branch)
 
 func play_branch(branch_id: String):
