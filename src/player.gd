@@ -14,8 +14,7 @@ const PLAYER = {
 const ARTIFICIAL_GRAVITY = {
 	SPEED = 380.0 * 8,
 	ACCEL = 4.0,
-	BOOST_VELOCITY = 2500.0,
-	DEADZONE_SIZE = 0,
+	BOOST_VELOCITY = 2500.0
 }
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -69,26 +68,19 @@ func handle_artificial_gravity(delta):
 	if not gravity_well.enabled:
 		return
 	
-	var vec_to_gravity = gravity_well.global_position - global_position
-	if vec_to_gravity.length() < ARTIFICIAL_GRAVITY.DEADZONE_SIZE:
-		return
-	
-	var active_direction = Vector2.ZERO
-	var attracting = Input.is_action_pressed("attract")
-	var repelling = Input.is_action_pressed("repel")
-	if not (attracting or repelling):
-		return
-	if attracting:
-		active_direction += vec_to_gravity.normalized()
-	if repelling:
-		active_direction -= vec_to_gravity.normalized()
-	
-	velocity = velocity.lerp(active_direction * ARTIFICIAL_GRAVITY.SPEED, ARTIFICIAL_GRAVITY.ACCEL * delta)
+	var vec_to_gravity = (gravity_well.global_position - global_position).normalized()
 
+	# Push and pull
+	var active_direction = Vector2.ZERO
+	if Input.is_action_pressed("attract"):
+		active_direction += vec_to_gravity
+	if Input.is_action_pressed("repel"):
+		active_direction -= vec_to_gravity
+	velocity = velocity.lerp(active_direction * ARTIFICIAL_GRAVITY.SPEED, ARTIFICIAL_GRAVITY.ACCEL * delta)
+	
+	# Boost
 	if Input.is_action_just_pressed("boost"):
-		if active_direction == Vector2.ZERO:
-			return
-		velocity += active_direction * ARTIFICIAL_GRAVITY.BOOST_VELOCITY
+		velocity -= vec_to_gravity * ARTIFICIAL_GRAVITY.BOOST_VELOCITY
 		gravity_well.disable()
 
 func handle_movement(delta) -> float:
