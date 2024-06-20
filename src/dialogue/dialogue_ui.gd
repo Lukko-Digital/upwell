@@ -82,6 +82,8 @@ func animate_duration_bar():
 	duration_bar.value = duration_timer.wait_time - duration_timer.time_left
 
 func exit_dialogue():
+	if current_conversation.next_conversation_id:
+		Global.npc_conversation_state[current_conversation.npc_name] = current_conversation.next_conversation_id
 	hide()
 	dialogue_finished.emit()
 

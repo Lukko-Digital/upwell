@@ -26,7 +26,8 @@ func parse_csv():
 
 		# create conversation
 		if conversation_id not in conversations:
-			conversations[conversation_id] = Conversation.new(conversation_id)
+			var next_conversation_id = get_key.call(line, "next_conversation")
+			conversations[conversation_id] = Conversation.new(name, conversation_id, next_conversation_id)
 
 		# create responses
 		var responses: Array[Response] = []
