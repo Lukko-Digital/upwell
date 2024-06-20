@@ -15,7 +15,7 @@ const PLAYER = {
 const ARTIFICIAL_GRAVITY = {
 	SPEED = 3000.0,
 	ACCEL = 4.0,
-	BOOST_VELOCITY = 2500.0
+	BOOST_VELOCITY = 3000.0
 }
 
 @onready var sprite: AnimatedSprite2D = $NudgePosition/AnimatedSprite2D
@@ -57,7 +57,6 @@ func _physics_process(delta):
 	var input_dir = handle_movement(delta, gravitized)
 	handle_animation(input_dir)
 	move_and_slide()
-	print(velocity.length())
 
 func handle_world_gravity(delta):
 	if not is_on_floor():
@@ -80,7 +79,7 @@ func handle_artificial_gravity(delta) -> bool:
 
 	# Boost
 	if Input.is_action_just_pressed("boost"):
-		velocity += (-vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.BOOST_VELOCITY
+		velocity = (-vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.BOOST_VELOCITY
 		gravity_well.disable()
 
 	# Push and pull
