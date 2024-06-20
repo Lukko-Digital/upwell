@@ -103,6 +103,7 @@ func handle_movement(delta: float, gravitized: bool) -> float:
 		var nudge_input = Input.get_vector("left", "right", "up", "down")
 		nudge_position = nudge_position.lerp(nudge_input * PLAYER.NUDGE_DISTANCE, 0.1)
 		return 0
+	nudge_position = nudge_position.lerp(Vector2.ZERO, 0.1)
 
 	# directional input
 	var direction = Input.get_axis("left", "right")
