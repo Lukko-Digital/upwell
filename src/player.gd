@@ -13,7 +13,7 @@ const PLAYER = {
 }
 
 const ARTIFICIAL_GRAVITY = {
-	SPEED = 380.0 * 8,
+	SPEED = 3000.0,
 	ACCEL = 4.0,
 	BOOST_VELOCITY = 2500.0
 }
@@ -57,6 +57,7 @@ func _physics_process(delta):
 	var input_dir = handle_movement(delta, gravitized)
 	handle_animation(input_dir)
 	move_and_slide()
+	print(velocity.length())
 
 func handle_world_gravity(delta):
 	if not is_on_floor():
@@ -77,20 +78,25 @@ func handle_artificial_gravity(delta) -> bool:
 	
 	var vec_to_gravity = gravity_well.global_position - global_position
 
-	# Push and pull
-	var active_direction = Vector2.ZERO
-	if Input.is_action_pressed("attract"):
-		active_direction += vec_to_gravity.normalized()
-	if Input.is_action_pressed("repel"):
-		active_direction += (-vec_to_gravity + nudge_position).normalized()
-	velocity = velocity.lerp(active_direction * ARTIFICIAL_GRAVITY.SPEED, ARTIFICIAL_GRAVITY.ACCEL * delta)
-	
 	# Boost
 	if Input.is_action_just_pressed("boost"):
 		velocity += (-vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.BOOST_VELOCITY
 		gravity_well.disable()
+
+	# Push and pull
+	if Input.is_action_pressed("attract"):
+		velocity = velocity.lerp(
+			vec_to_gravity.normalized() * ARTIFICIAL_GRAVITY.SPEED,
+			ARTIFICIAL_GRAVITY.ACCEL * delta
+		)
+		return true
+	if Input.is_action_pressed("repel"):
+		velocity = velocity.lerp(
+			( - vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.SPEED,
+			ARTIFICIAL_GRAVITY.ACCEL * delta
+		)
 	
-	return active_direction != Vector2.ZERO
+	return false
 
 func handle_movement(delta: float, gravitized: bool) -> float:
 	# friction
