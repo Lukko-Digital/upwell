@@ -1,6 +1,6 @@
 conversation,branch,dialogue,duration (multiplier),next,r1,r1 spawn time,r1 despawn time,r1 dest,r2,r2 spawn time,r2 despawn time,r2 dest,r3,r3 spawn time,r2 despawn time,r3 dest
-NAR1,A1,how ya doin,3,A2,,,,,,,,,,,,
-NAR1,A2,where are you planning to go?,4,D,fuck you,0.1,1,B,hmm not sure,1,,C,where do you think?,1,,C
-NAR1,B,bro wtf,3,EXIT,,,,,,,,,,,,
-NAR1,C,you should go to RIGATONI TOWN,3,EXIT,,,,,,,,,,,,
-NAR1,D,feeling quiet today huh? I think you could visit rigatoni town,3,EXIT,,,,,,,,,,,,
+NAR1,A1,"You want to leave this place, dont you...",4,A2,Of course I do.,1,,A2,Not really...,1,,A2,,,,
+NAR1,A2,Be careful.,12,D,Fuck you,0.1,6,B,I will be.,1,,D,Where should I go?,1,,C
+NAR1,B,...,30,D,I'm sorry.,2,,D,,,,,,,,
+NAR1,C,It seems like you've only got one option.,1.5,D,,,,,,,,,,,,
+NAR1,D,Use <tab> to chart your course.,2.5,EXIT,,,,,,,,,,,,
