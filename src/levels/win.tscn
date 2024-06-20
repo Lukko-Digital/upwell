@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://behbqi0dtsxkv"]
+[gd_scene load_steps=4 format=3 uid="uid://behbqi0dtsxkv"]
 
 [ext_resource type="Texture2D" uid="uid://1dye0h6jrhxe" path="res://assets/shitty_assets/guy.png" id="1_o24qu"]
+[ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player.tscn" id="2_ag62s"]
 
 [sub_resource type="FontFile" id="FontFile_12lok"]
 cache/0/80/0/ascent = 0.0
@@ -33,3 +34,6 @@ offset_bottom = 598.0
 theme_override_fonts/font = SubResource("FontFile_12lok")
 theme_override_font_sizes/font_size = 80
 text = "you win type shit!"
+
+[node name="Player" parent="." instance=ExtResource("2_ag62s")]
+position = Vector2(207, 1497)
