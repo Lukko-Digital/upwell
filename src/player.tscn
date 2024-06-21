@@ -37,15 +37,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_fwoxo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_klfp1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_p6u8u")
-}, {
-"duration": 1.0,
 "texture": ExtResource("7_oq2j4")
 }, {
 "duration": 1.0,
@@ -65,6 +56,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("13_hvcsb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fwoxo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_klfp1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_p6u8u")
 }],
 "loop": true,
 "name": &"run",
@@ -113,8 +113,7 @@ script = ExtResource("1_lbj7m")
 position = Vector2(7.88236, 55.2887)
 scale = Vector2(0.254105, 0.254105)
 sprite_frames = SubResource("SpriteFrames_dqdgk")
-animation = &"idle"
-frame_progress = 0.445332
+animation = &"run"
 
 [node name="Clicker" type="Sprite2D" parent="NudgePosition"]
 position = Vector2(-24, 1.7053e-13)
