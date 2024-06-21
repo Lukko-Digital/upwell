@@ -1,0 +1,138 @@
+{
+	"textures": [
+		{
+			"image": "player_walk-sheet.png",
+			"size": {
+				"w": 4419,
+				"h": 3054
+			},
+			"sprites": [
+				{
+					"filename": "final-0007.png",
+					"region": {
+						"x": 1,
+						"y": 1,
+						"w": 1481,
+						"h": 1534
+					},
+					"margin": {
+						"x": 1267,
+						"y": 416,
+						"w": 2359,
+						"h": 626
+					}
+				},
+				{
+					"filename": "final-0003.png",
+					"region": {
+						"x": 1484,
+						"y": 1,
+						"w": 1481,
+						"h": 1530
+					},
+					"margin": {
+						"x": 1267,
+						"y": 416,
+						"w": 2359,
+						"h": 630
+					}
+				},
+				{
+					"filename": "final-0005.png",
+					"region": {
+						"x": 1484,
+						"y": 1533,
+						"w": 1481,
+						"h": 1517
+					},
+					"margin": {
+						"x": 1267,
+						"y": 416,
+						"w": 2359,
+						"h": 643
+					}
+				},
+				{
+					"filename": "final-0001.png",
+					"region": {
+						"x": 1,
+						"y": 1537,
+						"w": 1481,
+						"h": 1516
+					},
+					"margin": {
+						"x": 1267,
+						"y": 416,
+						"w": 2359,
+						"h": 644
+					}
+				},
+				{
+					"filename": "final-0004.png",
+					"region": {
+						"x": 2967,
+						"y": 1,
+						"w": 660,
+						"h": 1557
+					},
+					"margin": {
+						"x": 1496,
+						"y": 380,
+						"w": 3180,
+						"h": 603
+					}
+				},
+				{
+					"filename": "final-0006.png",
+					"region": {
+						"x": 2967,
+						"y": 1560,
+						"w": 793,
+						"h": 1480
+					},
+					"margin": {
+						"x": 1368,
+						"y": 474,
+						"w": 3047,
+						"h": 680
+					}
+				},
+				{
+					"filename": "final-0002.png",
+					"region": {
+						"x": 3629,
+						"y": 1,
+						"w": 789,
+						"h": 1480
+					},
+					"margin": {
+						"x": 1370,
+						"y": 474,
+						"w": 3051,
+						"h": 680
+					}
+				},
+				{
+					"filename": "final-0008.png",
+					"region": {
+						"x": 3762,
+						"y": 1483,
+						"w": 651,
+						"h": 1544
+					},
+					"margin": {
+						"x": 1496,
+						"y": 380,
+						"w": 3189,
+						"h": 616
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:aeaf886e644591d5396cb5300a1bd01a:2573263617dd4915a6a15604388076a5:0c1d2234b7d7664ecef76bac40972a5b$"
+	}
+}

@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://xgi8pcnjfsvh"]
+
+[ext_resource type="Script" path="res://src/dialogue/response_button.gd" id="1_3vvxx"]
+
+[node name="ResponseButton" type="Button"]
+offset_right = 455.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 30
+text = "response"
+script = ExtResource("1_3vvxx")
+
+[node name="DespawnBar" type="ProgressBar" parent="."]
+z_index = -1
+layout_mode = 0
+offset_right = 454.0
+offset_bottom = 50.0
+mouse_filter = 2
+value = 20.0
+show_percentage = false
+
+[node name="DespawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
