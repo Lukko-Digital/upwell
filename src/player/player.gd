@@ -28,6 +28,8 @@ const ARTIFICIAL_GRAVITY = {
 
 var game: Game
 
+## --- PLAYER STATE VARIABLES ---
+
 # PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
 var in_dialogue: bool = false
 var in_map: bool = false
@@ -44,6 +46,8 @@ var has_drill: bool = true:
 		has_drill = value
 
 var was_moving: bool = false
+
+## ---
 
 var nudge_position: Vector2 = Vector2.ZERO:
 	set(value):
@@ -63,15 +67,18 @@ func _ready() -> void:
 func _physics_process(delta):
 	if in_dialogue or in_map:
 		return
+	var speed_coef = calculate_speed_coef()
 	var gravitized = handle_artificial_gravity(delta)
 	handle_world_gravity(delta)
-	var input_dir = handle_movement(delta, gravitized)
+	var input_dir = handle_movement(delta, gravitized, speed_coef)
 	handle_animation(input_dir)
 	move_and_slide()
 
-func handle_world_gravity(delta):
-	if not is_on_floor():
-		velocity.y = move_toward(velocity.y, PLAYER.MAX_FALL_SPEED, PLAYER.WORLD_GRAVITY * delta)
+func calculate_speed_coef() -> float:
+	var speed_coef = 1
+	if has_drill:
+		speed_coef *= PLAYER.DRILL_SLOWDOWN
+	return speed_coef
  
 # Return true if attracting or repelling, false otherwise
 func handle_artificial_gravity(delta) -> bool:
@@ -108,13 +115,12 @@ func handle_artificial_gravity(delta) -> bool:
 	
 	return false
 
-# Returns x input direction to be used by animation handler
-func handle_movement(delta: float, gravitized: bool) -> float:
-	# handle speed modifiers
-	var speed_coef = 1
-	if has_drill:
-		speed_coef *= PLAYER.DRILL_SLOWDOWN
+func handle_world_gravity(delta):
+	if not is_on_floor():
+		velocity.y = move_toward(velocity.y, PLAYER.MAX_FALL_SPEED, PLAYER.WORLD_GRAVITY * delta)
 
+# Returns x input direction to be used by animation handler
+func handle_movement(delta: float, gravitized: bool, speed_coef: float) -> float:
 	var top_speed = PLAYER.SPEED * speed_coef
 
 	# friction
