@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://cjx3erv8f1v78"]
 
-[ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player.tscn" id="1_1xq4q"]
+[ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="1_1xq4q"]
 [ext_resource type="Texture2D" uid="uid://bfpiq463rdm4l" path="res://assets/environment/test_level/houses.png" id="2_3ytar"]
 [ext_resource type="Texture2D" uid="uid://cxcdidrqtq5vu" path="res://assets/environment/test_level/bricks_TM.png" id="2_6xhuy"]
 [ext_resource type="Texture2D" uid="uid://nl3afbhplomy" path="res://assets/environment/test_level/plyrglow.png" id="2_opvc7"]

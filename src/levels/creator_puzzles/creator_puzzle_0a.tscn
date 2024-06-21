@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://fl1ublau88my" path="res://assets/environment/test_level/floor.png" id="6_d5evg"]
 [ext_resource type="Texture2D" uid="uid://dlrcluufkhr1s" path="res://assets/environment/creator_puzzle/bg_focus.png" id="7_g6tnl"]
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/clicker_holder.tscn" id="8_sa70n"]
-[ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player.tscn" id="9_wda0r"]
+[ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="9_wda0r"]
 [ext_resource type="Texture2D" uid="uid://nl3afbhplomy" path="res://assets/environment/test_level/plyrglow.png" id="10_sgvli"]
 [ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity.tscn" id="11_kmwyf"]
 [ext_resource type="Texture2D" uid="uid://842vjomoeag3" path="res://assets/environment/creator_puzzle/platform.png" id="14_1hfag"]
