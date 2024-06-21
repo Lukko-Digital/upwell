@@ -9,6 +9,7 @@ const PLAYER = {
 	JUMP_RELEASE_SLOWDOWN = 0.5,
 	MAX_FALL_SPEED = 2600,
 	WORLD_GRAVITY = 5000.0,
+	DRILL_SLOWDOWN = 0.3,
 }
 
 const ARTIFICIAL_GRAVITY = {
@@ -107,9 +108,17 @@ func handle_artificial_gravity(delta) -> bool:
 	
 	return false
 
+# Returns x input direction to be used by animation handler
 func handle_movement(delta: float, gravitized: bool) -> float:
+	# handle speed modifiers
+	var speed_coef = 1
+	if has_drill:
+		speed_coef *= PLAYER.DRILL_SLOWDOWN
+
+	var top_speed = PLAYER.SPEED * speed_coef
+
 	# friction
-	if abs(velocity.x) > PLAYER.SPEED and is_on_floor():
+	if abs(velocity.x) > top_speed and is_on_floor():
 		# if moving over top speed and on ground
 		velocity.x = move_toward(velocity.x, 0, PLAYER.FRICTION_DECEL * delta)
 
@@ -120,11 +129,15 @@ func handle_movement(delta: float, gravitized: bool) -> float:
 		return 0
 	nudge_position = nudge_position.lerp(Vector2.ZERO, 0.1)
 
-	# directional input
+	# walking & air strafing
 	var direction = Input.get_axis("left", "right")
-	if abs(velocity.x) < PLAYER.SPEED or sign(velocity.x) != sign(direction):
+	if abs(velocity.x) < top_speed or sign(velocity.x) != sign(direction):
 		# if moving under top speed or input is in direction opposite to movement
-		velocity.x = move_toward(velocity.x, PLAYER.SPEED * direction, PLAYER.ACCELERATION * delta)
+		velocity.x = move_toward(
+			velocity.x,
+			top_speed * direction,
+			PLAYER.ACCELERATION * speed_coef * delta
+		)
 	return direction
 
 func handle_animation(direction: float):
