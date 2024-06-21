@@ -9,13 +9,13 @@ const PLAYER = {
 	JUMP_RELEASE_SLOWDOWN = 0.5,
 	MAX_FALL_SPEED = 2600,
 	WORLD_GRAVITY = 5000.0,
-	NUDGE_DISTANCE = 50.0,
 }
 
 const ARTIFICIAL_GRAVITY = {
 	SPEED = 3000.0,
 	ACCEL = 4.0,
-	BOOST_VELOCITY = 3000.0
+	BOOST_VELOCITY = 3000.0,
+	NUDGE_DISTANCE = 50.0,
 }
 
 @onready var sprite: AnimatedSprite2D = $NudgePosition/AnimatedSprite2D
@@ -116,7 +116,7 @@ func handle_movement(delta: float, gravitized: bool) -> float:
 	# nudge input
 	if gravitized:
 		var nudge_input = Input.get_vector("left", "right", "up", "down")
-		nudge_position = nudge_position.lerp(nudge_input * PLAYER.NUDGE_DISTANCE, 0.1)
+		nudge_position = nudge_position.lerp(nudge_input * ARTIFICIAL_GRAVITY.NUDGE_DISTANCE, 0.1)
 		return 0
 	nudge_position = nudge_position.lerp(Vector2.ZERO, 0.1)
 
