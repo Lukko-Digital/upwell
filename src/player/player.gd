@@ -98,19 +98,19 @@ func handle_artificial_gravity(delta) -> bool:
 
 	# Boost
 	if Input.is_action_just_pressed("boost"):
-		velocity = (-vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.BOOST_VELOCITY
+		velocity = (-vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.BOOST_VELOCITY * speed_coef
 		gravity_well.disable()
 
 	# Push and pull
 	if Input.is_action_pressed("attract"):
 		velocity = velocity.lerp(
-			vec_to_gravity.normalized() * ARTIFICIAL_GRAVITY.SPEED,
+			vec_to_gravity.normalized() * ARTIFICIAL_GRAVITY.SPEED * speed_coef,
 			ARTIFICIAL_GRAVITY.ACCEL * delta
 		)
 		return true
 	if Input.is_action_pressed("repel"):
 		velocity = velocity.lerp(
-			( - vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.SPEED,
+			( - vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.SPEED * speed_coef,
 			ARTIFICIAL_GRAVITY.ACCEL * delta
 		)
 	
@@ -165,7 +165,7 @@ func handle_animation(direction: float):
 
 func jump():
 	if is_on_floor():
-		velocity.y = -PLAYER.JUMP_VELOCITY
+		velocity.y = -PLAYER.JUMP_VELOCITY * speed_coef
 
 func jump_end():
 	if velocity.y < 0:
