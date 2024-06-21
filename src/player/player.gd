@@ -3,7 +3,7 @@ class_name Player
 
 const PLAYER = {
 	SPEED = 900.0,
-	ACCELERATION = 7000.0,
+	ACCELERATION = 7000.0, # move_toward acceleration, pixels/frame^2
 	FRICTION_DECEL = 5000.0,
 	JUMP_VELOCITY = 1800.0,
 	JUMP_RELEASE_SLOWDOWN = 0.5,
@@ -14,9 +14,10 @@ const PLAYER = {
 
 const ARTIFICIAL_GRAVITY = {
 	SPEED = 3000.0,
-	ACCEL = 4.0,
+	ACCELERATION = 4.0, # lerp acceleration, unitless
 	BOOST_VELOCITY = 3000.0,
 	NUDGE_DISTANCE = 50.0,
+	NUDGE_ACCELERATION = 0.1, # lerp acceleration, unitless
 }
 
 @onready var sprite: AnimatedSprite2D = $NudgePosition/AnimatedSprite2D
@@ -105,13 +106,13 @@ func handle_artificial_gravity(delta) -> bool:
 	if Input.is_action_pressed("attract"):
 		velocity = velocity.lerp(
 			vec_to_gravity.normalized() * ARTIFICIAL_GRAVITY.SPEED * speed_coef,
-			ARTIFICIAL_GRAVITY.ACCEL * delta
+			ARTIFICIAL_GRAVITY.ACCELERATION * delta
 		)
 		return true
 	if Input.is_action_pressed("repel"):
 		velocity = velocity.lerp(
 			( - vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.SPEED * speed_coef,
-			ARTIFICIAL_GRAVITY.ACCEL * delta
+			ARTIFICIAL_GRAVITY.ACCELERATION * delta
 		)
 	
 	return false
@@ -132,9 +133,12 @@ func handle_movement(delta: float, gravitized: bool) -> float:
 	# nudge input
 	if gravitized:
 		var nudge_input = Input.get_vector("left", "right", "up", "down")
-		nudge_position = nudge_position.lerp(nudge_input * ARTIFICIAL_GRAVITY.NUDGE_DISTANCE, 0.1)
+		nudge_position = nudge_position.lerp(
+			nudge_input * ARTIFICIAL_GRAVITY.NUDGE_DISTANCE,
+			ARTIFICIAL_GRAVITY.NUDGE_ACCELERATION
+		)
 		return 0
-	nudge_position = nudge_position.lerp(Vector2.ZERO, 0.1)
+	nudge_position = nudge_position.lerp(Vector2.ZERO, ARTIFICIAL_GRAVITY.NUDGE_ACCELERATION)
 
 	# walking & air strafing
 	var direction = Input.get_axis("left", "right")
