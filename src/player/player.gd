@@ -23,6 +23,8 @@ const ARTIFICIAL_GRAVITY = {
 @onready var interactable_detector: Area2D = $InteractableDetector
 @onready var dialogue_ui: DialogueUI = $DialogueUi
 
+@onready var drill_scene: PackedScene = preload ("res://src/player/drill.tscn")
+
 var game: Game
 
 # PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
@@ -35,6 +37,11 @@ var has_clicker: bool:
 		Global.player_has_clicker = value
 		has_clicker = value
 
+var has_drill: bool = true:
+	set(value):
+		$DrillSprite.visible = value
+		has_drill = value
+
 var was_moving: bool = false
 
 var nudge_position: Vector2 = Vector2.ZERO:
@@ -43,8 +50,11 @@ var nudge_position: Vector2 = Vector2.ZERO:
 		nudge_position = value
 
 func _ready() -> void:
+	# Connect signal
 	Global.level_unlocked.connect(_on_level_unlocked)
+	# Load clicker state
 	has_clicker = Global.player_has_clicker
+	# Retrieve Game node 
 	var current_scene = get_tree().get_current_scene()
 	if current_scene is Game:
 		game = current_scene
@@ -144,6 +154,8 @@ func jump_end():
 func interact():
 	var nearby_interactables = interactable_detector.get_overlapping_areas()
 	if nearby_interactables.is_empty():
+		if has_drill:
+			put_down_drill()
 		return
 	nearby_interactables[0].interact(self)
 
@@ -153,6 +165,12 @@ func start_dialogue(npc: NPC):
 	sprite.play("idle")
 	dialogue_ui.start_dialogue(npc)
 	in_dialogue = true
+
+func put_down_drill():
+	has_drill = false
+	var instance: Drill = drill_scene.instantiate()
+	instance.global_position = global_position
+	get_parent().add_child(instance)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
