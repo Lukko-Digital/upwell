@@ -54,6 +54,8 @@ var nudge_position: Vector2 = Vector2.ZERO:
 		$NudgePosition.position = value
 		nudge_position = value
 
+var speed_coef: float = 1
+
 func _ready() -> void:
 	# Connect signal
 	Global.level_unlocked.connect(_on_level_unlocked)
@@ -67,18 +69,17 @@ func _ready() -> void:
 func _physics_process(delta):
 	if in_dialogue or in_map:
 		return
-	var speed_coef = calculate_speed_coef()
+	calculate_speed_coef()
 	var gravitized = handle_artificial_gravity(delta)
 	handle_world_gravity(delta)
-	var input_dir = handle_movement(delta, gravitized, speed_coef)
+	var input_dir = handle_movement(delta, gravitized)
 	handle_animation(input_dir)
 	move_and_slide()
 
-func calculate_speed_coef() -> float:
-	var speed_coef = 1
+func calculate_speed_coef():
+	speed_coef = 1
 	if has_drill:
 		speed_coef *= PLAYER.DRILL_SLOWDOWN
-	return speed_coef
  
 # Return true if attracting or repelling, false otherwise
 func handle_artificial_gravity(delta) -> bool:
@@ -120,7 +121,7 @@ func handle_world_gravity(delta):
 		velocity.y = move_toward(velocity.y, PLAYER.MAX_FALL_SPEED, PLAYER.WORLD_GRAVITY * delta)
 
 # Returns x input direction to be used by animation handler
-func handle_movement(delta: float, gravitized: bool, speed_coef: float) -> float:
+func handle_movement(delta: float, gravitized: bool) -> float:
 	var top_speed = PLAYER.SPEED * speed_coef
 
 	# friction
