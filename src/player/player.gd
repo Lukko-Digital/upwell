@@ -2,16 +2,22 @@ extends CharacterBody2D
 class_name Player
 
 const PLAYER = {
+	# Walking / strafing
 	SPEED = 900.0,
 	ACCELERATION = 7000.0, # move_toward acceleration, pixels/frame^2
 	FRICTION_DECEL = 5000.0,
+	# Jumping
 	JUMP_VELOCITY = 1800.0,
 	JUMP_RELEASE_SLOWDOWN = 0.5,
+	# Falling
 	MAX_FALL_SPEED = 2600,
 	WORLD_GRAVITY = 5000.0,
-	DRILL_SLOWDOWN = 0.3,
-	DRILL_INPUT_HOLD_TIME = 1.0,
-	DRILL_INPUT_TAP_TIME = 0.5,
+}
+
+const DRILL = {
+	SLOWDOWN = 0.3,
+	INPUT_HOLD_TIME = 1.0,
+	INPUT_TAP_TIME = 0.5,
 }
 
 const ARTIFICIAL_GRAVITY = {
@@ -84,7 +90,7 @@ func _physics_process(delta):
 func calculate_speed_coef():
 	speed_coef = 1
 	if has_drill:
-		speed_coef *= PLAYER.DRILL_SLOWDOWN
+		speed_coef *= DRILL.SLOWDOWN
  
 # Return true if attracting or repelling, false otherwise
 func handle_artificial_gravity(delta) -> bool:
@@ -222,9 +228,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		in_map = game.toggle_map()
 	
 	if event.is_action_pressed("drill"):
-		drill_input_held_timer.start(PLAYER.DRILL_INPUT_HOLD_TIME)
+		drill_input_held_timer.start(DRILL.INPUT_HOLD_TIME)
 	if event.is_action_released("drill"):
-		if PLAYER.DRILL_INPUT_HOLD_TIME - drill_input_held_timer.time_left < PLAYER.DRILL_INPUT_TAP_TIME:
+		if DRILL.INPUT_HOLD_TIME - drill_input_held_timer.time_left < DRILL.INPUT_TAP_TIME:
 			drill_interact()
 		drill_input_held_timer.stop()
 
