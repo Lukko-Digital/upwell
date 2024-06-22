@@ -196,7 +196,6 @@ func drill_interact():
 	# Check if drill is nearby and pickup
 	var overlapping_areas = drill_detector.get_overlapping_areas()
 	if overlapping_areas.is_empty():
-		print(overlapping_areas)
 		return
 	var drill: Drill = overlapping_areas[0]
 	drill.interact(self)
