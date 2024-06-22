@@ -10,6 +10,8 @@ const PLAYER = {
 	MAX_FALL_SPEED = 2600,
 	WORLD_GRAVITY = 5000.0,
 	DRILL_SLOWDOWN = 0.3,
+	DRILL_INPUT_HOLD_TIME = 1.0,
+	DRILL_INPUT_TAP_TIME = 0.5,
 }
 
 const ARTIFICIAL_GRAVITY = {
@@ -25,6 +27,7 @@ const ARTIFICIAL_GRAVITY = {
 @onready var interactable_detector: Area2D = $InteractableDetector
 @onready var drill_detector: Area2D = $DrillDetector
 @onready var dialogue_ui: DialogueUI = $DialogueUi
+@onready var drill_input_held_timer: Timer = $DrillInputHeldTimer
 
 @onready var drill_scene: PackedScene = preload ("res://src/player/drill.tscn")
 
@@ -189,22 +192,24 @@ func start_dialogue(npc: NPC):
 	dialogue_ui.start_dialogue(npc)
 	in_dialogue = true
 
+# On drill input tapped
 func drill_interact():
 	if has_drill:
-		put_down_drill()
-		return
-	# Check if drill is nearby and pickup
-	var overlapping_areas = drill_detector.get_overlapping_areas()
-	if overlapping_areas.is_empty():
-		return
-	var drill: Drill = overlapping_areas[0]
-	drill.interact(self)
+		# Put down drill
+		has_drill = false
+		var instance: Drill = drill_scene.instantiate()
+		instance.global_position = global_position
+		get_parent().add_child(instance)
+	else:
+		# Check if drill is nearby and pickup
+		var overlapping_areas = drill_detector.get_overlapping_areas()
+		if overlapping_areas.is_empty():
+			return
+		var drill: Drill = overlapping_areas[0]
+		drill.interact(self)
 
-func put_down_drill():
-	has_drill = false
-	var instance: Drill = drill_scene.instantiate()
-	instance.global_position = global_position
-	get_parent().add_child(instance)
+func drill_input_held():
+	$DrillSprite.flip_v = !$DrillSprite.flip_v
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
@@ -213,10 +218,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		jump_end()
 	if event.is_action_pressed("interact"):
 		interact()
-	if event.is_action_pressed("drill"):
-		drill_interact()
 	if event.is_action_pressed("map"):
 		in_map = game.toggle_map()
+	
+	if event.is_action_pressed("drill"):
+		drill_input_held_timer.start(PLAYER.DRILL_INPUT_HOLD_TIME)
+	if event.is_action_released("drill"):
+		if PLAYER.DRILL_INPUT_HOLD_TIME - drill_input_held_timer.time_left < PLAYER.DRILL_INPUT_TAP_TIME:
+			drill_interact()
+		drill_input_held_timer.stop()
 
 func _on_dialogue_ui_dialogue_finished() -> void:
 	in_dialogue = false
