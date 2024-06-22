@@ -23,6 +23,7 @@ const ARTIFICIAL_GRAVITY = {
 @onready var sprite: AnimatedSprite2D = $NudgePosition/AnimatedSprite2D
 @onready var gravity_detector: Area2D = $GravityDetector
 @onready var interactable_detector: Area2D = $InteractableDetector
+@onready var drill_detector: Area2D = $DrillDetector
 @onready var dialogue_ui: DialogueUI = $DialogueUi
 
 @onready var drill_scene: PackedScene = preload ("res://src/player/drill.tscn")
@@ -178,8 +179,6 @@ func jump_end():
 func interact():
 	var nearby_interactables = interactable_detector.get_overlapping_areas()
 	if nearby_interactables.is_empty():
-		if has_drill:
-			put_down_drill()
 		return
 	nearby_interactables[0].interact(self)
 
@@ -189,6 +188,18 @@ func start_dialogue(npc: NPC):
 	sprite.play("idle")
 	dialogue_ui.start_dialogue(npc)
 	in_dialogue = true
+
+func drill_interact():
+	if has_drill:
+		put_down_drill()
+		return
+	# Check if drill is nearby and pickup
+	var overlapping_areas = drill_detector.get_overlapping_areas()
+	if overlapping_areas.is_empty():
+		print(overlapping_areas)
+		return
+	var drill: Drill = overlapping_areas[0]
+	drill.interact(self)
 
 func put_down_drill():
 	has_drill = false
@@ -203,6 +214,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		jump_end()
 	if event.is_action_pressed("interact"):
 		interact()
+	if event.is_action_pressed("drill"):
+		drill_interact()
 	if event.is_action_pressed("map"):
 		in_map = game.toggle_map()
 

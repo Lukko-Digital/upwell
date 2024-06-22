@@ -8,7 +8,7 @@ radius = 104.0
 height = 486.0
 
 [node name="Drill" type="Area2D"]
-collision_layer = 8
+collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_tgbg0")
 
@@ -25,4 +25,4 @@ offset_top = -317.0
 offset_right = 34.0
 offset_bottom = -262.0
 theme_override_font_sizes/font_size = 40
-text = "<E>"
+text = "<F>"
