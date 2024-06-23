@@ -5,7 +5,8 @@ class_name Drill
 
 func interact(player: Player):
 	if in_wall:
-		player.game.toggle_map()
+		var map_visible = player.game.toggle_map()
+		player.in_map = map_visible
 	else:
 		# Pick up
 		player.has_drill = true
