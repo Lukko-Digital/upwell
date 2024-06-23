@@ -1,6 +1,6 @@
 [gd_scene load_steps=39 format=3 uid="uid://cvtjc4thaq1wj"]
 
-[ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player.tscn" id="1_2d0w6"]
+[ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="1_2d0w6"]
 [ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity.tscn" id="2_agv78"]
 [ext_resource type="Texture2D" uid="uid://c66sojduddw1m" path="res://assets/environment/creator_puzzle/ground_tile.png" id="2_fyga0"]
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/clicker_holder.tscn" id="4_trnax"]
