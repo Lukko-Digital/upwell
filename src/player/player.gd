@@ -30,6 +30,8 @@ const ARTIFICIAL_GRAVITY = {
 	NUDGE_ACCELERATION = 0.1, # lerp acceleration, unitless
 }
 
+enum GravityState {NONE, PUSHPULL, ORBIT}
+
 @onready var sprite: AnimatedSprite2D = $NudgePosition/AnimatedSprite2D
 @onready var gravity_detector: Area2D = $GravityDetector
 @onready var interactable_detector: Area2D = $InteractableDetector
@@ -52,6 +54,7 @@ var game: Game
 # PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
 var in_dialogue: bool = false
 var in_map: bool = false
+# ---
 
 var has_clicker: bool:
 	set(value):
@@ -84,9 +87,9 @@ func _physics_process(delta):
 	if in_dialogue or in_map:
 		return
 	calculate_speed_coef()
-	var gravitized = handle_artificial_gravity(delta)
-	handle_world_gravity(delta)
-	var input_dir = handle_movement(delta, gravitized)
+	var gravity_state: GravityState = handle_artificial_gravity(delta)
+	handle_world_gravity(delta, gravity_state)
+	var input_dir = handle_movement(delta, gravity_state)
 	handle_animation(input_dir)
 	move_and_slide()
 
@@ -96,17 +99,20 @@ func calculate_speed_coef():
 		speed_coef *= DRILL.SLOWDOWN
  
 # Return true if attracting or repelling, false otherwise
-func handle_artificial_gravity(delta) -> bool:
+func handle_artificial_gravity(delta) -> GravityState:
+	# Check for clicker
 	if not has_clicker:
-		return false
+		return GravityState.NONE
 
+	# Check that player is in an AG
 	var gravity_regions: Array[Area2D] = gravity_detector.get_overlapping_areas()
 	if gravity_regions.is_empty():
-		return false
+		return GravityState.NONE
 	
+	# Check the AG is enabled
 	var gravity_well: ArtificialGravity = gravity_regions[0]
 	if not gravity_well.enabled:
-		return false
+		return GravityState.NONE
 	
 	var vec_to_gravity = gravity_well.global_position - global_position
 
@@ -114,39 +120,49 @@ func handle_artificial_gravity(delta) -> bool:
 	if Input.is_action_just_pressed("boost"):
 		velocity = (-vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.BOOST_VELOCITY * speed_coef
 		gravity_well.disable()
-		return false
+		return GravityState.NONE
 
-	if gravity_well.type == ArtificialGravity.AGTypes.PUSHPULL:
-		# Push and pull
-		if Input.is_action_pressed("attract"):
+	# Check the player is inputting a mouse click
+	var attracting = Input.is_action_pressed("attract")
+	var repelling = Input.is_action_pressed("repel")
+	if not (attracting or repelling):
+		return GravityState.NONE
+
+	match gravity_well.type:
+		ArtificialGravity.AGTypes.PUSHPULL:
+			# Push and pull
+			var active_direction = Vector2.ZERO
+			if attracting:
+				active_direction += vec_to_gravity.normalized()
+			if repelling:
+				active_direction += (-vec_to_gravity + nudge_position).normalized()
 			velocity = velocity.lerp(
-				vec_to_gravity.normalized() * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED * speed_coef,
+				active_direction * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED * speed_coef,
 				ARTIFICIAL_GRAVITY.ACCELERATION * delta
 			)
-			return true
-		if Input.is_action_pressed("repel"):
-			velocity = velocity.lerp(
-				( - vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED * speed_coef,
-				ARTIFICIAL_GRAVITY.ACCELERATION * delta
-			)
-	elif gravity_well.type == ArtificialGravity.AGTypes.ORBIT:
-		if Input.is_action_pressed("attract"):
-			# Right click, clockwise
-			velocity = vec_to_gravity.normalized().orthogonal() * ARTIFICIAL_GRAVITY.ORBIT_SPEED * speed_coef
-		if Input.is_action_pressed("repel"):
-			# Left click, counterclockwise
-			velocity = -vec_to_gravity.normalized().orthogonal() * ARTIFICIAL_GRAVITY.ORBIT_SPEED * speed_coef
-	
-	return false
+			return GravityState.PUSHPULL
 
-func handle_world_gravity(delta):
-	if Input.is_action_pressed("attract") or Input.is_action_pressed("repel"):
+		ArtificialGravity.AGTypes.ORBIT:
+			# Orbit
+			var active_direction = Vector2.ZERO
+			if attracting:
+				# Right click, clockwise
+				active_direction = vec_to_gravity.orthogonal().normalized()
+			if repelling:
+				# Left click, counterclockwise
+				active_direction = -vec_to_gravity.orthogonal().normalized()
+			velocity = active_direction * ARTIFICIAL_GRAVITY.ORBIT_SPEED * speed_coef
+			return GravityState.ORBIT
+	return GravityState.NONE
+
+func handle_world_gravity(delta: float, gravity_state: GravityState):
+	if gravity_state == GravityState.ORBIT:
 		return
 	if not is_on_floor():
 		velocity.y = move_toward(velocity.y, PLAYER.MAX_FALL_SPEED, PLAYER.WORLD_GRAVITY * delta)
 
 # Returns x input direction to be used by animation handler
-func handle_movement(delta: float, gravitized: bool) -> float:
+func handle_movement(delta: float, gravity_state: GravityState) -> float:
 	var top_speed = PLAYER.SPEED * speed_coef
 
 	# friction
@@ -155,7 +171,7 @@ func handle_movement(delta: float, gravitized: bool) -> float:
 		velocity.x = move_toward(velocity.x, 0, PLAYER.FRICTION_DECEL * delta)
 
 	# nudge input
-	if gravitized:
+	if gravity_state == GravityState.PUSHPULL:
 		var nudge_input = Input.get_vector("left", "right", "up", "down")
 		nudge_position = nudge_position.lerp(
 			nudge_input * ARTIFICIAL_GRAVITY.NUDGE_DISTANCE,
