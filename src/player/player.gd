@@ -22,8 +22,9 @@ const DRILL = {
 }
 
 const ARTIFICIAL_GRAVITY = {
-	SPEED = 3000.0,
+	PUSHPULL_SPEED = 3000.0,
 	ACCELERATION = 4.0, # lerp acceleration, unitless
+	ORBIT_SPEED = 1500.0,
 	BOOST_VELOCITY = 3000.0,
 	NUDGE_DISTANCE = 50.0,
 	NUDGE_ACCELERATION = 0.1, # lerp acceleration, unitless
@@ -113,23 +114,34 @@ func handle_artificial_gravity(delta) -> bool:
 	if Input.is_action_just_pressed("boost"):
 		velocity = (-vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.BOOST_VELOCITY * speed_coef
 		gravity_well.disable()
+		return false
 
-	# Push and pull
-	if Input.is_action_pressed("attract"):
-		velocity = velocity.lerp(
-			vec_to_gravity.normalized() * ARTIFICIAL_GRAVITY.SPEED * speed_coef,
-			ARTIFICIAL_GRAVITY.ACCELERATION * delta
-		)
-		return true
-	if Input.is_action_pressed("repel"):
-		velocity = velocity.lerp(
-			( - vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.SPEED * speed_coef,
-			ARTIFICIAL_GRAVITY.ACCELERATION * delta
-		)
+	if gravity_well.type == ArtificialGravity.AGTypes.PUSHPULL:
+		# Push and pull
+		if Input.is_action_pressed("attract"):
+			velocity = velocity.lerp(
+				vec_to_gravity.normalized() * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED * speed_coef,
+				ARTIFICIAL_GRAVITY.ACCELERATION * delta
+			)
+			return true
+		if Input.is_action_pressed("repel"):
+			velocity = velocity.lerp(
+				( - vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED * speed_coef,
+				ARTIFICIAL_GRAVITY.ACCELERATION * delta
+			)
+	elif gravity_well.type == ArtificialGravity.AGTypes.ORBIT:
+		if Input.is_action_pressed("attract"):
+			# Right click, clockwise
+			velocity = vec_to_gravity.normalized().orthogonal() * ARTIFICIAL_GRAVITY.ORBIT_SPEED * speed_coef
+		if Input.is_action_pressed("repel"):
+			# Left click, counterclockwise
+			velocity = -vec_to_gravity.normalized().orthogonal() * ARTIFICIAL_GRAVITY.ORBIT_SPEED * speed_coef
 	
 	return false
 
 func handle_world_gravity(delta):
+	if Input.is_action_pressed("attract") or Input.is_action_pressed("repel"):
+		return
 	if not is_on_floor():
 		velocity.y = move_toward(velocity.y, PLAYER.MAX_FALL_SPEED, PLAYER.WORLD_GRAVITY * delta)
 
