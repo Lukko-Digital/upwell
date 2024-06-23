@@ -5,6 +5,7 @@ class_name Drill
 
 func interact(player: Player):
 	if in_wall:
+		# "get in" to drill
 		var map_visible = player.game.toggle_map()
 		player.in_map = map_visible
 	else:
@@ -13,5 +14,6 @@ func interact(player: Player):
 		queue_free()
 
 func remove_from_wall(player: Player):
-	player.has_drill = true
-	queue_free()
+	if in_wall:
+		player.has_drill = true
+		queue_free()
