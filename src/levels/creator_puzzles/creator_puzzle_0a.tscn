@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bfsfftagdiqxe"]
+[gd_scene load_steps=22 format=3 uid="uid://bfsfftagdiqxe"]
 
 [ext_resource type="Texture2D" uid="uid://dqaefix7e65sy" path="res://assets/environment/creator_puzzle/tablet_large_1.png" id="1_agquu"]
 [ext_resource type="Texture2D" uid="uid://cd843374n1h0y" path="res://assets/environment/test_level/Layer 20.png" id="2_vbhe4"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity.tscn" id="11_kmwyf"]
 [ext_resource type="Texture2D" uid="uid://842vjomoeag3" path="res://assets/environment/creator_puzzle/platform.png" id="14_1hfag"]
 [ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tile_map_brick.tscn" id="15_nm4qe"]
+[ext_resource type="PackedScene" uid="uid://b8eqhjjr143c4" path="res://src/player/drill.tscn" id="15_vgab2"]
 [ext_resource type="Texture2D" uid="uid://cxcdidrqtq5vu" path="res://assets/environment/test_level/bricks_TM.png" id="16_uegrb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jap5d"]
@@ -209,7 +210,8 @@ position = Vector2(-316, -343)
 rotation = -0.0186464
 
 [node name="Player" parent="." instance=ExtResource("9_wda0r")]
-position = Vector2(226, -318)
+position = Vector2(330, -410)
+has_drill = false
 
 [node name="Plyrglow" type="Sprite2D" parent="Player"]
 modulate = Color(1, 1, 1, 0.588235)
@@ -260,3 +262,8 @@ text = "inverse gravitational forces
            <left click>"
 fit_content = true
 autowrap_mode = 0
+
+[node name="Drill" parent="." instance=ExtResource("15_vgab2")]
+position = Vector2(518, -410)
+rotation = -1.5708
+in_wall = true
