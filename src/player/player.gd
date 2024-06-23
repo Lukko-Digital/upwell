@@ -43,6 +43,11 @@ var game: Game
 
 ## --- PLAYER STATE VARIABLES ---
 
+@export var has_drill: bool = true:
+	set(value):
+		$DrillSprite.visible = value
+		has_drill = value
+
 # PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
 var in_dialogue: bool = false
 var in_map: bool = false
@@ -52,11 +57,6 @@ var has_clicker: bool:
 		$NudgePosition/Clicker.visible = value
 		Global.player_has_clicker = value
 		has_clicker = value
-
-var has_drill: bool = true:
-	set(value):
-		$DrillSprite.visible = value
-		has_drill = value
 
 var was_moving: bool = false
 
