@@ -3,6 +3,10 @@ class_name ArtificialGravity
 
 const DEFAULT_RADIUS = 322
 
+enum AGTypes {PUSHPULL, ORBIT}
+
+@export var type: AGTypes = AGTypes.PUSHPULL
+
 @onready var glow: Sprite2D = $Glow
 
 var enabled: bool = true:
