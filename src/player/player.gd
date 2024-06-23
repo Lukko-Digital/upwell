@@ -15,7 +15,7 @@ const PLAYER = {
 }
 
 const DRILL = {
-	SLOWDOWN = 1,
+	SLOWDOWN = 0.3,
 	INPUT_HOLD_TIME = 1.0,
 	INPUT_TAP_TIME = 0.5,
 	INSERT_WALL_DISTANCE = 250,
@@ -206,6 +206,7 @@ func drill_interact():
 		# Put down drill
 		has_drill = false
 		var instance: Drill = drill_scene.instantiate()
+		instance.in_wall = false
 		instance.global_position = global_position
 		get_parent().add_child(instance)
 	else:
@@ -228,9 +229,17 @@ func drill_input_held():
 		# Insert into wall
 		has_drill = false
 		var instance: Drill = drill_scene.instantiate()
+		instance.in_wall = true
 		instance.global_position = wall_ray_cast.get_collision_point()
 		instance.rotation_degrees = dir * 90
 		get_parent().add_child(instance)
+	else:
+		# Check if drill is nearby and pickup
+		var overlapping_areas = drill_detector.get_overlapping_areas()
+		if overlapping_areas.is_empty():
+			return
+		var drill: Drill = overlapping_areas[0]
+		drill.remove_from_wall(self)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
@@ -239,8 +248,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		jump_end()
 	if event.is_action_pressed("interact"):
 		interact()
-	if event.is_action_pressed("map"):
-		in_map = game.toggle_map()
 	
 	if event.is_action_pressed("drill"):
 		drill_input_held_timer.start(DRILL.INPUT_HOLD_TIME)
