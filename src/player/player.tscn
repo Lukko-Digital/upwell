@@ -189,8 +189,8 @@ text = "your map has been updated"
 [node name="DrillInputHeldTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(224, 0)
+[node name="WallRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
 
 [connection signal="dialogue_finished" from="DialogueUi" to="." method="_on_dialogue_ui_dialogue_finished"]
 [connection signal="timeout" from="DrillInputHeldTimer" to="." method="drill_input_held"]

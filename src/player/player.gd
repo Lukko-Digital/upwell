@@ -15,9 +15,10 @@ const PLAYER = {
 }
 
 const DRILL = {
-	SLOWDOWN = 0.3,
+	SLOWDOWN = 1,
 	INPUT_HOLD_TIME = 1.0,
 	INPUT_TAP_TIME = 0.5,
+	INSERT_WALL_DISTANCE = 250,
 }
 
 const ARTIFICIAL_GRAVITY = {
@@ -34,6 +35,7 @@ const ARTIFICIAL_GRAVITY = {
 @onready var drill_detector: Area2D = $DrillDetector
 @onready var dialogue_ui: DialogueUI = $DialogueUi
 @onready var drill_input_held_timer: Timer = $DrillInputHeldTimer
+@onready var wall_ray_cast: RayCast2D = $WallRayCast
 
 @onready var drill_scene: PackedScene = preload ("res://src/player/drill.tscn")
 
@@ -214,8 +216,21 @@ func drill_interact():
 		var drill: Drill = overlapping_areas[0]
 		drill.interact(self)
 
+# Take drill in and out of wall
 func drill_input_held():
-	$DrillSprite.flip_v = !$DrillSprite.flip_v
+	if has_drill:
+		# Check if wall
+		var dir = -1 if sprite.flip_h else 1 # false = right, true = left
+		wall_ray_cast.target_position.x = dir * DRILL.INSERT_WALL_DISTANCE
+		wall_ray_cast.force_raycast_update()
+		if not wall_ray_cast.is_colliding():
+			return
+		# Insert into wall
+		has_drill = false
+		var instance: Drill = drill_scene.instantiate()
+		instance.global_position = wall_ray_cast.get_collision_point()
+		instance.rotation_degrees = dir * 90
+		get_parent().add_child(instance)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
