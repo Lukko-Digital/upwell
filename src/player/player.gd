@@ -32,12 +32,12 @@ const ARTIFICIAL_GRAVITY = {
 enum GravityState {NONE, PUSHPULL, ORBIT}
 
 @onready var sprite: AnimatedSprite2D = $NudgePosition/AnimatedSprite2D
-@onready var gravity_detector: Area2D = $GravityDetector
-@onready var interactable_detector: Area2D = $InteractableDetector
-@onready var drill_detector: Area2D = $DrillDetector
+@onready var gravity_detector: Area2D = $DetectionAreas/GravityDetector
+@onready var interactable_detector: Area2D = $DetectionAreas/InteractableDetector
+@onready var drill_detector: Area2D = $DetectionAreas/DrillDetector
+@onready var wall_ray_cast: RayCast2D = $DetectionAreas/WallRayCast
 @onready var dialogue_ui: DialogueUI = $DialogueUi
-@onready var drill_input_held_timer: Timer = $DrillInputHeldTimer
-@onready var wall_ray_cast: RayCast2D = $WallRayCast
+@onready var drill_input_held_timer: Timer = $Timers/DrillInputHeldTimer
 
 @onready var drill_scene: PackedScene = preload ("res://src/player/drill.tscn")
 @onready var clicker_scene: PackedScene = preload ("res://src/level_elements/clicker2.tscn")
