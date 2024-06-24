@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://tfy83b2uc6hh"]
+[gd_scene load_steps=27 format=3 uid="uid://tfy83b2uc6hh"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_lbj7m"]
 [ext_resource type="Texture2D" uid="uid://vg544th7n3ei" path="res://assets/shitty_assets/drill.png" id="2_35c0p"]
+[ext_resource type="Texture2D" uid="uid://crv5nu2k05ddm" path="res://assets/environment/creator_puzzle/ag_core.png" id="2_38y5b"]
 [ext_resource type="PackedScene" uid="uid://br8qm13yce4pr" path="res://src/dialogue/dialogue_ui.tscn" id="2_cft6f"]
 [ext_resource type="Texture2D" uid="uid://chtt4is6ducel" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0000.tres" id="4_fwoxo"]
 [ext_resource type="Texture2D" uid="uid://nbgyv2imvi50" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0001.tres" id="5_klfp1"]
@@ -120,6 +121,11 @@ scale = Vector2(0.254105, 0.254105)
 sprite_frames = SubResource("SpriteFrames_dqdgk")
 animation = &"run"
 frame_progress = 0.484609
+
+[node name="ClickerGlow" type="Sprite2D" parent="NudgePosition"]
+position = Vector2(-24, 1.7053e-13)
+scale = Vector2(1.65575, 1.65575)
+texture = ExtResource("2_38y5b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.117645, 39.2887)
