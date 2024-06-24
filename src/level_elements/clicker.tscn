@@ -1,17 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjtgvuvb40cba"]
 
-[ext_resource type="Texture2D" uid="uid://wub142n7anf3" path="res://assets/environment/creator_puzzle/clicker.png" id="1_y0b84"]
+[ext_resource type="Texture2D" uid="uid://wub142n7anf3" path="res://assets/environment/creator_puzzle/clicker.png" id="1_s7ecf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aqd0u"]
 radius = 28.0179
 
-[node name="Clicker2" type="RigidBody2D"]
+[node name="Clicker" type="RigidBody2D"]
 collision_layer = 8
 angular_damp = 15.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
-texture = ExtResource("1_y0b84")
+texture = ExtResource("1_s7ecf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_aqd0u")
