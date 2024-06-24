@@ -106,6 +106,7 @@ size = Vector2(112, 336)
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_lbj7m")
+has_drill = null
 
 [node name="DrillSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

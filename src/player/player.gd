@@ -232,6 +232,9 @@ func interact():
 	nearby_interactables[0].interact(self)
 
 func throw():
+	if not has_clicker:
+		return
+	has_clicker = false
 	var dir = (get_global_mouse_position() - global_position).normalized()
 	var instance: RigidBody2D = clicker_scene.instantiate()
 	instance.global_position = global_position
@@ -239,7 +242,11 @@ func throw():
 	get_parent().add_child(instance)
 
 func handle_throw_arc():
-	if not (Input.is_action_pressed("interact") and interact_tap_timer.is_stopped()):
+	if not (
+		Input.is_action_pressed("interact") and
+		interact_tap_timer.is_stopped() and
+		has_clicker
+	):
 		throw_arc_line.clear_points()
 		return
 	throw_arc_line.clear_points()
