@@ -46,7 +46,7 @@ enum GravityState {NONE, PUSHPULL, ORBIT}
 @onready var throw_arc_line: Line2D = $ThrowArc
 
 @onready var drill_scene: PackedScene = preload ("res://src/player/drill.tscn")
-@onready var clicker_scene: PackedScene = preload ("res://src/level_elements/clicker2.tscn")
+@onready var clicker_scene: PackedScene = preload ("res://src/level_elements/clicker.tscn")
 
 var game: Game
 
