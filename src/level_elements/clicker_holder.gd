@@ -3,7 +3,7 @@ class_name ClickerHolder
 
 @export var has_clicker: bool = true:
 	set(value):
-		$Clicker.visible = value
+		$ClickerSprite.visible = value
 		if value:
 			$HookSheet.frame = 0
 		else:
