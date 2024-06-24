@@ -11,7 +11,6 @@ const PLAYER = {
 	JUMP_RELEASE_SLOWDOWN = 0.5,
 	# Falling
 	MAX_FALL_SPEED = 2600,
-	WORLD_GRAVITY = 5000.0,
 }
 
 const DRILL = {
@@ -43,6 +42,8 @@ enum GravityState {NONE, PUSHPULL, ORBIT}
 @onready var drill_scene: PackedScene = preload ("res://src/player/drill.tscn")
 
 var game: Game
+
+var world_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 ## --- PLAYER STATE VARIABLES ---
 
@@ -159,7 +160,7 @@ func handle_world_gravity(delta: float, gravity_state: GravityState):
 	if gravity_state == GravityState.ORBIT:
 		return
 	if not is_on_floor():
-		velocity.y = move_toward(velocity.y, PLAYER.MAX_FALL_SPEED, PLAYER.WORLD_GRAVITY * delta)
+		velocity.y = move_toward(velocity.y, PLAYER.MAX_FALL_SPEED, world_gravity * delta)
 
 # Returns x input direction to be used by animation handler
 func handle_movement(delta: float, gravity_state: GravityState) -> float:
