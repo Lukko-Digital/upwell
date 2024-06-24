@@ -13,9 +13,10 @@ const PLAYER = {
 	MAX_FALL_SPEED = 2600,
 	# Throw
 	THROW_VELOCITY = 3000,
-	ARC_POINTS = 100
+	ARC_POINTS = 100,
+	INTERACT_HOLD_TIME = 1.0,
+	INTERACT_TAP_TIME = 0.5,
 }
-
 const DRILL = {
 	SLOWDOWN = 0.3,
 	INPUT_HOLD_TIME = 1.0,
@@ -41,6 +42,7 @@ enum GravityState {NONE, PUSHPULL, ORBIT}
 @onready var wall_ray_cast: RayCast2D = $DetectionAreas/WallRayCast
 @onready var dialogue_ui: DialogueUI = $DialogueUi
 @onready var drill_input_held_timer: Timer = $Timers/DrillInputHeldTimer
+@onready var interact_tap_timer: Timer = $Timers/InteractTapTimer
 @onready var throw_arc_line: Line2D = $ThrowArc
 
 @onready var drill_scene: PackedScene = preload ("res://src/player/drill.tscn")
@@ -99,6 +101,8 @@ func _physics_process(delta):
 	handle_animation(input_dir)
 	move_and_slide()
 
+func _process(_delta):
+	handle_throw_arc()
 func calculate_speed_coef():
 	speed_coef = 1
 	if has_drill:
@@ -229,14 +233,18 @@ func interact():
 
 func throw():
 	var dir = (get_global_mouse_position() - global_position).normalized()
-	draw_throw_arc(dir)
 	var instance: RigidBody2D = clicker_scene.instantiate()
 	instance.global_position = global_position
 	instance.set_axis_velocity(dir * PLAYER.THROW_VELOCITY)
 	get_parent().add_child(instance)
-func draw_throw_arc(dir: Vector2):
+
+func handle_throw_arc():
+	if not (Input.is_action_pressed("interact") and interact_tap_timer.is_stopped()):
+		throw_arc_line.clear_points()
+		return
 	throw_arc_line.clear_points()
 	var pos = Vector2.ZERO
+	var dir = (get_global_mouse_position() - global_position).normalized()
 	# The throw is slightly slower than the projected arc, so we multiply the arc velocity by a factor of 0.97
 	var vel = dir * PLAYER.THROW_VELOCITY * 0.97
 	var delta = get_physics_process_delta_time()
@@ -305,10 +313,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		jump()
 	if event.is_action_released("jump"):
 		jump_end()
+	
 	if event.is_action_pressed("interact"):
-		interact()
-	if event.is_action_pressed("map"):
-		throw()
+		interact_tap_timer.start(PLAYER.INTERACT_TAP_TIME)
+	if event.is_action_released("interact"):
+		if !interact_tap_timer.is_stopped():
+			interact()
+			interact_tap_timer.stop()
+		else:
+			throw()
 	
 	if event.is_action_pressed("drill"):
 		drill_input_held_timer.start(DRILL.INPUT_HOLD_TIME)

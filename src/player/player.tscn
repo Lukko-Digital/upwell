@@ -165,6 +165,9 @@ target_position = Vector2(0, 0)
 [node name="DrillInputHeldTimer" type="Timer" parent="Timers"]
 one_shot = true
 
+[node name="InteractTapTimer" type="Timer" parent="Timers"]
+one_shot = true
+
 [node name="DialogueUi" parent="." instance=ExtResource("2_cft6f")]
 visible = false
 
