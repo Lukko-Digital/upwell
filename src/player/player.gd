@@ -103,6 +103,7 @@ func _physics_process(delta):
 
 func _process(_delta):
 	handle_throw_arc()
+
 func calculate_speed_coef():
 	speed_coef = 1
 	if has_drill:
@@ -314,6 +315,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("jump"):
 		jump_end()
 	
+	## The `interact_tap_timer` is the time in which the interact key can be
+	## released in order to count as tapping interact. If the key is held
+	## beyond that time, it begins the throw action, via `handle_throw_arc`
 	if event.is_action_pressed("interact"):
 		interact_tap_timer.start(PLAYER.INTERACT_TAP_TIME)
 	if event.is_action_released("interact"):
@@ -323,6 +327,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			throw()
 	
+	## The `drill_input_held_timer` is the time for which the drill key needs to
+	## be held to insert or remove the drill from the wall. If the key is held
+	## for the full duration the drill is inserted or removed from the wall.
+	## If the key is released within the "tap time" it counts as tapping the key
+	## and the drill is put down or picked up, or gotten into, based on the
+	## state of the drill.
 	if event.is_action_pressed("drill"):
 		drill_input_held_timer.start(DRILL.INPUT_HOLD_TIME)
 	if event.is_action_released("drill"):
