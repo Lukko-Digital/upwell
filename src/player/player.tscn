@@ -107,6 +107,7 @@ size = Vector2(112, 336)
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_lbj7m")
+has_drill = null
 
 [node name="DrillSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -121,7 +122,7 @@ sprite_frames = SubResource("SpriteFrames_dqdgk")
 animation = &"run"
 frame_progress = 0.484609
 
-[node name="Clicker" type="Sprite2D" parent="NudgePosition"]
+[node name="ClickerGlow" type="Sprite2D" parent="NudgePosition"]
 position = Vector2(-24, 1.7053e-13)
 scale = Vector2(1.65575, 1.65575)
 texture = ExtResource("2_38y5b")
@@ -130,32 +131,42 @@ texture = ExtResource("2_38y5b")
 position = Vector2(-0.117645, 39.2887)
 shape = SubResource("RectangleShape2D_piej1")
 
-[node name="GravityDetector" type="Area2D" parent="."]
-visible = false
+[node name="DetectionAreas" type="Node2D" parent="."]
+
+[node name="GravityDetector" type="Area2D" parent="DetectionAreas"]
 position = Vector2(0, 38)
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GravityDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionAreas/GravityDetector"]
 shape = SubResource("RectangleShape2D_163mm")
 
-[node name="InteractableDetector" type="Area2D" parent="."]
-visible = false
+[node name="InteractableDetector" type="Area2D" parent="DetectionAreas"]
 position = Vector2(0, 38)
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionAreas/InteractableDetector"]
 shape = SubResource("RectangleShape2D_d8ltk")
 
-[node name="DrillDetector" type="Area2D" parent="."]
-visible = false
+[node name="DrillDetector" type="Area2D" parent="DetectionAreas"]
 position = Vector2(0, 38)
 collision_layer = 0
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DrillDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionAreas/DrillDetector"]
 shape = SubResource("RectangleShape2D_d8ltk")
+
+[node name="WallRayCast" type="RayCast2D" parent="DetectionAreas"]
+target_position = Vector2(0, 0)
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="DrillInputHeldTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="InteractTapTimer" type="Timer" parent="Timers"]
+one_shot = true
 
 [node name="DialogueUi" parent="." instance=ExtResource("2_cft6f")]
 visible = false
@@ -186,11 +197,7 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 60
 text = "your map has been updated"
 
-[node name="DrillInputHeldTimer" type="Timer" parent="."]
-one_shot = true
+[node name="ThrowArc" type="Line2D" parent="."]
 
-[node name="WallRayCast" type="RayCast2D" parent="."]
-target_position = Vector2(0, 0)
-
+[connection signal="timeout" from="Timers/DrillInputHeldTimer" to="." method="drill_input_held"]
 [connection signal="dialogue_finished" from="DialogueUi" to="." method="_on_dialogue_ui_dialogue_finished"]
-[connection signal="timeout" from="DrillInputHeldTimer" to="." method="drill_input_held"]

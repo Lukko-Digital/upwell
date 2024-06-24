@@ -11,9 +11,12 @@ const PLAYER = {
 	JUMP_RELEASE_SLOWDOWN = 0.5,
 	# Falling
 	MAX_FALL_SPEED = 2600,
-	WORLD_GRAVITY = 5000.0,
+	# Throw
+	THROW_VELOCITY = 3000,
+	ARC_POINTS = 100,
+	INTERACT_HOLD_TIME = 1.0,
+	INTERACT_TAP_TIME = 0.5,
 }
-
 const DRILL = {
 	SLOWDOWN = 0.3,
 	INPUT_HOLD_TIME = 1.0,
@@ -33,16 +36,21 @@ const ARTIFICIAL_GRAVITY = {
 enum GravityState {NONE, PUSHPULL, ORBIT}
 
 @onready var sprite: AnimatedSprite2D = $NudgePosition/AnimatedSprite2D
-@onready var gravity_detector: Area2D = $GravityDetector
-@onready var interactable_detector: Area2D = $InteractableDetector
-@onready var drill_detector: Area2D = $DrillDetector
+@onready var gravity_detector: Area2D = $DetectionAreas/GravityDetector
+@onready var interactable_detector: Area2D = $DetectionAreas/InteractableDetector
+@onready var drill_detector: Area2D = $DetectionAreas/DrillDetector
+@onready var wall_ray_cast: RayCast2D = $DetectionAreas/WallRayCast
 @onready var dialogue_ui: DialogueUI = $DialogueUi
-@onready var drill_input_held_timer: Timer = $DrillInputHeldTimer
-@onready var wall_ray_cast: RayCast2D = $WallRayCast
+@onready var drill_input_held_timer: Timer = $Timers/DrillInputHeldTimer
+@onready var interact_tap_timer: Timer = $Timers/InteractTapTimer
+@onready var throw_arc_line: Line2D = $ThrowArc
 
 @onready var drill_scene: PackedScene = preload ("res://src/player/drill.tscn")
+@onready var clicker_scene: PackedScene = preload ("res://src/level_elements/clicker.tscn")
 
 var game: Game
+
+var world_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 ## --- PLAYER STATE VARIABLES ---
 
@@ -58,7 +66,7 @@ var in_map: bool = false
 
 var has_clicker: bool:
 	set(value):
-		$NudgePosition/Clicker.visible = value
+		$NudgePosition/ClickerGlow.visible = value
 		Global.player_has_clicker = value
 		has_clicker = value
 
@@ -92,6 +100,9 @@ func _physics_process(delta):
 	var input_dir = handle_movement(delta, gravity_state)
 	handle_animation(input_dir)
 	move_and_slide()
+
+func _process(_delta):
+	handle_throw_arc()
 
 func calculate_speed_coef():
 	speed_coef = 1
@@ -159,7 +170,7 @@ func handle_world_gravity(delta: float, gravity_state: GravityState):
 	if gravity_state == GravityState.ORBIT:
 		return
 	if not is_on_floor():
-		velocity.y = move_toward(velocity.y, PLAYER.MAX_FALL_SPEED, PLAYER.WORLD_GRAVITY * delta)
+		velocity.y = move_toward(velocity.y, PLAYER.MAX_FALL_SPEED, world_gravity * delta)
 
 # Returns x input direction to be used by animation handler
 func handle_movement(delta: float, gravity_state: GravityState) -> float:
@@ -221,6 +232,42 @@ func interact():
 		return
 	nearby_interactables[0].interact(self)
 
+func throw():
+	if not has_clicker:
+		return
+	has_clicker = false
+	var dir = (get_global_mouse_position() - global_position).normalized()
+	var instance: RigidBody2D = clicker_scene.instantiate()
+	instance.global_position = global_position
+	instance.set_axis_velocity(dir * PLAYER.THROW_VELOCITY)
+	get_parent().add_child(instance)
+
+func handle_throw_arc():
+	if not (
+		Input.is_action_pressed("interact") and
+		interact_tap_timer.is_stopped() and
+		has_clicker
+	):
+		throw_arc_line.clear_points()
+		return
+	throw_arc_line.clear_points()
+	var pos = Vector2.ZERO
+	var dir = (get_global_mouse_position() - global_position).normalized()
+	# The throw is slightly slower than the projected arc, so we multiply the arc velocity by a factor of 0.97
+	var vel = dir * PLAYER.THROW_VELOCITY * 0.97
+	var delta = get_physics_process_delta_time()
+	var world_physics := get_world_2d().direct_space_state
+	var query := PhysicsPointQueryParameters2D.new()
+	query.collide_with_bodies = true
+	query.collision_mask = 1
+	for i in PLAYER.ARC_POINTS:
+		throw_arc_line.add_point(pos)
+		vel.y += world_gravity * delta
+		pos += vel * delta
+		query.position = global_position + pos
+		if not world_physics.intersect_point(query).is_empty():
+			break
+
 func start_dialogue(npc: NPC):
 	if in_dialogue:
 		return
@@ -274,9 +321,25 @@ func _unhandled_input(event: InputEvent) -> void:
 		jump()
 	if event.is_action_released("jump"):
 		jump_end()
-	if event.is_action_pressed("interact"):
-		interact()
 	
+	## The `interact_tap_timer` is the time in which the interact key can be
+	## released in order to count as tapping interact. If the key is held
+	## beyond that time, it begins the throw action, via `handle_throw_arc`
+	if event.is_action_pressed("interact"):
+		interact_tap_timer.start(PLAYER.INTERACT_TAP_TIME)
+	if event.is_action_released("interact"):
+		if !interact_tap_timer.is_stopped():
+			interact()
+			interact_tap_timer.stop()
+		else:
+			throw()
+	
+	## The `drill_input_held_timer` is the time for which the drill key needs to
+	## be held to insert or remove the drill from the wall. If the key is held
+	## for the full duration the drill is inserted or removed from the wall.
+	## If the key is released within the "tap time" it counts as tapping the key
+	## and the drill is put down or picked up, or gotten into, based on the
+	## state of the drill.
 	if event.is_action_pressed("drill"):
 		drill_input_held_timer.start(DRILL.INPUT_HOLD_TIME)
 	if event.is_action_released("drill"):
