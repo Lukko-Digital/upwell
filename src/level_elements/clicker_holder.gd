@@ -34,3 +34,6 @@ func interact(player: Player):
 			Global.unlock_level(unlocks_level)
 		# enable all AGs
 		get_tree().call_group("AGs", "enable")
+
+func enable_ags():
+	get_tree().call_group("AGs", "enable")
