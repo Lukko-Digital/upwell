@@ -66,7 +66,6 @@ var in_map: bool = false
 
 var has_clicker: bool:
 	set(value):
-		$NudgePosition/Clicker.visible = value
 		Global.player_has_clicker = value
 		has_clicker = value
 
