@@ -11,6 +11,9 @@ const PLAYER = {
 	JUMP_RELEASE_SLOWDOWN = 0.5,
 	# Falling
 	MAX_FALL_SPEED = 2600,
+	# Throw
+	THROW_VELOCITY = 3000,
+	ARC_POINTS = 100
 }
 
 const DRILL = {
@@ -38,6 +41,7 @@ enum GravityState {NONE, PUSHPULL, ORBIT}
 @onready var wall_ray_cast: RayCast2D = $DetectionAreas/WallRayCast
 @onready var dialogue_ui: DialogueUI = $DialogueUi
 @onready var drill_input_held_timer: Timer = $Timers/DrillInputHeldTimer
+@onready var throw_arc_line: Line2D = $ThrowArc
 
 @onready var drill_scene: PackedScene = preload ("res://src/player/drill.tscn")
 @onready var clicker_scene: PackedScene = preload ("res://src/level_elements/clicker2.tscn")
@@ -224,11 +228,29 @@ func interact():
 	nearby_interactables[0].interact(self)
 
 func throw():
+	var dir = (get_global_mouse_position() - global_position).normalized()
+	draw_throw_arc(dir)
 	var instance: RigidBody2D = clicker_scene.instantiate()
 	instance.global_position = global_position
-	var dir = (get_global_mouse_position() - global_position).normalized()
-	instance.apply_impulse(dir * 3000)
+	instance.set_axis_velocity(dir * PLAYER.THROW_VELOCITY)
 	get_parent().add_child(instance)
+func draw_throw_arc(dir: Vector2):
+	throw_arc_line.clear_points()
+	var pos = Vector2.ZERO
+	# The throw is slightly slower than the projected arc, so we multiply the arc velocity by a factor of 0.97
+	var vel = dir * PLAYER.THROW_VELOCITY * 0.97
+	var delta = get_physics_process_delta_time()
+	var world_physics := get_world_2d().direct_space_state
+	var query := PhysicsPointQueryParameters2D.new()
+	query.collide_with_bodies = true
+	query.collision_mask = 1
+	for i in PLAYER.ARC_POINTS:
+		throw_arc_line.add_point(pos)
+		vel.y += world_gravity * delta
+		pos += vel * delta
+		query.position = global_position + pos
+		if not world_physics.intersect_point(query).is_empty():
+			break
 
 func start_dialogue(npc: NPC):
 	if in_dialogue:
