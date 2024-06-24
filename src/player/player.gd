@@ -40,6 +40,7 @@ enum GravityState {NONE, PUSHPULL, ORBIT}
 @onready var wall_ray_cast: RayCast2D = $WallRayCast
 
 @onready var drill_scene: PackedScene = preload ("res://src/player/drill.tscn")
+@onready var clicker_scene: PackedScene = preload ("res://src/level_elements/clicker2.tscn")
 
 var game: Game
 
@@ -222,6 +223,13 @@ func interact():
 		return
 	nearby_interactables[0].interact(self)
 
+func throw():
+	var instance: RigidBody2D = clicker_scene.instantiate()
+	instance.global_position = global_position
+	var dir = (get_global_mouse_position() - global_position).normalized()
+	instance.apply_impulse(dir * 3000)
+	get_parent().add_child(instance)
+
 func start_dialogue(npc: NPC):
 	if in_dialogue:
 		return
@@ -277,6 +285,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		jump_end()
 	if event.is_action_pressed("interact"):
 		interact()
+	if event.is_action_pressed("map"):
+		throw()
 	
 	if event.is_action_pressed("drill"):
 		drill_input_held_timer.start(DRILL.INPUT_HOLD_TIME)
