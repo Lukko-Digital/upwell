@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjtgvuvb40cba"]
+[gd_scene load_steps=4 format=3 uid="uid://cjtgvuvb40cba"]
 
 [ext_resource type="Texture2D" uid="uid://wub142n7anf3" path="res://assets/environment/creator_puzzle/clicker.png" id="1_s7ecf"]
+[ext_resource type="Script" path="res://src/level_elements/clicker.gd" id="2_a40oy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aqd0u"]
 radius = 28.0179
@@ -15,3 +16,18 @@ texture = ExtResource("1_s7ecf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_aqd0u")
+
+[node name="Interactable" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("2_a40oy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+shape = SubResource("CircleShape2D_aqd0u")
+
+[node name="InteractLabel" type="Label" parent="Interactable"]
+offset_left = -15.0
+offset_top = -64.0
+offset_right = 25.0
+offset_bottom = -41.0
+text = "<E>"
