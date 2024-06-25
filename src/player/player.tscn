@@ -104,9 +104,18 @@ size = Vector2(112, 336)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d8ltk"]
 size = Vector2(112, 336)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "gravity_detector", "interactable_detector", "drill_detector", "wall_ray_cast", "dialogue_ui", "drill_input_held_timer", "interact_tap_timer", "throw_arc_line")]
 collision_layer = 2
 script = ExtResource("1_lbj7m")
+sprite = NodePath("NudgePosition/AnimatedSprite2D")
+gravity_detector = NodePath("DetectionAreas/GravityDetector")
+interactable_detector = NodePath("DetectionAreas/InteractableDetector")
+drill_detector = NodePath("DetectionAreas/DrillDetector")
+wall_ray_cast = NodePath("DetectionAreas/WallRayCast")
+dialogue_ui = NodePath("DialogueUi")
+drill_input_held_timer = NodePath("Timers/DrillInputHeldTimer")
+interact_tap_timer = NodePath("Timers/InteractTapTimer")
+throw_arc_line = NodePath("ThrowArc")
 
 [node name="DrillSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

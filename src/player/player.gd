@@ -35,15 +35,21 @@ const ARTIFICIAL_GRAVITY = {
 
 enum GravityState {NONE, PUSHPULL, ORBIT}
 
-@onready var sprite: AnimatedSprite2D = $NudgePosition/AnimatedSprite2D
-@onready var gravity_detector: Area2D = $DetectionAreas/GravityDetector
-@onready var interactable_detector: Area2D = $DetectionAreas/InteractableDetector
-@onready var drill_detector: Area2D = $DetectionAreas/DrillDetector
-@onready var wall_ray_cast: RayCast2D = $DetectionAreas/WallRayCast
-@onready var dialogue_ui: DialogueUI = $DialogueUi
-@onready var drill_input_held_timer: Timer = $Timers/DrillInputHeldTimer
-@onready var interact_tap_timer: Timer = $Timers/InteractTapTimer
-@onready var throw_arc_line: Line2D = $ThrowArc
+@export var has_drill: bool = true:
+	set(value):
+		$DrillSprite.visible = value
+		has_drill = value
+
+@export_group("Node References")
+@export var sprite: AnimatedSprite2D
+@export var gravity_detector: Area2D
+@export var interactable_detector: Area2D
+@export var drill_detector: Area2D
+@export var wall_ray_cast: RayCast2D
+@export var dialogue_ui: DialogueUI
+@export var drill_input_held_timer: Timer
+@export var interact_tap_timer: Timer
+@export var throw_arc_line: Line2D
 
 @onready var drill_scene: PackedScene = preload ("res://src/player/drill.tscn")
 @onready var clicker_scene: PackedScene = preload ("res://src/level_elements/clicker.tscn")
@@ -53,11 +59,6 @@ var game: Game
 var world_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 ## --- PLAYER STATE VARIABLES ---
-
-@export var has_drill: bool = true:
-	set(value):
-		$DrillSprite.visible = value
-		has_drill = value
 
 # PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
 var in_dialogue: bool = false
