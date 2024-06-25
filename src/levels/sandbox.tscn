@@ -31,8 +31,7 @@ position = Vector2(-410, -136)
 
 [node name="ClickerHolder2" parent="." instance=ExtResource("5_iwbtf")]
 z_index = -1
-position = Vector2(-1367, -136)
-has_clicker = false
+position = Vector2(-687, -136)
 
 [node name="ArtificialGravity" parent="." instance=ExtResource("4_5j5cm")]
 position = Vector2(777, -683)

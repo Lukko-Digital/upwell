@@ -17,6 +17,9 @@ func interact(player: Player):
 	player.has_clicker = true
 	body.queue_free()
 
+func interact_condition(player: Player):
+	return !player.has_clicker
+
 func _on_area_entered(area: Area2D):
 	if not area is ClickerHolder:
 		return

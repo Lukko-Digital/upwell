@@ -107,7 +107,6 @@ size = Vector2(112, 336)
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_lbj7m")
-has_drill = null
 
 [node name="DrillSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -142,11 +141,12 @@ collision_mask = 4
 shape = SubResource("RectangleShape2D_163mm")
 
 [node name="InteractableDetector" type="Area2D" parent="DetectionAreas"]
-position = Vector2(0, 38)
+position = Vector2(0, 206)
 collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionAreas/InteractableDetector"]
+position = Vector2(0, -167)
 shape = SubResource("RectangleShape2D_d8ltk")
 
 [node name="DrillDetector" type="Area2D" parent="DetectionAreas"]
