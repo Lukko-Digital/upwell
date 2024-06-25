@@ -238,7 +238,9 @@ func jump_end():
 		velocity.y -= PLAYER.JUMP_RELEASE_SLOWDOWN * velocity.y
 
 func handle_nearby_interactables():
-	var nearby_interactables = interactable_detector.get_overlapping_areas()
+	var nearby_interactables = interactable_detector.get_overlapping_areas().filter(
+		func(interactable): return interactable.interact_condition(self)
+	)
 	if nearby_interactables.is_empty():
 		highlighted_interactable = null
 	else:

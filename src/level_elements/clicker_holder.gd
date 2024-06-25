@@ -24,16 +24,18 @@ func _ready():
 		has_clicker = Global.clicker_state[id]
 
 func interact(player: Player):
-	if has_clicker != player.has_clicker:
-		# exchange clicker with player
-		player.has_clicker = has_clicker
-		has_clicker = !has_clicker
-		# save global clicker state and level unlocks
-		Global.clicker_state[id] = has_clicker
-		if has_clicker and unlocks_level:
-			Global.unlock_level(unlocks_level)
-		# enable all AGs
-		enable_ags()
+	# exchange clicker with player
+	player.has_clicker = has_clicker
+	has_clicker = !has_clicker
+	# save global clicker state and level unlocks
+	Global.clicker_state[id] = has_clicker
+	if has_clicker and unlocks_level:
+		Global.unlock_level(unlocks_level)
+	# enable all AGs
+	enable_ags()
+
+func interact_condition(player: Player):
+	return has_clicker != player.has_clicker
 
 func enable_ags():
 	get_tree().call_group("AGs", "enable")

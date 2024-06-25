@@ -13,3 +13,8 @@ func _ready() -> void:
 
 func interact(_player: Player):
 	pass
+
+## The condition in which the object can be interacted with.
+## e.g. an empty clicker holder requires the player to have a clicker
+func interact_condition(_player: Player) -> bool:
+	return true
