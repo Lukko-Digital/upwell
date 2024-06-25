@@ -74,6 +74,16 @@ var was_moving: bool = false
 
 ## ---
 
+var highlighted_interactable: Interactable = null:
+	set(interactable):
+		if interactable == highlighted_interactable:
+			return
+		if highlighted_interactable != null:
+			highlighted_interactable.highlighted = false
+		highlighted_interactable = interactable
+		if highlighted_interactable != null:
+			highlighted_interactable.highlighted = true
+
 var nudge_position: Vector2 = Vector2.ZERO:
 	set(value):
 		$NudgePosition.position = value
@@ -103,6 +113,7 @@ func _physics_process(delta):
 
 func _process(_delta):
 	handle_throw_arc()
+	handle_nearby_interactables()
 
 func calculate_speed_coef():
 	speed_coef = 1
@@ -226,11 +237,21 @@ func jump_end():
 	if velocity.y < 0:
 		velocity.y -= PLAYER.JUMP_RELEASE_SLOWDOWN * velocity.y
 
-func interact():
+func handle_nearby_interactables():
 	var nearby_interactables = interactable_detector.get_overlapping_areas()
 	if nearby_interactables.is_empty():
-		return
-	nearby_interactables[0].interact(self)
+		highlighted_interactable = null
+	else:
+		var distance_to = func(node):
+			return global_position.distance_squared_to(node.global_position)
+		nearby_interactables.sort_custom(
+			func(a, b): return distance_to.call(a) < distance_to.call(b)
+		)
+		highlighted_interactable = nearby_interactables[0]
+
+func interact():
+	if highlighted_interactable != null:
+		highlighted_interactable.interact(self)
 
 func throw():
 	if not has_clicker:
