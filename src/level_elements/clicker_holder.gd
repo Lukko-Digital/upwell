@@ -31,11 +31,6 @@ func interact(player: Player):
 	Global.clicker_state[id] = has_clicker
 	if has_clicker and unlocks_level:
 		Global.unlock_level(unlocks_level)
-	# enable all AGs
-	enable_ags()
 
 func interact_condition(player: Player):
 	return has_clicker != player.has_clicker
-
-func enable_ags():
-	get_tree().call_group("AGs", "enable")

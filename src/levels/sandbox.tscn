@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dcf1k6whcfars"]
+[gd_scene load_steps=8 format=3 uid="uid://dcf1k6whcfars"]
 
 [ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tile_map_brick.tscn" id="1_7xu06"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="2_owwjj"]
 [ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity.tscn" id="4_5j5cm"]
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/clicker_holder.tscn" id="5_iwbtf"]
+[ext_resource type="PackedScene" uid="uid://cp5a5nk8eo6va" path="res://src/level_elements/ag_reenable_area.tscn" id="5_jao0t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ivvo"]
 radius = 490.065
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82j2m"]
+size = Vector2(3628, 20)
 
 [node name="Main" type="Node2D"]
 
@@ -39,3 +43,8 @@ type = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ArtificialGravity"]
 shape = SubResource("CircleShape2D_4ivvo")
+
+[node name="AgReenableArea" parent="." instance=ExtResource("5_jao0t")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AgReenableArea"]
+shape = SubResource("RectangleShape2D_82j2m")
