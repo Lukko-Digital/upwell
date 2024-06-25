@@ -245,7 +245,7 @@ func handle_nearby_interactables():
 		highlighted_interactable = null
 	else:
 		var distance_to = func(node):
-			return global_position.distance_squared_to(node.global_position)
+			return interactable_detector.global_position.distance_squared_to(node.global_position)
 		nearby_interactables.sort_custom(
 			func(a, b): return distance_to.call(a) < distance_to.call(b)
 		)
