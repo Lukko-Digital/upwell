@@ -58,7 +58,7 @@ var game: Game
 
 var world_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-## --- PLAYER STATE VARIABLES ---
+## -------------------------- PLAYER STATE VARIABLES --------------------------
 
 # PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
 var in_dialogue: bool = false
@@ -92,6 +92,8 @@ var nudge_position: Vector2 = Vector2.ZERO:
 
 var speed_coef: float = 1
 
+### ------------------------------ CORE ------------------------------
+
 func _ready() -> void:
 	# Connect signal
 	Global.level_unlocked.connect(_on_level_unlocked)
@@ -115,6 +117,39 @@ func _physics_process(delta):
 func _process(_delta):
 	handle_throw_arc()
 	handle_nearby_interactables()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("jump"):
+		jump()
+	if event.is_action_released("jump"):
+		jump_end()
+	
+	## The `interact_tap_timer` is the time in which the interact key can be
+	## released in order to count as tapping interact. If the key is held
+	## beyond that time, it begins the throw action, via `handle_throw_arc`
+	if event.is_action_pressed("interact"):
+		interact_tap_timer.start(PLAYER.INTERACT_TAP_TIME)
+	if event.is_action_released("interact"):
+		if !interact_tap_timer.is_stopped():
+			interact()
+			interact_tap_timer.stop()
+		else:
+			throw()
+	
+	## The `drill_input_held_timer` is the time for which the drill key needs to
+	## be held to insert or remove the drill from the wall. If the key is held
+	## for the full duration the drill is inserted or removed from the wall.
+	## If the key is released within the "tap time" it counts as tapping the key
+	## and the drill is put down or picked up, or gotten into, based on the
+	## state of the drill.
+	if event.is_action_pressed("drill"):
+		drill_input_held_timer.start(DRILL.INPUT_HOLD_TIME)
+	if event.is_action_released("drill"):
+		if DRILL.INPUT_HOLD_TIME - drill_input_held_timer.time_left < DRILL.INPUT_TAP_TIME:
+			drill_interact()
+		drill_input_held_timer.stop()
+
+## ------------------------------ MOVEMENT ------------------------------
 
 func calculate_speed_coef():
 	speed_coef = 1
@@ -214,6 +249,16 @@ func handle_movement(delta: float, gravity_state: GravityState) -> float:
 		)
 	return direction
 
+func jump():
+	if is_on_floor():
+		velocity.y = -PLAYER.JUMP_VELOCITY * speed_coef
+
+func jump_end():
+	if velocity.y < 0:
+		velocity.y -= PLAYER.JUMP_RELEASE_SLOWDOWN * velocity.y
+
+### --- ANIMATION ---
+
 func handle_animation(direction: float):
 	if direction == 0 or not is_on_floor():
 		if was_moving:
@@ -230,13 +275,7 @@ func handle_animation(direction: float):
 		sprite.flip_h = (direction == - 1)
 		was_moving = true
 
-func jump():
-	if is_on_floor():
-		velocity.y = -PLAYER.JUMP_VELOCITY * speed_coef
-
-func jump_end():
-	if velocity.y < 0:
-		velocity.y -= PLAYER.JUMP_RELEASE_SLOWDOWN * velocity.y
+### ----------------------------- OBJECT INTERACT -----------------------------
 
 func handle_nearby_interactables():
 	var nearby_interactables = interactable_detector.get_overlapping_areas().filter(
@@ -299,6 +338,8 @@ func start_dialogue(npc: NPC):
 	dialogue_ui.start_dialogue(npc)
 	in_dialogue = true
 
+## ------------------------------ DRILL ------------------------------
+
 # On drill input tapped
 func drill_interact():
 	if has_drill:
@@ -340,36 +381,7 @@ func drill_input_held():
 		var drill: Drill = overlapping_areas[0]
 		drill.remove_from_wall(self)
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("jump"):
-		jump()
-	if event.is_action_released("jump"):
-		jump_end()
-	
-	## The `interact_tap_timer` is the time in which the interact key can be
-	## released in order to count as tapping interact. If the key is held
-	## beyond that time, it begins the throw action, via `handle_throw_arc`
-	if event.is_action_pressed("interact"):
-		interact_tap_timer.start(PLAYER.INTERACT_TAP_TIME)
-	if event.is_action_released("interact"):
-		if !interact_tap_timer.is_stopped():
-			interact()
-			interact_tap_timer.stop()
-		else:
-			throw()
-	
-	## The `drill_input_held_timer` is the time for which the drill key needs to
-	## be held to insert or remove the drill from the wall. If the key is held
-	## for the full duration the drill is inserted or removed from the wall.
-	## If the key is released within the "tap time" it counts as tapping the key
-	## and the drill is put down or picked up, or gotten into, based on the
-	## state of the drill.
-	if event.is_action_pressed("drill"):
-		drill_input_held_timer.start(DRILL.INPUT_HOLD_TIME)
-	if event.is_action_released("drill"):
-		if DRILL.INPUT_HOLD_TIME - drill_input_held_timer.time_left < DRILL.INPUT_TAP_TIME:
-			drill_interact()
-		drill_input_held_timer.stop()
+## ------------------------------ SIGNAL HANDLES ------------------------------
 
 func _on_dialogue_ui_dialogue_finished() -> void:
 	in_dialogue = false
