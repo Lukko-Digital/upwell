@@ -386,7 +386,7 @@ func drill_input_held():
 func _on_dialogue_ui_dialogue_finished() -> void:
 	in_dialogue = false
 
-func _on_level_unlocked(_level_name: String):
+func _on_level_unlocked(_level_name: Global.LevelIDs):
 	var ui = $Ui
 	ui.show()
 	await get_tree().create_timer(2).timeout
