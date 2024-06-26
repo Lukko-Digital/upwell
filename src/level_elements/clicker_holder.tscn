@@ -11,6 +11,7 @@ radius = 173.026
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_rct6y")
+starts_with_clicker = true
 
 [node name="ClickerSprite" parent="." instance=ExtResource("3_jmcfb")]
 position = Vector2(27, -90)

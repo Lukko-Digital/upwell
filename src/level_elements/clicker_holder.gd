@@ -1,14 +1,18 @@
 extends Interactable
 class_name ClickerHolder
 
+@export var starts_with_clicker: bool
+
 @onready var id: String = owner.name + name
+@onready var clicker_sprite: Sprite2D = $ClickerSprite
+@onready var hook_sheet: Sprite2D = $HookSheet
 
 var has_clicker: bool:
 	set = _set_has_clicker
 
 func _ready():
 	super()
-	has_clicker = true
+	has_clicker = starts_with_clicker
 	if id not in Global.clicker_state:
 		# Add state to Global state
 		Global.clicker_state[id] = has_clicker
@@ -25,10 +29,10 @@ func interact_condition(player: Player):
 	return has_clicker != player.has_clicker
 
 func _set_has_clicker(value: bool):
-	$ClickerSprite.visible = value
+	clicker_sprite.visible = value
 	if value:
-		$HookSheet.frame = 0
+		hook_sheet.frame = 0
 	else:
-		$HookSheet.frame = 1
+		hook_sheet.frame = 1
 	has_clicker = value
 	Global.clicker_state[id] = value
