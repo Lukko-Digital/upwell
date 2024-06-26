@@ -2,10 +2,10 @@ extends Interactable
 class_name ClickerHolder
 
 @export var starts_with_clicker: bool
+@export var clicker_sprite: Sprite2D
+@export var hook_sheet: Sprite2D
 
 @onready var id: String = owner.name + name
-@onready var clicker_sprite: Sprite2D = $ClickerSprite
-@onready var hook_sheet: Sprite2D = $HookSheet
 
 var has_clicker: bool:
 	set = _set_has_clicker
