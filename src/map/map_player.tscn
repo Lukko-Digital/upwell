@@ -33,3 +33,22 @@ texture = ExtResource("4_36xkm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_rmnfs")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Coolant" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 99.0
+offset_top = 103.0
+offset_right = 133.0
+offset_bottom = 382.0
+value = 100.0
+fill_mode = 2
+show_percentage = false
+
+[node name="Heat" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 156.0
+offset_top = 103.0
+offset_right = 190.0
+offset_bottom = 382.0
+fill_mode = 2
+show_percentage = false

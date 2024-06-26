@@ -3,12 +3,33 @@ class_name MapPlayer
 
 @onready var line: Line2D = $Line2D
 
+@onready var coolant_bar: ProgressBar = $CanvasLayer/Coolant
+@onready var heat_bar: ProgressBar = $CanvasLayer/Heat
+
 var moving = false
 var destination: MapLevel
 
-func _process(_delta: float) -> void:
+const SPEED: float = 400
+
+func _process(delta: float) -> void:
 	if moving:
-		line.set_point_position(1, destination.global_position - global_position)
+		global_position = global_position.move_toward(destination.global_position, SPEED * delta)
+
+		if global_position.distance_to(destination.global_position) < 1:
+			moving = false
+			if line.get_point_count() > 1:
+				line.remove_point(1)
+		else:
+			line.set_point_position(1, destination.global_position - global_position)
+
+		if coolant_bar.value > 0:
+			coolant_bar.set_deferred("value", coolant_bar.value - delta * 50)
+			if heat_bar.value < heat_bar.max_value / 2:
+				heat_bar.set_deferred("value", heat_bar.value + delta * 50)
+		elif heat_bar.value < heat_bar.max_value:
+			heat_bar.set_deferred("value", heat_bar.value + delta * 50)
+	else:
+		heat_bar.set_deferred("value", heat_bar.value - delta * 10)
 
 func location_hovered(location: MapLevel):
 	if moving:
@@ -26,10 +47,4 @@ func location_selected(location: MapLevel):
 	if moving:
 		return
 	destination = location
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, "global_position", location.global_position, 1)
 	moving = true
-	await tween.finished
-	moving = false
-	if line.get_point_count() > 1:
-		line.remove_point(1)
