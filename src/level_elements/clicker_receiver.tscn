@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://baq2xrejarqs5"]
+
+[ext_resource type="Script" path="res://src/level_elements/clicker_receiver.gd" id="1_ntpc3"]
+[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/level_elements/clicker_sprite.tscn" id="2_qu2oa"]
+[ext_resource type="Texture2D" uid="uid://b61a0ttyd4ybr" path="res://assets/environment/creator_puzzle/hook-sheet.png" id="3_8335b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eoxif"]
+radius = 173.026
+
+[node name="ClickerHolder" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_ntpc3")
+
+[node name="ClickerSprite" parent="." instance=ExtResource("2_qu2oa")]
+position = Vector2(27, -90)
+
+[node name="HookSheet" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, -3)
+texture = ExtResource("3_8335b")
+hframes = 2
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(28, -90)
+shape = SubResource("CircleShape2D_eoxif")
+
+[node name="InteractLabel" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.466667)
+offset_left = -22.0
+offset_top = -254.0
+offset_bottom = -231.0
+scale = Vector2(3.05878, 3.05878)
+text = "<E>"
+horizontal_alignment = 1
