@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://yssibyguycqc"]
+[gd_scene load_steps=22 format=3 uid="uid://yssibyguycqc"]
 
 [ext_resource type="Texture2D" uid="uid://dqaefix7e65sy" path="res://assets/environment/creator_puzzle/tablet_large_1.png" id="1_fnd4m"]
 [ext_resource type="Texture2D" uid="uid://cd843374n1h0y" path="res://assets/environment/test_level/Layer 20.png" id="2_suuqc"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tile_map_brick.tscn" id="12_0lv80"]
 [ext_resource type="Texture2D" uid="uid://cxcdidrqtq5vu" path="res://assets/environment/test_level/bricks_TM.png" id="13_kmcpf"]
 [ext_resource type="PackedScene" uid="uid://b8eqhjjr143c4" path="res://src/player/drill.tscn" id="14_3q3hq"]
+[ext_resource type="PackedScene" uid="uid://cp5a5nk8eo6va" path="res://src/level_elements/ag_reenable_area.tscn" id="16_k0nx7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n02yv"]
 shader = ExtResource("6_n8dk3")
@@ -234,3 +235,9 @@ layer_0/tile_data = PackedInt32Array(65528, 327680, 1, 65529, 327680, 1, 65530, 
 position = Vector2(-2496, -410)
 rotation = 1.5708
 in_wall = true
+
+[node name="AgReenableArea" parent="." instance=ExtResource("16_k0nx7")]
+position = Vector2(1105, 247)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AgReenableArea"]
+polygon = PackedVector2Array(-1832, -475, -1109, 284, -261, 288, -265, 508, -2210, 472, -3157, -489)
