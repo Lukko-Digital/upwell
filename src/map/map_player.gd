@@ -35,11 +35,11 @@ func location_selected(location: MapLocation):
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "global_position", location.global_position, 1)
 	moving = true
-	await tween.finished
-	location_reached()
+	# await tween.finished
+	# location_reached()
 
-func location_reached():
+func location_reached(location: MapLocation):
 	moving = false
 	if line.get_point_count() > 1:
 		line.remove_point(1)
-	game.change_level(destination.level)
+	game.change_level(location.level)

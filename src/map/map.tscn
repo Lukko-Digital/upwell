@@ -1,12 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://bb68hmcptqlgt"]
+[gd_scene load_steps=21 format=3 uid="uid://bb68hmcptqlgt"]
 
 [ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player.tscn" id="1_8n3xw"]
 [ext_resource type="Script" path="res://src/map/map.gd" id="1_ithwi"]
 [ext_resource type="PackedScene" uid="uid://ql7gm3yuyicr" path="res://src/map/map_location.tscn" id="2_1tail"]
 [ext_resource type="PackedScene" uid="uid://5m5se54m7bsd" path="res://src/levels/creator_puzzles/creator_puzzle_1.tscn" id="3_7gyr0"]
 [ext_resource type="PackedScene" uid="uid://cfljhh1nxifqe" path="res://src/levels/creator_puzzles/creator_puzzle_0.tscn" id="3_kwmnh"]
-[ext_resource type="PackedScene" path="res://src/levels/creator_puzzles/dad_level.tscn" id="3_s3bh4"]
+[ext_resource type="PackedScene" uid="uid://cubg5maeimkki" path="res://src/levels/creator_puzzles/dad_level.tscn" id="3_s3bh4"]
 [ext_resource type="PackedScene" uid="uid://bfsfftagdiqxe" path="res://src/levels/creator_puzzles/creator_puzzle_0a.tscn" id="4_2bob3"]
+[ext_resource type="Texture2D" uid="uid://1rj6mhwwxhfv" path="res://assets/shitty_assets/white_circle.png" id="5_twdcf"]
 [ext_resource type="PackedScene" uid="uid://yssibyguycqc" path="res://src/levels/creator_puzzles/creator_puzzle_2.tscn" id="6_cwsf1"]
 [ext_resource type="PackedScene" uid="uid://diahbkrkxdoj3" path="res://src/levels/creator_puzzles/creator_puzzle_3.tscn" id="7_op0kk"]
 [ext_resource type="PackedScene" uid="uid://behbqi0dtsxkv" path="res://src/levels/win.tscn" id="8_achlo"]
@@ -14,11 +15,32 @@
 [ext_resource type="Texture2D" uid="uid://bkx3m3c8bdjp5" path="res://assets/ui/map/cover.png" id="11_x5ox6"]
 [ext_resource type="Texture2D" uid="uid://dc6nfaju78e60" path="res://assets/environment/test_level/particle_softest.png" id="12_kdma8"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_iese1"]
+radius = 75.9276
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yy1hu"]
+radius = 52.0096
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_25owq"]
+radius = 61.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8px8y"]
+radius = 39.0512
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4xb36"]
+radius = 48.2597
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pifqs"]
 blend_mode = 3
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_ithwi")
+
+[node name="PlayerPathIndicator" type="Line2D" parent="."]
+z_index = -1
+points = PackedVector2Array(0, 0)
+width = 6.0
+texture_mode = 1
 
 [node name="MapPlayer" parent="." instance=ExtResource("1_8n3xw")]
 z_index = 1
@@ -28,43 +50,94 @@ position = Vector2(-280, -168)
 
 [node name="DadLevel" parent="." instance=ExtResource("2_1tail")]
 position = Vector2(-280, -168)
-scale = Vector2(0.4, 0.4)
 level = ExtResource("3_s3bh4")
+locked_level_name = null
+location_type_script = null
+
+[node name="Sprite2D" type="Sprite2D" parent="DadLevel"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_twdcf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DadLevel"]
+shape = SubResource("CircleShape2D_iese1")
 
 [node name="MapLocation" parent="." instance=ExtResource("2_1tail")]
-scale = Vector2(0.4, 0.4)
 level = ExtResource("3_kwmnh")
+locked_level_name = null
+location_type_script = null
+
+[node name="Sprite2D" type="Sprite2D" parent="MapLocation"]
+scale = Vector2(0.331108, 0.331108)
+texture = ExtResource("5_twdcf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapLocation"]
+shape = SubResource("CircleShape2D_yy1hu")
 
 [node name="MapLocation2" parent="." instance=ExtResource("2_1tail")]
 position = Vector2(326, -246)
-scale = Vector2(0.5, 0.5)
 level = ExtResource("4_2bob3")
 locked_level_name = "level0a"
+location_type_script = null
+
+[node name="Sprite2D" type="Sprite2D" parent="MapLocation2"]
+scale = Vector2(0.399165, 0.399165)
+texture = ExtResource("5_twdcf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapLocation2"]
+shape = SubResource("CircleShape2D_25owq")
 
 [node name="MapLocation3" parent="." instance=ExtResource("2_1tail")]
 position = Vector2(526, 65)
-scale = Vector2(0.35, 0.35)
 level = ExtResource("3_7gyr0")
 locked_level_name = "level1"
+location_type_script = null
+
+[node name="Sprite2D" type="Sprite2D" parent="MapLocation3"]
+scale = Vector2(0.260194, 0.260194)
+texture = ExtResource("5_twdcf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapLocation3"]
+shape = SubResource("CircleShape2D_8px8y")
 
 [node name="MapLocation4" parent="." instance=ExtResource("2_1tail")]
 position = Vector2(414, 412)
-scale = Vector2(0.6, 0.6)
 level = ExtResource("6_cwsf1")
 locked_level_name = "level2"
+location_type_script = null
+
+[node name="Sprite2D" type="Sprite2D" parent="MapLocation4"]
+scale = Vector2(0.500128, 0.500128)
+texture = ExtResource("5_twdcf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapLocation4"]
+shape = SubResource("CircleShape2D_iese1")
 
 [node name="MapLocation5" parent="." instance=ExtResource("2_1tail")]
 position = Vector2(785, 503)
-scale = Vector2(0.4, 0.4)
 level = ExtResource("7_op0kk")
 locked_level_name = "level3"
+location_type_script = null
+
+[node name="Sprite2D" type="Sprite2D" parent="MapLocation5"]
+scale = Vector2(0.313526, 0.313526)
+texture = ExtResource("5_twdcf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapLocation5"]
+shape = SubResource("CircleShape2D_4xb36")
 
 [node name="MapLocation6" parent="." instance=ExtResource("2_1tail")]
 modulate = Color(0.847059, 0, 0, 1)
 position = Vector2(1092, 340)
-scale = Vector2(0.45, 0.45)
 level = ExtResource("8_achlo")
 locked_level_name = "win"
+location_type_script = null
+
+[node name="Sprite2D" type="Sprite2D" parent="MapLocation6"]
+scale = Vector2(0.477275, 0.477275)
+texture = ExtResource("5_twdcf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapLocation6"]
+shape = SubResource("CircleShape2D_iese1")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
