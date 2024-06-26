@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tile_map_brick.tscn" id="1_7xu06"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="2_owwjj"]
-[ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity.tscn" id="4_5j5cm"]
-[ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/clicker_holder.tscn" id="5_iwbtf"]
-[ext_resource type="PackedScene" uid="uid://cp5a5nk8eo6va" path="res://src/level_elements/ag_reenable_area.tscn" id="5_jao0t"]
+[ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity/artificial_gravity.tscn" id="4_5j5cm"]
+[ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/clicker/clicker_holder.tscn" id="5_iwbtf"]
+[ext_resource type="PackedScene" uid="uid://cp5a5nk8eo6va" path="res://src/level_elements/artificial_gravity/ag_reenable_area.tscn" id="5_jao0t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ivvo"]
 radius = 490.065

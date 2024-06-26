@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cp5a5nk8eo6va"]
 
-[ext_resource type="Script" path="res://src/level_elements/ag_reenable_area.gd" id="1_glpvc"]
+[ext_resource type="Script" path="res://src/level_elements/artificial_gravity/ag_reenable_area.gd" id="1_glpvc"]
 
 [node name="AgReenableArea" type="Area2D"]
 collision_layer = 0

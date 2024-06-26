@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://0gkgolv5tsfm"]
 
-[ext_resource type="Script" path="res://src/level_elements/clicker_receiver.gd" id="1_ntpc3"]
-[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/level_elements/clicker_sprite.tscn" id="2_qu2oa"]
+[ext_resource type="Script" path="res://src/level_elements/clicker/clicker_receiver.gd" id="1_ntpc3"]
+[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/level_elements/clicker/clicker_sprite.tscn" id="2_qu2oa"]
 [ext_resource type="Texture2D" uid="uid://b61a0ttyd4ybr" path="res://assets/environment/creator_puzzle/hook-sheet.png" id="3_8335b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eoxif"]
