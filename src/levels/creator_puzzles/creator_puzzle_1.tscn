@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://fl1ublau88my" path="res://assets/environment/test_level/floor.png" id="6_s18f8"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="7_gutnq"]
 [ext_resource type="Texture2D" uid="uid://nl3afbhplomy" path="res://assets/environment/test_level/plyrglow.png" id="8_1yq8e"]
-[ext_resource type="PackedScene" uid="uid://0gkgolv5tsfm" path="res://src/level_elements/clicker/clicker_receiver.tscn" id="8_qags3"]
+[ext_resource type="PackedScene" uid="uid://0gkgolv5tsfm" path="res://src/level_elements/clicker/single_clicker_receiver.tscn" id="8_qags3"]
 [ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity/artificial_gravity.tscn" id="9_fclwj"]
 [ext_resource type="Texture2D" uid="uid://bo7erajxsocyl" path="res://assets/environment/creator_puzzle/ag_glow.png" id="10_seffm"]
 [ext_resource type="Texture2D" uid="uid://crv5nu2k05ddm" path="res://assets/environment/creator_puzzle/ag_core.png" id="11_0ou27"]
