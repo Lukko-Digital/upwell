@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player.tscn" id="1_8n3xw"]
 [ext_resource type="Script" path="res://src/map/map.gd" id="1_ithwi"]
-[ext_resource type="PackedScene" uid="uid://ql7gm3yuyicr" path="res://src/map/map_location.tscn" id="2_1tail"]
 [ext_resource type="PackedScene" uid="uid://5m5se54m7bsd" path="res://src/levels/creator_puzzles/creator_puzzle_1.tscn" id="3_7gyr0"]
+[ext_resource type="PackedScene" uid="uid://ql7gm3yuyicr" path="res://src/map/map_level.tscn" id="3_gauuw"]
 [ext_resource type="PackedScene" uid="uid://cfljhh1nxifqe" path="res://src/levels/creator_puzzles/creator_puzzle_0.tscn" id="3_kwmnh"]
 [ext_resource type="PackedScene" uid="uid://cubg5maeimkki" path="res://src/levels/creator_puzzles/dad_level.tscn" id="3_s3bh4"]
 [ext_resource type="PackedScene" uid="uid://bfsfftagdiqxe" path="res://src/levels/creator_puzzles/creator_puzzle_0a.tscn" id="4_2bob3"]
@@ -48,11 +48,9 @@ position = Vector2(-280, -168)
 
 [node name="Camera2D" type="Camera2D" parent="MapPlayer"]
 
-[node name="DadLevel" parent="." instance=ExtResource("2_1tail")]
+[node name="DadLevel" parent="." instance=ExtResource("3_gauuw")]
 position = Vector2(-280, -168)
 level = ExtResource("3_s3bh4")
-locked_level_name = null
-location_type_script = null
 
 [node name="Sprite2D" type="Sprite2D" parent="DadLevel"]
 scale = Vector2(0.5, 0.5)
@@ -61,82 +59,75 @@ texture = ExtResource("5_twdcf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DadLevel"]
 shape = SubResource("CircleShape2D_iese1")
 
-[node name="MapLocation" parent="." instance=ExtResource("2_1tail")]
+[node name="Level1" parent="." instance=ExtResource("3_gauuw")]
 level = ExtResource("3_kwmnh")
-locked_level_name = null
-location_type_script = null
 
-[node name="Sprite2D" type="Sprite2D" parent="MapLocation"]
+[node name="Sprite2D" type="Sprite2D" parent="Level1"]
 scale = Vector2(0.331108, 0.331108)
 texture = ExtResource("5_twdcf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MapLocation"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level1"]
 shape = SubResource("CircleShape2D_yy1hu")
 
-[node name="MapLocation2" parent="." instance=ExtResource("2_1tail")]
+[node name="Level2" parent="." instance=ExtResource("3_gauuw")]
 position = Vector2(326, -246)
-level = ExtResource("4_2bob3")
 locked_level_name = "level0a"
-location_type_script = null
+level = ExtResource("4_2bob3")
 
-[node name="Sprite2D" type="Sprite2D" parent="MapLocation2"]
+[node name="Sprite2D" type="Sprite2D" parent="Level2"]
 scale = Vector2(0.399165, 0.399165)
 texture = ExtResource("5_twdcf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MapLocation2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level2"]
 shape = SubResource("CircleShape2D_25owq")
 
-[node name="MapLocation3" parent="." instance=ExtResource("2_1tail")]
+[node name="Level3" parent="." instance=ExtResource("3_gauuw")]
 position = Vector2(526, 65)
-level = ExtResource("3_7gyr0")
 locked_level_name = "level1"
-location_type_script = null
+level = ExtResource("3_7gyr0")
 
-[node name="Sprite2D" type="Sprite2D" parent="MapLocation3"]
+[node name="Sprite2D" type="Sprite2D" parent="Level3"]
 scale = Vector2(0.260194, 0.260194)
 texture = ExtResource("5_twdcf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MapLocation3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level3"]
 shape = SubResource("CircleShape2D_8px8y")
 
-[node name="MapLocation4" parent="." instance=ExtResource("2_1tail")]
+[node name="Level4" parent="." instance=ExtResource("3_gauuw")]
 position = Vector2(414, 412)
-level = ExtResource("6_cwsf1")
 locked_level_name = "level2"
-location_type_script = null
+level = ExtResource("6_cwsf1")
 
-[node name="Sprite2D" type="Sprite2D" parent="MapLocation4"]
+[node name="Sprite2D" type="Sprite2D" parent="Level4"]
 scale = Vector2(0.500128, 0.500128)
 texture = ExtResource("5_twdcf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MapLocation4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level4"]
 shape = SubResource("CircleShape2D_iese1")
 
-[node name="MapLocation5" parent="." instance=ExtResource("2_1tail")]
+[node name="Level5" parent="." instance=ExtResource("3_gauuw")]
 position = Vector2(785, 503)
-level = ExtResource("7_op0kk")
 locked_level_name = "level3"
-location_type_script = null
+level = ExtResource("7_op0kk")
 
-[node name="Sprite2D" type="Sprite2D" parent="MapLocation5"]
+[node name="Sprite2D" type="Sprite2D" parent="Level5"]
 scale = Vector2(0.313526, 0.313526)
 texture = ExtResource("5_twdcf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MapLocation5"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level5"]
 shape = SubResource("CircleShape2D_4xb36")
 
-[node name="MapLocation6" parent="." instance=ExtResource("2_1tail")]
+[node name="End" parent="." instance=ExtResource("3_gauuw")]
 modulate = Color(0.847059, 0, 0, 1)
 position = Vector2(1092, 340)
-level = ExtResource("8_achlo")
 locked_level_name = "win"
-location_type_script = null
+level = ExtResource("8_achlo")
 
-[node name="Sprite2D" type="Sprite2D" parent="MapLocation6"]
+[node name="Sprite2D" type="Sprite2D" parent="End"]
 scale = Vector2(0.477275, 0.477275)
 texture = ExtResource("5_twdcf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MapLocation6"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="End"]
 shape = SubResource("CircleShape2D_iese1")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
