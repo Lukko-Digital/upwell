@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://diahbkrkxdoj3"]
+[gd_scene load_steps=23 format=3 uid="uid://diahbkrkxdoj3"]
 
 [ext_resource type="Texture2D" uid="uid://dqaefix7e65sy" path="res://assets/environment/creator_puzzle/tablet_large_1.png" id="1_y73t0"]
 [ext_resource type="Texture2D" uid="uid://cd843374n1h0y" path="res://assets/environment/test_level/Layer 20.png" id="2_1lbur"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bye5kyi5emai6" path="res://assets/environment/creator_puzzle/rope_3.png" id="6_1nnys"]
 [ext_resource type="Texture2D" uid="uid://dlrcluufkhr1s" path="res://assets/environment/creator_puzzle/bg_focus.png" id="7_5u3o1"]
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/clicker_holder.tscn" id="8_1a3v2"]
+[ext_resource type="PackedScene" uid="uid://0gkgolv5tsfm" path="res://src/level_elements/clicker_receiver.tscn" id="8_6lpph"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="9_vcqhu"]
 [ext_resource type="Texture2D" uid="uid://nl3afbhplomy" path="res://assets/environment/test_level/plyrglow.png" id="10_24etk"]
 [ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity.tscn" id="11_b0kjg"]
@@ -208,11 +209,10 @@ rotation = -3.14159
 scale = Vector2(3.233, -3.233)
 texture = ExtResource("7_5u3o1")
 
-[node name="ClickerHolder2" parent="." instance=ExtResource("8_1a3v2")]
-position = Vector2(323, -4356)
-rotation = -3.12217
-has_clicker = false
-unlocks_level = "win"
+[node name="ClickerReceiver" parent="." instance=ExtResource("8_6lpph")]
+position = Vector2(322, -4356)
+rotation = 3.14159
+unlocks_level = 6
 
 [node name="ClickerHolder" parent="." instance=ExtResource("8_1a3v2")]
 position = Vector2(951, 238)
