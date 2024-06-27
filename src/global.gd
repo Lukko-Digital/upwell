@@ -1,6 +1,9 @@
 extends Node
 
 var player_has_clicker = false
+enum DrillHeatLevel {COOL, MEDIUM, HOT}
+var drill_heat: DrillHeatLevel = DrillHeatLevel.COOL
+
 var clicker_state = {}
 var level_unlocks = {}
 var npc_conversation_state = {}

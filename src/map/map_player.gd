@@ -10,6 +10,17 @@ class_name MapPlayer
 var moving = false
 var destination: MapLevel
 
+var drill_heat: float = 0:
+	set(value):
+		drill_heat = value
+		heat_bar.value = value
+		if value < heat_bar.max_value / 2:
+			Global.drill_heat = Global.DrillHeatLevel.COOL
+		elif value < heat_bar.max_value:
+			Global.drill_heat = Global.DrillHeatLevel.MEDIUM
+		else:
+			Global.drill_heat = Global.DrillHeatLevel.HOT
+
 const SPEED: float = 400
 
 func _process(delta: float) -> void:
@@ -22,13 +33,13 @@ func _process(delta: float) -> void:
 			line.set_point_position(1, destination.global_position - global_position)
 
 		if coolant_bar.value > 0:
-			coolant_bar.set_deferred("value", coolant_bar.value - delta * 50)
-			if heat_bar.value < heat_bar.max_value / 2:
-				heat_bar.set_deferred("value", heat_bar.value + delta * 50)
-		elif heat_bar.value < heat_bar.max_value:
-			heat_bar.set_deferred("value", heat_bar.value + delta * 50)
-	else:
-		heat_bar.set_deferred("value", heat_bar.value - delta * 10)
+			coolant_bar.value -= delta * 50
+			if drill_heat < heat_bar.max_value / 2:
+				drill_heat += delta * 50
+		elif drill_heat < heat_bar.max_value:
+			drill_heat += delta * 50
+	elif drill_heat > 0:
+		drill_heat -= delta * 10
 
 	if heat_bar.value == heat_bar.max_value:
 		recall()
@@ -52,7 +63,7 @@ func location_selected(location: MapLevel):
 	moving = true
 
 func enter_coolant_pocket() -> void:
-	heat_bar.set_deferred("value", 0)
+	drill_heat = 0
 
 func end_movement() -> void:
 	moving = false
@@ -61,6 +72,6 @@ func end_movement() -> void:
 
 func recall() -> void:
 	global_position = starting_position
-	heat_bar.set_deferred("value", 0)
-	coolant_bar.set_deferred("value", coolant_bar.max_value)
+	drill_heat = 0
+	coolant_bar.value = coolant_bar.max_value
 	end_movement()
