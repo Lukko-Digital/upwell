@@ -7,6 +7,8 @@ class_name ClickerHolder
 
 @onready var id: String = owner.name + name
 
+signal clicker_state_changed(holder: ClickerHolder, has_clicker: bool)
+
 var has_clicker: bool:
 	set = _set_has_clicker
 
@@ -28,6 +30,9 @@ func interact(player: Player):
 func interact_condition(player: Player):
 	return has_clicker != player.has_clicker
 
+func drop_clicker():
+	has_clicker = false
+
 func _set_has_clicker(value: bool):
 	clicker_sprite.visible = value
 	if value:
@@ -36,3 +41,4 @@ func _set_has_clicker(value: bool):
 		hook_sheet.frame = 1
 	has_clicker = value
 	Global.clicker_state[id] = value
+	clicker_state_changed.emit(self, value)
