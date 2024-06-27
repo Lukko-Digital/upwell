@@ -6,6 +6,7 @@ class_name ClickerHolder
 @export var hook_sheet: Sprite2D
 
 @onready var id: String = owner.name + name
+@onready var clicker_scene: PackedScene = preload ("res://src/level_elements/clicker/clicker.tscn")
 
 signal clicker_state_changed(holder: ClickerHolder, has_clicker: bool)
 
@@ -30,8 +31,13 @@ func interact(player: Player):
 func interact_condition(player: Player):
 	return has_clicker != player.has_clicker
 
-func drop_clicker():
+func drop_clicker(clicker_parent: Node2D):
+	if !has_clicker:
+		return
 	has_clicker = false
+	var instance: RigidBody2D = clicker_scene.instantiate()
+	instance.global_position = clicker_sprite.global_position
+	clicker_parent.add_child(instance)
 
 func _set_has_clicker(value: bool):
 	clicker_sprite.visible = value

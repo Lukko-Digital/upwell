@@ -41,7 +41,7 @@ func _receiver_state_changed(_receiver: ClickerHolder, has_clicker: bool):
 
 func _on_countdown_timer_timeout() -> void:
     for receiver in receivers:
-        receiver.drop_clicker()
+        receiver.drop_clicker(get_parent())
     countdown_bar.modulate = Color.RED
     await get_tree().create_timer(1).timeout
     countdown_bar.modulate = Color.WHITE
