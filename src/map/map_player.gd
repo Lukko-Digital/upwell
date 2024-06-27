@@ -48,3 +48,6 @@ func location_selected(location: MapLevel):
 		return
 	destination = location
 	moving = true
+
+func enter_coolant_pocket() -> void:
+	heat_bar.set_deferred("value", 0)

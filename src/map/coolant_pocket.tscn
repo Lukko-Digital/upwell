@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bke4dorpjm7yp"]
+
+[ext_resource type="Script" path="res://src/map/coolant_pocket.gd" id="1_f6bxe"]
+
+[node name="CoolantPocket" type="Area2D"]
+script = ExtResource("1_f6bxe")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
