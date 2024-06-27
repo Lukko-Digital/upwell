@@ -27,5 +27,4 @@ func _on_area_entered(area: Area2D):
 		return
 	
 	area.has_clicker = true
-	area.enable_ags()
 	body.queue_free()
