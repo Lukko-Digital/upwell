@@ -5,6 +5,7 @@ class_name MapPlayer
 
 @onready var coolant_bar: ProgressBar = $CanvasLayer/Coolant
 @onready var heat_bar: ProgressBar = $CanvasLayer/Heat
+@onready var starting_position: Vector2 = global_position
 
 var moving = false
 var destination: MapLevel
@@ -16,9 +17,7 @@ func _process(delta: float) -> void:
 		global_position = global_position.move_toward(destination.global_position, SPEED * delta)
 
 		if global_position.distance_to(destination.global_position) < 1:
-			moving = false
-			if line.get_point_count() > 1:
-				line.remove_point(1)
+			end_movement()
 		else:
 			line.set_point_position(1, destination.global_position - global_position)
 
@@ -30,6 +29,9 @@ func _process(delta: float) -> void:
 			heat_bar.set_deferred("value", heat_bar.value + delta * 50)
 	else:
 		heat_bar.set_deferred("value", heat_bar.value - delta * 10)
+
+	if heat_bar.value == heat_bar.max_value:
+		recall()
 
 func location_hovered(location: MapLevel):
 	if moving:
@@ -51,3 +53,14 @@ func location_selected(location: MapLevel):
 
 func enter_coolant_pocket() -> void:
 	heat_bar.set_deferred("value", 0)
+
+func end_movement() -> void:
+	moving = false
+	if line.get_point_count() > 1:
+		line.remove_point(1)
+
+func recall() -> void:
+	global_position = starting_position
+	heat_bar.set_deferred("value", 0)
+	coolant_bar.set_deferred("value", coolant_bar.max_value)
+	end_movement()
