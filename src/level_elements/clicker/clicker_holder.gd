@@ -37,6 +37,7 @@ func drop_clicker(clicker_parent: Node2D):
 	has_clicker = false
 	var instance: ClickerBody = clicker_scene.instantiate()
 	instance.global_position = clicker_sprite.global_position
+	instance.catchable = false
 	clicker_parent.add_child(instance)
 
 func _set_has_clicker(value: bool):

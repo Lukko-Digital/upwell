@@ -20,7 +20,7 @@ shape = SubResource("CircleShape2D_aqd0u")
 
 [node name="Interactable" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 10
+collision_mask = 2
 script = ExtResource("2_ytaly")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
@@ -41,3 +41,14 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GravityDetector"]
 position = Vector2(0, -38)
 shape = SubResource("CircleShape2D_aqd0u")
+
+[node name="HolderDetector" type="Area2D" parent="."]
+position = Vector2(0, 38)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HolderDetector"]
+position = Vector2(0, -38)
+shape = SubResource("CircleShape2D_aqd0u")
+
+[connection signal="area_entered" from="HolderDetector" to="." method="_on_holder_detector_area_entered"]
