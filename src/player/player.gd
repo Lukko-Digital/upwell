@@ -135,6 +135,11 @@ func calculate_speed_coef():
 	if has_drill:
 		speed_coef *= DRILL.SLOWDOWN
 
+func handle_artificial_gravity(delta) -> GravityState:
+	if not has_clicker:
+		return GravityState.NONE
+	return super(delta)
+
 # Returns x input direction to be used by animation handler
 func handle_movement(delta: float, gravity_state: GravityState) -> float:
 	var top_speed = PLAYER.SPEED * speed_coef
