@@ -1,5 +1,5 @@
 extends Interactable
-class_name Clicker
+class_name ClickerInteractable
 
 @onready var body: RigidBody2D = get_parent()
 

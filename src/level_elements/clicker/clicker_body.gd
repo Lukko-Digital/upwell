@@ -1,0 +1,2 @@
+extends GravitizedBody
+class_name ClickerBody
