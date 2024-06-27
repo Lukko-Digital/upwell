@@ -230,9 +230,7 @@ func handle_throw_arc():
 		return
 	throw_arc_line.clear_points()
 	var pos = Vector2.ZERO
-	var dir = (get_global_mouse_position() - global_position).normalized()
-	# The throw is slightly slower than the projected arc, so we multiply the arc velocity by a factor of 0.97
-	var vel = dir * PLAYER.THROW_VELOCITY * 0.97
+	var vel = (get_global_mouse_position() - global_position).normalized() * PLAYER.THROW_VELOCITY
 	var delta = get_physics_process_delta_time()
 	var world_physics := get_world_2d().direct_space_state
 	var query := PhysicsPointQueryParameters2D.new()
