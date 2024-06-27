@@ -1,7 +1,7 @@
 extends Interactable
 class_name ClickerInteractable
 
-@onready var body: RigidBody2D = get_parent()
+@onready var body: ClickerBody = get_parent()
 
 func _ready() -> void:
 	super()

@@ -215,9 +215,9 @@ func throw():
 		return
 	has_clicker = false
 	var dir = (get_global_mouse_position() - global_position).normalized()
-	var instance: RigidBody2D = clicker_scene.instantiate()
+	var instance: ClickerBody = clicker_scene.instantiate()
 	instance.global_position = global_position
-	instance.set_axis_velocity(dir * PLAYER.THROW_VELOCITY)
+	instance.velocity = dir * PLAYER.THROW_VELOCITY
 	get_parent().add_child(instance)
 
 func handle_throw_arc():
