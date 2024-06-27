@@ -12,3 +12,8 @@ func _physics_process(delta: float) -> void:
 	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
 	if collision:
 		velocity = velocity.bounce(collision.get_normal()) * BOUNCE_AMOUNT
+
+func handle_artificial_gravity(delta: float):
+	if !Global.player_has_clicker:
+		return GravityState.NONE
+	return super(delta)
