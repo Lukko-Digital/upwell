@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://diahbkrkxdoj3"]
+[gd_scene load_steps=25 format=3 uid="uid://diahbkrkxdoj3"]
 
 [ext_resource type="Texture2D" uid="uid://dqaefix7e65sy" path="res://assets/environment/creator_puzzle/tablet_large_1.png" id="1_y73t0"]
 [ext_resource type="Texture2D" uid="uid://cd843374n1h0y" path="res://assets/environment/test_level/Layer 20.png" id="2_1lbur"]
@@ -7,13 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://c0vw8hk7cm6yg" path="res://assets/environment/creator_puzzle/tablet_large_2.png" id="5_cmnsc"]
 [ext_resource type="Texture2D" uid="uid://bye5kyi5emai6" path="res://assets/environment/creator_puzzle/rope_3.png" id="6_1nnys"]
 [ext_resource type="Texture2D" uid="uid://dlrcluufkhr1s" path="res://assets/environment/creator_puzzle/bg_focus.png" id="7_5u3o1"]
-[ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/clicker_holder.tscn" id="8_1a3v2"]
+[ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/clicker/clicker_holder.tscn" id="8_1a3v2"]
+[ext_resource type="PackedScene" uid="uid://0gkgolv5tsfm" path="res://src/level_elements/clicker/single_clicker_receiver.tscn" id="8_6lpph"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="9_vcqhu"]
 [ext_resource type="Texture2D" uid="uid://nl3afbhplomy" path="res://assets/environment/test_level/plyrglow.png" id="10_24etk"]
-[ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity.tscn" id="11_b0kjg"]
+[ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity/artificial_gravity.tscn" id="11_b0kjg"]
 [ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tile_map_brick.tscn" id="14_aackl"]
 [ext_resource type="PackedScene" uid="uid://b8eqhjjr143c4" path="res://src/player/drill.tscn" id="14_k8ldc"]
 [ext_resource type="Texture2D" uid="uid://cxcdidrqtq5vu" path="res://assets/environment/test_level/bricks_TM.png" id="15_wjfeo"]
+[ext_resource type="PackedScene" uid="uid://cp5a5nk8eo6va" path="res://src/level_elements/artificial_gravity/ag_reenable_area.tscn" id="16_2ng33"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x311i"]
 shader = ExtResource("3_rg67b")
@@ -139,6 +141,9 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_g0oya")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cvny"]
+size = Vector2(3169, 20)
+
 [node name="Puzzle3" type="Node2D"]
 
 [node name="-3" type="CanvasLayer" parent="."]
@@ -208,11 +213,10 @@ rotation = -3.14159
 scale = Vector2(3.233, -3.233)
 texture = ExtResource("7_5u3o1")
 
-[node name="ClickerHolder2" parent="." instance=ExtResource("8_1a3v2")]
-position = Vector2(323, -4356)
-rotation = -3.12217
-has_clicker = false
-unlocks_level = "win"
+[node name="ClickerReceiver" parent="." instance=ExtResource("8_6lpph")]
+position = Vector2(322, -4356)
+rotation = 3.14159
+unlocks_level = 6
 
 [node name="ClickerHolder" parent="." instance=ExtResource("8_1a3v2")]
 position = Vector2(951, 238)
@@ -277,3 +281,10 @@ autowrap_mode = 0
 position = Vector2(-1338, 182)
 rotation = 1.5708
 in_wall = true
+
+[node name="AgReenableArea" parent="." instance=ExtResource("16_2ng33")]
+position = Vector2(1283, 569)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AgReenableArea"]
+position = Vector2(-1574.5, -215)
+shape = SubResource("RectangleShape2D_3cvny")

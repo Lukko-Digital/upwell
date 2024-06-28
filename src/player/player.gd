@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends GravitizedBody
 class_name Player
 
 const PLAYER = {
@@ -24,17 +24,6 @@ const DRILL = {
 	INSERT_WALL_DISTANCE = 250,
 }
 
-const ARTIFICIAL_GRAVITY = {
-	PUSHPULL_SPEED = 3000.0,
-	ACCELERATION = 4.0, # lerp acceleration, unitless
-	ORBIT_SPEED = 1500.0,
-	BOOST_VELOCITY = 3000.0,
-	NUDGE_DISTANCE = 50.0,
-	NUDGE_ACCELERATION = 0.1, # lerp acceleration, unitless
-}
-
-enum GravityState {NONE, PUSHPULL, ORBIT}
-
 @export var has_drill: bool = true:
 	set(value):
 		$DrillSprite.visible = value
@@ -42,7 +31,6 @@ enum GravityState {NONE, PUSHPULL, ORBIT}
 
 @export_group("Node References")
 @export var sprite: AnimatedSprite2D
-@export var gravity_detector: Area2D
 @export var interactable_detector: Area2D
 @export var drill_detector: Area2D
 @export var wall_ray_cast: RayCast2D
@@ -52,11 +40,9 @@ enum GravityState {NONE, PUSHPULL, ORBIT}
 @export var throw_arc_line: Line2D
 
 @onready var drill_scene: PackedScene = preload ("res://src/player/drill.tscn")
-@onready var clicker_scene: PackedScene = preload ("res://src/level_elements/clicker.tscn")
+@onready var clicker_scene: PackedScene = preload ("res://src/level_elements/clicker/clicker.tscn")
 
 var game: Game
-
-var world_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 ## -------------------------- PLAYER STATE VARIABLES --------------------------
 
@@ -85,13 +71,6 @@ var highlighted_interactable: Interactable = null:
 		if highlighted_interactable != null:
 			highlighted_interactable.highlighted = true
 
-var nudge_position: Vector2 = Vector2.ZERO:
-	set(value):
-		$NudgePosition.position = value
-		nudge_position = value
-
-var speed_coef: float = 1
-
 ### ------------------------------ CORE ------------------------------
 
 func _ready() -> void:
@@ -109,7 +88,7 @@ func _physics_process(delta):
 		return
 	calculate_speed_coef()
 	var gravity_state: GravityState = handle_artificial_gravity(delta)
-	handle_world_gravity(delta, gravity_state)
+	handle_world_gravity(delta, gravity_state, PLAYER.MAX_FALL_SPEED)
 	var input_dir = handle_movement(delta, gravity_state)
 	handle_animation(input_dir)
 	move_and_slide()
@@ -155,69 +134,11 @@ func calculate_speed_coef():
 	speed_coef = 1
 	if has_drill:
 		speed_coef *= DRILL.SLOWDOWN
- 
-# Return true if attracting or repelling, false otherwise
+
 func handle_artificial_gravity(delta) -> GravityState:
-	# Check for clicker
 	if not has_clicker:
 		return GravityState.NONE
-
-	# Check that player is in an AG
-	var gravity_regions: Array[Area2D] = gravity_detector.get_overlapping_areas()
-	if gravity_regions.is_empty():
-		return GravityState.NONE
-	
-	# Check the AG is enabled
-	var gravity_well: ArtificialGravity = gravity_regions[0]
-	if not gravity_well.enabled:
-		return GravityState.NONE
-	
-	var vec_to_gravity = gravity_well.global_position - global_position
-
-	# Boost
-	if Input.is_action_just_pressed("boost"):
-		velocity = (-vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.BOOST_VELOCITY * speed_coef
-		gravity_well.disable()
-		return GravityState.NONE
-
-	# Check the player is inputting a mouse click
-	var attracting = Input.is_action_pressed("attract")
-	var repelling = Input.is_action_pressed("repel")
-	if not (attracting or repelling):
-		return GravityState.NONE
-
-	match gravity_well.type:
-		ArtificialGravity.AGTypes.PUSHPULL:
-			# Push and pull
-			var active_direction = Vector2.ZERO
-			if attracting:
-				active_direction += vec_to_gravity.normalized()
-			if repelling:
-				active_direction += (-vec_to_gravity + nudge_position).normalized()
-			velocity = velocity.lerp(
-				active_direction * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED * speed_coef,
-				ARTIFICIAL_GRAVITY.ACCELERATION * delta
-			)
-			return GravityState.PUSHPULL
-
-		ArtificialGravity.AGTypes.ORBIT:
-			# Orbit
-			var active_direction = Vector2.ZERO
-			if attracting:
-				# Right click, clockwise
-				active_direction = vec_to_gravity.orthogonal().normalized()
-			if repelling:
-				# Left click, counterclockwise
-				active_direction = -vec_to_gravity.orthogonal().normalized()
-			velocity = active_direction * ARTIFICIAL_GRAVITY.ORBIT_SPEED * speed_coef
-			return GravityState.ORBIT
-	return GravityState.NONE
-
-func handle_world_gravity(delta: float, gravity_state: GravityState):
-	if gravity_state == GravityState.ORBIT:
-		return
-	if not is_on_floor():
-		velocity.y = move_toward(velocity.y, PLAYER.MAX_FALL_SPEED, world_gravity * delta)
+	return super(delta)
 
 # Returns x input direction to be used by animation handler
 func handle_movement(delta: float, gravity_state: GravityState) -> float:
@@ -229,14 +150,8 @@ func handle_movement(delta: float, gravity_state: GravityState) -> float:
 		velocity.x = move_toward(velocity.x, 0, PLAYER.FRICTION_DECEL * delta)
 
 	# nudge input
-	if gravity_state == GravityState.PUSHPULL:
-		var nudge_input = Input.get_vector("left", "right", "up", "down")
-		nudge_position = nudge_position.lerp(
-			nudge_input * ARTIFICIAL_GRAVITY.NUDGE_DISTANCE,
-			ARTIFICIAL_GRAVITY.NUDGE_ACCELERATION
-		)
+	if handle_nudge(gravity_state):
 		return 0
-	nudge_position = nudge_position.lerp(Vector2.ZERO, ARTIFICIAL_GRAVITY.NUDGE_ACCELERATION)
 
 	# walking & air strafing
 	var direction = Input.get_axis("left", "right")
@@ -291,19 +206,24 @@ func handle_nearby_interactables():
 		)
 		highlighted_interactable = nearby_interactables[0]
 
+func spawn_clicker(initial_velocity: Vector2=Vector2.ZERO):
+	has_clicker = false
+	var instance: ClickerBody = clicker_scene.instantiate()
+	instance.global_position = global_position
+	instance.velocity = initial_velocity
+	get_parent().add_child(instance)
+
 func interact():
 	if highlighted_interactable != null:
 		highlighted_interactable.interact(self)
+	elif has_clicker:
+		spawn_clicker()
 
 func throw():
 	if not has_clicker:
 		return
-	has_clicker = false
 	var dir = (get_global_mouse_position() - global_position).normalized()
-	var instance: RigidBody2D = clicker_scene.instantiate()
-	instance.global_position = global_position
-	instance.set_axis_velocity(dir * PLAYER.THROW_VELOCITY)
-	get_parent().add_child(instance)
+	spawn_clicker(dir * PLAYER.THROW_VELOCITY)
 
 func handle_throw_arc():
 	if not (
@@ -315,9 +235,7 @@ func handle_throw_arc():
 		return
 	throw_arc_line.clear_points()
 	var pos = Vector2.ZERO
-	var dir = (get_global_mouse_position() - global_position).normalized()
-	# The throw is slightly slower than the projected arc, so we multiply the arc velocity by a factor of 0.97
-	var vel = dir * PLAYER.THROW_VELOCITY * 0.97
+	var vel = (get_global_mouse_position() - global_position).normalized() * PLAYER.THROW_VELOCITY
 	var delta = get_physics_process_delta_time()
 	var world_physics := get_world_2d().direct_space_state
 	var query := PhysicsPointQueryParameters2D.new()
@@ -386,7 +304,7 @@ func drill_input_held():
 func _on_dialogue_ui_dialogue_finished() -> void:
 	in_dialogue = false
 
-func _on_level_unlocked(_level_name: String):
+func _on_level_unlocked(_level_name: Global.LevelIDs):
 	var ui = $Ui
 	ui.show()
 	await get_tree().create_timer(2).timeout

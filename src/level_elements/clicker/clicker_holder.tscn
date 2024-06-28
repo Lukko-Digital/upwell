@@ -1,16 +1,19 @@
 [gd_scene load_steps=5 format=3 uid="uid://cer8t0kfpov7b"]
 
-[ext_resource type="Script" path="res://src/level_elements/clicker_holder.gd" id="1_rct6y"]
+[ext_resource type="Script" path="res://src/level_elements/clicker/clicker_holder.gd" id="1_rct6y"]
 [ext_resource type="Texture2D" uid="uid://b61a0ttyd4ybr" path="res://assets/environment/creator_puzzle/hook-sheet.png" id="2_eerrr"]
-[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/level_elements/clicker_sprite.tscn" id="3_jmcfb"]
+[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/level_elements/clicker/clicker_sprite.tscn" id="3_jmcfb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eoxif"]
 radius = 173.026
 
-[node name="ClickerHolder" type="Area2D"]
+[node name="ClickerHolder" type="Area2D" node_paths=PackedStringArray("clicker_sprite", "hook_sheet")]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_rct6y")
+starts_with_clicker = true
+clicker_sprite = NodePath("ClickerSprite")
+hook_sheet = NodePath("HookSheet")
 
 [node name="ClickerSprite" parent="." instance=ExtResource("3_jmcfb")]
 position = Vector2(27, -90)
