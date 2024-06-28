@@ -206,19 +206,24 @@ func handle_nearby_interactables():
 		)
 		highlighted_interactable = nearby_interactables[0]
 
+func spawn_clicker(initial_velocity: Vector2=Vector2.ZERO):
+	has_clicker = false
+	var instance: ClickerBody = clicker_scene.instantiate()
+	instance.global_position = global_position
+	instance.velocity = initial_velocity
+	get_parent().add_child(instance)
+
 func interact():
 	if highlighted_interactable != null:
 		highlighted_interactable.interact(self)
+	elif has_clicker:
+		spawn_clicker()
 
 func throw():
 	if not has_clicker:
 		return
-	has_clicker = false
 	var dir = (get_global_mouse_position() - global_position).normalized()
-	var instance: ClickerBody = clicker_scene.instantiate()
-	instance.global_position = global_position
-	instance.velocity = dir * PLAYER.THROW_VELOCITY
-	get_parent().add_child(instance)
+	spawn_clicker(dir * PLAYER.THROW_VELOCITY)
 
 func handle_throw_arc():
 	if not (
