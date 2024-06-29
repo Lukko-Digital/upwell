@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/level_elements/clicker/clicker_sprite.tscn" id="3_okg3f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aqd0u"]
-radius = 28.0179
+radius = 63.0
 
 [node name="Clicker" type="CharacterBody2D" node_paths=PackedStringArray("nudge_sprites", "gravity_detector")]
 collision_layer = 8
@@ -27,10 +27,11 @@ script = ExtResource("2_ytaly")
 shape = SubResource("CircleShape2D_aqd0u")
 
 [node name="InteractLabel" type="Label" parent="Interactable"]
-offset_left = -15.0
-offset_top = -64.0
-offset_right = 25.0
-offset_bottom = -41.0
+offset_left = -36.0
+offset_top = -117.0
+offset_right = 32.0
+offset_bottom = -62.0
+theme_override_font_sizes/font_size = 40
 text = "<E>"
 
 [node name="GravityDetector" type="Area2D" parent="."]
