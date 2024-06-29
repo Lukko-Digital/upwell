@@ -1,7 +1,7 @@
 extends Area2D
 class_name ArtificialGravity
 
-const DEFAULT_RADIUS = 322
+const DEFAULT_RADIUS = 450
 
 enum AGTypes {PUSHPULL, ORBIT}
 
