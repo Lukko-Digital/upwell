@@ -3,7 +3,6 @@ class_name ClickerHolder
 
 @export var starts_with_clicker: bool
 @export var clicker_sprite: Sprite2D
-@export var hook_sheet: Sprite2D
 
 @onready var id: String = owner.name + name
 @onready var clicker_scene: PackedScene = preload ("res://src/level_elements/clicker/clicker.tscn")
@@ -42,10 +41,6 @@ func drop_clicker(clicker_parent: Node2D):
 
 func _set_has_clicker(value: bool):
 	clicker_sprite.visible = value
-	if value:
-		hook_sheet.frame = 0
-	else:
-		hook_sheet.frame = 1
 	has_clicker = value
 	Global.clicker_state[id] = value
 	clicker_state_changed.emit(self, value)
