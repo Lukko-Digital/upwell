@@ -1,6 +1,9 @@
 extends Node
 
+## NULL is not a level but allows receivers to indicate that they do not unlock
+## any level
 enum LevelIDs {
+    NULL,
     DAD,
     L0,
     L0A,

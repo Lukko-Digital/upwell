@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/level_elements/clicker/single_clicker_receiver.gd" id="1_ntpc3"]
 [ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/level_elements/clicker/clicker_sprite.tscn" id="2_qu2oa"]
-[ext_resource type="Texture2D" uid="uid://b61a0ttyd4ybr" path="res://assets/environment/creator_puzzle/hook-sheet.png" id="3_8335b"]
+[ext_resource type="Texture2D" uid="uid://bfkerxs84mdt5" path="res://assets/mvp2_assets/receiver.png" id="3_46r4j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eoxif"]
 radius = 173.026
@@ -14,24 +14,21 @@ script = ExtResource("1_ntpc3")
 clicker_sprite = NodePath("ClickerSprite")
 
 [node name="ClickerSprite" parent="." instance=ExtResource("2_qu2oa")]
-position = Vector2(27, -90)
+position = Vector2(0, -146)
 
 [node name="HookSheet" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
-position = Vector2(0, -3)
-texture = ExtResource("3_8335b")
-hframes = 2
-frame = 1
+texture = ExtResource("3_46r4j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(28, -90)
+position = Vector2(0, -146)
 shape = SubResource("CircleShape2D_eoxif")
 
 [node name="InteractLabel" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.466667)
-offset_left = -22.0
-offset_top = -254.0
-offset_bottom = -231.0
+offset_left = -43.0
+offset_top = -291.0
+offset_right = -15.0
+offset_bottom = -268.0
 scale = Vector2(3.05878, 3.05878)
 text = "<E>"
 horizontal_alignment = 1
