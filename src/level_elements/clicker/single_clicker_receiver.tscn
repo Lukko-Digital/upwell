@@ -7,12 +7,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_eoxif"]
 radius = 173.026
 
-[node name="ClickerReceiver" type="Area2D" node_paths=PackedStringArray("clicker_sprite", "hook_sheet")]
+[node name="ClickerReceiver" type="Area2D" node_paths=PackedStringArray("clicker_sprite")]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_ntpc3")
 clicker_sprite = NodePath("ClickerSprite")
-hook_sheet = NodePath("HookSheet")
 
 [node name="ClickerSprite" parent="." instance=ExtResource("2_qu2oa")]
 position = Vector2(27, -90)
