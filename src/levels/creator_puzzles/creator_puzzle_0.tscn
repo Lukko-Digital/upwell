@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="9_kfbby"]
 [ext_resource type="PackedScene" uid="uid://0gkgolv5tsfm" path="res://src/level_elements/clicker/single_clicker_receiver.tscn" id="10_ntsmp"]
 [ext_resource type="Texture2D" uid="uid://nl3afbhplomy" path="res://assets/environment/test_level/plyrglow.png" id="10_ronlc"]
-[ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity/artificial_gravity.tscn" id="11_gnst2"]
+[ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity/push_pull_ag.tscn" id="11_gnst2"]
 [ext_resource type="PackedScene" uid="uid://b8eqhjjr143c4" path="res://src/player/drill.tscn" id="13_q8g88"]
 [ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tile_map_brick.tscn" id="14_op6ux"]
 [ext_resource type="Texture2D" uid="uid://cxcdidrqtq5vu" path="res://assets/environment/test_level/bricks_TM.png" id="15_fonpk"]
