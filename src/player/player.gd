@@ -26,11 +26,12 @@ const DRILL = {
 
 @export var has_drill: bool = true:
 	set(value):
-		$DrillSprite.visible = value
+		drill_sprite.visible = value
 		has_drill = value
 
 @export_group("Node References")
-@export var sprite: AnimatedSprite2D
+@export var clicker_sprite: Sprite2D
+@export var drill_sprite: Sprite2D
 @export var interactable_detector: Area2D
 @export var drill_detector: Area2D
 @export var wall_ray_cast: RayCast2D
@@ -53,7 +54,7 @@ var in_map: bool = false
 
 var has_clicker: bool:
 	set(value):
-		$NudgePosition/ClickerGlow.visible = value
+		clicker_sprite.visible = value
 		Global.player_has_clicker = value
 		has_clicker = value
 
@@ -89,8 +90,7 @@ func _physics_process(delta):
 	calculate_speed_coef()
 	var gravity_state: GravityState = handle_artificial_gravity(delta)
 	handle_world_gravity(delta, gravity_state, PLAYER.MAX_FALL_SPEED)
-	var input_dir = handle_movement(delta, gravity_state)
-	handle_animation(input_dir)
+	handle_movement(delta, gravity_state)
 	move_and_slide()
 
 func _process(_delta):
@@ -140,8 +140,7 @@ func handle_artificial_gravity(delta) -> GravityState:
 		return GravityState.NONE
 	return super(delta)
 
-# Returns x input direction to be used by animation handler
-func handle_movement(delta: float, gravity_state: GravityState) -> float:
+func handle_movement(delta: float, gravity_state: GravityState):
 	var top_speed = PLAYER.SPEED * speed_coef
 
 	# friction
@@ -151,7 +150,7 @@ func handle_movement(delta: float, gravity_state: GravityState) -> float:
 
 	# nudge input
 	if handle_nudge(gravity_state):
-		return 0
+		return
 
 	# walking & air strafing
 	var direction = Input.get_axis("left", "right")
@@ -162,7 +161,6 @@ func handle_movement(delta: float, gravity_state: GravityState) -> float:
 			top_speed * direction,
 			PLAYER.ACCELERATION * speed_coef * delta
 		)
-	return direction
 
 func jump():
 	if is_on_floor():
@@ -171,24 +169,6 @@ func jump():
 func jump_end():
 	if velocity.y < 0:
 		velocity.y -= PLAYER.JUMP_RELEASE_SLOWDOWN * velocity.y
-
-### --- ANIMATION ---
-
-func handle_animation(direction: float):
-	if direction == 0 or not is_on_floor():
-		if was_moving:
-			if not is_on_floor():
-				sprite.flip_h = !sprite.flip_h
-			sprite.play("stop")
-		else:
-			if sprite.is_playing():
-				return
-			sprite.play("idle")
-		was_moving = false
-	else:
-		sprite.play("run")
-		sprite.flip_h = (direction == - 1)
-		was_moving = true
 
 ### ----------------------------- OBJECT INTERACT -----------------------------
 
@@ -252,7 +232,6 @@ func handle_throw_arc():
 func start_dialogue(npc: NPC):
 	if in_dialogue:
 		return
-	sprite.play("idle")
 	dialogue_ui.start_dialogue(npc)
 	in_dialogue = true
 
@@ -279,7 +258,7 @@ func drill_interact():
 func drill_input_held():
 	if has_drill:
 		# Check if wall
-		var dir = -1 if sprite.flip_h else 1 # false = right, true = left
+		var dir = -1 # if sprite.flip_h else 1 # false = right, true = left
 		wall_ray_cast.target_position.x = dir * DRILL.INSERT_WALL_DISTANCE
 		wall_ray_cast.force_raycast_update()
 		if not wall_ray_cast.is_colliding():

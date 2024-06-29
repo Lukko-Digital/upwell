@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://b8eqhjjr143c4"]
 
 [ext_resource type="Script" path="res://src/player/drill.gd" id="1_tgbg0"]
-[ext_resource type="Texture2D" uid="uid://vg544th7n3ei" path="res://assets/shitty_assets/drill.png" id="2_w4jlx"]
+[ext_resource type="Texture2D" uid="uid://dk75kmxobn14v" path="res://assets/mvp2_assets/drill.png" id="2_qq3ms"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_55bb3"]
 radius = 104.0
-height = 486.0
+height = 754.0
 
 [node name="Drill" type="Area2D"]
 collision_layer = 16
@@ -13,8 +13,7 @@ collision_mask = 2
 script = ExtResource("1_tgbg0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_w4jlx")
+texture = ExtResource("2_qq3ms")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_55bb3")
