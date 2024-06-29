@@ -2,6 +2,13 @@ extends ClickerHolder
 class_name SingleClickerReceiver
 
 @export var unlocks_level: Global.LevelIDs = Global.LevelIDs.NULL
+@export var is_catcher: bool = false
+
+@export var catcher_field: Sprite2D
+
+func _ready() -> void:
+	super()
+	catcher_field.visible = is_catcher
 
 func _set_has_clicker(value: bool):
 	super(value)

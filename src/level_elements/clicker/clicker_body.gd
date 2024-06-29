@@ -23,12 +23,14 @@ func handle_artificial_gravity(delta: float):
 	return super(delta)
 
 func _on_holder_detector_area_entered(area: Area2D) -> void:
-	if not catchable:
-		return
 	if not area is ClickerHolder:
 		return
-	if area.has_clicker:
+	if (
+		not catchable or
+		not area.is_catcher or
+		area.has_clicker
+	):
 		return
-	
+
 	area.has_clicker = true
 	queue_free()
