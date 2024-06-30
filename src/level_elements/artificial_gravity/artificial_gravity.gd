@@ -7,7 +7,7 @@ enum AGTypes {PUSHPULL, ORBIT}
 
 @export var type: AGTypes = AGTypes.PUSHPULL
 
-@onready var glow: Sprite2D = $Glow
+@export var glow: Sprite2D
 
 var enabled: bool = true:
 	set(value):
