@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://blxc41tfrl71a"]
+
+[ext_resource type="Script" path="res://src/level_elements/clicker/holder_button.gd" id="1_bt3xy"]
+[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/level_elements/clicker/clicker_sprite.tscn" id="2_jwopc"]
+[ext_resource type="Texture2D" uid="uid://caaiiawon22gb" path="res://assets/mvp2_assets/holder.png" id="3_oetd0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eoxif"]
+radius = 173.026
+
+[node name="HolderButton" type="Area2D" node_paths=PackedStringArray("clicker_sprite")]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_bt3xy")
+clicker_sprite = NodePath("ClickerSprite")
+
+[node name="ClickerSprite" parent="." instance=ExtResource("2_jwopc")]
+position = Vector2(0, -146)
+
+[node name="HookSheet" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(0, -3)
+texture = ExtResource("3_oetd0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -146)
+shape = SubResource("CircleShape2D_eoxif")
+
+[node name="InteractLabel" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.466667)
+offset_left = -43.0
+offset_top = -291.0
+offset_right = -15.0
+offset_bottom = -268.0
+scale = Vector2(3.05878, 3.05878)
+text = "<E>"
+horizontal_alignment = 1

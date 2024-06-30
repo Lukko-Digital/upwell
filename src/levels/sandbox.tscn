@@ -1,17 +1,31 @@
-[gd_scene load_steps=9 format=3 uid="uid://dcf1k6whcfars"]
+[gd_scene load_steps=13 format=3 uid="uid://dcf1k6whcfars"]
 
 [ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tile_map_brick.tscn" id="1_7xu06"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="2_owwjj"]
-[ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity/push_pull_ag.tscn" id="4_5j5cm"]
+[ext_resource type="Script" path="res://src/level_elements/artificial_gravity/one_button_pathfollow.gd" id="5_8wqs5"]
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/clicker/clicker_holder.tscn" id="5_iwbtf"]
 [ext_resource type="PackedScene" uid="uid://cp5a5nk8eo6va" path="res://src/level_elements/artificial_gravity/ag_reenable_area.tscn" id="5_jao0t"]
-[ext_resource type="PackedScene" uid="uid://0gkgolv5tsfm" path="res://src/level_elements/clicker/clicker_receiver.tscn" id="6_ll5io"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_4ivvo"]
-radius = 490.065
+[ext_resource type="PackedScene" uid="uid://dw6autb2hsck1" path="res://src/level_elements/artificial_gravity/orbit_ag.tscn" id="5_w3y7t"]
+[ext_resource type="Script" path="res://src/level_elements/artificial_gravity/two_button_pathfollow.gd" id="7_l7kdq"]
+[ext_resource type="PackedScene" uid="uid://blxc41tfrl71a" path="res://src/level_elements/clicker/holder_button.tscn" id="8_lr44w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82j2m"]
 size = Vector2(3628, 20)
+
+[sub_resource type="Curve2D" id="Curve2D_r7bga"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 312, -1070, 0, 0, 0, 0, 1572, -1070)
+}
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x1q0f"]
+radius = 448.938
+
+[sub_resource type="Curve2D" id="Curve2D_gwexh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1649, -1075, 0, 0, 0, 0, -432, -1078)
+}
+point_count = 2
 
 [node name="Main" type="Node2D"]
 
@@ -32,29 +46,54 @@ drag_bottom_margin = 0.0
 
 [node name="ClickerHolder" parent="." instance=ExtResource("5_iwbtf")]
 z_index = -1
-position = Vector2(-410, -136)
-
-[node name="ClickerHolder2" parent="." instance=ExtResource("5_iwbtf")]
-z_index = -1
-position = Vector2(-687, -136)
-
-[node name="ArtificialGravity" parent="." instance=ExtResource("4_5j5cm")]
-position = Vector2(-304, -1144)
-type = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ArtificialGravity"]
-shape = SubResource("CircleShape2D_4ivvo")
+position = Vector2(416, -51)
 
 [node name="AgReenableArea" parent="." instance=ExtResource("5_jao0t")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AgReenableArea"]
 shape = SubResource("RectangleShape2D_82j2m")
 
-[node name="ClickerHolder3" parent="." instance=ExtResource("5_iwbtf")]
-position = Vector2(613, -1786)
-rotation = 3.12778
-starts_with_clicker = false
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_r7bga")
 
-[node name="ClickerReceiver" parent="." instance=ExtResource("6_ll5io")]
-position = Vector2(433, -602)
-is_catcher = true
+[node name="OneButtonPathFollow" type="PathFollow2D" parent="Path2D" node_paths=PackedStringArray("button", "line")]
+position = Vector2(312, -1070)
+loop = false
+script = ExtResource("5_8wqs5")
+button = NodePath("../../HolderButton3")
+line = NodePath("../Line2D")
+
+[node name="OrbitAG" parent="Path2D/OneButtonPathFollow" instance=ExtResource("5_w3y7t")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/OneButtonPathFollow/OrbitAG"]
+shape = SubResource("CircleShape2D_x1q0f")
+
+[node name="Line2D" type="Line2D" parent="Path2D"]
+
+[node name="Path2D2" type="Path2D" parent="."]
+curve = SubResource("Curve2D_gwexh")
+
+[node name="TwoButtonPathFollow" type="PathFollow2D" parent="Path2D2" node_paths=PackedStringArray("forward_button", "backward_button", "line")]
+position = Vector2(-1649, -1075)
+rotation = -0.00246507
+script = ExtResource("7_l7kdq")
+forward_button = NodePath("../../HolderButton2")
+backward_button = NodePath("../../HolderButton")
+line = NodePath("../Line2D")
+
+[node name="OrbitAG" parent="Path2D2/TwoButtonPathFollow" node_paths=PackedStringArray("glow") instance=ExtResource("5_w3y7t")]
+glow = NodePath("../../../Path2D/OneButtonPathFollow/OrbitAG/Glow")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D2/TwoButtonPathFollow/OrbitAG"]
+shape = SubResource("CircleShape2D_x1q0f")
+
+[node name="Line2D" type="Line2D" parent="Path2D2"]
+
+[node name="HolderButton" parent="." instance=ExtResource("8_lr44w")]
+position = Vector2(-1308, -44)
+
+[node name="HolderButton2" parent="." instance=ExtResource("8_lr44w")]
+position = Vector2(-966, -41)
+
+[node name="HolderButton3" parent="." instance=ExtResource("8_lr44w")]
+position = Vector2(1053, -44)
