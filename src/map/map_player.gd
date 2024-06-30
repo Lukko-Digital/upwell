@@ -8,7 +8,12 @@ class_name MapPlayer
 @onready var starting_position: Vector2 = global_position
 
 var moving = false
-var destination: MapLevel
+var velocity: Vector2 = Vector2.ZERO
+
+var destination: MapLevel = null:
+	set(value):
+		destination = value
+		velocity = global_position.direction_to(value.global_position) * SPEED
 
 var drill_heat: float = 0:
 	set(value):
@@ -23,23 +28,23 @@ const COOLANT_USE_RATE = 25
 
 func _process(delta: float) -> void:
 	if moving:
-		global_position = global_position.move_toward(destination.global_position, SPEED * delta)
+		global_position += velocity * delta
 		if global_position.distance_to(destination.global_position) < 1:
 			end_movement()
 		else:
 			line.set_point_position(1, destination.global_position - global_position)
 
-		if coolant_bar.value > 0:
+		if coolant_bar.value > 0: # Reduce coolant and heat drill until it reaches medium threshold
 			coolant_bar.value -= delta * COOLANT_USE_RATE
 			if drill_heat < Global.MEDIUM_DRILL_HEAT:
 				drill_heat += delta * HEAT_RATE
-		elif drill_heat < heat_bar.max_value:
+		elif drill_heat < heat_bar.max_value: # If no coolant heat drill with no threshold
 			drill_heat += delta * HEAT_RATE
 
-	elif drill_heat > 0:
+	elif drill_heat > 0: # When not moving, cool drill
 		drill_heat -= delta * COOL_RATE
 
-	if heat_bar.value == heat_bar.max_value:
+	if heat_bar.value == heat_bar.max_value: # Recall when too hot
 		recall()
 
 func location_hovered(location: MapLevel):
@@ -65,6 +70,7 @@ func enter_coolant_pocket() -> void:
 
 func end_movement() -> void:
 	moving = false
+	velocity = Vector2.ZERO
 	if line.get_point_count() > 1:
 		line.remove_point(1)
 

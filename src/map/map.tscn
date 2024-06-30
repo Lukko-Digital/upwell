@@ -51,6 +51,7 @@ position = Vector2(-280, -168)
 [node name="DadLevel" parent="Levels" instance=ExtResource("3_gauuw")]
 position = Vector2(-280, -168)
 level = ExtResource("3_s3bh4")
+locked_level_name = ""
 
 [node name="Sprite2D" type="Sprite2D" parent="Levels/DadLevel"]
 scale = Vector2(0.5, 0.5)
@@ -61,6 +62,7 @@ shape = SubResource("CircleShape2D_iese1")
 
 [node name="Level1" parent="Levels" instance=ExtResource("3_gauuw")]
 level = ExtResource("3_kwmnh")
+locked_level_name = ""
 
 [node name="Sprite2D" type="Sprite2D" parent="Levels/Level1"]
 scale = Vector2(0.331108, 0.331108)

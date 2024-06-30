@@ -29,4 +29,5 @@ func level_unlocked(level_name: String):
 		show()
 
 func _on_area_entered(_area: Area2D):
+	player.destination = self
 	game.change_level(level)
