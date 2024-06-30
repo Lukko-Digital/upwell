@@ -9,7 +9,7 @@ collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_l7ntd")
 type = 1
-glow = NodePath("")
+glow = NodePath("Glow")
 
 [node name="Core" parent="." instance=ExtResource("2_xnfqp")]
 
