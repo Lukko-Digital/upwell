@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://blxc41tfrl71a"]
 
 [ext_resource type="Script" path="res://src/clicker/holder_button.gd" id="1_bt3xy"]
+[ext_resource type="Texture2D" uid="uid://de6byrwtpbo3" path="res://assets/mvp2_assets/ag_push.png" id="2_01rq7"]
 [ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="2_jwopc"]
-[ext_resource type="Texture2D" uid="uid://caaiiawon22gb" path="res://assets/mvp2_assets/holder.png" id="3_oetd0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eoxif"]
 radius = 173.026
@@ -13,13 +13,15 @@ collision_mask = 2
 script = ExtResource("1_bt3xy")
 clicker_sprite = NodePath("ClickerSprite")
 
-[node name="ClickerSprite" parent="." instance=ExtResource("2_jwopc")]
-position = Vector2(0, -146)
-
 [node name="HookSheet" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 1, 1)
-position = Vector2(0, -3)
-texture = ExtResource("3_oetd0")
+self_modulate = Color(1, 1, 1, 0.478431)
+position = Vector2(0, -146)
+scale = Vector2(2.2638, 2.2638)
+texture = ExtResource("2_01rq7")
+
+[node name="ClickerSprite" parent="." instance=ExtResource("2_jwopc")]
+position = Vector2(0, -146)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -146)
