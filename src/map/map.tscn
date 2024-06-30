@@ -71,8 +71,8 @@ shape = SubResource("CircleShape2D_yy1hu")
 
 [node name="Level2" parent="Levels" instance=ExtResource("3_gauuw")]
 position = Vector2(326, -246)
-locked_level_name = "level0a"
 level = ExtResource("4_2bob3")
+locked_level_name = "level0a"
 
 [node name="Sprite2D" type="Sprite2D" parent="Levels/Level2"]
 scale = Vector2(0.399165, 0.399165)
@@ -83,8 +83,8 @@ shape = SubResource("CircleShape2D_25owq")
 
 [node name="Level3" parent="Levels" instance=ExtResource("3_gauuw")]
 position = Vector2(526, 65)
-locked_level_name = "level1"
 level = ExtResource("3_7gyr0")
+locked_level_name = "level1"
 
 [node name="Sprite2D" type="Sprite2D" parent="Levels/Level3"]
 scale = Vector2(0.260194, 0.260194)
@@ -95,8 +95,8 @@ shape = SubResource("CircleShape2D_8px8y")
 
 [node name="Level4" parent="Levels" instance=ExtResource("3_gauuw")]
 position = Vector2(414, 412)
-locked_level_name = "level2"
 level = ExtResource("6_cwsf1")
+locked_level_name = "level2"
 
 [node name="Sprite2D" type="Sprite2D" parent="Levels/Level4"]
 scale = Vector2(0.500128, 0.500128)
@@ -107,8 +107,8 @@ shape = SubResource("CircleShape2D_iese1")
 
 [node name="Level5" parent="Levels" instance=ExtResource("3_gauuw")]
 position = Vector2(785, 503)
-locked_level_name = "level3"
 level = ExtResource("7_op0kk")
+locked_level_name = "level3"
 
 [node name="Sprite2D" type="Sprite2D" parent="Levels/Level5"]
 scale = Vector2(0.313526, 0.313526)
@@ -120,8 +120,8 @@ shape = SubResource("CircleShape2D_4xb36")
 [node name="End" parent="Levels" instance=ExtResource("3_gauuw")]
 modulate = Color(0.847059, 0, 0, 1)
 position = Vector2(1092, 340)
-locked_level_name = "win"
 level = ExtResource("8_achlo")
+locked_level_name = "win"
 
 [node name="Sprite2D" type="Sprite2D" parent="Levels/End"]
 scale = Vector2(0.477275, 0.477275)

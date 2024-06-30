@@ -13,33 +13,31 @@ var destination: MapLevel
 var drill_heat: float = 0:
 	set(value):
 		drill_heat = value
+		Global.drill_heat = value
 		heat_bar.value = value
-		if value < heat_bar.max_value / 2:
-			Global.drill_heat = Global.DrillHeatLevel.COOL
-		elif value < heat_bar.max_value:
-			Global.drill_heat = Global.DrillHeatLevel.MEDIUM
-		else:
-			Global.drill_heat = Global.DrillHeatLevel.HOT
 
-const SPEED: float = 400
+const SPEED: float = 200
+const HEAT_RATE: float = 25
+const COOL_RATE: float = 5
+const COOLANT_USE_RATE = 25
 
 func _process(delta: float) -> void:
 	if moving:
 		global_position = global_position.move_toward(destination.global_position, SPEED * delta)
-
 		if global_position.distance_to(destination.global_position) < 1:
 			end_movement()
 		else:
 			line.set_point_position(1, destination.global_position - global_position)
 
 		if coolant_bar.value > 0:
-			coolant_bar.value -= delta * 50
-			if drill_heat < heat_bar.max_value / 2:
-				drill_heat += delta * 50
+			coolant_bar.value -= delta * COOLANT_USE_RATE
+			if drill_heat < Global.MEDIUM_DRILL_HEAT:
+				drill_heat += delta * HEAT_RATE
 		elif drill_heat < heat_bar.max_value:
-			drill_heat += delta * 50
+			drill_heat += delta * HEAT_RATE
+
 	elif drill_heat > 0:
-		drill_heat -= delta * 10
+		drill_heat -= delta * COOL_RATE
 
 	if heat_bar.value == heat_bar.max_value:
 		recall()
@@ -57,7 +55,7 @@ func location_unhovered(_location: MapLevel):
 		line.remove_point(1)
 
 func location_selected(location: MapLevel):
-	if moving:
+	if moving or drill_heat > 0:
 		return
 	destination = location
 	moving = true
