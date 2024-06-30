@@ -1,5 +1,5 @@
 extends ClickerHolder
-class_name SingleClickerReceiver
+class_name ClickerReceiver
 
 @export var unlocks_level: Global.LevelIDs = Global.LevelIDs.NULL
 @export var is_catcher: bool = false
