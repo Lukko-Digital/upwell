@@ -1,18 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://dw6autb2hsck1"]
 
 [ext_resource type="Script" path="res://src/level_elements/artificial_gravity/artificial_gravity.gd" id="1_l7ntd"]
-[ext_resource type="Texture2D" uid="uid://ccj65n3hblgh1" path="res://assets/mvp2_assets/ag_orbit.png" id="2_tixh0"]
-[ext_resource type="Texture2D" uid="uid://ceyfrqipxnpj3" path="res://assets/mvp2_assets/field.png" id="3_kwx4q"]
+[ext_resource type="PackedScene" uid="uid://c41e7cium4ple" path="res://src/level_elements/artificial_gravity/orbit_core_sprite.tscn" id="2_xnfqp"]
+[ext_resource type="PackedScene" uid="uid://d4jqyovssydvt" path="res://src/level_elements/artificial_gravity/glow_sprite.tscn" id="3_wxnx4"]
 
 [node name="OrbitAG" type="Area2D" node_paths=PackedStringArray("glow")]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_l7ntd")
 type = 1
-glow = NodePath("Glow")
+glow = NodePath("")
 
-[node name="Core" type="Sprite2D" parent="."]
-texture = ExtResource("2_tixh0")
+[node name="Core" parent="." instance=ExtResource("2_xnfqp")]
 
-[node name="Glow" type="Sprite2D" parent="."]
-texture = ExtResource("3_kwx4q")
+[node name="Glow" parent="." instance=ExtResource("3_wxnx4")]
