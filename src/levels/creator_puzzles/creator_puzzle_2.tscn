@@ -9,7 +9,7 @@
 [ext_resource type="Shader" path="res://src/shaders/blur.gdshader" id="6_n8dk3"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="7_b6tja"]
 [ext_resource type="Texture2D" uid="uid://fl1ublau88my" path="res://assets/environment/test_level/floor.png" id="7_oq5ad"]
-[ext_resource type="PackedScene" uid="uid://0gkgolv5tsfm" path="res://src/level_elements/clicker/single_clicker_receiver.tscn" id="8_6d3h7"]
+[ext_resource type="PackedScene" uid="uid://0gkgolv5tsfm" path="res://src/level_elements/clicker/clicker_receiver.tscn" id="8_6d3h7"]
 [ext_resource type="Texture2D" uid="uid://nl3afbhplomy" path="res://assets/environment/test_level/plyrglow.png" id="8_hv0ed"]
 [ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity/push_pull_ag.tscn" id="9_dxs4s"]
 [ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tile_map_brick.tscn" id="12_0lv80"]
