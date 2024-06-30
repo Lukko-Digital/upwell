@@ -85,7 +85,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("jump"):
 		jump_end()
 	if event.is_action_pressed("map"):
-		game.toggle_map()
+		in_map = game.toggle_map()
 	
 	## The `interact_tap_timer` is the time in which the interact key can be
 	## released in order to count as tapping interact. If the key is held
