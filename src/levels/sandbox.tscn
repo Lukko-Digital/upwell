@@ -34,7 +34,6 @@ layer_0/tile_data = PackedInt32Array(65528, 327680, 1, 65529, 327680, 1, 65530, 
 
 [node name="Player" parent="." instance=ExtResource("2_owwjj")]
 position = Vector2(21, -198)
-has_drill = false
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(16, -543)

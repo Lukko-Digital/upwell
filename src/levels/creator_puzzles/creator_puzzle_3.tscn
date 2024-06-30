@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://diahbkrkxdoj3"]
+[gd_scene load_steps=24 format=3 uid="uid://diahbkrkxdoj3"]
 
 [ext_resource type="Texture2D" uid="uid://dqaefix7e65sy" path="res://assets/environment/creator_puzzle/tablet_large_1.png" id="1_y73t0"]
 [ext_resource type="Texture2D" uid="uid://cd843374n1h0y" path="res://assets/environment/test_level/Layer 20.png" id="2_1lbur"]
@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://nl3afbhplomy" path="res://assets/environment/test_level/plyrglow.png" id="10_24etk"]
 [ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity/push_pull_ag.tscn" id="11_b0kjg"]
 [ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tilemaps/tile_map_brick.tscn" id="14_aackl"]
-[ext_resource type="PackedScene" uid="uid://b8eqhjjr143c4" path="res://src/player/drill.tscn" id="14_k8ldc"]
 [ext_resource type="Texture2D" uid="uid://cxcdidrqtq5vu" path="res://assets/environment/test_level/bricks_TM.png" id="15_wjfeo"]
 [ext_resource type="PackedScene" uid="uid://cp5a5nk8eo6va" path="res://src/level_elements/artificial_gravity/ag_reenable_area.tscn" id="16_2ng33"]
 
@@ -276,11 +275,6 @@ text = "consumes the core with <shift>
       recharge at the anchor"
 fit_content = true
 autowrap_mode = 0
-
-[node name="Drill" parent="." instance=ExtResource("14_k8ldc")]
-position = Vector2(-1338, 182)
-rotation = 1.5708
-in_wall = true
 
 [node name="AgReenableArea" parent="." instance=ExtResource("16_2ng33")]
 position = Vector2(1283, 569)

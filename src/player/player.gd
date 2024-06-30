@@ -14,33 +14,16 @@ const PLAYER = {
 	# Throw
 	THROW_VELOCITY = 3000,
 	ARC_POINTS = 100,
-	INTERACT_HOLD_TIME = 1.0,
 	INTERACT_TAP_TIME = 0.5,
 }
-const DRILL = {
-	SLOWDOWN = 0.3,
-	INPUT_HOLD_TIME = 1.0,
-	INPUT_TAP_TIME = 0.5,
-	INSERT_WALL_DISTANCE = 250,
-}
-
-@export var has_drill: bool = true:
-	set(value):
-		drill_sprite.visible = value
-		has_drill = value
 
 @export_group("Node References")
 @export var clicker_sprite: Sprite2D
-@export var drill_sprite: Sprite2D
 @export var interactable_detector: Area2D
-@export var drill_detector: Area2D
-@export var wall_ray_cast: RayCast2D
 @export var dialogue_ui: DialogueUI
-@export var drill_input_held_timer: Timer
 @export var interact_tap_timer: Timer
 @export var throw_arc_line: Line2D
 
-@onready var drill_scene: PackedScene = preload ("res://src/player/drill.tscn")
 @onready var clicker_scene: PackedScene = preload ("res://src/clicker/clicker.tscn")
 
 var game: Game
@@ -87,7 +70,6 @@ func _ready() -> void:
 func _physics_process(delta):
 	if in_dialogue or in_map:
 		return
-	calculate_speed_coef()
 	var gravity_state: GravityState = handle_artificial_gravity(delta)
 	handle_world_gravity(delta, gravity_state, PLAYER.MAX_FALL_SPEED)
 	handle_movement(delta, gravity_state)
@@ -102,6 +84,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		jump()
 	if event.is_action_released("jump"):
 		jump_end()
+	if event.is_action_pressed("map"):
+		game.toggle_map()
 	
 	## The `interact_tap_timer` is the time in which the interact key can be
 	## released in order to count as tapping interact. If the key is held
@@ -114,26 +98,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			interact_tap_timer.stop()
 		else:
 			throw()
-	
-	## The `drill_input_held_timer` is the time for which the drill key needs to
-	## be held to insert or remove the drill from the wall. If the key is held
-	## for the full duration the drill is inserted or removed from the wall.
-	## If the key is released within the "tap time" it counts as tapping the key
-	## and the drill is put down or picked up, or gotten into, based on the
-	## state of the drill.
-	if event.is_action_pressed("drill"):
-		drill_input_held_timer.start(DRILL.INPUT_HOLD_TIME)
-	if event.is_action_released("drill"):
-		if DRILL.INPUT_HOLD_TIME - drill_input_held_timer.time_left < DRILL.INPUT_TAP_TIME:
-			drill_interact()
-		drill_input_held_timer.stop()
 
 ## ------------------------------ MOVEMENT ------------------------------
-
-func calculate_speed_coef():
-	speed_coef = 1
-	if has_drill:
-		speed_coef *= DRILL.SLOWDOWN
 
 func handle_artificial_gravity(delta) -> GravityState:
 	if not has_clicker:
@@ -234,49 +200,6 @@ func start_dialogue(npc: NPC):
 		return
 	dialogue_ui.start_dialogue(npc)
 	in_dialogue = true
-
-## ------------------------------ DRILL ------------------------------
-
-# On drill input tapped
-func drill_interact():
-	if has_drill:
-		# Put down drill
-		has_drill = false
-		var instance: Drill = drill_scene.instantiate()
-		instance.in_wall = false
-		instance.global_position = global_position
-		get_parent().add_child(instance)
-	else:
-		# Check if drill is nearby and pickup
-		var overlapping_areas = drill_detector.get_overlapping_areas()
-		if overlapping_areas.is_empty():
-			return
-		var drill: Drill = overlapping_areas[0]
-		drill.interact(self)
-
-# Take drill in and out of wall
-func drill_input_held():
-	if has_drill:
-		# Check if wall
-		var dir = -1 # if sprite.flip_h else 1 # false = right, true = left
-		wall_ray_cast.target_position.x = dir * DRILL.INSERT_WALL_DISTANCE
-		wall_ray_cast.force_raycast_update()
-		if not wall_ray_cast.is_colliding():
-			return
-		# Insert into wall
-		has_drill = false
-		var instance: Drill = drill_scene.instantiate()
-		instance.in_wall = true
-		instance.global_position = wall_ray_cast.get_collision_point()
-		instance.rotation_degrees = dir * 90
-		get_parent().add_child(instance)
-	else:
-		# Check if drill is nearby and pickup
-		var overlapping_areas = drill_detector.get_overlapping_areas()
-		if overlapping_areas.is_empty():
-			return
-		var drill: Drill = overlapping_areas[0]
-		drill.remove_from_wall(self)
 
 ## ------------------------------ SIGNAL HANDLES ------------------------------
 

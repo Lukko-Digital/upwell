@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://behbqi0dtsxkv"]
+[gd_scene load_steps=5 format=3 uid="uid://behbqi0dtsxkv"]
 
 [ext_resource type="Texture2D" uid="uid://1dye0h6jrhxe" path="res://assets/shitty_assets/guy.png" id="1_o24qu"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="2_ag62s"]
 [ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tilemaps/tile_map_brick.tscn" id="3_mdelt"]
-[ext_resource type="PackedScene" uid="uid://b8eqhjjr143c4" path="res://src/player/drill.tscn" id="4_i8jgg"]
 
 [sub_resource type="FontFile" id="FontFile_12lok"]
 cache/0/80/0/ascent = 0.0
@@ -43,8 +42,3 @@ has_drill = false
 
 [node name="TileMap" parent="." instance=ExtResource("3_mdelt")]
 layer_0/tile_data = PackedInt32Array(327680, 327680, 1, 393216, 327680, 1, 327681, 327680, 1, 327682, 327680, 1, 393218, 327680, 1, 458752, 327680, 1, 524288, 327680, 1, 524289, 327680, 1, 458754, 327680, 1, 524290, 327680, 1)
-
-[node name="Drill" parent="." instance=ExtResource("4_i8jgg")]
-position = Vector2(346, 1837)
-rotation = 1.5708
-in_wall = true
