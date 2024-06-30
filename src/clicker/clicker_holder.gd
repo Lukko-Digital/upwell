@@ -5,7 +5,7 @@ class_name ClickerHolder
 @export var clicker_sprite: Sprite2D
 
 @onready var id: String = owner.name + name
-@onready var clicker_scene: PackedScene = preload ("res://src/level_elements/clicker/clicker.tscn")
+@onready var clicker_scene: PackedScene = preload ("res://src/clicker/clicker.tscn")
 
 signal clicker_state_changed(holder: ClickerHolder, has_clicker: bool)
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cjtgvuvb40cba"]
 
-[ext_resource type="Script" path="res://src/level_elements/clicker/clicker_body.gd" id="1_ly8d8"]
-[ext_resource type="Script" path="res://src/level_elements/clicker/clicker_interactable.gd" id="2_ytaly"]
-[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/level_elements/clicker/clicker_sprite.tscn" id="3_okg3f"]
+[ext_resource type="Script" path="res://src/clicker/clicker_body.gd" id="1_ly8d8"]
+[ext_resource type="Script" path="res://src/clicker/clicker_interactable.gd" id="2_ytaly"]
+[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="3_okg3f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aqd0u"]
 radius = 63.0

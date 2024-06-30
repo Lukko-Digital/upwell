@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d1el7bfirclj3"]
 
-[ext_resource type="Script" path="res://src/level_elements/clicker/timed_multi_receiver.gd" id="1_de2jg"]
+[ext_resource type="Script" path="res://src/clicker/timed_multi_receiver.gd" id="1_de2jg"]
 [ext_resource type="PackedScene" uid="uid://0gkgolv5tsfm" path="res://src/level_elements/clicker/clicker_receiver.tscn" id="2_tdtwf"]
 [ext_resource type="PackedScene" uid="uid://hxthntbfyogp" path="res://src/level_elements/clicker/timed_multi_receiver_bar.tscn" id="3_y5yge"]
 

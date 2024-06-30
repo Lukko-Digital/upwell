@@ -1,12 +1,12 @@
 [gd_scene load_steps=13 format=3 uid="uid://dcf1k6whcfars"]
 
-[ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tile_map_brick.tscn" id="1_7xu06"]
+[ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tilemaps/tile_map_brick.tscn" id="1_7xu06"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="2_owwjj"]
-[ext_resource type="Script" path="res://src/level_elements/artificial_gravity/one_button_pathfollow.gd" id="5_8wqs5"]
+[ext_resource type="Script" path="res://src/artificial_gravity/one_button_pathfollow.gd" id="5_8wqs5"]
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/clicker/clicker_holder.tscn" id="5_iwbtf"]
 [ext_resource type="PackedScene" uid="uid://cp5a5nk8eo6va" path="res://src/level_elements/artificial_gravity/ag_reenable_area.tscn" id="5_jao0t"]
 [ext_resource type="PackedScene" uid="uid://dw6autb2hsck1" path="res://src/level_elements/artificial_gravity/orbit_ag.tscn" id="5_w3y7t"]
-[ext_resource type="Script" path="res://src/level_elements/artificial_gravity/two_button_pathfollow.gd" id="7_l7kdq"]
+[ext_resource type="Script" path="res://src/artificial_gravity/two_button_pathfollow.gd" id="7_l7kdq"]
 [ext_resource type="PackedScene" uid="uid://blxc41tfrl71a" path="res://src/level_elements/clicker/holder_button.tscn" id="8_lr44w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82j2m"]

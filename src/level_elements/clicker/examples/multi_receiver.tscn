@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://yxi7df8klfwk"]
 
-[ext_resource type="Script" path="res://src/level_elements/clicker/multi_receiver.gd" id="1_swm8w"]
+[ext_resource type="Script" path="res://src/clicker/multi_receiver.gd" id="1_swm8w"]
 [ext_resource type="PackedScene" uid="uid://0gkgolv5tsfm" path="res://src/level_elements/clicker/clicker_receiver.tscn" id="2_eo0fu"]
 
 [node name="MultiReceiver" type="Node2D" node_paths=PackedStringArray("receivers")]

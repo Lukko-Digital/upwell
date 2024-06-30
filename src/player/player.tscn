@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dk75kmxobn14v" path="res://assets/mvp2_assets/drill.png" id="2_6emtl"]
 [ext_resource type="PackedScene" uid="uid://br8qm13yce4pr" path="res://src/dialogue/dialogue_ui.tscn" id="2_cft6f"]
 [ext_resource type="Texture2D" uid="uid://dw7s1u2h3q230" path="res://assets/mvp2_assets/player.png" id="3_u0vu5"]
-[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/level_elements/clicker/clicker_sprite.tscn" id="4_wfmfs"]
+[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="4_wfmfs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_piej1"]
 size = Vector2(154, 506)

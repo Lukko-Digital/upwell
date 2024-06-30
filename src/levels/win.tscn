@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://1dye0h6jrhxe" path="res://assets/shitty_assets/guy.png" id="1_o24qu"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="2_ag62s"]
-[ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tile_map_brick.tscn" id="3_mdelt"]
+[ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tilemaps/tile_map_brick.tscn" id="3_mdelt"]
 [ext_resource type="PackedScene" uid="uid://b8eqhjjr143c4" path="res://src/player/drill.tscn" id="4_i8jgg"]
 
 [sub_resource type="FontFile" id="FontFile_12lok"]
