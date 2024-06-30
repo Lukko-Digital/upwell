@@ -17,7 +17,7 @@ var drill_heat: float = 0:
 		heat_bar.value = value
 
 const SPEED: float = 200
-const HEAT_RATE: float = 25
+const HEAT_RATE: float = 50
 const COOL_RATE: float = 5
 const COOLANT_USE_RATE = 25
 
