@@ -2,7 +2,7 @@ extends MultiReceiver
 class_name TimedMultiReceiver
 
 ## The time you have to insert the reset of the clickers after the first is inserted
-@export var countdown_time: float
+@export var countdown_time: float = 2.0
 @export var countdown_bar: TimedMultiReceiverBar
 
 var completed: bool = false
@@ -27,9 +27,9 @@ func on_completion():
 
 func _receiver_state_changed(_receiver: ClickerHolder, has_clicker: bool):
     if has_clicker:
-        # Clicker inserted
+		# Clicker inserted
         if receivers.all(func(rec): return rec.has_clicker):
-            # All clickers are in
+			# All clickers are in
             on_completion()
         elif countdown_bar.timer.is_stopped():
             countdown_bar.timer.start()

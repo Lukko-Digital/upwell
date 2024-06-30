@@ -2,7 +2,7 @@ extends Node2D
 class_name MultiReceiver
 
 @export var unlocks_level: Global.LevelIDs = Global.LevelIDs.NULL
-@export var receivers: Array[ClickerHolder]
+@export var receivers: Array[ClickerReceiver]
 
 func _ready() -> void:
     for receiver in receivers:

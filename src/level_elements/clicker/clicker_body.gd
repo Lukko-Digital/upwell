@@ -23,7 +23,7 @@ func handle_artificial_gravity(delta: float):
 	return super(delta)
 
 func _on_holder_detector_area_entered(area: Area2D) -> void:
-	if not area is ClickerHolder:
+	if not area is ClickerReceiver:
 		return
 	if (
 		not catchable or
