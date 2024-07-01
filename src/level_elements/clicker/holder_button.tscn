@@ -16,23 +16,21 @@ clicker_sprite = NodePath("ClickerSprite")
 [node name="HookSheet" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 1, 1)
 self_modulate = Color(1, 1, 1, 0.478431)
-position = Vector2(0, -146)
+position = Vector2(0, -1.5378e-05)
 scale = Vector2(2.2638, 2.2638)
 texture = ExtResource("2_01rq7")
 
 [node name="ClickerSprite" parent="." instance=ExtResource("2_jwopc")]
-position = Vector2(0, -146)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -146)
 shape = SubResource("CircleShape2D_eoxif")
 
 [node name="InteractLabel" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.466667)
 offset_left = -43.0
-offset_top = -291.0
+offset_top = -145.0
 offset_right = -15.0
-offset_bottom = -268.0
+offset_bottom = -122.0
 scale = Vector2(3.05878, 3.05878)
 text = "<E>"
 horizontal_alignment = 1
