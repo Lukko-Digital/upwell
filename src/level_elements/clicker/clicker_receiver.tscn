@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://0gkgolv5tsfm"]
+[gd_scene load_steps=7 format=3 uid="uid://0gkgolv5tsfm"]
 
 [ext_resource type="Script" path="res://src/clicker/clicker_receiver.gd" id="1_ntpc3"]
 [ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="2_qu2oa"]
 [ext_resource type="Texture2D" uid="uid://bfkerxs84mdt5" path="res://assets/mvp2_assets/receiver.png" id="3_46r4j"]
 [ext_resource type="Texture2D" uid="uid://ceyfrqipxnpj3" path="res://assets/mvp2_assets/field.png" id="4_d8h4x"]
+[ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="5_kaes1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eoxif"]
-radius = 173.026
+radius = 128.001
 
 [node name="ClickerReceiver" type="Area2D" node_paths=PackedStringArray("catcher_field", "clicker_sprite")]
 collision_layer = 8
@@ -16,26 +17,29 @@ catcher_field = NodePath("CatcherField")
 clicker_sprite = NodePath("ClickerSprite")
 
 [node name="ClickerSprite" parent="." instance=ExtResource("2_qu2oa")]
-position = Vector2(0, -146)
+position = Vector2(0, -99)
 
 [node name="HookSheet" type="Sprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_46r4j")
 
 [node name="CatcherField" type="Sprite2D" parent="."]
-position = Vector2(0, -146)
-scale = Vector2(0.382222, 0.382222)
+position = Vector2(0, -99.4268)
+scale = Vector2(0.281367, 0.281367)
 texture = ExtResource("4_d8h4x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -146)
+position = Vector2(0, -99.4268)
 shape = SubResource("CircleShape2D_eoxif")
 
 [node name="InteractLabel" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.466667)
-offset_left = -43.0
-offset_top = -291.0
-offset_right = -15.0
-offset_bottom = -268.0
-scale = Vector2(3.05878, 3.05878)
+offset_left = -55.0
+offset_top = -259.0
+offset_right = 236.0
+offset_bottom = -56.0
+scale = Vector2(0.374634, 0.374634)
+theme_override_fonts/font = ExtResource("5_kaes1")
+theme_override_font_sizes/font_size = 161
 text = "<E>"
 horizontal_alignment = 1
