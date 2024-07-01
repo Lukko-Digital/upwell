@@ -24,6 +24,10 @@ const PLAYER = {
 	INTERACT_TAP_TIME = 0.5,
 }
 
+@export_group("Settings")
+@export var only_peek_on_ground: bool = false
+@export var enable_nudge: bool = false
+
 @export_group("Node References")
 @export var camera: Camera2D
 @export var clicker_sprite: Sprite2D
@@ -118,7 +122,10 @@ func _input(event: InputEvent) -> void:
 			throw()
 
 func handle_camera_peek(delta):
-	if Input.is_action_pressed("up"):
+	var can_peek = true
+	if only_peek_on_ground and not is_on_floor():
+		can_peek = false
+	if Input.is_action_pressed("up") and can_peek:
 		camera.position.y = lerp(
 			camera.position.y,
 			default_camera_position.y - PLAYER.PEEK_DISTANCE,
@@ -147,8 +154,9 @@ func handle_movement(delta: float, gravity_state: GravityState):
 		velocity.x = move_toward(velocity.x, 0, PLAYER.FRICTION_DECEL * delta)
 
 	# nudge input
-	if handle_nudge(gravity_state):
-		return
+	if enable_nudge:
+		if handle_nudge(gravity_state):
+			return
 
 	# walking & air strafing
 	var direction = Input.get_axis("left", "right")
