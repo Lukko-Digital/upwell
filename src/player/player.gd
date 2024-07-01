@@ -9,7 +9,9 @@ const PLAYER = {
 	# Jumping
 	JUMP_VELOCITY = 2100.0,
 	JUMP_RELEASE_SLOWDOWN = 0.5,
-	COYOTE_TIME = 0.3, # Time you get to jump after running off a ledge
+	MIN_JUMP_TIME = 0.1,
+	COYOTE_TIME = 0.1, # Time you get to jump after running off a ledge
+	JUMP_BUFFER_TIME = 0.3, # Time between a jump input and touching the ground that the jump will still go off
 	# Falling
 	MAX_FALL_SPEED = 2600,
 	# Throw
@@ -24,6 +26,8 @@ const PLAYER = {
 @export var dialogue_ui: DialogueUI
 @export var interact_tap_timer: Timer
 @export var coyote_timer: Timer
+@export var jump_buffer_timer: Timer
+@export var min_jump_timer: Timer
 @export var throw_arc_line: Line2D
 
 @onready var clicker_scene: PackedScene = preload ("res://src/clicker/clicker.tscn")
@@ -62,6 +66,7 @@ var highlighted_interactable: Interactable = null:
 
 func _ready() -> void:
 	# Connect signal
+	min_jump_timer.timeout.connect(_min_jump_timer_timeout)
 	Global.level_unlocked.connect(_on_level_unlocked)
 	# Load clicker state
 	has_clicker = Global.player_has_clicker
@@ -144,10 +149,12 @@ func handle_coyote_timing(gravity_state: GravityState):
 		gravity_state == GravityState.NONE
 	):
 		coyote_timer.start(PLAYER.COYOTE_TIME)
-	print(coyote_timer.time_left)
 	
 	if currently_grounded:
-		jumping = false
+		if not jump_buffer_timer.is_stopped():
+			jump()
+		else:
+			jumping = false
 
 	previously_grounded = currently_grounded
 func jump():
@@ -155,10 +162,17 @@ func jump():
 		velocity.y = -PLAYER.JUMP_VELOCITY * speed_coef
 		jumping = true
 		coyote_timer.stop()
+		min_jump_timer.start(PLAYER.MIN_JUMP_TIME)
+	else:
+		jump_buffer_timer.start(PLAYER.JUMP_BUFFER_TIME)
 
 func jump_end():
-	if velocity.y < 0:
+	if velocity.y < 0 and min_jump_timer.is_stopped():
 		velocity.y -= PLAYER.JUMP_RELEASE_SLOWDOWN * velocity.y
+
+func _min_jump_timer_timeout():
+	if !Input.is_action_pressed("jump"):
+		jump_end()
 
 ### ----------------------------- OBJECT INTERACT -----------------------------
 
