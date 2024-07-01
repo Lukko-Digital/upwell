@@ -22,12 +22,13 @@ gravity_detector = NodePath("DetectionAreas/GravityDetector")
 [node name="NudgePosition" type="Node2D" parent="."]
 
 [node name="PlayerSprite" type="Sprite2D" parent="NudgePosition"]
-scale = Vector2(1, 0.535)
+scale = Vector2(0.861782, 0.461053)
 texture = ExtResource("3_u0vu5")
 
 [node name="ClickerSprite" parent="NudgePosition" instance=ExtResource("4_wfmfs")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.884385, 0.884385)
 shape = SubResource("RectangleShape2D_piej1")
 
 [node name="DetectionAreas" type="Node2D" parent="."]
@@ -37,6 +38,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionAreas/GravityDetector"]
+scale = Vector2(0.897816, 0.897816)
 shape = SubResource("RectangleShape2D_piej1")
 
 [node name="InteractableDetector" type="Area2D" parent="DetectionAreas"]
@@ -44,6 +46,7 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionAreas/InteractableDetector"]
+scale = Vector2(0.893244, 0.893244)
 shape = SubResource("RectangleShape2D_piej1")
 
 [node name="Timers" type="Node" parent="."]
