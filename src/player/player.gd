@@ -7,7 +7,7 @@ const PLAYER = {
 	ACCELERATION = 7000.0, # move_toward acceleration, pixels/frame^2
 	FRICTION_DECEL = 5000.0,
 	# Jumping
-	JUMP_VELOCITY = 1800.0,
+	JUMP_VELOCITY = 2100.0,
 	JUMP_RELEASE_SLOWDOWN = 0.5,
 	# Falling
 	MAX_FALL_SPEED = 2600,
