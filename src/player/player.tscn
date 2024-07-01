@@ -8,13 +8,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_piej1"]
 size = Vector2(154, 274)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("clicker_sprite", "interactable_detector", "dialogue_ui", "interact_tap_timer", "throw_arc_line", "nudge_sprites", "gravity_detector")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("clicker_sprite", "interactable_detector", "dialogue_ui", "interact_tap_timer", "coyote_timer", "throw_arc_line", "nudge_sprites", "gravity_detector")]
 collision_layer = 2
 script = ExtResource("1_lbj7m")
 clicker_sprite = NodePath("NudgePosition/ClickerSprite")
 interactable_detector = NodePath("DetectionAreas/InteractableDetector")
 dialogue_ui = NodePath("DialogueUi")
 interact_tap_timer = NodePath("Timers/InteractTapTimer")
+coyote_timer = NodePath("Timers/CoyoteTimer")
 throw_arc_line = NodePath("ThrowArc")
 nudge_sprites = NodePath("NudgePosition")
 gravity_detector = NodePath("DetectionAreas/GravityDetector")
@@ -52,6 +53,9 @@ shape = SubResource("RectangleShape2D_piej1")
 [node name="Timers" type="Node" parent="."]
 
 [node name="InteractTapTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="CoyoteTimer" type="Timer" parent="Timers"]
 one_shot = true
 
 [node name="DialogueUi" parent="." instance=ExtResource("2_cft6f")]

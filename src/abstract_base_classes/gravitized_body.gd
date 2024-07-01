@@ -15,7 +15,7 @@ const ARTIFICIAL_GRAVITY = {
 	NUDGE_ACCELERATION = 0.1, # lerp acceleration, unitless
 }
 
-enum GravityState {NONE, PUSHPULL, ORBIT}
+enum GravityState {NONE, BOOST, PUSHPULL, ORBIT}
 
 @export var nudge_sprites: Node2D
 @export var gravity_detector: Area2D
@@ -53,7 +53,7 @@ func handle_artificial_gravity(delta) -> GravityState:
 	if Input.is_action_just_pressed("boost"):
 		velocity = (-vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.BOOST_VELOCITY * speed_coef
 		gravity_well.disable()
-		return GravityState.NONE
+		return GravityState.BOOST
 
 	# Check the player is inputting a mouse click
 	var attracting = Input.is_action_pressed("attract")

@@ -9,6 +9,7 @@ const PLAYER = {
 	# Jumping
 	JUMP_VELOCITY = 2100.0,
 	JUMP_RELEASE_SLOWDOWN = 0.5,
+	COYOTE_TIME = 0.3, # Time you get to jump after running off a ledge
 	# Falling
 	MAX_FALL_SPEED = 2600,
 	# Throw
@@ -22,6 +23,7 @@ const PLAYER = {
 @export var interactable_detector: Area2D
 @export var dialogue_ui: DialogueUI
 @export var interact_tap_timer: Timer
+@export var coyote_timer: Timer
 @export var throw_arc_line: Line2D
 
 @onready var clicker_scene: PackedScene = preload ("res://src/clicker/clicker.tscn")
@@ -41,7 +43,8 @@ var has_clicker: bool:
 		Global.player_has_clicker = value
 		has_clicker = value
 
-var was_moving: bool = false
+var previously_grounded: bool = false
+var jumping: bool = false
 
 ## ---
 
@@ -74,12 +77,13 @@ func _physics_process(delta):
 	handle_world_gravity(delta, gravity_state, PLAYER.MAX_FALL_SPEED)
 	handle_movement(delta, gravity_state)
 	move_and_slide()
+	handle_coyote_timing(gravity_state)
 
 func _process(_delta):
 	handle_throw_arc()
 	handle_nearby_interactables()
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump()
 	if event.is_action_released("jump"):
@@ -128,9 +132,29 @@ func handle_movement(delta: float, gravity_state: GravityState):
 			PLAYER.ACCELERATION * speed_coef * delta
 		)
 
+# ----------------------------- JUMP -----------------------------
+
+## Should be called after [move_and_slide] in [_physics_process]
+func handle_coyote_timing(gravity_state: GravityState):
+	var currently_grounded = is_on_floor()
+	if (
+		previously_grounded and
+		not currently_grounded and
+		not jumping and
+		gravity_state == GravityState.NONE
+	):
+		coyote_timer.start(PLAYER.COYOTE_TIME)
+	print(coyote_timer.time_left)
+	
+	if currently_grounded:
+		jumping = false
+
+	previously_grounded = currently_grounded
 func jump():
-	if is_on_floor():
+	if is_on_floor() or not coyote_timer.is_stopped():
 		velocity.y = -PLAYER.JUMP_VELOCITY * speed_coef
+		jumping = true
+		coyote_timer.stop()
 
 func jump_end():
 	if velocity.y < 0:
