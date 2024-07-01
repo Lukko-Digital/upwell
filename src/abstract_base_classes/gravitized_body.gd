@@ -9,7 +9,7 @@ class_name GravitizedBody
 const ARTIFICIAL_GRAVITY = {
 	PUSHPULL_SPEED = 3000.0,
 	ACCELERATION = 4.0, # lerp acceleration, unitless
-	ORBIT_SPEED = 1500.0,
+	ORBIT_SPEED = 800.0,
 	BOOST_VELOCITY = 3000.0,
 	NUDGE_DISTANCE = 50.0,
 	NUDGE_ACCELERATION = 0.1, # lerp acceleration, unitless
