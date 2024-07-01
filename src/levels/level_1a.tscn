@@ -164,8 +164,9 @@ position = Vector2(335, -1185)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AGs/PushPullAG"]
 shape = SubResource("CircleShape2D_sqklc")
 
-[node name="Player" parent="." instance=ExtResource("2_67ri7")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_67ri7")]
 position = Vector2(-1456, -103)
+camera = NodePath("Camera2D2")
 
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 position = Vector2(16, -34)

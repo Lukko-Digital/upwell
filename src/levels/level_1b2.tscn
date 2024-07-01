@@ -180,8 +180,9 @@ position = Vector2(-998.882, -398.83)
 position = Vector2(756.882, 398.83)
 shape = SubResource("RectangleShape2D_ha8i8")
 
-[node name="Player" parent="." instance=ExtResource("5_grnv4")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("5_grnv4")]
 position = Vector2(-1456, -103)
+camera = NodePath("Camera2D2")
 
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 position = Vector2(16, -34)
