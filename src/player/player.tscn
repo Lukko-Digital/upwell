@@ -25,10 +25,11 @@ gravity_detector = NodePath("DetectionAreas/GravityDetector")
 [node name="NudgePosition" type="Node2D" parent="."]
 
 [node name="PlayerSprite" type="Sprite2D" parent="NudgePosition"]
-scale = Vector2(0.861782, 0.461053)
+scale = Vector2(0.904217, 0.904217)
 texture = ExtResource("3_u0vu5")
 
 [node name="ClickerSprite" parent="NudgePosition" instance=ExtResource("4_wfmfs")]
+position = Vector2(0, 13)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.884385, 0.884385)
