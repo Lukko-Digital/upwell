@@ -6,6 +6,10 @@ const PLAYER = {
 	SPEED = 900.0,
 	ACCELERATION = 7000.0, # move_toward acceleration, pixels/frame^2
 	FRICTION_DECEL = 5000.0,
+	# Camera
+	PEEK_DISTANCE = 1000.0, # Number of pixels that the camera will peek up (1920x1080 game)
+	PEEK_TOWARD_SPEED = 5.0, # lerp speed, unitless
+	PEEK_RETURN_SPEED = 7.0, # lerp speed, unitless
 	# Jumping
 	JUMP_VELOCITY = 2100.0,
 	JUMP_RELEASE_SLOWDOWN = 0.5,
@@ -21,6 +25,7 @@ const PLAYER = {
 }
 
 @export_group("Node References")
+@export var camera: Camera2D
 @export var clicker_sprite: Sprite2D
 @export var interactable_detector: Area2D
 @export var dialogue_ui: DialogueUI
@@ -62,9 +67,12 @@ var highlighted_interactable: Interactable = null:
 		if highlighted_interactable != null:
 			highlighted_interactable.highlighted = true
 
+var default_camera_position: Vector2
+
 ### ------------------------------ CORE ------------------------------
 
 func _ready() -> void:
+	default_camera_position = camera.position
 	# Connect signal
 	min_jump_timer.timeout.connect(_min_jump_timer_timeout)
 	Global.level_unlocked.connect(_on_level_unlocked)
@@ -84,9 +92,10 @@ func _physics_process(delta):
 	move_and_slide()
 	handle_coyote_timing(gravity_state)
 
-func _process(_delta):
+func _process(delta):
 	handle_throw_arc()
 	handle_nearby_interactables()
+	handle_camera_peek(delta)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
@@ -107,6 +116,20 @@ func _input(event: InputEvent) -> void:
 			interact_tap_timer.stop()
 		else:
 			throw()
+
+func handle_camera_peek(delta):
+	if Input.is_action_pressed("up"):
+		camera.position.y = lerp(
+			camera.position.y,
+			default_camera_position.y - PLAYER.PEEK_DISTANCE,
+			PLAYER.PEEK_TOWARD_SPEED * delta
+		)
+	else:
+		camera.position.y = lerp(
+			camera.position.y,
+			default_camera_position.y,
+			PLAYER.PEEK_RETURN_SPEED * delta
+		)
 
 ## ------------------------------ MOVEMENT ------------------------------
 
