@@ -161,7 +161,13 @@ func handle_movement(delta: float, gravity_state: GravityState):
 	# walking & air strafing
 	var direction = Input.get_axis("left", "right")
 	if abs(velocity.x) < top_speed or sign(velocity.x) != sign(direction):
-		# if moving under top speed or input is in direction opposite to movement
+		# If moving under top speed or input is not in the same direction of
+		# movement, accelerate player towards direction of movement, this
+		# includes accelerating towards zero movement.
+		if !is_on_floor() and direction == 0:
+			# To prevent slowing down when airborne, exit if there is no input
+			# direction and the player is off the ground
+			return
 		velocity.x = move_toward(
 			velocity.x,
 			top_speed * direction,
