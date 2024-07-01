@@ -58,6 +58,7 @@ var has_clicker: bool:
 
 var previously_grounded: bool = false
 var jumping: bool = false
+var airborne_deceleration: bool = true
 
 ## ---
 
@@ -148,7 +149,15 @@ func handle_artificial_gravity(delta) -> GravityState:
 func handle_movement(delta: float, gravity_state: GravityState):
 	var top_speed = PLAYER.SPEED * speed_coef
 
-	# friction
+	# Handle airbone decel state. To prevent slowing down when accelerated by
+	# an AG, disable airborne deceleration after interacting with an AG, until
+	# returning to the ground.
+	if gravity_state != GravityState.NONE:
+		airborne_deceleration = false
+	if is_on_floor():
+		airborne_deceleration = true
+
+	# friction when above top speed
 	if abs(velocity.x) > top_speed and is_on_floor():
 		# if moving over top speed and on ground
 		velocity.x = move_toward(velocity.x, 0, PLAYER.FRICTION_DECEL * delta)
@@ -164,9 +173,7 @@ func handle_movement(delta: float, gravity_state: GravityState):
 		# If moving under top speed or input is not in the same direction of
 		# movement, accelerate player towards direction of movement, this
 		# includes accelerating towards zero movement.
-		if !is_on_floor() and direction == 0:
-			# To prevent slowing down when airborne, exit if there is no input
-			# direction and the player is off the ground
+		if direction == 0 and not airborne_deceleration:
 			return
 		velocity.x = move_toward(
 			velocity.x,
