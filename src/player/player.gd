@@ -196,12 +196,11 @@ func handle_coyote_timing(gravity_state: GravityState):
 		gravity_state == GravityState.NONE
 	):
 		coyote_timer.start(PLAYER.COYOTE_TIME)
-	
-	if currently_grounded:
-		if not jump_buffer_timer.is_stopped():
-			jump()
-		else:
-			jumping = false
+
+	if currently_grounded or gravity_state != GravityState.NONE:
+		jumping = false
+	if not jump_buffer_timer.is_stopped() and currently_grounded:
+		jump()
 
 	previously_grounded = currently_grounded
 func jump():
