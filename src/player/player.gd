@@ -26,7 +26,6 @@ const PLAYER = {
 
 @export_group("Settings")
 @export var only_peek_on_ground: bool = false
-@export var enable_nudge: bool = false
 
 @export_group("Node References")
 @export var camera: Camera2D
@@ -166,9 +165,8 @@ func handle_movement(delta: float, gravity_state: GravityState):
 		velocity.x = move_toward(velocity.x, 0, PLAYER.FRICTION_DECEL * delta)
 
 	# nudge input
-	if enable_nudge:
-		if handle_nudge(gravity_state):
-			return
+	if handle_nudge(gravity_state):
+		return
 
 	# walking & air strafing
 	var input_direction = Input.get_axis("left", "right")

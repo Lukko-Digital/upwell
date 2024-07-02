@@ -17,6 +17,10 @@ const ARTIFICIAL_GRAVITY = {
 
 enum GravityState {NONE, BOOST, PUSHPULL, ORBIT}
 
+@export_group("Settings")
+@export var enable_nudge: bool = false
+
+@export_group("Node References")
 @export var nudge_sprites: Node2D
 @export var gravity_detector: Area2D
 
@@ -130,6 +134,8 @@ func handle_world_gravity(delta: float, gravity_state: GravityState, max_fall_sp
 ##
 ## Returns: A boolean representing if the body is currently being nudged.
 func handle_nudge(gravity_state: GravityState) -> bool:
+	if not enable_nudge:
+		return false
 	if gravity_state == GravityState.PUSHPULL:
 		var nudge_input = Input.get_vector("left", "right", "up", "down")
 		nudge_position = nudge_position.lerp(
