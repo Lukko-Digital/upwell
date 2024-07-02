@@ -6,6 +6,7 @@ const PLAYER = {
 	SPEED = 900.0,
 	ACCELERATION = 7000.0, # move_toward acceleration, pixels/frame^2
 	FRICTION_DECEL = 5000.0,
+	ORBIT_STRAFE_SLOWDOWN = 0.5, # percentage of standard speed
 	# Camera
 	PEEK_DISTANCE = 1000.0, # Number of pixels that the camera will peek up (1920x1080 game)
 	PEEK_TOWARD_SPEED = 5.0, # lerp speed, unitless
@@ -147,6 +148,7 @@ func handle_artificial_gravity(delta) -> GravityState:
 	return super(delta)
 
 func handle_movement(delta: float, gravity_state: GravityState):
+	var speed_coef = PLAYER.ORBIT_STRAFE_SLOWDOWN if gravity_state == GravityState.ORBIT else 1.0
 	var top_speed = PLAYER.SPEED * speed_coef
 	var horizontal_direction = sign(velocity.x)
 
