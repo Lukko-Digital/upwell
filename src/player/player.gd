@@ -211,7 +211,11 @@ func jump():
 		jump_buffer_timer.start(PLAYER.JUMP_BUFFER_TIME)
 
 func jump_end():
-	if velocity.y < 0 and min_jump_timer.is_stopped():
+	if (
+		velocity.y < 0 and
+		min_jump_timer.is_stopped() and
+		jumping
+	):
 		velocity.y -= PLAYER.JUMP_RELEASE_SLOWDOWN * velocity.y
 
 func _min_jump_timer_timeout():
