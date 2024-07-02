@@ -3,7 +3,7 @@ class_name ArtificialGravity
 
 const DEFAULT_RADIUS = 450
 
-enum AGTypes {PUSHPULL, ORBIT, FUNNEL}
+enum AGTypes {PUSHPULL, ORBIT, FUNNEL, ONLYUP}
 
 @export var type: AGTypes = AGTypes.PUSHPULL
 

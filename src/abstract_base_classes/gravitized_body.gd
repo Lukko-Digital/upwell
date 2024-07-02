@@ -87,6 +87,15 @@ func handle_artificial_gravity(delta) -> GravityState:
 				)
 			return GravityState.PUSHPULL
 
+		ArtificialGravity.AGTypes.ONLYUP:
+			if attracting:
+				velocity.y = lerp(
+					velocity.y,
+					- 1 * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED * speed_coef,
+					ARTIFICIAL_GRAVITY.ACCELERATION * delta
+				)
+			return GravityState.PUSHPULL
+
 		ArtificialGravity.AGTypes.ORBIT:
 			# Orbit
 			var active_direction = Vector2.ZERO
