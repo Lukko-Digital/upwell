@@ -10,7 +10,6 @@ const ARTIFICIAL_GRAVITY = {
 	PUSHPULL_SPEED = 3000.0,
 	ACCELERATION = 4.0, # lerp acceleration, unitless
 	ORBIT_SPEED = 800.0,
-	ORBIT_ANGLE = 70.0,
 	BOOST_VELOCITY = 3000.0,
 	NUDGE_DISTANCE = 50.0,
 	NUDGE_ACCELERATION = 0.1, # lerp acceleration, unitless
@@ -99,13 +98,18 @@ func handle_artificial_gravity(delta) -> GravityState:
 
 		ArtificialGravity.AGTypes.ORBIT:
 			# Orbit
+			var radius = vec_to_gravity.length()
+			# Formula created by fitting curves to sample data points.
+			# Works best between speeds of 400 and 1400
+			var constant = 87.7 - 19.9 * log(ARTIFICIAL_GRAVITY.ORBIT_SPEED)
+			var angle = deg_to_rad(constant + 18.4 * log(radius))
 			var active_direction = Vector2.ZERO
 			if attracting:
 				# Right click, clockwise
-				active_direction = vec_to_gravity.rotated( - deg_to_rad(ARTIFICIAL_GRAVITY.ORBIT_ANGLE)).normalized()
+				active_direction = vec_to_gravity.rotated( - angle).normalized()
 			if repelling:
 				# Left click, counterclockwise
-				active_direction = vec_to_gravity.rotated(deg_to_rad(ARTIFICIAL_GRAVITY.ORBIT_ANGLE)).normalized()
+				active_direction = vec_to_gravity.rotated(angle).normalized()
 			velocity = velocity.lerp(
 				active_direction * ARTIFICIAL_GRAVITY.ORBIT_SPEED * speed_coef,
 				ARTIFICIAL_GRAVITY.ACCELERATION * delta
