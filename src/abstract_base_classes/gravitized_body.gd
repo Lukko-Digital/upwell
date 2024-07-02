@@ -74,6 +74,18 @@ func handle_artificial_gravity(delta) -> GravityState:
 				ARTIFICIAL_GRAVITY.ACCELERATION * delta
 			)
 			return GravityState.PUSHPULL
+		
+		ArtificialGravity.AGTypes.FUNNEL:
+			# Push pull variant: funnel
+			var horizontal_coef = 1.2 * abs(vec_to_gravity.x) / gravity_well.radius()
+			var active_direction = -sign(vec_to_gravity.y) * vec_to_gravity.normalized()
+			active_direction.x *= horizontal_coef
+			if attracting:
+				velocity = velocity.lerp(
+					active_direction * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED * speed_coef,
+					ARTIFICIAL_GRAVITY.ACCELERATION * delta
+				)
+			return GravityState.PUSHPULL
 
 		ArtificialGravity.AGTypes.ORBIT:
 			# Orbit

@@ -3,7 +3,7 @@ class_name ArtificialGravity
 
 const DEFAULT_RADIUS = 450
 
-enum AGTypes {PUSHPULL, ORBIT}
+enum AGTypes {PUSHPULL, ORBIT, FUNNEL}
 
 @export var type: AGTypes = AGTypes.PUSHPULL
 
@@ -25,3 +25,6 @@ func enable():
 func disable():
 	enabled = false
 	queue_redraw()
+
+func radius() -> float:
+	return $CollisionShape2D.shape.radius
