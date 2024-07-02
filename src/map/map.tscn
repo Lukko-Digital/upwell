@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://bb68hmcptqlgt"]
+[gd_scene load_steps=25 format=3 uid="uid://bb68hmcptqlgt"]
 
 [ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player.tscn" id="1_8n3xw"]
 [ext_resource type="Script" path="res://src/map/map.gd" id="1_ithwi"]
+[ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity.tscn" id="2_rtduj"]
 [ext_resource type="PackedScene" uid="uid://5m5se54m7bsd" path="res://src/levels/creator_puzzles/creator_puzzle_1.tscn" id="3_7gyr0"]
 [ext_resource type="PackedScene" uid="uid://ql7gm3yuyicr" path="res://src/map/map_level.tscn" id="3_gauuw"]
 [ext_resource type="PackedScene" uid="uid://cfljhh1nxifqe" path="res://src/levels/creator_puzzles/creator_puzzle_0.tscn" id="3_kwmnh"]
@@ -15,6 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://bke4dorpjm7yp" path="res://src/map/coolant_pocket.tscn" id="11_35qri"]
 [ext_resource type="Texture2D" uid="uid://bkx3m3c8bdjp5" path="res://assets/ui/map/cover.png" id="11_x5ox6"]
 [ext_resource type="Texture2D" uid="uid://dc6nfaju78e60" path="res://assets/environment/test_level/particle_softest.png" id="12_kdma8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4huev"]
+radius = 321.224
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iese1"]
 radius = 75.9276
@@ -39,6 +43,14 @@ blend_mode = 3
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_ithwi")
+
+[node name="ArtificialGravity" parent="." instance=ExtResource("2_rtduj")]
+position = Vector2(-36, -247)
+scale = Vector2(0.599871, 0.599871)
+type = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArtificialGravity"]
+shape = SubResource("CircleShape2D_4huev")
 
 [node name="MapPlayer" parent="." instance=ExtResource("1_8n3xw")]
 z_index = 1
