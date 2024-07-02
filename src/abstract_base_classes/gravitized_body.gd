@@ -50,7 +50,7 @@ func handle_artificial_gravity(delta) -> GravityState:
 	var vec_to_gravity = gravity_well.global_position - global_position
 
 	# Boost
-	if Input.is_action_just_pressed("boost") and (not is_on_floor()):
+	if Input.is_action_just_pressed("boost"):
 		velocity = (-vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.BOOST_VELOCITY * speed_coef
 		gravity_well.disable()
 		return GravityState.BOOST
