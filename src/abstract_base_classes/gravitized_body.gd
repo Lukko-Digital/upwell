@@ -31,8 +31,6 @@ var nudge_position: Vector2 = Vector2.ZERO:
 		nudge_sprites.position = value
 		nudge_position = value
 
-var speed_coef: float = 1
-
 ## Handles the movement of the [GravitizedBody] within an AG field.
 ##
 ## Detects inputs and checks space for AGs, then updates the [GravitizedBody]'s
@@ -55,7 +53,7 @@ func handle_artificial_gravity(delta) -> GravityState:
 
 	# Boost
 	if Input.is_action_just_pressed("boost"):
-		velocity = (-vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.BOOST_VELOCITY * speed_coef
+		velocity = (-vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.BOOST_VELOCITY
 		gravity_well.disable()
 		return GravityState.BOOST
 
@@ -74,7 +72,7 @@ func handle_artificial_gravity(delta) -> GravityState:
 			if repelling:
 				active_direction += (-vec_to_gravity + nudge_position).normalized()
 			velocity = velocity.lerp(
-				active_direction * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED * speed_coef,
+				active_direction * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED,
 				ARTIFICIAL_GRAVITY.ACCELERATION * delta
 			)
 			return GravityState.PUSHPULL
@@ -86,7 +84,7 @@ func handle_artificial_gravity(delta) -> GravityState:
 			active_direction.x *= horizontal_coef
 			if attracting:
 				velocity = velocity.lerp(
-					active_direction * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED * speed_coef,
+					active_direction * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED,
 					ARTIFICIAL_GRAVITY.ACCELERATION * delta
 				)
 			return GravityState.PUSHPULL
@@ -95,7 +93,7 @@ func handle_artificial_gravity(delta) -> GravityState:
 			if attracting:
 				velocity.y = lerp(
 					velocity.y,
-					- 1 * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED * speed_coef,
+					- 1 * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED,
 					ARTIFICIAL_GRAVITY.ACCELERATION * delta
 				)
 			return GravityState.PUSHPULL
@@ -115,7 +113,7 @@ func handle_artificial_gravity(delta) -> GravityState:
 				# Left click, counterclockwise
 				active_direction = vec_to_gravity.rotated(angle).normalized()
 			velocity = velocity.lerp(
-				active_direction * ARTIFICIAL_GRAVITY.ORBIT_SPEED * speed_coef,
+				active_direction * ARTIFICIAL_GRAVITY.ORBIT_SPEED,
 				ARTIFICIAL_GRAVITY.ACCELERATION * delta
 			)
 			return GravityState.ORBIT

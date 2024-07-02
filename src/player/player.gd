@@ -203,7 +203,7 @@ func handle_coyote_timing(gravity_state: GravityState):
 	previously_grounded = currently_grounded
 func jump():
 	if is_on_floor() or not coyote_timer.is_stopped():
-		velocity.y = -PLAYER.JUMP_VELOCITY * speed_coef
+		velocity.y = -PLAYER.JUMP_VELOCITY
 		jumping = true
 		coyote_timer.stop()
 		min_jump_timer.start(PLAYER.MIN_JUMP_TIME)
