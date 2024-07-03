@@ -153,7 +153,7 @@ tile_size = Vector2i(256, 256)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_c3id5")
 
-[node name="LevelA" type="Node2D"]
+[node name="1a" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [-4381.0]
 
 [node name="AGs" type="Node2D" parent="."]
@@ -179,6 +179,7 @@ editor_draw_limits = true
 
 [node name="ClickerReceiver" parent="." instance=ExtResource("3_gh3pk")]
 position = Vector2(1224, -668)
+unlocks_level = 2
 
 [node name="Holders" type="Node2D" parent="."]
 
@@ -214,5 +215,23 @@ theme_override_fonts/normal_font = ExtResource("7_237ap")
 theme_override_fonts/bold_font = ExtResource("7_kuglm")
 theme_override_font_sizes/normal_font_size = 326
 text = "use right click to pull"
+fit_content = true
+autowrap_mode = 0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+self_modulate = Color(1, 1, 1, 0.709804)
+offset_left = 1661.0
+offset_top = -949.0
+offset_right = 6169.0
+offset_bottom = 281.0
+scale = Vector2(0.189, 0.189)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("7_237ap")
+theme_override_fonts/bold_font = ExtResource("7_kuglm")
+theme_override_font_sizes/normal_font_size = 326
+text = "press tab
+to access
+your map"
 fit_content = true
 autowrap_mode = 0

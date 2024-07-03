@@ -159,7 +159,7 @@ tile_size = Vector2i(256, 256)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_c3id5")
 
-[node name="LevelA" type="Node2D"]
+[node name="2c" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [-4381.0]
 
 [node name="AGs" type="Node2D" parent="."]
@@ -185,6 +185,7 @@ shape = SubResource("CircleShape2D_fg7nt")
 [node name="ClickerReceiver" parent="." instance=ExtResource("2_7q5oq")]
 position = Vector2(336, -3799)
 rotation = -3.14159
+unlocks_level = 8
 is_catcher = true
 
 [node name="Holders" type="Node2D" parent="."]
@@ -223,15 +224,16 @@ editor_draw_limits = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 self_modulate = Color(1, 1, 1, 0.709804)
-offset_left = -123.0
-offset_top = 24.0
-offset_right = 5169.0
-offset_bottom = 434.0
+offset_left = -369.0
+offset_top = 58.0
+offset_right = 5511.0
+offset_bottom = 468.0
 scale = Vector2(0.189, 0.189)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/normal_font = ExtResource("7_1kdg4")
 theme_override_fonts/bold_font = ExtResource("8_gwwf6")
 theme_override_font_sizes/normal_font_size = 326
+text = "right click to orbit clockwise"
 fit_content = true
 autowrap_mode = 0

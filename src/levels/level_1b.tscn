@@ -153,7 +153,7 @@ tile_size = Vector2i(256, 256)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_c3id5")
 
-[node name="LevelA" type="Node2D"]
+[node name="1b" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [-4381.0]
 
 [node name="AGs" type="Node2D" parent="."]
@@ -167,6 +167,7 @@ shape = SubResource("CircleShape2D_sqklc")
 [node name="ClickerReceiver" parent="." instance=ExtResource("2_thhse")]
 position = Vector2(60, -1362)
 rotation = -3.14159
+unlocks_level = 3
 
 [node name="Holders" type="Node2D" parent="."]
 

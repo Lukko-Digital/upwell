@@ -189,8 +189,9 @@ position = Vector2(-805, -655)
 scale = Vector2(-2.51233, 2.51233)
 texture = ExtResource("7_us3vu")
 
-[node name="Player" parent="." instance=ExtResource("9_qe4ay")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("9_qe4ay")]
 position = Vector2(-1880, -318)
+camera = NodePath("Camera2D")
 
 [node name="Plyrglow" type="Sprite2D" parent="Player"]
 modulate = Color(1, 1, 1, 0.588235)
