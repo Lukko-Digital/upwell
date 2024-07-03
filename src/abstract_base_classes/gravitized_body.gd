@@ -107,7 +107,7 @@ func handle_artificial_gravity(delta) -> GravityState:
 			# Formula created by fitting curves to sample data points.
 			# Works best between speeds of 400 and 1400
 			var constant = 87.7 - 19.9 * log(ARTIFICIAL_GRAVITY.ORBIT_SPEED)
-			var angle = deg_to_rad(constant + 18.4 * log(radius))
+			var angle = deg_to_rad(constant + 18.5 * log(radius))
 			var active_direction = Vector2.ZERO
 			if attracting:
 				# Right click, clockwise

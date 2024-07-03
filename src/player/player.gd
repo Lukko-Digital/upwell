@@ -5,7 +5,6 @@ const PLAYER = {
 	# Walking / strafing
 	SPEED = 900.0,
 	ACCELERATION = 7000.0, # move_toward acceleration, pixels/frame^2
-	FRICTION_DECEL = 5000.0,
 	ORBIT_STRAFE_SLOWDOWN = 0.5, # percentage of standard speed
 	PUSHPULL_STRAFE_SLOWDOWN = 0.5, # percentage of standard speed
 	# Camera
@@ -159,11 +158,6 @@ func handle_movement(delta: float, gravity_state: GravityState):
 
 	var top_speed = PLAYER.SPEED * speed_coef
 	var horizontal_direction = sign(velocity.x)
-
-	# friction when above top speed
-	if abs(velocity.x) > top_speed and is_on_floor():
-		# if moving over top speed and on ground
-		velocity.x = move_toward(velocity.x, 0, PLAYER.FRICTION_DECEL * delta)
 
 	# nudge input
 	if handle_nudge(gravity_state):
