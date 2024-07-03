@@ -4,7 +4,7 @@
 
 [node name="AgReenableArea" type="Area2D"]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 10
 script = ExtResource("1_glpvc")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
