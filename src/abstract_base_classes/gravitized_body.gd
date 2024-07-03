@@ -72,8 +72,7 @@ func handle_artificial_gravity(delta) -> GravityState:
 			if repelling:
 				active_direction += (-vec_to_gravity + nudge_position).normalized()
 			# Squish x component
-			var horizontal_coef = 1.2 * abs(vec_to_gravity.x) / gravity_well.radius() # Linear scaling
-			# var horizontal_coef = sqrt((abs(vec_to_gravity.x) / gravity_well.radius())) # Square root scaling
+			var horizontal_coef = 0.9 * abs(vec_to_gravity.x) / gravity_well.radius() + 0.3
 			active_direction.x *= horizontal_coef
 			velocity = velocity.lerp(
 				active_direction * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED,

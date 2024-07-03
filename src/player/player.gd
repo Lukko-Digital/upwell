@@ -7,6 +7,7 @@ const PLAYER = {
 	ACCELERATION = 7000.0, # move_toward acceleration, pixels/frame^2
 	FRICTION_DECEL = 5000.0,
 	ORBIT_STRAFE_SLOWDOWN = 0.5, # percentage of standard speed
+	PUSHPULL_STRAFE_SLOWDOWN = 0.5, # percentage of standard speed
 	# Camera
 	PEEK_DISTANCE = 1000.0, # Number of pixels that the camera will peek up (1920x1080 game)
 	PEEK_TOWARD_SPEED = 5.0, # lerp speed, unitless
@@ -58,7 +59,7 @@ var has_clicker: bool:
 
 var previously_grounded: bool = false
 var jumping: bool = false
-var airborne_deceleration: bool = true
+var disable_airborne_decel: bool = true
 var previous_horizontal_direction: float = 0
 
 ## ---
@@ -123,6 +124,8 @@ func _input(event: InputEvent) -> void:
 		else:
 			throw()
 
+## ------------------------------ CAMERA ------------------------------
+
 func handle_camera_peek(delta):
 	var can_peek = true
 	if only_peek_on_ground and not is_on_floor():
@@ -148,18 +151,14 @@ func handle_artificial_gravity(delta) -> GravityState:
 	return super(delta)
 
 func handle_movement(delta: float, gravity_state: GravityState):
-	var speed_coef = PLAYER.ORBIT_STRAFE_SLOWDOWN if gravity_state == GravityState.ORBIT else 1.0
+	var speed_coef = 1.0
+	if gravity_state == GravityState.ORBIT:
+		speed_coef = PLAYER.ORBIT_STRAFE_SLOWDOWN
+	elif gravity_state == GravityState.PUSHPULL:
+		speed_coef = PLAYER.PUSHPULL_STRAFE_SLOWDOWN
+
 	var top_speed = PLAYER.SPEED * speed_coef
 	var horizontal_direction = sign(velocity.x)
-
-	# Handle airbone decel state. To prevent slowing down when accelerated by
-	# an AG, disable airborne deceleration after interacting with an AG, until
-	# returning to the ground.
-	if gravity_state != GravityState.NONE:
-		airborne_deceleration = false
-	elif is_on_floor() or horizontal_direction != previous_horizontal_direction:
-		airborne_deceleration = true
-	previous_horizontal_direction = horizontal_direction
 
 	# friction when above top speed
 	if abs(velocity.x) > top_speed and is_on_floor():
@@ -170,13 +169,25 @@ func handle_movement(delta: float, gravity_state: GravityState):
 	if handle_nudge(gravity_state):
 		return
 
+	# Disable airborne decel upon boosting until touching the floor or
+	# changing direction in air.
+	if gravity_state == GravityState.BOOST:
+		disable_airborne_decel = true
+	elif is_on_floor() or horizontal_direction != previous_horizontal_direction:
+		disable_airborne_decel = false
+	previous_horizontal_direction = horizontal_direction
 	# walking & air strafing
 	var input_direction = Input.get_axis("left", "right")
 	if abs(velocity.x) < top_speed or horizontal_direction != sign(input_direction):
 		# If moving under top speed or input is not in the same direction of
 		# movement, accelerate player towards direction of movement, this
 		# includes accelerating towards zero movement.
-		if input_direction == 0 and not airborne_deceleration:
+		if input_direction == 0 and (
+			disable_airborne_decel or gravity_state in [GravityState.ORBIT, GravityState.PUSHPULL]
+		):
+			# If there is no player input, and airborne decel is disabled from
+			# boosting or the player is currently in an orbit or pushpull,
+			# exit so the player is not decelerated.
 			return
 		velocity.x = move_toward(
 			velocity.x,
