@@ -21,7 +21,7 @@ const PLAYER = {
 	# Throw
 	THROW_VELOCITY = 3000,
 	ARC_POINTS = 100,
-	INTERACT_TAP_TIME = 0.5,
+	INTERACT_TAP_TIME = 0.2,
 }
 
 @export_group("Settings")
