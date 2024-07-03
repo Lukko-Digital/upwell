@@ -6,6 +6,7 @@ const PLAYER = {
 	SPEED = 900.0,
 	ACCELERATION = 7000.0, # move_toward acceleration, pixels/frame^2
 	FRICTION_DECEL = 5000.0,
+	ORBIT_STRAFE_SLOWDOWN = 0.5, # percentage of standard speed
 	# Camera
 	PEEK_DISTANCE = 1000.0, # Number of pixels that the camera will peek up (1920x1080 game)
 	PEEK_TOWARD_SPEED = 5.0, # lerp speed, unitless
@@ -26,7 +27,6 @@ const PLAYER = {
 
 @export_group("Settings")
 @export var only_peek_on_ground: bool = false
-@export var enable_nudge: bool = false
 
 @export_group("Node References")
 @export var camera: Camera2D
@@ -148,6 +148,7 @@ func handle_artificial_gravity(delta) -> GravityState:
 	return super(delta)
 
 func handle_movement(delta: float, gravity_state: GravityState):
+	var speed_coef = PLAYER.ORBIT_STRAFE_SLOWDOWN if gravity_state == GravityState.ORBIT else 1.0
 	var top_speed = PLAYER.SPEED * speed_coef
 	var horizontal_direction = sign(velocity.x)
 
@@ -166,9 +167,8 @@ func handle_movement(delta: float, gravity_state: GravityState):
 		velocity.x = move_toward(velocity.x, 0, PLAYER.FRICTION_DECEL * delta)
 
 	# nudge input
-	if enable_nudge:
-		if handle_nudge(gravity_state):
-			return
+	if handle_nudge(gravity_state):
+		return
 
 	# walking & air strafing
 	var input_direction = Input.get_axis("left", "right")
@@ -205,7 +205,7 @@ func handle_coyote_timing(gravity_state: GravityState):
 	previously_grounded = currently_grounded
 func jump():
 	if is_on_floor() or not coyote_timer.is_stopped():
-		velocity.y = -PLAYER.JUMP_VELOCITY * speed_coef
+		velocity.y = -PLAYER.JUMP_VELOCITY
 		jumping = true
 		coyote_timer.stop()
 		min_jump_timer.start(PLAYER.MIN_JUMP_TIME)

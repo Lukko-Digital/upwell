@@ -10,7 +10,6 @@ const ARTIFICIAL_GRAVITY = {
 	PUSHPULL_SPEED = 3000.0,
 	ACCELERATION = 4.0, # lerp acceleration, unitless
 	ORBIT_SPEED = 800.0,
-	ORBIT_ANGLE = 70.0,
 	BOOST_VELOCITY = 3000.0,
 	NUDGE_DISTANCE = 50.0,
 	NUDGE_ACCELERATION = 0.1, # lerp acceleration, unitless
@@ -18,6 +17,10 @@ const ARTIFICIAL_GRAVITY = {
 
 enum GravityState {NONE, BOOST, PUSHPULL, ORBIT}
 
+@export_group("Settings")
+@export var enable_nudge: bool = false
+
+@export_group("Node References")
 @export var nudge_sprites: Node2D
 @export var gravity_detector: Area2D
 
@@ -27,8 +30,6 @@ var nudge_position: Vector2 = Vector2.ZERO:
 	set(value):
 		nudge_sprites.position = value
 		nudge_position = value
-
-var speed_coef: float = 1
 
 ## Handles the movement of the [GravitizedBody] within an AG field.
 ##
@@ -52,7 +53,7 @@ func handle_artificial_gravity(delta) -> GravityState:
 
 	# Boost
 	if Input.is_action_just_pressed("boost"):
-		velocity = (-vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.BOOST_VELOCITY * speed_coef
+		velocity = (-vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.BOOST_VELOCITY
 		gravity_well.disable()
 		return GravityState.BOOST
 
@@ -70,8 +71,12 @@ func handle_artificial_gravity(delta) -> GravityState:
 				active_direction += vec_to_gravity.normalized()
 			if repelling:
 				active_direction += (-vec_to_gravity + nudge_position).normalized()
+			# Squish x component
+			var horizontal_coef = 1.2 * abs(vec_to_gravity.x) / gravity_well.radius() # Linear scaling
+			# var horizontal_coef = sqrt((abs(vec_to_gravity.x) / gravity_well.radius())) # Square root scaling
+			active_direction.x *= horizontal_coef
 			velocity = velocity.lerp(
-				active_direction * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED * speed_coef,
+				active_direction * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED,
 				ARTIFICIAL_GRAVITY.ACCELERATION * delta
 			)
 			return GravityState.PUSHPULL
@@ -83,7 +88,7 @@ func handle_artificial_gravity(delta) -> GravityState:
 			active_direction.x *= horizontal_coef
 			if attracting:
 				velocity = velocity.lerp(
-					active_direction * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED * speed_coef,
+					active_direction * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED,
 					ARTIFICIAL_GRAVITY.ACCELERATION * delta
 				)
 			return GravityState.PUSHPULL
@@ -92,22 +97,27 @@ func handle_artificial_gravity(delta) -> GravityState:
 			if attracting:
 				velocity.y = lerp(
 					velocity.y,
-					- 1 * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED * speed_coef,
+					- 1 * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED,
 					ARTIFICIAL_GRAVITY.ACCELERATION * delta
 				)
 			return GravityState.PUSHPULL
 
 		ArtificialGravity.AGTypes.ORBIT:
 			# Orbit
+			var radius = vec_to_gravity.length()
+			# Formula created by fitting curves to sample data points.
+			# Works best between speeds of 400 and 1400
+			var constant = 87.7 - 19.9 * log(ARTIFICIAL_GRAVITY.ORBIT_SPEED)
+			var angle = deg_to_rad(constant + 18.4 * log(radius))
 			var active_direction = Vector2.ZERO
 			if attracting:
 				# Right click, clockwise
-				active_direction = vec_to_gravity.rotated( - deg_to_rad(ARTIFICIAL_GRAVITY.ORBIT_ANGLE)).normalized()
+				active_direction = vec_to_gravity.rotated( - angle).normalized()
 			if repelling:
 				# Left click, counterclockwise
-				active_direction = vec_to_gravity.rotated(deg_to_rad(ARTIFICIAL_GRAVITY.ORBIT_ANGLE)).normalized()
+				active_direction = vec_to_gravity.rotated(angle).normalized()
 			velocity = velocity.lerp(
-				active_direction * ARTIFICIAL_GRAVITY.ORBIT_SPEED * speed_coef,
+				active_direction * ARTIFICIAL_GRAVITY.ORBIT_SPEED,
 				ARTIFICIAL_GRAVITY.ACCELERATION * delta
 			)
 			return GravityState.ORBIT
@@ -126,6 +136,8 @@ func handle_world_gravity(delta: float, gravity_state: GravityState, max_fall_sp
 ##
 ## Returns: A boolean representing if the body is currently being nudged.
 func handle_nudge(gravity_state: GravityState) -> bool:
+	if not enable_nudge:
+		return false
 	if gravity_state == GravityState.PUSHPULL:
 		var nudge_input = Input.get_vector("left", "right", "up", "down")
 		nudge_position = nudge_position.lerp(
