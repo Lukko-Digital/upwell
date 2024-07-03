@@ -186,10 +186,11 @@ position = Vector2(-1456, -103)
 camera = NodePath("Camera2D2")
 
 [node name="Camera2D2" type="Camera2D" parent="Player"]
+z_index = 25
 position = Vector2(16, -34)
 zoom = Vector2(0.5, 0.5)
-limit_top = -4594
-limit_bottom = 565
+limit_top = -1954
+limit_bottom = 210
 limit_smoothed = true
 position_smoothing_enabled = true
 editor_draw_limits = true
