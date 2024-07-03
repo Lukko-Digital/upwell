@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://src/clicker/multi_receiver.gd" id="1_5wbt5"]
 [ext_resource type="PackedScene" uid="uid://0gkgolv5tsfm" path="res://src/level_elements/clicker/clicker_receiver.tscn" id="1_pqf7x"]
 [ext_resource type="PackedScene" uid="uid://blxc41tfrl71a" path="res://src/level_elements/clicker/holder_button.tscn" id="2_rkp22"]
-[ext_resource type="Script" path="res://src/artificial_gravity/one_button_pathfollow.gd" id="3_2ho0q"]
 [ext_resource type="PackedScene" uid="uid://dw6autb2hsck1" path="res://src/level_elements/artificial_gravity/orbit_ag.tscn" id="4_4ce6x"]
 [ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity/push_pull_ag.tscn" id="4_prf0m"]
 [ext_resource type="PackedScene" uid="uid://cp5a5nk8eo6va" path="res://src/level_elements/artificial_gravity/ag_reenable_area.tscn" id="5_oq7fe"]
+[ext_resource type="Script" path="res://src/artificial_gravity/two_button_pathfollow.gd" id="5_p3vqk"]
 [ext_resource type="Texture2D" uid="uid://cg7bn01uog8q1" path="res://assets/mvp2_assets/TM.png" id="6_h8psk"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="7_v21xg"]
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/clicker/clicker_holder.tscn" id="9_kjpy6"]
@@ -183,7 +183,10 @@ rotation = -2.35619
 [node name="Holders" type="Node2D" parent="."]
 
 [node name="UpButton" parent="Holders" instance=ExtResource("2_rkp22")]
-position = Vector2(456, -816)
+position = Vector2(323, -816)
+
+[node name="DownButton" parent="Holders" instance=ExtResource("2_rkp22")]
+position = Vector2(562, -815)
 
 [node name="ClickerHolder" parent="Holders" instance=ExtResource("9_kjpy6")]
 position = Vector2(957, -548)
@@ -202,16 +205,18 @@ curve = SubResource("Curve2D_4nvt3")
 [node name="Line2D" type="Line2D" parent="AGs/Path2D"]
 default_color = Color(0.214344, 0.428657, 0.652119, 1)
 
-[node name="OneButtonPathFollow" type="PathFollow2D" parent="AGs/Path2D" node_paths=PackedStringArray("button", "line")]
+[node name="TwoButtonPathFollow" type="PathFollow2D" parent="AGs/Path2D" node_paths=PackedStringArray("forward_button", "backward_button", "line")]
 position = Vector2(910.006, -1317)
 rotation = 3.14159
-script = ExtResource("3_2ho0q")
-button = NodePath("../../../Holders/UpButton")
+script = ExtResource("5_p3vqk")
+speed = 200.0
+forward_button = NodePath("../../../Holders/DownButton")
+backward_button = NodePath("../../../Holders/UpButton")
 line = NodePath("../Line2D")
 
-[node name="OrbitAG" parent="AGs/Path2D/OneButtonPathFollow" instance=ExtResource("4_4ce6x")]
+[node name="OrbitAG" parent="AGs/Path2D/TwoButtonPathFollow" instance=ExtResource("4_4ce6x")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AGs/Path2D/OneButtonPathFollow/OrbitAG"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AGs/Path2D/TwoButtonPathFollow/OrbitAG"]
 shape = SubResource("CircleShape2D_prium")
 
 [node name="PushPullAG" parent="AGs" instance=ExtResource("4_prf0m")]
