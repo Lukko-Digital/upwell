@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="2_jwopc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eoxif"]
-radius = 173.026
+radius = 111.018
 
 [node name="HolderButton" type="Area2D" node_paths=PackedStringArray("clicker_sprite")]
 collision_layer = 8
@@ -17,7 +17,7 @@ clicker_sprite = NodePath("ClickerSprite")
 modulate = Color(1, 0, 1, 1)
 self_modulate = Color(1, 1, 1, 0.478431)
 position = Vector2(0, -1.5378e-05)
-scale = Vector2(2.2638, 2.2638)
+scale = Vector2(1.08587, 1.08587)
 texture = ExtResource("2_01rq7")
 
 [node name="ClickerSprite" parent="." instance=ExtResource("2_jwopc")]
