@@ -25,9 +25,6 @@ const PLAYER = {
 	INTERACT_TAP_TIME = 0.2,
 }
 
-@export_group("Settings")
-@export var only_peek_on_ground: bool = false
-
 @export_group("Node References")
 @export var camera: Camera2D
 @export var clicker_sprite: Sprite2D
@@ -126,10 +123,7 @@ func _input(event: InputEvent) -> void:
 ## ------------------------------ CAMERA ------------------------------
 
 func handle_camera_peek(delta):
-	var can_peek = true
-	if only_peek_on_ground and not is_on_floor():
-		can_peek = false
-	if Input.is_action_pressed("up") and can_peek:
+	if Input.is_action_pressed("up") and is_on_floor():
 		camera.position.y = lerp(
 			camera.position.y,
 			default_camera_position.y - PLAYER.PEEK_DISTANCE,
