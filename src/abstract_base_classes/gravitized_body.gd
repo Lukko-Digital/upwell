@@ -32,6 +32,9 @@ var nudge_position: Vector2 = Vector2.ZERO:
 		nudge_sprites.position = value
 		nudge_position = value
 
+## -1 = clockwise, 1 = counter-clockwise
+var orbit_direction: int
+
 ## Handles the movement of the [GravitizedBody] within an AG field.
 ##
 ## Detects inputs and checks space for AGs, then updates the [GravitizedBody]'s
@@ -103,7 +106,10 @@ func handle_artificial_gravity(delta) -> GravityState:
 			return GravityState.PUSHPULL
 
 		ArtificialGravity.AGTypes.ORBIT:
-			# Orbit
+			# Determine orbit direction
+			if Input.is_action_just_pressed("attract"):
+				orbit_direction = sign(vec_to_gravity.angle_to(velocity))
+			# Get radius and set min radius
 			var radius = vec_to_gravity.length()
 			if radius < ARTIFICIAL_GRAVITY.MIN_ORBIT_RADIUS:
 				radius = ARTIFICIAL_GRAVITY.MIN_ORBIT_RADIUS
@@ -112,12 +118,8 @@ func handle_artificial_gravity(delta) -> GravityState:
 			var constant = 87.7 - 19.9 * log(ARTIFICIAL_GRAVITY.ORBIT_SPEED)
 			var angle = deg_to_rad(constant + 18.5 * log(radius))
 			var active_direction = Vector2.ZERO
-			if attracting:
-				# Right click, clockwise
-				active_direction = vec_to_gravity.rotated( - angle).normalized()
-			if repelling:
-				# Left click, counterclockwise
-				active_direction = vec_to_gravity.rotated(angle).normalized()
+			# Apply velocity
+			active_direction = vec_to_gravity.rotated(angle * orbit_direction).normalized()
 			velocity = velocity.lerp(
 				active_direction * ARTIFICIAL_GRAVITY.ORBIT_SPEED + gravity_well.velocity(),
 				ARTIFICIAL_GRAVITY.ACCELERATION * delta
