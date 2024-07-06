@@ -119,7 +119,7 @@ func handle_artificial_gravity(delta) -> GravityState:
 				# Left click, counterclockwise
 				active_direction = vec_to_gravity.rotated(angle).normalized()
 			velocity = velocity.lerp(
-				active_direction * ARTIFICIAL_GRAVITY.ORBIT_SPEED,
+				active_direction * ARTIFICIAL_GRAVITY.ORBIT_SPEED + gravity_well.velocity(),
 				ARTIFICIAL_GRAVITY.ACCELERATION * delta
 			)
 			return GravityState.ORBIT
