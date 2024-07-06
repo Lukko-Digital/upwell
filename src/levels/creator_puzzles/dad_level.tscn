@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dlrcluufkhr1s" path="res://assets/environment/creator_puzzle/bg_focus.png" id="7_us3vu"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="9_qe4ay"]
 [ext_resource type="Texture2D" uid="uid://nl3afbhplomy" path="res://assets/environment/test_level/plyrglow.png" id="10_hnk2n"]
-[ext_resource type="PackedScene" uid="uid://6aouvsx0hvfm" path="res://src/level_elements/dad.tscn" id="12_4pppw"]
-[ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tile_map_brick.tscn" id="13_q46b7"]
+[ext_resource type="PackedScene" uid="uid://6aouvsx0hvfm" path="res://src/level_elements/npcs/dad.tscn" id="12_4pppw"]
+[ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tilemaps/tile_map_brick.tscn" id="13_q46b7"]
 [ext_resource type="Texture2D" uid="uid://cxcdidrqtq5vu" path="res://assets/environment/test_level/bricks_TM.png" id="14_c8l5b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jap5d"]
@@ -189,8 +189,9 @@ position = Vector2(-805, -655)
 scale = Vector2(-2.51233, 2.51233)
 texture = ExtResource("7_us3vu")
 
-[node name="Player" parent="." instance=ExtResource("9_qe4ay")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("9_qe4ay")]
 position = Vector2(-1880, -318)
+camera = NodePath("Camera2D")
 
 [node name="Plyrglow" type="Sprite2D" parent="Player"]
 modulate = Color(1, 1, 1, 0.588235)

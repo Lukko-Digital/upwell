@@ -1,38 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://cer8t0kfpov7b"]
+[gd_scene load_steps=6 format=3 uid="uid://cer8t0kfpov7b"]
 
-[ext_resource type="Script" path="res://src/level_elements/clicker/clicker_holder.gd" id="1_rct6y"]
-[ext_resource type="Texture2D" uid="uid://b61a0ttyd4ybr" path="res://assets/environment/creator_puzzle/hook-sheet.png" id="2_eerrr"]
-[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/level_elements/clicker/clicker_sprite.tscn" id="3_jmcfb"]
+[ext_resource type="Script" path="res://src/clicker/clicker_holder.gd" id="1_rct6y"]
+[ext_resource type="Texture2D" uid="uid://caaiiawon22gb" path="res://assets/mvp2_assets/holder.png" id="3_jhwto"]
+[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="3_jmcfb"]
+[ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="4_u1cyd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eoxif"]
-radius = 173.026
+radius = 131.004
 
-[node name="ClickerHolder" type="Area2D" node_paths=PackedStringArray("clicker_sprite", "hook_sheet")]
+[node name="ClickerHolder" type="Area2D" node_paths=PackedStringArray("clicker_sprite")]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_rct6y")
 starts_with_clicker = true
 clicker_sprite = NodePath("ClickerSprite")
-hook_sheet = NodePath("HookSheet")
 
 [node name="ClickerSprite" parent="." instance=ExtResource("3_jmcfb")]
-position = Vector2(27, -90)
+position = Vector2(0, -102)
 
 [node name="HookSheet" type="Sprite2D" parent="."]
 position = Vector2(0, -3)
-texture = ExtResource("2_eerrr")
-hframes = 2
-frame = 1
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_jhwto")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(28, -90)
+position = Vector2(0, -102)
 shape = SubResource("CircleShape2D_eoxif")
 
 [node name="InteractLabel" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.466667)
-offset_left = -22.0
-offset_top = -254.0
-offset_bottom = -231.0
-scale = Vector2(3.05878, 3.05878)
+offset_left = -55.0
+offset_top = -263.0
+offset_right = 236.0
+offset_bottom = -60.0
+scale = Vector2(0.374634, 0.374634)
+theme_override_fonts/font = ExtResource("4_u1cyd")
+theme_override_font_sizes/font_size = 161
 text = "<E>"
 horizontal_alignment = 1

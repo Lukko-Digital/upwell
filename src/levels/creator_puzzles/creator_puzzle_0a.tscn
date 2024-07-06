@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bfsfftagdiqxe"]
+[gd_scene load_steps=24 format=3 uid="uid://bfsfftagdiqxe"]
 
 [ext_resource type="Texture2D" uid="uid://dqaefix7e65sy" path="res://assets/environment/creator_puzzle/tablet_large_1.png" id="1_agquu"]
 [ext_resource type="Texture2D" uid="uid://cd843374n1h0y" path="res://assets/environment/test_level/Layer 20.png" id="2_vbhe4"]
@@ -7,14 +7,13 @@
 [ext_resource type="Shader" path="res://src/shaders/blur.gdshader" id="5_iqqg5"]
 [ext_resource type="Texture2D" uid="uid://fl1ublau88my" path="res://assets/environment/test_level/floor.png" id="6_d5evg"]
 [ext_resource type="Texture2D" uid="uid://dlrcluufkhr1s" path="res://assets/environment/creator_puzzle/bg_focus.png" id="7_g6tnl"]
-[ext_resource type="PackedScene" uid="uid://0gkgolv5tsfm" path="res://src/level_elements/clicker/single_clicker_receiver.tscn" id="8_3hnh6"]
+[ext_resource type="PackedScene" uid="uid://0gkgolv5tsfm" path="res://src/level_elements/clicker/clicker_receiver.tscn" id="8_3hnh6"]
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/clicker/clicker_holder.tscn" id="8_sa70n"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="9_wda0r"]
 [ext_resource type="Texture2D" uid="uid://nl3afbhplomy" path="res://assets/environment/test_level/plyrglow.png" id="10_sgvli"]
-[ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity/artificial_gravity.tscn" id="11_kmwyf"]
+[ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity/push_pull_ag.tscn" id="11_kmwyf"]
 [ext_resource type="Texture2D" uid="uid://842vjomoeag3" path="res://assets/environment/creator_puzzle/platform.png" id="14_1hfag"]
-[ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tile_map_brick.tscn" id="15_nm4qe"]
-[ext_resource type="PackedScene" uid="uid://b8eqhjjr143c4" path="res://src/player/drill.tscn" id="15_vgab2"]
+[ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tilemaps/tile_map_brick.tscn" id="15_nm4qe"]
 [ext_resource type="Texture2D" uid="uid://cxcdidrqtq5vu" path="res://assets/environment/test_level/bricks_TM.png" id="16_uegrb"]
 [ext_resource type="PackedScene" uid="uid://cp5a5nk8eo6va" path="res://src/level_elements/artificial_gravity/ag_reenable_area.tscn" id="17_wh8r7"]
 
@@ -264,11 +263,6 @@ text = "inverse gravitational forces
            <left click>"
 fit_content = true
 autowrap_mode = 0
-
-[node name="Drill" parent="." instance=ExtResource("15_vgab2")]
-position = Vector2(518, -410)
-rotation = -1.5708
-in_wall = true
 
 [node name="AgReenableArea" parent="." instance=ExtResource("17_wh8r7")]
 position = Vector2(632, 0)
