@@ -21,11 +21,40 @@
 [ext_resource type="PackedScene" uid="uid://d0mjp8x5p4fxd" path="res://src/levels/level_4b.tscn" id="17_miqwq"]
 [ext_resource type="PackedScene" uid="uid://mwr82xl4xrkg" path="res://src/levels/level_4c.tscn" id="18_k4ki2"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4huev"]
+radius = 321.224
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iese1"]
+radius = 75.9276
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yy1hu"]
+radius = 52.0096
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_25owq"]
+radius = 61.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8px8y"]
+radius = 39.0512
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4xb36"]
+radius = 48.2597
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ccn1v"]
+radius = 30.4138
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pifqs"]
 blend_mode = 3
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_ithwi")
+
+[node name="ArtificialGravity" parent="." instance=ExtResource("2_rtduj")]
+position = Vector2(-36, -247)
+scale = Vector2(0.599871, 0.599871)
+type = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArtificialGravity"]
+shape = SubResource("CircleShape2D_4huev")
 
 [node name="MapPlayer" parent="." instance=ExtResource("1_8n3xw")]
 z_index = 1
@@ -132,6 +161,32 @@ level = ExtResource("18_k4ki2")
 level_id = 14
 locked = true
 
+[node name="Sprite2D" type="Sprite2D" parent="Levels/End"]
+scale = Vector2(0.477275, 0.477275)
+texture = ExtResource("5_twdcf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/End"]
+shape = SubResource("CircleShape2D_iese1")
+
+[node name="PlayerPathIndicator" type="Line2D" parent="."]
+z_index = -1
+points = PackedVector2Array(0, 0)
+width = 6.0
+texture_mode = 1
+
+[node name="CoolantPockets" type="Node" parent="."]
+
+[node name="CoolantPocket" parent="CoolantPockets" instance=ExtResource("11_35qri")]
+position = Vector2(839, 175)
+
+[node name="Sprite2D" type="Sprite2D" parent="CoolantPockets/CoolantPocket"]
+modulate = Color(0.4, 1, 1, 1)
+scale = Vector2(0.191684, 0.191684)
+texture = ExtResource("5_twdcf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoolantPockets/CoolantPocket"]
+shape = SubResource("CircleShape2D_ccn1v")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Scanlines" type="Sprite2D" parent="CanvasLayer"]
@@ -139,16 +194,13 @@ material = SubResource("CanvasItemMaterial_pifqs")
 position = Vector2(960, 540)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_4gdd3")
+metadata/_edit_lock_ = true
 
 [node name="Cover" type="Sprite2D" parent="CanvasLayer"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("11_x5ox6")
 offset = Vector2(1920, 1080)
-
-[node name="ParticleSoftest" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(-632, -200)
-texture = ExtResource("12_kdma8")
+metadata/_edit_lock_ = true
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = -1
@@ -158,6 +210,15 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Background" type="Node" parent="."]
+
+[node name="ParticleSoftest" type="Sprite2D" parent="Background"]
+self_modulate = Color(1, 1, 1, 0.282353)
+position = Vector2(-632, -200)
+texture = ExtResource("12_kdma8")
+metadata/_edit_lock_ = true
 
 [node name="FX" type="Node2D" parent="."]
 
@@ -165,68 +226,81 @@ color = Color(0, 0, 0, 1)
 self_modulate = Color(1, 1, 1, 0.282353)
 position = Vector2(528, -208)
 texture = ExtResource("12_kdma8")
+metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest3" type="Sprite2D" parent="FX"]
 self_modulate = Color(1, 1, 1, 0.282353)
 position = Vector2(-64, 272)
 texture = ExtResource("12_kdma8")
+metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest4" type="Sprite2D" parent="FX"]
 self_modulate = Color(1, 1, 1, 0.282353)
 position = Vector2(72, -808)
 texture = ExtResource("12_kdma8")
+metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest5" type="Sprite2D" parent="FX"]
 self_modulate = Color(1, 1, 1, 0.282353)
 position = Vector2(-88, -168)
 texture = ExtResource("12_kdma8")
+metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest6" type="Sprite2D" parent="FX"]
 self_modulate = Color(1, 1, 1, 0.282353)
 position = Vector2(-760, -704)
 texture = ExtResource("12_kdma8")
+metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest7" type="Sprite2D" parent="FX"]
 self_modulate = Color(1, 1, 1, 0.282353)
 position = Vector2(-584, 448)
 texture = ExtResource("12_kdma8")
+metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest8" type="Sprite2D" parent="FX"]
 self_modulate = Color(1, 1, 1, 0.282353)
 position = Vector2(232, 496)
 texture = ExtResource("12_kdma8")
+metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest9" type="Sprite2D" parent="FX"]
 self_modulate = Color(1, 1, 1, 0.282353)
 position = Vector2(1000, 8)
 texture = ExtResource("12_kdma8")
+metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest10" type="Sprite2D" parent="FX"]
 self_modulate = Color(1, 1, 1, 0.282353)
 position = Vector2(-640, 200)
 scale = Vector2(0.0837091, 0.0837091)
 texture = ExtResource("12_kdma8")
+metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest11" type="Sprite2D" parent="FX"]
 self_modulate = Color(1, 1, 1, 0.282353)
 position = Vector2(-104, -336)
 scale = Vector2(0.0837091, 0.0837091)
 texture = ExtResource("12_kdma8")
+metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest12" type="Sprite2D" parent="FX"]
 self_modulate = Color(1, 1, 1, 0.282353)
 position = Vector2(392, -88)
 scale = Vector2(0.123151, 0.123151)
 texture = ExtResource("12_kdma8")
+metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest13" type="Sprite2D" parent="FX"]
 self_modulate = Color(1, 1, 1, 0.282353)
 position = Vector2(496, 624)
 scale = Vector2(0.123151, 0.123151)
 texture = ExtResource("12_kdma8")
+metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest14" type="Sprite2D" parent="FX"]
 self_modulate = Color(1, 1, 1, 0.282353)
 position = Vector2(1008, 624)
 scale = Vector2(0.123151, 0.123151)
 texture = ExtResource("12_kdma8")
+metadata/_edit_lock_ = true
