@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 	if moving:
 		handle_artificial_gravity(delta)
 		global_position += velocity * delta
-		if global_position.distance_to(destination.global_position) < 1:
+		if global_position.distance_to(destination.global_position) < 5:
 			end_movement()
 		else:
 			line.set_point_position(1, destination.global_position - global_position)
@@ -119,7 +119,8 @@ func location_unhovered(_location: MapLevel):
 		line.remove_point(1)
 
 func location_selected(location: MapLevel):
-	if moving or drill_heat > 0:
+	# Commented out for playtesting purposes
+	if moving: # or drill_heat > 0:
 		return
 	destination = location
 	moving = true
@@ -134,7 +135,8 @@ func end_movement() -> void:
 		line.remove_point(1)
 
 func recall() -> void:
-	global_position = starting_position
+	# Commented out for playtesting purposes
+	# global_position = starting_position 
 	drill_heat = 0
 	coolant_bar.value = coolant_bar.max_value
 	end_movement()
