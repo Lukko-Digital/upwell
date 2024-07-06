@@ -1,11 +1,13 @@
 extends Area2D
-class_name MapLocation
+class_name MapLevel
 
 @export var level: PackedScene
 @export var level_id: Global.LevelIDs
 @export var locked: bool = false
 
 @onready var player: MapPlayer = owner.get_node("MapPlayer")
+
+@onready var game: Game = get_tree().get_current_scene()
 
 func _ready() -> void:
 	Global.level_unlocked.connect(level_unlocked)
@@ -26,3 +28,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 func level_unlocked(level_name: Global.LevelIDs):
 	if locked and level_name == level_id:
 		show()
+
+func _on_area_entered(_area: Area2D):
+	player.destination = self
+	game.change_level(level)

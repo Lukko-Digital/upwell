@@ -22,6 +22,10 @@ enum LevelIDs {
 }
 
 var player_has_clicker = false
+
+var drill_heat: float = 0
+const MEDIUM_DRILL_HEAT: float = 25
+
 var clicker_state = {}
 var level_unlocks = {}
 var npc_conversation_state = {}
