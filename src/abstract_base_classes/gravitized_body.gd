@@ -10,6 +10,7 @@ const ARTIFICIAL_GRAVITY = {
 	PUSHPULL_SPEED = 3000.0,
 	ACCELERATION = 4.0, # lerp acceleration, unitless
 	ORBIT_SPEED = 800.0,
+	MIN_ORBIT_RADIUS = 150.0,
 	BOOST_VELOCITY = 3000.0,
 	NUDGE_DISTANCE = 50.0,
 	NUDGE_ACCELERATION = 0.1, # lerp acceleration, unitless
@@ -104,6 +105,8 @@ func handle_artificial_gravity(delta) -> GravityState:
 		ArtificialGravity.AGTypes.ORBIT:
 			# Orbit
 			var radius = vec_to_gravity.length()
+			if radius < ARTIFICIAL_GRAVITY.MIN_ORBIT_RADIUS:
+				radius = ARTIFICIAL_GRAVITY.MIN_ORBIT_RADIUS
 			# Formula created by fitting curves to sample data points.
 			# Works best between speeds of 400 and 1400
 			var constant = 87.7 - 19.9 * log(ARTIFICIAL_GRAVITY.ORBIT_SPEED)
