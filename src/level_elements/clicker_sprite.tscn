@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1ev75jm17q8w"]
-
-[ext_resource type="Texture2D" uid="uid://wub142n7anf3" path="res://assets/environment/creator_puzzle/clicker.png" id="1_2nc5v"]
-
-[node name="ClickerSprite" type="Sprite2D"]
-texture = ExtResource("1_2nc5v")

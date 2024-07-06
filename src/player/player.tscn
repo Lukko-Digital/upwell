@@ -1,180 +1,71 @@
-[gd_scene load_steps=27 format=3 uid="uid://tfy83b2uc6hh"]
+[gd_scene load_steps=6 format=3 uid="uid://tfy83b2uc6hh"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_lbj7m"]
-[ext_resource type="Texture2D" uid="uid://vg544th7n3ei" path="res://assets/shitty_assets/drill.png" id="2_35c0p"]
-[ext_resource type="Texture2D" uid="uid://crv5nu2k05ddm" path="res://assets/environment/creator_puzzle/ag_core.png" id="2_38y5b"]
 [ext_resource type="PackedScene" uid="uid://br8qm13yce4pr" path="res://src/dialogue/dialogue_ui.tscn" id="2_cft6f"]
-[ext_resource type="Texture2D" uid="uid://chtt4is6ducel" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0000.tres" id="4_fwoxo"]
-[ext_resource type="Texture2D" uid="uid://nbgyv2imvi50" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0001.tres" id="5_klfp1"]
-[ext_resource type="Texture2D" uid="uid://d31qlf5g6hwrx" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0002.tres" id="6_p6u8u"]
-[ext_resource type="Texture2D" uid="uid://dicenjwgg8nfd" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0003.tres" id="7_oq2j4"]
-[ext_resource type="Texture2D" uid="uid://bvml6ybaedwpw" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0004.tres" id="8_avymx"]
-[ext_resource type="Texture2D" uid="uid://r5p224n8pedn" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0005.tres" id="9_w5lr8"]
-[ext_resource type="Texture2D" uid="uid://bk10kt18aa8nl" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0006.tres" id="10_verrk"]
-[ext_resource type="Texture2D" uid="uid://dw0qgri35xeyf" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0007.tres" id="11_8w52l"]
-[ext_resource type="Texture2D" uid="uid://oeocvhyn1g1g" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0008.tres" id="12_yqyia"]
-[ext_resource type="Texture2D" uid="uid://gd2ia1uwfqjo" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0009.tres" id="13_hvcsb"]
-[ext_resource type="Texture2D" uid="uid://t5aaef2371c7" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0010.tres" id="14_4cgbu"]
-[ext_resource type="Texture2D" uid="uid://mdruiccy2mxd" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0011.tres" id="15_3j3r7"]
-[ext_resource type="Texture2D" uid="uid://tupg1w7085xk" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0012.tres" id="16_v46b8"]
-[ext_resource type="Texture2D" uid="uid://enac332x05v8" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0013.tres" id="17_114k2"]
-[ext_resource type="Texture2D" uid="uid://dr1rpygapja5c" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0014.tres" id="18_hbevl"]
-[ext_resource type="Texture2D" uid="uid://cb4gim6qcqm3h" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0015.tres" id="19_0017b"]
-[ext_resource type="Texture2D" uid="uid://duit5y686on5p" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0016.tres" id="20_f8qss"]
-[ext_resource type="Texture2D" uid="uid://cvypp2fr2f8fb" path="res://assets/character/player/sprite/animations/player-sheet_0.sprites/Test0017.tres" id="21_j6vg2"]
+[ext_resource type="Texture2D" uid="uid://dw7s1u2h3q230" path="res://assets/mvp2_assets/player.png" id="3_u0vu5"]
+[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="4_wfmfs"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_dqdgk"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("20_f8qss")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_j6vg2")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_oq2j4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_avymx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_w5lr8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_verrk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_8w52l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_yqyia")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_hvcsb")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_fwoxo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_klfp1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_p6u8u")
-}],
-"loop": true,
-"name": &"run",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("14_4cgbu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_3j3r7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_v46b8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_114k2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_hbevl")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_0017b")
-}],
-"loop": false,
-"name": &"stop",
-"speed": 8.0
-}]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_erpsl"]
+radius = 68.2904
+height = 273.162
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_piej1"]
-size = Vector2(112, 336)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_163mm"]
-size = Vector2(112, 336)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8ltk"]
-size = Vector2(112, 336)
-
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "gravity_detector", "interactable_detector", "drill_detector", "wall_ray_cast", "dialogue_ui", "drill_input_held_timer", "interact_tap_timer", "throw_arc_line")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("clicker_sprite", "interactable_detector", "dialogue_ui", "interact_tap_timer", "coyote_timer", "jump_buffer_timer", "min_jump_timer", "throw_arc_line", "nudge_sprites", "gravity_detector")]
 collision_layer = 2
 script = ExtResource("1_lbj7m")
-sprite = NodePath("NudgePosition/AnimatedSprite2D")
-gravity_detector = NodePath("DetectionAreas/GravityDetector")
+clicker_sprite = NodePath("NudgePosition/ClickerSprite")
 interactable_detector = NodePath("DetectionAreas/InteractableDetector")
-drill_detector = NodePath("DetectionAreas/DrillDetector")
-wall_ray_cast = NodePath("DetectionAreas/WallRayCast")
 dialogue_ui = NodePath("DialogueUi")
-drill_input_held_timer = NodePath("Timers/DrillInputHeldTimer")
 interact_tap_timer = NodePath("Timers/InteractTapTimer")
+coyote_timer = NodePath("Timers/CoyoteTimer")
+jump_buffer_timer = NodePath("Timers/JumpBufferTimer")
+min_jump_timer = NodePath("Timers/MinimumJumpTimer")
 throw_arc_line = NodePath("ThrowArc")
-
-[node name="DrillSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_35c0p")
+nudge_sprites = NodePath("NudgePosition")
+gravity_detector = NodePath("DetectionAreas/GravityDetector")
 
 [node name="NudgePosition" type="Node2D" parent="."]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NudgePosition"]
-position = Vector2(7.88236, 55.2887)
-scale = Vector2(0.254105, 0.254105)
-sprite_frames = SubResource("SpriteFrames_dqdgk")
-animation = &"run"
-frame_progress = 0.484609
+[node name="PlayerSprite" type="Sprite2D" parent="NudgePosition"]
+scale = Vector2(0.904217, 0.904217)
+texture = ExtResource("3_u0vu5")
 
-[node name="ClickerGlow" type="Sprite2D" parent="NudgePosition"]
-position = Vector2(-24, 1.7053e-13)
-scale = Vector2(1.65575, 1.65575)
-texture = ExtResource("2_38y5b")
+[node name="ClickerSprite" parent="NudgePosition" instance=ExtResource("4_wfmfs")]
+position = Vector2(0, 13)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.117645, 39.2887)
-shape = SubResource("RectangleShape2D_piej1")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+scale = Vector2(0.893244, 0.893244)
+shape = SubResource("CapsuleShape2D_erpsl")
 
 [node name="DetectionAreas" type="Node2D" parent="."]
 
 [node name="GravityDetector" type="Area2D" parent="DetectionAreas"]
-position = Vector2(0, 38)
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionAreas/GravityDetector"]
-shape = SubResource("RectangleShape2D_163mm")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DetectionAreas/GravityDetector"]
+scale = Vector2(0.893244, 0.893244)
+shape = SubResource("CapsuleShape2D_erpsl")
 
 [node name="InteractableDetector" type="Area2D" parent="DetectionAreas"]
-position = Vector2(0, 206)
 collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionAreas/InteractableDetector"]
-position = Vector2(0, -167)
-shape = SubResource("RectangleShape2D_d8ltk")
-
-[node name="DrillDetector" type="Area2D" parent="DetectionAreas"]
-position = Vector2(0, 38)
-collision_layer = 0
-collision_mask = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionAreas/DrillDetector"]
-shape = SubResource("RectangleShape2D_d8ltk")
-
-[node name="WallRayCast" type="RayCast2D" parent="DetectionAreas"]
-target_position = Vector2(0, 0)
+scale = Vector2(0.893244, 0.893244)
+shape = SubResource("CapsuleShape2D_erpsl")
 
 [node name="Timers" type="Node" parent="."]
 
-[node name="DrillInputHeldTimer" type="Timer" parent="Timers"]
+[node name="InteractTapTimer" type="Timer" parent="Timers"]
 one_shot = true
 
-[node name="InteractTapTimer" type="Timer" parent="Timers"]
+[node name="CoyoteTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="JumpBufferTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="MinimumJumpTimer" type="Timer" parent="Timers"]
 one_shot = true
 
 [node name="DialogueUi" parent="." instance=ExtResource("2_cft6f")]
@@ -208,5 +99,4 @@ text = "your map has been updated"
 
 [node name="ThrowArc" type="Line2D" parent="."]
 
-[connection signal="timeout" from="Timers/DrillInputHeldTimer" to="." method="drill_input_held"]
 [connection signal="dialogue_finished" from="DialogueUi" to="." method="_on_dialogue_ui_dialogue_finished"]

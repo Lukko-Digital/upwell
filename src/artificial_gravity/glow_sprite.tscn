@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4jqyovssydvt"]
+
+[ext_resource type="Texture2D" uid="uid://ceyfrqipxnpj3" path="res://assets/mvp2_assets/field.png" id="1_e5qax"]
+
+[node name="Glow" type="Sprite2D"]
+texture = ExtResource("1_e5qax")
