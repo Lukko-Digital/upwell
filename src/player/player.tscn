@@ -9,7 +9,7 @@
 radius = 68.2904
 height = 273.162
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("clicker_sprite", "interactable_detector", "dialogue_ui", "coyote_timer", "jump_buffer_timer", "min_jump_timer", "throw_arc_line", "nudge_sprites", "gravity_detector")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("clicker_sprite", "interactable_detector", "dialogue_ui", "coyote_timer", "jump_buffer_timer", "min_jump_timer", "throw_arc_line", "gravity_detector")]
 collision_layer = 2
 script = ExtResource("1_lbj7m")
 clicker_sprite = NodePath("ClickerSprite")
@@ -19,7 +19,6 @@ coyote_timer = NodePath("Timers/CoyoteTimer")
 jump_buffer_timer = NodePath("Timers/JumpBufferTimer")
 min_jump_timer = NodePath("Timers/MinimumJumpTimer")
 throw_arc_line = NodePath("ThrowArc")
-nudge_sprites = NodePath("")
 gravity_detector = NodePath("DetectionAreas/GravityDetector")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]

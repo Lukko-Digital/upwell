@@ -7,10 +7,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_aqd0u"]
 radius = 32.0624
 
-[node name="Clicker" type="CharacterBody2D" node_paths=PackedStringArray("nudge_sprites", "gravity_detector")]
+[node name="Clicker" type="CharacterBody2D" node_paths=PackedStringArray("gravity_detector")]
 collision_layer = 8
 script = ExtResource("1_ly8d8")
-nudge_sprites = NodePath("ClickerSprite")
 gravity_detector = NodePath("GravityDetector")
 
 [node name="ClickerSprite" parent="." instance=ExtResource("3_okg3f")]
