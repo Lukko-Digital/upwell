@@ -34,7 +34,8 @@ const PLAYER = {
 @export var min_jump_timer: Timer
 @export var throw_arc_line: Line2D
 
-@onready var clicker_scene: PackedScene = preload ("res://src/clicker/clicker.tscn")
+# @onready var clicker_scene: PackedScene = preload ("res://src/clicker/clicker.tscn")
+@onready var clicker_scene: PackedScene = preload ("res://src/clicker/physics_clicker.tscn")
 
 var game: Game
 
@@ -234,13 +235,6 @@ func handle_nearby_interactables():
 		)
 		highlighted_interactable = nearby_interactables[0]
 
-func spawn_clicker(initial_velocity: Vector2=Vector2.ZERO):
-	has_clicker = false
-	var instance: ClickerBody = clicker_scene.instantiate()
-	instance.global_position = global_position
-	instance.velocity = initial_velocity
-	get_parent().add_child(instance)
-
 func interact():
 	if highlighted_interactable != null:
 		highlighted_interactable.interact(self)
@@ -254,6 +248,17 @@ func start_dialogue(npc: NPC):
 	in_dialogue = true
 
 ### ----------------------------- THROW -----------------------------
+
+func spawn_clicker(initial_velocity: Vector2=Vector2.ZERO):
+	has_clicker = false
+	# var instance: ClickerBody = clicker_scene.instantiate()
+	# instance.global_position = global_position
+	# instance.velocity = initial_velocity
+	# get_parent().add_child(instance)
+	var instance: RigidBody2D = clicker_scene.instantiate()
+	instance.global_position = global_position
+	instance.linear_velocity = initial_velocity
+	get_parent().add_child(instance)
 
 func throw():
 	if not (

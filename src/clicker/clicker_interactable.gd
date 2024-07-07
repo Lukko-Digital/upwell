@@ -1,7 +1,7 @@
 extends Interactable
 class_name ClickerInteractable
 
-@onready var body: ClickerBody = get_parent()
+@onready var body = get_parent()
 
 func interact(player: Player):
 	if player.has_clicker:
