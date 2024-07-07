@@ -22,7 +22,6 @@ const PLAYER = {
 	# Throw
 	THROW_VELOCITY = 3000,
 	ARC_POINTS = 100,
-	INTERACT_TAP_TIME = 0.2,
 }
 
 @export_group("Node References")
@@ -30,7 +29,6 @@ const PLAYER = {
 @export var clicker_sprite: Sprite2D
 @export var interactable_detector: Area2D
 @export var dialogue_ui: DialogueUI
-@export var interact_tap_timer: Timer
 @export var coyote_timer: Timer
 @export var jump_buffer_timer: Timer
 @export var min_jump_timer: Timer
@@ -57,6 +55,8 @@ var previously_grounded: bool = false
 var jumping: bool = false
 var disable_airborne_decel: bool = true
 var previous_horizontal_direction: float = 0
+
+var aiming: bool = false
 
 ## ---
 
@@ -105,20 +105,19 @@ func _input(event: InputEvent) -> void:
 		jump()
 	if event.is_action_released("jump"):
 		jump_end()
+	
 	if event.is_action_pressed("map"):
 		in_map = game.toggle_map()
-	
-	## The `interact_tap_timer` is the time in which the interact key can be
-	## released in order to count as tapping interact. If the key is held
-	## beyond that time, it begins the throw action, via `handle_throw_arc`
 	if event.is_action_pressed("interact"):
-		interact_tap_timer.start(PLAYER.INTERACT_TAP_TIME)
-	if event.is_action_released("interact"):
-		if !interact_tap_timer.is_stopped():
-			interact()
-			interact_tap_timer.stop()
-		else:
-			throw()
+		interact()
+	
+	if event.is_action_pressed("throw"):
+		aiming = true
+	if event.is_action_pressed("cancel"):
+		aiming = false
+	
+	if event.is_action_released("throw"):
+		throw()
 
 ## ------------------------------ CAMERA ------------------------------
 
@@ -252,21 +251,33 @@ func interact():
 	elif has_clicker:
 		spawn_clicker()
 
+func start_dialogue(npc: NPC):
+	if in_dialogue:
+		return
+	dialogue_ui.start_dialogue(npc)
+	in_dialogue = true
+
+### ----------------------------- THROW -----------------------------
+
 func throw():
-	if not has_clicker:
+	if not (
+		has_clicker and
+		aiming
+	):
 		return
 	var dir = (get_global_mouse_position() - global_position).normalized()
 	spawn_clicker(dir * PLAYER.THROW_VELOCITY)
 
 func handle_throw_arc():
-	if not (
-		Input.is_action_pressed("interact") and
-		interact_tap_timer.is_stopped() and
-		has_clicker
-	):
-		throw_arc_line.clear_points()
-		return
 	throw_arc_line.clear_points()
+
+	if not (
+		Input.is_action_pressed("throw") and
+		has_clicker and
+		aiming
+	):
+		return
+
 	var pos = Vector2.ZERO
 	var vel = (get_global_mouse_position() - global_position).normalized() * PLAYER.THROW_VELOCITY
 	var delta = get_physics_process_delta_time()
@@ -281,12 +292,6 @@ func handle_throw_arc():
 		query.position = global_position + pos
 		if not world_physics.intersect_point(query).is_empty():
 			break
-
-func start_dialogue(npc: NPC):
-	if in_dialogue:
-		return
-	dialogue_ui.start_dialogue(npc)
-	in_dialogue = true
 
 ## ------------------------------ SIGNAL HANDLES ------------------------------
 
