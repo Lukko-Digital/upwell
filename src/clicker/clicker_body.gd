@@ -11,7 +11,6 @@ var frames_since_last_collision = 0
 func _physics_process(delta: float) -> void:
 	var gravity_state: GravityState = handle_artificial_gravity(delta)
 	handle_world_gravity(delta, gravity_state, MAX_FALL_SPEED)
-	handle_nudge(gravity_state)
 	# Apply normal force and friction
 	var floor_normal = get_floor_normal()
 	if floor_normal != Vector2.UP:

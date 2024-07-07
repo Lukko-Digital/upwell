@@ -12,25 +12,14 @@ const ARTIFICIAL_GRAVITY = {
 	ORBIT_SPEED = 800.0,
 	MIN_ORBIT_RADIUS = 150.0,
 	BOOST_VELOCITY = 3000.0,
-	NUDGE_DISTANCE = 50.0,
-	NUDGE_ACCELERATION = 0.1, # lerp acceleration, unitless
 }
 
 enum GravityState {NONE, BOOST, PUSHPULL, ORBIT}
 
-@export_group("Settings")
-@export var enable_nudge: bool = false
-
 @export_group("Node References")
-@export var nudge_sprites: Node2D
 @export var gravity_detector: Area2D
 
 var world_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
-var nudge_position: Vector2 = Vector2.ZERO:
-	set(value):
-		nudge_sprites.position = value
-		nudge_position = value
 
 ## -1 = clockwise, 1 = counter-clockwise
 var orbit_direction: int
@@ -62,7 +51,7 @@ func handle_artificial_gravity(delta) -> GravityState:
 
 	# Boost
 	if Input.is_action_just_pressed("jump"):
-		velocity = (-vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.BOOST_VELOCITY
+		velocity = -vec_to_gravity.normalized() * ARTIFICIAL_GRAVITY.BOOST_VELOCITY
 		gravity_well.disable()
 		return GravityState.BOOST
 
@@ -132,21 +121,3 @@ func handle_world_gravity(delta: float, gravity_state: GravityState, max_fall_sp
 		return
 	if not is_on_floor():
 		velocity.y = move_toward(velocity.y, max_fall_speed, world_gravity * delta)
-
-## Handles "nudge" movements while in a push-pull AG.
-## Allows more precise movement when in the center of an AG.
-##
-## Returns: A boolean representing if the body is currently being nudged.
-func handle_nudge(gravity_state: GravityState) -> bool:
-	if not enable_nudge:
-		return false
-	if gravity_state == GravityState.PUSHPULL:
-		var nudge_input = Input.get_vector("left", "right", "up", "down")
-		nudge_position = nudge_position.lerp(
-			nudge_input * ARTIFICIAL_GRAVITY.NUDGE_DISTANCE,
-			ARTIFICIAL_GRAVITY.NUDGE_ACCELERATION
-		)
-		return true
-	else:
-		nudge_position = nudge_position.lerp(Vector2.ZERO, ARTIFICIAL_GRAVITY.NUDGE_ACCELERATION)
-		return false
