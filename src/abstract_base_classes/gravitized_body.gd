@@ -54,61 +54,59 @@ func handle_artificial_gravity(delta) -> GravityState:
 		return GravityState.NONE
 	
 	var vec_to_gravity = gravity_well.global_position - global_position
+	var orbitting = Input.is_action_pressed("orbit")
+	if not orbitting:
+		return GravityState.NONE
+
+	# --- From this point forward, the player is pressing the orbit button ---
 
 	# Boost
-	if Input.is_action_just_pressed("boost"):
+	if Input.is_action_just_pressed("jump"):
 		velocity = (-vec_to_gravity + nudge_position).normalized() * ARTIFICIAL_GRAVITY.BOOST_VELOCITY
 		gravity_well.disable()
 		return GravityState.BOOST
 
-	# Check the player is inputting a mouse click
-	var attracting = Input.is_action_pressed("attract")
-	var repelling = Input.is_action_pressed("repel")
-	if not (attracting or repelling):
-		return GravityState.NONE
-
 	match gravity_well.type:
-		ArtificialGravity.AGTypes.PUSHPULL:
-			# Push and pull
-			var active_direction = Vector2.ZERO
-			if attracting:
-				active_direction += vec_to_gravity.normalized()
-			if repelling:
-				active_direction += (-vec_to_gravity + nudge_position).normalized()
-			# Squish x component
-			var horizontal_coef = 0.9 * abs(vec_to_gravity.x) / gravity_well.radius() + 0.3
-			active_direction.x *= horizontal_coef
-			velocity = velocity.lerp(
-				active_direction * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED,
-				ARTIFICIAL_GRAVITY.ACCELERATION * delta
-			)
-			return GravityState.PUSHPULL
+		# ArtificialGravity.AGTypes.PUSHPULL:
+		# 	# Push and pull
+		# 	var active_direction = Vector2.ZERO
+		# 	if attracting:
+		# 		active_direction += vec_to_gravity.normalized()
+		# 	if repelling:
+		# 		active_direction += (-vec_to_gravity + nudge_position).normalized()
+		# 	# Squish x component
+		# 	var horizontal_coef = 0.9 * abs(vec_to_gravity.x) / gravity_well.radius() + 0.3
+		# 	active_direction.x *= horizontal_coef
+		# 	velocity = velocity.lerp(
+		# 		active_direction * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED,
+		# 		ARTIFICIAL_GRAVITY.ACCELERATION * delta
+		# 	)
+		# 	return GravityState.PUSHPULL
 		
-		ArtificialGravity.AGTypes.FUNNEL:
-			# Push pull variant: funnel
-			var horizontal_coef = 1.2 * abs(vec_to_gravity.x) / gravity_well.radius()
-			var active_direction = -sign(vec_to_gravity.y) * vec_to_gravity.normalized()
-			active_direction.x *= horizontal_coef
-			if attracting:
-				velocity = velocity.lerp(
-					active_direction * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED,
-					ARTIFICIAL_GRAVITY.ACCELERATION * delta
-				)
-			return GravityState.PUSHPULL
+		# ArtificialGravity.AGTypes.FUNNEL:
+		# 	# Push pull variant: funnel
+		# 	var horizontal_coef = 1.2 * abs(vec_to_gravity.x) / gravity_well.radius()
+		# 	var active_direction = -sign(vec_to_gravity.y) * vec_to_gravity.normalized()
+		# 	active_direction.x *= horizontal_coef
+		# 	if attracting:
+		# 		velocity = velocity.lerp(
+		# 			active_direction * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED,
+		# 			ARTIFICIAL_GRAVITY.ACCELERATION * delta
+		# 		)
+		# 	return GravityState.PUSHPULL
 
-		ArtificialGravity.AGTypes.ONLYUP:
-			if attracting:
-				velocity.y = lerp(
-					velocity.y,
-					- 1 * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED,
-					ARTIFICIAL_GRAVITY.ACCELERATION * delta
-				)
-			return GravityState.PUSHPULL
+		# ArtificialGravity.AGTypes.ONLYUP:
+		# 	if attracting:
+		# 		velocity.y = lerp(
+		# 			velocity.y,
+		# 			- 1 * ARTIFICIAL_GRAVITY.PUSHPULL_SPEED,
+		# 			ARTIFICIAL_GRAVITY.ACCELERATION * delta
+		# 		)
+		# 	return GravityState.PUSHPULL
 
 		ArtificialGravity.AGTypes.ORBIT:
 			# Determine orbit direction
-			if Input.is_action_just_pressed("attract"):
-				orbit_direction = sign(vec_to_gravity.angle_to(velocity))
+			orbit_direction = sign(vec_to_gravity.angle_to(velocity))
 			# Get radius and set min radius
 			var radius = vec_to_gravity.length()
 			if radius < ARTIFICIAL_GRAVITY.MIN_ORBIT_RADIUS:
