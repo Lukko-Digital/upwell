@@ -9,27 +9,24 @@
 radius = 68.2904
 height = 273.162
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("clicker_sprite", "interactable_detector", "dialogue_ui", "interact_tap_timer", "coyote_timer", "jump_buffer_timer", "min_jump_timer", "throw_arc_line", "nudge_sprites", "gravity_detector")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("clicker_sprite", "interactable_detector", "dialogue_ui", "coyote_timer", "jump_buffer_timer", "min_jump_timer", "throw_arc_line", "nudge_sprites", "gravity_detector")]
 collision_layer = 2
 script = ExtResource("1_lbj7m")
-clicker_sprite = NodePath("NudgePosition/ClickerSprite")
+clicker_sprite = NodePath("ClickerSprite")
 interactable_detector = NodePath("DetectionAreas/InteractableDetector")
 dialogue_ui = NodePath("DialogueUi")
-interact_tap_timer = NodePath("Timers/InteractTapTimer")
 coyote_timer = NodePath("Timers/CoyoteTimer")
 jump_buffer_timer = NodePath("Timers/JumpBufferTimer")
 min_jump_timer = NodePath("Timers/MinimumJumpTimer")
 throw_arc_line = NodePath("ThrowArc")
-nudge_sprites = NodePath("NudgePosition")
+nudge_sprites = NodePath("")
 gravity_detector = NodePath("DetectionAreas/GravityDetector")
 
-[node name="NudgePosition" type="Node2D" parent="."]
-
-[node name="PlayerSprite" type="Sprite2D" parent="NudgePosition"]
+[node name="PlayerSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.904217, 0.904217)
 texture = ExtResource("3_u0vu5")
 
-[node name="ClickerSprite" parent="NudgePosition" instance=ExtResource("4_wfmfs")]
+[node name="ClickerSprite" parent="." instance=ExtResource("4_wfmfs")]
 position = Vector2(0, 13)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
@@ -55,9 +52,6 @@ scale = Vector2(0.893244, 0.893244)
 shape = SubResource("CapsuleShape2D_erpsl")
 
 [node name="Timers" type="Node" parent="."]
-
-[node name="InteractTapTimer" type="Timer" parent="Timers"]
-one_shot = true
 
 [node name="CoyoteTimer" type="Timer" parent="Timers"]
 one_shot = true

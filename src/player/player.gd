@@ -151,11 +151,7 @@ func handle_movement(delta: float, gravity_state: GravityState):
 
 	var top_speed = PLAYER.SPEED * speed_coef
 	var horizontal_direction = sign(velocity.x)
-
-	# nudge input
-	if handle_nudge(gravity_state):
-		return
-
+	
 	# Disable airborne decel upon boosting until touching the floor or
 	# changing direction in air.
 	if gravity_state == GravityState.BOOST:
