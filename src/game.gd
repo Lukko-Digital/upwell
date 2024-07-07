@@ -12,7 +12,7 @@ func change_level(level: PackedScene):
 	active_level.remove_child(current_level)
 	current_level.queue_free()
 	var new_level = level.instantiate()
-	active_level.add_child(new_level)
+	active_level.call_deferred("add_child", new_level)
 
 # Returns true if map is visable and false if not
 func toggle_map() -> bool:
