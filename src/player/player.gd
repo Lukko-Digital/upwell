@@ -38,8 +38,6 @@ const PLAYER = {
 
 @onready var clicker_scene: PackedScene = preload ("res://src/clicker/clicker.tscn")
 
-var game: Game
-
 ## -------------------------- PLAYER STATE VARIABLES --------------------------
 
 # PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
@@ -83,8 +81,11 @@ func _ready() -> void:
 	has_clicker = Global.player_has_clicker
 	# Retrieve Game node 
 	var current_scene = get_tree().get_current_scene()
-	if current_scene is Game:
-		game = current_scene
+	if current_scene is Game and not owner is Game:
+		var main_camera: Camera2D = current_scene.get_node("Player").get_node("Camera2D")
+		main_camera.limit_bottom = camera.limit_bottom
+		main_camera.limit_top = camera.limit_top
+		queue_free()
 
 func _physics_process(delta):
 	if in_dialogue or in_map:
@@ -105,8 +106,6 @@ func _input(event: InputEvent) -> void:
 		jump()
 	if event.is_action_released("jump"):
 		jump_end()
-	if event.is_action_pressed("map"):
-		in_map = game.toggle_map()
 	
 	## The `interact_tap_timer` is the time in which the interact key can be
 	## released in order to count as tapping interact. If the key is held
