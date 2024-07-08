@@ -2,6 +2,9 @@ extends RigidBody2D
 
 @export var grav_component: GravitizedComponent
 
+## Set false when dropped to prevent immediately re-entering holder
+var catchable = true
+
 func _physics_process(delta: float) -> void:
 	var gravity_state: GravitizedComponent.GravityState = handle_artificial_gravity(delta)
 	if gravity_state == GravitizedComponent.GravityState.ORBIT:
@@ -18,3 +21,16 @@ func handle_artificial_gravity(delta) -> GravitizedComponent.GravityState:
 		)
 		linear_velocity = new_vel
 	return gravity_state
+
+func _on_holder_detector_area_entered(area: Area2D) -> void:
+	if not area is ClickerReceiver:
+		return
+	if (
+		not catchable or
+		not area.is_catcher or
+		area.has_clicker
+	):
+		return
+
+	area.has_clicker = true
+	queue_free()

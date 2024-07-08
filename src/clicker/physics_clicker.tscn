@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://rc5k8wvetpt6"]
+[gd_scene load_steps=10 format=3 uid="uid://rc5k8wvetpt6"]
 
 [ext_resource type="Script" path="res://src/clicker/physics_clicker.gd" id="1_jj7h2"]
 [ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="1_l5ijg"]
@@ -15,6 +15,9 @@ radius = 32.0156
 radius = 32.0624
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yx7fa"]
+radius = 32.0624
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ik21"]
 radius = 32.0624
 
 [node name="PhysicsClicker" type="RigidBody2D" node_paths=PackedStringArray("grav_component")]
@@ -61,3 +64,14 @@ offset_right = 32.0
 offset_bottom = -62.0
 theme_override_font_sizes/font_size = 40
 text = "<E>"
+
+[node name="HolderDetector" type="Area2D" parent="."]
+position = Vector2(0, 38)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HolderDetector"]
+position = Vector2(0, -38)
+shape = SubResource("CircleShape2D_4ik21")
+
+[connection signal="area_entered" from="HolderDetector" to="." method="_on_holder_detector_area_entered"]
