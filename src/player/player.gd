@@ -1,4 +1,4 @@
-extends GravitizedBody
+extends CharacterBody2D
 class_name Player
 
 const PLAYER = {
@@ -26,6 +26,7 @@ const PLAYER = {
 
 @export_group("Node References")
 @export var camera: Camera2D
+@export var grav_component: GravitizedComponent
 @export var clicker_sprite: Sprite2D
 @export var interactable_detector: Area2D
 @export var dialogue_ui: DialogueUI
@@ -36,6 +37,8 @@ const PLAYER = {
 
 # @onready var clicker_scene: PackedScene = preload ("res://src/clicker/clicker.tscn")
 @onready var clicker_scene: PackedScene = preload ("res://src/clicker/physics_clicker.tscn")
+
+var world_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var game: Game
 
@@ -90,8 +93,8 @@ func _ready() -> void:
 func _physics_process(delta):
 	if in_dialogue or in_map:
 		return
-	var gravity_state: GravityState = handle_artificial_gravity(delta)
-	handle_world_gravity(delta, gravity_state, PLAYER.MAX_FALL_SPEED)
+	var gravity_state: GravitizedComponent.GravityState = handle_artificial_gravity(delta)
+	handle_world_gravity(delta, gravity_state)
 	handle_movement(delta, gravity_state)
 	move_and_slide()
 	handle_coyote_timing(gravity_state)
@@ -136,18 +139,31 @@ func handle_camera_peek(delta):
 			PLAYER.PEEK_RETURN_SPEED * delta
 		)
 
+## ------------------------------ GRAVITY ------------------------------
+
+func handle_artificial_gravity(delta) -> GravitizedComponent.GravityState:
+	var active_ag = grav_component.check_active_ag()
+	var gravity_state = grav_component.determine_gravity_state(active_ag)
+	if gravity_state != GravitizedComponent.GravityState.NONE:
+		var new_vel = grav_component.calculate_gravitized_velocity(
+			active_ag, gravity_state, velocity, delta
+		)
+		velocity = new_vel
+	return gravity_state
+
+func handle_world_gravity(delta: float, gravity_state: GravitizedComponent.GravityState):
+	if gravity_state == GravitizedComponent.GravityState.ORBIT:
+		return
+	if not is_on_floor():
+		velocity.y = move_toward(velocity.y, PLAYER.MAX_FALL_SPEED, world_gravity * delta)
+
 ## ------------------------------ MOVEMENT ------------------------------
 
-func handle_artificial_gravity(delta) -> GravityState:
-	if not has_clicker:
-		return GravityState.NONE
-	return super(delta)
-
-func handle_movement(delta: float, gravity_state: GravityState):
+func handle_movement(delta: float, gravity_state: GravitizedComponent.GravityState):
 	var speed_coef = 1.0
-	if gravity_state == GravityState.ORBIT:
+	if gravity_state == GravitizedComponent.GravityState.ORBIT:
 		speed_coef = PLAYER.ORBIT_STRAFE_SLOWDOWN
-	elif gravity_state == GravityState.PUSHPULL:
+	elif gravity_state == GravitizedComponent.GravityState.PUSHPULL:
 		speed_coef = PLAYER.PUSHPULL_STRAFE_SLOWDOWN
 
 	var top_speed = PLAYER.SPEED * speed_coef
@@ -155,7 +171,7 @@ func handle_movement(delta: float, gravity_state: GravityState):
 	
 	# Disable airborne decel upon boosting until touching the floor or
 	# changing direction in air.
-	if gravity_state == GravityState.BOOST:
+	if gravity_state == GravitizedComponent.GravityState.BOOST:
 		disable_airborne_decel = true
 	elif is_on_floor() or horizontal_direction != previous_horizontal_direction:
 		disable_airborne_decel = false
@@ -167,7 +183,9 @@ func handle_movement(delta: float, gravity_state: GravityState):
 		# movement, accelerate player towards direction of movement, this
 		# includes accelerating towards zero movement.
 		if input_direction == 0 and (
-			disable_airborne_decel or gravity_state in [GravityState.ORBIT, GravityState.PUSHPULL]
+			disable_airborne_decel or gravity_state in [
+				GravitizedComponent.GravityState.ORBIT, GravitizedComponent.GravityState.PUSHPULL
+			]
 		):
 			# If there is no player input, and airborne decel is disabled from
 			# boosting or the player is currently in an orbit or pushpull,
@@ -182,17 +200,17 @@ func handle_movement(delta: float, gravity_state: GravityState):
 # ----------------------------- JUMP -----------------------------
 
 ## Should be called after [move_and_slide] in [_physics_process]
-func handle_coyote_timing(gravity_state: GravityState):
+func handle_coyote_timing(gravity_state: GravitizedComponent.GravityState):
 	var currently_grounded = is_on_floor()
 	if (
 		previously_grounded and
 		not currently_grounded and
 		not jumping and
-		gravity_state == GravityState.NONE
+		gravity_state == GravitizedComponent.GravityState.NONE
 	):
 		coyote_timer.start(PLAYER.COYOTE_TIME)
 
-	if currently_grounded or gravity_state != GravityState.NONE:
+	if currently_grounded or gravity_state != GravitizedComponent.GravityState.NONE:
 		jumping = false
 	if not jump_buffer_timer.is_stopped() and currently_grounded:
 		jump()

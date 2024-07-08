@@ -1,17 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://tfy83b2uc6hh"]
+[gd_scene load_steps=7 format=3 uid="uid://tfy83b2uc6hh"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_lbj7m"]
 [ext_resource type="PackedScene" uid="uid://br8qm13yce4pr" path="res://src/dialogue/dialogue_ui.tscn" id="2_cft6f"]
 [ext_resource type="Texture2D" uid="uid://dw7s1u2h3q230" path="res://assets/mvp2_assets/player.png" id="3_u0vu5"]
 [ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="4_wfmfs"]
+[ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="4_wg5r1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_erpsl"]
 radius = 68.2904
 height = 273.162
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("clicker_sprite", "interactable_detector", "dialogue_ui", "coyote_timer", "jump_buffer_timer", "min_jump_timer", "throw_arc_line", "gravity_detector")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("grav_component", "clicker_sprite", "interactable_detector", "dialogue_ui", "coyote_timer", "jump_buffer_timer", "min_jump_timer", "throw_arc_line")]
 collision_layer = 2
 script = ExtResource("1_lbj7m")
+grav_component = NodePath("GravitizedComponent")
 clicker_sprite = NodePath("ClickerSprite")
 interactable_detector = NodePath("DetectionAreas/InteractableDetector")
 dialogue_ui = NodePath("DialogueUi")
@@ -19,7 +21,6 @@ coyote_timer = NodePath("Timers/CoyoteTimer")
 jump_buffer_timer = NodePath("Timers/JumpBufferTimer")
 min_jump_timer = NodePath("Timers/MinimumJumpTimer")
 throw_arc_line = NodePath("ThrowArc")
-gravity_detector = NodePath("DetectionAreas/GravityDetector")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.904217, 0.904217)
@@ -31,6 +32,10 @@ position = Vector2(0, 13)
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 scale = Vector2(0.893244, 0.893244)
 shape = SubResource("CapsuleShape2D_erpsl")
+
+[node name="GravitizedComponent" type="Node2D" parent="." node_paths=PackedStringArray("gravity_detector")]
+script = ExtResource("4_wg5r1")
+gravity_detector = NodePath("../DetectionAreas/GravityDetector")
 
 [node name="DetectionAreas" type="Node2D" parent="."]
 
