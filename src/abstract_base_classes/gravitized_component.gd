@@ -1,7 +1,17 @@
 extends Node2D
 ## Provides functions that handle a body's interaction with artificial gravity.
 ## The three provided functions are meant to be called in the physics process
-## function on the body that the component is applied to.
+## function on the body that the component is applied to.[br]
+## Usage:
+## [codeblock]
+## var active_ag = grav_component.check_active_ag()
+## var gravity_state = grav_component.determine_gravity_state(active_ag)
+## if gravity_state != GravitizedComponent.GravityState.NONE:
+## 		var new_vel = grav_component.calculate_gravitized_velocity(
+## 			active_ag, gravity_state, velocity, delta
+## 		)
+## 		velocity = new_vel
+## [/codeblock]
 class_name GravitizedComponent
 
 const ARTIFICIAL_GRAVITY = {
