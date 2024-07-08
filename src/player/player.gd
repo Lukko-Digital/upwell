@@ -35,7 +35,7 @@ const PLAYER = {
 @export var min_jump_timer: Timer
 @export var throw_arc_line: Line2D
 
-@onready var clicker_scene: PackedScene = preload ("res://src/clicker/physics_clicker.tscn")
+@onready var clicker_scene: PackedScene = preload ("res://src/clicker/clicker.tscn")
 
 var world_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 

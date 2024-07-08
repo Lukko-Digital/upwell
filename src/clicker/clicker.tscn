@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://rc5k8wvetpt6"]
 
-[ext_resource type="Script" path="res://src/clicker/physics_clicker.gd" id="1_jj7h2"]
-[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="1_l5ijg"]
-[ext_resource type="Script" path="res://src/clicker/clicker_interactable.gd" id="3_igkrq"]
-[ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="4_lmlkj"]
+[ext_resource type="Script" path="res://src/clicker/clicker_body.gd" id="1_5mmek"]
+[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="2_ci3is"]
+[ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="3_0ahrw"]
+[ext_resource type="Script" path="res://src/clicker/clicker_interactable.gd" id="4_d7pfq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w1b0y"]
 bounce = 0.3
@@ -20,14 +20,14 @@ radius = 32.0624
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ik21"]
 radius = 32.0624
 
-[node name="PhysicsClicker" type="RigidBody2D" node_paths=PackedStringArray("grav_component")]
+[node name="ClickerBody" type="RigidBody2D" node_paths=PackedStringArray("grav_component")]
 collision_layer = 0
 physics_material_override = SubResource("PhysicsMaterial_w1b0y")
 angular_damp = 10.0
-script = ExtResource("1_jj7h2")
+script = ExtResource("1_5mmek")
 grav_component = NodePath("GravitizedComponent")
 
-[node name="ClickerSprite" parent="." instance=ExtResource("1_l5ijg")]
+[node name="ClickerSprite" parent="." instance=ExtResource("2_ci3is")]
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(-1, 0, 60, 0)
@@ -37,7 +37,7 @@ default_color = Color(0, 1, 1, 1)
 shape = SubResource("CircleShape2D_ele5l")
 
 [node name="GravitizedComponent" type="Node2D" parent="." node_paths=PackedStringArray("gravity_detector")]
-script = ExtResource("4_lmlkj")
+script = ExtResource("3_0ahrw")
 gravity_detector = NodePath("GravityDetector")
 
 [node name="GravityDetector" type="Area2D" parent="GravitizedComponent"]
@@ -52,7 +52,7 @@ shape = SubResource("CircleShape2D_v5kbs")
 [node name="Interactable" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 2
-script = ExtResource("3_igkrq")
+script = ExtResource("4_d7pfq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 shape = SubResource("CircleShape2D_yx7fa")

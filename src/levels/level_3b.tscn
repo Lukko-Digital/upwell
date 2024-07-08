@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/clicker/clicker_holder.tscn" id="3_q8wae"]
 [ext_resource type="PackedScene" uid="uid://cp5a5nk8eo6va" path="res://src/level_elements/artificial_gravity/ag_reenable_area.tscn" id="5_2wadt"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="6_aqng4"]
-[ext_resource type="PackedScene" uid="uid://rc5k8wvetpt6" path="res://src/clicker/physics_clicker.tscn" id="7_42guy"]
+[ext_resource type="PackedScene" uid="uid://rc5k8wvetpt6" path="res://src/clicker/clicker.tscn" id="7_42guy"]
 [ext_resource type="Texture2D" uid="uid://cg7bn01uog8q1" path="res://assets/mvp2_assets/TM.png" id="7_ki4wd"]
 [ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="8_5k3wc"]
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="9_cxqab"]
