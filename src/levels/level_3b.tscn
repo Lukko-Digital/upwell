@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://dw6autb2hsck1" path="res://src/level_elements/artificial_gravity/orbit_ag.tscn" id="2_qd4li"]
 [ext_resource type="Script" path="res://src/clicker/multi_receiver.gd" id="3_5e2io"]
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/clicker/clicker_holder.tscn" id="3_q8wae"]
-[ext_resource type="PackedScene" uid="uid://cjtgvuvb40cba" path="res://src/clicker/clicker.tscn" id="4_2tygm"]
 [ext_resource type="PackedScene" uid="uid://cp5a5nk8eo6va" path="res://src/level_elements/artificial_gravity/ag_reenable_area.tscn" id="5_2wadt"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="6_aqng4"]
+[ext_resource type="PackedScene" uid="uid://rc5k8wvetpt6" path="res://src/clicker/physics_clicker.tscn" id="7_42guy"]
 [ext_resource type="Texture2D" uid="uid://cg7bn01uog8q1" path="res://assets/mvp2_assets/TM.png" id="7_ki4wd"]
 [ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="8_5k3wc"]
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="9_cxqab"]
@@ -189,12 +189,12 @@ position = Vector2(-242, -42)
 
 [node name="Holders" type="Node2D" parent="."]
 
-[node name="Clicker" parent="Holders" instance=ExtResource("4_2tygm")]
-position = Vector2(512, -68)
-
 [node name="ClickerHolder" parent="Holders" instance=ExtResource("3_q8wae")]
 position = Vector2(-1089, -344)
 rotation = -3.14159
+
+[node name="PhysicsClicker" parent="Holders" instance=ExtResource("7_42guy")]
+position = Vector2(512, -68)
 
 [node name="AgReenableArea" parent="." instance=ExtResource("5_2wadt")]
 position = Vector2(-998.882, -398.83)

@@ -4,12 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity/push_pull_ag.tscn" id="1_f3hgs"]
 [ext_resource type="PackedScene" uid="uid://0gkgolv5tsfm" path="res://src/level_elements/clicker/clicker_receiver.tscn" id="2_mg1o2"]
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/clicker/clicker_holder.tscn" id="3_tws33"]
-[ext_resource type="PackedScene" uid="uid://cjtgvuvb40cba" path="res://src/clicker/clicker.tscn" id="4_50ulv"]
 [ext_resource type="PackedScene" uid="uid://cp5a5nk8eo6va" path="res://src/level_elements/artificial_gravity/ag_reenable_area.tscn" id="4_h1b08"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="5_m3b88"]
 [ext_resource type="Texture2D" uid="uid://cg7bn01uog8q1" path="res://assets/mvp2_assets/TM.png" id="6_lfgtd"]
 [ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="7_mslct"]
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="8_17moh"]
+[ext_resource type="PackedScene" uid="uid://rc5k8wvetpt6" path="res://src/clicker/physics_clicker.tscn" id="11_jiea4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_phaaq"]
 radius = 337.654
@@ -192,7 +192,7 @@ shape = SubResource("CircleShape2D_phaaq")
 position = Vector2(-1082, -42)
 rotation = 6.28319
 
-[node name="Clicker" parent="Holders" instance=ExtResource("4_50ulv")]
+[node name="PhysicsClicker" parent="Holders" instance=ExtResource("11_jiea4")]
 position = Vector2(514, -50)
 
 [node name="AgReenableArea" parent="." instance=ExtResource("4_h1b08")]
