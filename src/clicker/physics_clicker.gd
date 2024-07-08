@@ -1,4 +1,5 @@
 extends RigidBody2D
+class_name ClickerBody
 
 @export var grav_component: GravitizedComponent
 

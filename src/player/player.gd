@@ -35,7 +35,6 @@ const PLAYER = {
 @export var min_jump_timer: Timer
 @export var throw_arc_line: Line2D
 
-# @onready var clicker_scene: PackedScene = preload ("res://src/clicker/clicker.tscn")
 @onready var clicker_scene: PackedScene = preload ("res://src/clicker/physics_clicker.tscn")
 
 var world_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -269,11 +268,7 @@ func start_dialogue(npc: NPC):
 
 func spawn_clicker(initial_velocity: Vector2=Vector2.ZERO):
 	has_clicker = false
-	# var instance: ClickerBody = clicker_scene.instantiate()
-	# instance.global_position = global_position
-	# instance.velocity = initial_velocity
-	# get_parent().add_child(instance)
-	var instance: RigidBody2D = clicker_scene.instantiate()
+	var instance: ClickerBody = clicker_scene.instantiate()
 	instance.global_position = global_position
 	instance.linear_velocity = initial_velocity
 	get_parent().add_child(instance)
