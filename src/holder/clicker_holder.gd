@@ -41,6 +41,7 @@ func _set_owned_clicker(value: ClickerBody):
 		value.holder_owned_by = self
 		value.set_parent(self)
 	owned_clicker = value
+	clicker_state_changed.emit(self, has_clicker())
 
 func _ready():
 	super()
@@ -59,9 +60,12 @@ func _ready():
 	# 	# Load from Global state
 	# 	has_clicker = Global.clicker_state[id]
 
+func has_clicker() -> bool:
+	return owned_clicker != null
+
 func interact(player: Player):
 	# exchange clicker with player
-	if owned_clicker != null:
+	if has_clicker():
 		# holder gives clicker to player
 		player.owned_clicker = owned_clicker
 		owned_clicker = null
@@ -71,8 +75,7 @@ func interact(player: Player):
 		player.owned_clicker = null
 
 func interact_condition(player: Player):
-	var holder_has_clicker = (owned_clicker != null)
-	return holder_has_clicker != player.has_clicker()
+	return has_clicker() != player.has_clicker()
 
 func drop_clicker(clicker_parent: Node2D):
 	pass
