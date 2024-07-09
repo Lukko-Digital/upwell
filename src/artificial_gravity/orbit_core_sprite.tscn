@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c41e7cium4ple"]
 
-[ext_resource type="Texture2D" uid="uid://ccj65n3hblgh1" path="res://assets/mvp2_assets/ag_orbit.png" id="1_xfu0v"]
+[ext_resource type="Texture2D" uid="uid://dvl5q4v8m02vd" path="res://assets/mvp3_assets/orbit_core_locked.png" id="1_6wvus"]
 
 [node name="Core" type="Sprite2D"]
-texture = ExtResource("1_xfu0v")
+texture = ExtResource("1_6wvus")
