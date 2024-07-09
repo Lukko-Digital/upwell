@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bae1h7aj3hpbh"
-path="res://.godot/imported/orbit_core_broken.png-0884bbb1996f81d2512e3f2b4d8670a2.ctex"
+path="res://.godot/imported/orbit_core_broken.png-a8bac69353266aac9f2a9d28122d7326.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mvp3 assets/orbit_core_broken.png"
-dest_files=["res://.godot/imported/orbit_core_broken.png-0884bbb1996f81d2512e3f2b4d8670a2.ctex"]
+source_file="res://assets/mvp3_assets/orbit_core_broken.png"
+dest_files=["res://.godot/imported/orbit_core_broken.png-a8bac69353266aac9f2a9d28122d7326.ctex"]
 
 [params]
 
