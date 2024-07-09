@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dcf1k6whcfars"]
+[gd_scene load_steps=13 format=3 uid="uid://dcf1k6whcfars"]
 
 [ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tilemaps/tile_map_brick.tscn" id="1_7xu06"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="2_owwjj"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dw6autb2hsck1" path="res://src/level_elements/artificial_gravity/orbit_ag.tscn" id="5_nm78b"]
 [ext_resource type="Script" path="res://src/holder/timed_multi_receiver.gd" id="6_cx8q5"]
 [ext_resource type="PackedScene" uid="uid://hxthntbfyogp" path="res://src/level_elements/holder/timed_multi_receiver_bar.tscn" id="7_spfoi"]
+[ext_resource type="PackedScene" uid="uid://chbldv4vsxwky" path="res://src/level_elements/powered_objects/clicker_blocker.tscn" id="8_a7kg3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82j2m"]
 size = Vector2(3628, 20)
@@ -16,6 +17,10 @@ size = Vector2(4230, 358)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5sph2"]
 radius = 666.001
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nghfi"]
+radius = 59.0
+height = 588.0
 
 [node name="Main" type="Node2D"]
 
@@ -80,3 +85,9 @@ is_catcher = true
 position = Vector2(-592, 0)
 starts_with_clicker = false
 is_catcher = true
+
+[node name="ClickerBlocker" parent="." instance=ExtResource("8_a7kg3")]
+position = Vector2(-1018, -496)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickerBlocker"]
+shape = SubResource("CapsuleShape2D_nghfi")
