@@ -25,16 +25,22 @@ func handle_artificial_gravity(delta) -> GravitizedComponent.GravityState:
 		linear_velocity = new_vel
 	return gravity_state
 
-func _on_holder_detector_area_entered(area: Area2D) -> void:
-	# if not area is ClickerHolder:
-	# 	return
-	# if (
-	# 	not catchable or
-	# 	not area.is_catcher or
-	# 	area.has_clicker
-	# ):
-	# 	return
+func remove_from_tree():
+	get_parent().remove_child(self)
 
-	# area.has_clicker = true
-	# queue_free()
-	pass
+func set_parent(parent: Node):
+	if get_parent():
+		remove_from_tree()
+	parent.add_child.call_deferred(self)
+
+func _on_holder_detector_area_entered(area: Area2D) -> void:
+	if not area is ClickerHolder:
+		return
+	if not (
+		catchable and
+		area.is_catcher and
+		area.owned_clicker == null
+	):
+		return
+
+	area.owned_clicker = self

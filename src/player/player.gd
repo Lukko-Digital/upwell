@@ -63,7 +63,7 @@ var owned_clicker: ClickerBody = null:
 		else:
 			clicker_sprite.visible = true
 			# remove from the tree
-			value.get_parent().remove_child(value)
+			value.remove_from_tree()
 		owned_clicker = value
 
 var previously_grounded: bool = false
@@ -288,7 +288,7 @@ func start_dialogue(npc: NPC):
 ### ----------------------------- THROW -----------------------------
 
 func spawn_clicker(initial_velocity: Vector2=Vector2.ZERO):
-	get_parent().add_child(owned_clicker)
+	owned_clicker.set_parent(get_parent())
 	owned_clicker.global_position = global_position
 	owned_clicker.linear_velocity = initial_velocity
 	owned_clicker.freeze = false

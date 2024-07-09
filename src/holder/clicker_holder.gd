@@ -39,7 +39,7 @@ func _set_owned_clicker(value: ClickerBody):
 		value.global_position = clicker_sprite.position
 		value.freeze = true
 		value.holder_owned_by = self
-		add_child.call_deferred(value)
+		value.set_parent(self)
 	owned_clicker = value
 
 func _ready():
@@ -65,12 +65,10 @@ func interact(player: Player):
 		# holder gives clicker to player
 		player.owned_clicker = owned_clicker
 		owned_clicker = null
-		print("player took clicker")
 	else:
 		# player gives clicker to holder
 		owned_clicker = player.owned_clicker
 		player.owned_clicker = null
-		print("received clicker")
 
 func interact_condition(player: Player):
 	var holder_has_clicker = (owned_clicker != null)
