@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://cg7bn01uog8q1" path="res://assets/mvp2_assets/TM.png" id="1_daqka"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="2_qlkdw"]
-[ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/clicker/clicker_holder.tscn" id="3_wml43"]
-[ext_resource type="PackedScene" uid="uid://blxc41tfrl71a" path="res://src/level_elements/clicker/holder_button.tscn" id="4_acb75"]
+[ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/holder/clicker_holder.tscn" id="3_wml43"]
+[ext_resource type="PackedScene" uid="uid://blxc41tfrl71a" path="res://src/level_elements/holder/holder_button.tscn" id="4_acb75"]
 [ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity/push_pull_ag.tscn" id="5_1jrpd"]
 [ext_resource type="Script" path="res://src/artificial_gravity/one_button_pathfollow.gd" id="6_xk6uo"]
 [ext_resource type="Script" path="res://src/artificial_gravity/two_button_pathfollow.gd" id="7_iefdx"]

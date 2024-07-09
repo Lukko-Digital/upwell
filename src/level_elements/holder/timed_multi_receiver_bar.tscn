@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://hxthntbfyogp"]
 
-[ext_resource type="Script" path="res://src/clicker/timed_multi_receiver_bar.gd" id="1_arfjl"]
+[ext_resource type="Script" path="res://src/holder/timed_multi_receiver_bar.gd" id="1_arfjl"]
 
 [node name="TimedMultiReceiverBar" type="ProgressBar" node_paths=PackedStringArray("timer")]
 offset_right = 4.0

@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=3 uid="uid://cbvweu7hx3d8v"]
 
 [ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity/push_pull_ag.tscn" id="1_0hst0"]
-[ext_resource type="PackedScene" uid="uid://0gkgolv5tsfm" path="res://src/level_elements/clicker/clicker_receiver.tscn" id="2_m5gaj"]
+[ext_resource type="PackedScene" uid="uid://0gkgolv5tsfm" path="res://src/level_elements/holder/clicker_receiver.tscn" id="2_m5gaj"]
 [ext_resource type="PackedScene" uid="uid://dw6autb2hsck1" path="res://src/level_elements/artificial_gravity/orbit_ag.tscn" id="2_qd4li"]
-[ext_resource type="Script" path="res://src/clicker/multi_receiver.gd" id="3_5e2io"]
-[ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/clicker/clicker_holder.tscn" id="3_q8wae"]
+[ext_resource type="Script" path="res://src/holder/multi_receiver.gd" id="3_5e2io"]
+[ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/holder/clicker_holder.tscn" id="3_q8wae"]
 [ext_resource type="PackedScene" uid="uid://cp5a5nk8eo6va" path="res://src/level_elements/artificial_gravity/ag_reenable_area.tscn" id="5_2wadt"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="6_aqng4"]
 [ext_resource type="PackedScene" uid="uid://rc5k8wvetpt6" path="res://src/clicker/clicker.tscn" id="7_42guy"]

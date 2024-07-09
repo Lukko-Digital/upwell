@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://cg7bn01uog8q1" path="res://assets/mvp2_assets/TM.png" id="1_ii8um"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="2_2v4ok"]
-[ext_resource type="PackedScene" uid="uid://0gkgolv5tsfm" path="res://src/level_elements/clicker/clicker_receiver.tscn" id="3_c0tkw"]
-[ext_resource type="PackedScene" uid="uid://blxc41tfrl71a" path="res://src/level_elements/clicker/holder_button.tscn" id="5_w0evw"]
+[ext_resource type="PackedScene" uid="uid://0gkgolv5tsfm" path="res://src/level_elements/holder/clicker_receiver.tscn" id="3_c0tkw"]
+[ext_resource type="PackedScene" uid="uid://blxc41tfrl71a" path="res://src/level_elements/holder/holder_button.tscn" id="5_w0evw"]
 [ext_resource type="Script" path="res://src/artificial_gravity/two_button_pathfollow.gd" id="6_af6du"]
 [ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity/push_pull_ag.tscn" id="7_gi1ie"]
 [ext_resource type="PackedScene" uid="uid://cp5a5nk8eo6va" path="res://src/level_elements/artificial_gravity/ag_reenable_area.tscn" id="8_01ofq"]
