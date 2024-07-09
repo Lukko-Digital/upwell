@@ -274,26 +274,32 @@ func spawn_clicker(initial_velocity: Vector2=Vector2.ZERO):
 	get_parent().add_child(instance)
 
 func throw():
-	if not (
-		has_clicker and
-		aiming
-	):
-		return
+	# if not (
+	# 	has_clicker and
+	# 	aiming
+	# ):
+	# 	return
 	var dir = (get_global_mouse_position() - global_position).normalized()
 	spawn_clicker(dir * PLAYER.THROW_VELOCITY)
 
 func handle_throw_arc():
 	throw_arc_line.clear_points()
 
-	if not (
-		Input.is_action_pressed("throw") and
-		has_clicker and
-		aiming
-	):
-		return
+	# if not (
+	# 	Input.is_action_pressed("throw") and
+	# 	has_clicker and
+	# 	aiming
+	# ):
+	# 	return
 
 	var pos = Vector2.ZERO
-	var vel = (get_global_mouse_position() - global_position).normalized() * PLAYER.THROW_VELOCITY
+	## The rigid body flies in a parabola with slightly less amplitude than
+	## the one calculated below. We add the adjustment factor so the line
+	## better matches the actual curve of the throw. Unsure why this is the
+	## case. The line fit when using a character body clicker with coded in
+	## physics.
+	var adjustment_factor = 0.97
+	var vel = (get_global_mouse_position() - global_position).normalized() * PLAYER.THROW_VELOCITY * adjustment_factor
 	var delta = get_physics_process_delta_time()
 	var world_physics := get_world_2d().direct_space_state
 	var query := PhysicsPointQueryParameters2D.new()
