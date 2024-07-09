@@ -274,23 +274,23 @@ func spawn_clicker(initial_velocity: Vector2=Vector2.ZERO):
 	get_parent().add_child(instance)
 
 func throw():
-	# if not (
-	# 	has_clicker and
-	# 	aiming
-	# ):
-	# 	return
+	if not (
+		has_clicker and
+		aiming
+	):
+		return
 	var dir = (get_global_mouse_position() - global_position).normalized()
 	spawn_clicker(dir * PLAYER.THROW_VELOCITY)
 
 func handle_throw_arc():
 	throw_arc_line.clear_points()
 
-	# if not (
-	# 	Input.is_action_pressed("throw") and
-	# 	has_clicker and
-	# 	aiming
-	# ):
-	# 	return
+	if not (
+		Input.is_action_pressed("throw") and
+		has_clicker and
+		aiming
+	):
+		return
 
 	var pos = Vector2.ZERO
 	## The rigid body flies in a parabola with slightly less amplitude than
