@@ -2,7 +2,9 @@ extends Interactable
 class_name ClickerHolder
 
 @export var starts_with_clicker: bool
+@export var is_catcher: bool = false
 @export var clicker_sprite: Sprite2D
+@export var catcher_field: Sprite2D
 
 @onready var id: String = owner.name + name
 @onready var clicker_scene: PackedScene = preload ("res://src/clicker/clicker.tscn")
@@ -15,6 +17,7 @@ var has_clicker: bool:
 func _ready():
 	super()
 	has_clicker = starts_with_clicker
+	catcher_field.visible = is_catcher
 	if id not in Global.clicker_state:
 		# Add state to Global state
 		Global.clicker_state[id] = has_clicker

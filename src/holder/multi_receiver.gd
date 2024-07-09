@@ -1,4 +1,6 @@
 extends Node2D
+## DEPRECATED
+## only use is for unlocking MVP 2 levels
 class_name MultiReceiver
 
 @export var unlocks_level: Global.LevelIDs = Global.LevelIDs.NULL

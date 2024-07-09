@@ -24,7 +24,7 @@ func handle_artificial_gravity(delta) -> GravitizedComponent.GravityState:
 	return gravity_state
 
 func _on_holder_detector_area_entered(area: Area2D) -> void:
-	if not area is ClickerReceiver:
+	if not area is ClickerHolder:
 		return
 	if (
 		not catchable or
