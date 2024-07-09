@@ -4,7 +4,12 @@ class_name ClickerHolder
 @export var starts_with_clicker: bool
 @export var is_catcher: bool = false
 @export var clicker_sprite: Sprite2D
+@export var holder_sprite: Sprite2D
 @export var catcher_field: Sprite2D
+
+enum HolderFrames {
+	GLOW, OFF
+}
 
 @onready var id: String = owner.name + name
 @onready var clicker_scene: PackedScene = preload ("res://src/clicker/clicker.tscn")
@@ -43,7 +48,14 @@ func drop_clicker(clicker_parent: Node2D):
 	clicker_parent.add_child(instance)
 
 func _set_has_clicker(value: bool):
+	## Change visuals
 	clicker_sprite.visible = value
+	if value:
+		holder_sprite.frame = HolderFrames.GLOW
+	else:
+		holder_sprite.frame = HolderFrames.OFF
+	## Change own state and global state
 	has_clicker = value
 	Global.clicker_state[id] = value
+	## Emit signal (ONLY USED IN MULTIRECEIVER)
 	clicker_state_changed.emit(self, value)
