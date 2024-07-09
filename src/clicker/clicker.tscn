@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://rc5k8wvetpt6"]
+[gd_scene load_steps=12 format=3 uid="uid://rc5k8wvetpt6"]
 
 [ext_resource type="Script" path="res://src/clicker/clicker_body.gd" id="1_5mmek"]
 [ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="2_ci3is"]
 [ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="3_0ahrw"]
+[ext_resource type="Texture2D" uid="uid://cfpew8w56mww" path="res://assets/mvp3_assets/clicker_lights.png" id="3_tfesb"]
+[ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="4_53hyt"]
 [ext_resource type="Script" path="res://src/clicker/clicker_interactable.gd" id="4_d7pfq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w1b0y"]
@@ -20,19 +22,22 @@ radius = 32.0624
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ik21"]
 radius = 32.0624
 
-[node name="ClickerBody" type="RigidBody2D" node_paths=PackedStringArray("grav_component")]
+[node name="ClickerBody" type="RigidBody2D" node_paths=PackedStringArray("grav_component", "glow_sprite")]
 collision_layer = 0
 physics_material_override = SubResource("PhysicsMaterial_w1b0y")
 freeze_mode = 1
 angular_damp = 10.0
 script = ExtResource("1_5mmek")
 grav_component = NodePath("GravitizedComponent")
+glow_sprite = NodePath("GlowSprite")
 
 [node name="ClickerSprite" parent="." instance=ExtResource("2_ci3is")]
 
-[node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(-1, 0, 60, 0)
-default_color = Color(0, 1, 1, 1)
+[node name="LightsSprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_tfesb")
+
+[node name="GlowSprite" type="Sprite2D" parent="."]
+texture = ExtResource("4_53hyt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ele5l")

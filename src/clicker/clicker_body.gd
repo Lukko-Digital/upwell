@@ -2,6 +2,7 @@ extends RigidBody2D
 class_name ClickerBody
 
 @export var grav_component: GravitizedComponent
+@export var glow_sprite: Sprite2D
 
 ## Set false when dropped to prevent immediately re-entering holder
 var catchable = true
@@ -15,6 +16,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		gravity_scale = 1
 
+func _process(_delta):
+	handle_animation()
+
 func handle_artificial_gravity(delta) -> GravitizedComponent.GravityState:
 	var active_ag = grav_component.check_active_ag()
 	var gravity_state = grav_component.determine_gravity_state(active_ag)
@@ -24,6 +28,12 @@ func handle_artificial_gravity(delta) -> GravitizedComponent.GravityState:
 		)
 		linear_velocity = new_vel
 	return gravity_state
+
+func handle_animation():
+	if Input.is_action_pressed("orbit"):
+		glow_sprite.show()
+	else:
+		glow_sprite.hide()
 
 func remove_from_tree():
 	get_parent().remove_child(self)
