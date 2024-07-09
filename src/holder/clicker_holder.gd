@@ -36,6 +36,8 @@ func _set_owned_clicker(value: ClickerBody):
 	else:
 		# Has clicker
 		holder_sprite.frame = HolderFrames.GLOW
+		value.global_position = clicker_sprite.position
+		value.freeze = true
 		value.holder_owned_by = self
 		add_child.call_deferred(value)
 	owned_clicker = value
@@ -45,10 +47,6 @@ func _ready():
 	
 	if starts_with_clicker:
 		var instance: ClickerBody = clicker_scene.instantiate()
-		instance.global_position = clicker_sprite.position
-		instance.freeze = true
-		instance.holder_owned_by = self
-		add_child.call_deferred(instance)
 		owned_clicker = instance
 
 	catcher_field.visible = is_catcher
@@ -76,8 +74,7 @@ func interact(player: Player):
 
 func interact_condition(player: Player):
 	var holder_has_clicker = (owned_clicker != null)
-	var player_has_clicker = (player.owned_clicker != null)
-	return holder_has_clicker != player_has_clicker
+	return holder_has_clicker != player.has_clicker()
 
 func drop_clicker(clicker_parent: Node2D):
 	pass
