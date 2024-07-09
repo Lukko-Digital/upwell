@@ -16,46 +16,73 @@ enum HolderFrames {
 
 signal clicker_state_changed(holder: ClickerHolder, has_clicker: bool)
 
-var has_clicker: bool:
-	set = _set_has_clicker
+var owned_clicker: ClickerBody = null:
+	set = _set_owned_clicker
+
+## DEPRECATED, LEFT AS REFERENCE
+# func _set_has_clicker(value: bool):
+# 	Global.clicker_state[id] = value
+# 	## Emit signal (ONLY USED IN MULTIRECEIVER)
+# 	clicker_state_changed.emit(self, value)
+
+func _set_owned_clicker(value: ClickerBody):
+	if value == null:
+		# No clicker
+		holder_sprite.frame = HolderFrames.OFF
+		if owned_clicker != null:
+			# If the holder just lost the clicker, set the lost clicker to no
+			# longer be owned by a holder
+			owned_clicker.holder_owned_by = null
+	else:
+		# Has clicker
+		holder_sprite.frame = HolderFrames.GLOW
+		value.global_position = clicker_sprite.position
+		value.freeze = true
+		value.holder_owned_by = self
+		value.set_parent(self)
+	owned_clicker = value
+	clicker_state_changed.emit(self, has_clicker())
 
 func _ready():
 	super()
-	has_clicker = starts_with_clicker
+	
+	if starts_with_clicker:
+		var instance: ClickerBody = clicker_scene.instantiate()
+		owned_clicker = instance
+
 	catcher_field.visible = is_catcher
-	if id not in Global.clicker_state:
-		# Add state to Global state
-		Global.clicker_state[id] = has_clicker
-	else:
-		# Load from Global state
-		has_clicker = Global.clicker_state[id]
+	
+	## DEPRECATED, LEFT AS REFERENCE
+	# if id not in Global.clicker_state:
+	# 	# Add state to Global state
+	# 	Global.clicker_state[id] = has_clicker
+	# else:
+	# 	# Load from Global state
+	# 	has_clicker = Global.clicker_state[id]
+
+func has_clicker() -> bool:
+	return owned_clicker != null
 
 func interact(player: Player):
 	# exchange clicker with player
-	player.has_clicker = has_clicker
-	has_clicker = !has_clicker
+	if has_clicker():
+		# holder gives clicker to player
+		player.owned_clicker = owned_clicker
+		owned_clicker = null
+	else:
+		# player gives clicker to holder
+		owned_clicker = player.owned_clicker
+		player.owned_clicker = null
 
 func interact_condition(player: Player):
-	return has_clicker != player.has_clicker
+	return has_clicker() != player.has_clicker()
 
 func drop_clicker(clicker_parent: Node2D):
-	if !has_clicker:
+	if !has_clicker():
 		return
-	has_clicker = false
-	var instance: ClickerBody = clicker_scene.instantiate()
-	instance.global_position = clicker_sprite.global_position
-	instance.catchable = false
-	clicker_parent.add_child(instance)
-
-func _set_has_clicker(value: bool):
-	## Change visuals
-	clicker_sprite.visible = value
-	if value:
-		holder_sprite.frame = HolderFrames.GLOW
-	else:
-		holder_sprite.frame = HolderFrames.OFF
-	## Change own state and global state
-	has_clicker = value
-	Global.clicker_state[id] = value
-	## Emit signal (ONLY USED IN MULTIRECEIVER)
-	clicker_state_changed.emit(self, value)
+	owned_clicker.set_parent(clicker_parent)
+	owned_clicker.global_position = clicker_sprite.global_position
+	owned_clicker.linear_velocity = Vector2.ZERO
+	owned_clicker.catchable = false
+	owned_clicker.freeze = false
+	owned_clicker = null

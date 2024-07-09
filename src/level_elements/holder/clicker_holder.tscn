@@ -14,11 +14,13 @@ collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_rct6y")
 starts_with_clicker = true
+is_catcher = null
 clicker_sprite = NodePath("ClickerSprite")
 holder_sprite = NodePath("HolderSprite")
 catcher_field = NodePath("CatcherField")
 
 [node name="ClickerSprite" parent="." instance=ExtResource("3_jmcfb")]
+visible = false
 position = Vector2(0, -102)
 
 [node name="HolderSprite" type="Sprite2D" parent="."]

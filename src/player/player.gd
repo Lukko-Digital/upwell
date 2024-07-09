@@ -48,11 +48,23 @@ var in_dialogue: bool = false
 var in_map: bool = false
 # ---
 
-var has_clicker: bool:
+## DEPRECATED, LEFT AS REFERENCE
+# var has_clicker: bool:
+	# set(value):
+	# 	clicker_sprite.visible = value
+	# 	Global.player_has_clicker = value
+	# 	has_clicker = value
+
+# Function [has_clicker] returns a bool of if the player has a clicker or not
+var owned_clicker: ClickerBody = null:
 	set(value):
-		clicker_sprite.visible = value
-		Global.player_has_clicker = value
-		has_clicker = value
+		if value == null:
+			clicker_sprite.visible = false
+		else:
+			clicker_sprite.visible = true
+			# remove from the tree
+			value.remove_from_tree()
+		owned_clicker = value
 
 var previously_grounded: bool = false
 var jumping: bool = false
@@ -82,8 +94,12 @@ func _ready() -> void:
 	# Connect signal
 	min_jump_timer.timeout.connect(_min_jump_timer_timeout)
 	Global.level_unlocked.connect(_on_level_unlocked)
+	
+	## DEPRECATED, LEFT AS REFERENCE
 	# Load clicker state
-	has_clicker = Global.player_has_clicker
+	# has_clicker = Global.player_has_clicker
+	clicker_sprite.hide()
+
 	# Retrieve Game node 
 	var current_scene = get_tree().get_current_scene()
 	if current_scene is Game:
@@ -121,6 +137,11 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_released("throw"):
 		throw()
+
+## ------------------------------ HELPER ------------------------------
+
+func has_clicker():
+	return owned_clicker != null
 
 ## ------------------------------ CAMERA ------------------------------
 
@@ -255,7 +276,7 @@ func handle_nearby_interactables():
 func interact():
 	if highlighted_interactable != null:
 		highlighted_interactable.interact(self)
-	elif has_clicker:
+	elif has_clicker():
 		spawn_clicker()
 
 func start_dialogue(npc: NPC):
@@ -267,15 +288,16 @@ func start_dialogue(npc: NPC):
 ### ----------------------------- THROW -----------------------------
 
 func spawn_clicker(initial_velocity: Vector2=Vector2.ZERO):
-	has_clicker = false
-	var instance: ClickerBody = clicker_scene.instantiate()
-	instance.global_position = global_position
-	instance.linear_velocity = initial_velocity
-	get_parent().add_child(instance)
+	owned_clicker.set_parent(get_parent())
+	owned_clicker.global_position = global_position
+	owned_clicker.linear_velocity = initial_velocity
+	owned_clicker.catchable = true
+	owned_clicker.freeze = false
+	owned_clicker = null
 
 func throw():
 	if not (
-		has_clicker and
+		has_clicker() and
 		aiming
 	):
 		return
@@ -287,7 +309,7 @@ func handle_throw_arc():
 
 	if not (
 		Input.is_action_pressed("throw") and
-		has_clicker and
+		has_clicker() and
 		aiming
 	):
 		return
