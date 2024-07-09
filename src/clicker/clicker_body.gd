@@ -5,6 +5,8 @@ class_name ClickerBody
 
 ## Set false when dropped to prevent immediately re-entering holder
 var catchable = true
+## Value is set by [ClickerHolder] when clicker is inserted/removed
+var holder_owned_by: ClickerHolder
 
 func _physics_process(delta: float) -> void:
 	var gravity_state: GravitizedComponent.GravityState = handle_artificial_gravity(delta)
@@ -24,14 +26,15 @@ func handle_artificial_gravity(delta) -> GravitizedComponent.GravityState:
 	return gravity_state
 
 func _on_holder_detector_area_entered(area: Area2D) -> void:
-	if not area is ClickerHolder:
-		return
-	if (
-		not catchable or
-		not area.is_catcher or
-		area.has_clicker
-	):
-		return
+	# if not area is ClickerHolder:
+	# 	return
+	# if (
+	# 	not catchable or
+	# 	not area.is_catcher or
+	# 	area.has_clicker
+	# ):
+	# 	return
 
-	area.has_clicker = true
-	queue_free()
+	# area.has_clicker = true
+	# queue_free()
+	pass

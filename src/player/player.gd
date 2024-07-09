@@ -53,6 +53,15 @@ var has_clicker: bool:
 		clicker_sprite.visible = value
 		Global.player_has_clicker = value
 		has_clicker = value
+var owned_clicker: ClickerBody = null:
+	set(value):
+		if value == null:
+			clicker_sprite.visible = false
+		else:
+			clicker_sprite.visible = true
+			# remove from the tree
+			value.get_parent().remove_child(value)
+		owned_clicker = value
 
 var previously_grounded: bool = false
 var jumping: bool = false

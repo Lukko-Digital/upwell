@@ -10,4 +10,6 @@ func interact(player: Player):
 	body.queue_free()
 
 func interact_condition(player: Player):
-	return !player.has_clicker
+	var player_no_clicker = (player.owned_clicker == null)
+	var not_in_holder = (body.holder_owned_by == null)
+	return player_no_clicker and not_in_holder
