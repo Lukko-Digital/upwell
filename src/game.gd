@@ -4,6 +4,7 @@ class_name Game
 @export var map_canvas_layer: CanvasLayer
 @export var map: Map
 
+@onready var pod: Node2D = $Pod
 @onready var active_level: Node = $ActiveLevel
 # @onready var map_player: MapPlayer = map.get_node("MapPlayer")
 
@@ -12,6 +13,11 @@ func change_level(level: PackedScene):
 	active_level.remove_child(current_level)
 	current_level.queue_free()
 	var new_level = level.instantiate()
+
+	var entry_point = new_level.get_node("EmptyPod")
+	var translate = pod.global_position - entry_point.global_position
+	new_level.global_position += translate
+
 	active_level.call_deferred("add_child", new_level)
 
 # Returns true if map is visable and false if not

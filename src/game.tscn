@@ -15,7 +15,7 @@ script = ExtResource("1_5wj68")
 position = Vector2(-2688, -128)
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("4_aavje")]
-position = Vector2(-2816, -128)
+position = Vector2(-2816, -256)
 camera = NodePath("Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
