@@ -291,6 +291,7 @@ func spawn_clicker(initial_velocity: Vector2=Vector2.ZERO):
 	owned_clicker.set_parent(get_parent())
 	owned_clicker.global_position = global_position
 	owned_clicker.linear_velocity = initial_velocity
+	owned_clicker.catchable = true
 	owned_clicker.freeze = false
 	owned_clicker = null
 

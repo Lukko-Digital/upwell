@@ -78,11 +78,11 @@ func interact_condition(player: Player):
 	return has_clicker() != player.has_clicker()
 
 func drop_clicker(clicker_parent: Node2D):
-	pass
-	# if !has_clicker:
-	# 	return
-	# has_clicker = false
-	# var instance: ClickerBody = clicker_scene.instantiate()
-	# instance.global_position = clicker_sprite.global_position
-	# instance.catchable = false
-	# clicker_parent.add_child(instance)
+	if !has_clicker():
+		return
+	owned_clicker.set_parent(clicker_parent)
+	owned_clicker.global_position = clicker_sprite.global_position
+	owned_clicker.linear_velocity = Vector2.ZERO
+	owned_clicker.catchable = false
+	owned_clicker.freeze = false
+	owned_clicker = null
