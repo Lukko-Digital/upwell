@@ -38,14 +38,6 @@ func handle_animation():
 	else:
 		glow_sprite.hide()
 
-func remove_from_tree():
-	get_parent().remove_child(self)
-
-func set_parent(parent: Node):
-	if get_parent():
-		remove_from_tree()
-	parent.add_child.call_deferred(self)
-
 func return_to_home():
 	home_holder.owned_clicker = self
 

@@ -55,16 +55,7 @@ var in_map: bool = false
 	# 	Global.player_has_clicker = value
 	# 	has_clicker = value
 
-# Function [has_clicker] returns a bool of if the player has a clicker or not
-var owned_clicker: ClickerBody = null:
-	set(value):
-		if value == null:
-			clicker_sprite.visible = false
-		else:
-			clicker_sprite.visible = true
-			# remove from the tree
-			value.remove_from_tree()
-		owned_clicker = value
+var clicker_inventory: Array[ClickerInfo]
 
 var previously_grounded: bool = false
 var jumping: bool = false
@@ -141,7 +132,7 @@ func _input(event: InputEvent) -> void:
 ## ------------------------------ HELPER ------------------------------
 
 func has_clicker():
-	return owned_clicker != null
+	return !clicker_inventory.is_empty()
 
 ## ------------------------------ CAMERA ------------------------------
 
@@ -279,6 +270,11 @@ func interact():
 	elif has_clicker():
 		spawn_clicker()
 
+func add_clicker(clicker: ClickerBody):
+	var clicker_info = ClickerInfo.new(clicker.home_holder)
+	clicker_inventory.append(clicker_info)
+	clicker.queue_free()
+
 func start_dialogue(npc: NPC):
 	if in_dialogue:
 		return
@@ -287,13 +283,16 @@ func start_dialogue(npc: NPC):
 
 ### ----------------------------- THROW -----------------------------
 
-func spawn_clicker(initial_velocity: Vector2=Vector2.ZERO):
-	owned_clicker.set_parent(get_parent())
-	owned_clicker.global_position = global_position
-	owned_clicker.linear_velocity = initial_velocity
-	owned_clicker.catchable = true
-	owned_clicker.freeze = false
-	owned_clicker = null
+func spawn_clicker(initial_velocity: Vector2=Vector2.ZERO) -> ClickerBody:
+	if not has_clicker():
+		return
+	var clicker_info: ClickerInfo = clicker_inventory.pop_front()
+	var instance = clicker_scene.instantiate()
+	instance.home_holder = clicker_info.home_holder
+	instance.global_position = global_position
+	instance.linear_velocity = initial_velocity
+	get_parent().add_child(instance)
+	return instance
 
 func throw():
 	if not (

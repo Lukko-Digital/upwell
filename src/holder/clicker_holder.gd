@@ -25,8 +25,8 @@ var owned_clicker: ClickerBody = null:
 # 	## Emit signal (ONLY USED IN MULTIRECEIVER)
 # 	clicker_state_changed.emit(self, value)
 
-func _set_owned_clicker(value: ClickerBody):
-	if value == null:
+func _set_owned_clicker(clicker: ClickerBody):
+	if clicker == null:
 		# No clicker
 		holder_sprite.frame = HolderFrames.OFF
 		if owned_clicker != null:
@@ -36,11 +36,10 @@ func _set_owned_clicker(value: ClickerBody):
 	else:
 		# Has clicker
 		holder_sprite.frame = HolderFrames.GLOW
-		value.global_position = clicker_sprite.position
-		value.freeze = true
-		value.holder_owned_by = self
-		value.set_parent(self)
-	owned_clicker = value
+		clicker.global_position = clicker_sprite.global_position
+		clicker.set_deferred("freeze", true)
+		clicker.holder_owned_by = self
+	owned_clicker = clicker
 	clicker_state_changed.emit(self, has_clicker())
 
 func _ready():
@@ -49,6 +48,7 @@ func _ready():
 	if starts_with_clicker:
 		var instance: ClickerBody = clicker_scene.instantiate()
 		instance.home_holder = self
+		get_parent().add_child.call_deferred(instance)
 		owned_clicker = instance
 
 	catcher_field.visible = is_catcher
@@ -68,20 +68,18 @@ func interact(player: Player):
 	# exchange clicker with player
 	if has_clicker():
 		# holder gives clicker to player
-		player.owned_clicker = owned_clicker
+		player.add_clicker(owned_clicker)
 		owned_clicker = null
 	else:
 		# player gives clicker to holder
-		owned_clicker = player.owned_clicker
-		player.owned_clicker = null
+		owned_clicker = player.spawn_clicker()
 
 func interact_condition(player: Player):
 	return has_clicker() != player.has_clicker()
 
-func drop_clicker(clicker_parent: Node2D):
+func drop_clicker():
 	if !has_clicker():
 		return
-	owned_clicker.set_parent(clicker_parent)
 	owned_clicker.global_position = clicker_sprite.global_position
 	owned_clicker.linear_velocity = Vector2.ZERO
 	owned_clicker.catchable = false
