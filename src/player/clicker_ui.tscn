@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3xmpb6et0p0g"]
+
+[ext_resource type="Script" path="res://src/player/clicker_ui.gd" id="1_bax8t"]
+[ext_resource type="Texture2D" uid="uid://ccc201315ps2p" path="res://assets/mvp3_assets/reactor_base_two.png" id="2_bwvy2"]
+[ext_resource type="Texture2D" uid="uid://dcth1nh1t8nc4" path="res://assets/mvp3_assets/reactor_content_three.png" id="3_u1cnc"]
+[ext_resource type="Texture2D" uid="uid://dv68v7o8ukdhg" path="res://assets/mvp3_assets/reactor_content_one.png" id="3_uhghd"]
+[ext_resource type="Texture2D" uid="uid://bykhr4w3cgete" path="res://assets/mvp3_assets/reactor_content_two.png" id="4_q1f7n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uprhc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_uhghd")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_q1f7n")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_u1cnc")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}]
+
+[node name="ClickerUi" type="CanvasLayer" node_paths=PackedStringArray("clickers_sprite")]
+script = ExtResource("1_bax8t")
+clickers_sprite = NodePath("TextureRect/ClickersSprite")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 100.0
+offset_top = 101.0
+offset_right = 716.0
+offset_bottom = 717.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_bwvy2")
+
+[node name="ClickersSprite" type="AnimatedSprite2D" parent="TextureRect"]
+position = Vector2(320, 294)
+sprite_frames = SubResource("SpriteFrames_uprhc")
+animation = &"2"
