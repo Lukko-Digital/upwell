@@ -7,10 +7,6 @@ const PLAYER = {
 	ACCELERATION = 7000.0, # move_toward acceleration, pixels/frame^2
 	ORBIT_STRAFE_SLOWDOWN = 0.5, # percentage of standard speed
 	PUSHPULL_STRAFE_SLOWDOWN = 0.5, # percentage of standard speed
-	# Camera
-	PEEK_DISTANCE = 1000.0, # Number of pixels that the camera will peek up (1920x1080 game)
-	PEEK_TOWARD_SPEED = 5.0, # lerp speed, unitless
-	PEEK_RETURN_SPEED = 7.0, # lerp speed, unitless
 	# Jumping
 	JUMP_VELOCITY = 2100.0,
 	JUMP_RELEASE_SLOWDOWN = 0.5,
@@ -73,7 +69,6 @@ var default_camera_position: Vector2
 ### ------------------------------ CORE ------------------------------
 
 func _ready() -> void:
-	default_camera_position = camera.position
 	# Connect signal
 	min_jump_timer.timeout.connect(_min_jump_timer_timeout)
 	Global.level_unlocked.connect(_on_level_unlocked)
@@ -82,13 +77,13 @@ func _ready() -> void:
 	# Retrieve Game node 
 	var current_scene = get_tree().get_current_scene()
 	if current_scene is Game and not owner is Game:
-		var main_camera: Camera2D = current_scene.get_node("Player").get_node("Camera2D")
+		var main_camera: Camera2D = current_scene.get_node("Camera2D")
 		main_camera.limit_bottom = camera.limit_bottom
 		main_camera.limit_top = camera.limit_top
 		queue_free()
 
 func _physics_process(delta):
-	if in_dialogue or in_map:
+	if in_dialogue: # or in_map:
 		return
 	var gravity_state: GravityState = handle_artificial_gravity(delta)
 	handle_world_gravity(delta, gravity_state, PLAYER.MAX_FALL_SPEED)
@@ -99,7 +94,6 @@ func _physics_process(delta):
 func _process(delta):
 	handle_throw_arc()
 	handle_nearby_interactables()
-	handle_camera_peek(delta)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
@@ -118,22 +112,6 @@ func _input(event: InputEvent) -> void:
 			interact_tap_timer.stop()
 		else:
 			throw()
-
-## ------------------------------ CAMERA ------------------------------
-
-func handle_camera_peek(delta):
-	if Input.is_action_pressed("up") and is_on_floor():
-		camera.position.y = lerp(
-			camera.position.y,
-			default_camera_position.y - PLAYER.PEEK_DISTANCE,
-			PLAYER.PEEK_TOWARD_SPEED * delta
-		)
-	else:
-		camera.position.y = lerp(
-			camera.position.y,
-			default_camera_position.y,
-			PLAYER.PEEK_RETURN_SPEED * delta
-		)
 
 ## ------------------------------ MOVEMENT ------------------------------
 

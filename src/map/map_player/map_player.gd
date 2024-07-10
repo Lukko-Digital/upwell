@@ -6,7 +6,7 @@ class_name MapPlayer
 @onready var coolant_bar: ProgressBar = $CanvasLayer/Coolant
 @onready var heat_bar: ProgressBar = $CanvasLayer/Heat
 @onready var starting_position: Vector2 = global_position
-@onready var collision_box: Area2D = $Area2D
+@onready var collision_box: Area2D = $PlayerBody
 
 var moving = false
 var velocity: Vector2 = Vector2.ZERO
@@ -140,3 +140,8 @@ func recall() -> void:
 	drill_heat = 0
 	coolant_bar.value = coolant_bar.max_value
 	end_movement()
+
+func _area_scanned(area: Area2D) -> void:
+	if area is MapLevel:
+		if not area.locked:
+			area.show()

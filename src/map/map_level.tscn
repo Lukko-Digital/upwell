@@ -1,11 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://ql7gm3yuyicr"]
+[gd_scene load_steps=4 format=3 uid="uid://ql7gm3yuyicr"]
 
 [ext_resource type="Script" path="res://src/map/map_level.gd" id="1_0g7oc"]
+[ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="2_y385f"]
 
-[node name="MapLevel" type="Area2D"]
+[sub_resource type="Theme" id="Theme_30kq5"]
+default_font = ExtResource("2_y385f")
+
+[node name="MapLevel" type="Area2D" node_paths=PackedStringArray("label")]
 collision_mask = 2
 script = ExtResource("1_0g7oc")
-locked_level_name = null
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 52.0
+offset_right = 50.0
+offset_bottom = 75.0
+grow_horizontal = 2
+theme = SubResource("Theme_30kq5")
+horizontal_alignment = 1
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]

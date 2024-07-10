@@ -1,3 +1,35 @@
-[gd_scene format=3 uid="uid://b0qt5j8u0l2c0"]
+[gd_scene load_steps=6 format=3 uid="uid://b0qt5j8u0l2c0"]
+
+[ext_resource type="Texture2D" uid="uid://bkx3m3c8bdjp5" path="res://assets/ui/map/cover.png" id="1_7on24"]
+[ext_resource type="Texture2D" uid="uid://bbjdwc6iyldfv" path="res://assets/ui/map/scanlines.png" id="1_kc6wu"]
+[ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/screen_ag.tscn" id="3_v12xy"]
+[ext_resource type="Texture2D" uid="uid://ckja0m6blyedr" path="res://assets/mvp3_assets/screenpuzzle/hazard.png" id="4_yn45u"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_r71d5"]
+blend_mode = 3
 
 [node name="ScreenPuzzle" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Scanlines" type="Sprite2D" parent="CanvasLayer"]
+material = SubResource("CanvasItemMaterial_r71d5")
+position = Vector2(960, 540)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_kc6wu")
+metadata/_edit_lock_ = true
+
+[node name="Cover" type="Sprite2D" parent="CanvasLayer"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_7on24")
+offset = Vector2(1920, 1080)
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="OrbitAG" parent="." instance=ExtResource("3_v12xy")]
+position = Vector2(-352, -62)
+
+[node name="Hazard" type="Sprite2D" parent="."]
+position = Vector2(-1298, 99)
+texture = ExtResource("4_yn45u")

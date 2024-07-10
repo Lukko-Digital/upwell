@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cpv6a32q343av"
-path="res://.godot/imported/clicker_glow.png-c9179183e7c77eb88de7ab2931d6e4aa.ctex"
+path="res://.godot/imported/clicker_glow.png-996750f06e58f37f84b5fcc9e24be25f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mvp3 assets/clicker_glow.png"
-dest_files=["res://.godot/imported/clicker_glow.png-c9179183e7c77eb88de7ab2931d6e4aa.ctex"]
+source_file="res://assets/mvp3_assets/clicker_glow.png"
+dest_files=["res://.godot/imported/clicker_glow.png-996750f06e58f37f84b5fcc9e24be25f.ctex"]
 
 [params]
 

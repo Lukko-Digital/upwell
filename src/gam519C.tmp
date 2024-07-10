@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnrwuscuadbgg"]
+[gd_scene load_steps=4 format=3 uid="uid://dnrwuscuadbgg"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_5wj68"]
 [ext_resource type="PackedScene" uid="uid://dw50qvw1e418b" path="res://src/map/pod.tscn" id="3_t6iyq"]
-[ext_resource type="Script" path="res://src/player/main_camera.gd" id="4_5svdy"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="4_aavje"]
 
 [node name="Game" type="Node2D"]
@@ -14,20 +13,18 @@ script = ExtResource("1_5wj68")
 
 [node name="Pod" parent="." instance=ExtResource("3_t6iyq")]
 
-[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("4_aavje")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera", "pod") instance=ExtResource("4_aavje")]
 position = Vector2(0, -128)
-camera = NodePath("../Camera2D")
+camera = NodePath("Camera2D")
+pod = NodePath("../Pod")
+enable_nudge = null
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player", "pod")]
-position = Vector2(0, -128)
+[node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.5, 0.5)
 limit_top = -4594
 limit_bottom = 565
 limit_smoothed = true
 position_smoothing_enabled = true
 editor_draw_limits = true
-script = ExtResource("4_5svdy")
-player = NodePath("../Player")
-pod = NodePath("../Pod")
 
-[connection signal="map_focused" from="Pod" to="Camera2D" method="_on_pod_map_focused"]
+[connection signal="map_focused" from="Pod" to="Player" method="_on_pod_map_focused"]

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dvl5q4v8m02vd"
-path="res://.godot/imported/orbit_core_locked.png-e5a2ae19cd36bd71eaa9deb7146f18bd.ctex"
+path="res://.godot/imported/orbit_core_locked.png-073789bf817d3020048d86630bae9f4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mvp3 assets/orbit_core_locked.png"
-dest_files=["res://.godot/imported/orbit_core_locked.png-e5a2ae19cd36bd71eaa9deb7146f18bd.ctex"]
+source_file="res://assets/mvp3_assets/orbit_core_locked.png"
+dest_files=["res://.godot/imported/orbit_core_locked.png-073789bf817d3020048d86630bae9f4a.ctex"]
 
 [params]
 

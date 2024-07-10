@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dwgrbq7d4lwcw"
-path="res://.godot/imported/clicker_blocker-sheet.png-5d98347b318b4ed321d6c8d1f170eca8.ctex"
+path="res://.godot/imported/clicker_blocker-sheet.png-79b5942613186c685e417241b94e7cf6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mvp3 assets/clicker_blocker-sheet.png"
-dest_files=["res://.godot/imported/clicker_blocker-sheet.png-5d98347b318b4ed321d6c8d1f170eca8.ctex"]
+source_file="res://assets/mvp3_assets/clicker_blocker-sheet.png"
+dest_files=["res://.godot/imported/clicker_blocker-sheet.png-79b5942613186c685e417241b94e7cf6.ctex"]
 
 [params]
 
