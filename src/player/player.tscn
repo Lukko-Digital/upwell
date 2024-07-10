@@ -10,12 +10,13 @@
 radius = 68.2904
 height = 273.162
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("grav_component", "interactable_detector", "dialogue_ui", "coyote_timer", "jump_buffer_timer", "min_jump_timer", "throw_arc_line")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("grav_component", "interactable_detector", "dialogue_ui", "level_unlock_popup", "coyote_timer", "jump_buffer_timer", "min_jump_timer", "throw_arc_line")]
 collision_layer = 2
 script = ExtResource("1_lbj7m")
 grav_component = NodePath("GravitizedComponent")
 interactable_detector = NodePath("DetectionAreas/InteractableDetector")
 dialogue_ui = NodePath("DialogueUi")
+level_unlock_popup = NodePath("LevelUnlockPopup")
 coyote_timer = NodePath("Timers/CoyoteTimer")
 jump_buffer_timer = NodePath("Timers/JumpBufferTimer")
 min_jump_timer = NodePath("Timers/MinimumJumpTimer")
@@ -65,10 +66,10 @@ one_shot = true
 [node name="DialogueUi" parent="." instance=ExtResource("2_cft6f")]
 visible = false
 
-[node name="Ui" type="CanvasLayer" parent="."]
+[node name="LevelUnlockPopup" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="Ui"]
+[node name="ColorRect" type="ColorRect" parent="LevelUnlockPopup"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -79,7 +80,7 @@ offset_bottom = 303.0
 grow_horizontal = 2
 color = Color(0.301961, 0.301961, 0.301961, 0.388235)
 
-[node name="Label" type="Label" parent="Ui"]
+[node name="Label" type="Label" parent="LevelUnlockPopup"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5

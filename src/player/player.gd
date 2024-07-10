@@ -29,6 +29,7 @@ const PLAYER = {
 @export var grav_component: GravitizedComponent
 @export var interactable_detector: Area2D
 @export var dialogue_ui: DialogueUI
+@export var level_unlock_popup: CanvasLayer
 @export var coyote_timer: Timer
 @export var jump_buffer_timer: Timer
 @export var min_jump_timer: Timer
@@ -343,7 +344,6 @@ func _on_dialogue_ui_dialogue_finished() -> void:
 	in_dialogue = false
 
 func _on_level_unlocked(_level_name: Global.LevelIDs):
-	var ui = $Ui
-	ui.show()
+	level_unlock_popup.show()
 	await get_tree().create_timer(2).timeout
-	ui.hide()
+	level_unlock_popup.hide()
