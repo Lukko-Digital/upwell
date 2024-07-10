@@ -14,3 +14,5 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is ClickerBody:
 		body.return_to_home()
+	elif body is Player:
+		body.home_all_clickers()

@@ -127,11 +127,6 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("throw"):
 		throw()
 
-## ------------------------------ HELPER ------------------------------
-
-func has_clicker():
-	return !clicker_inventory.is_empty()
-
 ## ------------------------------ CAMERA ------------------------------
 
 func handle_camera_peek(delta):
@@ -268,18 +263,21 @@ func interact():
 	elif has_clicker():
 		spawn_clicker()
 
-func add_clicker(clicker: ClickerBody):
-	var clicker_info = ClickerInfo.new(clicker.home_holder)
-	clicker_inventory.append(clicker_info)
-	clicker.queue_free()
-
 func start_dialogue(npc: NPC):
 	if in_dialogue:
 		return
 	dialogue_ui.start_dialogue(npc)
 	in_dialogue = true
 
-### ----------------------------- THROW -----------------------------
+### ----------------------------- CLICKER -----------------------------
+
+func has_clicker():
+	return !clicker_inventory.is_empty()
+
+func add_clicker(clicker: ClickerBody):
+	var clicker_info = ClickerInfo.new(clicker.home_holder)
+	clicker_inventory.append(clicker_info)
+	clicker.queue_free()
 
 func spawn_clicker(initial_velocity: Vector2=Vector2.ZERO) -> ClickerBody:
 	if not has_clicker():
@@ -291,6 +289,13 @@ func spawn_clicker(initial_velocity: Vector2=Vector2.ZERO) -> ClickerBody:
 	instance.linear_velocity = initial_velocity
 	get_parent().add_child(instance)
 	return instance
+
+func home_all_clickers():
+	while has_clicker():
+		var clicker = spawn_clicker()
+		clicker.return_to_home()
+
+### ----------------------------- THROW -----------------------------
 
 func throw():
 	if not (
