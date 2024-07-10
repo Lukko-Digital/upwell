@@ -27,7 +27,6 @@ const PLAYER = {
 @export_group("Node References")
 @export var camera: Camera2D
 @export var grav_component: GravitizedComponent
-@export var clicker_sprite: Sprite2D
 @export var interactable_detector: Area2D
 @export var dialogue_ui: DialogueUI
 @export var coyote_timer: Timer
@@ -89,7 +88,6 @@ func _ready() -> void:
 	## DEPRECATED, LEFT AS REFERENCE
 	# Load clicker state
 	# has_clicker = Global.player_has_clicker
-	clicker_sprite.hide()
 
 	# Retrieve Game node 
 	var current_scene = get_tree().get_current_scene()

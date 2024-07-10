@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://tfy83b2uc6hh"]
+[gd_scene load_steps=7 format=3 uid="uid://tfy83b2uc6hh"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_lbj7m"]
 [ext_resource type="PackedScene" uid="uid://br8qm13yce4pr" path="res://src/dialogue/dialogue_ui.tscn" id="2_cft6f"]
 [ext_resource type="Texture2D" uid="uid://dw7s1u2h3q230" path="res://assets/mvp2_assets/player.png" id="3_u0vu5"]
-[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="4_wfmfs"]
 [ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="4_wg5r1"]
 [ext_resource type="PackedScene" uid="uid://b3xmpb6et0p0g" path="res://src/player/clicker_ui.tscn" id="6_j7ju8"]
 
@@ -15,7 +14,7 @@ height = 273.162
 collision_layer = 2
 script = ExtResource("1_lbj7m")
 grav_component = NodePath("GravitizedComponent")
-clicker_sprite = NodePath("ClickerSprite")
+clicker_sprite = NodePath("")
 interactable_detector = NodePath("DetectionAreas/InteractableDetector")
 dialogue_ui = NodePath("DialogueUi")
 coyote_timer = NodePath("Timers/CoyoteTimer")
@@ -26,9 +25,6 @@ throw_arc_line = NodePath("ThrowArc")
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.904217, 0.904217)
 texture = ExtResource("3_u0vu5")
-
-[node name="ClickerSprite" parent="." instance=ExtResource("4_wfmfs")]
-position = Vector2(0, 13)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 scale = Vector2(0.893244, 0.893244)
