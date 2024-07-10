@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://ceyls3ogt3vol"]
+
+[ext_resource type="Script" path="res://src/map/screen_interactable.gd" id="1_bwcxj"]
+[ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="2_krocg"]
+[ext_resource type="Texture2D" uid="uid://bbjdwc6iyldfv" path="res://assets/ui/map/scanlines.png" id="4_38kih"]
+[ext_resource type="Texture2D" uid="uid://bkx3m3c8bdjp5" path="res://assets/ui/map/cover.png" id="5_gtjll"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_monmt"]
+size = Vector2(1268.5, 721)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_d7aij"]
+blend_mode = 3
+
+[node name="Screen" type="Area2D"]
+position = Vector2(0, -480)
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_bwcxj")
+
+[node name="InteractLabel" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.466667)
+offset_left = -55.0
+offset_top = 290.0
+offset_right = 236.0
+offset_bottom = 493.0
+scale = Vector2(0.374634, 0.374634)
+theme_override_fonts/font = ExtResource("2_krocg")
+theme_override_font_sizes/font_size = 161
+text = "<E>"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_monmt")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = -512.0
+offset_top = -288.0
+offset_right = 512.0
+offset_bottom = 288.0
+focus_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+physics_object_picking = true
+physics_object_picking_sort = true
+gui_snap_controls_to_pixels = false
+size = Vector2i(1024, 576)
+size_2d_override = Vector2i(1920, 1080)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]
+
+[node name="Scanlines" type="Sprite2D" parent="SubViewportContainer/SubViewport/CanvasLayer"]
+visible = false
+material = SubResource("CanvasItemMaterial_d7aij")
+position = Vector2(960, 540)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_38kih")
+metadata/_edit_lock_ = true
+
+[node name="Cover" type="Sprite2D" parent="SubViewportContainer/SubViewport/CanvasLayer"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_gtjll")
+offset = Vector2(1920, 1080)
+metadata/_edit_lock_ = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport/CanvasLayer2"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
