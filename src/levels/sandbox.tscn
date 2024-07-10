@@ -97,3 +97,7 @@ shape = SubResource("CapsuleShape2D_nghfi")
 [node name="ClickerBody" parent="." node_paths=PackedStringArray("home_holder") instance=ExtResource("9_0e2kt")]
 position = Vector2(181, -41)
 home_holder = NodePath("../ClickerHolder")
+
+[node name="ClickerHolder2" parent="." instance=ExtResource("5_iwbtf")]
+position = Vector2(757, -28)
+is_catcher = false
