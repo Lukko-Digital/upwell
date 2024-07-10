@@ -1,14 +1,16 @@
-extends MultiReceiver
+extends Node2D
 class_name TimedMultiReceiver
 
 ## The time you have to insert the reset of the clickers after the first is inserted
 @export var countdown_time: float = 2.0
 @export var countdown_bar: TimedMultiReceiverBar
+@export var receivers: Array[ClickerHolder]
 
 var completed: bool = false
 
 func _ready() -> void:
-	super()
+	for receiver in receivers:
+		receiver.clicker_state_changed.connect(_receiver_state_changed)
 	countdown_bar.timer.timeout.connect(_on_countdown_timer_timeout)
 	countdown_bar.timer.wait_time = countdown_time
 	countdown_bar.max_value = countdown_time
@@ -19,7 +21,6 @@ func _process(_delta: float) -> void:
 		countdown_bar.value = countdown_time - countdown_bar.timer.time_left
 
 func on_completion():
-	super()
 	countdown_bar.modulate = Color.GREEN
 	countdown_bar.value = countdown_time
 	countdown_bar.timer.stop()
