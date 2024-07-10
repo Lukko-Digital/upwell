@@ -75,7 +75,7 @@ func interact(player: Player):
 		owned_clicker = player.spawn_clicker()
 
 func interact_condition(player: Player):
-	return has_clicker() != player.has_clicker()
+	return has_clicker()
 
 func drop_clicker():
 	if !has_clicker():

@@ -6,6 +6,6 @@ class_name ClickerInteractable
 func interact(player: Player):
 	player.add_clicker(body)
 
-func interact_condition(player: Player):
+func interact_condition(_player: Player):
 	var not_in_holder = (body.holder_owned_by == null)
-	return !player.has_clicker() and not_in_holder
+	return not_in_holder
