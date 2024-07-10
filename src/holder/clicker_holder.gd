@@ -65,7 +65,6 @@ func has_clicker() -> bool:
 	return owned_clicker != null
 
 func interact(player: Player):
-	# exchange clicker with player
 	if has_clicker():
 		# holder gives clicker to player
 		player.add_clicker(owned_clicker)
@@ -74,8 +73,8 @@ func interact(player: Player):
 		# player gives clicker to holder
 		owned_clicker = player.spawn_clicker()
 
-func interact_condition(_player: Player):
-	return has_clicker()
+func interact_condition(player: Player):
+	return has_clicker() or player.has_clicker()
 
 func drop_clicker():
 	if !has_clicker():
