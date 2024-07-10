@@ -10,3 +10,7 @@ func _ready() -> void:
 	# Expects a capsule CollisionShape2D called "CollisionShape2D"
 	sprite.scale.x = $CollisionShape2D.shape.radius / DEFAULT_WIDTH
 	sprite.scale.y = $CollisionShape2D.shape.height / DEFAULT_HEIGHT
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is ClickerBody:
+		body.return_to_home()

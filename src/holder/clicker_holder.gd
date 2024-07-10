@@ -48,6 +48,7 @@ func _ready():
 	
 	if starts_with_clicker:
 		var instance: ClickerBody = clicker_scene.instantiate()
+		instance.home_holder = self
 		owned_clicker = instance
 
 	catcher_field.visible = is_catcher

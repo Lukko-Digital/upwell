@@ -1,6 +1,9 @@
 extends RigidBody2D
 class_name ClickerBody
 
+## Only needs to be set when a clicker doesn't start in a holder. Holders will
+## set the home of clickers that they start with.
+@export var home_holder: ClickerHolder = null
 @export var grav_component: GravitizedComponent
 @export var glow_sprite: Sprite2D
 
@@ -42,6 +45,9 @@ func set_parent(parent: Node):
 	if get_parent():
 		remove_from_tree()
 	parent.add_child.call_deferred(self)
+
+func return_to_home():
+	home_holder.owned_clicker = self
 
 func _on_holder_detector_area_entered(area: Area2D) -> void:
 	if not area is ClickerHolder:

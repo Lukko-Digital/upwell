@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="upwell"
-run/main_scene="res://src/game.tscn"
+run/main_scene="res://src/levels/sandbox.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
@@ -93,7 +93,7 @@ cancel={
 2d_physics/layer_2="PLAYER"
 2d_physics/layer_3="GRAVITY"
 2d_physics/layer_4="INTERACTABLE"
-2d_physics/layer_5="DRILL"
+2d_physics/layer_5="CLICKER"
 
 [physics]
 
