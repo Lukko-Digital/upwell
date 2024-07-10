@@ -18,5 +18,5 @@ func _process(delta: float) -> void:
 	handle_movement(delta)
 	velocity = (position - last_pos) / delta
 
-func handle_movement(delta):
+func handle_movement(_delta):
 	pass

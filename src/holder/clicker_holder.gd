@@ -74,7 +74,7 @@ func interact(player: Player):
 		# player gives clicker to holder
 		owned_clicker = player.spawn_clicker()
 
-func interact_condition(player: Player):
+func interact_condition(_player: Player):
 	return has_clicker()
 
 func drop_clicker():
