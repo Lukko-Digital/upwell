@@ -30,6 +30,8 @@ var clicker_state = {}
 var level_unlocks = {}
 var npc_conversation_state = {}
 
+signal set_camera_focus(focus: Vector2)
+
 signal level_unlocked(level_name: LevelIDs)
 
 func unlock_level(level_name: LevelIDs):

@@ -1,25 +1,49 @@
-[gd_scene load_steps=6 format=3 uid="uid://dw50qvw1e418b"]
+[gd_scene load_steps=8 format=3 uid="uid://dw50qvw1e418b"]
 
-[ext_resource type="Script" path="res://src/map/pod.gd" id="1_gry0m"]
+[ext_resource type="Script" path="res://src/map/screen_interactable.gd" id="2_k6lx3"]
 [ext_resource type="PackedScene" uid="uid://bb68hmcptqlgt" path="res://src/map/map.tscn" id="2_uerrb"]
+[ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="3_3iclu"]
 [ext_resource type="Texture2D" uid="uid://bbjdwc6iyldfv" path="res://assets/ui/map/scanlines.png" id="3_ksyq0"]
 [ext_resource type="Texture2D" uid="uid://bkx3m3c8bdjp5" path="res://assets/ui/map/cover.png" id="4_smk70"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_monmt"]
+size = Vector2(1268.5, 721)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_d7aij"]
 blend_mode = 3
 
 [node name="Pod" type="Node2D"]
-script = ExtResource("1_gry0m")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="Screen" type="Area2D" parent="."]
+position = Vector2(0, -480)
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("2_k6lx3")
+
+[node name="InteractLabel" type="Label" parent="Screen"]
+modulate = Color(1, 1, 1, 0.466667)
+offset_left = -55.0
+offset_top = -176.0
+offset_right = 236.0
+offset_bottom = 27.0
+scale = Vector2(0.374634, 0.374634)
+theme_override_fonts/font = ExtResource("3_3iclu")
+theme_override_font_sizes/font_size = 161
+text = "<E>"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Screen"]
+shape = SubResource("RectangleShape2D_monmt")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Screen"]
 offset_left = -512.0
-offset_top = -768.0
+offset_top = -288.0
 offset_right = 512.0
-offset_bottom = -192.0
+offset_bottom = 288.0
 focus_mode = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Screen/SubViewportContainer"]
 handle_input_locally = false
 physics_object_picking = true
 physics_object_picking_sort = true
@@ -29,11 +53,11 @@ size_2d_override = Vector2i(1920, 1080)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="Map" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_uerrb")]
+[node name="Map" parent="Screen/SubViewportContainer/SubViewport" instance=ExtResource("2_uerrb")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Screen/SubViewportContainer/SubViewport"]
 
-[node name="Scanlines" type="Sprite2D" parent="SubViewportContainer/SubViewport/CanvasLayer"]
+[node name="Scanlines" type="Sprite2D" parent="Screen/SubViewportContainer/SubViewport/CanvasLayer"]
 visible = false
 material = SubResource("CanvasItemMaterial_d7aij")
 position = Vector2(960, 540)
@@ -41,16 +65,16 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_ksyq0")
 metadata/_edit_lock_ = true
 
-[node name="Cover" type="Sprite2D" parent="SubViewportContainer/SubViewport/CanvasLayer"]
+[node name="Cover" type="Sprite2D" parent="Screen/SubViewportContainer/SubViewport/CanvasLayer"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_smk70")
 offset = Vector2(1920, 1080)
 metadata/_edit_lock_ = true
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]
+[node name="CanvasLayer2" type="CanvasLayer" parent="Screen/SubViewportContainer/SubViewport"]
 layer = -1
 
-[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport/CanvasLayer2"]
+[node name="ColorRect" type="ColorRect" parent="Screen/SubViewportContainer/SubViewport/CanvasLayer2"]
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2

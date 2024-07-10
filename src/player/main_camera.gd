@@ -6,7 +6,6 @@ const CAMERA = {
 	PEEK_DISTANCE = 1000.0, # Number of pixels that the camera will peek up (1920x1080 game)
 	PEEK_TOWARD_SPEED = 2.0, # lerp speed, unitless
 	# PEEK_RETURN_SPEED = 7.0, # lerp speed, unitless
-	POD_OFFSET = Vector2(0.0, -128 * 3.4),
 	MAP_EXIT_DISTANCE = 700.0,
 	MAP_ZOOM = 1.5,
 	MAP_ZOOM_SPEED = 3.0,
@@ -16,21 +15,22 @@ const CAMERA = {
 @export var player: Player
 @export var pod: Node2D
 
-var in_map: bool = false
+var focus: Vector2 = Vector2.ZERO
+var focusing: bool = false
+
+func _ready():
+	Global.set_camera_focus.connect(_set_focus)
 
 func _process(delta):
-	if in_map:
-		if (global_position - pod.global_position + CAMERA.POD_OFFSET).is_zero_approx():
-			global_position = pod.global_position + CAMERA.POD_OFFSET
-		else:
-			global_position = lerp(global_position, pod.global_position + CAMERA.POD_OFFSET, CAMERA.MAP_TRANSLATE_SPEED * delta)
-			zoom = lerp(zoom, Vector2.ONE * CAMERA.MAP_ZOOM, CAMERA.MAP_ZOOM_SPEED * delta)
+	if focusing:
+		global_position = lerp(global_position, focus, CAMERA.MAP_TRANSLATE_SPEED * delta)
+		zoom = lerp(zoom, Vector2.ONE * CAMERA.MAP_ZOOM, CAMERA.MAP_ZOOM_SPEED * delta)
 	else:
 		zoom = lerp(zoom, Vector2.ONE * CAMERA.NORMAL_ZOOM, CAMERA.MAP_ZOOM_SPEED * delta)
 		handle_camera_peek(delta)
 
 	if player.position.x - position.x > CAMERA.MAP_EXIT_DISTANCE:
-		in_map = false
+		focusing = false
 
 func handle_camera_peek(delta):
 	if Input.is_action_pressed("up"): # and player.is_on_floor():
@@ -50,5 +50,6 @@ func handle_camera_peek(delta):
 		# 	CAMERA.FOLLOW_SPEED * delta
 		# )
 
-func _on_pod_map_focused():
-	in_map = true
+func _set_focus(_focus: Vector2):
+	focus = _focus
+	focusing = !focusing

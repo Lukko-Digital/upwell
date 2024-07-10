@@ -29,5 +29,3 @@ editor_draw_limits = true
 script = ExtResource("4_5svdy")
 player = NodePath("../Player")
 pod = NodePath("../Pod")
-
-[connection signal="map_focused" from="Pod" to="Camera2D" method="_on_pod_map_focused"]

@@ -64,8 +64,6 @@ var highlighted_interactable: Interactable = null:
 		if highlighted_interactable != null:
 			highlighted_interactable.highlighted = true
 
-var default_camera_position: Vector2
-
 ### ------------------------------ CORE ------------------------------
 
 func _ready() -> void:
