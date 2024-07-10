@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bifs4cy21hluc"]
+[gd_scene load_steps=8 format=3 uid="uid://bifs4cy21hluc"]
 
+[ext_resource type="Script" path="res://src/powered_objects/door.gd" id="1_0nxxg"]
 [ext_resource type="Texture2D" uid="uid://sk76how7sexv" path="res://assets/mvp3_assets/door-sheet.png" id="1_3japl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_japgw"]
@@ -92,7 +93,9 @@ _data = {
 "open": SubResource("Animation_73gdw")
 }
 
-[node name="Door" type="Node2D"]
+[node name="Door" type="Node2D" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_0nxxg")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_3japl")

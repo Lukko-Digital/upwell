@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dcf1k6whcfars"]
+[gd_scene load_steps=15 format=3 uid="uid://dcf1k6whcfars"]
 
 [ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tilemaps/tile_map_brick.tscn" id="1_7xu06"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="2_owwjj"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://hxthntbfyogp" path="res://src/level_elements/holder/timed_multi_receiver_bar.tscn" id="7_spfoi"]
 [ext_resource type="PackedScene" uid="uid://chbldv4vsxwky" path="res://src/level_elements/powered_objects/clicker_blocker.tscn" id="8_a7kg3"]
 [ext_resource type="PackedScene" uid="uid://rc5k8wvetpt6" path="res://src/clicker/clicker.tscn" id="9_0e2kt"]
+[ext_resource type="PackedScene" uid="uid://bifs4cy21hluc" path="res://src/level_elements/powered_objects/door.tscn" id="10_0bgab"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82j2m"]
 size = Vector2(3628, 20)
@@ -101,3 +102,8 @@ home_holder = NodePath("../ClickerHolder")
 [node name="ClickerHolder2" parent="." instance=ExtResource("5_iwbtf")]
 position = Vector2(757, -28)
 is_catcher = false
+
+[node name="Door" parent="." node_paths=PackedStringArray("power_holder") instance=ExtResource("10_0bgab")]
+position = Vector2(-510, -248)
+power_holder = NodePath("../ClickerHolder")
+negative_relationship = true
