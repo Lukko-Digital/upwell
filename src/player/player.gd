@@ -287,7 +287,7 @@ func spawn_clicker(initial_velocity: Vector2=Vector2.ZERO) -> ClickerBody:
 	instance.home_holder = clicker_info.home_holder
 	instance.global_position = global_position
 	instance.linear_velocity = initial_velocity
-	get_parent().add_child(instance)
+	get_parent().add_child.call_deferred(instance)
 	return instance
 
 func home_all_clickers():
