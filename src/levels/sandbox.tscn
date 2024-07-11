@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dcf1k6whcfars"]
+[gd_scene load_steps=16 format=3 uid="uid://dcf1k6whcfars"]
 
 [ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tilemaps/tile_map_brick.tscn" id="1_7xu06"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="2_owwjj"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://chbldv4vsxwky" path="res://src/level_elements/powered_objects/clicker_blocker.tscn" id="8_a7kg3"]
 [ext_resource type="PackedScene" uid="uid://rc5k8wvetpt6" path="res://src/clicker/clicker.tscn" id="9_0e2kt"]
 [ext_resource type="PackedScene" uid="uid://bifs4cy21hluc" path="res://src/level_elements/powered_objects/door.tscn" id="10_0bgab"]
+[ext_resource type="Script" path="res://src/powered_objects/powered_blocker.gd" id="10_h7flu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82j2m"]
 size = Vector2(3628, 20)
@@ -89,12 +90,6 @@ position = Vector2(-592, 0)
 starts_with_clicker = false
 is_catcher = true
 
-[node name="ClickerBlocker" parent="." instance=ExtResource("8_a7kg3")]
-position = Vector2(-1018, -496)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickerBlocker"]
-shape = SubResource("CapsuleShape2D_nghfi")
-
 [node name="ClickerBody" parent="." node_paths=PackedStringArray("home_holder") instance=ExtResource("9_0e2kt")]
 position = Vector2(181, -41)
 home_holder = NodePath("../ClickerHolder")
@@ -107,3 +102,15 @@ is_catcher = false
 position = Vector2(-510, -248)
 power_holder = NodePath("../ClickerHolder")
 negative_relationship = true
+
+[node name="PoweredBlocker" type="Node2D" parent="." node_paths=PackedStringArray("blocker", "power_holder")]
+script = ExtResource("10_h7flu")
+blocker = NodePath("ClickerBlocker")
+power_holder = NodePath("../ClickerHolder2")
+negative_relationship = true
+
+[node name="ClickerBlocker" parent="PoweredBlocker" instance=ExtResource("8_a7kg3")]
+position = Vector2(-1018, -496)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PoweredBlocker/ClickerBlocker"]
+shape = SubResource("CapsuleShape2D_nghfi")
