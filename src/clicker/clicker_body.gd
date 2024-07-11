@@ -39,6 +39,9 @@ func handle_animation():
 		glow_sprite.hide()
 
 func return_to_home():
+	# Bump existing clicker
+	if home_holder.has_clicker() and home_holder.owned_clicker != self:
+		home_holder.owned_clicker.return_to_home()
 	home_holder.owned_clicker = self
 
 func _on_holder_detector_area_entered(area: Area2D) -> void:
