@@ -3,6 +3,7 @@ class_name ClickerHolder
 
 @export var starts_with_clicker: bool
 @export var is_catcher: bool = false
+@export_category("Node References")
 @export var clicker_sprite: Sprite2D
 @export var holder_sprite: Sprite2D
 @export var catcher_field: Sprite2D
@@ -45,6 +46,7 @@ func _set_owned_clicker(clicker: ClickerBody):
 	else:
 		# Has clicker
 		holder_sprite.frame = HolderFrames.GLOW
+		# Lock clicker to holder
 		clicker.global_position = clicker_sprite.global_position
 		clicker.set_deferred("freeze", true)
 		clicker.holder_owned_by = self
