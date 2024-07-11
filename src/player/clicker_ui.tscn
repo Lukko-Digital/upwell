@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3xmpb6et0p0g"]
+[gd_scene load_steps=9 format=3 uid="uid://b3xmpb6et0p0g"]
 
 [ext_resource type="Script" path="res://src/player/clicker_ui.gd" id="1_bax8t"]
 [ext_resource type="Texture2D" uid="uid://ccc201315ps2p" path="res://assets/mvp3_assets/reactor_base_two.png" id="2_bwvy2"]
@@ -33,19 +33,55 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="ClickerUi" type="CanvasLayer" node_paths=PackedStringArray("clickers_sprite")]
-script = ExtResource("1_bax8t")
-clickers_sprite = NodePath("TextureRect/ClickersSprite")
+[sub_resource type="Animation" id="Animation_hmq3k"]
+resource_name = "360"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Reactor/PickupKnob:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -6.28319]
+}
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 100.0
-offset_top = 101.0
-offset_right = 716.0
-offset_bottom = 717.0
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ofva"]
+_data = {
+"360": SubResource("Animation_hmq3k")
+}
+
+[node name="ClickerUi" type="CanvasLayer" node_paths=PackedStringArray("clickers_sprite", "orbit_knob", "pickup_knob")]
+script = ExtResource("1_bax8t")
+clickers_sprite = NodePath("Reactor/ClickerSprite")
+orbit_knob = NodePath("Reactor/OrbitKnob")
+pickup_knob = NodePath("Reactor/PickupKnob")
+
+[node name="Reactor" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 200.0
+offset_top = 200.0
+offset_right = 200.0
+offset_bottom = 200.0
 scale = Vector2(0.3, 0.3)
+
+[node name="OrbitKnob" type="Sprite2D" parent="Reactor"]
+scale = Vector2(1.35, 1.35)
 texture = ExtResource("2_bwvy2")
 
-[node name="ClickersSprite" type="AnimatedSprite2D" parent="TextureRect"]
-position = Vector2(320, 294)
+[node name="PickupKnob" type="Sprite2D" parent="Reactor"]
+texture = ExtResource("2_bwvy2")
+
+[node name="ClickerSprite" type="AnimatedSprite2D" parent="Reactor"]
 sprite_frames = SubResource("SpriteFrames_uprhc")
 animation = &"2"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Reactor"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_1ofva")
+}
