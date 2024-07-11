@@ -50,6 +50,8 @@ func _ready():
 		instance.home_holder = self
 		get_parent().add_child.call_deferred(instance)
 		owned_clicker = instance
+	else:
+		owned_clicker = null
 
 	catcher_field.visible = is_catcher
 	
