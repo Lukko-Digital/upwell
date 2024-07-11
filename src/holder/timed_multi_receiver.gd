@@ -6,7 +6,12 @@ class_name TimedMultiReceiver
 @export var countdown_bar: TimedMultiReceiverBar
 @export var receivers: Array[ClickerHolder]
 
-var completed: bool = false
+signal completion_state_changed(completed: bool)
+
+var completed: bool = false:
+	set(value):
+		completion_state_changed.emit(value)
+		completed = value
 
 func _ready() -> void:
 	for receiver in receivers:

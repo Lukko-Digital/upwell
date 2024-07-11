@@ -98,10 +98,9 @@ home_holder = NodePath("../ClickerHolder")
 position = Vector2(757, -28)
 is_catcher = false
 
-[node name="Door" parent="." node_paths=PackedStringArray("power_holder") instance=ExtResource("10_0bgab")]
+[node name="Door" parent="." node_paths=PackedStringArray("power_multi") instance=ExtResource("10_0bgab")]
 position = Vector2(-510, -248)
-power_holder = NodePath("../ClickerHolder")
-negative_relationship = true
+power_multi = NodePath("../TimedMultiReceiver")
 
 [node name="PoweredBlocker" type="Node2D" parent="." node_paths=PackedStringArray("blocker", "power_holder")]
 script = ExtResource("10_h7flu")
