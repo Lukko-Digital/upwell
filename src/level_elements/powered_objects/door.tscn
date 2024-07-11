@@ -3,13 +3,13 @@
 [ext_resource type="Script" path="res://src/powered_objects/door.gd" id="1_0nxxg"]
 [ext_resource type="Texture2D" uid="uid://sk76how7sexv" path="res://assets/mvp3_assets/door-sheet.png" id="1_3japl"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_japgw"]
-size = Vector2(202, 281)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8d3s"]
+size = Vector2(198, 106)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gud1v"]
-size = Vector2(202, 242)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wsfjk"]
+size = Vector2(198, 520)
 
-[sub_resource type="Animation" id="Animation_063oh"]
+[sub_resource type="Animation" id="Animation_fg0ck"]
 resource_name = "closed"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -26,26 +26,26 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Top:position")
+tracks/1/path = NodePath("StaticBody2D/Open:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
+"update": 1,
+"values": [true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Bottom:position")
+tracks/2/path = NodePath("StaticBody2D/Closed:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_73gdw"]
@@ -65,31 +65,31 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Top:position")
+tracks/1/path = NodePath("StaticBody2D/Open:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -173)]
+"update": 1,
+"values": [false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Bottom:position")
+tracks/2/path = NodePath("StaticBody2D/Closed:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 183)]
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ecr6j"]
 _data = {
-"closed": SubResource("Animation_063oh"),
+"closed": SubResource("Animation_fg0ck"),
 "open": SubResource("Animation_73gdw")
 }
 
@@ -101,19 +101,16 @@ animation_player = NodePath("AnimationPlayer")
 texture = ExtResource("1_3japl")
 hframes = 2
 
-[node name="Top" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_mask = 0
 
-[node name="Top" type="CollisionShape2D" parent="Top"]
-position = Vector2(0, -121.5)
-shape = SubResource("RectangleShape2D_japgw")
+[node name="Open" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -207)
+shape = SubResource("RectangleShape2D_m8d3s")
+disabled = true
 
-[node name="Bottom" type="StaticBody2D" parent="."]
-collision_mask = 0
-
-[node name="Bottom" type="CollisionShape2D" parent="Bottom"]
-position = Vector2(0, 140)
-shape = SubResource("RectangleShape2D_gud1v")
+[node name="Closed" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_wsfjk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
