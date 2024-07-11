@@ -25,11 +25,20 @@ var owned_clicker: ClickerBody = null:
 # 	## Emit signal (ONLY USED IN MULTIRECEIVER)
 # 	clicker_state_changed.emit(self, value)
 
+func _set_highlighted(value: bool):
+	if !has_clicker():
+		if value:
+			holder_sprite.frame = HolderFrames.GLOW
+		else:
+			holder_sprite.frame = HolderFrames.OFF
+	super(value)
+
 func _set_owned_clicker(clicker: ClickerBody):
 	if clicker == null:
 		# No clicker
-		holder_sprite.frame = HolderFrames.OFF
-		if owned_clicker != null:
+		# holder_sprite.frame = HolderFrames.OFF
+		# ^ it still glows because the player can put it back in
+		if has_clicker():
 			# If the holder just lost the clicker, set the lost clicker to no
 			# longer be owned by a holder
 			owned_clicker.holder_owned_by = null
