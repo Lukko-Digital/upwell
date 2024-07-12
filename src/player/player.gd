@@ -7,10 +7,6 @@ const PLAYER = {
 	ACCELERATION = 7000.0, # move_toward acceleration, pixels/frame^2
 	ORBIT_STRAFE_SLOWDOWN = 0.5, # percentage of standard speed
 	PUSHPULL_STRAFE_SLOWDOWN = 0.5, # percentage of standard speed
-	# Camera
-	PEEK_DISTANCE = 1000.0, # Number of pixels that the camera will peek up (1920x1080 game)
-	PEEK_TOWARD_SPEED = 5.0, # lerp speed, unitless
-	PEEK_RETURN_SPEED = 7.0, # lerp speed, unitless
 	# Jumping
 	JUMP_VELOCITY = 2100.0,
 	JUMP_RELEASE_SLOWDOWN = 0.5,
@@ -25,9 +21,6 @@ const PLAYER = {
 	INTERACT_TAP_TIME = 0.2,
 }
 
-@export_group("Settings")
-@export var only_peek_on_ground: bool = false
-
 @export_group("Node References")
 @export var camera: Camera2D
 @export var clicker_sprite: Sprite2D
@@ -40,8 +33,6 @@ const PLAYER = {
 @export var throw_arc_line: Line2D
 
 @onready var clicker_scene: PackedScene = preload ("res://src/clicker/clicker.tscn")
-
-var game: Game
 
 ## -------------------------- PLAYER STATE VARIABLES --------------------------
 
@@ -73,12 +64,9 @@ var highlighted_interactable: Interactable = null:
 		if highlighted_interactable != null:
 			highlighted_interactable.highlighted = true
 
-var default_camera_position: Vector2
-
 ### ------------------------------ CORE ------------------------------
 
 func _ready() -> void:
-	default_camera_position = camera.position
 	# Connect signal
 	min_jump_timer.timeout.connect(_min_jump_timer_timeout)
 	Global.level_unlocked.connect(_on_level_unlocked)
@@ -86,11 +74,14 @@ func _ready() -> void:
 	has_clicker = Global.player_has_clicker
 	# Retrieve Game node 
 	var current_scene = get_tree().get_current_scene()
-	if current_scene is Game:
-		game = current_scene
+	if current_scene is Game and not owner is Game:
+		var main_camera: Camera2D = current_scene.get_node("Camera2D")
+		main_camera.limit_bottom = camera.limit_bottom
+		main_camera.limit_top = camera.limit_top
+		queue_free()
 
 func _physics_process(delta):
-	if in_dialogue or in_map:
+	if in_dialogue: # or in_map:
 		return
 	var gravity_state: GravityState = handle_artificial_gravity(delta)
 	handle_world_gravity(delta, gravity_state, PLAYER.MAX_FALL_SPEED)
@@ -101,15 +92,12 @@ func _physics_process(delta):
 func _process(delta):
 	handle_throw_arc()
 	handle_nearby_interactables()
-	handle_camera_peek(delta)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump()
 	if event.is_action_released("jump"):
 		jump_end()
-	if event.is_action_pressed("map"):
-		in_map = game.toggle_map()
 	
 	## The `interact_tap_timer` is the time in which the interact key can be
 	## released in order to count as tapping interact. If the key is held
@@ -122,25 +110,6 @@ func _input(event: InputEvent) -> void:
 			interact_tap_timer.stop()
 		else:
 			throw()
-
-## ------------------------------ CAMERA ------------------------------
-
-func handle_camera_peek(delta):
-	var can_peek = true
-	if only_peek_on_ground and not is_on_floor():
-		can_peek = false
-	if Input.is_action_pressed("up") and can_peek:
-		camera.position.y = lerp(
-			camera.position.y,
-			default_camera_position.y - PLAYER.PEEK_DISTANCE,
-			PLAYER.PEEK_TOWARD_SPEED * delta
-		)
-	else:
-		camera.position.y = lerp(
-			camera.position.y,
-			default_camera_position.y,
-			PLAYER.PEEK_RETURN_SPEED * delta
-		)
 
 ## ------------------------------ MOVEMENT ------------------------------
 

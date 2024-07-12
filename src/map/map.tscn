@@ -1,7 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://bb68hmcptqlgt"]
+[gd_scene load_steps=21 format=3 uid="uid://bb68hmcptqlgt"]
 
-[ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player.tscn" id="1_8n3xw"]
 [ext_resource type="Script" path="res://src/map/map.gd" id="1_ithwi"]
+[ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player/map_player.tscn" id="2_uwq5e"]
 [ext_resource type="PackedScene" uid="uid://ql7gm3yuyicr" path="res://src/map/map_level.tscn" id="5_1gw2i"]
 [ext_resource type="PackedScene" uid="uid://braj8804rj7dv" path="res://src/levels/level_1a.tscn" id="5_ivr4h"]
 [ext_resource type="PackedScene" uid="uid://d30me1egqqj3m" path="res://src/levels/level_1b.tscn" id="6_fvxgp"]
@@ -9,10 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://cu2hfokgxd4pw" path="res://assets/ui/map/destination.png" id="7_xnplc"]
 [ext_resource type="PackedScene" uid="uid://bylvh61lxfpjf" path="res://src/levels/level_1c.tscn" id="8_42x0w"]
 [ext_resource type="PackedScene" uid="uid://b1oqu2spncu02" path="res://src/levels/level_2a.tscn" id="9_31x8g"]
-[ext_resource type="Texture2D" uid="uid://bbjdwc6iyldfv" path="res://assets/ui/map/scanlines.png" id="10_4gdd3"]
 [ext_resource type="PackedScene" uid="uid://b1ohirk0tdvia" path="res://src/levels/level_2b.tscn" id="10_bubgk"]
 [ext_resource type="PackedScene" uid="uid://dhh8bomlko4vb" path="res://src/levels/level_2c.tscn" id="11_tid8g"]
-[ext_resource type="Texture2D" uid="uid://bkx3m3c8bdjp5" path="res://assets/ui/map/cover.png" id="11_x5ox6"]
 [ext_resource type="PackedScene" uid="uid://o6moiba3gla" path="res://src/levels/level_3a.tscn" id="12_bacb4"]
 [ext_resource type="Texture2D" uid="uid://dc6nfaju78e60" path="res://assets/environment/test_level/particle_softest.png" id="12_kdma8"]
 [ext_resource type="PackedScene" uid="uid://cbvweu7hx3d8v" path="res://src/levels/level_3b.tscn" id="13_0hdvm"]
@@ -22,43 +20,16 @@
 [ext_resource type="PackedScene" uid="uid://d0mjp8x5p4fxd" path="res://src/levels/level_4b.tscn" id="17_miqwq"]
 [ext_resource type="PackedScene" uid="uid://mwr82xl4xrkg" path="res://src/levels/level_4c.tscn" id="18_k4ki2"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pifqs"]
-blend_mode = 3
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_8hv42"]
 radius = 38.6394
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_ithwi")
 
-[node name="MapPlayer" parent="." instance=ExtResource("1_8n3xw")]
+[node name="MapPlayer" parent="." instance=ExtResource("2_uwq5e")]
+position = Vector2(-3, 4)
 
 [node name="Camera2D" type="Camera2D" parent="MapPlayer"]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Scanlines" type="Sprite2D" parent="CanvasLayer"]
-material = SubResource("CanvasItemMaterial_pifqs")
-position = Vector2(960, 540)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("10_4gdd3")
-metadata/_edit_lock_ = true
-
-[node name="Cover" type="Sprite2D" parent="CanvasLayer"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("11_x5ox6")
-offset = Vector2(1920, 1080)
-metadata/_edit_lock_ = true
-
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
-offset_right = 1920.0
-offset_bottom = 1080.0
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
 
 [node name="Background" type="Node" parent="."]
 
@@ -158,6 +129,7 @@ metadata/_edit_lock_ = true
 [node name="1a" parent="Levels" instance=ExtResource("5_1gw2i")]
 level = ExtResource("5_ivr4h")
 level_id = 1
+name_text = "Level 1"
 
 [node name="Sprite2D" type="Sprite2D" parent="Levels/1a"]
 texture = ExtResource("7_xnplc")
@@ -168,11 +140,27 @@ position = Vector2(3, 2)
 shape = SubResource("CircleShape2D_8hv42")
 metadata/_edit_lock_ = true
 
+[node name="1a2" parent="Levels" node_paths=PackedStringArray("label") instance=ExtResource("5_1gw2i")]
+position = Vector2(370, -345)
+level = ExtResource("5_ivr4h")
+level_id = 1
+label = NodePath("../1a/Label")
+name_text = "Level 1"
+
+[node name="Sprite2D" type="Sprite2D" parent="Levels/1a2"]
+texture = ExtResource("7_xnplc")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/1a2"]
+position = Vector2(3, 2)
+shape = SubResource("CircleShape2D_8hv42")
+metadata/_edit_lock_ = true
+
 [node name="1b" parent="Levels" instance=ExtResource("5_1gw2i")]
 position = Vector2(181, -64)
 level = ExtResource("6_fvxgp")
 level_id = 2
-locked = true
+name_text = "Level 2"
 
 [node name="Sprite2D" type="Sprite2D" parent="Levels/1b"]
 texture = ExtResource("7_xnplc")
@@ -187,7 +175,7 @@ metadata/_edit_lock_ = true
 position = Vector2(376, -76)
 level = ExtResource("7_6552w")
 level_id = 3
-locked = true
+name_text = "Level 3"
 
 [node name="Sprite2D" type="Sprite2D" parent="Levels/1bb"]
 texture = ExtResource("7_xnplc")
@@ -202,7 +190,6 @@ metadata/_edit_lock_ = true
 position = Vector2(527, -71)
 level = ExtResource("8_42x0w")
 level_id = 4
-locked = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Levels/1c"]
 texture = ExtResource("7_xnplc")

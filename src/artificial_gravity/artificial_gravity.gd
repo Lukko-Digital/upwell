@@ -26,5 +26,11 @@ func disable():
 	enabled = false
 	queue_redraw()
 
+func velocity() -> Vector2:
+	var parent = get_parent()
+	if parent is ButtonControlledPathFollow:
+		return parent.velocity
+	return Vector2.ZERO
+
 func radius() -> float:
 	return $CollisionShape2D.shape.radius

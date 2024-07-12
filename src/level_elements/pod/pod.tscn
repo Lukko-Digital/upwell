@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://dw50qvw1e418b"]
+
+[ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="1_pv0jy"]
+[ext_resource type="Script" path="res://src/level_elements/pod/pod.gd" id="1_urr8o"]
+[ext_resource type="PackedScene" uid="uid://bb68hmcptqlgt" path="res://src/map/map.tscn" id="2_uerrb"]
+
+[node name="Pod" type="Node2D"]
+script = ExtResource("1_urr8o")
+
+[node name="Screen" parent="." instance=ExtResource("1_pv0jy")]
+screen = ExtResource("2_uerrb")
