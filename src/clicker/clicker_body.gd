@@ -39,6 +39,7 @@ func handle_animation():
 	else:
 		glow_sprite.hide()
 
+## Clicker can get pulled out of a holder by orbit
 func handle_leave_clicker():
 	if Input.is_action_just_pressed("orbit") and holder_owned_by != null:
 		holder_owned_by.drop_clicker()
