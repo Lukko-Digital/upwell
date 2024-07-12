@@ -70,7 +70,6 @@ offset_top = -117.0
 offset_right = 32.0
 offset_bottom = -62.0
 theme_override_font_sizes/font_size = 40
-text = "<E>"
 
 [node name="HolderDetector" type="Area2D" parent="."]
 position = Vector2(0, 38)
