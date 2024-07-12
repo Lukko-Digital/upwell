@@ -34,6 +34,8 @@ func _process(delta: float) -> void:
 	
 	if energy_bar.value <= 0:
 		recall()
+	elif energy_bar.value == energy_bar.max_value / 2: # For energy warning
+		pass
 
 # Return true if attracting or repelling, false otherwise
 func handle_artificial_gravity(delta):
@@ -123,6 +125,8 @@ func end_movement() -> void:
 func recall() -> void:
 	global_position = starting_position
 	end_movement()
+
+	# FOR JOSH
 	out_of_energy.show()
 	await get_tree().create_timer(1).timeout
 	out_of_energy.hide()
