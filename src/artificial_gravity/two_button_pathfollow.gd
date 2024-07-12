@@ -2,9 +2,9 @@ extends ButtonControlledPathFollow
 class_name TwoButtonPathFollow
 
 ## Forward is the direction away from the first point in the path
-@export var forward_button: HolderButton
+@export var forward_button: ClickerHolder
 ## Backward is the direction towards the first point in the path
-@export var backward_button: HolderButton
+@export var backward_button: ClickerHolder
 
 func handle_movenent(delta):
     var direction = 0

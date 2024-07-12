@@ -1,52 +1,68 @@
-extends GravitizedBody
+extends RigidBody2D
 class_name ClickerBody
 
-const MAX_FALL_SPEED = 2600
-const BOUNCE_AMOUNT = 0.3
+## Only needs to be set when a clicker doesn't start in a holder. Holders will
+## set the home of clickers that they start with.
+@export var home_holder: ClickerHolder = null
+@export var grav_component: GravitizedComponent
+@export var glow_sprite: Sprite2D
+@export var interactable: Interactable
 
 ## Set false when dropped to prevent immediately re-entering holder
 var catchable = true
-var frames_since_last_collision = 0
+## Value is set by [ClickerHolder] when clicker is inserted/removed
+var holder_owned_by: ClickerHolder
 
 func _physics_process(delta: float) -> void:
-	var gravity_state: GravityState = handle_artificial_gravity(delta)
-	handle_world_gravity(delta, gravity_state, MAX_FALL_SPEED)
-	handle_nudge(gravity_state)
-	# Apply normal force and friction
-	var floor_normal = get_floor_normal()
-	if floor_normal != Vector2.UP:
-		# On slope, roll
-		velocity.x += (floor_normal * world_gravity * delta * 0.8).x
+	var gravity_state: GravitizedComponent.GravityState = handle_artificial_gravity(delta)
+	if gravity_state == GravitizedComponent.GravityState.ORBIT:
+		gravity_scale = 0
+		handle_leave_clicker()
 	else:
-		# On flat ground, friction
-		velocity.x = move_toward(velocity.x, 0, delta * 500)
+		gravity_scale = 1
 
-	var prev_vel = velocity
-	var collided = move_and_slide()
+func _process(_delta):
+	handle_animation()
 
-	if collided and frames_since_last_collision > 5:
-		var collision = get_last_slide_collision()
-		velocity = prev_vel.bounce(collision.get_normal()) * BOUNCE_AMOUNT
+func handle_artificial_gravity(delta) -> GravitizedComponent.GravityState:
+	var active_ag = grav_component.check_active_ag()
+	var gravity_state = grav_component.determine_gravity_state(active_ag)
+	if gravity_state != GravitizedComponent.GravityState.NONE:
+		var new_vel = grav_component.calculate_gravitized_velocity(
+			active_ag, gravity_state, linear_velocity, delta
+		)
+		linear_velocity = new_vel
+	return gravity_state
 
-	if collided:
-		frames_since_last_collision = 0
-	else:
-		frames_since_last_collision += 1
+func handle_animation():
+	if Input.is_action_pressed("orbit") or interactable.highlighted:
+		glow_sprite.show()
+	elif !interactable.highlighted:
+		glow_sprite.hide()
 
-func handle_artificial_gravity(delta: float):
-	if !Global.player_has_clicker:
-		return GravityState.NONE
-	return super(delta)
+## Clicker can get pulled out of a holder by orbit
+func handle_leave_clicker():
+	if Input.is_action_just_pressed("orbit") and holder_owned_by != null:
+		holder_owned_by.drop_clicker()
+
+func return_to_home():
+	# Bump existing clicker
+	if home_holder.has_clicker() and home_holder.owned_clicker != self:
+		home_holder.owned_clicker.return_to_home()
+	home_holder.owned_clicker = self
 
 func _on_holder_detector_area_entered(area: Area2D) -> void:
-	if not area is ClickerReceiver:
+	if not area is ClickerHolder:
 		return
-	if (
-		not catchable or
-		not area.is_catcher or
-		area.has_clicker
+	if not (
+		catchable and
+		area.is_catcher and
+		area.owned_clicker == null
 	):
 		return
 
-	area.has_clicker = true
-	queue_free()
+	area.owned_clicker = self
+
+func _on_holder_detector_area_exited(area: Area2D) -> void:
+	if area is ClickerHolder:
+		catchable = true

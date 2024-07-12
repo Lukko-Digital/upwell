@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dv68v7o8ukdhg"
-path="res://.godot/imported/reactor_content_one.png-dff8f5dc94f8d46c14da172592c0f7c7.ctex"
+path="res://.godot/imported/reactor_content_one.png-b03d64f9dc7ecf7ae65840dc0ab84522.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mvp3 assets/reactor_content_one.png"
-dest_files=["res://.godot/imported/reactor_content_one.png-dff8f5dc94f8d46c14da172592c0f7c7.ctex"]
+source_file="res://assets/mvp3_assets/reactor_content_one.png"
+dest_files=["res://.godot/imported/reactor_content_one.png-b03d64f9dc7ecf7ae65840dc0ab84522.ctex"]
 
 [params]
 

@@ -1,4 +1,4 @@
-extends GravitizedBody
+extends CharacterBody2D
 class_name Player
 
 const PLAYER = {
@@ -22,21 +22,25 @@ const PLAYER = {
 	# Throw
 	THROW_VELOCITY = 3000,
 	ARC_POINTS = 100,
-	INTERACT_TAP_TIME = 0.2,
 }
 
 @export_group("Node References")
 @export var camera: Camera2D
-@export var clicker_sprite: Sprite2D
+@export var grav_component: GravitizedComponent
 @export var interactable_detector: Area2D
 @export var dialogue_ui: DialogueUI
-@export var interact_tap_timer: Timer
+@export var level_unlock_popup: CanvasLayer
 @export var coyote_timer: Timer
 @export var jump_buffer_timer: Timer
 @export var min_jump_timer: Timer
 @export var throw_arc_line: Line2D
 
 @onready var clicker_scene: PackedScene = preload ("res://src/clicker/clicker.tscn")
+
+## Emitted when player gains or loses a clicker
+signal clicker_count_changed
+
+var world_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var game: Game
 
@@ -47,16 +51,21 @@ var in_dialogue: bool = false
 var in_map: bool = false
 # ---
 
-var has_clicker: bool:
-	set(value):
-		clicker_sprite.visible = value
-		Global.player_has_clicker = value
-		has_clicker = value
+## DEPRECATED, LEFT AS REFERENCE
+# var has_clicker: bool:
+	# set(value):
+	# 	clicker_sprite.visible = value
+	# 	Global.player_has_clicker = value
+	# 	has_clicker = value
+
+var clicker_inventory: Array[ClickerInfo]
 
 var previously_grounded: bool = false
 var jumping: bool = false
 var disable_airborne_decel: bool = true
 var previous_horizontal_direction: float = 0
+
+var aiming: bool = false
 
 ## ---
 
@@ -79,8 +88,11 @@ func _ready() -> void:
 	# Connect signal
 	min_jump_timer.timeout.connect(_min_jump_timer_timeout)
 	Global.level_unlocked.connect(_on_level_unlocked)
+	
+	## DEPRECATED, LEFT AS REFERENCE
 	# Load clicker state
-	has_clicker = Global.player_has_clicker
+	# has_clicker = Global.player_has_clicker
+
 	# Retrieve Game node 
 	var current_scene = get_tree().get_current_scene()
 	if current_scene is Game:
@@ -89,8 +101,8 @@ func _ready() -> void:
 func _physics_process(delta):
 	if in_dialogue or in_map:
 		return
-	var gravity_state: GravityState = handle_artificial_gravity(delta)
-	handle_world_gravity(delta, gravity_state, PLAYER.MAX_FALL_SPEED)
+	var gravity_state: GravitizedComponent.GravityState = handle_artificial_gravity(delta)
+	handle_world_gravity(delta, gravity_state)
 	handle_movement(delta, gravity_state)
 	move_and_slide()
 	handle_coyote_timing(gravity_state)
@@ -105,20 +117,19 @@ func _input(event: InputEvent) -> void:
 		jump()
 	if event.is_action_released("jump"):
 		jump_end()
+	
 	if event.is_action_pressed("map"):
 		in_map = game.toggle_map()
-	
-	## The `interact_tap_timer` is the time in which the interact key can be
-	## released in order to count as tapping interact. If the key is held
-	## beyond that time, it begins the throw action, via `handle_throw_arc`
 	if event.is_action_pressed("interact"):
-		interact_tap_timer.start(PLAYER.INTERACT_TAP_TIME)
-	if event.is_action_released("interact"):
-		if !interact_tap_timer.is_stopped():
-			interact()
-			interact_tap_timer.stop()
-		else:
-			throw()
+		interact()
+	
+	if event.is_action_pressed("throw"):
+		aiming = true
+	if event.is_action_pressed("cancel"):
+		aiming = false
+	
+	if event.is_action_released("throw"):
+		throw()
 
 ## ------------------------------ CAMERA ------------------------------
 
@@ -136,30 +147,39 @@ func handle_camera_peek(delta):
 			PLAYER.PEEK_RETURN_SPEED * delta
 		)
 
+## ------------------------------ GRAVITY ------------------------------
+
+func handle_artificial_gravity(delta) -> GravitizedComponent.GravityState:
+	var active_ag = grav_component.check_active_ag()
+	var gravity_state = grav_component.determine_gravity_state(active_ag)
+	if gravity_state != GravitizedComponent.GravityState.NONE:
+		var new_vel = grav_component.calculate_gravitized_velocity(
+			active_ag, gravity_state, velocity, delta
+		)
+		velocity = new_vel
+	return gravity_state
+
+func handle_world_gravity(delta: float, gravity_state: GravitizedComponent.GravityState):
+	if gravity_state == GravitizedComponent.GravityState.ORBIT:
+		return
+	if not is_on_floor():
+		velocity.y = move_toward(velocity.y, PLAYER.MAX_FALL_SPEED, world_gravity * delta)
+
 ## ------------------------------ MOVEMENT ------------------------------
 
-func handle_artificial_gravity(delta) -> GravityState:
-	if not has_clicker:
-		return GravityState.NONE
-	return super(delta)
-
-func handle_movement(delta: float, gravity_state: GravityState):
+func handle_movement(delta: float, gravity_state: GravitizedComponent.GravityState):
 	var speed_coef = 1.0
-	if gravity_state == GravityState.ORBIT:
+	if gravity_state == GravitizedComponent.GravityState.ORBIT:
 		speed_coef = PLAYER.ORBIT_STRAFE_SLOWDOWN
-	elif gravity_state == GravityState.PUSHPULL:
+	elif gravity_state == GravitizedComponent.GravityState.PUSHPULL:
 		speed_coef = PLAYER.PUSHPULL_STRAFE_SLOWDOWN
 
 	var top_speed = PLAYER.SPEED * speed_coef
 	var horizontal_direction = sign(velocity.x)
-
-	# nudge input
-	if handle_nudge(gravity_state):
-		return
-
+	
 	# Disable airborne decel upon boosting until touching the floor or
 	# changing direction in air.
-	if gravity_state == GravityState.BOOST:
+	if gravity_state == GravitizedComponent.GravityState.BOOST:
 		disable_airborne_decel = true
 	elif is_on_floor() or horizontal_direction != previous_horizontal_direction:
 		disable_airborne_decel = false
@@ -171,7 +191,9 @@ func handle_movement(delta: float, gravity_state: GravityState):
 		# movement, accelerate player towards direction of movement, this
 		# includes accelerating towards zero movement.
 		if input_direction == 0 and (
-			disable_airborne_decel or gravity_state in [GravityState.ORBIT, GravityState.PUSHPULL]
+			disable_airborne_decel or gravity_state in [
+				GravitizedComponent.GravityState.ORBIT, GravitizedComponent.GravityState.PUSHPULL
+			]
 		):
 			# If there is no player input, and airborne decel is disabled from
 			# boosting or the player is currently in an orbit or pushpull,
@@ -186,17 +208,17 @@ func handle_movement(delta: float, gravity_state: GravityState):
 # ----------------------------- JUMP -----------------------------
 
 ## Should be called after [move_and_slide] in [_physics_process]
-func handle_coyote_timing(gravity_state: GravityState):
+func handle_coyote_timing(gravity_state: GravitizedComponent.GravityState):
 	var currently_grounded = is_on_floor()
 	if (
 		previously_grounded and
 		not currently_grounded and
 		not jumping and
-		gravity_state == GravityState.NONE
+		gravity_state == GravitizedComponent.GravityState.NONE
 	):
 		coyote_timer.start(PLAYER.COYOTE_TIME)
 
-	if currently_grounded or gravity_state != GravityState.NONE:
+	if currently_grounded or gravity_state != GravitizedComponent.GravityState.NONE:
 		jumping = false
 	if not jump_buffer_timer.is_stopped() and currently_grounded:
 		jump()
@@ -239,36 +261,75 @@ func handle_nearby_interactables():
 		)
 		highlighted_interactable = nearby_interactables[0]
 
-func spawn_clicker(initial_velocity: Vector2=Vector2.ZERO):
-	has_clicker = false
-	var instance: ClickerBody = clicker_scene.instantiate()
-	instance.global_position = global_position
-	instance.velocity = initial_velocity
-	get_parent().add_child(instance)
-
 func interact():
 	if highlighted_interactable != null:
 		highlighted_interactable.interact(self)
-	elif has_clicker:
+	elif has_clicker():
 		spawn_clicker()
 
+func start_dialogue(npc: NPC):
+	if in_dialogue:
+		return
+	dialogue_ui.start_dialogue(npc)
+	in_dialogue = true
+
+### ----------------------------- CLICKER -----------------------------
+
+func has_clicker():
+	return !clicker_inventory.is_empty()
+
+func add_clicker(clicker: ClickerBody):
+	var clicker_info = ClickerInfo.new(clicker.home_holder)
+	clicker_inventory.append(clicker_info)
+	clicker_count_changed.emit()
+	clicker.queue_free()
+
+func spawn_clicker(initial_velocity: Vector2=Vector2.ZERO) -> ClickerBody:
+	if not has_clicker():
+		return
+	var clicker_info: ClickerInfo = clicker_inventory.pop_front()
+	clicker_count_changed.emit()
+	var instance = clicker_scene.instantiate()
+	instance.home_holder = clicker_info.home_holder
+	instance.global_position = global_position
+	instance.linear_velocity = initial_velocity
+	get_parent().add_child.call_deferred(instance)
+	return instance
+
+func home_all_clickers():
+	while has_clicker():
+		var clicker = spawn_clicker()
+		clicker.return_to_home()
+
+### ----------------------------- THROW -----------------------------
+
 func throw():
-	if not has_clicker:
+	if not (
+		has_clicker() and
+		aiming
+	):
 		return
 	var dir = (get_global_mouse_position() - global_position).normalized()
 	spawn_clicker(dir * PLAYER.THROW_VELOCITY)
 
 func handle_throw_arc():
-	if not (
-		Input.is_action_pressed("interact") and
-		interact_tap_timer.is_stopped() and
-		has_clicker
-	):
-		throw_arc_line.clear_points()
-		return
 	throw_arc_line.clear_points()
+
+	if not (
+		Input.is_action_pressed("throw") and
+		has_clicker() and
+		aiming
+	):
+		return
+
 	var pos = Vector2.ZERO
-	var vel = (get_global_mouse_position() - global_position).normalized() * PLAYER.THROW_VELOCITY
+	## The rigid body flies in a parabola with slightly less amplitude than
+	## the one calculated below. We add the adjustment factor so the line
+	## better matches the actual curve of the throw. Unsure why this is the
+	## case. The line fit when using a character body clicker with coded in
+	## physics.
+	var adjustment_factor = 0.97
+	var vel = (get_global_mouse_position() - global_position).normalized() * PLAYER.THROW_VELOCITY * adjustment_factor
 	var delta = get_physics_process_delta_time()
 	var world_physics := get_world_2d().direct_space_state
 	var query := PhysicsPointQueryParameters2D.new()
@@ -282,19 +343,12 @@ func handle_throw_arc():
 		if not world_physics.intersect_point(query).is_empty():
 			break
 
-func start_dialogue(npc: NPC):
-	if in_dialogue:
-		return
-	dialogue_ui.start_dialogue(npc)
-	in_dialogue = true
-
 ## ------------------------------ SIGNAL HANDLES ------------------------------
 
 func _on_dialogue_ui_dialogue_finished() -> void:
 	in_dialogue = false
 
 func _on_level_unlocked(_level_name: Global.LevelIDs):
-	var ui = $Ui
-	ui.show()
+	level_unlock_popup.show()
 	await get_tree().create_timer(2).timeout
-	ui.hide()
+	level_unlock_popup.hide()

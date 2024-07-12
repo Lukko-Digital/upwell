@@ -1,40 +1,38 @@
-[gd_scene load_steps=6 format=3 uid="uid://tfy83b2uc6hh"]
+[gd_scene load_steps=7 format=3 uid="uid://tfy83b2uc6hh"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_lbj7m"]
 [ext_resource type="PackedScene" uid="uid://br8qm13yce4pr" path="res://src/dialogue/dialogue_ui.tscn" id="2_cft6f"]
 [ext_resource type="Texture2D" uid="uid://dw7s1u2h3q230" path="res://assets/mvp2_assets/player.png" id="3_u0vu5"]
-[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="4_wfmfs"]
+[ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="4_wg5r1"]
+[ext_resource type="PackedScene" uid="uid://b3xmpb6et0p0g" path="res://src/player/clicker_ui.tscn" id="6_j7ju8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_erpsl"]
 radius = 68.2904
 height = 273.162
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("clicker_sprite", "interactable_detector", "dialogue_ui", "interact_tap_timer", "coyote_timer", "jump_buffer_timer", "min_jump_timer", "throw_arc_line", "nudge_sprites", "gravity_detector")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("grav_component", "interactable_detector", "dialogue_ui", "level_unlock_popup", "coyote_timer", "jump_buffer_timer", "min_jump_timer", "throw_arc_line")]
 collision_layer = 2
 script = ExtResource("1_lbj7m")
-clicker_sprite = NodePath("NudgePosition/ClickerSprite")
+grav_component = NodePath("GravitizedComponent")
 interactable_detector = NodePath("DetectionAreas/InteractableDetector")
 dialogue_ui = NodePath("DialogueUi")
-interact_tap_timer = NodePath("Timers/InteractTapTimer")
+level_unlock_popup = NodePath("LevelUnlockPopup")
 coyote_timer = NodePath("Timers/CoyoteTimer")
 jump_buffer_timer = NodePath("Timers/JumpBufferTimer")
 min_jump_timer = NodePath("Timers/MinimumJumpTimer")
 throw_arc_line = NodePath("ThrowArc")
-nudge_sprites = NodePath("NudgePosition")
-gravity_detector = NodePath("DetectionAreas/GravityDetector")
 
-[node name="NudgePosition" type="Node2D" parent="."]
-
-[node name="PlayerSprite" type="Sprite2D" parent="NudgePosition"]
+[node name="PlayerSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.904217, 0.904217)
 texture = ExtResource("3_u0vu5")
-
-[node name="ClickerSprite" parent="NudgePosition" instance=ExtResource("4_wfmfs")]
-position = Vector2(0, 13)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 scale = Vector2(0.893244, 0.893244)
 shape = SubResource("CapsuleShape2D_erpsl")
+
+[node name="GravitizedComponent" type="Node2D" parent="." node_paths=PackedStringArray("gravity_detector")]
+script = ExtResource("4_wg5r1")
+gravity_detector = NodePath("../DetectionAreas/GravityDetector")
 
 [node name="DetectionAreas" type="Node2D" parent="."]
 
@@ -56,9 +54,6 @@ shape = SubResource("CapsuleShape2D_erpsl")
 
 [node name="Timers" type="Node" parent="."]
 
-[node name="InteractTapTimer" type="Timer" parent="Timers"]
-one_shot = true
-
 [node name="CoyoteTimer" type="Timer" parent="Timers"]
 one_shot = true
 
@@ -71,10 +66,10 @@ one_shot = true
 [node name="DialogueUi" parent="." instance=ExtResource("2_cft6f")]
 visible = false
 
-[node name="Ui" type="CanvasLayer" parent="."]
+[node name="LevelUnlockPopup" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="Ui"]
+[node name="ColorRect" type="ColorRect" parent="LevelUnlockPopup"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -85,7 +80,7 @@ offset_bottom = 303.0
 grow_horizontal = 2
 color = Color(0.301961, 0.301961, 0.301961, 0.388235)
 
-[node name="Label" type="Label" parent="Ui"]
+[node name="Label" type="Label" parent="LevelUnlockPopup"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -96,6 +91,9 @@ offset_bottom = 292.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 60
 text = "your map has been updated"
+
+[node name="ClickerUi" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_j7ju8")]
+player = NodePath("..")
 
 [node name="ThrowArc" type="Line2D" parent="."]
 
