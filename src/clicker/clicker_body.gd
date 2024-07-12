@@ -6,6 +6,7 @@ class_name ClickerBody
 @export var home_holder: ClickerHolder = null
 @export var grav_component: GravitizedComponent
 @export var glow_sprite: Sprite2D
+@export var interactable: Interactable
 
 ## Set false when dropped to prevent immediately re-entering holder
 var catchable = true
@@ -34,9 +35,9 @@ func handle_artificial_gravity(delta) -> GravitizedComponent.GravityState:
 	return gravity_state
 
 func handle_animation():
-	if Input.is_action_pressed("orbit"):
+	if Input.is_action_pressed("orbit") or interactable.highlighted:
 		glow_sprite.show()
-	else:
+	elif !interactable.highlighted:
 		glow_sprite.hide()
 
 ## Clicker can get pulled out of a holder by orbit
