@@ -1,35 +1,101 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0qt5j8u0l2c0"]
+[gd_scene load_steps=12 format=3 uid="uid://b0qt5j8u0l2c0"]
 
-[ext_resource type="Texture2D" uid="uid://bkx3m3c8bdjp5" path="res://assets/ui/map/cover.png" id="1_7on24"]
-[ext_resource type="Texture2D" uid="uid://bbjdwc6iyldfv" path="res://assets/ui/map/scanlines.png" id="1_kc6wu"]
+[ext_resource type="PackedScene" uid="uid://d3nl8jv07w2yg" path="res://src/screen_puzzles/screen_hazard.tscn" id="2_2u5u0"]
+[ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/screen_player.tscn" id="3_7a8se"]
 [ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/screen_ag.tscn" id="3_v12xy"]
-[ext_resource type="Texture2D" uid="uid://ckja0m6blyedr" path="res://assets/mvp3_assets/screenpuzzle/hazard.png" id="4_yn45u"]
+[ext_resource type="PackedScene" uid="uid://bdt2psjmwjsy6" path="res://src/screen_puzzles/screen_button_orbit.tscn" id="4_uj6j4"]
+[ext_resource type="PackedScene" uid="uid://bwbpi60st6gme" path="res://src/screen_puzzles/screen_button_unorbit.tscn" id="5_62qiq"]
+[ext_resource type="PackedScene" uid="uid://dei1bl8astem7" path="res://src/screen_puzzles/screen_button_boost.tscn" id="6_a00bi"]
+[ext_resource type="PackedScene" uid="uid://xiabu6v8kd6w" path="res://src/screen_puzzles/screen_power_up.tscn" id="7_4ak8y"]
+[ext_resource type="Texture2D" uid="uid://ba863aqwujv2p" path="res://assets/mvp3_assets/screenpuzzle/file.png" id="8_jq3xp"]
+[ext_resource type="Texture2D" uid="uid://bkfksvc75voj" path="res://assets/mvp3_assets/screenpuzzle/file_opened.png" id="9_booii"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_r71d5"]
-blend_mode = 3
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tk24l"]
+size = Vector2(2061, 1288)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vidkj"]
+size = Vector2(167, 125)
 
 [node name="ScreenPuzzle" type="Node2D"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Scanlines" type="Sprite2D" parent="CanvasLayer"]
-material = SubResource("CanvasItemMaterial_r71d5")
-position = Vector2(960, 540)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_kc6wu")
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1874.0
+offset_top = -1033.0
+offset_right = 635.0
+offset_bottom = 689.0
+mouse_filter = 2
+color = Color(0.201527, 0.201527, 0.201527, 1)
 metadata/_edit_lock_ = true
 
-[node name="Cover" type="Sprite2D" parent="CanvasLayer"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_7on24")
-offset = Vector2(1920, 1080)
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -1874.0
+offset_top = 730.0
+offset_right = 635.0
+offset_bottom = 1005.0
+mouse_filter = 2
+color = Color(0.201527, 0.201527, 0.201527, 1)
+metadata/_edit_lock_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = 689.0
+offset_top = -1026.0
+offset_right = 1880.0
+offset_bottom = 1005.0
+mouse_filter = 2
+color = Color(0.201527, 0.201527, 0.201527, 1)
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
 
-[node name="OrbitAG" parent="." instance=ExtResource("3_v12xy")]
-position = Vector2(-352, -62)
+[node name="ScreenAG" parent="." instance=ExtResource("3_v12xy")]
+position = Vector2(-1341, -489)
 
-[node name="Hazard" type="Sprite2D" parent="."]
-position = Vector2(-1298, 99)
-texture = ExtResource("4_yn45u")
+[node name="ScreenAG2" parent="." instance=ExtResource("3_v12xy")]
+position = Vector2(-496, -16)
+
+[node name="ScreenPlayer" parent="." instance=ExtResource("3_7a8se")]
+position = Vector2(-1586, 560)
+
+[node name="ScreenHazard" parent="." instance=ExtResource("2_2u5u0")]
+position = Vector2(-57, -714)
+
+[node name="ScreenPowerUp" parent="." instance=ExtResource("7_4ak8y")]
+position = Vector2(86, -217)
+
+[node name="ScreenButtonBoost" parent="." instance=ExtResource("6_a00bi")]
+position = Vector2(-1208, 862)
+
+[node name="ScreenButtonUnorbit" parent="." instance=ExtResource("5_62qiq")]
+position = Vector2(-1435, 864)
+
+[node name="ScreenButtonOrbit2" parent="." instance=ExtResource("4_uj6j4")]
+position = Vector2(-984, 863)
+
+[node name="ScreenButtonOrbit" parent="." instance=ExtResource("4_uj6j4")]
+position = Vector2(-1687, 865)
+
+[node name="PlaceableArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaceableArea"]
+position = Vector2(-638.5, -169)
+shape = SubResource("RectangleShape2D_tk24l")
+
+[node name="ScreenCore" type="Area2D" parent="."]
+position = Vector2(-1090, -622)
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenCore"]
+position = Vector2(-0.5, 1.5)
+shape = SubResource("RectangleShape2D_vidkj")
+
+[node name="Sprite2D" type="Sprite2D" parent="ScreenCore"]
+texture = ExtResource("8_jq3xp")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ScreenCore"]
+visible = false
+texture = ExtResource("9_booii")

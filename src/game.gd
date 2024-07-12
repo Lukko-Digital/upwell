@@ -14,9 +14,15 @@ func change_level(level: PackedScene):
 	current_level.queue_free()
 	var new_level = level.instantiate()
 
-	var entry_point = new_level.get_node("EmptyPod")
-	var translate = pod.global_position - entry_point.global_position
-	new_level.global_position += translate
+	var entry_point: EmptyPod
+
+	for node in new_level.get_children():
+		if node is EmptyPod and node.is_entrace:
+			entry_point = node
+
+	new_level.global_position += pod.global_position - entry_point.global_position
+
+	Global.pod_position = entry_point
 
 	active_level.call_deferred("add_child", new_level)
 

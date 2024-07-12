@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ceyls3ogt3vol"]
 
-[ext_resource type="Script" path="res://src/map/screen_interactable.gd" id="1_bwcxj"]
+[ext_resource type="Script" path="res://src/screen_puzzles/screen_interactable.gd" id="1_40edb"]
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="2_krocg"]
 [ext_resource type="Texture2D" uid="uid://bbjdwc6iyldfv" path="res://assets/ui/map/scanlines.png" id="4_38kih"]
 [ext_resource type="Texture2D" uid="uid://bkx3m3c8bdjp5" path="res://assets/ui/map/cover.png" id="5_gtjll"]
@@ -15,7 +15,7 @@ blend_mode = 3
 position = Vector2(0, -480)
 collision_layer = 8
 collision_mask = 2
-script = ExtResource("1_bwcxj")
+script = ExtResource("1_40edb")
 
 [node name="InteractLabel" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.466667)

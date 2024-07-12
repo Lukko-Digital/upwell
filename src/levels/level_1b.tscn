@@ -223,3 +223,4 @@ autowrap_mode = 0
 
 [node name="EmptyPod" parent="." instance=ExtResource("9_wghm3")]
 position = Vector2(-1920, 0)
+is_entrace = true

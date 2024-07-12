@@ -17,14 +17,17 @@ class_name MapLevel
 @onready var game: Game = get_tree().get_current_scene()
 
 func _ready() -> void:
-	Global.level_unlocked.connect(level_unlocked)
-	hide()
+	if not Engine.is_editor_hint():
+		Global.level_unlocked.connect(level_unlocked)
+		hide()
 
 func _on_mouse_entered() -> void:
-	player.location_hovered(self)
+	if not Engine.is_editor_hint():
+		player.location_hovered(self)
 
 func _on_mouse_exited() -> void:
-	player.location_unhovered(self)
+	if not Engine.is_editor_hint():
+		player.location_unhovered(self)
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
