@@ -21,6 +21,10 @@ const ARTIFICIAL_GRAVITY = {
 	BOOST_VELOCITY = 3000.0,
 }
 
+## Bodies with velocity magnitude less than this value will be considered "stopped."
+## A stopped body will always start orbitting upward
+const STOPPED_THRESHOLD = 50.0
+
 enum GravityState {NONE, BOOST, PUSHPULL, ORBIT}
 
 @export var gravity_detector: Area2D
@@ -87,7 +91,13 @@ func calculate_gravitized_velocity(
 			return - vec_to_gravity.normalized() * ARTIFICIAL_GRAVITY.BOOST_VELOCITY
 		GravityState.ORBIT:
 			# Determine orbit direction
-			orbit_direction = sign(vec_to_gravity.angle_to(current_velocity))
+			if current_velocity.length() < STOPPED_THRESHOLD:
+				# Go CW if to the left, go CCW if to the right
+				# orbit_direction: 			-1 = CW, 	1 = CCW
+				# sign(vec_to_gravity.x): 	-1 = right, 1 = left
+				orbit_direction = -sign(vec_to_gravity.x)
+			else:
+				orbit_direction = sign(vec_to_gravity.angle_to(current_velocity))
 			# Get radius and set min radius
 			var radius = vec_to_gravity.length()
 			if radius < ARTIFICIAL_GRAVITY.MIN_ORBIT_RADIUS:
