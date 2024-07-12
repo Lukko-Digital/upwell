@@ -16,6 +16,7 @@ func _physics_process(delta: float) -> void:
 	var gravity_state: GravitizedComponent.GravityState = handle_artificial_gravity(delta)
 	if gravity_state == GravitizedComponent.GravityState.ORBIT:
 		gravity_scale = 0
+		handle_leave_clicker()
 	else:
 		gravity_scale = 1
 
@@ -38,6 +39,10 @@ func handle_animation():
 	else:
 		glow_sprite.hide()
 
+func handle_leave_clicker():
+	if Input.is_action_just_pressed("orbit") and holder_owned_by != null:
+		holder_owned_by.drop_clicker()
+
 func return_to_home():
 	# Bump existing clicker
 	if home_holder.has_clicker() and home_holder.owned_clicker != self:
@@ -55,3 +60,7 @@ func _on_holder_detector_area_entered(area: Area2D) -> void:
 		return
 
 	area.owned_clicker = self
+
+func _on_holder_detector_area_exited(area: Area2D) -> void:
+	if area is ClickerHolder:
+		catchable = true

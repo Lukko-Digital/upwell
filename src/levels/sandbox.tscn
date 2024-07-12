@@ -57,10 +57,9 @@ shape = SubResource("RectangleShape2D_ub2k7")
 [node name="ClickerHolder" parent="." instance=ExtResource("5_iwbtf")]
 position = Vector2(415, -28)
 starts_with_clicker = false
-is_catcher = true
 
 [node name="OrbitAG" parent="." instance=ExtResource("5_nm78b")]
-position = Vector2(-10, -950)
+position = Vector2(-1079, -628)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OrbitAG"]
 position = Vector2(0, -2)
@@ -83,23 +82,20 @@ show_percentage = false
 
 [node name="ClickerHolder" parent="TimedMultiReceiver" instance=ExtResource("5_iwbtf")]
 starts_with_clicker = false
-is_catcher = true
 
 [node name="ClickerHolder2" parent="TimedMultiReceiver" instance=ExtResource("5_iwbtf")]
 position = Vector2(-592, 0)
 starts_with_clicker = false
-is_catcher = true
 
 [node name="ClickerBody" parent="." node_paths=PackedStringArray("home_holder") instance=ExtResource("9_0e2kt")]
 position = Vector2(181, -41)
 home_holder = NodePath("../ClickerHolder")
 
 [node name="ClickerHolder2" parent="." instance=ExtResource("5_iwbtf")]
-position = Vector2(757, -28)
-is_catcher = false
+position = Vector2(-647, -28)
 
 [node name="Door" parent="." node_paths=PackedStringArray("power_multi") instance=ExtResource("10_0bgab")]
-position = Vector2(-510, -248)
+position = Vector2(1187, -248)
 power_multi = NodePath("../TimedMultiReceiver")
 
 [node name="PoweredBlocker" type="Node2D" parent="." node_paths=PackedStringArray("blocker", "power_holder")]
@@ -109,7 +105,7 @@ power_holder = NodePath("../ClickerHolder2")
 negative_relationship = true
 
 [node name="ClickerBlocker" parent="PoweredBlocker" instance=ExtResource("8_a7kg3")]
-position = Vector2(-1018, -496)
+position = Vector2(1151, -1228)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PoweredBlocker/ClickerBlocker"]
 shape = SubResource("CapsuleShape2D_nghfi")
