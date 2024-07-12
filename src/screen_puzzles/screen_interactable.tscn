@@ -37,13 +37,11 @@ offset_left = -512.0
 offset_top = -288.0
 offset_right = 512.0
 offset_bottom = 288.0
-focus_mode = 2
+mouse_force_pass_scroll_events = false
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-physics_object_picking = true
-physics_object_picking_sort = true
 gui_snap_controls_to_pixels = false
 size = Vector2i(1024, 576)
 size_2d_override = Vector2i(1920, 1080)
@@ -75,3 +73,6 @@ offset_bottom = 1080.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

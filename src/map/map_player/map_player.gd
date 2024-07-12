@@ -3,10 +3,10 @@ class_name MapPlayer
 
 @onready var line: Line2D = $Line2D
 
-@onready var coolant_bar: ProgressBar = $CanvasLayer/Coolant
-@onready var heat_bar: ProgressBar = $CanvasLayer/Heat
+@onready var energy_bar: ProgressBar = $CanvasLayer/Energy
 @onready var starting_position: Vector2 = global_position
 @onready var collision_box: Area2D = $PlayerBody
+@onready var out_of_energy: Label = $CanvasLayer/OutOfEnergyLabel
 
 var moving = false
 var velocity: Vector2 = Vector2.ZERO
@@ -16,16 +16,8 @@ var destination: MapLevel = null:
 		destination = value
 		velocity = global_position.direction_to(value.global_position) * SPEED
 
-var drill_heat: float = 0:
-	set(value):
-		drill_heat = value
-		Global.drill_heat = value
-		heat_bar.value = value
-
 const SPEED: float = 200
-const HEAT_RATE: float = 50
-const COOL_RATE: float = 5
-const COOLANT_USE_RATE: float = 25
+const ENERGY_USE_RATE: float = 50
 
 const AG_ACCELERATION: float = 4
 
@@ -38,17 +30,9 @@ func _process(delta: float) -> void:
 		else:
 			line.set_point_position(1, destination.global_position - global_position)
 
-		if coolant_bar.value > 0: # Reduce coolant and heat drill until it reaches medium threshold
-			coolant_bar.value -= delta * COOLANT_USE_RATE
-			if drill_heat < Global.MEDIUM_DRILL_HEAT:
-				drill_heat += delta * HEAT_RATE
-		elif drill_heat < heat_bar.max_value: # If no coolant heat drill with no threshold
-			drill_heat += delta * HEAT_RATE
-
-	elif drill_heat > 0: # When not moving, cool drill
-		drill_heat -= delta * COOL_RATE
-
-	if heat_bar.value == heat_bar.max_value: # Recall when too hot
+		energy_bar.value -= ENERGY_USE_RATE * delta
+	
+	if energy_bar.value <= 0:
 		recall()
 
 # Return true if attracting or repelling, false otherwise
@@ -126,20 +110,22 @@ func location_selected(location: MapLevel):
 	moving = true
 
 func enter_coolant_pocket() -> void:
-	drill_heat = 0
+	energy_bar.value = energy_bar.max_value
 
 func end_movement() -> void:
 	moving = false
 	velocity = Vector2.ZERO
+	energy_bar.value = energy_bar.max_value
+	starting_position = global_position
 	if line.get_point_count() > 1:
 		line.remove_point(1)
 
 func recall() -> void:
-	# Commented out for playtesting purposes
-	# global_position = starting_position 
-	drill_heat = 0
-	coolant_bar.value = coolant_bar.max_value
+	global_position = starting_position
 	end_movement()
+	out_of_energy.show()
+	await get_tree().create_timer(1).timeout
+	out_of_energy.hide()
 
 func _area_scanned(area: Area2D) -> void:
 	if area is MapLevel:

@@ -9,3 +9,11 @@ func _ready() -> void:
 
 func interact(_player: Player):
 	Global.set_camera_focus.emit(global_position)
+
+func _on_body_exited(body: Node2D):
+	if body is Player:
+		subviewport.physics_object_picking = false
+
+func _on_body_entered(body: Node2D):
+	if body is Player:
+		subviewport.physics_object_picking = true

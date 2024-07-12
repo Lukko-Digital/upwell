@@ -27,6 +27,7 @@ radius = 38.6394
 script = ExtResource("1_ithwi")
 
 [node name="MapPlayer" parent="." instance=ExtResource("2_uwq5e")]
+position = Vector2(-3, 4)
 
 [node name="Camera2D" type="Camera2D" parent="MapPlayer"]
 
@@ -135,6 +136,22 @@ texture = ExtResource("7_xnplc")
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/1a"]
+position = Vector2(3, 2)
+shape = SubResource("CircleShape2D_8hv42")
+metadata/_edit_lock_ = true
+
+[node name="1a2" parent="Levels" node_paths=PackedStringArray("label") instance=ExtResource("5_1gw2i")]
+position = Vector2(370, -345)
+level = ExtResource("5_ivr4h")
+level_id = 1
+label = NodePath("../1a/Label")
+name_text = "Level 1"
+
+[node name="Sprite2D" type="Sprite2D" parent="Levels/1a2"]
+texture = ExtResource("7_xnplc")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/1a2"]
 position = Vector2(3, 2)
 shape = SubResource("CircleShape2D_8hv42")
 metadata/_edit_lock_ = true
