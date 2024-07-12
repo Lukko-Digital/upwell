@@ -42,6 +42,8 @@ func update_tragectory():
 					dir = -query.position.direction_to(in_ag.global_position)
 			if area.collider is ScreenHazard:
 				return
+			if area.collider is ScreenCore:
+				area.collider.visit()
 
 			if area.collider is ScreenPowerUp:
 				if can_power_up:

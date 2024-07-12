@@ -1,5 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://b0qt5j8u0l2c0"]
 
+[ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="1_3uoli"]
 [ext_resource type="PackedScene" uid="uid://d3nl8jv07w2yg" path="res://src/screen_puzzles/screen_hazard.tscn" id="2_2u5u0"]
 [ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/screen_player.tscn" id="3_7a8se"]
 [ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/screen_ag.tscn" id="3_v12xy"]
@@ -7,14 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://bwbpi60st6gme" path="res://src/screen_puzzles/screen_button_unorbit.tscn" id="5_62qiq"]
 [ext_resource type="PackedScene" uid="uid://dei1bl8astem7" path="res://src/screen_puzzles/screen_button_boost.tscn" id="6_a00bi"]
 [ext_resource type="PackedScene" uid="uid://xiabu6v8kd6w" path="res://src/screen_puzzles/screen_power_up.tscn" id="7_4ak8y"]
+[ext_resource type="PackedScene" uid="uid://c1fatgffin6hd" path="res://src/screen_puzzles/screen_core.tscn" id="8_31gvi"]
 [ext_resource type="Texture2D" uid="uid://ba863aqwujv2p" path="res://assets/mvp3_assets/screenpuzzle/file.png" id="8_jq3xp"]
-[ext_resource type="Texture2D" uid="uid://bkfksvc75voj" path="res://assets/mvp3_assets/screenpuzzle/file_opened.png" id="9_booii"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tk24l"]
 size = Vector2(2061, 1288)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vidkj"]
-size = Vector2(167, 125)
 
 [node name="ScreenPuzzle" type="Node2D"]
 
@@ -45,6 +43,48 @@ mouse_filter = 2
 color = Color(0.201527, 0.201527, 0.201527, 1)
 metadata/_edit_lock_ = true
 
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect3/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_jq3xp")
+
+[node name="TextureRect2" type="TextureRect" parent="ColorRect3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_jq3xp")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect3/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect3/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="ColorRect3/VBoxContainer/ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_3uoli")
+theme_override_font_sizes/font_size = 64
+text = "a"
+
+[node name="Label2" type="Label" parent="ColorRect3/VBoxContainer/ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_3uoli")
+theme_override_font_sizes/font_size = 64
+text = "b"
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 
@@ -61,7 +101,7 @@ position = Vector2(-1586, 560)
 position = Vector2(-57, -714)
 
 [node name="ScreenPowerUp" parent="." instance=ExtResource("7_4ak8y")]
-position = Vector2(86, -217)
+position = Vector2(-1593, 126)
 
 [node name="ScreenButtonBoost" parent="." instance=ExtResource("6_a00bi")]
 position = Vector2(-1208, 862)
@@ -84,18 +124,12 @@ collision_mask = 64
 position = Vector2(-638.5, -169)
 shape = SubResource("RectangleShape2D_tk24l")
 
-[node name="ScreenCore" type="Area2D" parent="."]
-position = Vector2(-1090, -622)
-collision_layer = 32
-collision_mask = 2
+[node name="ScreenCore" parent="." node_paths=PackedStringArray("label", "indicator") instance=ExtResource("8_31gvi")]
+position = Vector2(-1137, -716)
+label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/VBoxContainer/Label")
+indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenCore"]
-position = Vector2(-0.5, 1.5)
-shape = SubResource("RectangleShape2D_vidkj")
-
-[node name="Sprite2D" type="Sprite2D" parent="ScreenCore"]
-texture = ExtResource("8_jq3xp")
-
-[node name="Sprite2D2" type="Sprite2D" parent="ScreenCore"]
-visible = false
-texture = ExtResource("9_booii")
+[node name="ScreenCore2" parent="." node_paths=PackedStringArray("label", "indicator") instance=ExtResource("8_31gvi")]
+position = Vector2(-680, -137)
+label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/VBoxContainer/Label2")
+indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect2")
