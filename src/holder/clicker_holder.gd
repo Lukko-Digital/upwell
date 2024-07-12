@@ -63,6 +63,7 @@ func _ready():
 		owned_clicker = instance
 	else:
 		owned_clicker = null
+		holder_sprite.frame = HolderFrames.OFF
 
 	catcher_field.visible = is_catcher
 	
