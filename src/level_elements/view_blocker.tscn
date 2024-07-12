@@ -5,7 +5,7 @@
 
 [node name="ViewBlocker" type="Node2D" node_paths=PackedStringArray("sprites")]
 script = ExtResource("1_ryx1y")
-sprites = [NodePath("CanvasLayer/ClickerBlocker-sheet"), NodePath("CanvasLayer2/ClickerBlocker-sheet"), NodePath("CanvasLayer3/ClickerBlocker-sheet"), NodePath("CanvasLayer4/ClickerBlocker-sheet"), NodePath("CanvasLayer5/ClickerBlocker-sheet"), NodePath("CanvasLayer6/ClickerBlocker-sheet"), NodePath("CanvasLayer7/ClickerBlocker-sheet"), NodePath("CanvasLayer8/ClickerBlocker-sheet")]
+sprites = [NodePath("CanvasLayer/ClickerBlocker-sheet"), NodePath("CanvasLayer2/ClickerBlocker-sheet"), NodePath("CanvasLayer3/ClickerBlocker-sheet"), NodePath("CanvasLayer4/ClickerBlocker-sheet"), NodePath("CanvasLayer5/ClickerBlocker-sheet"), NodePath("CanvasLayer6/ClickerBlocker-sheet"), NodePath("CanvasLayer7/ClickerBlocker-sheet"), NodePath("CanvasLayer8/ClickerBlocker-sheet"), NodePath("CanvasLayer9/ClickerBlocker-sheet")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -41,7 +41,7 @@ texture = ExtResource("1_wfa3m")
 
 [node name="CanvasLayer5" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
-follow_viewport_scale = 2.5
+follow_viewport_scale = 2.8
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer5"]
 scale = Vector2(1.9, 4.285)
@@ -49,7 +49,7 @@ texture = ExtResource("1_wfa3m")
 
 [node name="CanvasLayer6" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
-follow_viewport_scale = 3.0
+follow_viewport_scale = 3.6
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer6"]
 scale = Vector2(1.9, 4.285)
@@ -65,8 +65,16 @@ texture = ExtResource("1_wfa3m")
 
 [node name="CanvasLayer8" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
-follow_viewport_scale = 12.0
+follow_viewport_scale = 8.0
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer8"]
+scale = Vector2(1.9, 4.285)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer9" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 12.3
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer9"]
 scale = Vector2(1.9, 4.285)
 texture = ExtResource("1_wfa3m")
