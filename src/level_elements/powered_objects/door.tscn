@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://sk76how7sexv" path="res://assets/mvp3_assets/door-sheet.png" id="1_3japl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m8d3s"]
-size = Vector2(198, 106)
+size = Vector2(198, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wsfjk"]
 size = Vector2(198, 520)
@@ -105,7 +105,7 @@ hframes = 2
 collision_mask = 0
 
 [node name="Open" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, -207)
+position = Vector2(0, -264)
 shape = SubResource("RectangleShape2D_m8d3s")
 disabled = true
 
