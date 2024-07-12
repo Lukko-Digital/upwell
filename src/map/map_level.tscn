@@ -1,11 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://ql7gm3yuyicr"]
+[gd_scene load_steps=4 format=3 uid="uid://gd232kwgaqk8"]
 
 [ext_resource type="Script" path="res://src/map/map_level.gd" id="1_0g7oc"]
+[ext_resource type="Texture2D" uid="uid://cu2hfokgxd4pw" path="res://assets/ui/map/destination.png" id="2_dmjoy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a4od3"]
+radius = 40.0
 
 [node name="MapLevel" type="Area2D"]
 collision_mask = 2
 script = ExtResource("1_0g7oc")
-locked_level_name = null
+
+[node name="Destination" type="Sprite2D" parent="."]
+position = Vector2(-3, -2)
+texture = ExtResource("2_dmjoy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_a4od3")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]
