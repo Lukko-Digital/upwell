@@ -35,18 +35,16 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_hmq3k"]
 resource_name = "360"
-length = 0.5
-tracks/0/type = "value"
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Reactor/PickupKnob:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -6.28319]
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.045, 0, 0.4, -0.05, 0, 0.01, 0, 0, -0.785, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ofva"]
@@ -54,26 +52,26 @@ _data = {
 "360": SubResource("Animation_hmq3k")
 }
 
-[node name="ClickerUi" type="CanvasLayer" node_paths=PackedStringArray("clickers_sprite", "orbit_knob", "pickup_knob")]
+[node name="ClickerUi" type="CanvasLayer" node_paths=PackedStringArray("clickers_sprite")]
 script = ExtResource("1_bax8t")
 clickers_sprite = NodePath("Reactor/ClickerSprite")
-orbit_knob = NodePath("Reactor/OrbitKnob")
-pickup_knob = NodePath("Reactor/PickupKnob")
 
 [node name="Reactor" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 200.0
-offset_top = 200.0
-offset_right = 200.0
-offset_bottom = 200.0
+offset_left = 201.0
+offset_top = 899.0
+offset_right = 201.0
+offset_bottom = 899.0
 scale = Vector2(0.3, 0.3)
 
 [node name="OrbitKnob" type="Sprite2D" parent="Reactor"]
+self_modulate = Color(1, 1, 1, 0.129412)
 scale = Vector2(1.35, 1.35)
 texture = ExtResource("2_bwvy2")
 
 [node name="PickupKnob" type="Sprite2D" parent="Reactor"]
+self_modulate = Color(1, 1, 1, 0.415686)
 texture = ExtResource("2_bwvy2")
 
 [node name="ClickerSprite" type="AnimatedSprite2D" parent="Reactor"]

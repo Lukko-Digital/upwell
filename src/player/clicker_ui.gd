@@ -34,4 +34,5 @@ func update_clicker_inventory():
 
 func _player_clicker_count_changed():
 	update_clicker_inventory()
+	animation_player.stop()
 	animation_player.play("360")
