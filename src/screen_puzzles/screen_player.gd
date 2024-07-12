@@ -44,6 +44,7 @@ func update_tragectory():
 				return
 			if area.collider is ScreenCore:
 				area.collider.visit()
+				return
 
 			if area.collider is ScreenPowerUp:
 				if can_power_up:
@@ -54,7 +55,7 @@ func update_tragectory():
 		if not powered_up:
 			can_power_up = true
 
-		if orbiting:
+		if orbiting and in_ag:
 			var orth = query.position.direction_to(in_ag.global_position).orthogonal().rotated(0.005)
 			if dir.dot(orth) > 0:
 				dir = orth
