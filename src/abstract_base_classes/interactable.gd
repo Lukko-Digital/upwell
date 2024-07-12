@@ -3,8 +3,12 @@ class_name Interactable
 
 @onready var interact_label: Label = $InteractLabel
 
+## If `true`, this interactable is the one currently highlighted by the player
+## for interaction
 var highlighted: bool = false:
-	set(value):
+	set = _set_highlighted
+
+func _set_highlighted(value: bool):
 		interact_label.visible = value
 		highlighted = value
 
