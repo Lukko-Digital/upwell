@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://ql7gm3yuyicr"]
+[gd_scene load_steps=6 format=3 uid="uid://ql7gm3yuyicr"]
 
 [ext_resource type="Script" path="res://src/map/map_level.gd" id="1_0g7oc"]
 [ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="2_y385f"]
+[ext_resource type="Texture2D" uid="uid://cu2hfokgxd4pw" path="res://assets/ui/map/destination.png" id="3_dyj0g"]
 
 [sub_resource type="Theme" id="Theme_30kq5"]
 default_font = ExtResource("2_y385f")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r5pps"]
+radius = 40.0125
 
 [node name="MapLevel" type="Area2D" node_paths=PackedStringArray("label")]
 collision_mask = 2
@@ -22,6 +26,13 @@ offset_bottom = 75.0
 grow_horizontal = 2
 theme = SubResource("Theme_30kq5")
 horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, -2)
+texture = ExtResource("3_dyj0g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r5pps")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]

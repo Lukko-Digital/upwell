@@ -33,8 +33,6 @@ const PLAYER = {
 
 @onready var clicker_scene: PackedScene = preload ("res://src/clicker/clicker.tscn")
 
-<<<<<<< HEAD
-=======
 ## Emitted when player gains or loses a clicker
 signal clicker_count_changed
 
@@ -42,7 +40,6 @@ var world_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var game: Game
 
->>>>>>> 229d56be9292b3ef3d83e32d5dc56519ed660db1
 ## -------------------------- PLAYER STATE VARIABLES --------------------------
 
 # PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
@@ -116,14 +113,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("jump"):
 		jump_end()
 	
-<<<<<<< HEAD
 	## The `interact_tap_timer` is the time in which the interact key can be
 	## released in order to count as tapping interact. If the key is held
 	## beyond that time, it begins the throw action, via `handle_throw_arc`
-=======
-	if event.is_action_pressed("map"):
-		in_map = game.toggle_map()
->>>>>>> 229d56be9292b3ef3d83e32d5dc56519ed660db1
+
 	if event.is_action_pressed("interact"):
 		interact()
 	
@@ -135,24 +128,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("throw"):
 		throw()
 
-<<<<<<< HEAD
 ## ------------------------------ MOVEMENT ------------------------------
-=======
 ## ------------------------------ CAMERA ------------------------------
-
-func handle_camera_peek(delta):
-	if Input.is_action_pressed("up") and is_on_floor():
-		camera.position.y = lerp(
-			camera.position.y,
-			default_camera_position.y - PLAYER.PEEK_DISTANCE,
-			PLAYER.PEEK_TOWARD_SPEED * delta
-		)
-	else:
-		camera.position.y = lerp(
-			camera.position.y,
-			default_camera_position.y,
-			PLAYER.PEEK_RETURN_SPEED * delta
-		)
 
 ## ------------------------------ GRAVITY ------------------------------
 
@@ -171,7 +148,6 @@ func handle_world_gravity(delta: float, gravity_state: GravitizedComponent.Gravi
 		return
 	if not is_on_floor():
 		velocity.y = move_toward(velocity.y, PLAYER.MAX_FALL_SPEED, world_gravity * delta)
->>>>>>> 229d56be9292b3ef3d83e32d5dc56519ed660db1
 
 ## ------------------------------ MOVEMENT ------------------------------
 

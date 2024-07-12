@@ -1,21 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://bb68hmcptqlgt"]
+[gd_scene load_steps=6 format=3 uid="uid://bb68hmcptqlgt"]
 
 [ext_resource type="Script" path="res://src/map/map.gd" id="1_ithwi"]
 [ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player/map_player.tscn" id="2_uwq5e"]
-[ext_resource type="PackedScene" uid="uid://ql7gm3yuyicr" path="res://src/map/map_level.tscn" id="5_1gw2i"]
-[ext_resource type="PackedScene" uid="uid://braj8804rj7dv" path="res://src/levels/level_1a.tscn" id="5_ivr4h"]
-[ext_resource type="PackedScene" uid="uid://d30me1egqqj3m" path="res://src/levels/level_1b.tscn" id="6_fvxgp"]
-[ext_resource type="PackedScene" uid="uid://c7quof7qa16p1" path="res://src/levels/level_1bb.tscn" id="7_6552w"]
-[ext_resource type="Texture2D" uid="uid://cu2hfokgxd4pw" path="res://assets/ui/map/destination.png" id="7_xnplc"]
-[ext_resource type="PackedScene" uid="uid://bylvh61lxfpjf" path="res://src/levels/level_1c.tscn" id="8_42x0w"]
-[ext_resource type="PackedScene" uid="uid://b1oqu2spncu02" path="res://src/levels/level_2a.tscn" id="9_31x8g"]
-[ext_resource type="PackedScene" uid="uid://b1ohirk0tdvia" path="res://src/levels/level_2b.tscn" id="10_bubgk"]
-[ext_resource type="PackedScene" uid="uid://dhh8bomlko4vb" path="res://src/levels/level_2c.tscn" id="11_tid8g"]
-[ext_resource type="PackedScene" uid="uid://o6moiba3gla" path="res://src/levels/level_3a.tscn" id="12_bacb4"]
+[ext_resource type="PackedScene" uid="uid://ql7gm3yuyicr" path="res://src/map/map_level.tscn" id="4_17lxb"]
+[ext_resource type="PackedScene" uid="uid://bbrkg6cjjyr4k" path="res://src/levels/CONTACT.tscn" id="5_wdg53"]
 [ext_resource type="Texture2D" uid="uid://dc6nfaju78e60" path="res://assets/environment/test_level/particle_softest.png" id="12_kdma8"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_8hv42"]
-radius = 38.6394
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_ithwi")
@@ -119,3 +108,7 @@ texture = ExtResource("12_kdma8")
 metadata/_edit_lock_ = true
 
 [node name="Levels" type="Node" parent="."]
+
+[node name="MapLevel" parent="Levels" instance=ExtResource("4_17lxb")]
+position = Vector2(0, 4)
+level = ExtResource("5_wdg53")
