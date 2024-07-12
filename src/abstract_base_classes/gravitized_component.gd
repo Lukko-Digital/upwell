@@ -63,7 +63,8 @@ func determine_gravity_state(active_ag: ArtificialGravity) -> GravityState:
 		return GravityState.NONE
 
 	if Input.is_action_just_pressed("jump"):
-		active_ag.disable()
+		# Defer the call so all bodies get to boost in this frame
+		active_ag.disable.call_deferred()
 		return GravityState.BOOST
 	
 	match active_ag.type:
