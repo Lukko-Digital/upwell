@@ -1,6 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://b0qt5j8u0l2c0"]
+[gd_scene load_steps=16 format=3 uid="uid://b0qt5j8u0l2c0"]
 
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="1_3uoli"]
+[ext_resource type="Texture2D" uid="uid://cl1p7ygvq4qg" path="res://assets/mvp3_assets/screenpuzzle/text_backer.png" id="1_c0sxg"]
+[ext_resource type="Texture2D" uid="uid://dhw7wq51its7p" path="res://assets/mvp3_assets/screenpuzzle/layout.png" id="1_x0o02"]
 [ext_resource type="PackedScene" uid="uid://d3nl8jv07w2yg" path="res://src/screen_puzzles/screen_hazard.tscn" id="2_2u5u0"]
 [ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/screen_player.tscn" id="3_7a8se"]
 [ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/screen_ag.tscn" id="3_v12xy"]
@@ -14,36 +16,34 @@
 [ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="12_4kvb5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tk24l"]
-size = Vector2(2061, 1288)
+size = Vector2(1763, 1232)
 
 [node name="ScreenPuzzle" type="Node2D"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -1874.0
-offset_top = -1033.0
-offset_right = 635.0
-offset_bottom = 689.0
+[node name="ColorRect4" type="ColorRect" parent="."]
+offset_left = -1958.0
+offset_top = -1115.0
+offset_right = 1944.0
+offset_bottom = 1108.0
 mouse_filter = 2
-color = Color(0.201527, 0.201527, 0.201527, 1)
+color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="ColorRect2" type="ColorRect" parent="."]
-offset_left = -1874.0
-offset_top = 730.0
-offset_right = 635.0
-offset_bottom = 1005.0
-mouse_filter = 2
-color = Color(0.201527, 0.201527, 0.201527, 1)
-metadata/_edit_lock_ = true
+[node name="Layout" type="Sprite2D" parent="."]
+position = Vector2(-14, 10)
+texture = ExtResource("1_x0o02")
+
+[node name="TextBacker" type="Sprite2D" parent="."]
+position = Vector2(1101, 47)
+texture = ExtResource("1_c0sxg")
 
 [node name="ColorRect3" type="ColorRect" parent="."]
-offset_left = 689.0
-offset_top = -1026.0
-offset_right = 1880.0
-offset_bottom = 1005.0
+offset_left = 592.0
+offset_top = -878.0
+offset_right = 1598.0
+offset_bottom = 620.0
 mouse_filter = 2
-color = Color(0.201527, 0.201527, 0.201527, 1)
-metadata/_edit_lock_ = true
+color = Color(0.2, 0.2, 0.2, 0)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect3"]
 layout_mode = 1
@@ -64,6 +64,11 @@ texture = ExtResource("8_jq3xp")
 layout_mode = 2
 texture = ExtResource("8_jq3xp")
 
+[node name="ColorRect" type="ColorRect" parent="ColorRect3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
 [node name="ScrollContainer" type="ScrollContainer" parent="ColorRect3/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -72,110 +77,47 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("1_3uoli")
 theme_override_fonts/italics_font = ExtResource("3_ymano")
-theme_override_font_sizes/normal_font_size = 100
-text = "@tool
-extends Node2D
-
-const STARTING_POWER: float = 1000
-const SPACING: float = 2
-
-@onready var line: Line2D = $Line2D
-
-func update_tragectory():
-	line.clear_points()
-
-	var dir: Vector2 = Vector2.UP
-	var in_ag: ArtificialGravity = null
-	var orbiting: bool = false
-
-	var world_physics := get_world_2d().direct_space_state
-	var query := PhysicsPointQueryParameters2D.new()
-	query.collide_with_areas = true
-	query.collision_mask = 32
-	query.position = global_position
-
-	var power = STARTING_POWER
-	var can_power_up = true
-
-	while power > 0:
-		var powered_up = false
-		var overlapping = world_physics.intersect_point(query)
-		
-		in_ag = null
-		for area in overlapping:
-			if area.collider is ArtificialGravity:
-				in_ag = area.collider
-
-		for area in overlapping:
-			if area.collider is ScreenButton:
-				if in_ag and area.collider.type == ScreenButton.ButtonTypes.ORBIT:
-					orbiting = true
-				if area.collider.type == ScreenButton.ButtonTypes.UNORBIT:
-					orbiting = false
-				if in_ag and area.collider.type == ScreenButton.ButtonTypes.BOOST:
-					orbiting = false
-					dir = -query.position.direction_to(in_ag.global_position)
-			if area.collider is ScreenHazard:
-				return
-			if area.collider is ScreenCore:
-				area.collider.visit()
-				return
-
-			if area.collider is ScreenPowerUp:
-				if can_power_up:
-					power += area.collider.power
-					can_power_up = false
-				powered_up = true
-			
-		if not powered_up:
-			can_power_up = true
-
-		if orbiting and in_ag:
-			var orth = query.position.direction_to(in_ag.global_position).orthogonal().rotated(0.005)
-			if dir.dot(orth) > 0:
-				dir = orth
-			else:
-				dir = -orth
-
-		line.add_point(query.position - global_position)
-		query.position += dir * SPACING
-		power -= 1
-
-func _process(_delta: float) -> void:
-	update_tragectory()
-"
+theme_override_font_sizes/normal_font_size = 60
+text = "Filepath Missing"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 
 [node name="ScreenAG" parent="." instance=ExtResource("3_v12xy")]
-position = Vector2(-1341, -489)
+position = Vector2(-1238, -477)
 
 [node name="ScreenAG2" parent="." instance=ExtResource("3_v12xy")]
-position = Vector2(-496, -16)
+position = Vector2(-220, 87)
 
 [node name="ScreenPlayer" parent="." instance=ExtResource("3_7a8se")]
-position = Vector2(-1586, 560)
+position = Vector2(-1431, 453)
 
 [node name="ScreenHazard" parent="." instance=ExtResource("2_2u5u0")]
-position = Vector2(-165, -684)
+position = Vector2(-592, -353)
+
+[node name="ScreenHazard2" parent="." instance=ExtResource("2_2u5u0")]
+position = Vector2(-899, 61)
+
+[node name="ScreenPowerUp2" parent="." instance=ExtResource("7_4ak8y")]
+position = Vector2(-1479, -634)
 
 [node name="ScreenPowerUp" parent="." instance=ExtResource("7_4ak8y")]
-position = Vector2(-1591, 180)
+position = Vector2(-699, -220)
 
 [node name="ScreenButtonBoost" parent="." instance=ExtResource("6_a00bi")]
-position = Vector2(-942, 861)
+position = Vector2(-1390, 776)
 
 [node name="ScreenButtonUnorbit" parent="." instance=ExtResource("5_62qiq")]
-position = Vector2(-1435, 864)
+position = Vector2(-936, 773)
 
 [node name="ScreenButtonOrbit2" parent="." instance=ExtResource("4_uj6j4")]
-position = Vector2(-1188, 866)
+position = Vector2(-1164, 777)
 
 [node name="ScreenButtonOrbit" parent="." instance=ExtResource("4_uj6j4")]
-position = Vector2(-1688, 869)
+position = Vector2(-1606, 775)
 
 [node name="PlaceableArea" type="Area2D" parent="."]
 visible = false
@@ -183,18 +125,47 @@ collision_layer = 64
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlaceableArea"]
-position = Vector2(-638.5, -169)
+position = Vector2(-700.5, -109)
 shape = SubResource("RectangleShape2D_tk24l")
 
 [node name="ScreenCore" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("8_31gvi")]
-position = Vector2(-1319, -225)
+position = Vector2(-1236, -485)
 label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
+text = "9/24/35
+
+Hector,
+
+This will take more time than you hoped. This level of physical file management is unprecedented. I honestly don't even know how to send the right documents to the accessible stations which, may make it difficult for students.
+
+Copying the startup message below so you can vet:
+
+Heya recruits! Now that you've found your first waypoint, it's time second. Remember to drag your <actions> below onto your flight path in order to map out your course.
+
+See you at the end!
+
+Rheuman
+"
 indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect")
 glow = NodePath("../ClickerGlow")
 
 [node name="ScreenCore2" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("8_31gvi")]
-position = Vector2(-680, -137)
+position = Vector2(-226, 90)
 label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
+text = "9/24/35
+
+cannot believe this. the earth is quite LITERALLY coming to an end, yet hector can't get it past his thick fucking skull that there's no undoing a fuckup, ESPECIALLY when i'm running blind.
+
+honey, i shit you not i have been wasting all my time this last week just REMINDING him (kindly) that i cannot simply r
+
+---------------------------------------------------
+Hi new recruits!
+
+The above was written in error, and should be treated as an example in caution when using the Creator's old system. Congratulations on completing the first exercise and good luck!
+
+Rheuman
+
+
+"
 indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect2")
 glow = NodePath("../ClickerGlow")
 
@@ -203,3 +174,9 @@ visible = false
 position = Vector2(787, -943)
 scale = Vector2(2, 2)
 texture = ExtResource("12_4kvb5")
+
+[node name="ScreenPowerUp3" parent="." instance=ExtResource("7_4ak8y")]
+position = Vector2(30, 232)
+
+[node name="ScreenPowerUp4" parent="." instance=ExtResource("7_4ak8y")]
+position = Vector2(-808, -83)

@@ -4,6 +4,8 @@
 [ext_resource type="Script" path="res://src/screen_puzzles/screen_player.gd" id="1_m1jys"]
 
 [sub_resource type="Gradient" id="Gradient_ac2l0"]
+offsets = PackedFloat32Array(0, 0.732938, 0.884273, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.974997, 1, 1, 1, 0.908012, 1, 1, 1, 0)
 
 [node name="ScreenPlayer" type="Node2D"]
 script = ExtResource("1_m1jys")
