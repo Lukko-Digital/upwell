@@ -53,6 +53,7 @@ _data = {
 }
 
 [node name="ClickerUi" type="CanvasLayer" node_paths=PackedStringArray("clickers_sprite")]
+layer = 100
 script = ExtResource("1_bax8t")
 clickers_sprite = NodePath("Reactor/ClickerSprite")
 
