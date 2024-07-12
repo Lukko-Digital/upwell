@@ -3,15 +3,24 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://clkd1vlji3obo"
+<<<<<<< HEAD
 path="res://.godot/imported/orbit_area.png-f90c1ab6b76d62f40e07772f0d5ffb63.ctex"
+=======
+path="res://.godot/imported/orbit_area.png-7ce701c67bdacedc926ef87ff9d5afe3.ctex"
+>>>>>>> a9749f706068fe1c4c19ad433e3243f675704270
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD
 source_file="res://assets/mvp3_assets/screenpuzzle/orbit_area.png"
 dest_files=["res://.godot/imported/orbit_area.png-f90c1ab6b76d62f40e07772f0d5ffb63.ctex"]
+=======
+source_file="res://assets/mvp3 assets/screenpuzzle/orbit_area.png"
+dest_files=["res://.godot/imported/orbit_area.png-7ce701c67bdacedc926ef87ff9d5afe3.ctex"]
+>>>>>>> a9749f706068fe1c4c19ad433e3243f675704270
 
 [params]
 
