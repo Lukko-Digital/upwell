@@ -31,7 +31,7 @@ var level_unlocks = {}
 var npc_conversation_state = {}
 var pod_position: EmptyPod
 
-signal set_camera_focus(focus: Vector2)
+signal set_camera_focus(focus: Node2D)
 signal pod_called(empty_pod: EmptyPod)
 
 signal level_unlocked(level_name: LevelIDs)

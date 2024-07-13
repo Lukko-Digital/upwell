@@ -14,22 +14,21 @@ const CAMERA = {
 
 @export var player: Player
 
-var focus: Vector2 = Vector2.ZERO
-var focusing: bool = false
+var focus: Node2D = null
 
 func _ready():
 	Global.set_camera_focus.connect(_set_focus)
 
 func _process(delta):
-	if focusing:
-		global_position = lerp(global_position, focus, CAMERA.MAP_TRANSLATE_SPEED * delta)
+	if focus:
+		global_position = lerp(global_position, focus.global_position, CAMERA.MAP_TRANSLATE_SPEED * delta)
 		zoom = lerp(zoom, Vector2.ONE * CAMERA.MAP_ZOOM, CAMERA.MAP_ZOOM_SPEED * delta)
 	else:
 		zoom = lerp(zoom, Vector2.ONE * CAMERA.NORMAL_ZOOM, CAMERA.MAP_ZOOM_SPEED * delta)
 		handle_camera_peek(delta)
 
 	if player.position.x - position.x > CAMERA.MAP_EXIT_DISTANCE:
-		focusing = false
+		Global.set_camera_focus.emit(null)
 
 func handle_camera_peek(delta):
 	if Input.is_action_pressed("up"): # and player.is_on_floor():
@@ -49,6 +48,5 @@ func handle_camera_peek(delta):
 		# 	CAMERA.FOLLOW_SPEED * delta
 		# )
 
-func _set_focus(_focus: Vector2):
+func _set_focus(_focus: Node2D):
 	focus = _focus
-	focusing = !focusing
