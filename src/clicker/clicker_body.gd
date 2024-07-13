@@ -6,12 +6,24 @@ class_name ClickerBody
 @export var home_holder: ClickerHolder = null
 @export var grav_component: GravitizedComponent
 @export var glow_sprite: Sprite2D
+@export var lights_sprite: Sprite2D
 @export var interactable: Interactable
 
+## Value set by [Player]. Player can only control the closest n clickers, where
+## n is the number of clickers the player is holding.
+var controllable: bool = false:
+	set = set_controllable
 ## Set false when dropped to prevent immediately re-entering holder
-var catchable = true
+var catchable: bool = true
 ## Value is set by [ClickerHolder] when clicker is inserted/removed
 var holder_owned_by: ClickerHolder
+
+func set_controllable(value: bool):
+	lights_sprite.visible = value
+	controllable = value
+
+func _ready() -> void:
+	add_to_group("Clickers")
 
 func _physics_process(delta: float) -> void:
 	var gravity_state: GravitizedComponent.GravityState = handle_artificial_gravity(delta)
@@ -25,6 +37,8 @@ func _process(_delta):
 	handle_animation()
 
 func handle_artificial_gravity(delta) -> GravitizedComponent.GravityState:
+	if not controllable:
+		return GravitizedComponent.GravityState.NONE
 	var active_ag = grav_component.check_active_ag()
 	var gravity_state = grav_component.determine_gravity_state(active_ag)
 	if gravity_state != GravitizedComponent.GravityState.NONE:
@@ -35,7 +49,7 @@ func handle_artificial_gravity(delta) -> GravitizedComponent.GravityState:
 	return gravity_state
 
 func handle_animation():
-	if Input.is_action_pressed("orbit") or interactable.highlighted:
+	if (Input.is_action_pressed("orbit") and controllable) or interactable.highlighted:
 		glow_sprite.show()
 	elif !interactable.highlighted:
 		glow_sprite.hide()
