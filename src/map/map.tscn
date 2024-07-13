@@ -3,18 +3,20 @@
 [ext_resource type="Script" path="res://src/map/map.gd" id="1_ithwi"]
 [ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player/map_player.tscn" id="2_uwq5e"]
 [ext_resource type="PackedScene" uid="uid://ql7gm3yuyicr" path="res://src/map/map_level.tscn" id="4_17lxb"]
-[ext_resource type="PackedScene" uid="uid://bbrkg6cjjyr4k" path="res://src/levels/CONTACT.tscn" id="5_wdg53"]
+[ext_resource type="PackedScene" uid="uid://braj8804rj7dv" path="res://src/levels/level_1a.tscn" id="5_ftpo1"]
 [ext_resource type="Texture2D" uid="uid://dc6nfaju78e60" path="res://assets/environment/test_level/particle_softest.png" id="12_kdma8"]
 
 [node name="Map" type="Node2D"]
+scale = Vector2(4, 4)
 script = ExtResource("1_ithwi")
 
 [node name="MapPlayer" parent="." instance=ExtResource("2_uwq5e")]
 position = Vector2(-3, 4)
 
 [node name="Camera2D" type="Camera2D" parent="MapPlayer"]
+zoom = Vector2(0.5, 0.5)
 
-[node name="Background" type="Node" parent="."]
+[node name="Background" type="Node2D" parent="."]
 
 [node name="ParticleSoftest" type="Sprite2D" parent="Background"]
 self_modulate = Color(1, 1, 1, 0.282353)
@@ -107,8 +109,12 @@ scale = Vector2(0.123151, 0.123151)
 texture = ExtResource("12_kdma8")
 metadata/_edit_lock_ = true
 
-[node name="Levels" type="Node" parent="."]
+[node name="Levels" type="Node2D" parent="."]
 
 [node name="MapLevel" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(0, 4)
-level = ExtResource("5_wdg53")
+level = ExtResource("5_ftpo1")
+
+[node name="MapLevel2" parent="Levels" instance=ExtResource("4_17lxb")]
+position = Vector2(430, 1)
+level = ExtResource("5_ftpo1")
