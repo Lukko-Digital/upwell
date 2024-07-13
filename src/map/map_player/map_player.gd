@@ -7,6 +7,7 @@ class_name MapPlayer
 @onready var starting_position: Vector2 = global_position
 @onready var collision_box: Area2D = $PlayerBody
 @onready var out_of_energy: Label = $CanvasLayer/OutOfEnergyLabel
+@onready var grav_component: GravitizedComponent = $GravitizedComponent
 
 var moving = false
 var velocity: Vector2 = Vector2.ZERO
@@ -16,81 +17,33 @@ var destination: MapLevel = null:
 		destination = value
 		velocity = global_position.direction_to(value.global_position) * SPEED
 
-const SPEED: float = 200
+const SPEED: float = 800
 const ENERGY_USE_RATE: float = 50
 
 const AG_ACCELERATION: float = 4
 
 func _process(delta: float) -> void:
 	if moving:
-		handle_artificial_gravity(delta)
+		var active_ag = grav_component.check_active_ag()
+		var gravity_state = grav_component.determine_gravity_state(active_ag)
+		if gravity_state != GravitizedComponent.GravityState.NONE:
+			var new_vel = grav_component.calculate_gravitized_velocity(
+				active_ag, gravity_state, velocity, delta
+			)
+			velocity = new_vel.normalized() * SPEED
+
 		global_position += velocity * delta
-		if global_position.distance_to(destination.global_position) < 5:
+		if global_position.distance_to(destination.global_position) < 20:
 			end_movement()
 		else:
 			line.set_point_position(1, destination.global_position - global_position)
 
-		energy_bar.value -= ENERGY_USE_RATE * delta
+		# energy_bar.value -= ENERGY_USE_RATE * delta
 	
 	if energy_bar.value <= 0:
 		recall()
 	elif energy_bar.value == energy_bar.max_value / 2: # For energy warning
 		pass
-
-# Return true if attracting or repelling, false otherwise
-func handle_artificial_gravity(delta):
-	# Check in moving
-	if not moving:
-		return
-
-	# Check for clicker
-	if not Global.player_has_clicker:
-		return
-
-	# Check that player is in an AG
-	var gravity_regions: Array[ArtificialGravity] = []
-	for area in collision_box.get_overlapping_areas():
-		if area is ArtificialGravity:
-			gravity_regions.append(area)
-	if gravity_regions.is_empty():
-		return
-	
-	# Check the AG is enabled
-	var gravity_well: ArtificialGravity = gravity_regions[0]
-	if not gravity_well.enabled:
-		return
-	
-	var vec_to_gravity = gravity_well.global_position - global_position
-
-	# Check the player is inputting a mouse click
-	var attracting = Input.is_action_pressed("attract")
-	var repelling = Input.is_action_pressed("repel")
-	if not (attracting or repelling):
-		return
-
-	match gravity_well.type:
-		ArtificialGravity.AGTypes.PUSHPULL:
-			# Push and pull
-			var active_direction = Vector2.ZERO
-			if attracting:
-				active_direction += vec_to_gravity.normalized()
-			if repelling:
-				active_direction += - vec_to_gravity.normalized()
-			velocity = velocity.lerp(
-				active_direction * SPEED,
-				AG_ACCELERATION * delta
-			)
-
-		ArtificialGravity.AGTypes.ORBIT:
-			# Orbit
-			var active_direction = Vector2.ZERO
-			if attracting:
-				# Right click, clockwise
-				active_direction = vec_to_gravity.orthogonal().normalized()
-			if repelling:
-				# Left click, counterclockwise
-				active_direction = -vec_to_gravity.orthogonal().normalized()
-			velocity = active_direction * SPEED
 
 func location_hovered(location: MapLevel):
 	if moving:
