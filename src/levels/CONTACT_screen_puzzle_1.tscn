@@ -101,11 +101,11 @@ theme_override_fonts/normal_font = SubResource("FontVariation_bfd18")
 theme_override_fonts/bold_font = SubResource("FontVariation_i82gr")
 theme_override_fonts/italics_font = SubResource("FontVariation_bx0b8")
 theme_override_fonts/bold_italics_font = SubResource("FontVariation_ye6m0")
-theme_override_font_sizes/normal_font_size = 50
-theme_override_font_sizes/bold_font_size = 50
-theme_override_font_sizes/italics_font_size = 50
-theme_override_font_sizes/bold_italics_font_size = 50
-theme_override_font_sizes/mono_font_size = 50
+theme_override_font_sizes/normal_font_size = 70
+theme_override_font_sizes/bold_font_size = 70
+theme_override_font_sizes/italics_font_size = 70
+theme_override_font_sizes/bold_italics_font_size = 70
+theme_override_font_sizes/mono_font_size = 70
 bbcode_enabled = true
 text = "
 
@@ -147,13 +147,13 @@ Rheuman
 
 
 "
-indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect")
+indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect2")
 glow = NodePath("../ClickerGlow")
 
 [node name="ScreenCore2" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("13_hn1t8")]
 position = Vector2(-1108, -230)
 label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
-text = "i know we said know more venting but Hector cannot get it past his THICK FUCKING SKULL that there's no undoing this type of fuckup
+text = "i know we said know more venting but Hector cannot get it past his THICK FUCKING SKULL thatq
 
 Hi new recruits!
 
@@ -163,7 +163,7 @@ Rheuman
 
 
 "
-indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect2")
+indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect")
 glow = NodePath("../ClickerGlow")
 
 [node name="ClickerGlow" type="Sprite2D" parent="."]

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://203jmdgiwgko"]
+
+[ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="1_ofwxt"]
+
+[node name="ButtonGlow" type="Sprite2D"]
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("1_ofwxt")

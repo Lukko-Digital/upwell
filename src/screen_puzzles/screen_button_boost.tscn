@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dei1bl8astem7"]
+[gd_scene load_steps=6 format=3 uid="uid://dei1bl8astem7"]
 
 [ext_resource type="Script" path="res://src/abstract_base_classes/screen_button.gd" id="1_r5ukt"]
 [ext_resource type="Texture2D" uid="uid://yfgn3ku7u5bu" path="res://assets/mvp3_assets/screenpuzzle/button_boost.png" id="1_v1f6f"]
+[ext_resource type="PackedScene" uid="uid://203jmdgiwgko" path="res://src/screen_puzzles/button_glow.tscn" id="2_dvoo1"]
 [ext_resource type="PackedScene" uid="uid://nbku63cre6dq" path="res://src/screen_puzzles/screen_draggable.tscn" id="3_mt3tf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o2uaa"]
@@ -12,6 +13,8 @@ collision_layer = 32
 collision_mask = 2
 script = ExtResource("1_r5ukt")
 type = 1
+
+[node name="ButtonGlow" parent="." instance=ExtResource("2_dvoo1")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_v1f6f")

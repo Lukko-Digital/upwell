@@ -13,23 +13,11 @@ size = Vector2(1268.5, 721)
 blend_mode = 3
 
 [node name="Screen" type="Area2D"]
+z_index = -1
 position = Vector2(0, -480)
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_40edb")
-
-[node name="InteractLabel" type="Label" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.466667)
-offset_left = -55.0
-offset_top = 290.0
-offset_right = 236.0
-offset_bottom = 493.0
-scale = Vector2(0.374634, 0.374634)
-theme_override_fonts/font = ExtResource("2_krocg")
-theme_override_font_sizes/font_size = 161
-text = "<E>"
-horizontal_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_monmt")
@@ -67,6 +55,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Cover" type="Sprite2D" parent="SubViewportContainer/SubViewport/CanvasLayer"]
+visible = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_gtjll")
 offset = Vector2(1920, 1080)
@@ -84,6 +73,18 @@ color = Color(0, 0, 0, 1)
 position = Vector2(1, -1)
 scale = Vector2(0.298, 0.328)
 texture = ExtResource("5_hn87c")
+
+[node name="InteractLabel" type="Label" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.466667)
+offset_left = -55.0
+offset_top = 290.0
+offset_right = 236.0
+offset_bottom = 493.0
+scale = Vector2(0.374634, 0.374634)
+theme_override_fonts/font = ExtResource("2_krocg")
+theme_override_font_sizes/font_size = 161
+horizontal_alignment = 1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
