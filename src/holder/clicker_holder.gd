@@ -47,7 +47,7 @@ func _set_owned_clicker(clicker: ClickerBody):
 		# Has clicker
 		holder_sprite.frame = HolderFrames.GLOW
 		# Lock clicker to holder
-		clicker.global_position = clicker_sprite.global_position
+		clicker.set_deferred("global_position", clicker_sprite.global_position)
 		clicker.set_deferred("freeze", true)
 		clicker.holder_owned_by = self
 	owned_clicker = clicker
@@ -58,11 +58,7 @@ func _ready():
 	
 	if starts_with_clicker:
 		var instance: ClickerBody = clicker_scene.instantiate()
-		instance.init(
-			self,
-			Vector2.ZERO,
-			clicker_sprite.global_position
-		)
+		instance.home_holder = self
 		get_parent().add_child.call_deferred(instance)
 		owned_clicker = instance
 	else:
@@ -89,7 +85,7 @@ func interact(player: Player):
 		owned_clicker = null
 	else:
 		# player gives clicker to holder
-		owned_clicker = player.spawn_clicker(clicker_sprite.global_position)
+		owned_clicker = player.spawn_clicker()
 
 func interact_condition(player: Player):
 	return has_clicker() or player.has_clicker()

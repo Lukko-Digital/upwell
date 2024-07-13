@@ -128,12 +128,14 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("throw"):
 		throw()
 
-## ------------------------------ MOVEMENT ------------------------------
 ## ------------------------------ CAMERA ------------------------------
 
 ## ------------------------------ GRAVITY ------------------------------
 
 func handle_artificial_gravity(delta) -> GravitizedComponent.GravityState:
+	if not has_clicker():
+		return GravitizedComponent.GravityState.NONE
+
 	var active_ag = grav_component.check_active_ag()
 	var gravity_state = grav_component.determine_gravity_state(active_ag)
 	if gravity_state != GravitizedComponent.GravityState.NONE:
@@ -252,7 +254,7 @@ func interact():
 	if highlighted_interactable != null:
 		highlighted_interactable.interact(self)
 	elif has_clicker():
-		spawn_clicker(global_position)
+		spawn_clicker()
 
 func start_dialogue(npc: NPC):
 	if in_dialogue:
@@ -272,7 +274,6 @@ func add_clicker(clicker: ClickerBody):
 	clicker.queue_free()
 
 func spawn_clicker(
-	initial_position: Vector2,
 	initial_velocity: Vector2=Vector2.ZERO
 ) -> ClickerBody:
 	if not has_clicker():
@@ -280,17 +281,15 @@ func spawn_clicker(
 	var clicker_info: ClickerInfo = clicker_inventory.pop_front()
 	clicker_count_changed.emit()
 	var instance = clicker_scene.instantiate()
-	instance.init(
-		clicker_info.home_holder,
-		initial_velocity,
-		initial_position
-	)
+	instance.home_holder = clicker_info.home_holder
+	instance.linear_velocity = initial_velocity
 	get_parent().add_child.call_deferred(instance)
+	instance.set_deferred("global_position", global_position)
 	return instance
 
 func home_all_clickers():
 	while has_clicker():
-		var clicker = spawn_clicker(global_position)
+		var clicker = spawn_clicker()
 		clicker.return_to_home()
 
 ### ----------------------------- THROW -----------------------------
@@ -302,7 +301,7 @@ func throw():
 	):
 		return
 	var dir = (get_global_mouse_position() - global_position).normalized()
-	spawn_clicker(global_position, dir * PLAYER.THROW_VELOCITY)
+	spawn_clicker(dir * PLAYER.THROW_VELOCITY)
 
 func handle_throw_arc():
 	throw_arc_line.clear_points()
