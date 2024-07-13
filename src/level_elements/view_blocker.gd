@@ -15,4 +15,5 @@ func _process(delta):
 		sprite.position = position
 		sprite.rotation = rotation
 		sprite.visible = visible
+		sprite.scale = scale
 	pass
