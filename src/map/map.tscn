@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player/map_player.tscn" id="2_uwq5e"]
 [ext_resource type="PackedScene" uid="uid://ql7gm3yuyicr" path="res://src/map/map_level.tscn" id="4_17lxb"]
 [ext_resource type="PackedScene" uid="uid://bbrkg6cjjyr4k" path="res://src/levels/CONTACT.tscn" id="5_ga2oe"]
-[ext_resource type="PackedScene" path="res://src/map/coolant_pocket.tscn" id="6_4a6mq"]
+[ext_resource type="PackedScene" uid="uid://bke4dorpjm7yp" path="res://src/map/coolant_pocket.tscn" id="6_4a6mq"]
 [ext_resource type="PackedScene" uid="uid://tlnbxn7fgral" path="res://src/levels/TEST.tscn" id="6_qfahr"]
 [ext_resource type="PackedScene" uid="uid://dl1nh6jj657a" path="res://src/levels/FALL.tscn" id="7_kq772"]
 [ext_resource type="PackedScene" path="res://src/map/hazard.tscn" id="8_xqpvg"]

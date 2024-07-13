@@ -160,7 +160,6 @@ rotation = -2.35619
 starts_with_clicker = false
 
 [node name="Screen" parent="." instance=ExtResource("12_cnxwj")]
-z_index = -1
 position = Vector2(14468, -746)
 screen = ExtResource("5_s8oqe")
 

@@ -15,11 +15,15 @@ class_name MapLevel
 
 @onready var player: MapPlayer = owner.get_node("MapPlayer")
 @onready var game: Game = get_tree().get_current_scene()
+@onready var gravity_area = $Gravity
 
 func _ready() -> void:
 	if not Engine.is_editor_hint():
 		Global.level_unlocked.connect(level_unlocked)
 		hide()
+
+func _process(_delta):
+	gravity_area.visible = Global.player_has_clicker
 
 func _on_mouse_entered() -> void:
 	if not Engine.is_editor_hint():
