@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bb68hmcptqlgt"]
+[gd_scene load_steps=10 format=3 uid="uid://bb68hmcptqlgt"]
 
 [ext_resource type="Script" path="res://src/map/map.gd" id="1_ithwi"]
 [ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player/map_player.tscn" id="2_uwq5e"]
 [ext_resource type="PackedScene" uid="uid://ql7gm3yuyicr" path="res://src/map/map_level.tscn" id="4_17lxb"]
-[ext_resource type="PackedScene" uid="uid://braj8804rj7dv" path="res://src/levels/level_1a.tscn" id="5_ftpo1"]
+[ext_resource type="PackedScene" uid="uid://bbrkg6cjjyr4k" path="res://src/levels/CONTACT.tscn" id="5_ga2oe"]
+[ext_resource type="PackedScene" uid="uid://bke4dorpjm7yp" path="res://src/map/coolant_pocket.tscn" id="6_4a6mq"]
+[ext_resource type="Texture2D" uid="uid://cu2hfokgxd4pw" path="res://assets/ui/map/destination.png" id="7_faj44"]
+[ext_resource type="Script" path="res://src/map/hazard.gd" id="8_x8jc2"]
 [ext_resource type="Texture2D" uid="uid://dc6nfaju78e60" path="res://assets/environment/test_level/particle_softest.png" id="12_kdma8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ju5am"]
+radius = 46.2365
 
 [node name="Map" type="Node2D"]
 scale = Vector2(4, 4)
@@ -112,9 +118,31 @@ metadata/_edit_lock_ = true
 [node name="Levels" type="Node2D" parent="."]
 
 [node name="MapLevel" parent="Levels" instance=ExtResource("4_17lxb")]
-position = Vector2(0, 4)
-level = ExtResource("5_ftpo1")
+position = Vector2(2, 4)
+level = ExtResource("5_ga2oe")
 
 [node name="MapLevel2" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(430, 1)
-level = ExtResource("5_ftpo1")
+level = ExtResource("5_ga2oe")
+
+[node name="CoolantPocket" parent="." instance=ExtResource("6_4a6mq")]
+position = Vector2(-326.5, 88.75)
+locked_level_name = null
+
+[node name="Sprite2D" type="Sprite2D" parent="CoolantPocket"]
+modulate = Color(0.215686, 1, 1, 1)
+texture = ExtResource("7_faj44")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoolantPocket"]
+shape = SubResource("CircleShape2D_ju5am")
+
+[node name="Hazard" type="Area2D" parent="."]
+position = Vector2(347.75, 402)
+script = ExtResource("8_x8jc2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazard"]
+modulate = Color(1, 0.219608, 0.227451, 1)
+texture = ExtResource("7_faj44")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hazard"]
+shape = SubResource("CircleShape2D_ju5am")

@@ -1,19 +1,32 @@
-[gd_scene load_steps=16 format=3 uid="uid://b30jo7kace2yj"]
+[gd_scene load_steps=17 format=3 uid="uid://b30jo7kace2yj"]
 
 [ext_resource type="Texture2D" uid="uid://dhw7wq51its7p" path="res://assets/mvp3_assets/screenpuzzle/layout.png" id="1_samqn"]
+[ext_resource type="Texture2D" uid="uid://b868h5dr15cxm" path="res://assets/mvp3_assets/screenpuzzle/lineblocker.png" id="2_5v2p4"]
 [ext_resource type="Texture2D" uid="uid://cl1p7ygvq4qg" path="res://assets/mvp3_assets/screenpuzzle/text_backer.png" id="2_cwlb2"]
 [ext_resource type="Texture2D" uid="uid://ba863aqwujv2p" path="res://assets/mvp3_assets/screenpuzzle/file.png" id="3_hha1e"]
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="4_t2x6u"]
 [ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="5_yaaqn"]
 [ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/screen_ag.tscn" id="6_0rwsq"]
 [ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/screen_player.tscn" id="7_t4bqi"]
-[ext_resource type="PackedScene" uid="uid://d3nl8jv07w2yg" path="res://src/screen_puzzles/screen_hazard.tscn" id="8_yqvax"]
-[ext_resource type="PackedScene" uid="uid://xiabu6v8kd6w" path="res://src/screen_puzzles/screen_power_up.tscn" id="9_ngh8b"]
-[ext_resource type="PackedScene" uid="uid://dei1bl8astem7" path="res://src/screen_puzzles/screen_button_boost.tscn" id="10_jbvs2"]
-[ext_resource type="PackedScene" uid="uid://bwbpi60st6gme" path="res://src/screen_puzzles/screen_button_unorbit.tscn" id="11_irrs2"]
 [ext_resource type="PackedScene" uid="uid://bdt2psjmwjsy6" path="res://src/screen_puzzles/screen_button_orbit.tscn" id="12_ptn12"]
 [ext_resource type="PackedScene" uid="uid://c1fatgffin6hd" path="res://src/screen_puzzles/screen_core.tscn" id="13_hn1t8"]
 [ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="14_a2tmf"]
+
+[sub_resource type="FontVariation" id="FontVariation_bfd18"]
+base_font = ExtResource("4_t2x6u")
+variation_embolden = 0.87
+
+[sub_resource type="FontVariation" id="FontVariation_i82gr"]
+base_font = ExtResource("4_t2x6u")
+variation_embolden = 2.0
+
+[sub_resource type="FontVariation" id="FontVariation_bx0b8"]
+base_font = ExtResource("5_yaaqn")
+variation_embolden = 0.87
+
+[sub_resource type="FontVariation" id="FontVariation_ye6m0"]
+base_font = ExtResource("5_yaaqn")
+variation_embolden = 1.85
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tk24l"]
 size = Vector2(1763, 1481)
@@ -28,6 +41,12 @@ offset_bottom = 1108.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
+
+[node name="ScreenPlayer" parent="." instance=ExtResource("7_t4bqi")]
+position = Vector2(-725, 453)
+
+[node name="Lineblocker" type="Sprite2D" parent="."]
+texture = ExtResource("2_5v2p4")
 
 [node name="Layout" type="Sprite2D" parent="."]
 position = Vector2(-14, 10)
@@ -78,48 +97,32 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("4_t2x6u")
-theme_override_fonts/italics_font = ExtResource("5_yaaqn")
-theme_override_font_sizes/normal_font_size = 60
-text = "Filepath Missing"
+theme_override_fonts/normal_font = SubResource("FontVariation_bfd18")
+theme_override_fonts/bold_font = SubResource("FontVariation_i82gr")
+theme_override_fonts/italics_font = SubResource("FontVariation_bx0b8")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_ye6m0")
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+bbcode_enabled = true
+text = "
+
+[center][b][i]Filepath Missing[/i][/b][/center]"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 
-[node name="ScreenAG" parent="." instance=ExtResource("6_0rwsq")]
-position = Vector2(-1238, -477)
-
-[node name="ScreenAG2" parent="." instance=ExtResource("6_0rwsq")]
-position = Vector2(-220, 87)
-
-[node name="ScreenPlayer" parent="." instance=ExtResource("7_t4bqi")]
-position = Vector2(-1431, 453)
-
-[node name="ScreenHazard" parent="." instance=ExtResource("8_yqvax")]
-position = Vector2(-592, -353)
-
-[node name="ScreenHazard2" parent="." instance=ExtResource("8_yqvax")]
-position = Vector2(-899, 61)
-
-[node name="ScreenPowerUp2" parent="." instance=ExtResource("9_ngh8b")]
-position = Vector2(-1479, -634)
-
-[node name="ScreenPowerUp" parent="." instance=ExtResource("9_ngh8b")]
-position = Vector2(-699, -220)
-
-[node name="ScreenButtonBoost" parent="." instance=ExtResource("10_jbvs2")]
-position = Vector2(-1390, 776)
-
-[node name="ScreenButtonUnorbit" parent="." instance=ExtResource("11_irrs2")]
-position = Vector2(-936, 773)
-
-[node name="ScreenButtonOrbit2" parent="." instance=ExtResource("12_ptn12")]
-position = Vector2(-1164, 777)
-
 [node name="ScreenButtonOrbit" parent="." instance=ExtResource("12_ptn12")]
-position = Vector2(-1606, 775)
+position = Vector2(-1592, 775)
+
+[node name="ScreenAG" parent="." instance=ExtResource("6_0rwsq")]
+position = Vector2(-718, -231)
+scale = Vector2(1.54392, 1.54392)
 
 [node name="PlaceableArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 64
 collision_mask = 64
 
@@ -128,13 +131,11 @@ position = Vector2(-700.5, 15.5)
 shape = SubResource("RectangleShape2D_tk24l")
 
 [node name="ScreenCore" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("13_hn1t8")]
-position = Vector2(-1236, -485)
+position = Vector2(-316, -227)
 label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
-text = "9/24/35
+text = "[center][b]9/24/35[/b][/center]
 
 Hector,
-
-This will take more time than you hoped. This level of physical file management is unprecedented. I honestly don't even know how to send the right documents to the accessible stations which, may make it difficult for students.
 
 Copying the startup message below so you can vet:
 
@@ -143,26 +144,23 @@ Heya recruits! Now that you've found your first waypoint, it's time second. Reme
 See you at the end!
 
 Rheuman
+
+
 "
 indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect")
 glow = NodePath("../ClickerGlow")
 
 [node name="ScreenCore2" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("13_hn1t8")]
-position = Vector2(-226, 90)
+position = Vector2(-1108, -230)
 label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
-text = "9/24/35
+text = "i know we said know more venting but Hector cannot get it past his THICK FUCKING SKULL that there's no undoing this type of fuckup
 
-cannot believe this. the earth is quite LITERALLY coming to an end, yet hector can't get it past his thick fucking skull that there's no undoing a fuckup, ESPECIALLY when i'm running blind.
-
-honey, i shit you not i have been wasting all my time this last week just REMINDING him (kindly) that i cannot simply r
-
----------------------------------------------------
 Hi new recruits!
 
-The above was written in error, and should be treated as an example in caution when using the Creator's old system. Congratulations on completing the first exercise and good luck!
+The above should be treated as an example in caution when using the Creators' old system. Congratulations on reaching your first waypoint!
 
 Rheuman
-powe
+
 
 "
 indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect2")
@@ -173,9 +171,3 @@ visible = false
 position = Vector2(787, -943)
 scale = Vector2(2, 2)
 texture = ExtResource("14_a2tmf")
-
-[node name="ScreenPowerUp3" parent="." instance=ExtResource("9_ngh8b")]
-position = Vector2(30, 232)
-
-[node name="ScreenPowerUp4" parent="." instance=ExtResource("9_ngh8b")]
-position = Vector2(-808, -83)

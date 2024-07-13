@@ -18,14 +18,11 @@ script = ExtResource("1_5wj68")
 position = Vector2(0, -128)
 camera = NodePath("../Camera2D")
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player", "pod")]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(0, -128)
 zoom = Vector2(0.5, 0.5)
-limit_top = -4594
-limit_bottom = 565
 limit_smoothed = true
 position_smoothing_enabled = true
 editor_draw_limits = true
 script = ExtResource("4_5svdy")
 player = NodePath("../Player")
-pod = NodePath("../Pod")

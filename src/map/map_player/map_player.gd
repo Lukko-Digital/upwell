@@ -6,10 +6,14 @@ class_name MapPlayer
 @onready var energy_bar: ProgressBar = $CanvasLayer/Energy
 @onready var starting_position: Vector2 = global_position
 @onready var collision_box: Area2D = $PlayerBody
-@onready var out_of_energy: Label = $CanvasLayer/OutOfEnergyLabel
+@onready var warning_label: Label = $CanvasLayer/WarningLabel
 @onready var grav_component: GravitizedComponent = $GravitizedComponent
 
-var moving = false
+var moving = false:
+	set(value):
+		moving = value
+		Global.moving_on_map = value
+
 var velocity: Vector2 = Vector2.ZERO
 
 var destination: MapLevel = null:
@@ -75,14 +79,16 @@ func end_movement() -> void:
 	if line.get_point_count() > 1:
 		line.remove_point(1)
 
+	await get_tree().create_timer(0.35).timeout
+	Global.set_camera_focus.emit(null)
+
 func recall() -> void:
 	global_position = starting_position
 	end_movement()
 
-	# FOR JOSH
-	out_of_energy.show()
+	warning_label.show()
 	await get_tree().create_timer(1).timeout
-	out_of_energy.hide()
+	warning_label.hide()
 
 func _area_scanned(area: Area2D) -> void:
 	if area is MapLevel:

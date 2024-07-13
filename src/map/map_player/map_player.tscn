@@ -59,7 +59,7 @@ value = 100.0
 fill_mode = 2
 show_percentage = false
 
-[node name="OutOfEnergyLabel" type="Label" parent="CanvasLayer"]
+[node name="WarningLabel" type="Label" parent="CanvasLayer"]
 visible = false
 offset_left = 328.0
 offset_top = 460.0
