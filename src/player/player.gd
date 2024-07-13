@@ -209,6 +209,9 @@ func handle_coyote_timing(gravity_state: GravitizedComponent.GravityState):
 
 	previously_grounded = currently_grounded
 func jump():
+	# No jump when holding shift
+	if Input.is_action_pressed("orbit"):
+		return
 	if is_on_floor() or not coyote_timer.is_stopped():
 		velocity.y = -PLAYER.JUMP_VELOCITY
 		jumping = true
