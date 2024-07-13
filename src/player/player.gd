@@ -103,7 +103,7 @@ func _physics_process(delta):
 	move_and_slide()
 	handle_coyote_timing(gravity_state)
 
-func _process(delta):
+func _process(_delta):
 	handle_throw_arc()
 	handle_nearby_interactables()
 
@@ -249,7 +249,7 @@ func interact():
 	if highlighted_interactable != null:
 		highlighted_interactable.interact(self)
 	elif has_clicker():
-		spawn_clicker()
+		spawn_clicker(global_position)
 
 func start_dialogue(npc: NPC):
 	if in_dialogue:
@@ -268,21 +268,26 @@ func add_clicker(clicker: ClickerBody):
 	clicker_count_changed.emit()
 	clicker.queue_free()
 
-func spawn_clicker(initial_velocity: Vector2=Vector2.ZERO) -> ClickerBody:
+func spawn_clicker(
+	initial_position: Vector2,
+	initial_velocity: Vector2=Vector2.ZERO
+) -> ClickerBody:
 	if not has_clicker():
 		return
 	var clicker_info: ClickerInfo = clicker_inventory.pop_front()
 	clicker_count_changed.emit()
 	var instance = clicker_scene.instantiate()
-	instance.home_holder = clicker_info.home_holder
-	instance.global_position = global_position
-	instance.linear_velocity = initial_velocity
+	instance.init(
+		clicker_info.home_holder,
+		initial_velocity,
+		initial_position
+	)
 	get_parent().add_child.call_deferred(instance)
 	return instance
 
 func home_all_clickers():
 	while has_clicker():
-		var clicker = spawn_clicker()
+		var clicker = spawn_clicker(global_position)
 		clicker.return_to_home()
 
 ### ----------------------------- THROW -----------------------------
@@ -294,7 +299,7 @@ func throw():
 	):
 		return
 	var dir = (get_global_mouse_position() - global_position).normalized()
-	spawn_clicker(dir * PLAYER.THROW_VELOCITY)
+	spawn_clicker(global_position, dir * PLAYER.THROW_VELOCITY)
 
 func handle_throw_arc():
 	throw_arc_line.clear_points()

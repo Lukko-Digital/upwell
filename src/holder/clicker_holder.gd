@@ -58,7 +58,11 @@ func _ready():
 	
 	if starts_with_clicker:
 		var instance: ClickerBody = clicker_scene.instantiate()
-		instance.home_holder = self
+		instance.init(
+			self,
+			Vector2.ZERO,
+			clicker_sprite.global_position
+		)
 		get_parent().add_child.call_deferred(instance)
 		owned_clicker = instance
 	else:
@@ -85,7 +89,7 @@ func interact(player: Player):
 		owned_clicker = null
 	else:
 		# player gives clicker to holder
-		owned_clicker = player.spawn_clicker()
+		owned_clicker = player.spawn_clicker(clicker_sprite.global_position)
 
 func interact_condition(player: Player):
 	return has_clicker() or player.has_clicker()
