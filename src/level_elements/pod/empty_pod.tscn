@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://5mnlsyicmwh"]
+[gd_scene load_steps=7 format=3 uid="uid://5mnlsyicmwh"]
 
 [ext_resource type="Texture2D" uid="uid://cg7bn01uog8q1" path="res://assets/mvp2_assets/TM.png" id="1_ail4i"]
 [ext_resource type="Script" path="res://src/level_elements/pod/empty_pod.gd" id="1_i5ays"]
 [ext_resource type="PackedScene" uid="uid://bm854dcfuk24c" path="res://src/level_elements/pod/pod_caller.tscn" id="3_l6i3p"]
+[ext_resource type="Texture2D" uid="uid://bv5xiq8uwc5el" path="res://assets/mvp3_assets/call_sign.png" id="4_4l2fb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c3id5"]
 texture = ExtResource("1_ail4i")
@@ -151,9 +152,18 @@ tile_set = SubResource("TileSet_e53xo")
 format = 2
 layer_0/name = "2"
 layer_1/name = "1"
-layer_1/tile_data = PackedInt32Array(0, 65536, 0, 1, 65536, 0, 2, 65536, 0, 3, 65536, 0, 4, 65536, 0, 5, 65536, 0, 65535, 65536, 0, 65534, 65536, 0, 65533, 65536, 0, 65532, 65536, 0, 65531, 65536, 0, 65530, 65536, 0, -196614, 65536, 0, -262150, 65536, 0, -327686, 65536, 0, -262139, 65536, 0, -327675, 65536, 0, -393211, 65536, 0, -458747, 65536, 0, -393222, 65536, 0, -458758, 65536, 0, -458757, 65536, 0, -458756, 65536, 0, -458755, 65536, 0, -458754, 65536, 0, -458753, 65536, 0, -524288, 65536, 0, -524287, 65536, 0, -524286, 65536, 0, -524285, 65536, 0, -524284, 65536, 0, -524283, 65536, 0, -393221, 65536, 2, -458748, 0, 2)
+layer_1/tile_data = PackedInt32Array(0, 65536, 0, 1, 65536, 0, 2, 65536, 0, 3, 65536, 0, 4, 65536, 0, 5, 65536, 0, 65535, 65536, 0, 65534, 65536, 0, 65533, 65536, 0, 65532, 65536, 0, 65531, 65536, 0, 65530, 65536, 0, -262150, 65536, 0, -327686, 65536, 0, -327675, 65536, 0, -393211, 65536, 0, -458747, 65536, 0, -393222, 65536, 0, -458758, 65536, 0, -458757, 65536, 0, -458756, 65536, 0, -458755, 65536, 0, -458754, 65536, 0, -458753, 65536, 0, -524288, 65536, 0, -524287, 65536, 0, -524286, 65536, 0, -524285, 65536, 0, -524284, 65536, 0, -524283, 65536, 0, -393221, 65536, 2, -458748, 0, 2, 65529, 0, 1, 131063, 65536, 0, 131064, 65536, 0, 131065, 65536, 0, 131066, 65536, 0, 131067, 65536, 0, 131068, 65536, 0, 131069, 65536, 0, 131070, 65536, 0, 131071, 65536, 0, 65536, 65536, 0, 65537, 65536, 0, 65538, 65536, 0, 65539, 65536, 0, 65540, 65536, 0, 65541, 65536, 0, 65542, 65536, 0, 65543, 65536, 0, 65544, 65536, 0, 6, 65536, 1)
+
+[node name="CallSign" type="Sprite2D" parent="."]
+position = Vector2(-1007.5, -128.5)
+texture = ExtResource("4_4l2fb")
+
+[node name="CallSign2" type="Sprite2D" parent="."]
+position = Vector2(1016.5, -128.5)
+texture = ExtResource("4_4l2fb")
 
 [node name="PodCaller" parent="." instance=ExtResource("3_l6i3p")]
+position = Vector2(1016, -92)
 
 [node name="PodCaller2" parent="." instance=ExtResource("3_l6i3p")]
-position = Vector2(-896, -256)
+position = Vector2(-1006, -94)

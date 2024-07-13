@@ -17,10 +17,10 @@ radius = 406.06
 radius = 24.1868
 
 [node name="MapPlayer" type="Node2D"]
+z_index = 1
 script = ExtResource("1_g3ols")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.548986, 0.548986)
 texture = ExtResource("2_x6q2x")
 
 [node name="Line2D" type="Line2D" parent="."]
@@ -31,11 +31,9 @@ width = 24.0
 texture_mode = 1
 
 [node name="Ring1" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_ixl3o")
 
 [node name="Ring5" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_rs5vh")
 
 [node name="PlayerBody" type="Area2D" parent="."]
