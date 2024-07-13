@@ -1,8 +1,7 @@
 extends Area2D
-class_name CoolantPocket
+class_name Hazard
 
-@export var level_id: Global.LevelIDs
-@export var locked: bool = false
+@export var locked_level_name: String
 
 @onready var player: MapPlayer = owner.get_node("MapPlayer")
 
@@ -10,10 +9,11 @@ class_name CoolantPocket
 
 func _ready() -> void:
 	Global.level_unlocked.connect(level_unlocked)
-	hide()
+	if locked_level_name:
+		hide()
 
 func level_unlocked(level_name: String):
-	if locked and level_name == level_id:
+	if level_name == locked_level_name:
 		show()
 
 func _on_area_entered(_area: Area2D):
