@@ -128,12 +128,14 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("throw"):
 		throw()
 
-## ------------------------------ MOVEMENT ------------------------------
 ## ------------------------------ CAMERA ------------------------------
 
 ## ------------------------------ GRAVITY ------------------------------
 
 func handle_artificial_gravity(delta) -> GravitizedComponent.GravityState:
+	if not has_clicker():
+		return GravitizedComponent.GravityState.NONE
+
 	var active_ag = grav_component.check_active_ag()
 	var gravity_state = grav_component.determine_gravity_state(active_ag)
 	if gravity_state != GravitizedComponent.GravityState.NONE:
