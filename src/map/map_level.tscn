@@ -45,6 +45,9 @@ collision_mask = 0
 script = ExtResource("4_txnlk")
 type = 1
 
+[node name="RegenTimer" type="Timer" parent="Gravity"]
+one_shot = true
+
 [node name="Glow" parent="Gravity" instance=ExtResource("5_fn1ck")]
 scale = Vector2(0.466185, 0.466185)
 
@@ -55,3 +58,4 @@ shape = SubResource("CircleShape2D_ego6m")
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="timeout" from="Gravity/RegenTimer" to="Gravity" method="_on_regen_timer_timeout"]
