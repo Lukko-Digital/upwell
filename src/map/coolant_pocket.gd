@@ -6,15 +6,13 @@ class_name CoolantPocket
 
 @onready var player: MapPlayer = owner.get_node("MapPlayer")
 
-## UPDATE THIS WITH NEW LEVEL UNLOCK ENUM
-
 func _ready() -> void:
 	Global.level_unlocked.connect(level_unlocked)
 	hide()
 
-func level_unlocked(level_name: String):
+func level_unlocked(level_name: Global.LevelIDs):
 	if locked and level_name == level_id:
 		show()
 
 func _on_area_entered(_area: Area2D):
-	player.enter_coolant_pocket()
+	player.hit_hazard()

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bbrkg6cjjyr4k" path="res://src/levels/CONTACT.tscn" id="5_ga2oe"]
 [ext_resource type="PackedScene" uid="uid://bke4dorpjm7yp" path="res://src/map/coolant_pocket.tscn" id="6_4a6mq"]
 [ext_resource type="Texture2D" uid="uid://cu2hfokgxd4pw" path="res://assets/ui/map/destination.png" id="7_faj44"]
-[ext_resource type="Script" path="res://src/map/hazard.gd" id="8_x8jc2"]
+[ext_resource type="PackedScene" uid="uid://ckbe13djrw5lh" path="res://src/map/hazard.tscn" id="8_xqpvg"]
 [ext_resource type="Texture2D" uid="uid://dc6nfaju78e60" path="res://assets/environment/test_level/particle_softest.png" id="12_kdma8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ju5am"]
@@ -127,7 +127,6 @@ level = ExtResource("5_ga2oe")
 
 [node name="CoolantPocket" parent="." instance=ExtResource("6_4a6mq")]
 position = Vector2(-326.5, 88.75)
-locked_level_name = null
 
 [node name="Sprite2D" type="Sprite2D" parent="CoolantPocket"]
 modulate = Color(0.215686, 1, 1, 1)
@@ -136,9 +135,8 @@ texture = ExtResource("7_faj44")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CoolantPocket"]
 shape = SubResource("CircleShape2D_ju5am")
 
-[node name="Hazard" type="Area2D" parent="."]
-position = Vector2(347.75, 402)
-script = ExtResource("8_x8jc2")
+[node name="Hazard" parent="." instance=ExtResource("8_xqpvg")]
+position = Vector2(218, -6.25)
 
 [node name="Sprite2D" type="Sprite2D" parent="Hazard"]
 modulate = Color(1, 0.219608, 0.227451, 1)

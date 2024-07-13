@@ -8,11 +8,10 @@ class_name ViewBlocker
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	for sprite in sprites:
-		sprite.position = position
+		sprite.global_position = global_position
 		sprite.rotation = rotation
 		sprite.visible = visible
 		sprite.scale = scale
