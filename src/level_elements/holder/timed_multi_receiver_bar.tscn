@@ -5,6 +5,7 @@
 [node name="TimedMultiReceiverBar" type="ProgressBar" node_paths=PackedStringArray("timer")]
 offset_right = 4.0
 offset_bottom = 27.0
+show_percentage = false
 script = ExtResource("1_arfjl")
 timer = NodePath("Timer")
 
