@@ -15,4 +15,4 @@ func level_unlocked(level_name: Global.LevelIDs):
 		show()
 
 func _on_area_entered(_area: Area2D):
-	player.hit_hazard()
+	player.enter_coolant_pocket()

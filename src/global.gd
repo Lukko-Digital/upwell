@@ -29,18 +29,21 @@ const MEDIUM_DRILL_HEAT: float = 25
 var clicker_state = {}
 var level_unlocks = {}
 var npc_conversation_state = {}
-var pod_position: EmptyPod
+var pod_position: EmptyPod = null
 
 var moving_on_map = false
+
 signal set_camera_focus(focus: Node2D)
 signal pod_called(empty_pod: EmptyPod)
 
-signal level_unlocked(level_name: LevelIDs)
+signal level_unlocked(level_name: EmptyPod)
 
 func unlock_level(level_name: LevelIDs):
 	level_unlocks[level_name] = true
 	level_unlocked.emit(level_name)
 
 func call_pod(empty_pod: EmptyPod):
+	pod_position.handle_empty()
 	pod_position = empty_pod
+	pod_position.handle_empty()
 	pod_called.emit(empty_pod)

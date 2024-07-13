@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://5mnlsyicmwh"]
+[gd_scene load_steps=9 format=3 uid="uid://5mnlsyicmwh"]
 
 [ext_resource type="Texture2D" uid="uid://cg7bn01uog8q1" path="res://assets/mvp2_assets/TM.png" id="1_ail4i"]
 [ext_resource type="Script" path="res://src/level_elements/pod/empty_pod.gd" id="1_i5ays"]
 [ext_resource type="PackedScene" uid="uid://bm854dcfuk24c" path="res://src/level_elements/pod/pod_caller.tscn" id="3_l6i3p"]
 [ext_resource type="Texture2D" uid="uid://bv5xiq8uwc5el" path="res://assets/mvp3_assets/call_sign.png" id="4_4l2fb"]
+[ext_resource type="Script" path="res://src/level_elements/pod/empty_pod_hider.gd" id="5_rlv4i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c3id5"]
 texture = ExtResource("1_ail4i")
@@ -143,6 +144,9 @@ tile_size = Vector2i(256, 256)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_c3id5")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwy5k"]
+size = Vector2(1536, 1034)
+
 [node name="EmptyPod" type="Node2D"]
 script = ExtResource("1_i5ays")
 
@@ -167,3 +171,20 @@ position = Vector2(1016, -92)
 
 [node name="PodCaller2" parent="." instance=ExtResource("3_l6i3p")]
 position = Vector2(-1006, -94)
+
+[node name="Hider" type="Node2D" parent="."]
+script = ExtResource("5_rlv4i")
+
+[node name="ColorRect" type="ColorRect" parent="Hider"]
+visible = false
+offset_left = -768.0
+offset_top = -1024.0
+offset_right = 768.0
+color = Color(0, 0, 0, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Hider"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hider/StaticBody2D"]
+position = Vector2(0, -507)
+shape = SubResource("RectangleShape2D_lwy5k")
+disabled = true
