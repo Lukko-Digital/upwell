@@ -22,7 +22,7 @@ radius = 32.0624
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ik21"]
 radius = 32.0624
 
-[node name="ClickerBody" type="RigidBody2D" node_paths=PackedStringArray("grav_component", "glow_sprite", "interactable")]
+[node name="ClickerBody" type="RigidBody2D" node_paths=PackedStringArray("grav_component", "glow_sprite", "lights_sprite", "interactable")]
 z_index = -1
 collision_layer = 16
 physics_material_override = SubResource("PhysicsMaterial_w1b0y")
@@ -31,6 +31,7 @@ angular_damp = 10.0
 script = ExtResource("1_5mmek")
 grav_component = NodePath("GravitizedComponent")
 glow_sprite = NodePath("GlowSprite")
+lights_sprite = NodePath("LightsSprite")
 interactable = NodePath("Interactable")
 
 [node name="ClickerSprite" parent="." instance=ExtResource("2_ci3is")]
@@ -71,6 +72,7 @@ offset_top = -117.0
 offset_right = 32.0
 offset_bottom = -62.0
 theme_override_font_sizes/font_size = 40
+metadata/_edit_use_anchors_ = true
 
 [node name="HolderDetector" type="Area2D" parent="."]
 position = Vector2(0, 38)

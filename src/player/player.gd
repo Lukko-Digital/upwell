@@ -106,6 +106,7 @@ func _physics_process(delta):
 func _process(_delta):
 	handle_throw_arc()
 	handle_nearby_interactables()
+	handle_controllable_clickers()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
@@ -236,6 +237,11 @@ func _min_jump_timer_timeout():
 
 ### ----------------------------- OBJECT INTERACT -----------------------------
 
+func sort_closest(a: Node2D, b: Node2D):
+	var distance_to = func(node: Node2D):
+		return global_position.distance_squared_to(node.global_position)
+	return distance_to.call(a) < distance_to.call(b)
+
 func handle_nearby_interactables():
 	var nearby_interactables = interactable_detector.get_overlapping_areas().filter(
 		func(interactable): return interactable.interact_condition(self)
@@ -243,11 +249,7 @@ func handle_nearby_interactables():
 	if nearby_interactables.is_empty():
 		highlighted_interactable = null
 	else:
-		var distance_to = func(node):
-			return interactable_detector.global_position.distance_squared_to(node.global_position)
-		nearby_interactables.sort_custom(
-			func(a, b): return distance_to.call(a) < distance_to.call(b)
-		)
+		nearby_interactables.sort_custom(sort_closest)
 		highlighted_interactable = nearby_interactables[0]
 
 func interact():
@@ -267,6 +269,17 @@ func start_dialogue(npc: NPC):
 func has_clicker():
 	return !clicker_inventory.is_empty()
 
+func handle_controllable_clickers():
+	get_tree().call_group("Clickers", "set_controllable", false)
+	if not has_clicker():
+		return
+	var clickers = get_tree().get_nodes_in_group("Clickers")
+	clickers.sort_custom(sort_closest)
+	for _i in range(clicker_inventory.size()):
+		if clickers.is_empty():
+			break
+		clickers.pop_front().set_controllable(true)
+	
 func add_clicker(clicker: ClickerBody):
 	var clicker_info = ClickerInfo.new(clicker.home_holder)
 	clicker_inventory.append(clicker_info)
