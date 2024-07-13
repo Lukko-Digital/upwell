@@ -9,8 +9,8 @@ class_name MapPlayer
 @onready var warning_label: Label = $CanvasLayer/WarningLabel
 @onready var grav_component: GravitizedComponent = $GravitizedComponent
 
-const HAZARD_TEXT = "You hit a hazard"
-const OUT_OF_ENERGY_TEXT = "You ran out of energy"
+const HAZARD_TEXT = "RECALLED DUE TO DAMAGE"
+const OUT_OF_ENERGY_TEXT = "RECALLED DUE TO ENERGY LOSS"
 const LOW_ENERGY_TEXT = "You are low on energy"
 
 var moving = false:
@@ -28,7 +28,7 @@ var destination: MapLevel = null:
 		velocity = global_position.direction_to(value.global_position) * SPEED
 
 const SPEED: float = 800
-const ENERGY_USE_RATE: float = 25
+const ENERGY_USE_RATE: float = 30
 
 const AG_ACCELERATION: float = 4
 
@@ -99,7 +99,7 @@ func recall() -> void:
 func show_warning(warning_text: String) -> void:
 	warning_label.text = warning_text
 	warning_label.show()
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(2).timeout
 	warning_label.hide()
 
 func hit_hazard() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bb68hmcptqlgt"]
+[gd_scene load_steps=11 format=3 uid="uid://bb68hmcptqlgt"]
 
 [ext_resource type="Script" path="res://src/map/map.gd" id="1_ithwi"]
 [ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player/map_player.tscn" id="2_uwq5e"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bbrkg6cjjyr4k" path="res://src/levels/CONTACT.tscn" id="5_ga2oe"]
 [ext_resource type="PackedScene" path="res://src/map/coolant_pocket.tscn" id="6_4a6mq"]
 [ext_resource type="PackedScene" uid="uid://tlnbxn7fgral" path="res://src/levels/TEST.tscn" id="6_qfahr"]
+[ext_resource type="PackedScene" uid="uid://dl1nh6jj657a" path="res://src/levels/FALL.tscn" id="7_kq772"]
 [ext_resource type="PackedScene" path="res://src/map/hazard.tscn" id="8_xqpvg"]
 [ext_resource type="Texture2D" uid="uid://cshgupmhysmp3" path="res://assets/ui/map/hazards/hazard_1.png" id="9_uqps3"]
 [ext_resource type="Texture2D" uid="uid://dc6nfaju78e60" path="res://assets/environment/test_level/particle_softest.png" id="12_kdma8"]
@@ -15,6 +16,7 @@ scale = Vector2(4, 4)
 script = ExtResource("1_ithwi")
 
 [node name="MapPlayer" parent="." instance=ExtResource("2_uwq5e")]
+position = Vector2(-2.75146, -8.25012)
 
 [node name="Camera2D" type="Camera2D" parent="MapPlayer"]
 zoom = Vector2(0.15, 0.15)
@@ -116,13 +118,46 @@ metadata/_edit_lock_ = true
 
 [node name="MapLevel" parent="Levels" instance=ExtResource("4_17lxb")]
 level = ExtResource("5_ga2oe")
+name_text = "H32.NUCLEAR"
 
 [node name="MapLevel2" parent="Levels" instance=ExtResource("4_17lxb")]
-position = Vector2(430, 1)
+position = Vector2(364, -244)
+level = ExtResource("5_ga2oe")
+name_text = "001.CONTACT"
+
+[node name="MapLevel3" parent="Levels" instance=ExtResource("4_17lxb")]
+position = Vector2(414, 434)
 level = ExtResource("6_qfahr")
+name_text = "003.TEST"
+
+[node name="MapLevel4" parent="Levels" instance=ExtResource("4_17lxb")]
+position = Vector2(852, 144)
+level = ExtResource("7_kq772")
+name_text = "002.FALL"
+
+[node name="MapLevel5" parent="Levels" instance=ExtResource("4_17lxb")]
+position = Vector2(-302, 350)
+name_text = "H02.RECURRENCE"
+
+[node name="MapLevel6" parent="Levels" instance=ExtResource("4_17lxb")]
+position = Vector2(-484, -274)
+name_text = "004.RELAPSE"
+
+[node name="MapLevel7" parent="Levels" instance=ExtResource("4_17lxb")]
+position = Vector2(998, -376)
+level = ExtResource("6_qfahr")
+name_text = "005.STORAGE"
+
+[node name="MapLevel8" parent="Levels" instance=ExtResource("4_17lxb")]
+position = Vector2(1468, 244)
+name_text = "H43.NUCLEAR"
+
+[node name="MapLevel9" parent="Levels" instance=ExtResource("4_17lxb")]
+position = Vector2(2512, -244)
+name_text = "UNKNOWN"
 
 [node name="CoolantPocket" parent="." instance=ExtResource("6_4a6mq")]
-position = Vector2(-224, 254)
+position = Vector2(1276, 566)
 
 [node name="Sprite2D" type="Sprite2D" parent="CoolantPocket"]
 modulate = Color(0, 0.607822, 0.858605, 1)
@@ -133,11 +168,14 @@ texture = ExtResource("9_uqps3")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CoolantPocket"]
 visible = false
+position = Vector2(30, -228)
+rotation = 2.29025
 scale = Vector2(0.277253, 0.277253)
 polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
 
 [node name="Hazard" parent="." instance=ExtResource("8_xqpvg")]
-position = Vector2(184, -298)
+position = Vector2(-202, 262)
+rotation = 2.38055
 
 [node name="Sprite2D" type="Sprite2D" parent="Hazard"]
 modulate = Color(1, 0.219608, 0.227451, 1)
@@ -146,5 +184,81 @@ texture = ExtResource("9_uqps3")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazard"]
 visible = false
+scale = Vector2(0.277253, 0.277253)
+polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
+
+[node name="Hazard2" parent="." instance=ExtResource("8_xqpvg")]
+position = Vector2(894, -82)
+rotation = 2.38055
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazard2"]
+modulate = Color(1, 0.219608, 0.227451, 1)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("9_uqps3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazard2"]
+visible = false
+scale = Vector2(0.277253, 0.277253)
+polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
+
+[node name="Hazard3" parent="." instance=ExtResource("8_xqpvg")]
+position = Vector2(1470, -330)
+rotation = -0.0725825
+scale = Vector2(0.775997, 3.32649)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazard3"]
+modulate = Color(1, 0.219608, 0.227451, 1)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("9_uqps3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazard3"]
+visible = false
+scale = Vector2(0.277253, 0.277253)
+polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
+
+[node name="Hazard4" parent="." instance=ExtResource("8_xqpvg")]
+position = Vector2(1070, 170)
+rotation = -0.0725825
+scale = Vector2(0.691415, 1.43686)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazard4"]
+modulate = Color(1, 0.219608, 0.227451, 1)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("9_uqps3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazard4"]
+visible = false
+scale = Vector2(0.277253, 0.277253)
+polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
+
+[node name="Hazard5" parent="." instance=ExtResource("8_xqpvg")]
+position = Vector2(1466, 238)
+rotation = -0.0725825
+scale = Vector2(1.05355, 0.772454)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazard5"]
+modulate = Color(1, 0.219608, 0.227451, 1)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("9_uqps3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazard5"]
+visible = false
+scale = Vector2(0.277253, 0.277253)
+polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
+
+[node name="CoolantPocket2" parent="." instance=ExtResource("6_4a6mq")]
+position = Vector2(1584, 344)
+
+[node name="Sprite2D" type="Sprite2D" parent="CoolantPocket2"]
+modulate = Color(0, 0.607822, 0.858605, 1)
+position = Vector2(30, -228)
+rotation = 2.25714
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("9_uqps3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CoolantPocket2"]
+visible = false
+position = Vector2(30, -228)
+rotation = 2.29025
 scale = Vector2(0.277253, 0.277253)
 polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
