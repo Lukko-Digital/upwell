@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0rlssnvit7w4"]
+[gd_scene load_steps=11 format=3 uid="uid://d0rlssnvit7w4"]
 
 [ext_resource type="Script" path="res://src/map/map_player/map_player.gd" id="1_g3ols"]
 [ext_resource type="Texture2D" uid="uid://y5bp2r1vi77u" path="res://assets/ui/map/player.png" id="2_x6q2x"]
@@ -8,10 +8,14 @@
 [ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="6_jc7tl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rmnfs"]
-radius = 44.0114
+radius = 16.0312
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qgkvp"]
 radius = 808.557
+
+[sub_resource type="FontVariation" id="FontVariation_o7465"]
+base_font = ExtResource("5_57n47")
+variation_embolden = 1.06
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r58ii"]
 radius = 47.0
@@ -51,23 +55,25 @@ shape = SubResource("CircleShape2D_qgkvp")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Energy" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 99.0
-offset_top = 103.0
-offset_right = 133.0
-offset_bottom = 382.0
+offset_left = 131.0
+offset_top = 855.0
+offset_right = 165.0
+offset_bottom = 1474.0
+rotation = 3.14159
 value = 100.0
 fill_mode = 2
 show_percentage = false
 
 [node name="WarningLabel" type="Label" parent="CanvasLayer"]
 visible = false
-offset_left = 328.0
-offset_top = 460.0
-offset_right = 1588.0
-offset_bottom = 663.0
-theme_override_fonts/font = ExtResource("5_57n47")
-theme_override_font_sizes/font_size = 100
-text = "You ran out of energy"
+offset_left = -4.0
+offset_top = 907.0
+offset_right = 1921.0
+offset_bottom = 1110.0
+theme_override_fonts/font = SubResource("FontVariation_o7465")
+theme_override_font_sizes/font_size = 50
+text = "YOU RAN OUT OF ENERGY"
+horizontal_alignment = 1
 
 [node name="GravityDetector" type="Area2D" parent="."]
 collision_layer = 2

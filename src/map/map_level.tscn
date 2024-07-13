@@ -1,13 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://ql7gm3yuyicr"]
+[gd_scene load_steps=11 format=3 uid="uid://ql7gm3yuyicr"]
 
 [ext_resource type="Script" path="res://src/map/map_level.gd" id="1_0g7oc"]
 [ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="2_y385f"]
 [ext_resource type="Texture2D" uid="uid://cu2hfokgxd4pw" path="res://assets/ui/map/destination.png" id="3_dyj0g"]
+[ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="3_s6vqy"]
 [ext_resource type="Script" path="res://src/artificial_gravity/artificial_gravity.gd" id="4_txnlk"]
 [ext_resource type="PackedScene" uid="uid://d4jqyovssydvt" path="res://src/artificial_gravity/glow_sprite.tscn" id="5_fn1ck"]
 
 [sub_resource type="Theme" id="Theme_30kq5"]
 default_font = ExtResource("2_y385f")
+
+[sub_resource type="FontVariation" id="FontVariation_i4kiy"]
+base_font = ExtResource("3_s6vqy")
+variation_embolden = 2.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r5pps"]
 radius = 40.0125
@@ -21,15 +26,19 @@ script = ExtResource("1_0g7oc")
 label = NodePath("Label")
 
 [node name="Label" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0.545098)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -50.0
+offset_left = -85.0
 offset_top = 52.0
-offset_right = 50.0
-offset_bottom = 75.0
+offset_right = 86.0
+offset_bottom = 84.0
 grow_horizontal = 2
 theme = SubResource("Theme_30kq5")
+theme_override_fonts/font = SubResource("FontVariation_i4kiy")
+theme_override_font_sizes/font_size = 36
+text = "H32.NUCLEAR"
 horizontal_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -45,9 +54,6 @@ collision_mask = 0
 script = ExtResource("4_txnlk")
 type = 1
 
-[node name="RegenTimer" type="Timer" parent="Gravity"]
-one_shot = true
-
 [node name="Glow" parent="Gravity" instance=ExtResource("5_fn1ck")]
 scale = Vector2(0.466185, 0.466185)
 
@@ -58,4 +64,3 @@ shape = SubResource("CircleShape2D_ego6m")
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
-[connection signal="timeout" from="Gravity/RegenTimer" to="Gravity" method="_on_regen_timer_timeout"]
