@@ -9,7 +9,11 @@ class_name MapPlayer
 @onready var out_of_energy: Label = $CanvasLayer/OutOfEnergyLabel
 @onready var grav_component: GravitizedComponent = $GravitizedComponent
 
-var moving = false
+var moving = false:
+	set(value):
+		moving = value
+		Global.moving_on_map = value
+
 var velocity: Vector2 = Vector2.ZERO
 
 var destination: MapLevel = null:
@@ -74,6 +78,9 @@ func end_movement() -> void:
 	starting_position = global_position
 	if line.get_point_count() > 1:
 		line.remove_point(1)
+
+	await get_tree().create_timer(0.35).timeout
+	Global.set_camera_focus.emit(null)
 
 func recall() -> void:
 	global_position = starting_position

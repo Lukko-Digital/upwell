@@ -31,6 +31,7 @@ var level_unlocks = {}
 var npc_conversation_state = {}
 var pod_position: EmptyPod
 
+var moving_on_map = false
 signal set_camera_focus(focus: Node2D)
 signal pod_called(empty_pod: EmptyPod)
 
