@@ -13,14 +13,6 @@ var catchable = true
 ## Value is set by [ClickerHolder] when clicker is inserted/removed
 var holder_owned_by: ClickerHolder
 
-## Set by [init]. [global_position] is set to this value at ready. This avoids
-## the issue of position being set before being added to tree, and then
-## adding the additional offset of the root node.
-var initial_position: Vector2
-
-func _ready() -> void:
-	global_position = initial_position
-
 func _physics_process(delta: float) -> void:
 	var gravity_state: GravitizedComponent.GravityState = handle_artificial_gravity(delta)
 	if gravity_state == GravitizedComponent.GravityState.ORBIT:
@@ -31,16 +23,6 @@ func _physics_process(delta: float) -> void:
 
 func _process(_delta):
 	handle_animation()
-
-## Set initial parameters of clicker. To be called when instantiating.
-func init(
-	home_holder_: ClickerHolder,
-	velocity: Vector2,
-	global_pos: Vector2
-):
-	home_holder = home_holder_
-	linear_velocity = velocity
-	initial_position = global_pos
 
 func handle_artificial_gravity(delta) -> GravitizedComponent.GravityState:
 	var active_ag = grav_component.check_active_ag()
