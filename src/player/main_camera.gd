@@ -13,7 +13,6 @@ const CAMERA = {
 }
 
 @export var player: Player
-@export var pod: Node2D
 
 var focus: Vector2 = Vector2.ZERO
 var focusing: bool = false
