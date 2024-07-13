@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="upwell"
-run/main_scene="res://src/levels/sandbox.tscn"
+run/main_scene="res://src/game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
