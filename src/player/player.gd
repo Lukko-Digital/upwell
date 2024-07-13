@@ -105,6 +105,7 @@ func _physics_process(delta):
 	handle_coyote_timing(gravity_state)
 
 func _process(_delta):
+	Global.player_has_clicker = has_clicker()
 	handle_throw_arc()
 	handle_nearby_interactables()
 	handle_controllable_clickers()
