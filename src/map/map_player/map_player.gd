@@ -9,6 +9,10 @@ class_name MapPlayer
 @onready var warning_label: Label = $CanvasLayer/WarningLabel
 @onready var grav_component: GravitizedComponent = $GravitizedComponent
 
+const HAZARD_TEXT = "You hit a hazard"
+const OUT_OF_ENERGY_TEXT = "You ran out of energy"
+const LOW_ENERGY_TEXT = "You are low on energy"
+
 var moving = false:
 	set(value):
 		moving = value
@@ -16,13 +20,15 @@ var moving = false:
 
 var velocity: Vector2 = Vector2.ZERO
 
+var recalled = false
+
 var destination: MapLevel = null:
 	set(value):
 		destination = value
 		velocity = global_position.direction_to(value.global_position) * SPEED
 
 const SPEED: float = 800
-const ENERGY_USE_RATE: float = 50
+const ENERGY_USE_RATE: float = 25
 
 const AG_ACCELERATION: float = 4
 
@@ -42,12 +48,13 @@ func _process(delta: float) -> void:
 		else:
 			line.set_point_position(1, destination.global_position - global_position)
 
-		# energy_bar.value -= ENERGY_USE_RATE * delta
+		energy_bar.value -= ENERGY_USE_RATE * delta
 	
 	if energy_bar.value <= 0:
+		show_warning(OUT_OF_ENERGY_TEXT)
 		recall()
-	elif energy_bar.value == energy_bar.max_value / 2: # For energy warning
-		pass
+	# elif energy_bar.value <= energy_bar.max_value / 2: # For energy warning
+	# 	show_warning(LOW_ENERGY_TEXT)
 
 func location_hovered(location: MapLevel):
 	if moving:
@@ -79,18 +86,27 @@ func end_movement() -> void:
 	if line.get_point_count() > 1:
 		line.remove_point(1)
 
-	await get_tree().create_timer(0.35).timeout
-	Global.set_camera_focus.emit(null)
+	if not recalled:
+		await get_tree().create_timer(0.35).timeout
+		Global.set_camera_focus.emit(null)
+		recalled = false
 
 func recall() -> void:
+	recalled = true
 	global_position = starting_position
 	end_movement()
 
+func show_warning(warning_text: String) -> void:
+	warning_label.text = warning_text
 	warning_label.show()
 	await get_tree().create_timer(1).timeout
 	warning_label.hide()
 
+func hit_hazard() -> void:
+	show_warning(HAZARD_TEXT)
+	recall()
+
 func _area_scanned(area: Area2D) -> void:
-	if area is MapLevel:
+	if area is MapLevel or area is Hazard or area is CoolantPocket:
 		if not area.locked:
 			area.show()

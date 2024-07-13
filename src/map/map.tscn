@@ -127,7 +127,6 @@ level = ExtResource("5_ga2oe")
 
 [node name="CoolantPocket" parent="." instance=ExtResource("6_4a6mq")]
 position = Vector2(-326.5, 88.75)
-locked_level_name = null
 
 [node name="Sprite2D" type="Sprite2D" parent="CoolantPocket"]
 modulate = Color(0.215686, 1, 1, 1)
@@ -137,7 +136,8 @@ texture = ExtResource("7_faj44")
 shape = SubResource("CircleShape2D_ju5am")
 
 [node name="Hazard" type="Area2D" parent="."]
-position = Vector2(347.75, 402)
+position = Vector2(215.5, 2.5)
+collision_mask = 2
 script = ExtResource("8_x8jc2")
 
 [node name="Sprite2D" type="Sprite2D" parent="Hazard"]
@@ -146,3 +146,5 @@ texture = ExtResource("7_faj44")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hazard"]
 shape = SubResource("CircleShape2D_ju5am")
+
+[connection signal="area_entered" from="Hazard" to="Hazard" method="_on_area_entered"]
