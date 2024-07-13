@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bbrkg6cjjyr4k"]
+[gd_scene load_steps=14 format=3 uid="uid://bbrkg6cjjyr4k"]
 
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="1_88q8o"]
 [ext_resource type="Script" path="res://src/holder/timed_multi_receiver.gd" id="2_dknni"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://bifs4cy21hluc" path="res://src/level_elements/powered_objects/door.tscn" id="4_1jypm"]
 [ext_resource type="Texture2D" uid="uid://ykefhnuia0vt" path="res://assets/mvp3_assets/tutorial/e.png" id="5_venan"]
 [ext_resource type="Texture2D" uid="uid://bqa3iiix8dttv" path="res://assets/mvp3_assets/tutorial/left_click.png" id="7_n1yo2"]
-[ext_resource type="PackedScene" uid="uid://dhjj5tgw8y2es" path="res://src/level_elements/view_blocker.tscn" id="8_l5spf"]
 [ext_resource type="PackedScene" uid="uid://5mnlsyicmwh" path="res://src/level_elements/pod/empty_pod.tscn" id="11_vwma2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bthli"]
@@ -214,16 +213,6 @@ modulate = Color(1, 1, 1, 0.588235)
 position = Vector2(6000, 144)
 scale = Vector2(0.837261, 0.837261)
 texture = ExtResource("7_n1yo2")
-
-[node name="ViewBlocker" parent="." instance=ExtResource("8_l5spf")]
-position = Vector2(7464, -232)
-
-[node name="ViewBlocker2" parent="." instance=ExtResource("8_l5spf")]
-position = Vector2(-336, -296)
-
-[node name="ViewBlocker4" parent="." node_paths=PackedStringArray("sprites") instance=ExtResource("8_l5spf")]
-position = Vector2(13488, -496)
-sprites = [NodePath("../ViewBlocker/CanvasLayer/ClickerBlocker-sheet"), NodePath("../ViewBlocker/CanvasLayer2/ClickerBlocker-sheet"), NodePath("../ViewBlocker/CanvasLayer3/ClickerBlocker-sheet"), NodePath("../ViewBlocker/CanvasLayer4/ClickerBlocker-sheet"), NodePath("../ViewBlocker/CanvasLayer5/ClickerBlocker-sheet"), NodePath("../ViewBlocker/CanvasLayer6/ClickerBlocker-sheet"), NodePath("../ViewBlocker/CanvasLayer7/ClickerBlocker-sheet"), NodePath("../ViewBlocker/CanvasLayer8/ClickerBlocker-sheet"), NodePath("../ViewBlocker/CanvasLayer9/ClickerBlocker-sheet")]
 
 [node name="EmptyPod" parent="." instance=ExtResource("11_vwma2")]
 position = Vector2(-3200, -128)

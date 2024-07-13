@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yfgn3ku7u5bu"
-path="res://.godot/imported/button_boost.png-4f739076433a31913f54daac67c503ea.ctex"
+uid="uid://b1tya4oq7twf2"
+path="res://.godot/imported/focus.png-8863c5c10c7a8e924e3daf2ebcb4cfb9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mvp3_assets/screenpuzzle/button_boost.png"
-dest_files=["res://.godot/imported/button_boost.png-4f739076433a31913f54daac67c503ea.ctex"]
+source_file="res://assets/ui/map/focus.png"
+dest_files=["res://.godot/imported/focus.png-8863c5c10c7a8e924e3daf2ebcb4cfb9.ctex"]
 
 [params]
 
