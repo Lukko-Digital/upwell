@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bb68hmcptqlgt"]
+[gd_scene load_steps=8 format=3 uid="uid://bb68hmcptqlgt"]
 
 [ext_resource type="Script" path="res://src/map/map.gd" id="1_ithwi"]
 [ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player/map_player.tscn" id="2_uwq5e"]
 [ext_resource type="PackedScene" uid="uid://ql7gm3yuyicr" path="res://src/map/map_level.tscn" id="4_17lxb"]
+[ext_resource type="PackedScene" uid="uid://dl1nh6jj657a" path="res://src/levels/FALL.tscn" id="5_acvux"]
 [ext_resource type="PackedScene" uid="uid://bbrkg6cjjyr4k" path="res://src/levels/CONTACT.tscn" id="5_wdg53"]
 [ext_resource type="Texture2D" uid="uid://b1tya4oq7twf2" path="res://assets/ui/map/focus.png" id="6_d0u1u"]
 [ext_resource type="Texture2D" uid="uid://dc6nfaju78e60" path="res://assets/environment/test_level/particle_softest.png" id="12_kdma8"]
@@ -112,7 +113,7 @@ level = ExtResource("5_wdg53")
 [node name="MapLevel2" parent="Levels" node_paths=PackedStringArray("label") instance=ExtResource("4_17lxb")]
 position = Vector2(272, 160)
 scale = Vector2(-1.48265, -1.48265)
-level = ExtResource("5_wdg53")
+level = ExtResource("5_acvux")
 label = NodePath("../MapLevel/Label")
 
 [node name="MapLevel3" parent="Levels" node_paths=PackedStringArray("label") instance=ExtResource("4_17lxb")]
