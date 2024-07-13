@@ -89,9 +89,10 @@ func _ready() -> void:
 	# Retrieve Game node 
 	var current_scene = get_tree().get_current_scene()
 	if current_scene is Game and not owner is Game:
-		var main_camera: Camera2D = current_scene.get_node("Camera2D")
-		main_camera.limit_bottom = camera.limit_bottom
-		main_camera.limit_top = camera.limit_top
+		# var main_camera: Camera2D = current_scene.get_node("Camera2D")
+		# main_camera.limit_bottom = camera.limit_bottom
+		# main_camera.limit_top = camera.limit_top
+		camera.queue_free()
 		queue_free()
 
 func _physics_process(delta):
