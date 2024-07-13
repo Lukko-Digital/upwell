@@ -21,4 +21,5 @@ texture = ExtResource("1_hhjci")
 
 [node name="Opened" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(8, 0)
 texture = ExtResource("2_xi4ox")
