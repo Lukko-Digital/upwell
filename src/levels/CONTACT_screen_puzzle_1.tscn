@@ -1,0 +1,181 @@
+[gd_scene load_steps=16 format=3 uid="uid://b30jo7kace2yj"]
+
+[ext_resource type="Texture2D" uid="uid://dhw7wq51its7p" path="res://assets/mvp3_assets/screenpuzzle/layout.png" id="1_samqn"]
+[ext_resource type="Texture2D" uid="uid://cl1p7ygvq4qg" path="res://assets/mvp3_assets/screenpuzzle/text_backer.png" id="2_cwlb2"]
+[ext_resource type="Texture2D" uid="uid://ba863aqwujv2p" path="res://assets/mvp3_assets/screenpuzzle/file.png" id="3_hha1e"]
+[ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="4_t2x6u"]
+[ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="5_yaaqn"]
+[ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/screen_ag.tscn" id="6_0rwsq"]
+[ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/screen_player.tscn" id="7_t4bqi"]
+[ext_resource type="PackedScene" uid="uid://d3nl8jv07w2yg" path="res://src/screen_puzzles/screen_hazard.tscn" id="8_yqvax"]
+[ext_resource type="PackedScene" uid="uid://xiabu6v8kd6w" path="res://src/screen_puzzles/screen_power_up.tscn" id="9_ngh8b"]
+[ext_resource type="PackedScene" uid="uid://dei1bl8astem7" path="res://src/screen_puzzles/screen_button_boost.tscn" id="10_jbvs2"]
+[ext_resource type="PackedScene" uid="uid://bwbpi60st6gme" path="res://src/screen_puzzles/screen_button_unorbit.tscn" id="11_irrs2"]
+[ext_resource type="PackedScene" uid="uid://bdt2psjmwjsy6" path="res://src/screen_puzzles/screen_button_orbit.tscn" id="12_ptn12"]
+[ext_resource type="PackedScene" uid="uid://c1fatgffin6hd" path="res://src/screen_puzzles/screen_core.tscn" id="13_hn1t8"]
+[ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="14_a2tmf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tk24l"]
+size = Vector2(1763, 1481)
+
+[node name="ScreenPuzzle" type="Node2D"]
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+offset_left = -1958.0
+offset_top = -1115.0
+offset_right = 1944.0
+offset_bottom = 1108.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Layout" type="Sprite2D" parent="."]
+position = Vector2(-14, 10)
+texture = ExtResource("1_samqn")
+
+[node name="TextBacker" type="Sprite2D" parent="."]
+position = Vector2(1101, 47)
+texture = ExtResource("2_cwlb2")
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = 592.0
+offset_top = -878.0
+offset_right = 1598.0
+offset_bottom = 620.0
+mouse_filter = 2
+color = Color(0.2, 0.2, 0.2, 0)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect3/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_hha1e")
+
+[node name="TextureRect2" type="TextureRect" parent="ColorRect3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_hha1e")
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect3/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect3/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_t2x6u")
+theme_override_fonts/italics_font = ExtResource("5_yaaqn")
+theme_override_font_sizes/normal_font_size = 60
+text = "Filepath Missing"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="ScreenAG" parent="." instance=ExtResource("6_0rwsq")]
+position = Vector2(-1238, -477)
+
+[node name="ScreenAG2" parent="." instance=ExtResource("6_0rwsq")]
+position = Vector2(-220, 87)
+
+[node name="ScreenPlayer" parent="." instance=ExtResource("7_t4bqi")]
+position = Vector2(-1431, 453)
+
+[node name="ScreenHazard" parent="." instance=ExtResource("8_yqvax")]
+position = Vector2(-592, -353)
+
+[node name="ScreenHazard2" parent="." instance=ExtResource("8_yqvax")]
+position = Vector2(-899, 61)
+
+[node name="ScreenPowerUp2" parent="." instance=ExtResource("9_ngh8b")]
+position = Vector2(-1479, -634)
+
+[node name="ScreenPowerUp" parent="." instance=ExtResource("9_ngh8b")]
+position = Vector2(-699, -220)
+
+[node name="ScreenButtonBoost" parent="." instance=ExtResource("10_jbvs2")]
+position = Vector2(-1390, 776)
+
+[node name="ScreenButtonUnorbit" parent="." instance=ExtResource("11_irrs2")]
+position = Vector2(-936, 773)
+
+[node name="ScreenButtonOrbit2" parent="." instance=ExtResource("12_ptn12")]
+position = Vector2(-1164, 777)
+
+[node name="ScreenButtonOrbit" parent="." instance=ExtResource("12_ptn12")]
+position = Vector2(-1606, 775)
+
+[node name="PlaceableArea" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaceableArea"]
+position = Vector2(-700.5, 15.5)
+shape = SubResource("RectangleShape2D_tk24l")
+
+[node name="ScreenCore" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("13_hn1t8")]
+position = Vector2(-1236, -485)
+label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
+text = "9/24/35
+
+Hector,
+
+This will take more time than you hoped. This level of physical file management is unprecedented. I honestly don't even know how to send the right documents to the accessible stations which, may make it difficult for students.
+
+Copying the startup message below so you can vet:
+
+Heya recruits! Now that you've found your first waypoint, it's time second. Remember to drag your <actions> below onto your flight path in order to map out your course.
+
+See you at the end!
+
+Rheuman
+"
+indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect")
+glow = NodePath("../ClickerGlow")
+
+[node name="ScreenCore2" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("13_hn1t8")]
+position = Vector2(-226, 90)
+label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
+text = "9/24/35
+
+cannot believe this. the earth is quite LITERALLY coming to an end, yet hector can't get it past his thick fucking skull that there's no undoing a fuckup, ESPECIALLY when i'm running blind.
+
+honey, i shit you not i have been wasting all my time this last week just REMINDING him (kindly) that i cannot simply r
+
+---------------------------------------------------
+Hi new recruits!
+
+The above was written in error, and should be treated as an example in caution when using the Creator's old system. Congratulations on completing the first exercise and good luck!
+
+Rheuman
+powe
+
+"
+indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect2")
+glow = NodePath("../ClickerGlow")
+
+[node name="ClickerGlow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(787, -943)
+scale = Vector2(2, 2)
+texture = ExtResource("14_a2tmf")
+
+[node name="ScreenPowerUp3" parent="." instance=ExtResource("9_ngh8b")]
+position = Vector2(30, 232)
+
+[node name="ScreenPowerUp4" parent="." instance=ExtResource("9_ngh8b")]
+position = Vector2(-808, -83)

@@ -4,13 +4,17 @@
 [ext_resource type="PackedScene" uid="uid://c41e7cium4ple" path="res://src/artificial_gravity/orbit_core_sprite.tscn" id="2_xnfqp"]
 [ext_resource type="PackedScene" uid="uid://d4jqyovssydvt" path="res://src/artificial_gravity/glow_sprite.tscn" id="3_wxnx4"]
 
-[node name="OrbitAG" type="Area2D" node_paths=PackedStringArray("glow")]
+[node name="OrbitAG" type="Area2D"]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_l7ntd")
 type = 1
-glow = NodePath("Glow")
 
 [node name="Core" parent="." instance=ExtResource("2_xnfqp")]
 
 [node name="Glow" parent="." instance=ExtResource("3_wxnx4")]
+
+[node name="RegenTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]

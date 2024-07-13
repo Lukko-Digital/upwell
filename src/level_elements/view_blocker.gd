@@ -13,5 +13,6 @@ func _ready():
 func _process(delta):
 	for sprite in sprites:
 		sprite.position = position
+		sprite.rotation = rotation
 		sprite.visible = visible
 	pass
