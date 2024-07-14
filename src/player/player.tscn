@@ -1,15 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://tfy83b2uc6hh"]
+[gd_scene load_steps=10 format=3 uid="uid://tfy83b2uc6hh"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_lbj7m"]
 [ext_resource type="PackedScene" uid="uid://br8qm13yce4pr" path="res://src/dialogue/dialogue_ui.tscn" id="2_cft6f"]
 [ext_resource type="Texture2D" uid="uid://dw7s1u2h3q230" path="res://assets/mvp2_assets/player.png" id="3_u0vu5"]
 [ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="4_wg5r1"]
+[ext_resource type="Texture2D" uid="uid://2idgorc23fon" path="res://assets/ui/map/travel_line_texture.png" id="6_hr78g"]
 [ext_resource type="PackedScene" uid="uid://b3xmpb6et0p0g" path="res://src/player/clicker_ui.tscn" id="6_j7ju8"]
 [ext_resource type="Texture2D" uid="uid://nl3afbhplomy" path="res://assets/environment/test_level/plyrglow.png" id="6_mcnf8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_erpsl"]
 radius = 68.2904
 height = 273.162
+
+[sub_resource type="Gradient" id="Gradient_2aots"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("grav_component", "interactable_detector", "dialogue_ui", "level_unlock_popup", "coyote_timer", "jump_buffer_timer", "min_jump_timer", "throw_arc_line")]
 z_index = 5
@@ -98,6 +102,10 @@ text = "your map has been updated"
 player = NodePath("..")
 
 [node name="ThrowArc" type="Line2D" parent="."]
+width = 20.0
+gradient = SubResource("Gradient_2aots")
+texture = ExtResource("6_hr78g")
+texture_mode = 2
 
 [node name="Plyrglow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.415686)
