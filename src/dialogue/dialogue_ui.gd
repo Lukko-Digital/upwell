@@ -37,7 +37,7 @@ func start_dialogue(npc: NPC):
 func play_branch(branch_id: String):
 	clear_responses()
 	var branch: ConversationBranch = current_conversation.branches[branch_id]
-	var display_time = branch.dialogue_line.length() * TEXT_SPEED
+	var display_time = branch.dialogue_line.length() * (TEXT_SPEED + get_process_delta_time())
 
 	label.text = branch.dialogue_line
 	duration_timer.start(display_time * branch.duration)
@@ -88,7 +88,10 @@ func exit_dialogue():
 	dialogue_finished.emit()
 
 func _response_button_pressed(branch_id: String):
-	play_branch(branch_id)
+	if branch_id == "EXIT":
+		exit_dialogue()
+	else:
+		play_branch(branch_id)
 
 func _on_duration_timer_timeout():
 	if next_branch == "EXIT":
