@@ -1,0 +1,32 @@
+Branch,Dialogue Text,Duration,Variable To Set,Variable Value,Next Branch,Condition,Conditional Next Branch,R1 Text,R1 Spawn Condition,R1 Spawn Time,R1 Despawn Time,R1 Variable To Set,R1 Variable Value,R1 Next Branch,R2 Text,R2 Spawn Condition,R2 Spawn Time,R2 Despawn Time,R2 Variable To Set,R2 Variable Value,R2 Next Branch
+S1,,,,,END,LOC_RELAPSE,S1xa,,,,,,,,,,,,,,
+S1xa,,,,,R1,GREETED_RELAPSE,RL1,,,,,,,,,,,,,,
+,GREETING_A,,,,,,,,,,,,,,,,,,,,
+A1,Woah there! Look at you!,,GREETING,1,A2,,,,,,,,,,,,,,,,
+A1a,"Rude one, you.",,,,,,,I'm sorry.,,,,,,A1b,,,,,,,
+A1b,Tsalright - I understand.,,,,A3,,,,,,,,,,,,,,,,
+A2,All geared up... just like the old days.,,,,,,,Yup!,,,,,,A3,The old days?,,,,,,A2a
+A2a,Back when the org was still functioning...,,GREETING,1,A2b,,,,,,,,,,,,,,,,
+A2b,Nowadays it basically doesn't exist.,,,,A2c,,,,,,,,,,,,,,,,
+A2c,But that's neither here nor there.,,,,,,,Right...,,,,,,A3,Thanks for the explanation.,,,,,,A2d
+A2d,You're welcome kid.,,,,A3,,,,,,,,,,,,,,,,
+A3,Who sent you out here?,,,,,,,My dad! He was a scout too!,,,,,,A4,What does it matter?,,,,,,A4
+A4,Ahhh... don't tell me... you're Terin's kid!,,OLD_KNOWS_TERIN,1,,,,That's right.,,,,,,A10,How did you know?,,,,,,A4a
+A4a,Kid... not so many people in sector H still support the org.,,,,A4b,,,,,,,,,,,,,,,,
+A4b,T's pretty much me and yer pops.,,,,,,,So you're a lieutenant too?,,,,,,A4c,...,,,,,,A10
+A4c,Sharp kid! I know my way around.,,,,A10,LOC_RELAPSE,R5,,,,,,,,,,,,,,
+A10,Well I'm here if y've got any questions I'll be right here.,,,,END,,,,,,,,,,,,,,,,
+,RELAPSE_R,,,,,,,,,,,,,,,,,,,,
+R1,If you're coming to me for answers... I've got none.,,GREETED_RELAPSE,1,R2,,,,,,,,,,,,,,,,
+R2,This rooms been unsolved since the beginning of the org.,,,,R3,GREETED,R4,,,,,,,,,,,,,,
+R3,"I was a scout too, y'know.",,,,A2a,,,,,,,,,,,,,,,,
+R4,I bet you think since you've gotten through TEST this'll be a breeze.,,,,R5,,,,,,,,,,,,,,,,
+R5,You're too green to recognize the impossible... but it's lookin at you.,,,,END,,,,,,,,,,,,,,,,
+,RELAPSE_LOOP_RL,,,,,,,,,,,,,,,,,,,,
+RL1,You think I can help you?,,,,,,,What is the org?,RLQ1,,,RLQ1,0,RL1xa,Nevermind.,,,,,,RL6
+RL1xa,,,,,RL2,OLD_KNOWS_TERIN,RL3,,,,,,,,,,,,,,
+RL2,Terin didn't tell you this?,,,,RL3,,,,,,,,,,,,,,,,
+RL3,Well it was our escape plan... essentially.,,,,RL5,,,,,,,,,,,,,,,,
+RL4,Couldn't tell ya.,,,,RL5,,,,,,,,,,,,,,,,
+RL5,Anything else?,,,,,,,What is the org?,RLQ1,,,RLQ1,0,RL1xa,Nevermind.,,,,,,RL6
+RL6,Good luck and all that...,,,,END,,,,,,,,,,,,,,,,
