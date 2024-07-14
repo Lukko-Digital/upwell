@@ -45,6 +45,6 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 
 func _on_area_entered(area: Area2D):
 	if area.get_name() == "PlayerBody":
-		modulate = Color.GREEN
+		modulate = Color.DIM_GRAY
 		player.destination = self
 		game.change_level(level)
