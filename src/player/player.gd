@@ -46,8 +46,6 @@ var game: Game
 
 # PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
 var in_dialogue: bool = false
-var in_map: bool = false
-# ---
 
 ## DEPRECATED, LEFT AS REFERENCE
 # var has_clicker: bool:
@@ -58,14 +56,15 @@ var in_map: bool = false
 
 var clicker_inventory: Array[ClickerInfo]
 
+# Jumping + Air Strafing
 var previously_grounded: bool = false
 var jumping: bool = false
 var disable_airborne_decel: bool = true
 var previous_horizontal_direction: float = 0
 
+# Throwing
 var aiming: bool = false
-
-## ---
+var focused_on_screen: bool = false
 
 var highlighted_interactable: Interactable = null:
 	set(interactable):
@@ -83,6 +82,7 @@ func _ready() -> void:
 	# Connect signal
 	min_jump_timer.timeout.connect(_min_jump_timer_timeout)
 	Global.level_unlocked.connect(_on_level_unlocked)
+	Global.set_camera_focus.connect(_camera_focus_net)
 	
 	## DEPRECATED, LEFT AS REFERENCE
 	# Load clicker state
@@ -98,7 +98,7 @@ func _ready() -> void:
 		queue_free()
 
 func _physics_process(delta):
-	if in_dialogue: # or in_map:
+	if in_dialogue:
 		return
 	var gravity_state: GravitizedComponent.GravityState = handle_artificial_gravity(delta)
 	handle_world_gravity(delta, gravity_state)
@@ -132,8 +132,6 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_released("throw"):
 		throw()
-
-## ------------------------------ CAMERA ------------------------------
 
 ## ------------------------------ GRAVITY ------------------------------
 
@@ -316,7 +314,8 @@ func home_all_clickers():
 func throw():
 	if not (
 		has_clicker() and
-		aiming
+		aiming and
+		not focused_on_screen
 	):
 		return
 	var dir = (get_global_mouse_position() - global_position).normalized()
@@ -328,7 +327,8 @@ func handle_throw_arc():
 	if not (
 		Input.is_action_pressed("throw") and
 		has_clicker() and
-		aiming
+		aiming and
+		not focused_on_screen
 	):
 		return
 
@@ -362,3 +362,9 @@ func _on_level_unlocked(_level_name: Global.LevelIDs):
 	level_unlock_popup.show()
 	await get_tree().create_timer(2).timeout
 	level_unlock_popup.hide()
+
+func _camera_focus_net(focus: Node2D):
+	if focus == null:
+		focused_on_screen = false
+	else:
+		focused_on_screen = true
