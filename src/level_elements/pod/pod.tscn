@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dw50qvw1e418b"]
+[gd_scene load_steps=6 format=3 uid="uid://dw50qvw1e418b"]
 
 [ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="1_pv0jy"]
 [ext_resource type="Script" path="res://src/level_elements/pod/pod.gd" id="1_urr8o"]
 [ext_resource type="PackedScene" uid="uid://bb68hmcptqlgt" path="res://src/map/map.tscn" id="2_uerrb"]
+[ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/holder/clicker_holder.tscn" id="4_goton"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fgq61"]
 size = Vector2(440, 1338)
@@ -43,3 +44,8 @@ offset_right = 2890.0
 offset_bottom = 279.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
+
+[node name="ClickerHolder" parent="." instance=ExtResource("4_goton")]
+position = Vector2(-512, -41)
+starts_with_clicker = false
+is_catcher = false

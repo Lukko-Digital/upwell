@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://5mnlsyicmwh"]
+[gd_scene load_steps=10 format=3 uid="uid://5mnlsyicmwh"]
 
 [ext_resource type="Texture2D" uid="uid://cg7bn01uog8q1" path="res://assets/mvp2_assets/TM.png" id="1_ail4i"]
 [ext_resource type="Script" path="res://src/level_elements/pod/empty_pod.gd" id="1_i5ays"]
 [ext_resource type="PackedScene" uid="uid://bm854dcfuk24c" path="res://src/level_elements/pod/pod_caller.tscn" id="3_l6i3p"]
 [ext_resource type="Texture2D" uid="uid://bv5xiq8uwc5el" path="res://assets/mvp3_assets/call_sign.png" id="4_4l2fb"]
-[ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/holder/clicker_holder.tscn" id="5_4ret5"]
 [ext_resource type="Script" path="res://src/level_elements/pod/empty_pod_hider.gd" id="5_rlv4i"]
 [ext_resource type="Texture2D" uid="uid://ykefhnuia0vt" path="res://assets/mvp3_assets/tutorial/e.png" id="7_tfmqr"]
 
@@ -173,12 +172,6 @@ position = Vector2(1219, -92)
 
 [node name="PodCaller2" parent="." instance=ExtResource("3_l6i3p")]
 position = Vector2(-1218, -94)
-
-[node name="ClickerHolder" parent="." instance=ExtResource("5_4ret5")]
-z_index = 10
-position = Vector2(-512, -41)
-starts_with_clicker = false
-is_catcher = false
 
 [node name="E3" type="Sprite2D" parent="."]
 visible = false
