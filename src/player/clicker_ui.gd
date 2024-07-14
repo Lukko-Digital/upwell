@@ -3,11 +3,12 @@ class_name ClickerUI
 
 @export var player: Player
 @export var clickers_sprite: AnimatedSprite2D
-
-@onready var animation_player: AnimationPlayer = $Reactor/AnimationPlayer
+@export var reactor_animation: AnimationPlayer
+@export var screen_color_animation: AnimationPlayer
 
 func _ready() -> void:
 	player.clicker_count_changed.connect(_player_clicker_count_changed)
+	player.lost_clicker_to_blocker.connect(_player_lost_clicker_to_blocker)
 	update_clicker_inventory()
 
 func _input(_event: InputEvent) -> void:
@@ -33,5 +34,8 @@ func update_clicker_inventory():
 
 func _player_clicker_count_changed():
 	update_clicker_inventory()
-	animation_player.stop()
-	animation_player.play("pickup")
+	reactor_animation.stop()
+	reactor_animation.play("pickup")
+
+func _player_lost_clicker_to_blocker():
+	screen_color_animation.play("flash")
