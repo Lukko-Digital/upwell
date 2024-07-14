@@ -87,8 +87,9 @@ func end_movement() -> void:
 		line.remove_point(1)
 
 	if not recalled:
-		await get_tree().create_timer(0.35).timeout
-		Global.set_camera_focus.emit(null)
+		# 7/13, josh says dont bump you out of map on arrival
+		# await get_tree().create_timer(0.35).timeout
+		# Global.set_camera_focus.emit(null)
 		recalled = false
 
 func recall() -> void:
