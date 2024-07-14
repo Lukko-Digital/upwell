@@ -1,11 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0rlssnvit7w4"]
+[gd_scene load_steps=15 format=3 uid="uid://d0rlssnvit7w4"]
 
 [ext_resource type="Script" path="res://src/map/map_player/map_player.gd" id="1_g3ols"]
+[ext_resource type="Texture2D" uid="uid://cb1ud4vqk0bd5" path="res://assets/ui/map/player_glow.png" id="2_dt38u"]
 [ext_resource type="Texture2D" uid="uid://y5bp2r1vi77u" path="res://assets/ui/map/player.png" id="2_x6q2x"]
 [ext_resource type="Texture2D" uid="uid://d1ogmure04xwi" path="res://assets/ui/map/ring1.png" id="3_ixl3o"]
+[ext_resource type="Texture2D" uid="uid://2idgorc23fon" path="res://assets/ui/map/travel_line_texture.png" id="4_dgis1"]
 [ext_resource type="Texture2D" uid="uid://vr33qlvb418f" path="res://assets/ui/map/ring5.png" id="4_rs5vh"]
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="5_57n47"]
 [ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="6_jc7tl"]
+
+[sub_resource type="Gradient" id="Gradient_i3lws"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rmnfs"]
 radius = 16.0
@@ -13,16 +18,24 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_qgkvp"]
 radius = 808.557
 
+[sub_resource type="FontVariation" id="FontVariation_r8fn4"]
+base_font = ExtResource("5_57n47")
+variation_embolden = 0.76
+
 [sub_resource type="FontVariation" id="FontVariation_o7465"]
 base_font = ExtResource("5_57n47")
 variation_embolden = 1.06
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r58ii"]
-radius = 35.0
+radius = 31.0161
 
 [node name="MapPlayer" type="Node2D"]
 z_index = 1
 script = ExtResource("1_g3ols")
+
+[node name="PlayerGlow" type="Sprite2D" parent="."]
+position = Vector2(-15, 2)
+texture = ExtResource("2_dt38u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.691736, 0.691736)
@@ -32,10 +45,13 @@ texture = ExtResource("2_x6q2x")
 z_index = -1
 scale = Vector2(0.25, 0.25)
 points = PackedVector2Array(0, 0)
-width = 24.0
-texture_mode = 1
+width = 86.17
+gradient = SubResource("Gradient_i3lws")
+texture = ExtResource("4_dgis1")
+texture_mode = 2
 
 [node name="Ring1" type="Sprite2D" parent="."]
+scale = Vector2(0.9, 0.9)
 texture = ExtResource("3_ixl3o")
 
 [node name="Ring5" type="Sprite2D" parent="."]
@@ -57,14 +73,28 @@ shape = SubResource("CircleShape2D_qgkvp")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Energy" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 194.0
-offset_top = 855.0
-offset_right = 291.0
-offset_bottom = 1474.0
+modulate = Color(1, 1, 1, 0.529412)
+offset_left = 163.0
+offset_top = 942.0
+offset_right = 261.0
+offset_bottom = 1806.0
 rotation = 3.14159
+mouse_filter = 2
 value = 100.0
 fill_mode = 2
 show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 57.0
+offset_top = 938.0
+offset_right = 520.0
+offset_bottom = 1126.0
+scale = Vector2(0.264077, 0.264077)
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 0.247059)
+theme_override_fonts/normal_font = SubResource("FontVariation_r8fn4")
+theme_override_font_sizes/normal_font_size = 141
+text = "POWER"
 
 [node name="WarningLabel" type="Label" parent="CanvasLayer"]
 visible = false
