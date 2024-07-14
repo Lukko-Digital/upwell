@@ -1,7 +1,7 @@
 extends Area2D
 class_name ArtificialGravity
 
-const DEFAULT_RADIUS = 450
+@export var DEFAULT_RADIUS = 450
 
 # Animation
 const DEATH_TIME = 0.3
