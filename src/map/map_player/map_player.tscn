@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="6_jc7tl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rmnfs"]
-radius = 16.0312
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qgkvp"]
 radius = 808.557
@@ -18,13 +18,14 @@ base_font = ExtResource("5_57n47")
 variation_embolden = 1.06
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r58ii"]
-radius = 47.0
+radius = 35.0
 
 [node name="MapPlayer" type="Node2D"]
 z_index = 1
 script = ExtResource("1_g3ols")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.691736, 0.691736)
 texture = ExtResource("2_x6q2x")
 
 [node name="Line2D" type="Line2D" parent="."]
@@ -50,14 +51,15 @@ shape = SubResource("CircleShape2D_rmnfs")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScanArea"]
+visible = false
 shape = SubResource("CircleShape2D_qgkvp")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Energy" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 131.0
+offset_left = 194.0
 offset_top = 855.0
-offset_right = 165.0
+offset_right = 291.0
 offset_bottom = 1474.0
 rotation = 3.14159
 value = 100.0
