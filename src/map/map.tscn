@@ -1,13 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://bb68hmcptqlgt"]
+[gd_scene load_steps=13 format=3 uid="uid://bb68hmcptqlgt"]
 
 [ext_resource type="Script" path="res://src/map/map.gd" id="1_ithwi"]
 [ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player/map_player.tscn" id="2_uwq5e"]
 [ext_resource type="PackedScene" uid="uid://ql7gm3yuyicr" path="res://src/map/map_level.tscn" id="4_17lxb"]
 [ext_resource type="PackedScene" uid="uid://bbrkg6cjjyr4k" path="res://src/levels/CONTACT.tscn" id="5_ga2oe"]
-[ext_resource type="PackedScene" uid="uid://bke4dorpjm7yp" path="res://src/map/coolant_pocket.tscn" id="6_4a6mq"]
+[ext_resource type="PackedScene" uid="uid://c413chwmpxtw1" path="res://src/levels/H32_NUCLEAR.tscn" id="5_og8y0"]
+[ext_resource type="PackedScene" path="res://src/map/coolant_pocket.tscn" id="6_4a6mq"]
 [ext_resource type="PackedScene" uid="uid://tlnbxn7fgral" path="res://src/levels/TEST.tscn" id="6_qfahr"]
 [ext_resource type="PackedScene" uid="uid://dl1nh6jj657a" path="res://src/levels/FALL.tscn" id="7_kq772"]
 [ext_resource type="PackedScene" path="res://src/map/hazard.tscn" id="8_xqpvg"]
+[ext_resource type="PackedScene" uid="uid://cr2ov0m76vreo" path="res://src/levels/RELAPSE.tscn" id="9_bymtf"]
 [ext_resource type="Texture2D" uid="uid://cshgupmhysmp3" path="res://assets/ui/map/hazards/hazard_1.png" id="9_uqps3"]
 [ext_resource type="Texture2D" uid="uid://dc6nfaju78e60" path="res://assets/environment/test_level/particle_softest.png" id="12_kdma8"]
 
@@ -16,143 +18,142 @@ scale = Vector2(4, 4)
 script = ExtResource("1_ithwi")
 
 [node name="MapPlayer" parent="." instance=ExtResource("2_uwq5e")]
-position = Vector2(-2.75146, -8.25012)
 
 [node name="Camera2D" type="Camera2D" parent="MapPlayer"]
 zoom = Vector2(0.15, 0.15)
 
 [node name="Background" type="Node2D" parent="."]
 
-[node name="ParticleSoftest" type="Sprite2D" parent="Background"]
-self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(-632, -200)
-texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
-
 [node name="FX" type="Node2D" parent="."]
 
-[node name="ParticleSoftest2" type="Sprite2D" parent="FX"]
-self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(528, -208)
-texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
+[node name="CanvasLayer" type="CanvasLayer" parent="FX"]
+follow_viewport_enabled = true
+follow_viewport_scale = 1.24
 
-[node name="ParticleSoftest3" type="Sprite2D" parent="FX"]
+[node name="ParticleSoftest" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(-64, 272)
+position = Vector2(1360, -750)
+scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
-[node name="ParticleSoftest4" type="Sprite2D" parent="FX"]
+[node name="ParticleSoftest2" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(72, -808)
+position = Vector2(6000, -782)
+scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
-[node name="ParticleSoftest5" type="Sprite2D" parent="FX"]
+[node name="ParticleSoftest3" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(-88, -168)
+position = Vector2(3632, 1138)
+scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
-[node name="ParticleSoftest6" type="Sprite2D" parent="FX"]
+[node name="ParticleSoftest4" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(-760, -704)
+position = Vector2(4176, -3182)
+scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
-[node name="ParticleSoftest7" type="Sprite2D" parent="FX"]
+[node name="ParticleSoftest5" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(-584, 448)
+position = Vector2(3536, -622)
+scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
-[node name="ParticleSoftest8" type="Sprite2D" parent="FX"]
+[node name="ParticleSoftest6" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(232, 496)
+position = Vector2(848, -2766)
+scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
-[node name="ParticleSoftest9" type="Sprite2D" parent="FX"]
+[node name="ParticleSoftest7" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(1000, 8)
+position = Vector2(1552, 1842)
+scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
-[node name="ParticleSoftest10" type="Sprite2D" parent="FX"]
+[node name="ParticleSoftest8" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(-640, 200)
-scale = Vector2(0.0837091, 0.0837091)
+position = Vector2(4816, 2034)
+scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
-[node name="ParticleSoftest11" type="Sprite2D" parent="FX"]
+[node name="ParticleSoftest9" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(-104, -336)
-scale = Vector2(0.0837091, 0.0837091)
+position = Vector2(7888, 82)
+scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
-[node name="ParticleSoftest12" type="Sprite2D" parent="FX"]
+[node name="ParticleSoftest10" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(392, -88)
-scale = Vector2(0.123151, 0.123151)
+position = Vector2(1328, 850)
+scale = Vector2(0.334836, 0.334836)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
-[node name="ParticleSoftest13" type="Sprite2D" parent="FX"]
+[node name="ParticleSoftest11" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(496, 624)
-scale = Vector2(0.123151, 0.123151)
+position = Vector2(3472, -1294)
+scale = Vector2(0.334836, 0.334836)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
-[node name="ParticleSoftest14" type="Sprite2D" parent="FX"]
+[node name="ParticleSoftest12" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(1008, 624)
-scale = Vector2(0.123151, 0.123151)
+position = Vector2(5456, -302)
+scale = Vector2(0.492604, 0.492604)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
+
+[node name="ParticleSoftest13" type="Sprite2D" parent="FX/CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0.282353)
+position = Vector2(5872, 2546)
+scale = Vector2(0.492604, 0.492604)
+texture = ExtResource("12_kdma8")
+
+[node name="ParticleSoftest14" type="Sprite2D" parent="FX/CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0.282353)
+position = Vector2(7920, 2546)
+scale = Vector2(0.492604, 0.492604)
+texture = ExtResource("12_kdma8")
 
 [node name="Levels" type="Node2D" parent="."]
 
-[node name="MapLevel" parent="Levels" instance=ExtResource("4_17lxb")]
-level = ExtResource("5_ga2oe")
+[node name="H32_NUCLEAR" parent="Levels" instance=ExtResource("4_17lxb")]
+level = ExtResource("5_og8y0")
 name_text = "H32.NUCLEAR"
 
-[node name="MapLevel2" parent="Levels" instance=ExtResource("4_17lxb")]
+[node name="001_CONTACT" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(364, -244)
 level = ExtResource("5_ga2oe")
 name_text = "001.CONTACT"
 
-[node name="MapLevel3" parent="Levels" instance=ExtResource("4_17lxb")]
+[node name="003_TEST" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(414, 434)
 level = ExtResource("6_qfahr")
 name_text = "003.TEST"
 
-[node name="MapLevel4" parent="Levels" instance=ExtResource("4_17lxb")]
+[node name="002_FALL" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(852, 144)
 level = ExtResource("7_kq772")
 name_text = "002.FALL"
 
-[node name="MapLevel5" parent="Levels" instance=ExtResource("4_17lxb")]
+[node name="H02_RECURRENCE" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(-302, 350)
 name_text = "H02.RECURRENCE"
 
-[node name="MapLevel6" parent="Levels" instance=ExtResource("4_17lxb")]
+[node name="004_RELAPSE" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(-484, -274)
+level = ExtResource("9_bymtf")
 name_text = "004.RELAPSE"
 
-[node name="MapLevel7" parent="Levels" instance=ExtResource("4_17lxb")]
+[node name="005_STORAGE" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(998, -376)
 level = ExtResource("6_qfahr")
 name_text = "005.STORAGE"
 
-[node name="MapLevel8" parent="Levels" instance=ExtResource("4_17lxb")]
+[node name="H43_NUCLEAR" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(1468, 244)
 name_text = "H43.NUCLEAR"
 
-[node name="MapLevel9" parent="Levels" instance=ExtResource("4_17lxb")]
+[node name="UNKNOWN" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(2512, -244)
 name_text = "UNKNOWN"
 
