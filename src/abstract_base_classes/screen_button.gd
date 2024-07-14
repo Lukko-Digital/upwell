@@ -4,6 +4,7 @@ class_name ScreenButton
 enum ButtonTypes {NONE, BOOST, UNORBIT, ORBIT}
 
 @export var type = ButtonTypes.NONE
+@export var disabled: bool = false
 
 @onready var button_glow: Sprite2D = $ButtonGlow
 @onready var draggable: Area2D = $ScreenDraggable
@@ -18,6 +19,9 @@ func _ready():
 	draggable.input_event.connect(_on_area_2d_input_event)
 	draggable.mouse_entered.connect(_on_mouse_entered)
 	draggable.mouse_exited.connect(_on_mouse_exited)
+	if disabled:
+		draggable.set_deferred("input_pickable", false)
+		modulate = Color("727272")
 
 func _on_mouse_entered() -> void:
 	button_glow.show()
