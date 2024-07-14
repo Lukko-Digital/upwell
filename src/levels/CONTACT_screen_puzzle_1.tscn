@@ -43,7 +43,7 @@ color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="ScreenPlayer" parent="." instance=ExtResource("7_t4bqi")]
-position = Vector2(-725, 453)
+position = Vector2(-722, 453)
 
 [node name="Lineblocker" type="Sprite2D" parent="."]
 texture = ExtResource("2_5v2p4")
@@ -115,10 +115,10 @@ text = "
 zoom = Vector2(0.5, 0.5)
 
 [node name="ScreenButtonOrbit" parent="." instance=ExtResource("12_ptn12")]
-position = Vector2(-1592, 775)
+position = Vector2(-731, 781)
 
 [node name="ScreenAG" parent="." instance=ExtResource("6_0rwsq")]
-position = Vector2(-718, -231)
+position = Vector2(-718, -233)
 scale = Vector2(1.54392, 1.54392)
 
 [node name="PlaceableArea" type="Area2D" parent="."]
