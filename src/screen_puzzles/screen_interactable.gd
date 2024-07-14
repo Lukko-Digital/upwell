@@ -14,7 +14,7 @@ func _ready() -> void:
 func interact(_player: Player):
 	if not focused:
 		Global.set_camera_focus.emit(self)
-	elif not Global.moving_on_map:
+	else:
 		Global.set_camera_focus.emit(null)
 
 # func _on_body_exited(body: Node2D):
