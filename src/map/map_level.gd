@@ -23,7 +23,8 @@ func _ready() -> void:
 		hide()
 
 func _process(_delta):
-	gravity_area.visible = Global.player_has_clicker
+	if not Engine.is_editor_hint():
+		gravity_area.visible = Global.player_has_clicker
 
 func _on_mouse_entered() -> void:
 	if not Engine.is_editor_hint():
