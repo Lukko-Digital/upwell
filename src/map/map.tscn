@@ -193,6 +193,8 @@ polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60,
 
 [node name="CoolantPocket2" parent="." instance=ExtResource("6_4a6mq")]
 position = Vector2(1305.25, -88.25)
+rotation = 1.83259
+scale = Vector2(1.83, 1.83)
 
 [node name="Sprite2D" type="Sprite2D" parent="CoolantPocket2"]
 position = Vector2(4.0915, -0.382904)
@@ -209,6 +211,8 @@ shape = SubResource("CircleShape2D_lkmmn")
 
 [node name="CoolantPocket3" parent="." instance=ExtResource("6_4a6mq")]
 position = Vector2(196.5, 59.25)
+rotation = -1.0472
+scale = Vector2(1.83, 1.83)
 
 [node name="Sprite2D" type="Sprite2D" parent="CoolantPocket3"]
 position = Vector2(4.0915, -0.382904)
@@ -225,6 +229,7 @@ shape = SubResource("CircleShape2D_lkmmn")
 
 [node name="CoolantPocket4" parent="." instance=ExtResource("6_4a6mq")]
 position = Vector2(703.5, -229)
+scale = Vector2(1.83, 1.83)
 
 [node name="Sprite2D" type="Sprite2D" parent="CoolantPocket4"]
 position = Vector2(4.0915, -0.382904)
@@ -471,6 +476,8 @@ polygon = PackedVector2Array(67.5, -415.8, 67.5, -414.4, 96.5, -403.4, 96.5, -40
 
 [node name="CoolantPocket5" parent="." instance=ExtResource("6_4a6mq")]
 position = Vector2(1581.25, 22)
+rotation = -2.61799
+scale = Vector2(1.83, 1.83)
 
 [node name="Sprite2D" type="Sprite2D" parent="CoolantPocket5"]
 position = Vector2(4.0915, -0.382904)
@@ -487,6 +494,8 @@ shape = SubResource("CircleShape2D_lkmmn")
 
 [node name="CoolantPocket6" parent="." instance=ExtResource("6_4a6mq")]
 position = Vector2(2028, 1.25)
+rotation = 0.523598
+scale = Vector2(1.83, 1.83)
 
 [node name="Sprite2D" type="Sprite2D" parent="CoolantPocket6"]
 position = Vector2(4.0915, -0.382904)
@@ -570,3 +579,57 @@ texture = ExtResource("9_uqps3")
 visible = false
 scale = Vector2(0.277253, 0.277253)
 polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
+
+[node name="CoolantPocket7" parent="." instance=ExtResource("6_4a6mq")]
+position = Vector2(-414.5, 462.25)
+rotation = 0.523598
+scale = Vector2(1.83, 1.83)
+
+[node name="Sprite2D" type="Sprite2D" parent="CoolantPocket7"]
+position = Vector2(4.0915, -0.382904)
+rotation = 2.25714
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("16_2tb20")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoolantPocket7"]
+visible = false
+position = Vector2(4.09155, -0.382935)
+rotation = 2.25714
+scale = Vector2(0.308215, 0.308215)
+shape = SubResource("CircleShape2D_lkmmn")
+
+[node name="CoolantPocket8" parent="." instance=ExtResource("6_4a6mq")]
+position = Vector2(80, -650)
+rotation = 0.523598
+scale = Vector2(1.83, 1.83)
+
+[node name="Sprite2D" type="Sprite2D" parent="CoolantPocket8"]
+position = Vector2(4.0915, -0.382904)
+rotation = 2.25714
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("16_2tb20")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoolantPocket8"]
+visible = false
+position = Vector2(4.09155, -0.382935)
+rotation = 2.25714
+scale = Vector2(0.308215, 0.308215)
+shape = SubResource("CircleShape2D_lkmmn")
+
+[node name="CoolantPocket9" parent="." instance=ExtResource("6_4a6mq")]
+position = Vector2(-849.25, -374.5)
+rotation = 0.523598
+scale = Vector2(1.83, 1.83)
+
+[node name="Sprite2D" type="Sprite2D" parent="CoolantPocket9"]
+position = Vector2(4.0915, -0.382904)
+rotation = 2.25714
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("16_2tb20")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoolantPocket9"]
+visible = false
+position = Vector2(4.09155, -0.382935)
+rotation = 2.25714
+scale = Vector2(0.308215, 0.308215)
+shape = SubResource("CircleShape2D_lkmmn")
