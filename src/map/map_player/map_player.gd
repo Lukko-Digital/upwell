@@ -18,6 +18,8 @@ var moving = false:
 		moving = value
 		Global.moving_on_map = value
 
+var in_coolant = false
+
 var velocity: Vector2 = Vector2.ZERO
 
 var recalled = false
@@ -48,7 +50,7 @@ func _process(delta: float) -> void:
 		else:
 			line.set_point_position(1, destination.global_position - global_position)
 
-		energy_bar.value -= ENERGY_USE_RATE * delta
+		if not in_coolant: energy_bar.value -= ENERGY_USE_RATE * delta
 	
 	if energy_bar.value <= 0:
 		show_warning(OUT_OF_ENERGY_TEXT)
@@ -77,6 +79,10 @@ func location_selected(location: MapLevel):
 
 func enter_coolant_pocket() -> void:
 	energy_bar.value = energy_bar.max_value
+	in_coolant = true
+	
+func exit_coolant_pocket() -> void:
+	in_coolant = false
 
 func end_movement() -> void:
 	moving = false
