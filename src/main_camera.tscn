@@ -2,13 +2,10 @@
 
 [ext_resource type="Script" path="res://src/player/main_camera.gd" id="1_c0f23"]
 
-[node name="Camera2D" type="Camera2D" node_paths=PackedStringArray("player")]
+[node name="Camera2D" type="Camera2D"]
 position = Vector2(0, -128)
 zoom = Vector2(0.5, 0.5)
-limit_top = -4594
-limit_bottom = 565
 limit_smoothed = true
 position_smoothing_enabled = true
 editor_draw_limits = true
 script = ExtResource("1_c0f23")
-player = NodePath("")
