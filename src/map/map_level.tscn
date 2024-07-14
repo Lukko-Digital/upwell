@@ -24,16 +24,17 @@ radius = 213.038
 collision_mask = 2
 script = ExtResource("1_0g7oc")
 label = NodePath("Label")
+sprite_scale = 1.0
 
 [node name="Label" type="Label" parent="."]
 self_modulate = Color(1, 1, 1, 0.545098)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -85.0
+offset_left = -126.0
 offset_top = 52.0
-offset_right = 86.0
-offset_bottom = 84.0
+offset_right = 127.0
+offset_bottom = 98.0
 grow_horizontal = 2
 theme = SubResource("Theme_30kq5")
 theme_override_fonts/font = SubResource("FontVariation_i4kiy")
@@ -58,6 +59,7 @@ type = 1
 scale = Vector2(0.466185, 0.466185)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gravity"]
+visible = false
 shape = SubResource("CircleShape2D_ego6m")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

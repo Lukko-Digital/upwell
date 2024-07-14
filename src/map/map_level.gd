@@ -11,6 +11,9 @@ class_name MapLevel
 	set(value):
 		name_text = value
 		label.text = value
+		
+@export var sprite_scale: float
+		
 
 @onready var player: MapPlayer = owner.get_node("MapPlayer")
 @onready var game: Game = get_tree().get_current_scene()
@@ -23,6 +26,9 @@ func _ready() -> void:
 func _process(_delta):
 	if not Engine.is_editor_hint():
 		gravity_area.visible = Global.pod_has_clicker
+	$Sprite2D.scale = Vector2(1 * sprite_scale, 1 * sprite_scale)
+	$Label.position.y = sprite_scale * 50
+	$CollisionShape2D.scale = Vector2(1 * sprite_scale, 1 * sprite_scale)
 
 func _on_mouse_entered() -> void:
 	if not Engine.is_editor_hint():
