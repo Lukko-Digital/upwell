@@ -47,10 +47,16 @@ func parse_csv():
 
 		# create branch
 		var branch_id = get_key.call(line, "branch")
+		var duration = get_key.call(line, "duration (multiplier)")
+		if duration == "":
+			duration = INF
+		else:
+			duration = float(duration)
+			
 		conversations[conversation_id].branches[branch_id] = ConversationBranch.new(
 			branch_id,
 			get_key.call(line, "dialogue"),
-			float(get_key.call(line, "duration (multiplier)")),
+			duration,
 			get_key.call(line, "next"),
 			responses
 		)
