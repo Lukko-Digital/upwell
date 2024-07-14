@@ -32,6 +32,8 @@ shape = SubResource("RectangleShape2D_fgq61")
 
 [node name="WallsVisual" type="Node2D" parent="."]
 z_index = 10
+position = Vector2(0, 911)
+scale = Vector2(1, 7.13)
 
 [node name="ColorRect" type="ColorRect" parent="WallsVisual"]
 offset_left = -2890.0
@@ -46,6 +48,26 @@ offset_left = 768.0
 offset_top = -1105.0
 offset_right = 2890.0
 offset_bottom = 279.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="WallsVisual"]
+offset_left = -2497.0
+offset_top = 377.279
+offset_right = -375.0
+offset_bottom = 1761.28
+rotation = -1.57079
+scale = Vector2(0.235649, 3.61439)
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect4" type="ColorRect" parent="WallsVisual"]
+offset_left = -2445.0
+offset_top = -290.743
+offset_right = -323.0
+offset_bottom = 1093.26
+rotation = -1.57079
+scale = Vector2(0.235649, 3.61439)
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
