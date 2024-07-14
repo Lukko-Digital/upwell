@@ -1,18 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bb6ywkvlv608d"]
+[gd_scene load_steps=3 format=3 uid="uid://bb6ywkvlv608d"]
 
 [ext_resource type="Script" path="res://src/artificial_gravity/artificial_gravity.gd" id="1_4djdc"]
 [ext_resource type="Texture2D" uid="uid://clkd1vlji3obo" path="res://assets/mvp3_assets/screenpuzzle/orbit_area.png" id="3_fllh0"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_8hucb"]
-radius = 350.051
 
 [node name="OrbitAG" type="Area2D"]
 collision_layer = 32
 collision_mask = 2
 script = ExtResource("1_4djdc")
+DEFAULT_RADIUS = 370
 
 [node name="Glow" type="Sprite2D" parent="."]
 texture = ExtResource("3_fllh0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_8hucb")
