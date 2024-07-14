@@ -6,6 +6,7 @@ class_name Pod
 @export var walls_visual: Node2D
 
 func _ready() -> void:
+	pod_holder.clicker_state_changed.connect(_pod_clicker_state_changed)
 	Global.pod_called.connect(call_pod)
 
 func _process(_delta: float) -> void:
@@ -26,3 +27,6 @@ func _on_pod_clicker_rehome_area_body_entered(body: Node2D) -> void:
 	elif body is Player:
 		for clicker: ClickerInfo in body.clicker_inventory:
 			clicker.home_holder = pod_holder
+
+func _pod_clicker_state_changed(_holder: ClickerHolder, has_clicker: bool):
+	Global.pod_has_clicker = has_clicker

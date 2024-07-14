@@ -42,19 +42,12 @@ var world_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var game: Game
 
+var clicker_inventory: Array[ClickerInfo]
+
 ## -------------------------- PLAYER STATE VARIABLES --------------------------
 
 # PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
 var in_dialogue: bool = false
-
-## DEPRECATED, LEFT AS REFERENCE
-# var has_clicker: bool:
-	# set(value):
-	# 	clicker_sprite.visible = value
-	# 	Global.player_has_clicker = value
-	# 	has_clicker = value
-
-var clicker_inventory: Array[ClickerInfo]
 
 # Jumping + Air Strafing
 var previously_grounded: bool = false
@@ -83,10 +76,6 @@ func _ready() -> void:
 	min_jump_timer.timeout.connect(_min_jump_timer_timeout)
 	Global.level_unlocked.connect(_on_level_unlocked)
 	Global.set_camera_focus.connect(_camera_focus_net)
-	
-	## DEPRECATED, LEFT AS REFERENCE
-	# Load clicker state
-	# has_clicker = Global.player_has_clicker
 
 	# Retrieve Game node 
 	var current_scene = get_tree().get_current_scene()
@@ -107,7 +96,6 @@ func _physics_process(delta):
 	handle_coyote_timing(gravity_state)
 
 func _process(_delta):
-	Global.player_has_clicker = has_clicker()
 	handle_throw_arc()
 	handle_nearby_interactables()
 	handle_controllable_clickers()

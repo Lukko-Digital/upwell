@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 	if moving:
 		var active_ag = grav_component.check_active_ag()
 		var gravity_state = grav_component.determine_gravity_state(active_ag)
-		if gravity_state != GravitizedComponent.GravityState.NONE and Global.player_has_clicker:
+		if gravity_state != GravitizedComponent.GravityState.NONE and Global.pod_has_clicker:
 			var new_vel = grav_component.calculate_gravitized_velocity(
 				active_ag, gravity_state, velocity, delta
 			)

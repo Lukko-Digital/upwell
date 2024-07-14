@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func _process(_delta):
 	if not Engine.is_editor_hint():
-		gravity_area.visible = Global.player_has_clicker
+		gravity_area.visible = Global.pod_has_clicker
 
 func _on_mouse_entered() -> void:
 	if not Engine.is_editor_hint():
