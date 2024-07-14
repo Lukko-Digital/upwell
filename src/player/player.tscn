@@ -11,6 +11,7 @@ radius = 68.2904
 height = 273.162
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("grav_component", "interactable_detector", "dialogue_ui", "level_unlock_popup", "coyote_timer", "jump_buffer_timer", "min_jump_timer", "throw_arc_line")]
+z_index = 5
 collision_layer = 2
 script = ExtResource("1_lbj7m")
 grav_component = NodePath("GravitizedComponent")
