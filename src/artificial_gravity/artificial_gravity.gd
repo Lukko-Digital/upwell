@@ -1,3 +1,4 @@
+@tool
 extends Area2D
 class_name ArtificialGravity
 
@@ -26,6 +27,10 @@ func _ready() -> void:
 	add_to_group("AGs")
 	standard_scale = Vector2.ONE * $CollisionShape2D.shape.radius / DEFAULT_RADIUS
 	glow.scale = standard_scale
+
+func _process(delta):
+	if Engine.is_editor_hint():
+		glow.scale = Vector2.ONE * $CollisionShape2D.shape.radius / DEFAULT_RADIUS
 
 func enable():
 	enabled = true
