@@ -7,7 +7,7 @@ const CAMERA = {
 	PEEK_TOWARD_SPEED = 2.0, # lerp speed, unitless
 	# PEEK_RETURN_SPEED = 7.0, # lerp speed, unitless
 	MAP_EXIT_DISTANCE = 700.0,
-	MAP_ZOOM = 1.5,
+	MAP_ZOOM = 1.2,
 	MAP_ZOOM_SPEED = 3.0,
 	MAP_TRANSLATE_SPEED = 6.0,
 }
