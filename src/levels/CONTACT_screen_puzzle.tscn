@@ -1,0 +1,181 @@
+[gd_scene load_steps=18 format=3 uid="uid://b30jo7kace2yj"]
+
+[ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/screen_player.tscn" id="1_hsobo"]
+[ext_resource type="Texture2D" uid="uid://b868h5dr15cxm" path="res://assets/mvp3_assets/screenpuzzle/lineblocker.png" id="2_s5603"]
+[ext_resource type="Texture2D" uid="uid://dhw7wq51its7p" path="res://assets/mvp3_assets/screenpuzzle/layout.png" id="3_thtiu"]
+[ext_resource type="Texture2D" uid="uid://cl1p7ygvq4qg" path="res://assets/mvp3_assets/screenpuzzle/text_backer.png" id="4_rkrw5"]
+[ext_resource type="Texture2D" uid="uid://ba863aqwujv2p" path="res://assets/mvp3_assets/screenpuzzle/file.png" id="5_3v27w"]
+[ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="6_j3e7t"]
+[ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="7_ugrnc"]
+[ext_resource type="PackedScene" uid="uid://bdt2psjmwjsy6" path="res://src/screen_puzzles/screen_button_orbit.tscn" id="8_2v3tm"]
+[ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/screen_ag.tscn" id="9_svl6v"]
+[ext_resource type="PackedScene" uid="uid://c1fatgffin6hd" path="res://src/screen_puzzles/screen_core.tscn" id="10_b30k3"]
+[ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="11_ogsiy"]
+
+[sub_resource type="FontVariation" id="FontVariation_bfd18"]
+base_font = ExtResource("6_j3e7t")
+variation_embolden = 0.87
+
+[sub_resource type="FontVariation" id="FontVariation_i82gr"]
+base_font = ExtResource("6_j3e7t")
+variation_embolden = 2.0
+
+[sub_resource type="FontVariation" id="FontVariation_2ws21"]
+base_font = ExtResource("7_ugrnc")
+variation_embolden = 0.87
+
+[sub_resource type="FontVariation" id="FontVariation_ye6m0"]
+base_font = ExtResource("7_ugrnc")
+variation_embolden = 1.85
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_us7jo"]
+radius = 358.636
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tk24l"]
+size = Vector2(1763, 1481)
+
+[node name="ScreenPuzzle" type="Node2D"]
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+offset_left = -1958.0
+offset_top = -1115.0
+offset_right = 1944.0
+offset_bottom = 1108.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="ScreenPlayer" parent="." instance=ExtResource("1_hsobo")]
+position = Vector2(-722, 453)
+
+[node name="Lineblocker" type="Sprite2D" parent="."]
+texture = ExtResource("2_s5603")
+
+[node name="Layout" type="Sprite2D" parent="."]
+position = Vector2(-14, 10)
+texture = ExtResource("3_thtiu")
+
+[node name="TextBacker" type="Sprite2D" parent="."]
+position = Vector2(1101, 47)
+texture = ExtResource("4_rkrw5")
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = 592.0
+offset_top = -878.0
+offset_right = 1598.0
+offset_bottom = 620.0
+mouse_filter = 2
+color = Color(0.2, 0.2, 0.2, 0)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect3/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_3v27w")
+
+[node name="TextureRect2" type="TextureRect" parent="ColorRect3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_3v27w")
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect3/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect3/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_bfd18")
+theme_override_fonts/bold_font = SubResource("FontVariation_i82gr")
+theme_override_fonts/italics_font = SubResource("FontVariation_2ws21")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_ye6m0")
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+bbcode_enabled = true
+text = "
+
+[center][b][i]Filepath Missing[/i][/b][/center]"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="ScreenButtonOrbit2" parent="." instance=ExtResource("8_2v3tm")]
+position = Vector2(-718, -632)
+disabled = true
+
+[node name="ScreenButtonOrbit" parent="." instance=ExtResource("8_2v3tm")]
+position = Vector2(-731, 781)
+
+[node name="ScreenAG" parent="." instance=ExtResource("9_svl6v")]
+position = Vector2(-718, -233)
+scale = Vector2(1.57597, 1.57597)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenAG"]
+shape = SubResource("CircleShape2D_us7jo")
+
+[node name="PlaceableArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaceableArea"]
+position = Vector2(-700.5, 15.5)
+shape = SubResource("RectangleShape2D_tk24l")
+
+[node name="ScreenCore" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("10_b30k3")]
+position = Vector2(-1073, -230)
+label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
+text = "[i]i know we said know more venting but Hector cannot get it past his THICK FUCKING SKULL[/i]
+
+[center][b]9/24/35[/b][/center]
+
+Hi new recruits!
+
+The above should be treated as an example in caution when using the Creators' old system. Digital footprint is real!
+
+Congratulations on reaching your second waypoint!
+
+Rheuman
+
+
+"
+indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect2")
+glow = NodePath("../ClickerGlow")
+
+[node name="ScreenCore2" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("10_b30k3")]
+position = Vector2(-362, -230)
+label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
+text = "[center][b]9/24/35[/b][/center]
+
+Heya recruits! This is your first waypoint, but now it's time for your second second. Remember to drag your <actions> below onto your flight path in order to map out your course.
+
+Rheuman
+
+
+"
+indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect")
+glow = NodePath("../ClickerGlow")
+
+[node name="ClickerGlow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(787, -943)
+scale = Vector2(2, 2)
+texture = ExtResource("11_ogsiy")

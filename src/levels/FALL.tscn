@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://hxthntbfyogp" path="res://src/level_elements/holder/timed_multi_receiver_bar.tscn" id="12_wde18"]
 [ext_resource type="PackedScene" uid="uid://dhjj5tgw8y2es" path="res://src/level_elements/view_blocker.tscn" id="13_ymjwl"]
 [ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="16_ii665"]
-[ext_resource type="PackedScene" uid="uid://b30jo7kace2yj" path="res://src/levels/CONTACT_screen_puzzle_1.tscn" id="17_mr3k1"]
+[ext_resource type="PackedScene" uid="uid://b30jo7kace2yj" path="res://src/levels/CONTACT_screen_puzzle.tscn" id="17_mr3k1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_twxh4"]
 radius = 516.004
