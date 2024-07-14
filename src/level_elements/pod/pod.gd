@@ -1,6 +1,7 @@
 extends Node2D
 class_name Pod
 
+@export var pod_holder: ClickerHolder
 @export var walls_static_body: StaticBody2D
 @export var walls_visual: Node2D
 
@@ -17,3 +18,11 @@ func _process(_delta: float) -> void:
 
 func call_pod(empty_pod: EmptyPod):
 	global_position = empty_pod.global_position
+
+## Set the home of clickers that enter the pod to the pod holder
+func _on_pod_clicker_rehome_area_body_entered(body: Node2D) -> void:
+	if body is ClickerBody:
+		body.home_holder = pod_holder
+	elif body is Player:
+		for clicker: ClickerInfo in body.clicker_inventory:
+			clicker.home_holder = pod_holder

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dw50qvw1e418b"]
+[gd_scene load_steps=7 format=3 uid="uid://dw50qvw1e418b"]
 
 [ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="1_pv0jy"]
 [ext_resource type="Script" path="res://src/level_elements/pod/pod.gd" id="1_urr8o"]
@@ -8,8 +8,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fgq61"]
 size = Vector2(440, 1338)
 
-[node name="Pod" type="Node2D" node_paths=PackedStringArray("walls_static_body", "walls_visual")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eg7vv"]
+size = Vector2(1534, 1060)
+
+[node name="Pod" type="Node2D" node_paths=PackedStringArray("pod_holder", "walls_static_body", "walls_visual")]
 script = ExtResource("1_urr8o")
+pod_holder = NodePath("ClickerHolder")
 walls_static_body = NodePath("WallsStaticBody")
 walls_visual = NodePath("WallsVisual")
 
@@ -49,3 +53,13 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-512, -41)
 starts_with_clicker = false
 is_catcher = false
+
+[node name="PodClickerRehomeArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PodClickerRehomeArea"]
+position = Vector2(0, -540)
+shape = SubResource("RectangleShape2D_eg7vv")
+
+[connection signal="body_entered" from="PodClickerRehomeArea" to="." method="_on_pod_clicker_rehome_area_body_entered"]
