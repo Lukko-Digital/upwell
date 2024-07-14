@@ -3,7 +3,6 @@ extends Area2D
 class_name MapLevel
 
 @export var level: PackedScene
-@export var level_id: Global.LevelIDs
 @export var locked: bool = false
 
 @export var label: Label
@@ -19,7 +18,6 @@ class_name MapLevel
 
 func _ready() -> void:
 	if not Engine.is_editor_hint():
-		Global.level_unlocked.connect(level_unlocked)
 		hide()
 
 func _process(_delta):
@@ -38,10 +36,6 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			player.location_selected(self)
-
-func level_unlocked(level_name: Global.LevelIDs):
-	if locked and level_name == level_id:
-		show()
 
 func _on_area_entered(area: Area2D):
 	if area.get_name() == "PlayerBody":

@@ -74,7 +74,6 @@ var highlighted_interactable: Interactable = null:
 func _ready() -> void:
 	# Connect signal
 	min_jump_timer.timeout.connect(_min_jump_timer_timeout)
-	Global.level_unlocked.connect(_on_level_unlocked)
 	Global.set_camera_focus.connect(_camera_focus_net)
 
 	# Retrieve Game node 
@@ -345,11 +344,6 @@ func handle_throw_arc():
 
 func _on_dialogue_ui_dialogue_finished() -> void:
 	in_dialogue = false
-
-func _on_level_unlocked(_level_name: Global.LevelIDs):
-	level_unlock_popup.show()
-	await get_tree().create_timer(2).timeout
-	level_unlock_popup.hide()
 
 func _camera_focus_net(focus: Node2D):
 	if focus == null:
