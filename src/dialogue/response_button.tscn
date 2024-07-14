@@ -10,6 +10,7 @@ text = "response"
 script = ExtResource("1_3vvxx")
 
 [node name="DespawnBar" type="ProgressBar" parent="."]
+visible = false
 z_index = -1
 layout_mode = 0
 offset_right = 454.0
