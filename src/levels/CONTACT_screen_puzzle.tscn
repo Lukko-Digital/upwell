@@ -47,6 +47,7 @@ metadata/_edit_lock_ = true
 
 [node name="ScreenPlayer" parent="." instance=ExtResource("1_hsobo")]
 position = Vector2(-722, 453)
+STARTING_POWER = null
 
 [node name="Lineblocker" type="Sprite2D" parent="."]
 texture = ExtResource("2_s5603")

@@ -14,8 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://bso4h5sv02rtd" path="res://assets/mvp3_assets/tutorial/shift.png" id="12_6yh87"]
 [ext_resource type="Texture2D" uid="uid://dnqjj1lqp4wsx" path="res://assets/mvp3_assets/tutorial/space.png" id="13_ka5ec"]
 [ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="14_hpijj"]
+[ext_resource type="PackedScene" uid="uid://bnxmdjk1mqgxv" path="res://src/levels/TEST_screen_puzzle.tscn" id="14_iad8j"]
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="15_88408"]
-[ext_resource type="PackedScene" uid="uid://b30jo7kace2yj" path="res://src/levels/CONTACT_screen_puzzle.tscn" id="15_q8dot"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bthli"]
 radius = 48.0
@@ -320,7 +320,7 @@ position = Vector2(11348, -1855)
 
 [node name="Screen" parent="." instance=ExtResource("14_hpijj")]
 position = Vector2(3146, -468)
-screen = ExtResource("15_q8dot")
+screen = ExtResource("14_iad8j")
 
 [node name="Camera2D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("15_88408")]
 position = Vector2(2396, -198)
