@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcf1k6whcfars"]
+[gd_scene load_steps=9 format=3 uid="uid://dcf1k6whcfars"]
 
 [ext_resource type="PackedScene" uid="uid://dmckuh3uv0cge" path="res://src/level_elements/tilemaps/tile_map_brick.tscn" id="1_7xu06"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="2_owwjj"]
-[ext_resource type="PackedScene" uid="uid://6aouvsx0hvfm" path="res://src/level_elements/npcs/dad.tscn" id="5_8fcy6"]
+[ext_resource type="PackedScene" uid="uid://6aouvsx0hvfm" path="res://src/level_elements/npcs/NPC.tscn" id="5_8fcy6"]
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/holder/clicker_holder.tscn" id="5_iwbtf"]
 [ext_resource type="PackedScene" uid="uid://dw6autb2hsck1" path="res://src/level_elements/artificial_gravity/orbit_ag.tscn" id="5_nm78b"]
+[ext_resource type="Texture2D" uid="uid://6f53u1geg4nu" path="res://assets/character/dad/sprite/idle.png" id="6_rwf4g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ub2k7"]
 size = Vector2(4230, 358)
@@ -72,3 +73,8 @@ position = Vector2(1635, -32)
 [node name="Dad" parent="." instance=ExtResource("5_8fcy6")]
 position = Vector2(240, -219)
 dialogue_file = "res://assets/dialogue/oldguymvp3test.csv"
+
+[node name="Idle" type="Sprite2D" parent="."]
+position = Vector2(239, -218)
+scale = Vector2(0.329892, 0.329892)
+texture = ExtResource("6_rwf4g")
