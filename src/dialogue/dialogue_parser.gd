@@ -4,7 +4,7 @@ class_name DialogueParser
 const START_BRANCH_TAG = "S1"
 const END_TAG = "END"
 const CONDITION_INVERSE_PREFIX = "!"
-const MAX_RESPONSES = 2
+const MAX_RESPONSES = 3
 const DEFUALT = {
 	SPAWN_TIME = 1,
 	DESPAWN_TIME = INF,
