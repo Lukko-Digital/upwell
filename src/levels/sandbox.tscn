@@ -71,4 +71,4 @@ position = Vector2(1635, -32)
 
 [node name="Dad" parent="." instance=ExtResource("5_8fcy6")]
 position = Vector2(240, -219)
-dialogue_file = "res://assets/shitty_assets/test1mvp3.csv"
+dialogue_file = "res://assets/dialogue/oldguymvp3test.csv"
