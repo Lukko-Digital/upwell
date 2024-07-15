@@ -1,16 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://br8qm13yce4pr"]
+[gd_scene load_steps=12 format=3 uid="uid://br8qm13yce4pr"]
 
 [ext_resource type="Script" path="res://src/dialogue/dialogue_ui.gd" id="1_28e40"]
 [ext_resource type="Texture2D" uid="uid://rs7x2nijmrv1" path="res://assets/ui/dialogue/backer.png" id="2_33dgi"]
 [ext_resource type="Texture2D" uid="uid://cl1p7ygvq4qg" path="res://assets/mvp3_assets/screenpuzzle/text_backer.png" id="2_imiog"]
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="3_rc6gk"]
 [ext_resource type="PackedScene" uid="uid://xgi8pcnjfsvh" path="res://src/dialogue/response_button.tscn" id="3_y57cq"]
+[ext_resource type="Texture2D" uid="uid://qoo6lixrvk2m" path="res://assets/character/dad/portraits/neutral.png" id="6_a2jmg"]
+[ext_resource type="Texture2D" uid="uid://bbjdwc6iyldfv" path="res://assets/ui/map/scanlines.png" id="6_bm3gp"]
 [ext_resource type="Texture2D" uid="uid://dc8le7332e0c3" path="res://assets/ui/dialogue/backerscan.png" id="6_h11u4"]
 
 [sub_resource type="FontVariation" id="FontVariation_64rtg"]
 base_font = ExtResource("3_rc6gk")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ns4yk"]
+blend_mode = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m21sd"]
 blend_mode = 2
 
 [node name="DialogueUi" type="CanvasLayer" node_paths=PackedStringArray("dialogue_label", "name_label", "duration_timer", "display_timer", "response_box")]
@@ -96,9 +101,9 @@ fit_content = true
 
 [node name="ResponseBox" type="VBoxContainer" parent="."]
 offset_left = 183.0
-offset_top = 584.0
+offset_top = 659.0
 offset_right = 637.0
-offset_bottom = 834.0
+offset_bottom = 909.0
 scale = Vector2(1.23943, 1.23943)
 
 [node name="ResponseButton" parent="ResponseBox" instance=ExtResource("3_y57cq")]
@@ -113,11 +118,26 @@ text = "response 2"
 layout_mode = 2
 text = "response 3"
 
+[node name="Neutral" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1400, 630)
+rotation = -3.14159
+scale = Vector2(0.461924, -0.461924)
+texture = ExtResource("6_a2jmg")
+
 [node name="Backerscan" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.0745098)
 material = SubResource("CanvasItemMaterial_ns4yk")
 position = Vector2(675, 540)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_h11u4")
+
+[node name="Scanlines" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.12549)
+material = SubResource("CanvasItemMaterial_m21sd")
+position = Vector2(960, 540)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_bm3gp")
 
 [connection signal="timeout" from="DurationTimer" to="." method="_on_duration_timer_timeout"]
