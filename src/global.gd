@@ -37,6 +37,7 @@ var dialogue_conditions = {
 	"BEEN_H02_RECURRENCE": false,
 	"BEEN_UNKNOWN": false,
 	
+	"BEEN_CONTACT_AND_FALL": false,
 	"LEFT_HOME": false
 }
 
@@ -73,3 +74,5 @@ func update_current_location(location_name: String):
 	dialogue_conditions["AT_" + location_name] = true
 	dialogue_conditions["BEEN_" + location_name] = true
 	current_location_name = location_name
+	# Special cases
+	dialogue_conditions["BEEN_CONTACT_AND_FALL"] = dialogue_conditions["BEEN_001_CONTACT"] && dialogue_conditions["BEEN_002_FALL"]
