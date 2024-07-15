@@ -298,7 +298,8 @@ func throw():
 	if not (
 		has_clicker() and
 		aiming and
-		not focused_on_screen
+		not focused_on_screen and
+		not in_dialogue
 	):
 		return
 	var dir = (get_global_mouse_position() - global_position).normalized()
@@ -311,7 +312,8 @@ func handle_throw_arc():
 		Input.is_action_pressed("throw") and
 		has_clicker() and
 		aiming and
-		not focused_on_screen
+		not focused_on_screen and
+		not in_dialogue
 	):
 		return
 
