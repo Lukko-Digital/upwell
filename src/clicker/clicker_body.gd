@@ -64,6 +64,7 @@ func return_to_home():
 	if home_holder.has_clicker() and home_holder.owned_clicker != self:
 		home_holder.owned_clicker.return_to_home()
 	home_holder.owned_clicker = self
+	Global.clicker_sent_home.emit()
 
 func _on_holder_detector_area_entered(area: Area2D) -> void:
 	if not area is ClickerHolder:

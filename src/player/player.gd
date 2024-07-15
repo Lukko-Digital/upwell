@@ -35,8 +35,6 @@ const PLAYER = {
 
 ## Emitted when player gains or loses a clicker
 signal clicker_count_changed
-## Emitted when player loses a clicker to a blocker, in [home_all_clickers]
-signal lost_clicker_to_blocker
 
 var world_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -290,8 +288,6 @@ func spawn_clicker(
 	return instance
 
 func home_all_clickers():
-	if has_clicker():
-		lost_clicker_to_blocker.emit()
 	while has_clicker():
 		var clicker = spawn_clicker()
 		clicker.return_to_home()

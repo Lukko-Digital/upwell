@@ -16,6 +16,9 @@ var moving_on_map = false
 signal set_camera_focus(focus: Node2D)
 signal pod_called(empty_pod: EmptyPod)
 
+## Used by clicker UI to perform screen flash
+signal clicker_sent_home()
+
 func call_pod(empty_pod: EmptyPod):
 	pod_position.handle_empty()
 	pod_position = empty_pod

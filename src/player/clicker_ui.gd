@@ -8,7 +8,7 @@ class_name ClickerUI
 
 func _ready() -> void:
 	player.clicker_count_changed.connect(_player_clicker_count_changed)
-	player.lost_clicker_to_blocker.connect(_player_lost_clicker_to_blocker)
+	Global.clicker_sent_home.connect(_on_clicker_sent_home)
 	update_clicker_inventory()
 
 func _input(_event: InputEvent) -> void:
@@ -37,5 +37,5 @@ func _player_clicker_count_changed():
 	reactor_animation.stop()
 	reactor_animation.play("pickup")
 
-func _player_lost_clicker_to_blocker():
+func _on_clicker_sent_home():
 	screen_color_animation.play("flash")
