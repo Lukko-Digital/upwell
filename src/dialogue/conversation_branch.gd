@@ -2,17 +2,23 @@ extends Resource
 class_name ConversationBranch
 
 var id: String
+## Required
 var dialogue_line: String
+## Set manually or defaults to [INF]
 var duration: float
-## Key of global dialogue conditions
+## Optional, empty string if not provided. Key of global dialogue conditions.
 var variable_to_set: String
+## Optional
 var variable_value: bool
+## Required
 var next_branch_id: String
-## Key of global dialogue conditions
-## Will default to check if the condition is true. Can be prefixed with !, in
-## which case will check if the condition is false.
+## Optional, empty string if not provided. Key of global dialogue conditions.
 var condition: String
+## Optional, set in the csv by prefixing condition with ! or not
+var expected_condition_value: bool
+## Optional
 var conditional_next_branch_id: String
+## Can be empty
 var responses: Array[Response]
 
 func _init(
@@ -23,6 +29,7 @@ func _init(
 	variable_value_: bool,
 	next_branch_id_: String,
 	condition_: String,
+	expected_condition_value_: bool,
 	conditional_next_branch_id_: String,
 	responses_: Array[Response]
  ) -> void:
@@ -33,6 +40,7 @@ func _init(
 	variable_value = variable_value_
 	next_branch_id = next_branch_id_
 	condition = condition_
+	expected_condition_value = expected_condition_value_
 	conditional_next_branch_id = conditional_next_branch_id_
 	responses = responses_
 

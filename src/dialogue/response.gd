@@ -4,6 +4,8 @@ class_name Response
 var response_text: String
 ## Key of global dialogue conditions
 var spawn_condition: String
+## Set in the csv by prefixing condition with ! or not
+var expected_condition_value: bool
 var spawn_time: float
 var despawn_time: float
 ## Key of global dialogue conditions
@@ -14,6 +16,7 @@ var next_branch_id: String
 func _init(
 	response_text_: String,
 	spawn_condition_: String,
+	expected_condition_value_: bool,
 	spawn_time_: float,
 	despawn_time_: float,
 	variable_to_set_: String,
@@ -22,6 +25,7 @@ func _init(
 ) -> void:
 	response_text = response_text_
 	spawn_condition = spawn_condition_
+	expected_condition_value = expected_condition_value_
 	spawn_time = spawn_time_
 	despawn_time = despawn_time_
 	variable_to_set = variable_to_set_
