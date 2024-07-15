@@ -479,7 +479,7 @@ scale = Vector2(0.877849, 2.49533)
 
 [node name="NPC2" parent="." instance=ExtResource("16_8le5d")]
 position = Vector2(27253, -2372)
-dialogue_file = "res://assets/dialogue/dadmvp3.csv"
+dialogue_file = "res://assets/dialogue/upwell dialogue - adrikmvp3.csv"
 npc_name = "Adrik"
 
 [node name="Adrik" type="Sprite2D" parent="."]
