@@ -153,15 +153,13 @@ position = Vector2(-700.5, 15.5)
 shape = SubResource("RectangleShape2D_tk24l")
 
 [node name="ScreenCore" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("9_6om2k")]
-position = Vector2(-1462, -357)
+position = Vector2(-1005, 85)
 label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
 text = "[center][b]9/25/35[/b][/center]
 
 Sometimes the most direct path isn't the best one!
 
 We must take note of <POWERUPS> to maintain energy throughout our flight.
-
-If you're having trouble with this one, come find me in H32.N, and I can give you a hint!
 
 Rheuman
 
