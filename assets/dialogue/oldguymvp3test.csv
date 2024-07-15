@@ -2,11 +2,11 @@ Branch,Dialogue Text,Duration,Variable To Set,Variable Value,Next Branch,Conditi
 S1,,,,,END,LOC_RELAPSE,S1xa,,,,,,,,,,,,,,
 S1xa,,,,,R1,GREETED_RELAPSE,RL1,,,,,,,,,,,,,,
 ,GREETING_A,,,,,,,,,,,,,,,,,,,,
-A1,Woah there! Look at you!,,GREETING,1,A2,,,,,,,,,,,,,,,,
+A1,Woah there! Look at you!,,GREETED,1,A2,,,,,,,,,,,,,,,,
 A1a,"Rude one, you.",,,,,,,I'm sorry.,,,,,,A1b,,,,,,,
 A1b,Tsalright - I understand.,,,,A3,,,,,,,,,,,,,,,,
 A2,All geared up... just like the old days.,,,,,,,Yup!,,,,,,A3,The old days?,,,,,,A2a
-A2a,Back when the org was still functioning...,,GREETING,1,A2b,,,,,,,,,,,,,,,,
+A2a,Back when the org was still functioning...,,GREETED,1,A2b,,,,,,,,,,,,,,,,
 A2b,Nowadays it basically doesn't exist.,,,,A2c,,,,,,,,,,,,,,,,
 A2c,But that's neither here nor there.,,,,,,,Right...,,,,,,A3,Thanks for the explanation.,,,,,,A2d
 A2d,You're welcome kid.,,,,A3,,,,,,,,,,,,,,,,
