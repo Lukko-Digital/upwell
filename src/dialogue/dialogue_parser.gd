@@ -6,10 +6,10 @@ const END_TAG = "END"
 const CONDITION_INVERSE_PREFIX = "!"
 const MAX_RESPONSES = 3
 const DEFUALT = {
-	SPAWN_TIME = 1,
+	SPAWN_TIME = .8,
 	DESPAWN_TIME = INF,
 	# Default dialogue duration is 1.5x the time it takes to display the line
-	DIALOGUE_DURATION = 1.5
+	DIALOGUE_DURATION = 1.2
 }
 
 static func parse_csv(dialogue_file: String, npc_name: String) -> ConversationTree:
