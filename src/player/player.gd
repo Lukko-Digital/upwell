@@ -96,6 +96,7 @@ func _process(_delta):
 	handle_throw_arc()
 	handle_nearby_interactables()
 	handle_controllable_clickers()
+	Global.dialogue_conditions["HAS_CLICKER"] = has_clicker()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
