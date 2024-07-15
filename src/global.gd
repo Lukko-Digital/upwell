@@ -8,6 +8,9 @@ var dialogue_conditions = {
 	"RLQ1": true
 }
 
+## Placeholder for MVP3 so player can spawn on the left, then arrive on the right side subsequently
+var swap_h32_nuclear_entrances = false
+
 var pod_has_clicker = false
 var pod_position: EmptyPod = null
 
