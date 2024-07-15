@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="2_g0k2r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6qdgt"]
-radius = 344.0
+radius = 219.002
 
 [sub_resource type="FontVariation" id="FontVariation_ciso7"]
 base_font = ExtResource("2_g0k2r")
@@ -22,9 +22,10 @@ shape = SubResource("CircleShape2D_6qdgt")
 [node name="InteractLabel" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.470588)
 offset_left = -64.0
-offset_top = -308.0
+offset_top = -222.0
 offset_right = 47.0
-offset_bottom = -230.0
+offset_bottom = -144.0
+rotation = -0.000660069
 theme_override_fonts/font = SubResource("FontVariation_ciso7")
 theme_override_font_sizes/font_size = 61
 text = "<E>"
