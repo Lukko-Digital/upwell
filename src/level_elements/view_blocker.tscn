@@ -6,7 +6,7 @@
 [node name="ViewBlocker" type="Node2D" node_paths=PackedStringArray("sprites")]
 scale = Vector2(1.9, 4.2)
 script = ExtResource("1_ryx1y")
-sprites = [NodePath("CanvasLayer10/ClickerBlocker-sheet"), NodePath("CanvasLayer/ClickerBlocker-sheet"), NodePath("CanvasLayer2/ClickerBlocker-sheet"), NodePath("CanvasLayer3/ClickerBlocker-sheet"), NodePath("CanvasLayer4/ClickerBlocker-sheet"), NodePath("CanvasLayer5/ClickerBlocker-sheet"), NodePath("CanvasLayer6/ClickerBlocker-sheet"), NodePath("CanvasLayer7/ClickerBlocker-sheet"), NodePath("CanvasLayer8/ClickerBlocker-sheet"), NodePath("CanvasLayer9/ClickerBlocker-sheet")]
+sprites = [NodePath("CanvasLayer10/ClickerBlocker-sheet"), NodePath("CanvasLayer/ClickerBlocker-sheet"), NodePath("CanvasLayer2/ClickerBlocker-sheet"), NodePath("CanvasLayer3/ClickerBlocker-sheet"), NodePath("CanvasLayer4/ClickerBlocker-sheet"), NodePath("CanvasLayer5/ClickerBlocker-sheet"), NodePath("CanvasLayer6/ClickerBlocker-sheet"), NodePath("CanvasLayer7/ClickerBlocker-sheet"), NodePath("CanvasLayer8/ClickerBlocker-sheet"), NodePath("CanvasLayer9/ClickerBlocker-sheet"), NodePath("CanvasLayer11/ClickerBlocker-sheet"), NodePath("CanvasLayer12/ClickerBlocker-sheet"), NodePath("CanvasLayer13/ClickerBlocker-sheet"), NodePath("CanvasLayer14/ClickerBlocker-sheet"), NodePath("CanvasLayer15/ClickerBlocker-sheet"), NodePath("CanvasLayer16/ClickerBlocker-sheet"), NodePath("CanvasLayer17/ClickerBlocker-sheet"), NodePath("CanvasLayer18/ClickerBlocker-sheet"), NodePath("CanvasLayer19/ClickerBlocker-sheet")]
 
 [node name="CanvasLayer10" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -84,5 +84,77 @@ follow_viewport_enabled = true
 follow_viewport_scale = 12.3
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer9"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer11" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 1.09
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer11"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer12" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 1.29
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer12"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer13" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 1.59
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer13"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer14" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 1.99
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer14"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer15" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 2.47
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer15"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer16" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 3.155
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer16"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer17" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 4.22
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer17"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer18" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 6.23
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer18"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer19" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 9.925
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer19"]
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("1_wfa3m")
