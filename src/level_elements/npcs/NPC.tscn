@@ -8,7 +8,7 @@ radius = 219.002
 
 [sub_resource type="FontVariation" id="FontVariation_ciso7"]
 base_font = ExtResource("2_g0k2r")
-variation_embolden = 0.8
+variation_embolden = 0.15
 
 [node name="NPC" type="Area2D"]
 collision_layer = 8
@@ -20,15 +20,15 @@ dialogue_file = "res://assets/test1.csv"
 shape = SubResource("CircleShape2D_6qdgt")
 
 [node name="InteractLabel" type="Label" parent="."]
-modulate = Color(1, 1, 1, 0.470588)
-offset_left = -64.0
-offset_top = -222.0
-offset_right = 47.0
-offset_bottom = -144.0
+modulate = Color(1, 1, 1, 0.709804)
+offset_left = -221.0
+offset_top = -283.0
+offset_right = 247.0
+offset_bottom = -174.0
 rotation = -0.000660069
 theme_override_fonts/font = SubResource("FontVariation_ciso7")
-theme_override_font_sizes/font_size = 61
-text = "<E>"
+theme_override_font_sizes/font_size = 86
+text = "E to talk"
 horizontal_alignment = 1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
