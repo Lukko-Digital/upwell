@@ -84,7 +84,7 @@ screen = ExtResource("11_q5sjg")
 [node name="NPC" parent="." instance=ExtResource("10_0cq7e")]
 position = Vector2(-620, -187)
 dialogue_file = "res://assets/dialogue/oldmanmvp3.csv"
-npc_name = "???"
+npc_name = "Murrelet"
 
 [node name="OldMan" type="Sprite2D" parent="NPC"]
 position = Vector2(-5, 21)

@@ -17,6 +17,10 @@ var dialogue_conditions = {
 	"OLD_RLQ1": true,
 	"OLD_SPOKE_ABOUT_CLICKER": false,
 	"C3R1": false,
+
+	#TOBY
+	"TALKED_TO_TOBY": false,
+	"IS_SULKING": false,
 	
 	#LOCATIONS
 	"AT_H32_NUCLEAR": false,

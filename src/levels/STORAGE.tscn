@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5vp55dla36kl"]
+[gd_scene load_steps=9 format=3 uid="uid://c5vp55dla36kl"]
 
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="1_8o3gc"]
 [ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="1_15m0b"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="2_875uh"]
 [ext_resource type="PackedScene" uid="uid://5mnlsyicmwh" path="res://src/level_elements/pod/empty_pod.tscn" id="4_nmxjw"]
 [ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="5_5takt"]
+[ext_resource type="PackedScene" uid="uid://6aouvsx0hvfm" path="res://src/level_elements/npcs/NPC.tscn" id="7_uidh1"]
+[ext_resource type="Texture2D" uid="uid://bcdjbk5drod7h" path="res://assets/mvp3_assets/toby.png" id="8_767uu"]
 
 [node name="Contact" type="Node2D"]
 
@@ -112,3 +114,13 @@ layer_0/tile_data = PackedInt32Array(65533, 65537, 0, 65534, 65537, 0, 65535, 65
 
 [node name="Tutorials" type="Node2D" parent="."]
 z_index = 10
+
+[node name="NPC" parent="." instance=ExtResource("7_uidh1")]
+position = Vector2(162, -205)
+dialogue_file = "res://assets/dialogue/upwell dialogue - tobymvp3.csv"
+npc_name = "Toby"
+
+[node name="Toby" type="Sprite2D" parent="NPC"]
+position = Vector2(8, 16)
+scale = Vector2(0.630678, 0.630678)
+texture = ExtResource("8_767uu")
