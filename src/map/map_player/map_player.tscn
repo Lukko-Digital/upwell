@@ -71,12 +71,13 @@ visible = false
 shape = SubResource("CircleShape2D_qgkvp")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
 
 [node name="Energy" type="ProgressBar" parent="CanvasLayer"]
-modulate = Color(1, 1, 1, 0.529412)
-offset_left = 163.0
+modulate = Color(1, 1, 1, 0.878431)
+offset_left = 201.0
 offset_top = 942.0
-offset_right = 261.0
+offset_right = 337.0
 offset_bottom = 1806.0
 rotation = 3.14159
 mouse_filter = 2
@@ -85,15 +86,15 @@ fill_mode = 2
 show_percentage = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 57.0
-offset_top = 938.0
-offset_right = 520.0
-offset_bottom = 1126.0
+offset_left = 62.0
+offset_top = 939.0
+offset_right = 668.0
+offset_bottom = 1212.0
 scale = Vector2(0.264077, 0.264077)
 mouse_filter = 2
-theme_override_colors/default_color = Color(1, 1, 1, 0.247059)
+theme_override_colors/default_color = Color(1, 1, 1, 0.505882)
 theme_override_fonts/normal_font = SubResource("FontVariation_r8fn4")
-theme_override_font_sizes/normal_font_size = 141
+theme_override_font_sizes/normal_font_size = 174
 text = "POWER"
 
 [node name="WarningLabel" type="Label" parent="CanvasLayer"]

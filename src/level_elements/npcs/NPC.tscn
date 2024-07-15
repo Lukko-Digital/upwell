@@ -1,34 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://6aouvsx0hvfm"]
+[gd_scene load_steps=5 format=3 uid="uid://6aouvsx0hvfm"]
 
 [ext_resource type="Script" path="res://src/abstract_base_classes/npc.gd" id="1_wmwre"]
-[ext_resource type="Texture2D" uid="uid://6f53u1geg4nu" path="res://assets/character/dad/sprite/idle.png" id="2_jkfnv"]
+[ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="2_g0k2r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6qdgt"]
 radius = 344.0
 
-[node name="Dad" type="Area2D"]
+[sub_resource type="FontVariation" id="FontVariation_ciso7"]
+base_font = ExtResource("2_g0k2r")
+variation_embolden = 0.8
+
+[node name="NPC" type="Area2D"]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_wmwre")
 dialogue_file = "res://assets/test1.csv"
-initial_conversation_id = "NAR1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6qdgt")
 
 [node name="InteractLabel" type="Label" parent="."]
-offset_left = -72.0
-offset_top = -272.0
-offset_right = -9.0
-offset_bottom = -249.0
-scale = Vector2(2.23953, 2.23953)
-text = "e to talk"
+modulate = Color(1, 1, 1, 0.470588)
+offset_left = -64.0
+offset_top = -308.0
+offset_right = 47.0
+offset_bottom = -230.0
+theme_override_fonts/font = SubResource("FontVariation_ciso7")
+theme_override_font_sizes/font_size = 61
+text = "<E>"
 horizontal_alignment = 1
-
-[node name="Idle" type="Sprite2D" parent="."]
-position = Vector2(-9.53674e-07, 1.52588e-05)
-scale = Vector2(0.31601, 0.31601)
-texture = ExtResource("2_jkfnv")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
