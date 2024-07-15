@@ -269,7 +269,7 @@ func handle_controllable_clickers():
 		clickers.pop_front().set_controllable(true)
 	
 func add_clicker(clicker: ClickerBody):
-	var clicker_info = ClickerInfo.new(clicker.home_holder)
+	var clicker_info = ClickerInfo.new(clicker.home_holder, clicker.get_parent())
 	clicker_inventory.append(clicker_info)
 	clicker_count_changed.emit()
 	clicker.queue_free()
@@ -284,7 +284,7 @@ func spawn_clicker(
 	var instance = clicker_scene.instantiate()
 	instance.home_holder = clicker_info.home_holder
 	instance.linear_velocity = initial_velocity
-	get_parent().add_child.call_deferred(instance)
+	clicker_info.parent_node.add_child.call_deferred(instance)
 	instance.set_deferred("global_position", global_position)
 	return instance
 

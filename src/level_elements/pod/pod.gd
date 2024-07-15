@@ -24,9 +24,15 @@ func call_pod(empty_pod: EmptyPod):
 func _on_pod_clicker_rehome_area_body_entered(body: Node2D) -> void:
 	if body is ClickerBody:
 		body.home_holder = pod_holder
+		if body.get_parent() != self:
+			var pos = body.global_position
+			body.get_parent().remove_child(body)
+			self.add_child.call_deferred(body)
+			body.set_deferred("global_position", pos)
 	elif body is Player:
 		for clicker: ClickerInfo in body.clicker_inventory:
 			clicker.home_holder = pod_holder
+			clicker.parent_node = self
 
 func _pod_clicker_state_changed(_holder: ClickerHolder, has_clicker: bool):
 	Global.pod_has_clicker = has_clicker
