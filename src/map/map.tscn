@@ -183,7 +183,7 @@ sprite_scale = 0.0
 position = Vector2(2512, -244)
 level = ExtResource("12_tpuyl")
 name_text = "UNKNOWN"
-sprite_scale = 1.51
+sprite_scale = 6.045
 
 [node name="Hazard" parent="." instance=ExtResource("8_xqpvg")]
 position = Vector2(-162.75, 96)
