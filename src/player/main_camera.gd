@@ -27,7 +27,7 @@ func _process(delta):
 		zoom = lerp(zoom, Vector2.ONE * CAMERA.NORMAL_ZOOM, CAMERA.MAP_ZOOM_SPEED * delta)
 		handle_camera_peek(delta)
 
-	if player.position.x - position.x > CAMERA.MAP_EXIT_DISTANCE:
+	if abs(player.position.x - position.x) > CAMERA.MAP_EXIT_DISTANCE:
 		Global.set_camera_focus.emit(null)
 
 func handle_camera_peek(_delta):
