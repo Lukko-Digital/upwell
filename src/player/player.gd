@@ -119,6 +119,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("throw"):
 		throw()
 
+	if event.is_action_pressed("ui_cancel"):
+		dialogue_ui.exit_dialogue()
+
 ## ------------------------------ GRAVITY ------------------------------
 
 func handle_artificial_gravity(delta) -> GravitizedComponent.GravityState:
@@ -343,6 +346,7 @@ func handle_throw_arc():
 
 func _on_dialogue_ui_dialogue_finished() -> void:
 	in_dialogue = false
+	velocity = Vector2.ZERO
 
 func _camera_focus_net(focus: Node2D):
 	if focus == null:
