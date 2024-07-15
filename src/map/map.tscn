@@ -151,7 +151,7 @@ name_text = "003.TEST"
 sprite_scale = 1.225
 
 [node name="002_FALL" parent="Levels" instance=ExtResource("4_17lxb")]
-position = Vector2(749.75, 124.5)
+position = Vector2(681.5, 113.25)
 level = ExtResource("7_kq772")
 name_text = "002.FALL"
 sprite_scale = 0.785
