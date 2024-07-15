@@ -31,7 +31,7 @@ position = Vector2(988, -419)
 shape = SubResource("RectangleShape2D_fgq61")
 
 [node name="WallsVisual" type="Node2D" parent="."]
-z_index = 10
+z_index = 20
 position = Vector2(0, 911)
 scale = Vector2(1, 7.13)
 
