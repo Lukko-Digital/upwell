@@ -1,11 +1,18 @@
 extends Node
 
+var dialogue_conditions = {
+	"LOC_RELAPSE": true,
+	"GREETED_RELAPSE": false,
+	"GREETED": false,
+	"OLD_KNOWS_TERIN": false,
+	"RLQ1": true
+}
+
 var drill_heat: float = 0
 const MEDIUM_DRILL_HEAT: float = 25
 
 var pod_has_clicker = false
 var clicker_state = {}
-var npc_conversation_state = {}
 var pod_position: EmptyPod = null
 
 var moving_on_map = false
