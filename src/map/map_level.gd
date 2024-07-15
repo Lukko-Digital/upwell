@@ -13,7 +13,6 @@ class_name MapLevel
 		label.text = value
 		
 @export var sprite_scale: float
-		
 
 @onready var player: MapPlayer = owner.get_node("MapPlayer")
 @onready var game: Game = get_tree().get_current_scene()
@@ -45,6 +44,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 
 func _on_area_entered(area: Area2D):
 	if area.get_name() == "PlayerBody":
+		Global.update_current_location(name)
 		modulate = Color.DIM_GRAY
 		player.destination = self
 		game.change_level(level)

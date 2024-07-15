@@ -36,6 +36,8 @@ var dialogue_conditions = {
 	"LEFT_HOME": false
 }
 
+var current_location_name: String
+
 ## Placeholder for MVP3 so player can spawn on the left, then arrive on the right side subsequently
 var swap_h32_nuclear_entrances = false
 
@@ -56,6 +58,16 @@ func call_pod(empty_pod: EmptyPod):
 	pod_position.handle_empty()
 	pod_called.emit(empty_pod)
 
-func _process(delta):
-	if (dialogue_conditions["BEEN_001_CONTACT"] or dialogue_conditions["BEEN_002_FALL"] or dialogue_conditions["BEEN_003_TEST"] or dialogue_conditions["BEEN_004_RELAPSE"] or dialogue_conditions["BEEN_005_STORAGE"] or dialogue_conditions["BEEN_H02_RECURRENCE"] or dialogue_conditions["BEEN_UNKNOWN"]):
+func update_current_location(location_name: String):
+	# Unset last location
+	if not current_location_name.is_empty():
+		dialogue_conditions["AT_" + current_location_name] = false
+	# Set left home
+	if location_name != "H32_NUCLEAR":
 		dialogue_conditions["LEFT_HOME"] = true
+	# Set current location and been
+	dialogue_conditions["AT_" + location_name] = true
+	dialogue_conditions["BEEN_" + location_name] = true
+	current_location_name = location_name
+
+	print(dialogue_conditions)
