@@ -107,6 +107,10 @@ texture = ExtResource("6_ct26h")
 layout_mode = 2
 texture = ExtResource("6_ct26h")
 
+[node name="TextureRect3" type="TextureRect" parent="ColorRect3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_ct26h")
+
 [node name="ColorRect" type="ColorRect" parent="ColorRect3/VBoxContainer"]
 custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
@@ -163,7 +167,7 @@ Rheuman
 
 
 "
-indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect2")
+indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect")
 glow = NodePath("../ClickerGlow")
 
 [node name="ClickerGlow" type="Sprite2D" parent="."]
@@ -187,7 +191,7 @@ Rheuman
 
 
 "
-indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect")
+indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect2")
 glow = NodePath("../ClickerGlow")
 
 [node name="ScreenButtonOrbit" parent="." instance=ExtResource("11_hg2sa")]
@@ -287,5 +291,5 @@ let's just end the
 
 
 "
-indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect")
+indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect3")
 glow = NodePath("../ClickerGlow")

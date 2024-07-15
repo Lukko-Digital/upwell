@@ -19,7 +19,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bthli"]
 radius = 48.0
-height = 992.0
+height = 1574.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7nkyj"]
 radius = 48.0
@@ -131,7 +131,7 @@ is_catcher = false
 position = Vector2(600, -1314)
 rotation = -1.5708
 script = ExtResource("2_idgoh")
-countdown_time = 1.0
+countdown_time = 0.5
 countdown_bar = NodePath("../../TimedMultiReceiverBar")
 receivers = [NodePath("ClickerHolder3"), NodePath("ClickerHolder4")]
 
@@ -170,9 +170,8 @@ position = Vector2(-2621, -334)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker"]
 shape = SubResource("CapsuleShape2D_bthli")
 
-[node name="ClickerBlocker2" parent="Doors_Blockers" node_paths=PackedStringArray("sprite") instance=ExtResource("4_rwdqj")]
-position = Vector2(-642, -131)
-sprite = NodePath("../ClickerBlocker/Sprite2D")
+[node name="ClickerBlocker2" parent="Doors_Blockers" instance=ExtResource("4_rwdqj")]
+position = Vector2(-646, 98)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker2"]
 shape = SubResource("CapsuleShape2D_bthli")
@@ -241,9 +240,11 @@ shape = SubResource("CapsuleShape2D_dv7rr")
 
 [node name="OrbitAG" parent="Orbits" instance=ExtResource("2_yfsfs")]
 position = Vector2(-641, -645)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Orbits/OrbitAG"]
 shape = SubResource("CircleShape2D_dymm7")
+metadata/_edit_lock_ = true
 
 [node name="OrbitAG2" parent="Orbits" instance=ExtResource("2_yfsfs")]
 position = Vector2(5723.61, -1071)
@@ -289,7 +290,7 @@ layer_0/tile_data = PackedInt32Array(65533, 65537, 0, 65534, 65537, 0, 65535, 65
 
 [node name="ViewBlocker" parent="." instance=ExtResource("10_5krjy")]
 position = Vector2(1400, -231)
-scale = Vector2(6.38628, -9.29213)
+scale = Vector2(5.69438, -8.28541)
 
 [node name="E" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.415686)
@@ -327,5 +328,5 @@ position = Vector2(2396, -198)
 player = NodePath("../Player")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_vef2g")]
-position = Vector2(2397, -135)
+position = Vector2(-3371, -301)
 camera = NodePath("../Camera2D")

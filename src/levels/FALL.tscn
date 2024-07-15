@@ -181,10 +181,6 @@ position = Vector2(-2950, 8535)
 [node name="ClickerHolder11" parent="Holders" instance=ExtResource("1_dgotf")]
 position = Vector2(-1543, 8535)
 
-[node name="ClickerHolder12" parent="Holders" instance=ExtResource("1_dgotf")]
-position = Vector2(-2398, 9990)
-rotation = 1.57079
-
 [node name="TimedMultiReceiver2" type="Node2D" parent="Holders" node_paths=PackedStringArray("countdown_bar", "receivers")]
 script = ExtResource("2_xfdrp")
 countdown_time = 4.0
@@ -227,8 +223,26 @@ position = Vector2(-1778, 14554)
 starts_with_clicker = false
 is_catcher = false
 
+[node name="ClickerHolder14" parent="Holders" instance=ExtResource("1_dgotf")]
+position = Vector2(-2400, 6543)
+rotation = 1.57079
+is_catcher = false
+
+[node name="ClickerHolder15" parent="Holders" instance=ExtResource("1_dgotf")]
+position = Vector2(-2065, 5160)
+rotation = 3.14159
+
+[node name="ClickerHolder12" parent="Holders" instance=ExtResource("1_dgotf")]
+position = Vector2(-2398, 9653)
+rotation = 1.57079
+
+[node name="ClickerHolder13" parent="Holders" instance=ExtResource("1_dgotf")]
+position = Vector2(-2087, 10629)
+rotation = -1.5708
+is_catcher = false
+
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("4_32b8o")]
-position = Vector2(-1713, -124)
+position = Vector2(-1250, 5441)
 camera = NodePath("../Camera2D")
 
 [node name="Camera2D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_3voff")]
@@ -263,12 +277,6 @@ position = Vector2(-2223, 8804)
 rotation = 1.57079
 power_multi = NodePath("../../Holders/TimedMultiReceiver2")
 
-[node name="Door5" parent="Doors_Blockers" node_paths=PackedStringArray("power_holder") instance=ExtResource("6_umx6k")]
-position = Vector2(-2223, 10266)
-rotation = 1.57079
-power_holder = NodePath("../../Holders/ClickerHolder12")
-negative_relationship = true
-
 [node name="Door6" parent="Doors_Blockers" node_paths=PackedStringArray("power_multi") instance=ExtResource("6_umx6k")]
 position = Vector2(-2223, 14691)
 rotation = 1.57079
@@ -280,6 +288,48 @@ sprite = NodePath("../ClickerBlocker/Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker2"]
 shape = SubResource("CapsuleShape2D_bthli")
+
+[node name="ClickerBlocker3" parent="Doors_Blockers" node_paths=PackedStringArray("sprite") instance=ExtResource("5_8o3dx")]
+position = Vector2(-1222, 3294)
+rotation = 1.57079
+sprite = NodePath("../ClickerBlocker/Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker3"]
+shape = SubResource("CapsuleShape2D_bthli")
+
+[node name="ClickerBlocker4" parent="Doors_Blockers" node_paths=PackedStringArray("sprite") instance=ExtResource("5_8o3dx")]
+position = Vector2(-2249, 5720)
+rotation = 1.57079
+sprite = NodePath("../ClickerBlocker/Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker4"]
+shape = SubResource("CapsuleShape2D_bthli")
+
+[node name="ClickerBlocker5" parent="Doors_Blockers" node_paths=PackedStringArray("sprite") instance=ExtResource("5_8o3dx")]
+position = Vector2(-2254, 8808)
+rotation = 1.57079
+sprite = NodePath("../ClickerBlocker/Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker5"]
+shape = SubResource("CapsuleShape2D_bthli")
+
+[node name="Door5" parent="Doors_Blockers" node_paths=PackedStringArray("power_holder") instance=ExtResource("6_umx6k")]
+position = Vector2(-2223, 10877)
+rotation = 1.57079
+power_holder = NodePath("../../Holders/ClickerHolder13")
+negative_relationship = true
+
+[node name="Door8" parent="Doors_Blockers" node_paths=PackedStringArray("power_holder") instance=ExtResource("6_umx6k")]
+position = Vector2(-2223, 6822)
+rotation = 1.57079
+power_holder = NodePath("../../Holders/ClickerHolder14")
+negative_relationship = true
+
+[node name="Door7" parent="Doors_Blockers" node_paths=PackedStringArray("power_holder") instance=ExtResource("6_umx6k")]
+position = Vector2(-2223, 9925)
+rotation = 1.57079
+power_holder = NodePath("../../Holders/ClickerHolder12")
+negative_relationship = true
 
 [node name="EmptyPod" parent="." instance=ExtResource("9_pwukb")]
 position = Vector2(-3200, -128)
@@ -307,18 +357,18 @@ position = Vector2(-1229, 3991)
 rotation = -1.57079
 
 [node name="ViewBlocker4" parent="ViewBlocker" instance=ExtResource("13_ymjwl")]
-position = Vector2(-2260, 6475)
+position = Vector2(-2260, 6083)
 rotation = 1.57079
-scale = Vector2(3.11014, 1.25415)
+scale = Vector2(1.62517, 2.02314)
 
 [node name="ViewBlocker5" parent="ViewBlocker" instance=ExtResource("13_ymjwl")]
-position = Vector2(-2249, 9274)
+position = Vector2(-2249, 9064)
 rotation = 1.57079
 
 [node name="ViewBlocker6" parent="ViewBlocker" instance=ExtResource("13_ymjwl")]
-position = Vector2(-2243, 10774)
+position = Vector2(-2249, 11077)
 rotation = 1.57079
-scale = Vector2(2.44107, 2.83036)
+scale = Vector2(1.52654, 1.51064)
 
 [node name="ViewBlocker7" parent="ViewBlocker" instance=ExtResource("13_ymjwl")]
 position = Vector2(-2242, 13430)
@@ -358,3 +408,13 @@ screen = ExtResource("17_fnitd")
 
 [node name="EmptyPod2" parent="." instance=ExtResource("9_pwukb")]
 position = Vector2(640, 16128)
+
+[node name="ViewBlocker2" parent="." instance=ExtResource("13_ymjwl")]
+position = Vector2(-2212, 7129)
+rotation = 1.57079
+scale = Vector2(-1.9968, -4.41397)
+
+[node name="ViewBlocker3" parent="." instance=ExtResource("13_ymjwl")]
+position = Vector2(-2162, 10088)
+rotation = 1.57079
+scale = Vector2(1.31242, 2.90115)
