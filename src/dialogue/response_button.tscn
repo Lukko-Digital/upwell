@@ -9,16 +9,6 @@ theme_override_font_sizes/font_size = 30
 text = "response"
 script = ExtResource("1_3vvxx")
 
-[node name="DespawnBar" type="ProgressBar" parent="."]
-visible = false
-z_index = -1
-layout_mode = 0
-offset_right = 454.0
-offset_bottom = 50.0
-mouse_filter = 2
-value = 20.0
-show_percentage = false
-
 [node name="DespawnTimer" type="Timer" parent="."]
 one_shot = true
 
