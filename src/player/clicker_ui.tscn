@@ -84,9 +84,9 @@ screen_color_animation = NodePath("ScreenColor/ScreenAnimationPlayer")
 layout_mode = 3
 anchors_preset = 0
 offset_left = 201.0
-offset_top = 899.0
+offset_top = 181.0
 offset_right = 201.0
-offset_bottom = 899.0
+offset_bottom = 181.0
 scale = Vector2(0.3, 0.3)
 
 [node name="OrbitKnob" type="Sprite2D" parent="Reactor"]

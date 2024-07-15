@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="6_urwqu"]
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="7_buua6"]
 [ext_resource type="PackedScene" uid="uid://6aouvsx0hvfm" path="res://src/level_elements/npcs/NPC.tscn" id="7_vhtfh"]
-[ext_resource type="Texture2D" uid="uid://6f53u1geg4nu" path="res://assets/character/dad/sprite/idle.png" id="8_np664"]
+[ext_resource type="Texture2D" uid="uid://32wg102n325i" path="res://assets/mvp3_assets/dad.png" id="8_4qf24"]
 [ext_resource type="Texture2D" uid="uid://bybq5utnqi2ji" path="res://assets/mvp3_assets/tutorial/a.png" id="10_716wx"]
 [ext_resource type="PackedScene" uid="uid://5mnlsyicmwh" path="res://src/level_elements/pod/empty_pod.tscn" id="11_8j5d3"]
 [ext_resource type="Texture2D" uid="uid://nh4auewwuedq" path="res://assets/mvp3_assets/tutorial/d.png" id="11_ifasp"]
@@ -80,21 +80,21 @@ dialogue_file = "res://assets/dialogue/dadmvp3.csv"
 npc_name = "Dad"
 
 [node name="Idle" type="Sprite2D" parent="NPC"]
-position = Vector2(10.9999, 24)
-scale = Vector2(0.252318, 0.252318)
-texture = ExtResource("8_np664")
+position = Vector2(-0.999977, 29)
+scale = Vector2(-0.636, 0.636)
+texture = ExtResource("8_4qf24")
 
 [node name="Node2D" type="Node2D" parent="."]
 z_index = 4096
 
 [node name="A" type="Sprite2D" parent="Node2D"]
 modulate = Color(0.389287, 0.389287, 0.389287, 1)
-position = Vector2(-7428.11, 250.587)
+position = Vector2(-7492.11, -235.413)
 scale = Vector2(0.814786, 0.814786)
 texture = ExtResource("10_716wx")
 
 [node name="D" type="Sprite2D" parent="Node2D"]
-position = Vector2(-7143.11, 307.087)
+position = Vector2(-7207.11, -178.913)
 scale = Vector2(0.792645, 0.792645)
 texture = ExtResource("11_ifasp")
 

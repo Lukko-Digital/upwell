@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://tlnbxn7fgral"]
+[gd_scene load_steps=36 format=3 uid="uid://tlnbxn7fgral"]
 
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/holder/clicker_holder.tscn" id="1_v3v6r"]
 [ext_resource type="Script" path="res://src/holder/timed_multi_receiver.gd" id="2_idgoh"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="14_hpijj"]
 [ext_resource type="PackedScene" uid="uid://bnxmdjk1mqgxv" path="res://src/levels/TEST_screen_puzzle.tscn" id="14_iad8j"]
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="15_88408"]
+[ext_resource type="PackedScene" uid="uid://6aouvsx0hvfm" path="res://src/level_elements/npcs/NPC.tscn" id="16_8le5d"]
+[ext_resource type="Texture2D" uid="uid://k3q6rv5verlh" path="res://assets/mvp3_assets/old_man.png" id="17_dt3nv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bthli"]
 radius = 48.0
@@ -219,7 +221,7 @@ position = Vector2(-2621, -334)
 shape = SubResource("CapsuleShape2D_bthli")
 
 [node name="ClickerBlocker2" parent="Doors_Blockers" instance=ExtResource("4_rwdqj")]
-position = Vector2(-646, 98)
+position = Vector2(-641, -177)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker2"]
 shape = SubResource("CapsuleShape2D_bthli")
@@ -449,3 +451,13 @@ scale = Vector2(1.58145, 3.97209)
 [node name="Door" parent="." node_paths=PackedStringArray("power_holder") instance=ExtResource("5_s80k7")]
 position = Vector2(13028, -2564)
 power_holder = NodePath("../Holders/ClickerHolder7")
+
+[node name="NPC" parent="Door" instance=ExtResource("16_8le5d")]
+position = Vector2(-14649, 2378)
+dialogue_file = "res://assets/dialogue/oldmanmvp3.csv"
+npc_name = "???"
+
+[node name="OldMan" type="Sprite2D" parent="Door/NPC"]
+position = Vector2(-5, 21)
+scale = Vector2(-0.705, 0.705)
+texture = ExtResource("17_dt3nv")

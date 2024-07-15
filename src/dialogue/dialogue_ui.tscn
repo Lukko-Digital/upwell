@@ -1,16 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://br8qm13yce4pr"]
+[gd_scene load_steps=14 format=3 uid="uid://br8qm13yce4pr"]
 
 [ext_resource type="Script" path="res://src/dialogue/dialogue_ui.gd" id="1_28e40"]
 [ext_resource type="Texture2D" uid="uid://rs7x2nijmrv1" path="res://assets/ui/dialogue/backer.png" id="2_33dgi"]
 [ext_resource type="Texture2D" uid="uid://cl1p7ygvq4qg" path="res://assets/mvp3_assets/screenpuzzle/text_backer.png" id="2_imiog"]
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="3_rc6gk"]
 [ext_resource type="PackedScene" uid="uid://xgi8pcnjfsvh" path="res://src/dialogue/response_button.tscn" id="3_y57cq"]
+[ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="5_hkr4i"]
 [ext_resource type="Texture2D" uid="uid://qoo6lixrvk2m" path="res://assets/character/dad/portraits/neutral.png" id="6_a2jmg"]
 [ext_resource type="Texture2D" uid="uid://bbjdwc6iyldfv" path="res://assets/ui/map/scanlines.png" id="6_bm3gp"]
 [ext_resource type="Texture2D" uid="uid://dc8le7332e0c3" path="res://assets/ui/dialogue/backerscan.png" id="6_h11u4"]
 
 [sub_resource type="FontVariation" id="FontVariation_64rtg"]
 base_font = ExtResource("3_rc6gk")
+
+[sub_resource type="FontVariation" id="FontVariation_y8awx"]
+base_font = ExtResource("5_hkr4i")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ns4yk"]
 blend_mode = 2
@@ -66,6 +70,7 @@ offset_right = 524.192
 offset_bottom = 390.267
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = SubResource("FontVariation_64rtg")
+theme_override_fonts/italics_font = SubResource("FontVariation_y8awx")
 theme_override_font_sizes/normal_font_size = 24
 theme_override_font_sizes/bold_font_size = 24
 theme_override_font_sizes/italics_font_size = 24
