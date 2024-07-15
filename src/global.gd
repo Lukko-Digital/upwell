@@ -4,6 +4,7 @@ var dialogue_conditions = {
 	
 	#GENERAL
 	"HAS_CLICKER": false,
+	"DAD_SPOKE_OF_CLICKER": false,
 	
 	#DAD
 	"DAD_MET": false,
@@ -69,5 +70,3 @@ func update_current_location(location_name: String):
 	dialogue_conditions["AT_" + location_name] = true
 	dialogue_conditions["BEEN_" + location_name] = true
 	current_location_name = location_name
-
-	print(dialogue_conditions)
