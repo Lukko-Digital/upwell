@@ -70,6 +70,7 @@ one_shot = true
 one_shot = true
 
 [node name="DialogueUi" parent="." instance=ExtResource("2_cft6f")]
+layer = 128
 visible = false
 
 [node name="LevelUnlockPopup" type="CanvasLayer" parent="."]
