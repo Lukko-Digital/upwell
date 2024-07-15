@@ -392,3 +392,11 @@ shape = SubResource("RectangleShape2D_jpapu")
 [node name="ViewBlocker4" parent="." instance=ExtResource("5_6n6ak")]
 position = Vector2(786, -802)
 scale = Vector2(1.29595, 2.86474)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 3146.0
+offset_top = -1125.0
+offset_right = 3879.25
+offset_bottom = -928.0
+theme_override_font_sizes/normal_font_size = 61
+text = "thanks for playtesting!"
