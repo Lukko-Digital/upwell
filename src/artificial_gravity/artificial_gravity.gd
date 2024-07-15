@@ -28,7 +28,7 @@ func _ready() -> void:
 	standard_scale = Vector2.ONE * $CollisionShape2D.shape.radius / DEFAULT_RADIUS
 	glow.scale = standard_scale
 
-func _process(delta):
+func _process(_delta):
 	if Engine.is_editor_hint():
 		glow.scale = Vector2.ONE * $CollisionShape2D.shape.radius / DEFAULT_RADIUS
 

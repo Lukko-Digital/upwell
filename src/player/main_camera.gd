@@ -30,7 +30,7 @@ func _process(delta):
 	if player.position.x - position.x > CAMERA.MAP_EXIT_DISTANCE:
 		Global.set_camera_focus.emit(null)
 
-func handle_camera_peek(delta):
+func handle_camera_peek(_delta):
 	if Input.is_action_pressed("up") and player.is_on_floor():
 		position = player.position + Vector2.UP * CAMERA.PEEK_DISTANCE
 		position_smoothing_speed = CAMERA.PEEK_TOWARD_SPEED
