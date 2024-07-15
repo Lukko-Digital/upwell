@@ -21,6 +21,9 @@ var dialogue_conditions = {
 	#TOBY
 	"TALKED_TO_TOBY": false,
 	"IS_SULKING": false,
+
+	#ADRIK
+	"MET_ADRIK": false,
 	
 	#LOCATIONS
 	"AT_H32_NUCLEAR": false,
