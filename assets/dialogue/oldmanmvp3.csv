@@ -28,10 +28,17 @@ T2,"Howdy! Look atcha, a new recruit in the flesh.",,OLD_MET,1,,,,Nice to meet y
 T3,This ones a real puzzler...,,,,,,,Hi,,,,OLD_MET_TEST,1,T4,You haven't solved it?,,,,OLD_MET_TEST,1,T3a,Leave me alone,,,,,,END
 T3a,"Of course I have! I'm one of the best, trust me. It's just my memory... it's been too long.",,,,,,,So you can't help me?,,,,,,T5,I understand.,,,,,,T6,,,,,,,
 T4,"I've been trying at this one all day, can't help but feel like I've forgotten something important.",,,,,,,So you can't help me?,,,,,,T5,I understand.,,,,,,T6,,,,,,,
-T5,Maybe I can't... but I bet a look at CONTACT or FALL would do us both some good.,,,,,,,What do you mean?,,,,,,T7,Got it,,,,,,END,,,,,,,
-T6,"I appreciate that. To be honest, I bet a look at CONTACT or FALL would do us both some good.",,,,,,,What do you mean?,,,,,,T7,Got it,,,,,,END,,,,,,,
-T7,"If there's one thing I've learned about creator tech, it's that theres an order to things. I'm sure we could solve this right here right now with the right methods.",,,,,,,I see,,,,,,END,I'll go take a look,,,,,,END,,,,,,,
-T8,Need anything?,,,,,,,Tell me about the creators,,,,,,R11,Tell me about the scouts,,,,,,R12,Nevermind,,,,,,END
+T5,Maybe I can't... but I bet a look at CONTACT or FALL would do us both some good.,,,,,,,What do you mean?,,,,,,T7,Got it,,,,,,END,I've been to both...,BEEN_CONTACT_AND_FALL,,,,,T6a
+T6,"I appreciate that. To be honest, I bet a look at CONTACT or FALL would do us both some good.",,,,,,,What do you mean?,,,,,,T7,Got it,,,,,,END,I've been to both...,BEEN_CONTACT_AND_FALL,,,,,T6a
+T6a,Oh alright you got me. I [i]may[/i] have been holding out on you.,,,,,,,Spill!,,,,,,T6b,Please help me,,,,,,T6b,,,,,,,
+T6b,"This one here requires you to boost a node remotely, and throw the one yer holding pretty quickly after in order to beat the timer.",,,,,,,Thanks!,,,,,,END,A little more specific?,,,,,,T6c,,,,,,,
+T6c,"Well when I did it, I tossed the left node over the field so I could have both on the right. From there I tossed one up into the field, orbitted it around remotely, boosted it to the left holder, and then threw the one I was holding.",,,,,,,Gotcha,,,,,,END,Uhhh,,,,,,T6d,,,,,,,
+T6d,"I'm tryin my best here kid. Listen, you can aim a throw before boosting a clicker, so everythings in place. That's alll I've got for you.",,,,,,,Thanks.,,,,,,END,,,,,,,,,,,,,,
+T7,"If there's one thing I've learned about creator tech, it's that theres an order to things. I'm sure we could solve this right now with the right info.",,,,,,,I see,,,,,,END,I'll go take a look,,,,,,END,,,,,,,
+T8,Need anything?,,,,,,,Tell me about the creators,,,,,,R11,Tell me about the scouts,,,,,,R12,Please help me solve this?,,,,,,T8a
+T8a,,,,,T9,BEEN_CONTACT_AND_FALL,T6a,,,,,,,,,,,,,,,,,,,,,
+T9,"Well I told you, I don't much remember how. All I know is CONTACT and FALL should have the info you need if you look closely enough.",,,,,,,I'll check them out,,,,,,END,Fuck!,,,,,,T10,,,,,,,
+T10,[b]WATCH YER MOUTH!!![/b],,,,,,,sorry,,,,,,END,,,,,,,,,,,,,,
 ,CLICKER,,,,,,,,,,,,,,,,,,,,,,,,,,,
 C1,,,,,C1a,OLD_SPOKE_ABOUT_CLICKER,C8,,,,,,,,,,,,,,,,,,,,,
 C1a,Woah... where'd you get that.,,OLD_SPOKE_ABOUT_CLICKER,1,,,,STORAGE,,,,,,C2,Wouldn't you like to know,,,,,,C3,,,,,,,
