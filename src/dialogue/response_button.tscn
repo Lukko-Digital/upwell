@@ -1,12 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://xgi8pcnjfsvh"]
+[gd_scene load_steps=5 format=3 uid="uid://xgi8pcnjfsvh"]
 
 [ext_resource type="Script" path="res://src/dialogue/response_button.gd" id="1_3vvxx"]
+[ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="1_gahfj"]
+
+[sub_resource type="FontVariation" id="FontVariation_kap8e"]
+base_font = ExtResource("1_gahfj")
+variation_embolden = 2.0
+
+[sub_resource type="FontVariation" id="FontVariation_ihtik"]
+base_font = SubResource("FontVariation_kap8e")
+variation_embolden = 1.0
 
 [node name="ResponseButton" type="Button"]
-offset_right = 455.0
-offset_bottom = 50.0
-theme_override_font_sizes/font_size = 30
-text = "response"
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -227.5
+offset_top = -25.0
+offset_right = 227.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_ihtik")
+theme_override_font_sizes/font_size = 25
+text = "wat tghe"
 script = ExtResource("1_3vvxx")
 
 [node name="DespawnTimer" type="Timer" parent="."]

@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://br8qm13yce4pr"]
+[gd_scene load_steps=9 format=3 uid="uid://br8qm13yce4pr"]
 
 [ext_resource type="Script" path="res://src/dialogue/dialogue_ui.gd" id="1_28e40"]
-[ext_resource type="Texture2D" uid="uid://lofjr4gsvvg5" path="res://assets/ui/dialogue/main_dialogue_box.png" id="2_6utb4"]
+[ext_resource type="Texture2D" uid="uid://rs7x2nijmrv1" path="res://assets/ui/dialogue/backer.png" id="2_33dgi"]
+[ext_resource type="Texture2D" uid="uid://cl1p7ygvq4qg" path="res://assets/mvp3_assets/screenpuzzle/text_backer.png" id="2_imiog"]
+[ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="3_rc6gk"]
 [ext_resource type="PackedScene" uid="uid://xgi8pcnjfsvh" path="res://src/dialogue/response_button.tscn" id="3_y57cq"]
-[ext_resource type="Texture2D" uid="uid://qoo6lixrvk2m" path="res://assets/character/dad/portraits/neutral.png" id="4_65wdp"]
+[ext_resource type="Texture2D" uid="uid://dc8le7332e0c3" path="res://assets/ui/dialogue/backerscan.png" id="6_h11u4"]
+
+[sub_resource type="FontVariation" id="FontVariation_64rtg"]
+base_font = ExtResource("3_rc6gk")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ns4yk"]
+blend_mode = 2
 
 [node name="DialogueUi" type="CanvasLayer" node_paths=PackedStringArray("dialogue_label", "name_label", "duration_timer", "display_timer", "response_box")]
 script = ExtResource("1_28e40")
@@ -14,10 +22,17 @@ display_timer = NodePath("DisplayTimer")
 response_box = NodePath("ResponseBox")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
-color = Color(0, 0, 0, 0.329412)
+color = Color(0, 0, 0, 0.662745)
+
+[node name="Backer" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.921569)
+position = Vector2(675, 540)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_33dgi")
 
 [node name="DurationTimer" type="Timer" parent="."]
 one_shot = true
@@ -26,45 +41,65 @@ one_shot = true
 one_shot = true
 
 [node name="SpeechBubble" type="TextureRect" parent="."]
-offset_left = 840.0
-offset_top = 224.0
-offset_right = 1407.0
-offset_bottom = 446.0
+offset_left = 72.0
+offset_top = 272.0
+offset_right = 639.0
+offset_bottom = 494.0
 scale = Vector2(1.21036, 1.21036)
-texture = ExtResource("2_6utb4")
 expand_mode = 1
+
+[node name="TextBacker" type="Sprite2D" parent="SpeechBubble"]
+position = Vector2(323.871, 231.336)
+scale = Vector2(0.464958, 0.464958)
+texture = ExtResource("2_imiog")
 
 [node name="DialogueLabel" type="RichTextLabel" parent="SpeechBubble"]
 layout_mode = 0
-offset_left = 112.0
-offset_top = 71.8716
-offset_right = 504.0
-offset_bottom = 147.872
+offset_left = 132.192
+offset_top = 46.2672
+offset_right = 524.192
+offset_bottom = 390.267
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_64rtg")
 theme_override_font_sizes/normal_font_size = 24
 theme_override_font_sizes/bold_font_size = 24
 theme_override_font_sizes/italics_font_size = 24
 theme_override_font_sizes/bold_italics_font_size = 24
 theme_override_font_sizes/mono_font_size = 24
+bbcode_enabled = true
 text = "feeling quiet today huh? I think you could visit rigatoni town"
 
 [node name="NameLabel" type="RichTextLabel" parent="SpeechBubble"]
-offset_left = 83.0
-offset_top = 33.0
-offset_right = 475.0
-offset_bottom = 68.0
-theme_override_font_sizes/normal_font_size = 24
+modulate = Color(1, 1, 1, 0.670588)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -214.925
+offset_top = -156.441
+offset_right = 393.075
+offset_bottom = -84.441
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.843977, 0.843977)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 39
 theme_override_font_sizes/bold_font_size = 24
 theme_override_font_sizes/italics_font_size = 24
 theme_override_font_sizes/bold_italics_font_size = 24
 theme_override_font_sizes/mono_font_size = 24
-text = "Dad"
+bbcode_enabled = true
+text = "[center]Dad[/center]"
+fit_content = true
 
 [node name="ResponseBox" type="VBoxContainer" parent="."]
-offset_left = 1024.0
-offset_top = 600.0
-offset_right = 1478.0
-offset_bottom = 850.0
-scale = Vector2(0.903649, 0.903649)
+offset_left = 183.0
+offset_top = 584.0
+offset_right = 637.0
+offset_bottom = 834.0
+scale = Vector2(1.23943, 1.23943)
 
 [node name="ResponseButton" parent="ResponseBox" instance=ExtResource("3_y57cq")]
 layout_mode = 2
@@ -78,9 +113,11 @@ text = "response 2"
 layout_mode = 2
 text = "response 3"
 
-[node name="Neutral" type="Sprite2D" parent="."]
-position = Vector2(600, 552)
-scale = Vector2(0.331919, 0.331919)
-texture = ExtResource("4_65wdp")
+[node name="Backerscan" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.0745098)
+material = SubResource("CanvasItemMaterial_ns4yk")
+position = Vector2(675, 540)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_h11u4")
 
 [connection signal="timeout" from="DurationTimer" to="." method="_on_duration_timer_timeout"]
