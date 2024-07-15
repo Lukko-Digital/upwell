@@ -34,6 +34,7 @@ script = ExtResource("1_ithwi")
 zoom = Vector2(0.15, 0.15)
 
 [node name="Focus" type="Sprite2D" parent="MapPlayer"]
+modulate = Color(1, 1, 1, 0.796078)
 z_index = 10
 position = Vector2(-3.25, -1.25)
 scale = Vector2(0.86, 0.86)
