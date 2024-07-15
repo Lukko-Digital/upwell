@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bt2ai7u4bya2h"]
+[gd_scene load_steps=28 format=3 uid="uid://bt2ai7u4bya2h"]
 
 [ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/screen_player.tscn" id="1_nlhq3"]
 [ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/screen_ag.tscn" id="2_a5mxd"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://b7eu5arya2jop" path="res://assets/ui/map/fuel/fuel_1.png" id="15_cqr80"]
 [ext_resource type="PackedScene" uid="uid://bwbpi60st6gme" path="res://src/screen_puzzles/screen_button_unorbit.tscn" id="16_yvjcm"]
 [ext_resource type="Texture2D" uid="uid://cshgupmhysmp3" path="res://assets/ui/map/hazards/hazard_1.png" id="17_rm1to"]
+[ext_resource type="Texture2D" uid="uid://dawuvaani7htj" path="res://assets/ui/map/hazards/hazard_3.png" id="19_qi0yw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ekmx7"]
 radius = 169.224
@@ -60,24 +61,25 @@ color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="ScreenPlayer" parent="." instance=ExtResource("1_nlhq3")]
-position = Vector2(-1397, 456)
+position = Vector2(93, 404)
+STARTING_POWER = 800.0
 
 [node name="ScreenAG4" parent="." instance=ExtResource("2_a5mxd")]
-position = Vector2(-80, -375)
+position = Vector2(-1363.62, -174.597)
 scale = Vector2(1.57597, 1.57597)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenAG4"]
 shape = SubResource("CircleShape2D_ekmx7")
 
 [node name="ScreenAG3" parent="." instance=ExtResource("2_a5mxd")]
-position = Vector2(-888, 116)
+position = Vector2(-737, 242)
 scale = Vector2(1.57597, 1.57597)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenAG3"]
 shape = SubResource("CircleShape2D_51swq")
 
 [node name="ScreenAG2" parent="." instance=ExtResource("2_a5mxd")]
-position = Vector2(-1275, -399)
+position = Vector2(-9, -370.732)
 scale = Vector2(1.57597, 1.57597)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenAG2"]
@@ -165,7 +167,7 @@ shape = SubResource("RectangleShape2D_tk24l")
 
 [node name="ScreenCore" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("9_dn3uw")]
 visible = false
-position = Vector2(-1272, -398)
+position = Vector2(-10.0001, -371)
 scale = Vector2(0.541947, 0.541947)
 label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
 text = "[center][b]RECORDING STARTED[/b][/center]
@@ -183,8 +185,8 @@ glow = NodePath("../ClickerGlow")
 
 [node name="ScreenCore2" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("9_dn3uw")]
 visible = false
-position = Vector2(-82, -372)
-scale = Vector2(2.24441, 2.64417)
+position = Vector2(-1360, -182)
+scale = Vector2(1.04016, 1.22542)
 label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
 text = "come find us"
 indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect")
@@ -197,20 +199,20 @@ scale = Vector2(2, 2)
 texture = ExtResource("10_bp1l7")
 
 [node name="Destination" type="Sprite2D" parent="."]
-position = Vector2(-1275, -399)
+position = Vector2(-9, -370.732)
 scale = Vector2(0.674132, 0.674132)
 texture = ExtResource("12_wg6ak")
 
 [node name="Destination2" type="Sprite2D" parent="."]
-position = Vector2(-85, -382)
+position = Vector2(-1368.62, -181.597)
 scale = Vector2(2.3901, 2.3901)
 texture = ExtResource("12_wg6ak")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = -1400.0
-offset_top = -359.0
-offset_right = -1041.0
-offset_bottom = -289.0
+offset_left = -134.0
+offset_top = -330.732
+offset_right = 225.0
+offset_bottom = -260.732
 scale = Vector2(0.78, 0.78)
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -225,13 +227,13 @@ theme_override_font_sizes/italics_font_size = 50
 theme_override_font_sizes/bold_italics_font_size = 50
 theme_override_font_sizes/mono_font_size = 50
 bbcode_enabled = true
-text = "005.STORAGE"
+text = "004.RELAPSE"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
-offset_left = -154.0
-offset_top = -271.0
-offset_right = 205.0
-offset_bottom = -201.0
+offset_left = -1437.62
+offset_top = -70.5969
+offset_right = -1078.62
+offset_bottom = -0.596924
 scale = Vector2(0.78, 0.78)
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -248,51 +250,86 @@ theme_override_font_sizes/mono_font_size = 50
 bbcode_enabled = true
 text = "UNKNOWN"
 
-[node name="ScreenHazard2" parent="." instance=ExtResource("13_40emf")]
-visible = false
-position = Vector2(-775, -432)
-scale = Vector2(-2.80079, -3.75278)
-
-[node name="ScreenPowerUp2" parent="." instance=ExtResource("14_r2p6n")]
-visible = false
-position = Vector2(-1102, -133)
-scale = Vector2(0.717224, 0.717224)
-
 [node name="Fuel2" type="Sprite2D" parent="."]
-position = Vector2(-1103, -136)
+position = Vector2(-622, -112)
 scale = Vector2(0.479572, 0.479572)
 texture = ExtResource("15_cqr80")
 
-[node name="ScreenPowerUp6" parent="." instance=ExtResource("14_r2p6n")]
+[node name="ScreenPowerUp2" parent="Fuel2" instance=ExtResource("14_r2p6n")]
 visible = false
-position = Vector2(-483, -73)
-scale = Vector2(0.717224, 0.717224)
+position = Vector2(2.08521, 6.25558)
+scale = Vector2(1.49555, 1.49555)
 
 [node name="Fuel1" type="Sprite2D" parent="."]
-position = Vector2(-484, -76)
+position = Vector2(-1056, 74)
 scale = Vector2(0.479572, 0.479572)
 texture = ExtResource("15_cqr80")
 
+[node name="ScreenPowerUp6" parent="Fuel1" instance=ExtResource("14_r2p6n")]
+visible = false
+position = Vector2(2.08521, 6.25557)
+scale = Vector2(1.49555, 1.49555)
+
+[node name="Hazard1" type="Sprite2D" parent="."]
+position = Vector2(-908, -447)
+rotation = 2.4892
+texture = ExtResource("17_rm1to")
+
+[node name="ScreenHazard2" parent="Hazard1" instance=ExtResource("13_40emf")]
+visible = false
+position = Vector2(2, 9)
+rotation = 3.14159
+scale = Vector2(2.80079, 3.75278)
+
 [node name="ScreenButtonBoost" parent="." instance=ExtResource("11_u3nd4")]
-position = Vector2(-929, 780)
+position = Vector2(-592, 780)
 scale = Vector2(0.64, 0.64)
 
 [node name="ScreenButtonOrbit" parent="." instance=ExtResource("15_0ogu6")]
-position = Vector2(-1095, 778)
+position = Vector2(-758, 778)
 scale = Vector2(0.64, 0.64)
 
 [node name="ScreenButtonOrbit2" parent="." instance=ExtResource("15_0ogu6")]
-position = Vector2(-759, 776)
+position = Vector2(-422, 776)
 scale = Vector2(0.64, 0.64)
 
 [node name="ScreenButtonBoost2" parent="." instance=ExtResource("11_u3nd4")]
-position = Vector2(-587, 778)
+position = Vector2(-250, 778)
 scale = Vector2(0.64, 0.64)
 
 [node name="ScreenButtonUnorbit" parent="." instance=ExtResource("16_yvjcm")]
-position = Vector2(-408, 779)
+position = Vector2(-921, 779)
 scale = Vector2(0.64, 0.64)
 
-[node name="Hazard1" type="Sprite2D" parent="."]
-position = Vector2(-777, -441)
-texture = ExtResource("17_rm1to")
+[node name="ScreenAG5" parent="." instance=ExtResource("2_a5mxd")]
+position = Vector2(-498, -569)
+scale = Vector2(1.57597, 1.57597)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenAG5"]
+shape = SubResource("CircleShape2D_51swq")
+
+[node name="Hazard2" type="Sprite2D" parent="."]
+position = Vector2(-269, 43)
+rotation = 1.52011
+scale = Vector2(1.18242, 1.18242)
+texture = ExtResource("19_qi0yw")
+
+[node name="ScreenHazard2" parent="Hazard2" instance=ExtResource("13_40emf")]
+visible = false
+position = Vector2(2, 9)
+rotation = 1.38055
+scale = Vector2(2.28516, 3.46615)
+
+[node name="Fuel3" type="Sprite2D" parent="."]
+position = Vector2(-204, -584)
+scale = Vector2(0.289543, 0.289543)
+texture = ExtResource("15_cqr80")
+
+[node name="ScreenPowerUp2" parent="Fuel3" instance=ExtResource("14_r2p6n")]
+visible = false
+position = Vector2(2.08521, 6.25558)
+scale = Vector2(1.49555, 1.49555)
+
+[node name="ScreenButtonOrbit3" parent="." instance=ExtResource("15_0ogu6")]
+position = Vector2(-1093, 776)
+scale = Vector2(0.64, 0.64)
