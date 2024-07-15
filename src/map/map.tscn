@@ -34,7 +34,7 @@ script = ExtResource("1_ithwi")
 zoom = Vector2(0.15, 0.15)
 
 [node name="Focus" type="Sprite2D" parent="MapPlayer"]
-modulate = Color(1, 1, 1, 0.796078)
+modulate = Color(1, 1, 1, 0.513726)
 z_index = 10
 position = Vector2(-3.25, -1.25)
 scale = Vector2(0.86, 0.86)
@@ -218,9 +218,9 @@ scale = Vector2(0.308215, 0.308215)
 shape = SubResource("CircleShape2D_lkmmn")
 
 [node name="CoolantPocket3" parent="." instance=ExtResource("6_4a6mq")]
-position = Vector2(225, 115.25)
+position = Vector2(21.5, 152.5)
 rotation = -1.0472
-scale = Vector2(1.83, 1.83)
+scale = Vector2(0.495465, 0.500865)
 
 [node name="Sprite2D" type="Sprite2D" parent="CoolantPocket3"]
 position = Vector2(4.0915, -0.382904)
