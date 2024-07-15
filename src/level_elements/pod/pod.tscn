@@ -72,7 +72,7 @@ color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="ClickerHolder" parent="." instance=ExtResource("4_goton")]
-position = Vector2(-512, -41)
+position = Vector2(-275, -41)
 starts_with_clicker = false
 is_catcher = false
 
