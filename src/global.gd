@@ -11,9 +11,12 @@ var dialogue_conditions = {
 	
 	#OLD MAN
 	"OLD_MET_RELAPSE": false,
+	"OLD_MET_TEST": false,
 	"OLD_MET": false,
 	"OLD_KNOWS_TERIN": false,
 	"OLD_RLQ1": true,
+	"OLD_SPOKE_ABOUT_CLICKER": false,
+	"C3R1": false,
 	
 	#LOCATIONS
 	"AT_H32_NUCLEAR": false,
