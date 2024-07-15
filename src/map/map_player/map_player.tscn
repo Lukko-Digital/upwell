@@ -76,9 +76,9 @@ layer = 0
 [node name="Energy" type="ProgressBar" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0.878431)
 offset_left = 201.0
-offset_top = 942.0
+offset_top = 836.0
 offset_right = 337.0
-offset_bottom = 1806.0
+offset_bottom = 1525.0
 rotation = 3.14159
 mouse_filter = 2
 value = 100.0
@@ -87,9 +87,9 @@ show_percentage = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
 offset_left = 62.0
-offset_top = 939.0
+offset_top = 831.0
 offset_right = 668.0
-offset_bottom = 1212.0
+offset_bottom = 1104.0
 scale = Vector2(0.264077, 0.264077)
 mouse_filter = 2
 theme_override_colors/default_color = Color(1, 1, 1, 0.505882)
