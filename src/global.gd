@@ -8,11 +8,7 @@ var dialogue_conditions = {
 	"RLQ1": true
 }
 
-var drill_heat: float = 0
-const MEDIUM_DRILL_HEAT: float = 25
-
 var pod_has_clicker = false
-var clicker_state = {}
 var pod_position: EmptyPod = null
 
 var moving_on_map = false
