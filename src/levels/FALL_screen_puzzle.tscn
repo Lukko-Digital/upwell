@@ -169,7 +169,7 @@ label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
 text = "
 [center][b]RECORDING STARTED[/b][/center]
 
-[i]remember how nodes orbit their hosts? via [b][bgcolor=753C00][color=FF8F00]remote control[/color][/bgcolor][/b], right?
+[i]remember how nodes orbit their hosts? via [b][color=a14000]remote control[/color][/b], right?
 
 or direct control, right?
 
@@ -192,7 +192,7 @@ they also extend to [bgcolor=black]no spoilers buddy[/bgcolor]
 
 show me
 
-[b][bgcolor=753C00][color=FF8F00]sure, let's meet at 005[/color][/bgcolor][/b]
+[b][color=a14000]sure, let's meet at 005[/color][/b]
 [/i]
 
 [center][b]RECORDING STOPPED[/b][/center]
