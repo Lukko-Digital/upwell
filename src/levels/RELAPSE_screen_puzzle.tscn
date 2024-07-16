@@ -142,9 +142,9 @@ position = Vector2(-198, -707)
 label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
 text = "[center][b]9/25/35[/b][/center]
 
-<BOOST> is one of the most powerful actions we can take in space travel!
+[b][color=a14000]<boost>[/color][/b] is one of the most powerful actions we can take in space travel!
 
-Remember: no matter your current velocity, a well timed <BOOST> can redirect you entirely.
+Remember: no matter your current velocity, a well timed [b][color=a14000]<boost>[/color][/b] can redirect you entirely.
 
 Stay safe out there.
 
@@ -160,11 +160,9 @@ position = Vector2(-199, 311)
 label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
 text = "[center][b]9/25/35[/b][/center]
 
-Disaster avoided! Well done.
+Once you've completed this exercise, take a look around. This room is one of the last that we haven't been able to figure out. An AG with no nodes in sight. This must've been a tricky one for the creators trainees as well.
 
-Now that you've completed this exercise, take a look around. This room is one of the last that we haven't been able to figure out. An AG with no nodes in sight. This must've been a tricky one for the creators trainees as well.
-
-But don't worry! Hector and I are sure to come up with the answer soon, and we'll be one step closer to reaching the surface.
+But don't worry! Hector and I are sure to come up with the answer soon, and we'll be [b][color=a14000]one step closer to reaching the surface[/color][/b].
 
 
 "
@@ -179,7 +177,3 @@ texture = ExtResource("11_2jq1n")
 
 [node name="ScreenButtonBoost" parent="." instance=ExtResource("11_5e8l5")]
 position = Vector2(-625, 779)
-
-[node name="ScreenButtonBoost2" parent="." instance=ExtResource("11_5e8l5")]
-position = Vector2(-771, -402)
-disabled = true
