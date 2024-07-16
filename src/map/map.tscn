@@ -51,101 +51,87 @@ follow_viewport_scale = 1.24
 
 [node name="ParticleSoftest" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(1360, -750)
+position = Vector2(-2668.65, -599.677)
 scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest2" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(6000, -782)
+position = Vector2(1971.35, -631.677)
 scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest3" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(3632, 1138)
+position = Vector2(-396.645, 1288.32)
 scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest4" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(4176, -3182)
+position = Vector2(147.355, -3031.68)
 scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest5" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(3536, -622)
+position = Vector2(-492.645, -471.677)
 scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest6" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(848, -2766)
+position = Vector2(-3180.65, -2615.68)
 scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest7" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(1552, 1842)
+position = Vector2(-2476.65, 1992.32)
 scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest8" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(4816, 2034)
+position = Vector2(787.355, 2184.32)
 scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest9" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(7888, 82)
+position = Vector2(3859.35, 232.322)
 scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest10" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(1328, 850)
+position = Vector2(-2700.65, 1000.32)
 scale = Vector2(0.334836, 0.334836)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest11" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(3472, -1294)
+position = Vector2(-556.645, -1143.68)
 scale = Vector2(0.334836, 0.334836)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest12" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(5456, -302)
+position = Vector2(1427.35, -151.677)
 scale = Vector2(0.492604, 0.492604)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest13" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(5872, 2546)
+position = Vector2(1843.35, 2696.32)
 scale = Vector2(0.492604, 0.492604)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest14" type="Sprite2D" parent="FX/CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.282353)
-position = Vector2(7920, 2546)
+position = Vector2(3891.35, 2696.32)
 scale = Vector2(0.492604, 0.492604)
 texture = ExtResource("12_kdma8")
-metadata/_edit_lock_ = true
 
 [node name="Levels" type="Node2D" parent="."]
 
@@ -239,7 +225,7 @@ shape = SubResource("CircleShape2D_lkmmn")
 [node name="CoolantPocket3" parent="." instance=ExtResource("6_4a6mq")]
 position = Vector2(21.5, 152.5)
 rotation = -1.0472
-scale = Vector2(0.495465, 0.500865)
+scale = Vector2(0.713269, 0.721043)
 
 [node name="Sprite2D" type="Sprite2D" parent="CoolantPocket3"]
 position = Vector2(4.0915, -0.382904)
@@ -954,7 +940,7 @@ scale = Vector2(0.308215, 0.308215)
 shape = SubResource("CircleShape2D_lkmmn")
 
 [node name="CoolantPocket21" parent="." instance=ExtResource("6_4a6mq")]
-position = Vector2(214.75, 174.5)
+position = Vector2(360.75, -35.25)
 rotation = -1.0472
 scale = Vector2(0.495465, 0.500865)
 
@@ -1092,6 +1078,24 @@ texture = ExtResource("16_2tb20")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CoolantPocket28"]
 position = Vector2(1.59832, 0.228207)
+rotation = 2.25714
+scale = Vector2(0.308215, 0.308215)
+shape = SubResource("CircleShape2D_lkmmn")
+
+[node name="CoolantPocket29" parent="." instance=ExtResource("6_4a6mq")]
+position = Vector2(391, 198.5)
+rotation = -1.0472
+scale = Vector2(0.884341, 0.893979)
+
+[node name="Sprite2D" type="Sprite2D" parent="CoolantPocket29"]
+position = Vector2(4.0915, -0.382904)
+rotation = 2.25714
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("16_2tb20")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoolantPocket29"]
+visible = false
+position = Vector2(4.09155, -0.382935)
 rotation = 2.25714
 scale = Vector2(0.308215, 0.308215)
 shape = SubResource("CircleShape2D_lkmmn")
