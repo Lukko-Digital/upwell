@@ -216,7 +216,7 @@ starts_with_clicker = false
 [node name="Doors_Blockers" type="Node2D" parent="."]
 
 [node name="ClickerBlocker" parent="Doors_Blockers" instance=ExtResource("4_rwdqj")]
-position = Vector2(-3389, -334)
+position = Vector2(-1985, -334)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker"]
 shape = SubResource("CapsuleShape2D_bthli")
@@ -446,7 +446,7 @@ position = Vector2(13028, -2564)
 power_holder = NodePath("../Holders/ClickerHolder7")
 
 [node name="NPC" parent="." instance=ExtResource("16_8le5d")]
-position = Vector2(-2340, -186)
+position = Vector2(-2440, -186)
 dialogue_file = "res://assets/dialogue/oldmanmvp3.csv"
 npc_name = "Murrelet"
 

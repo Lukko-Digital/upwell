@@ -183,9 +183,9 @@ position = Vector2(-698, -702)
 label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
 text = "[center][b]9/25/35[/b][/center]
 
-Incredible job scouts! Now let's extrapolate: fuel in the sim is shown as little mushrooms, but in the real world it presents a little differently.
+Incredible job scouts! Now let's extrapolate: fuel pockets in the sim are shown as little mushrooms, but [b][color=a14000]in the real world[/color][/b] they present a little differently
 
-Check your map for strange circular pockets - they might open up an unexpected opportunity.
+[b][bgcolor=993e00][color=ffaa4f]Check your map for strange circular pockets - they might open up an unexpected opportunity.[/color][/bgcolor][/b]
 
 Good luck out there!
 
@@ -221,7 +221,7 @@ scale = Vector2(0.87, 0.87)
 position = Vector2(-298, 781)
 
 [node name="ScreenCore4" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("9_6om2k")]
-modulate = Color(1, 1, 1, 0.0705882)
+modulate = Color(1, 1, 1, 0.152941)
 position = Vector2(-1218, 315)
 label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
 text = "[center][b]RECORDING STARTED[/b][/center]
