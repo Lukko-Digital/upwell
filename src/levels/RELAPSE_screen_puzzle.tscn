@@ -144,7 +144,8 @@ text = "[center][b]9/25/35[/b][/center]
 
 [b][color=a14000]<boost>[/color][/b] is one of the most powerful actions we can take in space travel!
 
-Remember: no matter your current velocity, a well timed [b][color=a14000]<boost>[/color][/b] can redirect you entirely.
+Remember:
+[b][bgcolor=993e00][color=ffaa4f]no matter your current velocity, a well timed <boost> can redirect you entirely.[/color][/bgcolor][/b]
 
 Stay safe out there.
 
@@ -160,9 +161,13 @@ position = Vector2(-199, 311)
 label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
 text = "[center][b]9/25/35[/b][/center]
 
-Once you've completed this exercise, take a look around. This room is one of the last that we haven't been able to figure out. An AG with no nodes in sight. This must've been a tricky one for the creators trainees as well.
+Once you've completed this exercise, take a look around. This room is one of the last that we haven't been able to figure out. An orbit with no nodes in sight does seem pretty impossible.
 
-But don't worry! Hector and I are sure to come up with the answer soon, and we'll be [b][color=a14000]one step closer to reaching the surface[/color][/b].
+[b][bgcolor=993e00][color=ffaa4f]We've heard of a room with no barriers to stealing nodes in the Northeast labeled 005[/color][/bgcolor][/b], but haven't been able to reach it due to [b][color=a14000]limited fuel capacity.[/color][/b]
+
+But don't worry! Hector and I are sure to come up with the answer soon, and we'll be one step closer to reaching the surface!
+
+Rheuman
 
 
 "
