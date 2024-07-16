@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bi7gopge6bbr6"]
+[gd_scene load_steps=23 format=3 uid="uid://dqpo0ly2l4tmk"]
 
 [ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/screen_player.tscn" id="1_qv7go"]
 [ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/screen_ag.tscn" id="2_bk8na"]

@@ -1,0 +1,148 @@
+[gd_scene load_steps=13 format=3 uid="uid://bvkim1x1vvm81"]
+
+[ext_resource type="Texture2D" uid="uid://b868h5dr15cxm" path="res://assets/mvp3_assets/screenpuzzle/lineblocker.png" id="1_7bkn7"]
+[ext_resource type="Texture2D" uid="uid://dhw7wq51its7p" path="res://assets/mvp3_assets/screenpuzzle/layout.png" id="2_6o4a8"]
+[ext_resource type="Texture2D" uid="uid://cl1p7ygvq4qg" path="res://assets/mvp3_assets/screenpuzzle/text_backer.png" id="3_xe0ai"]
+[ext_resource type="Texture2D" uid="uid://ba863aqwujv2p" path="res://assets/mvp3_assets/screenpuzzle/file.png" id="4_y333m"]
+[ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="5_csj0s"]
+[ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="6_i6f60"]
+[ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="7_h8aqo"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yiiot"]
+
+[sub_resource type="FontVariation" id="FontVariation_bfd18"]
+base_font = ExtResource("5_csj0s")
+variation_embolden = 0.87
+
+[sub_resource type="FontVariation" id="FontVariation_i82gr"]
+base_font = ExtResource("5_csj0s")
+variation_embolden = 2.0
+
+[sub_resource type="FontVariation" id="FontVariation_2ws21"]
+base_font = ExtResource("6_i6f60")
+variation_embolden = 0.87
+
+[sub_resource type="FontVariation" id="FontVariation_ye6m0"]
+base_font = ExtResource("6_i6f60")
+variation_embolden = 1.85
+
+[node name="ScreenPuzzleUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1920.0
+offset_top = -1080.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Lineblocker" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_7bkn7")
+
+[node name="Layout" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+texture = ExtResource("2_6o4a8")
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.66
+anchor_top = 0.097
+anchor_right = 0.922
+anchor_bottom = 0.791
+offset_left = 1.59985
+offset_top = 0.479996
+offset_right = 1.51978
+offset_bottom = -0.560059
+mouse_filter = 2
+color = Color(0.2, 0.2, 0.2, 0)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect3/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_y333m")
+
+[node name="TextureRect2" type="TextureRect" parent="ColorRect3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_y333m")
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="TextBacker" type="TextureRect" parent="ColorRect3/VBoxContainer"]
+material = SubResource("CanvasItemMaterial_yiiot")
+layout_mode = 2
+texture = ExtResource("3_xe0ai")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect3/VBoxContainer/TextBacker"]
+layout_mode = 2
+offset_top = -7.0
+offset_right = 1160.0
+offset_bottom = 1427.0
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect3/VBoxContainer/TextBacker/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_bfd18")
+theme_override_fonts/bold_font = SubResource("FontVariation_i82gr")
+theme_override_fonts/italics_font = SubResource("FontVariation_2ws21")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_ye6m0")
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+bbcode_enabled = true
+text = "
+
+[center][b]FILEPATH MISSING[/b]
+
+Please drag [b]<action>[/b]
+onto flightpath to reach
+target directory[/center]"
+shortcut_keys_enabled = false
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = -10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ClickerGlow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(787, -943)
+scale = Vector2(2, 2)
+texture = ExtResource("7_h8aqo")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1920, 1080)
+zoom = Vector2(0.5, 0.5)
