@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ql7gm3yuyicr"]
+[gd_scene load_steps=12 format=3 uid="uid://ql7gm3yuyicr"]
 
 [ext_resource type="Script" path="res://src/map/map_level.gd" id="1_0g7oc"]
 [ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="2_y385f"]
@@ -13,6 +13,9 @@ default_font = ExtResource("2_y385f")
 [sub_resource type="FontVariation" id="FontVariation_i4kiy"]
 base_font = ExtResource("3_s6vqy")
 variation_embolden = 2.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a1nsj"]
+blend_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r5pps"]
 radius = 40.0125
@@ -43,10 +46,13 @@ text = "H32.NUCLEAR"
 horizontal_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.813466, 0.254571, 0, 1)
+material = SubResource("CanvasItemMaterial_a1nsj")
 position = Vector2(-3, -2)
 texture = ExtResource("3_dyj0g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_r5pps")
 
 [node name="Gravity" type="Area2D" parent="."]
