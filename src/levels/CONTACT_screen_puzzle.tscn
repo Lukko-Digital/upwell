@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b30jo7kace2yj"]
+[gd_scene load_steps=20 format=3 uid="uid://b30jo7kace2yj"]
 
 [ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/screen_player.tscn" id="1_hsobo"]
 [ext_resource type="Texture2D" uid="uid://b868h5dr15cxm" path="res://assets/mvp3_assets/screenpuzzle/lineblocker.png" id="2_s5603"]
@@ -11,6 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/screen_ag.tscn" id="9_svl6v"]
 [ext_resource type="PackedScene" uid="uid://c1fatgffin6hd" path="res://src/screen_puzzles/screen_core.tscn" id="10_b30k3"]
 [ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="11_ogsiy"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mox1u"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ry3iq"]
+blend_mode = 1
 
 [sub_resource type="FontVariation" id="FontVariation_bfd18"]
 base_font = ExtResource("6_j3e7t")
@@ -37,6 +43,7 @@ size = Vector2(1763, 1481)
 [node name="ScreenPuzzle" type="Node2D"]
 
 [node name="ColorRect4" type="ColorRect" parent="."]
+z_index = -10
 offset_left = -1958.0
 offset_top = -1115.0
 offset_right = 1944.0
@@ -46,9 +53,10 @@ color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="ScreenPlayer" parent="." instance=ExtResource("1_hsobo")]
-position = Vector2(-722, 453)
+position = Vector2(-854, 453)
 
 [node name="Lineblocker" type="Sprite2D" parent="."]
+z_index = -10
 texture = ExtResource("2_s5603")
 
 [node name="Layout" type="Sprite2D" parent="."]
@@ -56,6 +64,15 @@ position = Vector2(-14, 10)
 texture = ExtResource("3_thtiu")
 
 [node name="TextBacker" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_mox1u")
+position = Vector2(1101, 47)
+texture = ExtResource("4_rkrw5")
+
+[node name="TextBacker2" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.227451)
+z_index = -2
+material = SubResource("CanvasItemMaterial_ry3iq")
 position = Vector2(1101, 47)
 texture = ExtResource("4_rkrw5")
 
@@ -112,17 +129,17 @@ theme_override_font_sizes/mono_font_size = 50
 bbcode_enabled = true
 text = "
 
-[center][b][i]Filepath Missing[/i][/b][/center]"
+[center][b]FILEPATH MISSING[/b]
+
+Please drag [b]<action>[/b]
+onto flightpath to reach
+target directory[/center]"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 
-[node name="ScreenButtonOrbit2" parent="." instance=ExtResource("8_2v3tm")]
-position = Vector2(-718, -632)
-disabled = true
-
 [node name="ScreenButtonOrbit" parent="." instance=ExtResource("8_2v3tm")]
-position = Vector2(-731, 781)
+position = Vector2(-1600, 785)
 
 [node name="ScreenAG" parent="." instance=ExtResource("9_svl6v")]
 position = Vector2(-718, -233)
@@ -141,17 +158,16 @@ position = Vector2(-700.5, 15.5)
 shape = SubResource("RectangleShape2D_tk24l")
 
 [node name="ScreenCore" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("10_b30k3")]
-position = Vector2(-1073, -230)
+position = Vector2(-402, -230)
 label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
-text = "[i]i know we said know more venting but Hector cannot get it past his THICK FUCKING SKULL[/i]
+text = "[center][b]9/24/35[/b][/center]
 
-[center][b]9/24/35[/b][/center]
+Nice job! Remember, [b][bgcolor=993e00][color=ff8400]<orbit>[/color][/bgcolor][/b] is [i]the[/i] most important function of nodes.
 
-Hi new recruits!
+[b][bgcolor=993e00][color=ff8400]Importantly, your direction of orbit is determined by
+your angle of travel.[/color][/bgcolor][/b]
 
-The above should be treated as an example in caution when using the Creators' old system. Digital footprint is real!
-
-Congratulations on reaching your second waypoint!
+Use this to your advantage.
 
 Rheuman
 
@@ -161,11 +177,13 @@ indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect2")
 glow = NodePath("../ClickerGlow")
 
 [node name="ScreenCore2" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("10_b30k3")]
-position = Vector2(-362, -230)
+position = Vector2(-1088, -230)
 label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
 text = "[center][b]9/24/35[/b][/center]
 
-Heya recruits! This is your first waypoint, but now it's time for your second. Remember to drag your <actions> below onto your flight path in order to map out your course.
+Congratulations on reaching your [b][color=a14000]first waypoint[/color][/b]! You're on your way to becoming a real scout.
+
+Remember, [b][bgcolor=993e00][color=ffaa4f]just solving the puzzle won't be enough in the real world.[/color][/bgcolor][/b] [i]What is going on here?[/i]
 
 Rheuman
 
