@@ -397,6 +397,7 @@ rotation = -1.57079
 sprite = NodePath("../ClickerBlocker/Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker6"]
+position = Vector2(0.000213329, 34)
 shape = SubResource("CapsuleShape2D_3y0kj")
 
 [node name="ClickerBlocker7" parent="Doors_Blockers" instance=ExtResource("5_8o3dx")]
@@ -405,6 +406,7 @@ rotation = -3.14159
 sprite = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker7"]
+position = Vector2(-0.000240842, -95)
 shape = SubResource("CapsuleShape2D_nnt8c")
 
 [node name="ClickerBlocker8" parent="Doors_Blockers" instance=ExtResource("5_8o3dx")]
