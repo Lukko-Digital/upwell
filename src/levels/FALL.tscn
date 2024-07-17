@@ -392,7 +392,7 @@ power_holder = NodePath("../../Holders/ClickerHolder14")
 negative_relationship = true
 
 [node name="ClickerBlocker6" parent="Doors_Blockers" instance=ExtResource("5_8o3dx")]
-position = Vector2(-3235, 16189)
+position = Vector2(-3163, 16189)
 rotation = -1.57079
 sprite = NodePath("../ClickerBlocker/Sprite2D")
 
@@ -400,7 +400,7 @@ sprite = NodePath("../ClickerBlocker/Sprite2D")
 shape = SubResource("CapsuleShape2D_3y0kj")
 
 [node name="ClickerBlocker7" parent="Doors_Blockers" instance=ExtResource("5_8o3dx")]
-position = Vector2(-1388, 16190)
+position = Vector2(-1388, 16289)
 rotation = -3.14159
 sprite = NodePath("")
 
