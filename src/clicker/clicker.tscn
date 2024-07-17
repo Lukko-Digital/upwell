@@ -1,30 +1,71 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjtgvuvb40cba"]
+[gd_scene load_steps=12 format=3 uid="uid://rc5k8wvetpt6"]
 
-[ext_resource type="Script" path="res://src/clicker/clicker_body.gd" id="1_ly8d8"]
-[ext_resource type="Script" path="res://src/clicker/clicker_interactable.gd" id="2_ytaly"]
-[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="3_okg3f"]
+[ext_resource type="Script" path="res://src/clicker/clicker_body.gd" id="1_5mmek"]
+[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="2_ci3is"]
+[ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="3_0ahrw"]
+[ext_resource type="Texture2D" uid="uid://cfpew8w56mww" path="res://assets/mvp3_assets/clicker_lights.png" id="3_tfesb"]
+[ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="4_53hyt"]
+[ext_resource type="Script" path="res://src/clicker/clicker_interactable.gd" id="4_d7pfq"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_aqd0u"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w1b0y"]
+bounce = 0.3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ele5l"]
+radius = 32.0156
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v5kbs"]
 radius = 32.0624
 
-[node name="Clicker" type="CharacterBody2D" node_paths=PackedStringArray("nudge_sprites", "gravity_detector")]
-collision_layer = 8
-script = ExtResource("1_ly8d8")
-nudge_sprites = NodePath("ClickerSprite")
-gravity_detector = NodePath("GravityDetector")
+[sub_resource type="CircleShape2D" id="CircleShape2D_yx7fa"]
+radius = 32.0624
 
-[node name="ClickerSprite" parent="." instance=ExtResource("3_okg3f")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ik21"]
+radius = 32.0624
+
+[node name="ClickerBody" type="RigidBody2D" node_paths=PackedStringArray("grav_component", "glow_sprite", "lights_sprite", "interactable")]
+z_index = -1
+collision_layer = 16
+physics_material_override = SubResource("PhysicsMaterial_w1b0y")
+freeze_mode = 1
+continuous_cd = 2
+angular_damp = 10.0
+script = ExtResource("1_5mmek")
+grav_component = NodePath("GravitizedComponent")
+glow_sprite = NodePath("GlowSprite")
+lights_sprite = NodePath("LightsSprite")
+interactable = NodePath("Interactable")
+
+[node name="ClickerSprite" parent="." instance=ExtResource("2_ci3is")]
+
+[node name="LightsSprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_tfesb")
+
+[node name="GlowSprite" type="Sprite2D" parent="."]
+texture = ExtResource("4_53hyt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_aqd0u")
+shape = SubResource("CircleShape2D_ele5l")
+
+[node name="GravitizedComponent" type="Node2D" parent="." node_paths=PackedStringArray("gravity_detector")]
+script = ExtResource("3_0ahrw")
+gravity_detector = NodePath("GravityDetector")
+
+[node name="GravityDetector" type="Area2D" parent="GravitizedComponent"]
+position = Vector2(0, 38)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravitizedComponent/GravityDetector"]
+position = Vector2(0, -38)
+shape = SubResource("CircleShape2D_v5kbs")
 
 [node name="Interactable" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 2
-script = ExtResource("2_ytaly")
+script = ExtResource("4_d7pfq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
-shape = SubResource("CircleShape2D_aqd0u")
+shape = SubResource("CircleShape2D_yx7fa")
 
 [node name="InteractLabel" type="Label" parent="Interactable"]
 offset_left = -36.0
@@ -32,16 +73,7 @@ offset_top = -117.0
 offset_right = 32.0
 offset_bottom = -62.0
 theme_override_font_sizes/font_size = 40
-text = "<E>"
-
-[node name="GravityDetector" type="Area2D" parent="."]
-position = Vector2(0, 38)
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GravityDetector"]
-position = Vector2(0, -38)
-shape = SubResource("CircleShape2D_aqd0u")
+metadata/_edit_use_anchors_ = true
 
 [node name="HolderDetector" type="Area2D" parent="."]
 position = Vector2(0, 38)
@@ -50,6 +82,7 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HolderDetector"]
 position = Vector2(0, -38)
-shape = SubResource("CircleShape2D_aqd0u")
+shape = SubResource("CircleShape2D_4ik21")
 
 [connection signal="area_entered" from="HolderDetector" to="." method="_on_holder_detector_area_entered"]
+[connection signal="area_exited" from="HolderDetector" to="." method="_on_holder_detector_area_exited"]

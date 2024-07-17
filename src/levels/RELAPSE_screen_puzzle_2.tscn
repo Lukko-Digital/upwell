@@ -1,0 +1,391 @@
+[gd_scene load_steps=30 format=3 uid="uid://bt2ai7u4bya2h"]
+
+[ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/screen_player.tscn" id="1_nlhq3"]
+[ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/screen_ag.tscn" id="2_a5mxd"]
+[ext_resource type="Texture2D" uid="uid://b868h5dr15cxm" path="res://assets/mvp3_assets/screenpuzzle/lineblocker.png" id="3_uwyd1"]
+[ext_resource type="Texture2D" uid="uid://dhw7wq51its7p" path="res://assets/mvp3_assets/screenpuzzle/layout.png" id="4_ge2ka"]
+[ext_resource type="Texture2D" uid="uid://cl1p7ygvq4qg" path="res://assets/mvp3_assets/screenpuzzle/text_backer.png" id="5_lrrwv"]
+[ext_resource type="Texture2D" uid="uid://ba863aqwujv2p" path="res://assets/mvp3_assets/screenpuzzle/file.png" id="6_sda5p"]
+[ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="7_uaham"]
+[ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="8_1aqre"]
+[ext_resource type="PackedScene" uid="uid://c1fatgffin6hd" path="res://src/screen_puzzles/screen_core.tscn" id="9_dn3uw"]
+[ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="10_bp1l7"]
+[ext_resource type="PackedScene" uid="uid://dei1bl8astem7" path="res://src/screen_puzzles/screen_button_boost.tscn" id="11_u3nd4"]
+[ext_resource type="Texture2D" uid="uid://cu2hfokgxd4pw" path="res://assets/ui/map/destination.png" id="12_wg6ak"]
+[ext_resource type="PackedScene" uid="uid://d3nl8jv07w2yg" path="res://src/screen_puzzles/screen_hazard.tscn" id="13_40emf"]
+[ext_resource type="PackedScene" uid="uid://xiabu6v8kd6w" path="res://src/screen_puzzles/screen_power_up.tscn" id="14_r2p6n"]
+[ext_resource type="PackedScene" uid="uid://bdt2psjmwjsy6" path="res://src/screen_puzzles/screen_button_orbit.tscn" id="15_0ogu6"]
+[ext_resource type="Texture2D" uid="uid://b7eu5arya2jop" path="res://assets/ui/map/fuel/fuel_1.png" id="15_cqr80"]
+[ext_resource type="PackedScene" uid="uid://bwbpi60st6gme" path="res://src/screen_puzzles/screen_button_unorbit.tscn" id="16_yvjcm"]
+[ext_resource type="Texture2D" uid="uid://cshgupmhysmp3" path="res://assets/ui/map/hazards/hazard_1.png" id="17_rm1to"]
+[ext_resource type="Texture2D" uid="uid://dawuvaani7htj" path="res://assets/ui/map/hazards/hazard_3.png" id="19_qi0yw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ekmx7"]
+radius = 169.224
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_51swq"]
+radius = 130.266
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4sw1n"]
+blend_mode = 1
+
+[sub_resource type="FontVariation" id="FontVariation_bfd18"]
+base_font = ExtResource("7_uaham")
+variation_embolden = 0.87
+
+[sub_resource type="FontVariation" id="FontVariation_i82gr"]
+base_font = ExtResource("7_uaham")
+variation_embolden = 2.0
+
+[sub_resource type="FontVariation" id="FontVariation_2ws21"]
+base_font = ExtResource("8_1aqre")
+variation_embolden = 0.87
+
+[sub_resource type="FontVariation" id="FontVariation_ye6m0"]
+base_font = ExtResource("8_1aqre")
+variation_embolden = 1.85
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tk24l"]
+size = Vector2(1763, 1481)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8xjuw"]
+blend_mode = 1
+
+[sub_resource type="FontVariation" id="FontVariation_by2b5"]
+base_font = ExtResource("7_uaham")
+variation_embolden = 1.71
+
+[node name="ScreenPuzzle" type="Node2D"]
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+offset_left = -1958.0
+offset_top = -1115.0
+offset_right = 1944.0
+offset_bottom = 1108.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="ScreenPlayer" parent="." instance=ExtResource("1_nlhq3")]
+position = Vector2(93, 404)
+STARTING_POWER = 800.0
+
+[node name="ScreenAG4" parent="." instance=ExtResource("2_a5mxd")]
+position = Vector2(-1363.62, -174.597)
+scale = Vector2(1.57597, 1.57597)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenAG4"]
+shape = SubResource("CircleShape2D_ekmx7")
+
+[node name="ScreenAG3" parent="." instance=ExtResource("2_a5mxd")]
+position = Vector2(-737, 242)
+scale = Vector2(1.57597, 1.57597)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenAG3"]
+shape = SubResource("CircleShape2D_51swq")
+
+[node name="ScreenAG2" parent="." instance=ExtResource("2_a5mxd")]
+position = Vector2(-9, -370.732)
+scale = Vector2(1.57597, 1.57597)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenAG2"]
+shape = SubResource("CircleShape2D_51swq")
+
+[node name="Lineblocker" type="Sprite2D" parent="."]
+texture = ExtResource("3_uwyd1")
+metadata/_edit_lock_ = true
+
+[node name="Layout" type="Sprite2D" parent="."]
+position = Vector2(-14, 10)
+texture = ExtResource("4_ge2ka")
+metadata/_edit_lock_ = true
+
+[node name="TextBacker" type="Sprite2D" parent="."]
+modulate = Color(0.735926, 0.331098, 9.62615e-08, 1)
+material = SubResource("CanvasItemMaterial_4sw1n")
+position = Vector2(1101, 47)
+texture = ExtResource("5_lrrwv")
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = 592.0
+offset_top = -878.0
+offset_right = 1598.0
+offset_bottom = 620.0
+mouse_filter = 2
+color = Color(0.2, 0.2, 0.2, 0)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect3/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_sda5p")
+
+[node name="TextureRect2" type="TextureRect" parent="ColorRect3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_sda5p")
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect3/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect3/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_bfd18")
+theme_override_fonts/bold_font = SubResource("FontVariation_i82gr")
+theme_override_fonts/italics_font = SubResource("FontVariation_2ws21")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_ye6m0")
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+bbcode_enabled = true
+text = "
+
+[center][b][i][bgcolor=993e00][color=ffaa4f]FILEPATH MISSING[/color][/bgcolor][/i][/b][/center]"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="PlaceableArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaceableArea"]
+position = Vector2(-700.5, 15.5)
+shape = SubResource("RectangleShape2D_tk24l")
+
+[node name="ScreenCore" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("9_dn3uw")]
+visible = false
+position = Vector2(-10.0001, -371)
+scale = Vector2(0.541947, 0.541947)
+label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
+text = "
+[center][color=ffaa4f][b]RECORDING STARTED[/b]
+
+
+the controls are the same
+
+in real time
+
+
+
+
+[center][b]RECORDING STOPPED[/b][/center][/color]"
+indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect2")
+glow = NodePath("../ClickerGlow")
+
+[node name="ScreenCore2" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("9_dn3uw")]
+visible = false
+position = Vector2(-1360, -182)
+scale = Vector2(1.04016, 1.22542)
+label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
+text = "
+
+[center][color=ffaa4f]come find us[/color][/center]"
+indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect")
+glow = NodePath("../ClickerGlow")
+
+[node name="ClickerGlow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(787, -943)
+scale = Vector2(2, 2)
+texture = ExtResource("10_bp1l7")
+
+[node name="Destination" type="Sprite2D" parent="."]
+position = Vector2(-9, -370.732)
+scale = Vector2(0.674132, 0.674132)
+texture = ExtResource("12_wg6ak")
+
+[node name="Destination2" type="Sprite2D" parent="."]
+modulate = Color(0.892185, 0.389121, 7.70092e-07, 1)
+material = SubResource("CanvasItemMaterial_8xjuw")
+position = Vector2(-1368.62, -181.597)
+scale = Vector2(2.3901, 2.3901)
+texture = ExtResource("12_wg6ak")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -134.0
+offset_top = -330.732
+offset_right = 225.0
+offset_bottom = -260.732
+scale = Vector2(0.78, 0.78)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(1, 1, 1, 0.529412)
+theme_override_fonts/normal_font = SubResource("FontVariation_by2b5")
+theme_override_fonts/bold_font = SubResource("FontVariation_i82gr")
+theme_override_fonts/italics_font = SubResource("FontVariation_2ws21")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_ye6m0")
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+bbcode_enabled = true
+text = "004.RELAPSE"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = -1437.62
+offset_top = -70.5969
+offset_right = -1078.62
+offset_bottom = -0.596924
+scale = Vector2(0.78, 0.78)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(1, 1, 1, 0.529412)
+theme_override_fonts/normal_font = SubResource("FontVariation_by2b5")
+theme_override_fonts/bold_font = SubResource("FontVariation_i82gr")
+theme_override_fonts/italics_font = SubResource("FontVariation_2ws21")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_ye6m0")
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+bbcode_enabled = true
+text = "UNKNOWN"
+
+[node name="Fuel2" type="Sprite2D" parent="."]
+position = Vector2(-622, -112)
+scale = Vector2(0.479572, 0.479572)
+texture = ExtResource("15_cqr80")
+
+[node name="ScreenPowerUp2" parent="Fuel2" instance=ExtResource("14_r2p6n")]
+visible = false
+position = Vector2(2.08521, 6.25558)
+scale = Vector2(1.49555, 1.49555)
+
+[node name="Fuel1" type="Sprite2D" parent="."]
+position = Vector2(-1056, 74)
+scale = Vector2(0.479572, 0.479572)
+texture = ExtResource("15_cqr80")
+
+[node name="ScreenPowerUp6" parent="Fuel1" instance=ExtResource("14_r2p6n")]
+visible = false
+position = Vector2(2.08521, 6.25557)
+scale = Vector2(1.49555, 1.49555)
+
+[node name="Hazard1" type="Sprite2D" parent="."]
+position = Vector2(-908, -447)
+rotation = 2.4892
+texture = ExtResource("17_rm1to")
+
+[node name="ScreenHazard2" parent="Hazard1" instance=ExtResource("13_40emf")]
+visible = false
+position = Vector2(2, 9)
+rotation = 3.14159
+scale = Vector2(2.80079, 3.75278)
+
+[node name="ScreenButtonBoost" parent="." instance=ExtResource("11_u3nd4")]
+position = Vector2(-592, 780)
+scale = Vector2(0.64, 0.64)
+
+[node name="ScreenButtonOrbit" parent="." instance=ExtResource("15_0ogu6")]
+position = Vector2(-758, 778)
+scale = Vector2(0.64, 0.64)
+
+[node name="ScreenButtonOrbit2" parent="." instance=ExtResource("15_0ogu6")]
+position = Vector2(-422, 776)
+scale = Vector2(0.64, 0.64)
+
+[node name="ScreenButtonBoost2" parent="." instance=ExtResource("11_u3nd4")]
+position = Vector2(-250, 778)
+scale = Vector2(0.64, 0.64)
+
+[node name="ScreenButtonUnorbit" parent="." instance=ExtResource("16_yvjcm")]
+position = Vector2(-921, 779)
+scale = Vector2(0.64, 0.64)
+
+[node name="ScreenAG5" parent="." instance=ExtResource("2_a5mxd")]
+position = Vector2(-498, -569)
+scale = Vector2(1.57597, 1.57597)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenAG5"]
+shape = SubResource("CircleShape2D_51swq")
+
+[node name="Hazard2" type="Sprite2D" parent="."]
+position = Vector2(-269, 43)
+rotation = 1.52011
+scale = Vector2(1.18242, 1.18242)
+texture = ExtResource("19_qi0yw")
+
+[node name="ScreenHazard2" parent="Hazard2" instance=ExtResource("13_40emf")]
+visible = false
+position = Vector2(2, 9)
+rotation = 1.38055
+scale = Vector2(2.28516, 3.46615)
+
+[node name="Fuel3" type="Sprite2D" parent="."]
+position = Vector2(-204, -584)
+scale = Vector2(0.289543, 0.289543)
+texture = ExtResource("15_cqr80")
+
+[node name="ScreenPowerUp2" parent="Fuel3" instance=ExtResource("14_r2p6n")]
+visible = false
+position = Vector2(2.08521, 6.25558)
+scale = Vector2(1.49555, 1.49555)
+
+[node name="ScreenButtonOrbit3" parent="." instance=ExtResource("15_0ogu6")]
+position = Vector2(-1093, 776)
+scale = Vector2(0.64, 0.64)
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+offset_left = 809.0
+offset_top = -929.0
+offset_right = 1168.0
+offset_bottom = -859.0
+scale = Vector2(0.78, 0.78)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(1, 1, 1, 0.529412)
+theme_override_fonts/normal_font = SubResource("FontVariation_by2b5")
+theme_override_fonts/bold_font = SubResource("FontVariation_i82gr")
+theme_override_fonts/italics_font = SubResource("FontVariation_2ws21")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_ye6m0")
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+bbcode_enabled = true
+text = "RELAPSE"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="."]
+offset_left = 602.0
+offset_top = -929.0
+offset_right = 961.0
+offset_bottom = -859.0
+scale = Vector2(0.78, 0.78)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(1, 1, 1, 0.529412)
+theme_override_fonts/normal_font = SubResource("FontVariation_by2b5")
+theme_override_fonts/bold_font = SubResource("FontVariation_i82gr")
+theme_override_fonts/italics_font = SubResource("FontVariation_2ws21")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_ye6m0")
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+bbcode_enabled = true
+text = "UNKNOWN"

@@ -1,7 +1,7 @@
 extends ButtonControlledPathFollow
 class_name OneButtonPathFollow
 
-@export var button: HolderButton
+@export var button: ClickerHolder
 
 ## +1 or -1, representing forward or backwards
 var direction = 1

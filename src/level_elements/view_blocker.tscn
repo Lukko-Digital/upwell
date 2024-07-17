@@ -1,0 +1,160 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhjj5tgw8y2es"]
+
+[ext_resource type="Script" path="res://src/level_elements/view_blocker.gd" id="1_ryx1y"]
+[ext_resource type="Texture2D" uid="uid://dbeb0mc6rhj73" path="res://assets/mvp3_assets/viewblocker_blur.png" id="1_wfa3m"]
+
+[node name="ViewBlocker" type="Node2D" node_paths=PackedStringArray("sprites")]
+scale = Vector2(1.9, 4.2)
+script = ExtResource("1_ryx1y")
+sprites = [NodePath("CanvasLayer10/ClickerBlocker-sheet"), NodePath("CanvasLayer/ClickerBlocker-sheet"), NodePath("CanvasLayer2/ClickerBlocker-sheet"), NodePath("CanvasLayer3/ClickerBlocker-sheet"), NodePath("CanvasLayer4/ClickerBlocker-sheet"), NodePath("CanvasLayer5/ClickerBlocker-sheet"), NodePath("CanvasLayer6/ClickerBlocker-sheet"), NodePath("CanvasLayer7/ClickerBlocker-sheet"), NodePath("CanvasLayer8/ClickerBlocker-sheet"), NodePath("CanvasLayer9/ClickerBlocker-sheet"), NodePath("CanvasLayer11/ClickerBlocker-sheet"), NodePath("CanvasLayer12/ClickerBlocker-sheet"), NodePath("CanvasLayer13/ClickerBlocker-sheet"), NodePath("CanvasLayer14/ClickerBlocker-sheet"), NodePath("CanvasLayer15/ClickerBlocker-sheet"), NodePath("CanvasLayer16/ClickerBlocker-sheet"), NodePath("CanvasLayer17/ClickerBlocker-sheet"), NodePath("CanvasLayer18/ClickerBlocker-sheet"), NodePath("CanvasLayer19/ClickerBlocker-sheet")]
+
+[node name="CanvasLayer10" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer10"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 1.2
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 1.4
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer2"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 1.8
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer3"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer4" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 2.2
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer4"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer5" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 2.8
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer5"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer6" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 3.6
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer6"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer7" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 5.0
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer7"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer8" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 8.0
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer8"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer9" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 12.3
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer9"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer11" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 1.09
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer11"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer12" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 1.29
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer12"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer13" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 1.59
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer13"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer14" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 1.99
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer14"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer15" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 2.47
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer15"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer16" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 3.155
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer16"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer17" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 4.22
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer17"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer18" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 6.23
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer18"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")
+
+[node name="CanvasLayer19" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 9.925
+
+[node name="ClickerBlocker-sheet" type="Sprite2D" parent="CanvasLayer19"]
+scale = Vector2(1.9, 4.2)
+texture = ExtResource("1_wfa3m")

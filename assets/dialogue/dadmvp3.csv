@@ -1,0 +1,38 @@
+Branch,Dialogue Text,Duration,Variable To Set,Variable Value,Next Branch,Condition,Conditional Next Branch,R1 Text,R1 Spawn Condition,R1 Spawn Time,R1 Despawn Time,R1 Variable To Set,R1 Variable Value,R1 Next Branch,R2 Text,R2 Spawn Condition,R2 Spawn Time,R2 Despawn Time,R2 Variable To Set,R2 Variable Value,R2 Next Branch,R3 Text,R3 Spawn Condition,R3 Spawn Time,R3 Despawn Time,R3 Variable To Set,R3 Variable Value,R3 Next Branch
+S1,,,,,S2,HAS_CLICKER,S1xa,,,,,,,,,,,,,,,,,,,,,
+S1xa,,,,,C1,DAD_SPOKE_OF_CLICKER,C3,,,,,,,,,,,,,,,,,,,,,
+S2,,,,,G1,DAD_MET,S3,,,,,,,,,,,,,,,,,,,,,
+S3,,,,,LH1,LEFT_HOME,L1,,,,,,,,,,,,,,,,,,,,,
+,GREETING,,,,,,,,,,,,,,,,,,,,,,,,,,,
+G1,"Everything ready? You have a snack, right? Oh, well you can always come home to get one though...",,DAD_MET,1,,,,I'm ready.,,,,,,G3,Please don't worry,,,,,,G2,,,,,,,
+G2,I'm not I just... you've never left before.,,,,,,,I know,,,,,,G4,,,,,,,,,,,,,,
+G3,Right... sorry. I know.,,,,,,,It's okay,,,,,,G4,,,,,,,,,,,,,,
+G4,"Well remember, I was in the scouts back when things were still... moving. So come to me if you need any help.",,,,,,,Of course.,,,,,,G5,...,,,,,,G6,,,,,,,G6
+G5,Stay safe out there. Remember to call the pod at the stop sign. And step away from the opening until it arrives.,,,,,,,Right,,,,,,END,,,,,,,,,,,,,,
+G6,I don't mean to pressure you. Stay safe out there.,,,,,,,Right,,,,,,END,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,LOOP_HASNT_LEFT,,,,,,,,,,,,,,,,,,,,,,,,,,,
+LH1,Hey! You haven't left yet... Do you need something?,,,,,,,Who are the scouts?,,,,,,LH2,Where should I go?,,,,,,LH3,Nevermind,,,,,,END
+LH2,"You don't remember? Since the creators disappeared, we decided to use some of their technology to reach to the surface. If you prescribe to that theory anyways.",,,,,,,Of course I do,,,,,,LH4,...,,,,,,LH4,Do you?,,,,,,LH2a
+LH2a,"I mean doesn't any scout? I want to, at least.",,,,,,,Me too.,,,,,,LH4,,,,,,,,,,,,,,
+LH3,Well... we usually started recruits at CONTACT...? Just know this: not everything is possible without the right experience. It's okay to step away and come back later.,,,,,,,Sounds good,,,,,,LH4,,,,,,,LH4,,,,,,,
+LH4,Anything else?,,,,,,,Who are the scouts?,,,,,,LH2,Where should I go?,,,,,,LH3,Nevermind,,,,,,END
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,LOOP,,,,,,,,,,,,,,,,,,,,,,,,,,,
+L1,Anything I can do to help?,,,,,,,Who are the scouts?,,,,,,LH2,Where should I go?,,,,,,LH3,Nevermind,,,,,,END
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,CLICKER,,,,,,,,,,,,,,,,,,,,,,,,,,,
+C1,Woah... how did you... you took it... with you? I didn't know you could...,,,,,,,Yep,,,,,,C2,Are you proud of me?,,,,,,C1a,,,,,,,
+C1a,"Proud? Uhh, I mean yes. Well I was never able to... yknow... escape with one.",,,,,,,I'm a genius.,,,,,,C2,I just kinda found it.,,,,,,C2,,,,,,,
+C2,Please be careful with that. You're doing something very dangerous right now.,,DAD_SPOKE_OF_CLICKER,1,,,,I know.,,,,,,END,,,,,,,,,,,,,,
+C3,Be careful... and please take that somewhere else.,,,,,,,...,,,,,,END,,,,,,,,,,,,,,

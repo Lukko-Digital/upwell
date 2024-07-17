@@ -1,45 +1,85 @@
 extends Node
 
-## NULL is not a level but allows receivers to indicate that they do not unlock
-## any level
-enum LevelIDs {
-	NULL,
-	L1A,
-	L1B,
-	L1BB,
-	L1C,
-	L2A,
-	L2B,
-	L2C,
-	L3A,
-	L3B,
-	L3BB,
-	L3C,
-	L4A,
-	L4B,
-	L4C,
-	START
+var dialogue_conditions = {
+	
+	#GENERAL
+	"HAS_CLICKER": false,
+	"DAD_SPOKE_OF_CLICKER": false,
+	
+	#DAD
+	"DAD_MET": false,
+	
+	#OLD MAN
+	"OLD_MET_RELAPSE": false,
+	"OLD_MET_TEST": false,
+	"OLD_MET": false,
+	"OLD_KNOWS_TERIN": false,
+	"OLD_RLQ1": true,
+	"OLD_SPOKE_ABOUT_CLICKER": false,
+	"C3R1": false,
+
+	#TOBY
+	"TALKED_TO_TOBY": false,
+	"IS_SULKING": false,
+
+	#ADRIK
+	"MET_ADRIK": false,
+	
+	#LOCATIONS
+	"AT_H32_NUCLEAR": false,
+	"AT_001_CONTACT": false,
+	"AT_002_FALL": false,
+	"AT_003_TEST": false,
+	"AT_004_RELAPSE": false,
+	"AT_005_STORAGE": false,
+	"AT_H02_RECURRENCE": false,
+	"AT_UNKNOWN": false,
+	
+	"BEEN_H32_NUCLEAR": false,
+	"BEEN_001_CONTACT": false,
+	"BEEN_002_FALL": false,
+	"BEEN_003_TEST": false,
+	"BEEN_004_RELAPSE": false,
+	"BEEN_005_STORAGE": false,
+	"BEEN_H02_RECURRENCE": false,
+	"BEEN_UNKNOWN": false,
+	
+	"BEEN_CONTACT_AND_FALL": false,
+	"LEFT_HOME": false
 }
 
-var player_has_clicker = false
+var current_location_name: String
 
-var drill_heat: float = 0
-const MEDIUM_DRILL_HEAT: float = 25
+## Placeholder for MVP3 so player can spawn on the left, then arrive on the right side subsequently
+var swap_h32_nuclear_entrances = false
 
-var clicker_state = {}
-var level_unlocks = {}
-var npc_conversation_state = {}
-var pod_position: EmptyPod
+var pod_has_clicker = false
+var pod_position: EmptyPod = null
 
-signal set_camera_focus(focus: Vector2)
+var moving_on_map = false
+
+signal set_camera_focus(focus: Node2D)
 signal pod_called(empty_pod: EmptyPod)
 
-signal level_unlocked(level_name: LevelIDs)
-
-func unlock_level(level_name: LevelIDs):
-	level_unlocks[level_name] = true
-	level_unlocked.emit(level_name)
+## Used by clicker UI to perform screen flash
+signal clicker_sent_home()
 
 func call_pod(empty_pod: EmptyPod):
+	pod_position.handle_empty()
 	pod_position = empty_pod
+	pod_position.handle_empty()
 	pod_called.emit(empty_pod)
+
+func update_current_location(location_name: String):
+	# Unset last location
+	if not current_location_name.is_empty():
+		dialogue_conditions["AT_" + current_location_name] = false
+	# Set left home
+	if location_name != "H32_NUCLEAR":
+		dialogue_conditions["LEFT_HOME"] = true
+	# Set current location and been
+	dialogue_conditions["AT_" + location_name] = true
+	dialogue_conditions["BEEN_" + location_name] = true
+	current_location_name = location_name
+	# Special cases
+	dialogue_conditions["BEEN_CONTACT_AND_FALL"] = dialogue_conditions["BEEN_001_CONTACT"] && dialogue_conditions["BEEN_002_FALL"]

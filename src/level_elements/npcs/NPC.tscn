@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://6aouvsx0hvfm"]
+
+[ext_resource type="Script" path="res://src/abstract_base_classes/npc.gd" id="1_wmwre"]
+[ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="2_g0k2r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6qdgt"]
+radius = 219.002
+
+[sub_resource type="FontVariation" id="FontVariation_ciso7"]
+base_font = ExtResource("2_g0k2r")
+variation_embolden = 0.15
+
+[node name="NPC" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_wmwre")
+dialogue_file = "res://assets/test1.csv"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6qdgt")
+
+[node name="InteractLabel" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.709804)
+offset_left = -221.0
+offset_top = -283.0
+offset_right = 247.0
+offset_bottom = -174.0
+rotation = -0.000660069
+theme_override_fonts/font = SubResource("FontVariation_ciso7")
+theme_override_font_sizes/font_size = 86
+text = "E to talk"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

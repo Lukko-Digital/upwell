@@ -1,0 +1,123 @@
+[gd_scene load_steps=11 format=3 uid="uid://b3xmpb6et0p0g"]
+
+[ext_resource type="Script" path="res://src/player/clicker_ui.gd" id="1_bax8t"]
+[ext_resource type="Texture2D" uid="uid://ccc201315ps2p" path="res://assets/mvp3_assets/reactor_base_two.png" id="2_bwvy2"]
+[ext_resource type="Texture2D" uid="uid://dcth1nh1t8nc4" path="res://assets/mvp3_assets/reactor_content_three.png" id="3_u1cnc"]
+[ext_resource type="Texture2D" uid="uid://dv68v7o8ukdhg" path="res://assets/mvp3_assets/reactor_content_one.png" id="3_uhghd"]
+[ext_resource type="Texture2D" uid="uid://bykhr4w3cgete" path="res://assets/mvp3_assets/reactor_content_two.png" id="4_q1f7n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uprhc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_uhghd")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_q1f7n")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_u1cnc")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_hmq3k"]
+resource_name = "pickup"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Reactor/PickupKnob:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.045, 0, 0.4, -0.05, 0, 0.01, 0, 0, -0.785, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ofva"]
+_data = {
+"pickup": SubResource("Animation_hmq3k")
+}
+
+[sub_resource type="Animation" id="Animation_oitcb"]
+resource_name = "flash"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.360784), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_04koj"]
+_data = {
+"flash": SubResource("Animation_oitcb")
+}
+
+[node name="ClickerUi" type="CanvasLayer" node_paths=PackedStringArray("clickers_sprite", "reactor_animation", "screen_color_animation")]
+layer = 100
+script = ExtResource("1_bax8t")
+clickers_sprite = NodePath("Reactor/ClickerSprite")
+reactor_animation = NodePath("Reactor/ReactorAnimationPlayer")
+screen_color_animation = NodePath("ScreenColor/ScreenAnimationPlayer")
+
+[node name="Reactor" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 201.0
+offset_top = 181.0
+offset_right = 201.0
+offset_bottom = 181.0
+scale = Vector2(0.3, 0.3)
+
+[node name="OrbitKnob" type="Sprite2D" parent="Reactor"]
+self_modulate = Color(1, 1, 1, 0.129412)
+scale = Vector2(1.35, 1.35)
+texture = ExtResource("2_bwvy2")
+
+[node name="PickupKnob" type="Sprite2D" parent="Reactor"]
+self_modulate = Color(1, 1, 1, 0.415686)
+texture = ExtResource("2_bwvy2")
+
+[node name="ClickerSprite" type="AnimatedSprite2D" parent="Reactor"]
+sprite_frames = SubResource("SpriteFrames_uprhc")
+animation = &"2"
+
+[node name="ReactorAnimationPlayer" type="AnimationPlayer" parent="Reactor"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_1ofva")
+}
+
+[node name="ScreenColor" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="ScreenAnimationPlayer" type="AnimationPlayer" parent="ScreenColor"]
+libraries = {
+"": SubResource("AnimationLibrary_04koj")
+}

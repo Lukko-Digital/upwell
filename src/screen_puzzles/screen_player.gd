@@ -1,7 +1,7 @@
 @tool
 extends Node2D
 
-const STARTING_POWER: float = 1000
+@export var STARTING_POWER: float = 1000
 const SPACING: float = 2
 
 @onready var line: Line2D = $Line2D

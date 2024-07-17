@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dew5hi60yn8hw" path="res://assets/mvp3_assets/screenpuzzle/powerup.png" id="1_5p3rl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_es4gw"]
-radius = 77.2334
+radius = 104.0
 
 [node name="ScreenPowerUp" type="Area2D"]
 collision_layer = 32
@@ -12,6 +12,7 @@ collision_mask = 2
 script = ExtResource("1_2ydu8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.462745)
 texture = ExtResource("1_5p3rl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -17,8 +17,11 @@ shape = SubResource("CircleShape2D_nbx0n")
 
 [node name="InteractLabel" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.466667)
-offset_right = 291.0
-offset_bottom = 203.0
+z_index = 90
+offset_left = -52.0
+offset_top = 251.0
+offset_right = 239.0
+offset_bottom = 454.0
 scale = Vector2(0.374634, 0.374634)
 theme_override_fonts/font = ExtResource("2_uexcp")
 theme_override_font_sizes/font_size = 161

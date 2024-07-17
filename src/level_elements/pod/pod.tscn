@@ -1,11 +1,87 @@
-[gd_scene load_steps=4 format=3 uid="uid://dw50qvw1e418b"]
+[gd_scene load_steps=7 format=3 uid="uid://dw50qvw1e418b"]
 
 [ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="1_pv0jy"]
 [ext_resource type="Script" path="res://src/level_elements/pod/pod.gd" id="1_urr8o"]
 [ext_resource type="PackedScene" uid="uid://bb68hmcptqlgt" path="res://src/map/map.tscn" id="2_uerrb"]
+[ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/holder/clicker_holder.tscn" id="4_goton"]
 
-[node name="Pod" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fgq61"]
+size = Vector2(440, 1338)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eg7vv"]
+size = Vector2(1534, 1060)
+
+[node name="Pod" type="Node2D" node_paths=PackedStringArray("pod_holder", "walls_static_body", "walls_visual")]
 script = ExtResource("1_urr8o")
+pod_holder = NodePath("ClickerHolder")
+walls_static_body = NodePath("WallsStaticBody")
+walls_visual = NodePath("WallsVisual")
 
 [node name="Screen" parent="." instance=ExtResource("1_pv0jy")]
 screen = ExtResource("2_uerrb")
+
+[node name="WallsStaticBody" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallsStaticBody"]
+position = Vector2(-988, -419)
+shape = SubResource("RectangleShape2D_fgq61")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WallsStaticBody"]
+position = Vector2(988, -419)
+shape = SubResource("RectangleShape2D_fgq61")
+
+[node name="WallsVisual" type="Node2D" parent="."]
+z_index = 20
+position = Vector2(0, 911)
+scale = Vector2(1, 7.13)
+
+[node name="ColorRect" type="ColorRect" parent="WallsVisual"]
+offset_left = -2890.0
+offset_top = -1105.0
+offset_right = -768.0
+offset_bottom = 279.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="WallsVisual"]
+offset_left = 768.0
+offset_top = -1105.0
+offset_right = 2890.0
+offset_bottom = 279.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="WallsVisual"]
+offset_left = -2497.0
+offset_top = 377.279
+offset_right = -375.0
+offset_bottom = 1761.28
+rotation = -1.57079
+scale = Vector2(0.235649, 3.61439)
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect4" type="ColorRect" parent="WallsVisual"]
+offset_left = -2445.0
+offset_top = -290.743
+offset_right = -323.0
+offset_bottom = 1093.26
+rotation = -1.57079
+scale = Vector2(0.235649, 3.61439)
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ClickerHolder" parent="." instance=ExtResource("4_goton")]
+position = Vector2(-275, -41)
+starts_with_clicker = false
+is_catcher = false
+
+[node name="PodClickerRehomeArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PodClickerRehomeArea"]
+position = Vector2(0, -540)
+shape = SubResource("RectangleShape2D_eg7vv")
+
+[connection signal="body_entered" from="PodClickerRehomeArea" to="." method="_on_pod_clicker_rehome_area_body_entered"]

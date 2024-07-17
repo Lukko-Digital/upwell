@@ -6,91 +6,57 @@ class_name MapPlayer
 @onready var energy_bar: ProgressBar = $CanvasLayer/Energy
 @onready var starting_position: Vector2 = global_position
 @onready var collision_box: Area2D = $PlayerBody
-@onready var out_of_energy: Label = $CanvasLayer/OutOfEnergyLabel
+@onready var warning_label: Label = $CanvasLayer/WarningLabel
+@onready var grav_component: GravitizedComponent = $GravitizedComponent
 
-var moving = false
+const HAZARD_TEXT = "RECALLED DUE TO DAMAGE"
+const OUT_OF_ENERGY_TEXT = "RECALLED DUE TO ENERGY LOSS"
+const LOW_ENERGY_TEXT = "You are low on energy"
+
+var moving = false:
+	set(value):
+		moving = value
+		Global.moving_on_map = value
+
+var in_coolant = false
+
 var velocity: Vector2 = Vector2.ZERO
+
+var recalled = false
 
 var destination: MapLevel = null:
 	set(value):
 		destination = value
 		velocity = global_position.direction_to(value.global_position) * SPEED
 
-const SPEED: float = 200
-const ENERGY_USE_RATE: float = 50
+const SPEED: float = 800
+const ENERGY_USE_RATE: float = 30
 
 const AG_ACCELERATION: float = 4
 
 func _process(delta: float) -> void:
 	if moving:
-		handle_artificial_gravity(delta)
+		var active_ag = grav_component.check_active_ag()
+		var gravity_state = grav_component.determine_gravity_state(active_ag)
+		if gravity_state != GravitizedComponent.GravityState.NONE and Global.pod_has_clicker:
+			var new_vel = grav_component.calculate_gravitized_velocity(
+				active_ag, gravity_state, velocity, delta
+			)
+			velocity = new_vel.normalized() * SPEED
+
 		global_position += velocity * delta
-		if global_position.distance_to(destination.global_position) < 5:
+		if global_position.distance_to(destination.global_position) < 20:
 			end_movement()
 		else:
 			line.set_point_position(1, destination.global_position - global_position)
 
-		energy_bar.value -= ENERGY_USE_RATE * delta
+		if not in_coolant: energy_bar.value -= ENERGY_USE_RATE * delta
 	
 	if energy_bar.value <= 0:
+		show_warning(OUT_OF_ENERGY_TEXT)
 		recall()
-	elif energy_bar.value == energy_bar.max_value / 2: # For energy warning
-		pass
-
-# Return true if attracting or repelling, false otherwise
-func handle_artificial_gravity(delta):
-	# Check in moving
-	if not moving:
-		return
-
-	# Check for clicker
-	if not Global.player_has_clicker:
-		return
-
-	# Check that player is in an AG
-	var gravity_regions: Array[ArtificialGravity] = []
-	for area in collision_box.get_overlapping_areas():
-		if area is ArtificialGravity:
-			gravity_regions.append(area)
-	if gravity_regions.is_empty():
-		return
-	
-	# Check the AG is enabled
-	var gravity_well: ArtificialGravity = gravity_regions[0]
-	if not gravity_well.enabled:
-		return
-	
-	var vec_to_gravity = gravity_well.global_position - global_position
-
-	# Check the player is inputting a mouse click
-	var attracting = Input.is_action_pressed("attract")
-	var repelling = Input.is_action_pressed("repel")
-	if not (attracting or repelling):
-		return
-
-	match gravity_well.type:
-		ArtificialGravity.AGTypes.PUSHPULL:
-			# Push and pull
-			var active_direction = Vector2.ZERO
-			if attracting:
-				active_direction += vec_to_gravity.normalized()
-			if repelling:
-				active_direction += - vec_to_gravity.normalized()
-			velocity = velocity.lerp(
-				active_direction * SPEED,
-				AG_ACCELERATION * delta
-			)
-
-		ArtificialGravity.AGTypes.ORBIT:
-			# Orbit
-			var active_direction = Vector2.ZERO
-			if attracting:
-				# Right click, clockwise
-				active_direction = vec_to_gravity.orthogonal().normalized()
-			if repelling:
-				# Left click, counterclockwise
-				active_direction = -vec_to_gravity.orthogonal().normalized()
-			velocity = active_direction * SPEED
+	# elif energy_bar.value <= energy_bar.max_value / 2: # For energy warning
+	# 	show_warning(LOW_ENERGY_TEXT)
 
 func location_hovered(location: MapLevel):
 	if moving:
@@ -113,6 +79,10 @@ func location_selected(location: MapLevel):
 
 func enter_coolant_pocket() -> void:
 	energy_bar.value = energy_bar.max_value
+	in_coolant = true
+	
+func exit_coolant_pocket() -> void:
+	in_coolant = false
 
 func end_movement() -> void:
 	moving = false
@@ -122,16 +92,28 @@ func end_movement() -> void:
 	if line.get_point_count() > 1:
 		line.remove_point(1)
 
+	if not recalled:
+		# 7/13, josh says dont bump you out of map on arrival
+		# await get_tree().create_timer(0.35).timeout
+		# Global.set_camera_focus.emit(null)
+		recalled = false
+
 func recall() -> void:
+	recalled = true
 	global_position = starting_position
 	end_movement()
 
-	# FOR JOSH
-	out_of_energy.show()
-	await get_tree().create_timer(1).timeout
-	out_of_energy.hide()
+func show_warning(warning_text: String) -> void:
+	warning_label.text = warning_text
+	warning_label.show()
+	await get_tree().create_timer(2).timeout
+	warning_label.hide()
+
+func hit_hazard() -> void:
+	show_warning(HAZARD_TEXT)
+	recall()
 
 func _area_scanned(area: Area2D) -> void:
-	if area is MapLevel:
+	if area is MapLevel or area is Hazard or area is CoolantPocket:
 		if not area.locked:
 			area.show()

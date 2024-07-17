@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckbe13djrw5lh"]
+
+[ext_resource type="Script" path="res://src/map/hazard.gd" id="1_sg7e8"]
+
+[node name="Hazard" type="Area2D"]
+position = Vector2(215.5, 2.5)
+collision_mask = 2
+script = ExtResource("1_sg7e8")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
