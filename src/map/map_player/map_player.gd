@@ -12,6 +12,7 @@ class_name MapPlayer
 const HAZARD_TEXT = "RECALLED DUE TO DAMAGE"
 const OUT_OF_ENERGY_TEXT = "RECALLED DUE TO ENERGY LOSS"
 const LOW_ENERGY_TEXT = "You are low on energy"
+const TRAVEL_SHAKE_AMOUNT = 5
 
 var moving = false:
 	set(value):
@@ -76,6 +77,7 @@ func location_selected(location: MapLevel):
 		return
 	destination = location
 	moving = true
+	Global.camera_shake.emit(INF, TRAVEL_SHAKE_AMOUNT)
 
 func enter_coolant_pocket() -> void:
 	energy_bar.value = energy_bar.max_value
@@ -86,6 +88,7 @@ func exit_coolant_pocket() -> void:
 
 func end_movement() -> void:
 	moving = false
+	Global.stop_camera_shake.emit()
 	velocity = Vector2.ZERO
 	energy_bar.value = energy_bar.max_value
 	starting_position = global_position
