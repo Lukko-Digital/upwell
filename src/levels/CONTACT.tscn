@@ -191,8 +191,8 @@ power_multi = NodePath("../../Holders/TimedMultiReceiver")
 [node name="ViewBlockers" type="Node2D" parent="."]
 
 [node name="ViewBlocker" parent="ViewBlockers" instance=ExtResource("11_1jrhl")]
-position = Vector2(-80, -354)
-scale = Vector2(1.3818, 3.05451)
+position = Vector2(-100, -627)
+scale = Vector2(1.10936, 7.45167)
 
 [node name="ViewBlocker3" parent="ViewBlockers" instance=ExtResource("11_1jrhl")]
 position = Vector2(13054, -493)
@@ -204,7 +204,7 @@ position = Vector2(7359, -233)
 scale = Vector2(3.33636, 3.64764)
 
 [node name="ViewBlocker4" parent="ViewBlockers" instance=ExtResource("11_1jrhl")]
-position = Vector2(-672, -923)
+position = Vector2(-622, -872)
 
 [node name="Tutorials" type="Node2D" parent="."]
 z_index = 10
