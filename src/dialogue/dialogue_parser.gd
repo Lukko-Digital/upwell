@@ -73,7 +73,7 @@ static func parse_csv(dialogue_file: String) -> ConversationTree:
 			# Ignore empty branches, allows for header labels
 			continue
 		
-		var dialogue_line = get_key.call(line, "Dialogue Text")
+		var dialogue_line = BBCodeParser.parse(get_key.call(line, "Dialogue Text"))
 		var npc_name = get_key.call(line, "Name")
 		var duration = to_float_or_default(get_key.call(line, "Duration"), DEFUALT.DIALOGUE_DURATION)
 		var variable_to_set = get_key.call(line, "Variable To Set")
@@ -111,7 +111,6 @@ static func parse_csv(dialogue_file: String) -> ConversationTree:
 			conditional_next_branch_id,
 			responses
 		)
-	print(Global.dialogue_conditions)
 	return conversation_tree
 
 static func to_float_or_default(string: String, default: float) -> float:
