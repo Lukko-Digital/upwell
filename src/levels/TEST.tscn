@@ -434,7 +434,7 @@ position = Vector2(2396, -198)
 player = NodePath("../Player")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_vef2g")]
-position = Vector2(25605, -3354)
+position = Vector2(26129, -3276)
 camera = NodePath("../Camera2D")
 
 [node name="ViewBlocker2" parent="." instance=ExtResource("10_5krjy")]
