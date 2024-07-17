@@ -159,7 +159,7 @@ theme_override_font_sizes/mono_font_size = 50
 bbcode_enabled = true
 text = "
 
-[center][b][i][bgcolor=993e00][color=ffaa4f]COME FIND US[/color][/bgcolor][/i][/b][/center]"
+[center][b][i][bgcolor=993e00][color=ffaa4f]FILEPATH MISSING[/color][/bgcolor][/i][/b][/center]"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
@@ -200,7 +200,7 @@ scale = Vector2(1.04016, 1.22542)
 label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
 text = "
 
-[center][color=ffaa4f]now do it in real life[/color][/center]"
+[center][color=ffaa4f]come find us[/color][/center]"
 indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect")
 glow = NodePath("../ClickerGlow")
 
