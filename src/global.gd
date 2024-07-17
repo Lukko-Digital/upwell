@@ -58,7 +58,11 @@ var pod_position: EmptyPod = null
 
 var moving_on_map = false
 
+## Signals for [MainCamera]
 signal set_camera_focus(focus: Node2D)
+signal camera_shake(duration: float, amount: float)
+signal stop_camera_shake()
+
 signal pod_called(empty_pod: EmptyPod)
 
 ## Used by clicker UI to perform screen flash
@@ -82,4 +86,4 @@ func update_current_location(location_name: String):
 	dialogue_conditions["BEEN_" + location_name] = true
 	current_location_name = location_name
 	# Special cases
-	dialogue_conditions["BEEN_CONTACT_AND_FALL"] = dialogue_conditions["BEEN_001_CONTACT"] && dialogue_conditions["BEEN_002_FALL"]
+	dialogue_conditions["BEEN_CONTACT_AND_FALL"] = dialogue_conditions["BEEN_001_CONTACT"]&&dialogue_conditions["BEEN_002_FALL"]

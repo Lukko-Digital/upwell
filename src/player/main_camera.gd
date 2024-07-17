@@ -1,4 +1,5 @@
 extends Camera2D
+class_name MainCamera
 
 const CAMERA = {
 	NORMAL_ZOOM = 0.5,
@@ -14,10 +15,15 @@ const CAMERA = {
 
 @export var player: Player
 
+@onready var shake_timer: Timer = $ShakeTimer
+
 var focus: Node2D = null
+var shake_amount: float
 
 func _ready():
 	Global.set_camera_focus.connect(_set_focus)
+	Global.camera_shake.connect(_shake)
+	Global.stop_camera_shake.connect(_stop_shake)
 
 func _process(delta):
 	if focus:
@@ -26,6 +32,8 @@ func _process(delta):
 	else:
 		zoom = lerp(zoom, Vector2.ONE * CAMERA.NORMAL_ZOOM, CAMERA.MAP_ZOOM_SPEED * delta)
 		handle_camera_peek(delta)
+	
+	handle_shake()
 
 	if abs(player.position.x - position.x) > CAMERA.MAP_EXIT_DISTANCE:
 		Global.set_camera_focus.emit(null)
@@ -47,6 +55,23 @@ func handle_camera_peek(_delta):
 		# 	player.position,
 		# 	CAMERA.FOLLOW_SPEED * delta
 		# )
+
+func handle_shake():
+	if shake_timer.is_stopped():
+		offset = Vector2.ZERO
+		return
+	var shake_offset = Vector2(
+		randf_range( - 1, 1),
+		randf_range( - 1, 1)
+	) * shake_amount
+	offset = shake_offset
+
+func _shake(duration: float, amount: float):
+	shake_timer.start(duration)
+	shake_amount = amount
+
+func _stop_shake():
+	shake_timer.stop()
 
 func _set_focus(_focus: Node2D):
 	focus = _focus

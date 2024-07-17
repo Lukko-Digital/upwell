@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_5wj68"]
 [ext_resource type="PackedScene" uid="uid://dw50qvw1e418b" path="res://src/level_elements/pod/pod.tscn" id="3_t6iyq"]
-[ext_resource type="Script" path="res://src/player/main_camera.gd" id="4_5svdy"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="4_aavje"]
+[ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="4_gj13g"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_5wj68")
@@ -14,15 +14,8 @@ script = ExtResource("1_5wj68")
 
 [node name="Pod" parent="." instance=ExtResource("3_t6iyq")]
 
-[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("4_aavje")]
+[node name="Player" parent="." instance=ExtResource("4_aavje")]
 position = Vector2(0, -256)
-camera = NodePath("../Camera2D")
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
-position = Vector2(0, -128)
-zoom = Vector2(0.5, 0.5)
-limit_smoothed = true
-position_smoothing_enabled = true
-editor_draw_limits = true
-script = ExtResource("4_5svdy")
+[node name="MainCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_gj13g")]
 player = NodePath("../Player")
