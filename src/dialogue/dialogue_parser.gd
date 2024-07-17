@@ -52,9 +52,8 @@ static func parse_csv(dialogue_file: String) -> ConversationTree:
 				else:
 					res_expected_condition_value = true
 
-			# Safety check for variable to set
-			set_variable_safety_checks(res_variable_to_set, res_variable_value)
-			get_variable_safety_checks(spawn_condition)
+			init_global_variable(spawn_condition)
+			init_global_variable(res_variable_to_set)
 
 			var response = Response.new(
 				text,
@@ -96,9 +95,8 @@ static func parse_csv(dialogue_file: String) -> ConversationTree:
 			else:
 				expected_condition_value = true
 		
-		# Safety check for global variables to set
-		set_variable_safety_checks(variable_to_set, variable_value)
-		get_variable_safety_checks(condition)
+		init_global_variable(variable_to_set)
+		init_global_variable(condition)
 
 		conversation_tree.branches[branch_id] = ConversationBranch.new(
 			branch_id,
@@ -113,6 +111,7 @@ static func parse_csv(dialogue_file: String) -> ConversationTree:
 			conditional_next_branch_id,
 			responses
 		)
+	print(Global.dialogue_conditions)
 	return conversation_tree
 
 static func to_float_or_default(string: String, default: float) -> float:
@@ -138,12 +137,18 @@ static func error_if_empty(string: String, error_msg: String):
 	else:
 		return string
 
-static func set_variable_safety_checks(variable_to_set: String, variable_value: String):
-	if not variable_to_set.is_empty() and not Global.dialogue_conditions.has(variable_to_set):
-		assert(false, "Issue when parsing dialogue, planning to set variable \"" + variable_to_set + "\" which does not exist in Global.dialogue_conditions")
-	if not variable_to_set.is_empty() and variable_value.is_empty():
-		assert(false, "Error when parsing dialogue, the variable to set \"" + variable_to_set + "\" has no associated value")
+static func init_global_variable(variable_name: String):
+	if variable_name.is_empty():
+		return
+	if not Global.dialogue_conditions.has(variable_name):
+		Global.dialogue_conditions[variable_name] = false
 
-static func get_variable_safety_checks(variable_to_get: String):
-	if not variable_to_get.is_empty() and not Global.dialogue_conditions.has(variable_to_get):
-		assert(false, "Issue when parsing dialogue, planning to get variable \"" + variable_to_get + "\" which does not exist in Global.dialogue_conditions")
+# static func set_variable_safety_checks(variable_to_set: String, variable_value: String):
+# 	if not variable_to_set.is_empty() and not Global.dialogue_conditions.has(variable_to_set):
+# 		assert(false, "Issue when parsing dialogue, planning to set variable \"" + variable_to_set + "\" which does not exist in Global.dialogue_conditions")
+# 	if not variable_to_set.is_empty() and variable_value.is_empty():
+# 		assert(false, "Error when parsing dialogue, the variable to set \"" + variable_to_set + "\" has no associated value")
+
+# static func get_variable_safety_checks(variable_to_get: String):
+# 	if not variable_to_get.is_empty() and not Global.dialogue_conditions.has(variable_to_get):
+# 		assert(false, "Issue when parsing dialogue, planning to get variable \"" + variable_to_get + "\" which does not exist in Global.dialogue_conditions")
