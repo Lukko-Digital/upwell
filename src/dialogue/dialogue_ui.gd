@@ -27,7 +27,6 @@ func _ready():
 func start_dialogue(npc: NPC):
 	show()
 	current_conversation = npc.conversation_tree
-	name_label.text = current_conversation.npc_name
 	play_branch(DialogueParser.START_BRANCH_TAG)
 
 func play_branch(branch_id: String):
@@ -39,6 +38,9 @@ func play_branch(branch_id: String):
 	var branch: ConversationBranch = current_conversation.branches[branch_id]
 	# Set dialogue text
 	dialogue_label.text = branch.dialogue_line
+	# If there is a name, set it
+	if branch.npc_name != "":
+		name_label.text = "[center]" + branch.npc_name + "[/center]"
 	# If there is a variable to set, set it
 	if branch.variable_to_set != "":
 		Global.dialogue_conditions[branch.variable_to_set] = branch.variable_value

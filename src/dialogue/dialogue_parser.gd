@@ -12,7 +12,7 @@ const DEFUALT = {
 	DIALOGUE_DURATION = 1.2
 }
 
-static func parse_csv(dialogue_file: String, npc_name: String) -> ConversationTree:
+static func parse_csv(dialogue_file: String) -> ConversationTree:
 	var file = FileAccess.open(dialogue_file, FileAccess.READ)
 	var keys := file.get_csv_line()
 
@@ -23,7 +23,7 @@ static func parse_csv(dialogue_file: String, npc_name: String) -> ConversationTr
 			assert(false, "Error when parsing dialogue, cannot find key " + key)
 		return csv_line[idx]
 
-	var conversation_tree = ConversationTree.new(npc_name)
+	var conversation_tree = ConversationTree.new()
 	while not file.eof_reached():
 		var line := file.get_csv_line()
 
@@ -75,6 +75,7 @@ static func parse_csv(dialogue_file: String, npc_name: String) -> ConversationTr
 			continue
 		
 		var dialogue_line = get_key.call(line, "Dialogue Text")
+		var npc_name = get_key.call(line, "Name")
 		var duration = to_float_or_default(get_key.call(line, "Duration"), DEFUALT.DIALOGUE_DURATION)
 		var variable_to_set = get_key.call(line, "Variable To Set")
 		var variable_value = get_key.call(line, "Variable Value")
@@ -102,6 +103,7 @@ static func parse_csv(dialogue_file: String, npc_name: String) -> ConversationTr
 		conversation_tree.branches[branch_id] = ConversationBranch.new(
 			branch_id,
 			dialogue_line,
+			npc_name,
 			duration,
 			variable_to_set,
 			to_bool(variable_value),

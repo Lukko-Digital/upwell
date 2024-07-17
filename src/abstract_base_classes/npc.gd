@@ -9,7 +9,7 @@ var conversation_tree: ConversationTree
 
 func _ready() -> void:
 	super()
-	conversation_tree = DialogueParser.parse_csv(dialogue_file, "[center]"+npc_name+"[/center]")
+	conversation_tree = DialogueParser.parse_csv(dialogue_file)
 
 func interact(player: Player):
 	player.start_dialogue(self)
