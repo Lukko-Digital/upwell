@@ -145,14 +145,37 @@ static func init_global_variable(variable_name: String):
 		Global.dialogue_conditions[variable_name] = false
 
 static func safety_check_dialogue_commands(string: String):
-	var regex = RegEx.new()
-	regex.compile("{(.+?)}")
-	var matches = regex.search_all(string)
-	for re_match: RegExMatch in matches:
-		var command_line = re_match.strings[1].split(" ")
+	var command_search = RegEx.new()
+	command_search.compile("{(.+?)}")
+	for command_match: RegExMatch in command_search.search_all(string):
+		var command_line = command_match.strings[1].split(" ")
 		var command = command_line[0]
-		if command not in DialogueUI.DIALOGUE_COMMANDS.values():
-			assert(false, "Issue when parsing dialogue, invalid dialogue command or BBCode macro \"" + command + "\"")
+		match command:
+			DialogueUI.DIALOGUE_COMMANDS.PAUSE, DialogueUI.DIALOGUE_COMMANDS.SPEED:
+				assert(
+					command_line.size() == 2,
+					"Issue when parsing dialogue, expected dialogue command \"" + command + "\" to have 1 argument, instead received " + str(command_line.size() - 1)
+				)
+				assert(
+					command_line[1].is_valid_float(),
+					"Issue when parsing dialogue, the argument \"" + command_line[1] + "\" for command \"" + command + "\" cannot be converted to a float"
+				)
+			DialogueUI.DIALOGUE_COMMANDS.SHAKE:
+				if command_line.size() == 1:
+					continue
+				for arg in command_line.slice(1):
+					var arg_match = match_shake_args(arg)
+					assert(
+						arg_match != null,
+						"Issue when parsing dialogue, received argument \"" + arg + "\" for shake command, arguments must be in the format \"amount=#\" or \"duration=#\" where # is any valid float"
+					)
+			_:
+				assert(false, "Issue when parsing dialogue, invalid dialogue command or BBCode macro \"" + command + "\"")
+
+static func match_shake_args(arg: String) -> RegExMatch:
+	var arg_search = RegEx.new()
+	arg_search.compile("(amount|duration)=(\\d*\\.?\\d+)")
+	return arg_search.search(arg)
 
 static func strip_dialogue_commands(string: String) -> String:
 	var regex = RegEx.new()

@@ -119,7 +119,20 @@ func handle_dialogue_command(command_text: String, idx: int) -> int:
 		DIALOGUE_COMMANDS.SPEED:
 			display_speed_coef = 1 / command_line[1].to_float()
 		DIALOGUE_COMMANDS.SHAKE:
-			Global.camera_shake.emit(SHAKE_DEFAULT.DURATION, SHAKE_DEFAULT.AMOUNT)
+			var duration: float = SHAKE_DEFAULT.DURATION
+			var amount: float = SHAKE_DEFAULT.AMOUNT
+			if command_line.size() != 1:
+				# Override default shake values
+				for arg in command_line.slice(1):
+					var arg_match = DialogueParser.match_shake_args(arg)
+					var param = arg_match.strings[1]
+					var value = arg_match.strings[2].to_float()
+					match param:
+						"amount":
+							amount = value
+						"duration":
+							duration = value
+			Global.camera_shake.emit(duration, amount)
 	return re_match.get_end()
 
 func calculate_wait_time(new_char: String, command_text: String, idx: int) -> float:
