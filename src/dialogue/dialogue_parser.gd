@@ -4,14 +4,21 @@ class_name DialogueParser
 const START_BRANCH_TAG = "S1"
 const END_TAG = "END"
 const CONDITION_INVERSE_PREFIX = "!"
+
+const DIALOGUE_COMMANDS = {
+	PAUSE = "pause",
+	SPEED = "speed",
+	SHAKE = "shake",
+}
+
 const MAX_RESPONSES = 3
+
 const DEFUALT = {
 	SPAWN_TIME = .8,
 	DESPAWN_TIME = INF,
-	# Default dialogue duration is 1.5x the time it takes to display the line
+	# Default dialogue duration is 1.2x the time it takes to display the line
 	DIALOGUE_DURATION = 1.2
 }
-
 static func parse_csv(dialogue_file: String) -> ConversationTree:
 	var file = FileAccess.open(dialogue_file, FileAccess.READ)
 	var keys := file.get_csv_line()
@@ -74,6 +81,7 @@ static func parse_csv(dialogue_file: String) -> ConversationTree:
 			continue
 		
 		var dialogue_line = BBCodeParser.parse(get_key.call(line, "Dialogue Text"))
+		safety_check_dialogue_commands(dialogue_line)
 		var npc_name = get_key.call(line, "Name")
 		var duration = to_float_or_default(get_key.call(line, "Duration"), DEFUALT.DIALOGUE_DURATION)
 		var variable_to_set = get_key.call(line, "Variable To Set")
@@ -141,6 +149,16 @@ static func init_global_variable(variable_name: String):
 		return
 	if not Global.dialogue_conditions.has(variable_name):
 		Global.dialogue_conditions[variable_name] = false
+
+static func safety_check_dialogue_commands(string: String):
+	var regex = RegEx.new()
+	regex.compile("{(.+?)}")
+	var matches = regex.search_all(string)
+	for re_match: RegExMatch in matches:
+		var command_line = re_match.strings[1].split(" ")
+		var command = command_line[0]
+		if command not in DIALOGUE_COMMANDS.values():
+			assert(false, "Issue when parsing dialogue, invalid dialogue command or BBCode macro \"" + command + "\"")
 
 # static func set_variable_safety_checks(variable_to_set: String, variable_value: String):
 # 	if not variable_to_set.is_empty() and not Global.dialogue_conditions.has(variable_to_set):
