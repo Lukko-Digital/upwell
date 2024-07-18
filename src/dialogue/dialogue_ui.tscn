@@ -70,7 +70,7 @@ offset_bottom = 218.0
 scale = Vector2(0.5, 0.5)
 script = ExtResource("5_xcntd")
 
-[node name="Black" type="NinePatchRect" parent="Nodule/BubbleContainer"]
+[node name="BubbleNinePatch" type="NinePatchRect" parent="Nodule/BubbleContainer"]
 z_as_relative = false
 layout_mode = 2
 texture = ExtResource("6_gxkdl")
