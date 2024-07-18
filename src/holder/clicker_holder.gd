@@ -9,7 +9,7 @@ class_name ClickerHolder
 @export var catcher_field: Sprite2D
 
 enum HolderFrames {
-	GLOW, OFF
+	OFF, GLOW, HOLDING
 }
 
 @onready var id: String = owner.name + name
@@ -37,7 +37,7 @@ func _set_highlighted(value: bool):
 func _set_owned_clicker(clicker: ClickerBody):
 	if clicker == null:
 		# No clicker
-		# holder_sprite.frame = HolderFrames.OFF
+		holder_sprite.frame = HolderFrames.GLOW
 		# ^ it still glows because the player can put it back in
 		if has_clicker():
 			# If the holder just lost the clicker, set the lost clicker to no
@@ -45,7 +45,7 @@ func _set_owned_clicker(clicker: ClickerBody):
 			owned_clicker.holder_owned_by = null
 	else:
 		# Has clicker
-		holder_sprite.frame = HolderFrames.GLOW
+		holder_sprite.frame = HolderFrames.HOLDING
 		# Lock clicker to holder
 		clicker.set_deferred("global_position", clicker_sprite.global_position)
 		clicker.set_deferred("freeze", true)
