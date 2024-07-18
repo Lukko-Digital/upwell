@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://br8qm13yce4pr"]
+[gd_scene load_steps=9 format=3 uid="uid://br8qm13yce4pr"]
 
 [ext_resource type="Script" path="res://src/dialogue/dialogue_ui.gd" id="1_28e40"]
-[ext_resource type="Texture2D" uid="uid://cl1p7ygvq4qg" path="res://assets/mvp3_assets/screenpuzzle/text_backer.png" id="2_imiog"]
 [ext_resource type="PackedScene" uid="uid://xgi8pcnjfsvh" path="res://src/dialogue/response_button.tscn" id="3_y57cq"]
 [ext_resource type="Script" path="res://src/dialogue/speech_bubble_container.gd" id="5_xcntd"]
 [ext_resource type="Texture2D" uid="uid://e07jxr5ilqnk" path="res://assets/mvp4_assets/Dialogue_circle.png" id="6_gxkdl"]
@@ -12,64 +11,18 @@
 
 [node name="DialogueUi" type="CanvasLayer" node_paths=PackedStringArray("dialogue_label", "name_label", "nodule", "duration_timer", "display_timer", "response_box")]
 script = ExtResource("1_28e40")
-dialogue_label = NodePath("Nodule/MarginContainer/MarginContainer/DialogueLabel")
-name_label = NodePath("SpeechBubble/NameLabel")
+dialogue_label = NodePath("Nodule/BubbleContainer/TextContainer/VBoxContainer/DialogueLabel")
+name_label = NodePath("Nodule/BubbleContainer/TextContainer/VBoxContainer/NameLabel")
 nodule = NodePath("Nodule")
 duration_timer = NodePath("DurationTimer")
 display_timer = NodePath("DisplayTimer")
 response_box = NodePath("ResponseBox")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-offset_right = 1920.0
-offset_bottom = 1080.0
-mouse_filter = 2
-color = Color(0, 0, 0, 0.662745)
 
 [node name="DurationTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="DisplayTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="SpeechBubble" type="TextureRect" parent="."]
-visible = false
-offset_left = 72.0
-offset_top = 272.0
-offset_right = 639.0
-offset_bottom = 494.0
-scale = Vector2(1.21036, 1.21036)
-expand_mode = 1
-
-[node name="TextBacker" type="Sprite2D" parent="SpeechBubble"]
-position = Vector2(323.871, 231.336)
-scale = Vector2(0.464958, 0.464958)
-texture = ExtResource("2_imiog")
-
-[node name="NameLabel" type="RichTextLabel" parent="SpeechBubble"]
-modulate = Color(1, 1, 1, 0.670588)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -214.925
-offset_top = -156.441
-offset_right = 393.075
-offset_bottom = -84.441
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.843977, 0.843977)
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 39
-theme_override_font_sizes/bold_font_size = 24
-theme_override_font_sizes/italics_font_size = 24
-theme_override_font_sizes/bold_italics_font_size = 24
-theme_override_font_sizes/mono_font_size = 24
-bbcode_enabled = true
-text = "[center]Dad[/center]"
-fit_content = true
 
 [node name="ResponseBox" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(700, 0)
@@ -101,23 +54,23 @@ text = "response 3"
 
 [node name="Nodule" type="TextureRect" parent="."]
 z_index = 1
-offset_left = 961.0
-offset_top = 5.0
-offset_right = 1015.0
-offset_bottom = 59.0
+offset_left = 1027.0
+offset_top = 523.0
+offset_right = 1083.0
+offset_bottom = 581.0
 size_flags_horizontal = 4
 texture = ExtResource("7_1401i")
 
-[node name="MarginContainer" type="MarginContainer" parent="Nodule"]
+[node name="BubbleContainer" type="MarginContainer" parent="Nodule"]
 layout_mode = 0
-offset_left = -275.0
+offset_left = -416.0
 offset_top = -182.0
-offset_right = 946.425
+offset_right = 805.425
 offset_bottom = 218.0
 scale = Vector2(0.5, 0.5)
 script = ExtResource("5_xcntd")
 
-[node name="Black" type="NinePatchRect" parent="Nodule/MarginContainer"]
+[node name="Black" type="NinePatchRect" parent="Nodule/BubbleContainer"]
 z_as_relative = false
 layout_mode = 2
 texture = ExtResource("6_gxkdl")
@@ -126,17 +79,19 @@ patch_margin_top = 200
 patch_margin_right = 200
 patch_margin_bottom = 200
 
-[node name="MarginContainer" type="MarginContainer" parent="Nodule/MarginContainer"]
+[node name="TextContainer" type="MarginContainer" parent="Nodule/BubbleContainer"]
 z_as_relative = false
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/margin_left = 70
-theme_override_constants/margin_top = 70
-theme_override_constants/margin_right = 70
-theme_override_constants/margin_bottom = 70
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
 
-[node name="DialogueLabel" type="RichTextLabel" parent="Nodule/MarginContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Nodule/BubbleContainer/TextContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="NameLabel" type="RichTextLabel" parent="Nodule/BubbleContainer/TextContainer/VBoxContainer"]
 custom_minimum_size = Vector2(977.1, 0)
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -149,8 +104,26 @@ theme_override_font_sizes/italics_font_size = 50
 theme_override_font_sizes/bold_italics_font_size = 50
 theme_override_font_sizes/mono_font_size = 50
 bbcode_enabled = true
-text = "@tool
-extends MarginContainer"
+text = "[b]Dad[/b]"
+fit_content = true
+scroll_active = false
+visible_characters_behavior = 1
+
+[node name="DialogueLabel" type="RichTextLabel" parent="Nodule/BubbleContainer/TextContainer/VBoxContainer"]
+custom_minimum_size = Vector2(977.1, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("7_vcmvp")
+theme_override_fonts/bold_font = ExtResource("8_edu6f")
+theme_override_fonts/italics_font = ExtResource("9_llxa6")
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+bbcode_enabled = true
+text = "hello good sir how are you today"
 fit_content = true
 scroll_active = false
 visible_characters_behavior = 1
