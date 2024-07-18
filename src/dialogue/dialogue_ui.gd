@@ -21,8 +21,6 @@ const SPEECH_BUBBLE_OFFSET = Vector2( - 100, -130)
 @export var dialogue_label: RichTextLabel
 @export var name_label: RichTextLabel
 @export var nodule: TextureRect
-# Timer for the duration of the text on the screen, set by duration variable of conversation branches
-@export var duration_timer: Timer
 # Timer for animating text display, value set to TEXT_SPEED
 @export var display_timer: Timer
 @export var response_box: VBoxContainer
@@ -32,9 +30,9 @@ const SPEECH_BUBBLE_OFFSET = Vector2( - 100, -130)
 var current_conversation: ConversationTree
 var display_speed_coef = 1
 var display_in_progress: bool = false
-var response_button_queue := {}
 var next_branch: String
 
+signal display_animation_finished
 signal dialogue_finished
 
 func _ready():
@@ -69,22 +67,29 @@ func play_branch(branch_id: String):
 		if Global.dialogue_conditions[branch.condition] == branch.expected_condition_value:
 			next_branch = branch.conditional_next_branch_id
 
-	# Handle Timer
-	var display_time = branch.dialogue_line.length() * (TEXT_SPEED + get_process_delta_time())
-	if branch.duration == 0:
-		# If there is no duration, immediately play next branch, in the case of boolean algebra lines
+	if branch.dialogue_line.is_empty():
+		# If there is no dialogue text, immediately play next branch, in the case of boolean algebra lines
 		play_branch(next_branch)
 		return
-	elif branch.next_branch_id.is_empty():
-		# If there is no next branch (i.e. when waiting for player response) the timer goes infinite
-		duration_timer.start(INF)
-	else:
-		# Otherwise, start the timer normally
-		duration_timer.start(display_time * branch.duration)
-	# Spawn responses
+
+	# Spawn impulsive responses
 	for response in branch.responses:
-		spawn_reponse(response, display_time)
+		if response.is_impulsive_reponse:
+			spawn_reponse(response)
+
 	animate_display(branch.dialogue_line)
+	await display_animation_finished
+
+	clear_responses()
+	
+	if branch.responses.is_empty():
+		# Advance if no responses
+		play_branch(next_branch)
+	else:
+		# Spawn normal responses
+		for response in branch.responses:
+			if not response.is_impulsive_reponse:
+				spawn_reponse(response)
 
 func animate_display(dialogue_line: String):
 	## Just the characters that will be seen, no bbcode
@@ -106,6 +111,7 @@ func animate_display(dialogue_line: String):
 			
 		if not display_timer.is_stopped():
 			await display_timer.timeout
+	display_animation_finished.emit()
 
 ## Returns the index of the end of the command, that should be jumped to
 func handle_dialogue_command(command_text: String, idx: int) -> int:
@@ -153,30 +159,17 @@ func calculate_wait_time(new_char: String, command_text: String, idx: int) -> fl
 		_:
 			return TEXT_SPEED * display_speed_coef
 
-func spawn_reponse(response: Response, display_time: float):
+func spawn_reponse(response: Response):
 	if response.spawn_condition != "":
 		if Global.dialogue_conditions[response.spawn_condition] != response.expected_condition_value:
 			# If spawn condition is not satisfied, exit
 			return
-
-	# Instantiate timer
 	var instance: ResponseButton = response_button_scene.instantiate()
-	response_button_queue[instance] = null
-	await get_tree().create_timer(response.spawn_time * display_time).timeout
-
-	if not response_button_queue.has(instance):
-		# Will happen if buttons get despawned before they get the chance to spawn
-		return
-	
-	# Remove from queue
-	response_button_queue.erase(instance)
-	# Start & Spawn
-	instance.start(display_time, response)
+	instance.start(response)
 	instance.response_selected.connect(_response_button_pressed)
 	response_box.add_child(instance)
 
 func clear_responses():
-	response_button_queue.clear()
 	for button in response_box.get_children():
 		response_box.remove_child(button)
 		button.queue_free()
@@ -191,6 +184,3 @@ func _response_button_pressed(response: Response):
 		Global.dialogue_conditions[response.variable_to_set] = response.variable_value
 	# Next branch
 	play_branch(response.next_branch_id)
-
-func _on_duration_timer_timeout():
-	play_branch(next_branch)

@@ -36,10 +36,9 @@ static func parse_csv(dialogue_file: String) -> ConversationTree:
 				break
 			
 			var spawn_condition = get_key.call(line, "R%s Spawn Condition" % response_num)
-			var spawn_time = to_float_or_default(get_key.call(line, "R%s Spawn Time" % response_num), DEFUALT.SPAWN_TIME)
-			var despawn_time = to_float_or_default(get_key.call(line, "R%s Despawn Time" % response_num), DEFUALT.DESPAWN_TIME)
+			var is_impulsive_reponse = to_bool(get_key.call(line, "R%s Is Impulsive Response" % response_num))
 			var res_variable_to_set = get_key.call(line, "R%s Variable To Set" % response_num)
-			var res_variable_value = get_key.call(line, "R%s Variable Value" % response_num)
+			var res_variable_value = to_bool(get_key.call(line, "R%s Variable Value" % response_num))
 			var res_next_branch_id = error_if_empty(
 				get_key.call(line, "R%s Next Branch" % response_num),
 				"Error when parsing dialogue, the response \"" + text + "\" has no next branch"
@@ -60,10 +59,9 @@ static func parse_csv(dialogue_file: String) -> ConversationTree:
 				text,
 				spawn_condition,
 				res_expected_condition_value,
-				spawn_time,
-				despawn_time,
+				is_impulsive_reponse,
 				res_variable_to_set,
-				to_bool(res_variable_value),
+				res_variable_value,
 				res_next_branch_id
 			)
 			responses.append(response)
@@ -77,16 +75,11 @@ static func parse_csv(dialogue_file: String) -> ConversationTree:
 		var dialogue_line = BBCodeParser.parse(get_key.call(line, "Dialogue Text"))
 		safety_check_dialogue_commands(dialogue_line)
 		var npc_name = get_key.call(line, "Name")
-		var duration = to_float_or_default(get_key.call(line, "Duration"), DEFUALT.DIALOGUE_DURATION)
 		var variable_to_set = get_key.call(line, "Variable To Set")
-		var variable_value = get_key.call(line, "Variable Value")
+		var variable_value = to_bool(get_key.call(line, "Variable Value"))
 		var next_branch_id = get_key.call(line, "Next Branch")
 		var condition = get_key.call(line, "Condition")
 		var conditional_next_branch_id = get_key.call(line, "Conditional Next Branch")
-
-		# Empty boolean algebra lines will have no duration
-		if dialogue_line.is_empty():
-			duration = 0
 
 		# Determine condition prefixing
 		var expected_condition_value: bool
@@ -104,9 +97,8 @@ static func parse_csv(dialogue_file: String) -> ConversationTree:
 			branch_id,
 			dialogue_line,
 			npc_name,
-			duration,
 			variable_to_set,
-			to_bool(variable_value),
+			variable_value,
 			next_branch_id,
 			condition,
 			expected_condition_value,
@@ -126,8 +118,8 @@ static func to_float_or_default(string: String, default: float) -> float:
 
 static func to_bool(string: String):
 	match string:
-		"0": return false
-		"1": return true
+		"0", "FALSE": return false
+		"1", "TRUE": return true
 		"": return false
 		_:
 			assert(false, "Error when parsing dialogue, tried to convert " + string + " to bool, expected '0' or '1'")

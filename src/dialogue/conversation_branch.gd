@@ -6,8 +6,6 @@ var id: String
 var dialogue_line: String
 ## Optional
 var npc_name: String
-## Set manually or defaults to [INF]
-var duration: float
 ## Optional, empty string if not provided. Key of global dialogue conditions.
 var variable_to_set: String
 ## Optional
@@ -27,7 +25,6 @@ func _init(
 	id_: String,
 	dialogue_line_: String,
 	npc_name_: String,
-	duration_: float,
 	variable_to_set_: String,
 	variable_value_: bool,
 	next_branch_id_: String,
@@ -39,7 +36,6 @@ func _init(
 	id = id_
 	dialogue_line = dialogue_line_
 	npc_name = npc_name_
-	duration = duration_
 	variable_to_set = variable_to_set_
 	variable_value = variable_value_
 	next_branch_id = next_branch_id_
@@ -52,7 +48,6 @@ func print():
 	print("branch id: ", id)
 	print("\tdialogue_line: ", dialogue_line)
 	print("\tnpc_name: ", npc_name)
-	print("\tduration: ", duration)
 	print("\tvariable_to_set: ", variable_to_set)
 	print("\tvariable_value: ", variable_value)
 	print("\tnext_branch_id: ", next_branch_id)
