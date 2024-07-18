@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bbrkg6cjjyr4k" path="res://src/levels/CONTACT.tscn" id="5_ga2oe"]
 [ext_resource type="PackedScene" uid="uid://c413chwmpxtw1" path="res://src/levels/H32_NUCLEAR.tscn" id="5_og8y0"]
 [ext_resource type="PackedScene" uid="uid://bwmwenrm8xori" path="res://src/map/coolant_pocket.tscn" id="6_4a6mq"]
-[ext_resource type="PackedScene" uid="uid://tlnbxn7fgral" path="res://src/levels/TEST.tscn" id="6_qfahr"]
 [ext_resource type="PackedScene" uid="uid://dl1nh6jj657a" path="res://src/levels/FALL.tscn" id="7_kq772"]
-[ext_resource type="PackedScene" path="res://src/map/hazard.tscn" id="8_xqpvg"]
+[ext_resource type="PackedScene" uid="uid://db06hxs1wc08q" path="res://src/levels/TEST.tscn" id="8_d5ra6"]
+[ext_resource type="PackedScene" uid="uid://ckbe13djrw5lh" path="res://src/map/hazard.tscn" id="8_xqpvg"]
 [ext_resource type="PackedScene" uid="uid://cr2ov0m76vreo" path="res://src/levels/RELAPSE.tscn" id="9_bymtf"]
 [ext_resource type="PackedScene" uid="uid://duwam6d8wx6x" path="res://src/levels/RECURRENCE.tscn" id="9_f7cig"]
 [ext_resource type="Texture2D" uid="uid://cshgupmhysmp3" path="res://assets/ui/map/hazards/hazard_1.png" id="9_uqps3"]
@@ -146,7 +146,7 @@ name_text = "001.CONTACT"
 
 [node name="003_TEST" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(335, 443.25)
-level = ExtResource("6_qfahr")
+level = ExtResource("8_d5ra6")
 name_text = "003.TEST"
 sprite_scale = 1.225
 
