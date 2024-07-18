@@ -2,9 +2,19 @@ extends CanvasLayer
 class_name DialogueUI
 
 const TEXT_SPEED = 0.03
-## Multiplier on how long it will take for the next character to appear
-const END_CHARACTER_SLOWDOWN = 15
-const COMMA_SLOWDOWN = 5
+
+const DIALOGUE_COMMANDS = {
+	PAUSE = "pause",
+	SPEED = "speed",
+	SHAKE = "shake",
+}
+const SHAKE_DEFAULT = {
+	DURATION = 0.1,
+	AMOUNT = 50
+}
+## How long it will take for the next character to appear, in seconds
+const END_CHARACTER_PAUSE = 0.5
+const COMMA_PAUSE = 0.15
 ## Distance from nodule origin to npc origin
 const SPEECH_BUBBLE_OFFSET = Vector2( - 100, -130)
 
@@ -20,6 +30,7 @@ const SPEECH_BUBBLE_OFFSET = Vector2( - 100, -130)
 @onready var response_button_scene = preload ("res://src/dialogue/response_button.tscn")
 
 var current_conversation: ConversationTree
+var display_speed_coef = 1
 var display_in_progress: bool = false
 var response_button_queue := {}
 var next_branch: String
@@ -44,7 +55,7 @@ func play_branch(branch_id: String):
 	clear_responses()
 	var branch: ConversationBranch = current_conversation.branches[branch_id]
 	# Set dialogue text
-	dialogue_label.text = branch.dialogue_line
+	dialogue_label.text = DialogueParser.strip_dialogue_commands(branch.dialogue_line)
 	# If there is a name, set it
 	if branch.npc_name != "":
 		name_label.text = "[b]" + branch.npc_name + "[/b]"
@@ -73,35 +84,61 @@ func play_branch(branch_id: String):
 	# Spawn responses
 	for response in branch.responses:
 		spawn_reponse(response, display_time)
-	animate_display()
+	animate_display(branch.dialogue_line)
 
-func animate_display():
+func animate_display(dialogue_line: String):
 	## Just the characters that will be seen, no bbcode
-	var raw_text = BBCodeParser.strip_bbcode(dialogue_label.text)
 	dialogue_label.visible_characters = 0
-	while dialogue_label.visible_characters < raw_text.length():
-		var display_speed_coef = 1
-		dialogue_label.visible_characters += 1
+	var command_text = BBCodeParser.strip_bbcode(dialogue_line)
+	var idx = 0
+	while idx < command_text.length():
+		var new_char = command_text[idx]
+		
+		if new_char == "{":
+			# Dialogue command
+			idx = handle_dialogue_command(command_text, idx)
+		else:
+			var wait_time = calculate_wait_time(new_char, command_text, idx)
+			display_timer.start(wait_time)
+			# Show new character
+			dialogue_label.visible_characters += 1
+			idx += 1
+			
+		if not display_timer.is_stopped():
+			await display_timer.timeout
 
-		## The character that was just revealed
-		var new_char = raw_text[dialogue_label.visible_characters - 1]
-		var next_char = ""
-		if dialogue_label.visible_characters < raw_text.length():
-			next_char = raw_text[dialogue_label.visible_characters]
-		match new_char:
-			".":
-				# Don't slow down "..." as much
-				if next_char == ".":
-					display_speed_coef = COMMA_SLOWDOWN
-				else:
-					display_speed_coef = END_CHARACTER_SLOWDOWN
-			"!", "?":
-				display_speed_coef = END_CHARACTER_SLOWDOWN
-			",":
-				display_speed_coef = COMMA_SLOWDOWN
+## Returns the index of the end of the command, that should be jumped to
+func handle_dialogue_command(command_text: String, idx: int) -> int:
+	var regex = RegEx.new()
+	regex.compile("{(.+?)}")
+	var re_match: RegExMatch = regex.search(command_text, idx)
+	var command_line = re_match.strings[1].split(" ")
+	match command_line[0]:
+		DIALOGUE_COMMANDS.PAUSE:
+			display_timer.start(command_line[1].to_float())
+		DIALOGUE_COMMANDS.SPEED:
+			display_speed_coef = 1 / command_line[1].to_float()
+		DIALOGUE_COMMANDS.SHAKE:
+			Global.camera_shake.emit(SHAKE_DEFAULT.DURATION, SHAKE_DEFAULT.AMOUNT)
+	return re_match.get_end()
 
-		display_timer.start(TEXT_SPEED * display_speed_coef)
-		await display_timer.timeout
+func calculate_wait_time(new_char: String, command_text: String, idx: int) -> float:
+	var next_char = ""
+	if idx + 1 < command_text.length():
+		next_char = command_text[idx + 1]
+	match new_char:
+		".":
+			# Don't slow down "..." as much
+			if next_char == ".":
+				return COMMA_PAUSE
+			else:
+				return END_CHARACTER_PAUSE
+		"!", "?":
+			return END_CHARACTER_PAUSE
+		",":
+			return COMMA_PAUSE
+		_:
+			return TEXT_SPEED * display_speed_coef
 
 func spawn_reponse(response: Response, display_time: float):
 	if response.spawn_condition != "":

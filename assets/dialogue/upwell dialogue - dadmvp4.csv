@@ -4,7 +4,7 @@ S1xa,,,,,,C1,DAD_SPOKE_OF_CLICKER,C3,,,,,,,,,,,,,,,,,,,,,
 S2,,,,,,G1,DAD_MET,S3,,,,,,,,,,,,,,,,,,,,,
 S3,,,,,,LH1,LEFT_HOME,L1,,,,,,,,,,,,,,,,,,,,,
 ,,GREETING,,,,,,,,,,,,,,,,,,,,,,,,,,,
-G1,,"Everything ready? You have a {orange}snack{/orange}{pause 1}, right? Oh, well you {orange_bg}can {speed 0.5}always{speed 1} come {shake}home{/orange_bg} to get one though...",,DAD_MET,1,,,,I'm ready.,,,,,,G3,Please don't worry,,,,,,G2,,,,,,,
+G1,,"Everything ready? You have a {orange}snack{/orange},{pause 1} right? Oh, well you {orange}can {speed 0.2}always{speed 1} come {shake}home{/orange} to get one though...",,DAD_MET,1,,,,I'm ready.,,,,,,G3,Please don't worry,,,,,,G2,,,,,,,
 G2,Worrying bastard,I'm not I just... you've never left before.,,,,,,,I know,,,,,,G4,,,,,,,,,,,,,,
 G3,,Right... sorry. I know.,,,,,,,It's okay,,,,,,G4,,,,,,,,,,,,,,
 G4,Dad,"Well remember, I was in the scouts back when things were still... moving. So come to me if you need any help.",,,,,,,Of course.,,,,,,G5,...,,,,,,G6,,,,,,,G6

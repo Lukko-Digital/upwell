@@ -5,12 +5,6 @@ const START_BRANCH_TAG = "S1"
 const END_TAG = "END"
 const CONDITION_INVERSE_PREFIX = "!"
 
-const DIALOGUE_COMMANDS = {
-	PAUSE = "pause",
-	SPEED = "speed",
-	SHAKE = "shake",
-}
-
 const MAX_RESPONSES = 3
 
 const DEFUALT = {
@@ -157,8 +151,13 @@ static func safety_check_dialogue_commands(string: String):
 	for re_match: RegExMatch in matches:
 		var command_line = re_match.strings[1].split(" ")
 		var command = command_line[0]
-		if command not in DIALOGUE_COMMANDS.values():
+		if command not in DialogueUI.DIALOGUE_COMMANDS.values():
 			assert(false, "Issue when parsing dialogue, invalid dialogue command or BBCode macro \"" + command + "\"")
+
+static func strip_dialogue_commands(string: String) -> String:
+	var regex = RegEx.new()
+	regex.compile("{.+?}")
+	return regex.sub(string, "", true)
 
 # static func set_variable_safety_checks(variable_to_set: String, variable_value: String):
 # 	if not variable_to_set.is_empty() and not Global.dialogue_conditions.has(variable_to_set):
