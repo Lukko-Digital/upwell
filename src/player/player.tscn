@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://tfy83b2uc6hh"]
+[gd_scene load_steps=11 format=3 uid="uid://tfy83b2uc6hh"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_lbj7m"]
 [ext_resource type="Texture2D" uid="uid://cnuqbnvjsg53d" path="res://assets/mvp4_assets/player.png" id="2_6q4jk"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://2idgorc23fon" path="res://assets/ui/map/travel_line_texture.png" id="6_hr78g"]
 [ext_resource type="PackedScene" uid="uid://b3xmpb6et0p0g" path="res://src/player/clicker_ui.tscn" id="6_j7ju8"]
 [ext_resource type="Texture2D" uid="uid://nl3afbhplomy" path="res://assets/environment/test_level/plyrglow.png" id="6_mcnf8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w3hfv"]
+blend_mode = 1
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_erpsl"]
 radius = 68.2904
@@ -28,8 +31,23 @@ jump_buffer_timer = NodePath("Timers/JumpBufferTimer")
 min_jump_timer = NodePath("Timers/MinimumJumpTimer")
 throw_arc_line = NodePath("ThrowArc")
 
+[node name="Plyrglow2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.415686)
+material = SubResource("CanvasItemMaterial_w3hfv")
+position = Vector2(17, -155)
+scale = Vector2(0.753597, 0.753597)
+texture = ExtResource("6_mcnf8")
+
 [node name="Plyrglow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.415686)
+material = SubResource("CanvasItemMaterial_w3hfv")
+position = Vector2(17, -155)
+scale = Vector2(0.753597, 0.753597)
+texture = ExtResource("6_mcnf8")
+
+[node name="Plyrglow3" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.415686)
+material = SubResource("CanvasItemMaterial_w3hfv")
 position = Vector2(17, -155)
 scale = Vector2(0.753597, 0.753597)
 texture = ExtResource("6_mcnf8")
