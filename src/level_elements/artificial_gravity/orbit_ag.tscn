@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dw6autb2hsck1"]
+[gd_scene load_steps=5 format=3 uid="uid://dw6autb2hsck1"]
 
 [ext_resource type="Script" path="res://src/artificial_gravity/artificial_gravity.gd" id="1_l7ntd"]
 [ext_resource type="PackedScene" uid="uid://c41e7cium4ple" path="res://src/artificial_gravity/orbit_core_sprite.tscn" id="2_xnfqp"]
 [ext_resource type="PackedScene" uid="uid://d4jqyovssydvt" path="res://src/artificial_gravity/glow_sprite.tscn" id="3_wxnx4"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b7tg5"]
+blend_mode = 1
 
 [node name="OrbitAG" type="Area2D"]
 collision_layer = 4
@@ -13,6 +16,7 @@ type = 1
 [node name="Core" parent="." instance=ExtResource("2_xnfqp")]
 
 [node name="Glow" parent="." instance=ExtResource("3_wxnx4")]
+material = SubResource("CanvasItemMaterial_b7tg5")
 
 [node name="RegenTimer" type="Timer" parent="."]
 one_shot = true
