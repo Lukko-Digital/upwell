@@ -1,14 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://br8qm13yce4pr"]
+[gd_scene load_steps=11 format=3 uid="uid://br8qm13yce4pr"]
 
 [ext_resource type="Script" path="res://src/dialogue/dialogue_ui.gd" id="1_28e40"]
-[ext_resource type="Texture2D" uid="uid://rs7x2nijmrv1" path="res://assets/ui/dialogue/backer.png" id="2_33dgi"]
 [ext_resource type="Texture2D" uid="uid://cl1p7ygvq4qg" path="res://assets/mvp3_assets/screenpuzzle/text_backer.png" id="2_imiog"]
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="3_rc6gk"]
 [ext_resource type="PackedScene" uid="uid://xgi8pcnjfsvh" path="res://src/dialogue/response_button.tscn" id="3_y57cq"]
 [ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="5_hkr4i"]
-[ext_resource type="Texture2D" uid="uid://qoo6lixrvk2m" path="res://assets/character/dad/portraits/neutral.png" id="6_a2jmg"]
-[ext_resource type="Texture2D" uid="uid://bbjdwc6iyldfv" path="res://assets/ui/map/scanlines.png" id="6_bm3gp"]
-[ext_resource type="Texture2D" uid="uid://dc8le7332e0c3" path="res://assets/ui/dialogue/backerscan.png" id="6_h11u4"]
+[ext_resource type="Script" path="res://src/dialogue/speech_bubble_container.gd" id="5_xcntd"]
+[ext_resource type="Texture2D" uid="uid://cc54q0dnhgp1q" path="res://assets/mvp4_assets/Dialogue_circle.png" id="6_gxkdl"]
+[ext_resource type="Texture2D" uid="uid://c178t5fjm3dw5" path="res://assets/mvp4_assets/Dialogue_nodule.png" id="7_1401i"]
 
 [sub_resource type="FontVariation" id="FontVariation_64rtg"]
 base_font = ExtResource("3_rc6gk")
@@ -16,16 +15,11 @@ base_font = ExtResource("3_rc6gk")
 [sub_resource type="FontVariation" id="FontVariation_y8awx"]
 base_font = ExtResource("5_hkr4i")
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ns4yk"]
-blend_mode = 2
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m21sd"]
-blend_mode = 2
-
-[node name="DialogueUi" type="CanvasLayer" node_paths=PackedStringArray("dialogue_label", "name_label", "duration_timer", "display_timer", "response_box")]
+[node name="DialogueUi" type="CanvasLayer" node_paths=PackedStringArray("dialogue_label", "name_label", "nodule", "duration_timer", "display_timer", "response_box")]
 script = ExtResource("1_28e40")
-dialogue_label = NodePath("SpeechBubble/DialogueLabel")
+dialogue_label = NodePath("Nodule/MarginContainer/MarginContainer/DialogueLabel")
 name_label = NodePath("SpeechBubble/NameLabel")
+nodule = NodePath("Nodule")
 duration_timer = NodePath("DurationTimer")
 display_timer = NodePath("DisplayTimer")
 response_box = NodePath("ResponseBox")
@@ -37,12 +31,6 @@ offset_bottom = 1080.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.662745)
 
-[node name="Backer" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.921569)
-position = Vector2(675, 540)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_33dgi")
-
 [node name="DurationTimer" type="Timer" parent="."]
 one_shot = true
 
@@ -50,6 +38,7 @@ one_shot = true
 one_shot = true
 
 [node name="SpeechBubble" type="TextureRect" parent="."]
+visible = false
 offset_left = 72.0
 offset_top = 272.0
 offset_right = 639.0
@@ -61,23 +50,6 @@ expand_mode = 1
 position = Vector2(323.871, 231.336)
 scale = Vector2(0.464958, 0.464958)
 texture = ExtResource("2_imiog")
-
-[node name="DialogueLabel" type="RichTextLabel" parent="SpeechBubble"]
-layout_mode = 0
-offset_left = 132.192
-offset_top = 46.2672
-offset_right = 524.192
-offset_bottom = 390.267
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = SubResource("FontVariation_64rtg")
-theme_override_fonts/italics_font = SubResource("FontVariation_y8awx")
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
-theme_override_font_sizes/italics_font_size = 24
-theme_override_font_sizes/bold_italics_font_size = 24
-theme_override_font_sizes/mono_font_size = 24
-bbcode_enabled = true
-text = "feeling quiet today huh? I think you could visit rigatoni town"
 
 [node name="NameLabel" type="RichTextLabel" parent="SpeechBubble"]
 modulate = Color(1, 1, 1, 0.670588)
@@ -105,11 +77,20 @@ text = "[center]Dad[/center]"
 fit_content = true
 
 [node name="ResponseBox" type="VBoxContainer" parent="."]
-offset_left = 183.0
-offset_top = 659.0
-offset_right = 637.0
-offset_bottom = 909.0
+custom_minimum_size = Vector2(700, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = -205.0
+offset_right = 350.0
+offset_bottom = -77.0
+grow_horizontal = 2
+grow_vertical = 0
 scale = Vector2(1.23943, 1.23943)
+alignment = 2
 
 [node name="ResponseButton" parent="ResponseBox" instance=ExtResource("3_y57cq")]
 layout_mode = 2
@@ -123,26 +104,56 @@ text = "response 2"
 layout_mode = 2
 text = "response 3"
 
-[node name="Neutral" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(1400, 630)
-rotation = -3.14159
-scale = Vector2(0.461924, -0.461924)
-texture = ExtResource("6_a2jmg")
+[node name="Nodule" type="TextureRect" parent="."]
+offset_left = 961.0
+offset_top = 729.0
+offset_right = 1014.0
+offset_bottom = 783.0
+size_flags_horizontal = 4
+texture = ExtResource("7_1401i")
 
-[node name="Backerscan" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.0745098)
-material = SubResource("CanvasItemMaterial_ns4yk")
-position = Vector2(675, 540)
+[node name="MarginContainer" type="MarginContainer" parent="Nodule"]
+custom_minimum_size = Vector2(1200, 0)
+layout_mode = 0
+offset_left = -416.0
+offset_top = -180.0
+offset_right = 784.0
+offset_bottom = 220.0
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("6_h11u4")
+script = ExtResource("5_xcntd")
 
-[node name="Scanlines" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.12549)
-material = SubResource("CanvasItemMaterial_m21sd")
-position = Vector2(960, 540)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("6_bm3gp")
+[node name="Black" type="NinePatchRect" parent="Nodule/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("6_gxkdl")
+patch_margin_left = 200
+patch_margin_top = 200
+patch_margin_right = 200
+patch_margin_bottom = 200
+
+[node name="MarginContainer" type="MarginContainer" parent="Nodule/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 70
+theme_override_constants/margin_bottom = 70
+
+[node name="DialogueLabel" type="RichTextLabel" parent="Nodule/MarginContainer/MarginContainer"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_64rtg")
+theme_override_fonts/italics_font = SubResource("FontVariation_y8awx")
+theme_override_font_sizes/normal_font_size = 60
+theme_override_font_sizes/bold_font_size = 60
+theme_override_font_sizes/italics_font_size = 60
+theme_override_font_sizes/bold_italics_font_size = 60
+theme_override_font_sizes/mono_font_size = 60
+bbcode_enabled = true
+text = "@tool
+extends MarginContainer"
+fit_content = true
+scroll_active = false
+visible_characters_behavior = 1
 
 [connection signal="timeout" from="DurationTimer" to="." method="_on_duration_timer_timeout"]
