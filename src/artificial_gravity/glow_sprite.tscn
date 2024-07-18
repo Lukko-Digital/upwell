@@ -4,3 +4,11 @@
 
 [node name="Glow" type="Sprite2D"]
 texture = ExtResource("1_s7vyn")
+
+[node name="OrbitField" type="Sprite2D" parent="."]
+position = Vector2(-4, 0)
+texture = ExtResource("1_s7vyn")
+
+[node name="OrbitField2" type="Sprite2D" parent="."]
+position = Vector2(-3, 2)
+texture = ExtResource("1_s7vyn")
