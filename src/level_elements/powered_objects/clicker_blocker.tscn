@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://chbldv4vsxwky"]
+[gd_scene load_steps=4 format=3 uid="uid://chbldv4vsxwky"]
 
 [ext_resource type="Texture2D" uid="uid://dwgrbq7d4lwcw" path="res://assets/mvp3_assets/clicker_blocker-sheet.png" id="1_nvm2y"]
 [ext_resource type="Script" path="res://src/powered_objects/clicker_blocker.gd" id="1_s7tk3"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0fvfx"]
 
 [node name="ClickerBlocker" type="Area2D" node_paths=PackedStringArray("sprite")]
 collision_layer = 0
@@ -10,6 +12,7 @@ script = ExtResource("1_s7tk3")
 sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_0fvfx")
 texture = ExtResource("1_nvm2y")
 hframes = 2
 
