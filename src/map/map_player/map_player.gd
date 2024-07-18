@@ -12,7 +12,11 @@ class_name MapPlayer
 const HAZARD_TEXT = "RECALLED DUE TO DAMAGE"
 const OUT_OF_ENERGY_TEXT = "RECALLED DUE TO ENERGY LOSS"
 const LOW_ENERGY_TEXT = "You are low on energy"
-const TRAVEL_SHAKE_AMOUNT = 5
+const TRAVEL_SHAKE_AMOUNT = 5.0
+
+var current_shake: float = 0.0
+var target_shake: float = 0.0
+var shake_lerp_speed: float = 1.0
 
 var moving = false:
 	set(value):
@@ -59,6 +63,14 @@ func _process(delta: float) -> void:
 	# elif energy_bar.value <= energy_bar.max_value / 2: # For energy warning
 	# 	show_warning(LOW_ENERGY_TEXT)
 
+	#handle shake lerping
+	lerp_shake(delta)
+
+## Constantly lerps [current_shake] to a [target_shake] in order for smooth shake change
+func lerp_shake(delta: float):
+	current_shake = lerp(current_shake, target_shake, delta * shake_lerp_speed)
+	Global.camera_shake.emit(INF, current_shake)
+
 func location_hovered(location: MapLevel):
 	if moving:
 		return
@@ -77,7 +89,10 @@ func location_selected(location: MapLevel):
 		return
 	destination = location
 	moving = true
-	Global.camera_shake.emit(INF, TRAVEL_SHAKE_AMOUNT)
+
+	# Begin shake by setting target and regular speed
+	shake_lerp_speed = 1
+	target_shake = TRAVEL_SHAKE_AMOUNT
 
 func enter_coolant_pocket() -> void:
 	energy_bar.value = energy_bar.max_value
@@ -88,7 +103,12 @@ func exit_coolant_pocket() -> void:
 
 func end_movement() -> void:
 	moving = false
-	Global.stop_camera_shake.emit()
+
+	# Increase shape for landing and kill it quickly
+	current_shake = shake_lerp_speed * 40
+	shake_lerp_speed = 3.0
+	target_shake = 0
+
 	velocity = Vector2.ZERO
 	energy_bar.value = energy_bar.max_value
 	starting_position = global_position
