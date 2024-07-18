@@ -28,9 +28,8 @@ const SPEECH_BUBBLE_OFFSET = Vector2( - 100, -130)
 @onready var response_button_scene = preload ("res://src/dialogue/response_button.tscn")
 
 var current_conversation: ConversationTree
-var display_speed_coef = 1
-var display_in_progress: bool = false
 var next_branch: String
+var display_speed_coef = 1
 
 signal display_animation_finished
 signal dialogue_finished
@@ -95,8 +94,14 @@ func animate_display(dialogue_line: String):
 	## Just the characters that will be seen, no bbcode
 	dialogue_label.visible_characters = 0
 	var command_text = BBCodeParser.strip_bbcode(dialogue_line)
+	var bbcode_text = DialogueParser.strip_dialogue_commands(dialogue_line)
 	var idx = 0
 	while idx < command_text.length():
+		# Cancel this instance of display animation if text is mismatched
+		# This will happen when an impulsive response is pressed
+		if dialogue_label.text != bbcode_text:
+			return
+
 		var new_char = command_text[idx]
 		
 		if new_char == "{":
