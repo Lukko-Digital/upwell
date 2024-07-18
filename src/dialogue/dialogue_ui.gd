@@ -47,7 +47,7 @@ func play_branch(branch_id: String):
 	dialogue_label.text = branch.dialogue_line
 	# If there is a name, set it
 	if branch.npc_name != "":
-		name_label.text = "[center]" + branch.npc_name + "[/center]"
+		name_label.text = "[b]" + branch.npc_name + "[/b]"
 	# If there is a variable to set, set it
 	if branch.variable_to_set != "":
 		Global.dialogue_conditions[branch.variable_to_set] = branch.variable_value
