@@ -67,6 +67,7 @@ func handle_shake():
 	offset = shake_offset
 
 func _shake(duration: float, amount: float):
+	shake_timer.stop()
 	shake_timer.start(duration)
 	shake_amount = amount
 
