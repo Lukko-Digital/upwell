@@ -26,6 +26,12 @@ func change_level(level: PackedScene):
 		if node is EmptyPod and node.is_entrace:
 			entry_point = node
 
+			#reposition canvaslayers
+			for child in new_level.get_children():
+				if child is CanvasLayer:
+					for secondChild in child.get_children():
+						secondChild.position -= entry_point.position
+
 	new_level.global_position += pod.global_position - entry_point.global_position
 
 	Global.pod_position = entry_point
