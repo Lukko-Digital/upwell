@@ -2,6 +2,9 @@ extends CanvasLayer
 class_name DialogueUI
 
 const TEXT_SPEED = 0.03
+## Multiplier on how long it will take for the next character to appear
+const END_CHARACTER_SLOWDOWN = 15
+const COMMA_SLOWDOWN = 5
 
 @export var dialogue_label: RichTextLabel
 @export var name_label: RichTextLabel
@@ -27,7 +30,6 @@ func _ready():
 func start_dialogue(npc: NPC):
 	show()
 	current_conversation = npc.conversation_tree
-	name_label.text = current_conversation.npc_name
 	play_branch(DialogueParser.START_BRANCH_TAG)
 
 func play_branch(branch_id: String):
@@ -39,6 +41,9 @@ func play_branch(branch_id: String):
 	var branch: ConversationBranch = current_conversation.branches[branch_id]
 	# Set dialogue text
 	dialogue_label.text = branch.dialogue_line
+	# If there is a name, set it
+	if branch.npc_name != "":
+		name_label.text = "[center]" + branch.npc_name + "[/center]"
 	# If there is a variable to set, set it
 	if branch.variable_to_set != "":
 		Global.dialogue_conditions[branch.variable_to_set] = branch.variable_value
@@ -67,10 +72,31 @@ func play_branch(branch_id: String):
 	animate_display()
 
 func animate_display():
+	## Just the characters that will be seen, no bbcode
+	var raw_text = BBCodeParser.strip_bbcode(dialogue_label.text)
 	dialogue_label.visible_characters = 0
-	while dialogue_label.visible_characters < len(dialogue_label.text):
+	while dialogue_label.visible_characters < raw_text.length():
+		var display_speed_coef = 1
 		dialogue_label.visible_characters += 1
-		display_timer.start(TEXT_SPEED)
+
+		## The character that was just revealed
+		var new_char = raw_text[dialogue_label.visible_characters - 1]
+		var next_char = ""
+		if dialogue_label.visible_characters < raw_text.length():
+			next_char = raw_text[dialogue_label.visible_characters]
+		match new_char:
+			".":
+				# Don't slow down "..." as much
+				if next_char == ".":
+					display_speed_coef = COMMA_SLOWDOWN
+				else:
+					display_speed_coef = END_CHARACTER_SLOWDOWN
+			"!", "?":
+				display_speed_coef = END_CHARACTER_SLOWDOWN
+			",":
+				display_speed_coef = COMMA_SLOWDOWN
+
+		display_timer.start(TEXT_SPEED * display_speed_coef)
 		await display_timer.timeout
 
 func spawn_reponse(response: Response, display_time: float):

@@ -12,7 +12,7 @@ const DEFUALT = {
 	DIALOGUE_DURATION = 1.2
 }
 
-static func parse_csv(dialogue_file: String, npc_name: String) -> ConversationTree:
+static func parse_csv(dialogue_file: String) -> ConversationTree:
 	var file = FileAccess.open(dialogue_file, FileAccess.READ)
 	var keys := file.get_csv_line()
 
@@ -23,7 +23,7 @@ static func parse_csv(dialogue_file: String, npc_name: String) -> ConversationTr
 			assert(false, "Error when parsing dialogue, cannot find key " + key)
 		return csv_line[idx]
 
-	var conversation_tree = ConversationTree.new(npc_name)
+	var conversation_tree = ConversationTree.new()
 	while not file.eof_reached():
 		var line := file.get_csv_line()
 
@@ -52,9 +52,8 @@ static func parse_csv(dialogue_file: String, npc_name: String) -> ConversationTr
 				else:
 					res_expected_condition_value = true
 
-			# Safety check for variable to set
-			set_variable_safety_checks(res_variable_to_set, res_variable_value)
-			get_variable_safety_checks(spawn_condition)
+			init_global_variable(spawn_condition)
+			init_global_variable(res_variable_to_set)
 
 			var response = Response.new(
 				text,
@@ -74,7 +73,8 @@ static func parse_csv(dialogue_file: String, npc_name: String) -> ConversationTr
 			# Ignore empty branches, allows for header labels
 			continue
 		
-		var dialogue_line = get_key.call(line, "Dialogue Text")
+		var dialogue_line = BBCodeParser.parse(get_key.call(line, "Dialogue Text"))
+		var npc_name = get_key.call(line, "Name")
 		var duration = to_float_or_default(get_key.call(line, "Duration"), DEFUALT.DIALOGUE_DURATION)
 		var variable_to_set = get_key.call(line, "Variable To Set")
 		var variable_value = get_key.call(line, "Variable Value")
@@ -95,13 +95,13 @@ static func parse_csv(dialogue_file: String, npc_name: String) -> ConversationTr
 			else:
 				expected_condition_value = true
 		
-		# Safety check for global variables to set
-		set_variable_safety_checks(variable_to_set, variable_value)
-		get_variable_safety_checks(condition)
+		init_global_variable(variable_to_set)
+		init_global_variable(condition)
 
 		conversation_tree.branches[branch_id] = ConversationBranch.new(
 			branch_id,
 			dialogue_line,
+			npc_name,
 			duration,
 			variable_to_set,
 			to_bool(variable_value),
@@ -136,12 +136,18 @@ static func error_if_empty(string: String, error_msg: String):
 	else:
 		return string
 
-static func set_variable_safety_checks(variable_to_set: String, variable_value: String):
-	if not variable_to_set.is_empty() and not Global.dialogue_conditions.has(variable_to_set):
-		assert(false, "Issue when parsing dialogue, planning to set variable \"" + variable_to_set + "\" which does not exist in Global.dialogue_conditions")
-	if not variable_to_set.is_empty() and variable_value.is_empty():
-		assert(false, "Error when parsing dialogue, the variable to set \"" + variable_to_set + "\" has no associated value")
+static func init_global_variable(variable_name: String):
+	if variable_name.is_empty():
+		return
+	if not Global.dialogue_conditions.has(variable_name):
+		Global.dialogue_conditions[variable_name] = false
 
-static func get_variable_safety_checks(variable_to_get: String):
-	if not variable_to_get.is_empty() and not Global.dialogue_conditions.has(variable_to_get):
-		assert(false, "Issue when parsing dialogue, planning to get variable \"" + variable_to_get + "\" which does not exist in Global.dialogue_conditions")
+# static func set_variable_safety_checks(variable_to_set: String, variable_value: String):
+# 	if not variable_to_set.is_empty() and not Global.dialogue_conditions.has(variable_to_set):
+# 		assert(false, "Issue when parsing dialogue, planning to set variable \"" + variable_to_set + "\" which does not exist in Global.dialogue_conditions")
+# 	if not variable_to_set.is_empty() and variable_value.is_empty():
+# 		assert(false, "Error when parsing dialogue, the variable to set \"" + variable_to_set + "\" has no associated value")
+
+# static func get_variable_safety_checks(variable_to_get: String):
+# 	if not variable_to_get.is_empty() and not Global.dialogue_conditions.has(variable_to_get):
+# 		assert(false, "Issue when parsing dialogue, planning to get variable \"" + variable_to_get + "\" which does not exist in Global.dialogue_conditions")

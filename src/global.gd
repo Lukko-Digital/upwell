@@ -4,27 +4,7 @@ var dialogue_conditions = {
 	
 	#GENERAL
 	"HAS_CLICKER": false,
-	"DAD_SPOKE_OF_CLICKER": false,
-	
-	#DAD
-	"DAD_MET": false,
-	
-	#OLD MAN
-	"OLD_MET_RELAPSE": false,
-	"OLD_MET_TEST": false,
-	"OLD_MET": false,
-	"OLD_KNOWS_TERIN": false,
-	"OLD_RLQ1": true,
-	"OLD_SPOKE_ABOUT_CLICKER": false,
-	"C3R1": false,
 
-	#TOBY
-	"TALKED_TO_TOBY": false,
-	"IS_SULKING": false,
-
-	#ADRIK
-	"MET_ADRIK": false,
-	
 	#LOCATIONS
 	"AT_H32_NUCLEAR": false,
 	"AT_001_CONTACT": false,

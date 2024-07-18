@@ -14,3 +14,8 @@ static func parse(text: String) -> String:
     for key in MACROS:
         text = text.replace(key, MACROS[key])
     return text
+
+static func strip_bbcode(string: String) -> String:
+    var regex = RegEx.new()
+    regex.compile("\\[.+?\\]")
+    return regex.sub(string, "", true)
