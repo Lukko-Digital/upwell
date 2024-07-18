@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://tfy83b2uc6hh"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_lbj7m"]
+[ext_resource type="Texture2D" uid="uid://cnuqbnvjsg53d" path="res://assets/mvp4_assets/player.png" id="2_6q4jk"]
 [ext_resource type="PackedScene" uid="uid://br8qm13yce4pr" path="res://src/dialogue/dialogue_ui.tscn" id="2_cft6f"]
-[ext_resource type="Texture2D" uid="uid://dw7s1u2h3q230" path="res://assets/mvp2_assets/player.png" id="3_u0vu5"]
 [ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="4_wg5r1"]
 [ext_resource type="Texture2D" uid="uid://2idgorc23fon" path="res://assets/ui/map/travel_line_texture.png" id="6_hr78g"]
 [ext_resource type="PackedScene" uid="uid://b3xmpb6et0p0g" path="res://src/player/clicker_ui.tscn" id="6_j7ju8"]
@@ -10,7 +10,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_erpsl"]
 radius = 68.2904
-height = 273.162
+height = 221.664
 
 [sub_resource type="Gradient" id="Gradient_2aots"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -28,9 +28,16 @@ jump_buffer_timer = NodePath("Timers/JumpBufferTimer")
 min_jump_timer = NodePath("Timers/MinimumJumpTimer")
 throw_arc_line = NodePath("ThrowArc")
 
+[node name="Plyrglow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.415686)
+position = Vector2(17, -155)
+scale = Vector2(0.753597, 0.753597)
+texture = ExtResource("6_mcnf8")
+
 [node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(3, 7)
 scale = Vector2(0.904217, 0.904217)
-texture = ExtResource("3_u0vu5")
+texture = ExtResource("2_6q4jk")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 scale = Vector2(0.893244, 0.893244)
@@ -107,11 +114,5 @@ width = 20.0
 gradient = SubResource("Gradient_2aots")
 texture = ExtResource("6_hr78g")
 texture_mode = 2
-
-[node name="Plyrglow" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.415686)
-position = Vector2(17, -155)
-scale = Vector2(0.753597, 0.753597)
-texture = ExtResource("6_mcnf8")
 
 [connection signal="dialogue_finished" from="DialogueUi" to="." method="_on_dialogue_ui_dialogue_finished"]
