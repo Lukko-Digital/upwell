@@ -38,6 +38,19 @@ func _process(delta):
 	if abs(player.position.x - position.x) > CAMERA.MAP_EXIT_DISTANCE:
 		Global.set_camera_focus.emit(null)
 
+	handle_particle_tracking()
+
+func handle_particle_tracking():
+	
+	if $"../ActiveLevel" == null:
+		return
+	
+	for child in $"../ActiveLevel".get_child(0).get_children():
+		if child != CanvasLayer:
+			pass
+		for child2 in child.get_children():
+			if child2 is GPUParticles2D: child2.global_position = position
+
 func handle_camera_peek(_delta):
 	if Input.is_action_pressed("up") and player.is_on_floor():
 		position = player.position + Vector2.UP * CAMERA.PEEK_DISTANCE
