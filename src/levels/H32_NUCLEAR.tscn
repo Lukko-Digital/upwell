@@ -76,7 +76,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="NPC" parent="." instance=ExtResource("7_vhtfh")]
 position = Vector2(-686, -63)
-dialogue_file = "res://assets/dialogue/dadmvp3.csv"
+dialogue_file = "res://assets/dialogue/upwell dialogue - dadmvp4.csv"
 npc_name = "Dad"
 
 [node name="Idle" type="Sprite2D" parent="NPC"]
