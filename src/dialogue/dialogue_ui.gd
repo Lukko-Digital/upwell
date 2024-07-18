@@ -5,9 +5,12 @@ const TEXT_SPEED = 0.03
 ## Multiplier on how long it will take for the next character to appear
 const END_CHARACTER_SLOWDOWN = 15
 const COMMA_SLOWDOWN = 5
+## Distance from nodule origin to npc origin
+const SPEECH_BUBBLE_OFFSET = Vector2( - 100, -130)
 
 @export var dialogue_label: RichTextLabel
 @export var name_label: RichTextLabel
+@export var nodule: TextureRect
 # Timer for the duration of the text on the screen, set by duration variable of conversation branches
 @export var duration_timer: Timer
 # Timer for animating text display, value set to TEXT_SPEED
@@ -30,6 +33,7 @@ func _ready():
 func start_dialogue(npc: NPC):
 	show()
 	current_conversation = npc.conversation_tree
+	nodule.position = (npc.global_position - get_viewport().get_camera_2d().get_target_position()) / 2 + get_viewport().get_visible_rect().size / 2 + SPEECH_BUBBLE_OFFSET
 	play_branch(DialogueParser.START_BRANCH_TAG)
 
 func play_branch(branch_id: String):
