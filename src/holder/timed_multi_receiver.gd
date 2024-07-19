@@ -3,15 +3,19 @@ class_name TimedMultiReceiver
 
 ## The time you have to insert the reset of the clickers after the first is inserted
 @export var countdown_time: float = 2.0
-@export var countdown_bar: TimedMultiReceiverBar
+
+var countdown_bar: TimedMultiReceiverBar
 
 func _ready() -> void:
-	for receiver in receivers:
-		receiver.clicker_state_changed.connect(_receiver_state_changed)
+	for child in get_children():
+		if child is TimedMultiReceiverBar:
+			countdown_bar = child
+	assert(countdown_bar != null, "TimedMultiReceiver named \"" + name + "\" initialized without a receiver bar")
 	countdown_bar.timer.timeout.connect(_on_countdown_timer_timeout)
 	countdown_bar.timer.wait_time = countdown_time
 	countdown_bar.max_value = countdown_time
 	countdown_bar.value = 0
+	super()
 
 func _process(_delta: float) -> void:
 	if !countdown_bar.timer.is_stopped():
