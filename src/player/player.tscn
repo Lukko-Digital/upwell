@@ -1,14 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://tfy83b2uc6hh"]
+[gd_scene load_steps=13 format=3 uid="uid://tfy83b2uc6hh"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_lbj7m"]
 [ext_resource type="Texture2D" uid="uid://cnuqbnvjsg53d" path="res://assets/mvp4_assets/player.png" id="2_6q4jk"]
 [ext_resource type="PackedScene" uid="uid://br8qm13yce4pr" path="res://src/dialogue/dialogue_ui.tscn" id="2_cft6f"]
+[ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="2_hgkeb"]
+[ext_resource type="Texture2D" uid="uid://cb1ud4vqk0bd5" path="res://assets/ui/map/player_glow.png" id="3_ru4vn"]
 [ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="4_wg5r1"]
 [ext_resource type="Texture2D" uid="uid://2idgorc23fon" path="res://assets/ui/map/travel_line_texture.png" id="6_hr78g"]
 [ext_resource type="PackedScene" uid="uid://b3xmpb6et0p0g" path="res://src/player/clicker_ui.tscn" id="6_j7ju8"]
-[ext_resource type="Texture2D" uid="uid://nl3afbhplomy" path="res://assets/environment/test_level/plyrglow.png" id="6_mcnf8"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w3hfv"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_32i2j"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_y3je8"]
 blend_mode = 1
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_erpsl"]
@@ -31,26 +35,24 @@ jump_buffer_timer = NodePath("Timers/JumpBufferTimer")
 min_jump_timer = NodePath("Timers/MinimumJumpTimer")
 throw_arc_line = NodePath("ThrowArc")
 
-[node name="Plyrglow2" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.415686)
-material = SubResource("CanvasItemMaterial_w3hfv")
-position = Vector2(17, -155)
-scale = Vector2(0.753597, 0.753597)
-texture = ExtResource("6_mcnf8")
+[node name="ClickerGlow" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.243137)
+material = SubResource("CanvasItemMaterial_32i2j")
+position = Vector2(1, -7)
+scale = Vector2(3.72672, 3.72672)
+texture = ExtResource("2_hgkeb")
 
-[node name="Plyrglow" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.415686)
-material = SubResource("CanvasItemMaterial_w3hfv")
-position = Vector2(17, -155)
-scale = Vector2(0.753597, 0.753597)
-texture = ExtResource("6_mcnf8")
+[node name="PlayerGlow2" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_y3je8")
+position = Vector2(-8, -23)
+texture = ExtResource("3_ru4vn")
 
-[node name="Plyrglow3" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.415686)
-material = SubResource("CanvasItemMaterial_w3hfv")
-position = Vector2(17, -155)
-scale = Vector2(0.753597, 0.753597)
-texture = ExtResource("6_mcnf8")
+[node name="PlayerGlow" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_y3je8")
+position = Vector2(-8, -23)
+texture = ExtResource("3_ru4vn")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(3, 7)
