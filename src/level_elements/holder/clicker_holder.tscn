@@ -9,18 +9,16 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_eoxif"]
 radius = 131.004
 
-[node name="ClickerHolder" type="Area2D" node_paths=PackedStringArray("clicker_sprite", "holder_sprite", "catcher_field")]
+[node name="ClickerHolder" type="Area2D"]
 z_index = -2
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_rct6y")
 starts_with_clicker = true
 is_catcher = true
-clicker_sprite = NodePath("ClickerSprite")
-holder_sprite = NodePath("HolderSprite")
-catcher_field = NodePath("CatcherField")
 
 [node name="HolderSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 z_index = 5
 position = Vector2(-12, -34)
 texture = ExtResource("2_1ipxq")
@@ -28,10 +26,12 @@ hframes = 2
 vframes = 2
 
 [node name="ClickerSprite" parent="." instance=ExtResource("3_jmcfb")]
+unique_name_in_owner = true
 visible = false
 position = Vector2(-8, -93)
 
 [node name="CatcherField" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(0, -99.4268)
 scale = Vector2(0.281367, 0.281367)
 texture = ExtResource("4_2q7yj")

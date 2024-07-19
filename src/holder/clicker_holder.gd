@@ -3,15 +3,14 @@ class_name ClickerHolder
 
 @export var starts_with_clicker: bool
 @export var is_catcher: bool = false
-@export_category("Node References")
-@export var clicker_sprite: Sprite2D
-@export var holder_sprite: Sprite2D
-@export var catcher_field: Sprite2D
 
 enum HolderFrames {
 	OFF, GLOW, HOLDING
 }
 
+@onready var clicker_sprite: Sprite2D = %ClickerSprite
+@onready var holder_sprite: Sprite2D = %HolderSprite
+@onready var catcher_field: Sprite2D = %CatcherField
 @onready var id: String = owner.name + name
 @onready var clicker_scene: PackedScene = preload ("res://src/clicker/clicker.tscn")
 
