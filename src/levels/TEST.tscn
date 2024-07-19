@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://db06hxs1wc08q"]
+[gd_scene load_steps=82 format=3 uid="uid://db06hxs1wc08q"]
 
 [ext_resource type="Texture2D" uid="uid://bd56futu8anvq" path="res://assets/mvp4_assets/wallA.png" id="1_3325c"]
 [ext_resource type="Texture2D" uid="uid://cc534m02pm0nf" path="res://assets/mvp4_assets/treeb.png" id="2_8qoh2"]
@@ -31,9 +31,11 @@
 [ext_resource type="Texture2D" uid="uid://1ss88uogpxyu" path="res://assets/mvp4_assets/rckc.png" id="27_aswgq"]
 [ext_resource type="Texture2D" uid="uid://5lc2my673rwf" path="res://assets/mvp4_assets/rays.png" id="27_jn8l4"]
 [ext_resource type="Texture2D" uid="uid://f47yjabhonuj" path="res://assets/mvp4_assets/defocus.png" id="27_kboqm"]
+[ext_resource type="Script" path="res://src/particles/particles.gd" id="27_polnw"]
 [ext_resource type="Texture2D" uid="uid://dc6nfaju78e60" path="res://assets/environment/test_level/particle_softest.png" id="28_onkcr"]
 [ext_resource type="Shader" path="res://src/shaders/color_dodge.gdshader" id="29_t8oxp"]
 [ext_resource type="Shader" path="res://src/shaders/individual_blur.gdshader" id="29_u7xh6"]
+[ext_resource type="PackedScene" uid="uid://drhckymtu0lkf" path="res://src/particles/particles.tscn" id="34_jgmqm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bthli"]
 radius = 48.0001
@@ -622,7 +624,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1s7rc"]
 gradient = SubResource("Gradient_oo52l")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0t542"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_43m6t"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -777,9 +779,28 @@ texture_region_size = Vector2i(128, 128)
 tile_size = Vector2i(128, 128)
 sources/0 = SubResource("TileSetAtlasSource_rnifc")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8w3q7"]
-shader = ExtResource("29_t8oxp")
-shader_parameter/intensity = 1.0
+[sub_resource type="Gradient" id="Gradient_lu00i"]
+offsets = PackedFloat32Array(0, 0.320856, 0.486631, 0.654189, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1, 1, 1, 1, 1, 1, 1, 0.90625, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sr4fx"]
+gradient = SubResource("Gradient_lu00i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0yovp"]
+lifetime_randomness = 0.56
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(4, 4, 4)
+emission_shape = 3
+emission_box_extents = Vector3(1000, 1000, 1000)
+spread = 180.0
+initial_velocity_min = 15.15
+initial_velocity_max = 15.15
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 0.05
+color = Color(1, 1, 1, 0.560784)
+color_ramp = SubResource("GradientTexture1D_sr4fx")
+hue_variation_min = -0.03
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vqyl0"]
 shader = ExtResource("29_u7xh6")
@@ -795,10 +816,10 @@ shader_parameter/intensity = 1.0
 offsets = PackedFloat32Array(0, 0.320856, 0.486631, 0.654189, 1)
 colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1, 1, 1, 1, 1, 1, 1, 0.90625, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_mivn7"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_830gk"]
 gradient = SubResource("Gradient_0oqtj")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vgt85"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3lvc2"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -808,10 +829,10 @@ spread = 180.0
 initial_velocity_min = 15.15
 initial_velocity_max = 15.15
 gravity = Vector3(0, 0, 0)
-scale_min = 0.1
-scale_max = 0.3
+scale_min = 0.0
+scale_max = 0.555
 color = Color(1, 1, 1, 0.560784)
-color_ramp = SubResource("GradientTexture1D_mivn7")
+color_ramp = SubResource("GradientTexture1D_830gk")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o717t"]
 shader = ExtResource("24_uijhh")
@@ -842,6 +863,7 @@ position = Vector2(29312, -3328)
 
 [node name="Camera2D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("17_4c5d4")]
 position = Vector2(-1653, -322)
+limit_bottom = 511
 player = NodePath("../Player")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("18_rxdwy")]
@@ -1318,14 +1340,16 @@ position = Vector2(-696.875, -716.667)
 texture = ExtResource("5_anebh")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="-2"]
+visible = false
 modulate = Color(0.952099, 0.402827, 0.320554, 1)
 material = SubResource("CanvasItemMaterial_n8gfo")
 position = Vector2(-9, -742)
 amount = 1024
-process_material = SubResource("ParticleProcessMaterial_0t542")
+process_material = SubResource("ParticleProcessMaterial_43m6t")
 texture = ExtResource("6_4xlin")
 lifetime = 7.0
 randomness = 0.47
+script = ExtResource("27_polnw")
 
 [node name="ColorRect2" type="ColorRect" parent="-2"]
 modulate = Color(1, 1, 1, 0.247059)
@@ -1464,6 +1488,7 @@ material = SubResource("CanvasItemMaterial_v0ikw")
 position = Vector2(872, -348)
 scale = Vector2(1.60423, 1.60423)
 texture = ExtResource("27_kboqm")
+metadata/_edit_lock_ = true
 
 [node name="Focus" type="Sprite2D" parent="-1"]
 modulate = Color(0.858206, 0.528449, 0.359373, 0.831373)
@@ -1498,7 +1523,7 @@ polygon = PackedVector2Array(-318.757, -385.406, -454.953, -165.174, -459.3, 827
 metadata/_edit_lock_ = true
 
 [node name="WallA" type="Sprite2D" parent="1"]
-modulate = Color(0.471583, 0.372852, 0.357158, 1)
+modulate = Color(0.40806, 0.247555, 0.198133, 1)
 position = Vector2(-1804, -1488)
 rotation = 1.0472
 scale = Vector2(0.690181, 0.690181)
@@ -1517,7 +1542,7 @@ polygon = PackedVector2Array(-318.757, -385.406, -454.953, -165.174, -459.3, 827
 metadata/_edit_lock_ = true
 
 [node name="WallA2" type="Sprite2D" parent="1"]
-modulate = Color(0.471583, 0.372852, 0.357158, 1)
+modulate = Color(0.40806, 0.247555, 0.198133, 1)
 position = Vector2(-2239, -1295)
 scale = Vector2(0.701974, -0.681207)
 texture = ExtResource("1_3325c")
@@ -1535,7 +1560,7 @@ polygon = PackedVector2Array(-318.757, -385.406, -454.953, -165.174, -459.3, 827
 metadata/_edit_lock_ = true
 
 [node name="WallA3" type="Sprite2D" parent="1"]
-modulate = Color(0.471583, 0.372852, 0.357158, 1)
+modulate = Color(0.40806, 0.247555, 0.198133, 1)
 position = Vector2(-2613, -1090)
 rotation = 1.5708
 scale = Vector2(0.701974, -0.681207)
@@ -1554,7 +1579,7 @@ polygon = PackedVector2Array(-318.757, -385.406, -454.953, -165.174, -459.3, 827
 metadata/_edit_lock_ = true
 
 [node name="WallA4" type="Sprite2D" parent="1"]
-modulate = Color(0.471583, 0.372852, 0.357158, 1)
+modulate = Color(0.40806, 0.247555, 0.198133, 1)
 position = Vector2(-1011, -1751)
 rotation = 3.92699
 scale = Vector2(0.690181, 0.690181)
@@ -1573,7 +1598,7 @@ polygon = PackedVector2Array(-318.757, -385.406, -454.953, -165.174, -459.3, 827
 metadata/_edit_lock_ = true
 
 [node name="WallA5" type="Sprite2D" parent="1"]
-modulate = Color(0.471583, 0.372852, 0.357158, 1)
+modulate = Color(0.40806, 0.247555, 0.198133, 1)
 position = Vector2(-657, -1824)
 rotation = 1.5708
 scale = Vector2(0.690181, 0.690181)
@@ -1592,7 +1617,7 @@ polygon = PackedVector2Array(-318.757, -385.406, -454.953, -165.174, -459.3, 827
 metadata/_edit_lock_ = true
 
 [node name="WallA6" type="Sprite2D" parent="1"]
-modulate = Color(0.471583, 0.372852, 0.357158, 1)
+modulate = Color(0.40806, 0.247555, 0.198133, 1)
 position = Vector2(930, -1115)
 scale = Vector2(0.690181, 0.690181)
 texture = ExtResource("1_3325c")
@@ -1602,9 +1627,10 @@ modulate = Color(1, 1, 1, 0.443137)
 material = SubResource("ShaderMaterial_2tqix")
 position = Vector2(-726, -627)
 texture = ExtResource("5_anebh")
+metadata/_edit_lock_ = true
 
 [node name="WallA7" type="Sprite2D" parent="1"]
-modulate = Color(0.471583, 0.372852, 0.357158, 1)
+modulate = Color(0.40806, 0.247555, 0.198133, 1)
 position = Vector2(259, -1513)
 rotation = -1.57079
 scale = Vector2(0.690181, 0.690181)
@@ -1623,7 +1649,7 @@ polygon = PackedVector2Array(-318.757, -385.406, -454.953, -165.174, -459.3, 827
 metadata/_edit_lock_ = true
 
 [node name="WallA8" type="Sprite2D" parent="1"]
-modulate = Color(0.471583, 0.372852, 0.357158, 1)
+modulate = Color(0.40806, 0.247555, 0.198133, 1)
 position = Vector2(-904, 517)
 rotation = 1.57079
 scale = Vector2(0.96318, -0.934686)
@@ -1644,6 +1670,13 @@ metadata/_edit_lock_ = true
 [node name="2" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 follow_viewport_scale = 1.08
+
+[node name="Wall" type="Sprite2D" parent="2"]
+modulate = Color(0.521738, 0.336891, 0.224586, 1)
+position = Vector2(1314.81, -757.407)
+rotation = -3.14159
+scale = Vector2(1.31943, -1.4259)
+texture = ExtResource("1_3325c")
 
 [node name="Rays" type="Sprite2D" parent="2"]
 modulate = Color(0.381316, 0.321874, 0.191486, 1)
@@ -1696,7 +1729,7 @@ texture = ExtResource("1_3325c")
 
 [node name="Treeb" type="Sprite2D" parent="2"]
 modulate = Color(0.689192, 0.599052, 0.559718, 1)
-position = Vector2(912.963, -734.881)
+position = Vector2(971.296, -818.518)
 rotation = -3.14159
 scale = Vector2(1.31943, -1.4259)
 texture = ExtResource("2_8qoh2")
@@ -1746,15 +1779,9 @@ texture = ExtResource("27_aswgq")
 follow_viewport_enabled = true
 follow_viewport_scale = 1.21
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="3"]
-modulate = Color(1, 1, 1, 0.529412)
-material = SubResource("ShaderMaterial_8w3q7")
-position = Vector2(-9, -651.24)
-amount = 1024
-process_material = SubResource("ParticleProcessMaterial_0t542")
-texture = ExtResource("6_4xlin")
-lifetime = 7.0
-randomness = 0.47
+[node name="Particles" parent="3" instance=ExtResource("34_jgmqm")]
+visible = false
+process_material = SubResource("ParticleProcessMaterial_0yovp")
 
 [node name="TileMap" type="TileMap" parent="3"]
 modulate = Color(0.621049, 0.359803, 0.250508, 1)
@@ -1840,6 +1867,7 @@ scale = Vector2(0.881399, 0.881399)
 texture = ExtResource("1_3325c")
 
 [node name="WallA9" type="Sprite2D" parent="3/Blur_Parent"]
+visible = false
 modulate = Color(0.227345, 0.0635713, 0.0069744, 1)
 use_parent_material = true
 position = Vector2(-4082.5, -1454.17)
@@ -1852,21 +1880,25 @@ follow_viewport_enabled = true
 follow_viewport_scale = 1.42
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="4"]
+visible = false
 modulate = Color(1, 0.572447, 0.392716, 1)
 material = SubResource("ShaderMaterial_2pjlt")
 use_parent_material = true
 position = Vector2(-1.5, -10.5423)
 amount = 1024
-process_material = SubResource("ParticleProcessMaterial_vgt85")
+process_material = SubResource("ParticleProcessMaterial_3lvc2")
 texture = ExtResource("28_onkcr")
 lifetime = 7.0
 randomness = 0.47
+script = ExtResource("27_polnw")
+maximum_scale = 0.555
 
 [node name="4Kbrushtexture" type="Sprite2D" parent="4"]
 modulate = Color(1, 1, 1, 0.360784)
 material = SubResource("ShaderMaterial_o717t")
 position = Vector2(-877.521, -442.916)
 texture = ExtResource("5_anebh")
+metadata/_edit_lock_ = true
 
 [node name="TileMap" type="TileMap" parent="4"]
 modulate = Color(0.235365, 0.146529, 0.118502, 1)
