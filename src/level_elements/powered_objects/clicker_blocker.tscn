@@ -9,9 +9,10 @@
 collision_layer = 0
 collision_mask = 18
 script = ExtResource("1_s7tk3")
-sprite = NodePath("Sprite2D")
+sprite = NodePath("BlockerSprite")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BlockerSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 material = SubResource("CanvasItemMaterial_0fvfx")
 texture = ExtResource("1_nvm2y")
 hframes = 2

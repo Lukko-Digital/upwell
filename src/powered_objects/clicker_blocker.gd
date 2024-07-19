@@ -4,7 +4,7 @@ class_name ClickerBlocker
 const DEFAULT_WIDTH = 50
 const DEFAULT_HEIGHT = 1060
 
-@export var sprite: Sprite2D
+@onready var sprite: Sprite2D = %BlockerSprite
 
 func _ready() -> void:
 	# Expects a capsule CollisionShape2D called "CollisionShape2D"
