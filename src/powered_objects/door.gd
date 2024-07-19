@@ -1,7 +1,7 @@
 extends PoweredObjected
 class_name Door
 
-@export var animation_player: AnimationPlayer
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 func power_on():
     animation_player.play("open")

@@ -1,7 +1,6 @@
-[gd_scene load_steps=39 format=3 uid="uid://cvtjc4thaq1wj"]
+[gd_scene load_steps=37 format=3 uid="uid://cvtjc4thaq1wj"]
 
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="1_2d0w6"]
-[ext_resource type="PackedScene" uid="uid://c2i7joogv6drg" path="res://src/level_elements/artificial_gravity/push_pull_ag.tscn" id="2_agv78"]
 [ext_resource type="Texture2D" uid="uid://c66sojduddw1m" path="res://assets/environment/creator_puzzle/ground_tile.png" id="2_fyga0"]
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/holder/clicker_holder.tscn" id="4_trnax"]
 [ext_resource type="Texture2D" uid="uid://dc6nfaju78e60" path="res://assets/environment/test_level/particle_softest.png" id="4_y0n7i"]
@@ -24,9 +23,6 @@
 [ext_resource type="Texture2D" uid="uid://cbj7idv1awhls" path="res://assets/environment/creator_puzzle/tablet_blur.png" id="19_mhpck"]
 [ext_resource type="Texture2D" uid="uid://dgkye25jqv6wj" path="res://assets/environment/creator_puzzle/rope_5.png" id="19_sgwax"]
 [ext_resource type="Texture2D" uid="uid://beonmtuhjydbf" path="res://assets/environment/creator_puzzle/rope_2.png" id="25_kxynt"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_cbsp5"]
-radius = 766.288
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c4ybl"]
 blend_mode = 1
@@ -132,13 +128,6 @@ scale = Vector2(0.772846, 0.772846)
 zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 
-[node name="ArtificialGravity" parent="." instance=ExtResource("2_agv78")]
-position = Vector2(326, -1258)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ArtificialGravity"]
-shape = SubResource("CircleShape2D_cbsp5")
-debug_color = Color(0, 0.6, 0.701961, 0.345098)
-
 [node name="ClickerHolder" parent="." instance=ExtResource("4_trnax")]
 position = Vector2(1345, 28)
 rotation = -1.57673
@@ -146,7 +135,6 @@ rotation = -1.57673
 [node name="ClickerHolder2" parent="." instance=ExtResource("4_trnax")]
 position = Vector2(326, -1834)
 rotation = 3.1296
-has_clicker = false
 
 [node name="-3" type="CanvasLayer" parent="."]
 layer = -3

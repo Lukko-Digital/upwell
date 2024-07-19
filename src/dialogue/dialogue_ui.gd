@@ -2,17 +2,25 @@ extends CanvasLayer
 class_name DialogueUI
 
 const TEXT_SPEED = 0.03
-## Multiplier on how long it will take for the next character to appear
-const END_CHARACTER_SLOWDOWN = 15
-const COMMA_SLOWDOWN = 5
+
+const DIALOGUE_COMMANDS = {
+	PAUSE = "pause",
+	SPEED = "speed",
+	SHAKE = "shake",
+}
+const SHAKE_DEFAULT = {
+	DURATION = 0.1,
+	AMOUNT = 50
+}
+## How long it will take for the next character to appear, in seconds
+const END_CHARACTER_PAUSE = 0.5
+const COMMA_PAUSE = 0.15
 ## Distance from nodule origin to npc origin
 const SPEECH_BUBBLE_OFFSET = Vector2( - 100, -130)
 
 @export var dialogue_label: RichTextLabel
 @export var name_label: RichTextLabel
 @export var nodule: TextureRect
-# Timer for the duration of the text on the screen, set by duration variable of conversation branches
-@export var duration_timer: Timer
 # Timer for animating text display, value set to TEXT_SPEED
 @export var display_timer: Timer
 @export var response_box: VBoxContainer
@@ -20,10 +28,10 @@ const SPEECH_BUBBLE_OFFSET = Vector2( - 100, -130)
 @onready var response_button_scene = preload ("res://src/dialogue/response_button.tscn")
 
 var current_conversation: ConversationTree
-var display_in_progress: bool = false
-var response_button_queue := {}
 var next_branch: String
+var display_speed_coef = 1
 
+signal display_animation_finished
 signal dialogue_finished
 
 func _ready():
@@ -44,7 +52,7 @@ func play_branch(branch_id: String):
 	clear_responses()
 	var branch: ConversationBranch = current_conversation.branches[branch_id]
 	# Set dialogue text
-	dialogue_label.text = branch.dialogue_line
+	dialogue_label.text = DialogueParser.strip_dialogue_commands(branch.dialogue_line)
 	# If there is a name, set it
 	if branch.npc_name != "":
 		name_label.text = "[b]" + branch.npc_name + "[/b]"
@@ -58,75 +66,115 @@ func play_branch(branch_id: String):
 		if Global.dialogue_conditions[branch.condition] == branch.expected_condition_value:
 			next_branch = branch.conditional_next_branch_id
 
-	# Handle Timer
-	var display_time = branch.dialogue_line.length() * (TEXT_SPEED + get_process_delta_time())
-	if branch.duration == 0:
-		# If there is no duration, immediately play next branch, in the case of boolean algebra lines
+	if branch.dialogue_line.is_empty():
+		# If there is no dialogue text, immediately play next branch, in the case of boolean algebra lines
 		play_branch(next_branch)
 		return
-	elif branch.next_branch_id.is_empty():
-		# If there is no next branch (i.e. when waiting for player response) the timer goes infinite
-		duration_timer.start(INF)
-	else:
-		# Otherwise, start the timer normally
-		duration_timer.start(display_time * branch.duration)
-	# Spawn responses
+
+	# Spawn impulsive responses
 	for response in branch.responses:
-		spawn_reponse(response, display_time)
-	animate_display()
+		if response.is_impulsive_reponse:
+			spawn_reponse(response)
 
-func animate_display():
+	animate_display(branch.dialogue_line)
+	await display_animation_finished
+
+	clear_responses()
+	
+	if branch.responses.is_empty():
+		# Advance if no responses
+		play_branch(next_branch)
+	else:
+		# Spawn normal responses
+		for response in branch.responses:
+			if not response.is_impulsive_reponse:
+				spawn_reponse(response)
+
+func animate_display(dialogue_line: String):
 	## Just the characters that will be seen, no bbcode
-	var raw_text = BBCodeParser.strip_bbcode(dialogue_label.text)
 	dialogue_label.visible_characters = 0
-	while dialogue_label.visible_characters < raw_text.length():
-		var display_speed_coef = 1
-		dialogue_label.visible_characters += 1
+	var command_text = BBCodeParser.strip_bbcode(dialogue_line)
+	var bbcode_text = DialogueParser.strip_dialogue_commands(dialogue_line)
+	var idx = 0
+	while idx < command_text.length():
+		# Cancel this instance of display animation if text is mismatched
+		# This will happen when an impulsive response is pressed
+		if dialogue_label.text != bbcode_text:
+			return
 
-		## The character that was just revealed
-		var new_char = raw_text[dialogue_label.visible_characters - 1]
-		var next_char = ""
-		if dialogue_label.visible_characters < raw_text.length():
-			next_char = raw_text[dialogue_label.visible_characters]
-		match new_char:
-			".":
-				# Don't slow down "..." as much
-				if next_char == ".":
-					display_speed_coef = COMMA_SLOWDOWN
-				else:
-					display_speed_coef = END_CHARACTER_SLOWDOWN
-			"!", "?":
-				display_speed_coef = END_CHARACTER_SLOWDOWN
-			",":
-				display_speed_coef = COMMA_SLOWDOWN
+		var new_char = command_text[idx]
+		
+		if new_char == "{":
+			# Dialogue command
+			idx = handle_dialogue_command(command_text, idx)
+		else:
+			var wait_time = calculate_wait_time(new_char, command_text, idx)
+			display_timer.start(wait_time)
+			# Show new character
+			dialogue_label.visible_characters += 1
+			idx += 1
+			
+		if not display_timer.is_stopped():
+			await display_timer.timeout
+	display_animation_finished.emit()
 
-		display_timer.start(TEXT_SPEED * display_speed_coef)
-		await display_timer.timeout
+## Returns the index of the end of the command, that should be jumped to
+func handle_dialogue_command(command_text: String, idx: int) -> int:
+	var regex = RegEx.new()
+	regex.compile("{(.+?)}")
+	var re_match: RegExMatch = regex.search(command_text, idx)
+	var command_line = re_match.strings[1].split(" ")
+	match command_line[0]:
+		DIALOGUE_COMMANDS.PAUSE:
+			display_timer.start(command_line[1].to_float())
+		DIALOGUE_COMMANDS.SPEED:
+			display_speed_coef = 1 / command_line[1].to_float()
+		DIALOGUE_COMMANDS.SHAKE:
+			var duration: float = SHAKE_DEFAULT.DURATION
+			var amount: float = SHAKE_DEFAULT.AMOUNT
+			if command_line.size() != 1:
+				# Override default shake values
+				for arg in command_line.slice(1):
+					var arg_match = DialogueParser.match_shake_args(arg)
+					var param = arg_match.strings[1]
+					var value = arg_match.strings[2].to_float()
+					match param:
+						"amount":
+							amount = value
+						"duration":
+							duration = value
+			Global.camera_shake.emit(duration, amount)
+	return re_match.get_end()
 
-func spawn_reponse(response: Response, display_time: float):
+func calculate_wait_time(new_char: String, command_text: String, idx: int) -> float:
+	var next_char = ""
+	if idx + 1 < command_text.length():
+		next_char = command_text[idx + 1]
+	match new_char:
+		".":
+			# Don't slow down "..." as much
+			if next_char == ".":
+				return COMMA_PAUSE
+			else:
+				return END_CHARACTER_PAUSE
+		"!", "?":
+			return END_CHARACTER_PAUSE
+		",":
+			return COMMA_PAUSE
+		_:
+			return TEXT_SPEED * display_speed_coef
+
+func spawn_reponse(response: Response):
 	if response.spawn_condition != "":
 		if Global.dialogue_conditions[response.spawn_condition] != response.expected_condition_value:
 			# If spawn condition is not satisfied, exit
 			return
-
-	# Instantiate timer
 	var instance: ResponseButton = response_button_scene.instantiate()
-	response_button_queue[instance] = null
-	await get_tree().create_timer(response.spawn_time * display_time).timeout
-
-	if not response_button_queue.has(instance):
-		# Will happen if buttons get despawned before they get the chance to spawn
-		return
-	
-	# Remove from queue
-	response_button_queue.erase(instance)
-	# Start & Spawn
-	instance.start(display_time, response)
+	instance.start(response)
 	instance.response_selected.connect(_response_button_pressed)
 	response_box.add_child(instance)
 
 func clear_responses():
-	response_button_queue.clear()
 	for button in response_box.get_children():
 		response_box.remove_child(button)
 		button.queue_free()
@@ -141,6 +189,3 @@ func _response_button_pressed(response: Response):
 		Global.dialogue_conditions[response.variable_to_set] = response.variable_value
 	# Next branch
 	play_branch(response.next_branch_id)
-
-func _on_duration_timer_timeout():
-	play_branch(next_branch)

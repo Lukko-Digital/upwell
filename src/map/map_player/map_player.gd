@@ -69,7 +69,8 @@ func _process(delta: float) -> void:
 ## Constantly lerps [current_shake] to a [target_shake] in order for smooth shake change
 func lerp_shake(delta: float):
 	current_shake = lerp(current_shake, target_shake, delta * shake_lerp_speed)
-	Global.camera_shake.emit(INF, current_shake)
+	if current_shake != target_shake:
+		Global.camera_shake.emit(INF, current_shake)
 
 func location_hovered(location: MapLevel):
 	if moving:

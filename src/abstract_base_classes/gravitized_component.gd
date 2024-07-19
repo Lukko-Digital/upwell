@@ -25,7 +25,7 @@ const ARTIFICIAL_GRAVITY = {
 ## A stopped body will always start orbitting upward
 const STOPPED_THRESHOLD = 50.0
 
-enum GravityState {NONE, BOOST, PUSHPULL, ORBIT}
+enum GravityState {NONE, BOOST, ORBIT}
 
 @export var gravity_detector: Area2D
 
@@ -67,11 +67,7 @@ func determine_gravity_state(active_ag: ArtificialGravity) -> GravityState:
 		active_ag.disable.call_deferred()
 		return GravityState.BOOST
 	
-	match active_ag.type:
-		ArtificialGravity.AGTypes.ORBIT:
-			return GravityState.ORBIT
-	
-	return GravityState.NONE
+	return GravityState.ORBIT
 
 ## Calculates the body's velocity for the current frame based on current
 ## velocity and gravity state. Expects active_ag to not be null.

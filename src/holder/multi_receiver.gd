@@ -1,7 +1,7 @@
 extends Node2D
 class_name MultiReceiver
 
-@export var receivers: Array[ClickerHolder]
+var receivers: Array[ClickerHolder]
 
 signal completion_state_changed(completed: bool)
 
@@ -11,13 +11,15 @@ var completed: bool:
         completed = value
 
 func _ready() -> void:
+    for child in get_children():
+        if child is ClickerHolder:
+            receivers.append(child)
+            child.clicker_state_changed.connect(_receiver_state_changed)
+
     if all_holders_have_clickers():
         on_completion()
     else:
         completed = false
-    
-    for receiver in receivers:
-        receiver.clicker_state_changed.connect(_receiver_state_changed)
 
 func on_completion():
     completed = true

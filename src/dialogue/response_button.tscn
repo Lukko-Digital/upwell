@@ -21,8 +21,4 @@ theme_override_font_sizes/font_size = 25
 text = "wat tghe"
 script = ExtResource("1_3vvxx")
 
-[node name="DespawnTimer" type="Timer" parent="."]
-one_shot = true
-
 [connection signal="pressed" from="." to="." method="_on_pressed"]
-[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
