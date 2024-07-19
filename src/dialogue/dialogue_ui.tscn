@@ -50,20 +50,21 @@ text = "response 3"
 
 [node name="Nodule" type="TextureRect" parent="."]
 z_index = 1
-offset_left = 1027.0
+offset_left = 1005.0
 offset_top = 523.0
-offset_right = 1083.0
+offset_right = 1061.0
 offset_bottom = 581.0
+scale = Vector2(0.484717, 0.484717)
 size_flags_horizontal = 4
 texture = ExtResource("7_1401i")
 
 [node name="BubbleContainer" type="MarginContainer" parent="Nodule"]
 layout_mode = 0
-offset_left = -416.0
-offset_top = -182.0
-offset_right = 805.425
-offset_bottom = 218.0
-scale = Vector2(0.5, 0.5)
+offset_left = -429.117
+offset_top = -204.389
+offset_right = 1340.88
+offset_bottom = 195.611
+scale = Vector2(0.555972, 0.555972)
 script = ExtResource("5_xcntd")
 
 [node name="BubbleNinePatch" type="NinePatchRect" parent="Nodule/BubbleContainer"]
@@ -88,6 +89,7 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="NameLabel" type="RichTextLabel" parent="Nodule/BubbleContainer/TextContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(977.1, 0)
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -113,11 +115,11 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("7_vcmvp")
 theme_override_fonts/bold_font = ExtResource("8_edu6f")
 theme_override_fonts/italics_font = ExtResource("9_llxa6")
-theme_override_font_sizes/normal_font_size = 50
-theme_override_font_sizes/bold_font_size = 50
-theme_override_font_sizes/italics_font_size = 50
-theme_override_font_sizes/bold_italics_font_size = 50
-theme_override_font_sizes/mono_font_size = 50
+theme_override_font_sizes/normal_font_size = 90
+theme_override_font_sizes/bold_font_size = 90
+theme_override_font_sizes/italics_font_size = 90
+theme_override_font_sizes/bold_italics_font_size = 90
+theme_override_font_sizes/mono_font_size = 90
 bbcode_enabled = true
 text = "hello good sir how are you today"
 fit_content = true
