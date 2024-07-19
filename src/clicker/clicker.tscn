@@ -1,14 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://rc5k8wvetpt6"]
+[gd_scene load_steps=14 format=3 uid="uid://rc5k8wvetpt6"]
 
 [ext_resource type="Script" path="res://src/clicker/clicker_body.gd" id="1_5mmek"]
 [ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="2_ci3is"]
 [ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="3_0ahrw"]
-[ext_resource type="Texture2D" uid="uid://cfpew8w56mww" path="res://assets/mvp3_assets/clicker_lights.png" id="3_tfesb"]
+[ext_resource type="Texture2D" uid="uid://ixmq6ns0unji" path="res://assets/mvp4_assets/clicker.png" id="3_c84nw"]
+[ext_resource type="Texture2D" uid="uid://tj5k6ioldxwr" path="res://assets/mvp4_assets/clicker_lights.png" id="4_8fv0n"]
 [ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="4_53hyt"]
 [ext_resource type="Script" path="res://src/clicker/clicker_interactable.gd" id="4_d7pfq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w1b0y"]
 bounce = 0.3
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xj46u"]
+blend_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ele5l"]
 radius = 32.0156
@@ -36,14 +40,19 @@ lights_sprite = NodePath("LightsSprite")
 interactable = NodePath("Interactable")
 
 [node name="ClickerSprite" parent="." instance=ExtResource("2_ci3is")]
+texture = ExtResource("3_c84nw")
 
 [node name="LightsSprite" type="Sprite2D" parent="."]
-texture = ExtResource("3_tfesb")
+position = Vector2(5, 1)
+texture = ExtResource("4_8fv0n")
 
 [node name="GlowSprite" type="Sprite2D" parent="."]
+modulate = Color(0.253238, 0.253238, 0.253238, 1)
+material = SubResource("CanvasItemMaterial_xj46u")
 texture = ExtResource("4_53hyt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_ele5l")
 
 [node name="GravitizedComponent" type="Node2D" parent="." node_paths=PackedStringArray("gravity_detector")]
@@ -56,6 +65,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GravitizedComponent/GravityDetector"]
+visible = false
 position = Vector2(0, -38)
 shape = SubResource("CircleShape2D_v5kbs")
 
@@ -65,6 +75,7 @@ collision_mask = 2
 script = ExtResource("4_d7pfq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+visible = false
 shape = SubResource("CircleShape2D_yx7fa")
 
 [node name="InteractLabel" type="Label" parent="Interactable"]
@@ -81,6 +92,7 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HolderDetector"]
+visible = false
 position = Vector2(0, -38)
 shape = SubResource("CircleShape2D_4ik21")
 
