@@ -16,8 +16,8 @@ enum AGTypes {PUSHPULL, ORBIT, FUNNEL, ONLYUP}
 @export var regen_wait_time: float = 1.0
 @export var type: AGTypes = AGTypes.PUSHPULL
 
-@onready var glow: Sprite2D = $Glow
-@onready var regen_timer: Timer = $RegenTimer
+@onready var glow: Sprite2D = %Glow
+@onready var regen_timer: Timer = %RegenTimer
 
 var enabled: bool = true
 
@@ -25,12 +25,12 @@ var standard_scale: Vector2
 
 func _ready() -> void:
 	add_to_group("AGs")
-	standard_scale = Vector2.ONE * $CollisionShape2D.shape.radius / DEFAULT_RADIUS
+	standard_scale = Vector2.ONE * radius() / DEFAULT_RADIUS
 	glow.scale = standard_scale
 
 func _process(_delta):
 	if Engine.is_editor_hint():
-		glow.scale = Vector2.ONE * $CollisionShape2D.shape.radius / DEFAULT_RADIUS
+		glow.scale = Vector2.ONE * radius() / DEFAULT_RADIUS
 
 func enable():
 	enabled = true
