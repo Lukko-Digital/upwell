@@ -1,0 +1,180 @@
+[gd_scene load_steps=18 format=3 uid="uid://clv3h7rrcfdt8"]
+
+[ext_resource type="PackedScene" uid="uid://drhckymtu0lkf" path="res://src/particles/particles.tscn" id="1_psgww"]
+[ext_resource type="Texture2D" uid="uid://bx3f76pvi4k4q" path="res://assets/environment/test_level/particle_hard.png" id="2_7a52j"]
+[ext_resource type="Texture2D" uid="uid://hiqps7jx7j4o" path="res://assets/environment/test_level/particle_medium.png" id="3_lb862"]
+[ext_resource type="Texture2D" uid="uid://dc6nfaju78e60" path="res://assets/environment/test_level/particle_softest.png" id="4_1uku8"]
+[ext_resource type="Shader" path="res://src/shaders/color_dodge.gdshader" id="5_ojsp3"]
+[ext_resource type="Script" path="res://src/particles/particles.gd" id="6_ikle7"]
+
+[sub_resource type="Gradient" id="Gradient_lu00i"]
+offsets = PackedFloat32Array(0, 0.320856, 0.486631, 0.654189, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1, 1, 1, 1, 1, 1, 1, 0.90625, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sr4fx"]
+gradient = SubResource("Gradient_lu00i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bgdof"]
+lifetime_randomness = 0.56
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(4, 4, 4)
+emission_shape = 3
+emission_box_extents = Vector3(1000, 1000, 1000)
+spread = 180.0
+initial_velocity_min = 15.15
+initial_velocity_max = 15.15
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 0.022
+color = Color(1, 1, 1, 0.560784)
+color_ramp = SubResource("GradientTexture1D_sr4fx")
+hue_variation_min = -0.03
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6we3e"]
+lifetime_randomness = 0.56
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(4, 4, 4)
+emission_shape = 3
+emission_box_extents = Vector3(1000, 1000, 1000)
+spread = 180.0
+initial_velocity_min = 15.15
+initial_velocity_max = 15.15
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 0.05
+color = Color(1, 1, 1, 0.560784)
+color_ramp = SubResource("GradientTexture1D_sr4fx")
+hue_variation_min = -0.03
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_igmwb"]
+lifetime_randomness = 0.56
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(4, 4, 4)
+emission_shape = 3
+emission_box_extents = Vector3(1000, 1000, 1000)
+spread = 180.0
+initial_velocity_min = 15.15
+initial_velocity_max = 15.15
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 0.015
+color = Color(1, 1, 1, 0.560784)
+color_ramp = SubResource("GradientTexture1D_sr4fx")
+hue_variation_min = -0.03
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ut0v1"]
+lifetime_randomness = 0.56
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(4, 4, 4)
+emission_shape = 3
+emission_box_extents = Vector3(1000, 1000, 1000)
+spread = 180.0
+initial_velocity_min = 15.15
+initial_velocity_max = 15.15
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 0.075
+color = Color(1, 1, 1, 0.560784)
+color_ramp = SubResource("GradientTexture1D_sr4fx")
+hue_variation_min = -0.03
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r1hfv"]
+lifetime_randomness = 0.56
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(4, 4, 4)
+emission_shape = 3
+emission_box_extents = Vector3(1000, 1000, 1000)
+spread = 180.0
+initial_velocity_min = 15.15
+initial_velocity_max = 15.15
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 0.42
+color = Color(1, 1, 1, 0.560784)
+color_ramp = SubResource("GradientTexture1D_sr4fx")
+hue_variation_min = -0.03
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g55n7"]
+shader = ExtResource("5_ojsp3")
+shader_parameter/intensity = 1.0
+
+[sub_resource type="Gradient" id="Gradient_fxa3u"]
+offsets = PackedFloat32Array(0, 0.320856, 0.486631, 0.654189, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1, 1, 1, 1, 1, 1, 1, 0.90625, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mivn7"]
+gradient = SubResource("Gradient_fxa3u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ynymf"]
+lifetime_randomness = 0.56
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(4, 4, 4)
+emission_shape = 3
+emission_box_extents = Vector3(1000, 1000, 1000)
+spread = 180.0
+initial_velocity_min = 15.15
+initial_velocity_max = 15.15
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 0.555
+color = Color(1, 1, 1, 0.560784)
+color_ramp = SubResource("GradientTexture1D_mivn7")
+
+[node name="LayeredParticles" type="Node2D"]
+
+[node name="0_9" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 0.9
+
+[node name="Particles" parent="0_9" instance=ExtResource("1_psgww")]
+process_material = SubResource("ParticleProcessMaterial_bgdof")
+maximum_scale = 0.022
+
+[node name="1" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Particles" parent="1" instance=ExtResource("1_psgww")]
+process_material = SubResource("ParticleProcessMaterial_6we3e")
+texture = ExtResource("2_7a52j")
+
+[node name="1_1" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 1.1
+
+[node name="Particles" parent="1_1" instance=ExtResource("1_psgww")]
+process_material = SubResource("ParticleProcessMaterial_igmwb")
+texture = ExtResource("3_lb862")
+maximum_scale = 0.015
+
+[node name="1_2" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 1.2
+
+[node name="Particles" parent="1_2" instance=ExtResource("1_psgww")]
+process_material = SubResource("ParticleProcessMaterial_ut0v1")
+maximum_scale = 0.075
+
+[node name="1_4" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 1.4
+
+[node name="Particles" parent="1_4" instance=ExtResource("1_psgww")]
+visible = false
+modulate = Color(1, 0.531904, 0.345592, 0.529412)
+process_material = SubResource("ParticleProcessMaterial_r1hfv")
+texture = ExtResource("4_1uku8")
+lifetime = 12.05
+maximum_scale = 0.42
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="1_4"]
+modulate = Color(1, 0.572447, 0.392716, 1)
+material = SubResource("ShaderMaterial_g55n7")
+use_parent_material = true
+position = Vector2(-0.714286, -0.714287)
+amount = 1024
+process_material = SubResource("ParticleProcessMaterial_ynymf")
+texture = ExtResource("4_1uku8")
+lifetime = 7.0
+randomness = 0.47
+script = ExtResource("6_ikle7")
+maximum_scale = 0.555
