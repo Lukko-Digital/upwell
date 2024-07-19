@@ -6,7 +6,6 @@ const PLAYER = {
 	SPEED = 900.0,
 	ACCELERATION = 7000.0, # move_toward acceleration, pixels/frame^2
 	ORBIT_STRAFE_SLOWDOWN = 0.5, # percentage of standard speed
-	PUSHPULL_STRAFE_SLOWDOWN = 0.5, # percentage of standard speed
 	# Jumping
 	JUMP_VELOCITY = 2100.0,
 	JUMP_RELEASE_SLOWDOWN = 0.5,
@@ -149,8 +148,6 @@ func handle_movement(delta: float, gravity_state: GravitizedComponent.GravitySta
 	var speed_coef = 1.0
 	if gravity_state == GravitizedComponent.GravityState.ORBIT:
 		speed_coef = PLAYER.ORBIT_STRAFE_SLOWDOWN
-	elif gravity_state == GravitizedComponent.GravityState.PUSHPULL:
-		speed_coef = PLAYER.PUSHPULL_STRAFE_SLOWDOWN
 
 	var top_speed = PLAYER.SPEED * speed_coef
 	var horizontal_direction = sign(velocity.x)
@@ -169,13 +166,11 @@ func handle_movement(delta: float, gravity_state: GravitizedComponent.GravitySta
 		# movement, accelerate player towards direction of movement, this
 		# includes accelerating towards zero movement.
 		if input_direction == 0 and (
-			disable_airborne_decel or gravity_state in [
-				GravitizedComponent.GravityState.ORBIT, GravitizedComponent.GravityState.PUSHPULL
-			]
+			disable_airborne_decel or gravity_state == GravitizedComponent.GravityState.ORBIT
 		):
 			# If there is no player input, and airborne decel is disabled from
-			# boosting or the player is currently in an orbit or pushpull,
-			# exit so the player is not decelerated.
+			# boosting or the player is currently in an orbit, exit so the
+			# player is not decelerated.
 			return
 		velocity.x = move_toward(
 			velocity.x,

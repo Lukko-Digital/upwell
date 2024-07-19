@@ -11,17 +11,14 @@ blend_mode = 1
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_l7ntd")
-type = 1
 
 [node name="Core" parent="." instance=ExtResource("2_xnfqp")]
 
 [node name="Glow" parent="." instance=ExtResource("3_wxnx4")]
-unique_name_in_owner = true
 material = SubResource("CanvasItemMaterial_b7tg5")
 scale = Vector2(1e-05, 1e-05)
 
 [node name="RegenTimer" type="Timer" parent="."]
-unique_name_in_owner = true
 one_shot = true
 
 [connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
