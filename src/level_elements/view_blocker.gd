@@ -2,18 +2,35 @@
 extends Node2D
 class_name ViewBlocker
 
-@export var sprites: Array[Sprite2D]
+@export_range(0, 1000) var amount_of_blur: float = 0:
+	set(value):
+		material.set("shader_parameter/radius",amount_of_blur)
+		amount_of_blur = value
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	material = material.duplicate()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	for sprite in sprites:
-		sprite.global_position = global_position
-		sprite.rotation = rotation
-		sprite.visible = visible
-		sprite.scale = scale
-		sprite.modulate = modulate
-	pass
+	handle_sprites()
+	handle_canvas()
+
+func handle_sprites():
+	for child in get_children():
+		var target = child.get_child(0)
+		target.global_position = global_position
+		target.rotation = rotation
+		target.visible = visible
+		target.scale = scale
+		target.modulate = modulate
+		target.material = material
+
+func handle_canvas():
+	for child in get_children():
+
+		var canvas_name = child.get_name()
+
+		if !canvas_name.is_valid_int():
+			continue
+		
+		child.layer = canvas_name.to_int()
+		child.follow_viewport_scale = canvas_name.to_float()/10
