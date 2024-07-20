@@ -1,0 +1,16 @@
+[remap]
+
+importer="codeandweb.texturepacker_import_spritesheet"
+type="Resource"
+uid="uid://b7m6h4alqya5e"
+path="res://.godot/imported/player_run-sheet.tpsheet-3bbbb4756657ee6e16c575434039c13d.res"
+
+[deps]
+
+files=["res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0013.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0014.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0015.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0016.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0017.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0018.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0019.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0020.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0021.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0022.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0023.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0024.tres"]
+
+source_file="res://assets/character/player/sprite/animations/player_run-sheet.tpsheet"
+dest_files=["res://.godot/imported/player_run-sheet.tpsheet-3bbbb4756657ee6e16c575434039c13d.res", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0013.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0014.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0015.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0016.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0017.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0018.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0019.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0020.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0021.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0022.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0023.tres", "res://assets/character/player/sprite/animations/player_run-sheet.sprites/plyr_run-0024.tres"]
+
+[params]
+
