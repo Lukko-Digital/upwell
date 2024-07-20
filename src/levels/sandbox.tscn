@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dcf1k6whcfars"]
+[gd_scene load_steps=16 format=3 uid="uid://dcf1k6whcfars"]
 
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="2_4vrwf"]
 [ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="2_gfulr"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://src/level_elements/camera/powered_limit_setter.gd" id="8_xa2b3"]
 [ext_resource type="Script" path="res://src/level_elements/camera/camera_track.gd" id="8_y82k3"]
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/holder/clicker_holder.tscn" id="10_ogth4"]
+[ext_resource type="Script" path="res://src/level_elements/camera/powered_point_focus.gd" id="11_t14rj"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_4ko8k"]
 a = Vector2(-568, -40)
@@ -62,18 +63,6 @@ shape = SubResource("RectangleShape2D_fiugs")
 position = Vector2(2892, -984)
 screen = ExtResource("7_fstat")
 
-[node name="CameraPointFocus" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("8_irl7a")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraPointFocus"]
-position = Vector2(250.5, 455.5)
-shape = SubResource("RectangleShape2D_5vmkq")
-
-[node name="Marker2D" type="Marker2D" parent="CameraPointFocus"]
-position = Vector2(302, 566)
-
 [node name="PoweredLimitSetter" type="Node2D" parent="." node_paths=PackedStringArray("power_holder")]
 script = ExtResource("8_xa2b3")
 power_holder = NodePath("../ClickerHolder")
@@ -88,3 +77,22 @@ points = PackedVector2Array(29, -273, 1045, -797, 3460, -838)
 
 [node name="ClickerHolder" parent="." instance=ExtResource("10_ogth4")]
 position = Vector2(1606, -579)
+
+[node name="PoweredPointFocus" type="Node2D" parent="." node_paths=PackedStringArray("power_holder")]
+script = ExtResource("11_t14rj")
+power_holder = NodePath("../ClickerHolder2")
+
+[node name="CameraPointFocus" type="Area2D" parent="PoweredPointFocus"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("8_irl7a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PoweredPointFocus/CameraPointFocus"]
+position = Vector2(250.5, 455.5)
+shape = SubResource("RectangleShape2D_5vmkq")
+
+[node name="Marker2D" type="Marker2D" parent="PoweredPointFocus/CameraPointFocus"]
+position = Vector2(302, 566)
+
+[node name="ClickerHolder2" parent="." instance=ExtResource("10_ogth4")]
+position = Vector2(298, 705)
