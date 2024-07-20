@@ -37,6 +37,11 @@ func _process(delta):
 
 	if abs(player.position.x - position.x) > CAMERA.MAP_EXIT_DISTANCE:
 		Global.set_camera_focus.emit(null)
+	
+	var rc = $RayCast2D
+	var p = rc.get_collision_point()
+	print(p)
+	limit_bottom = p.y
 
 	handle_particle_tracking()
 
@@ -55,19 +60,9 @@ func handle_camera_peek(_delta):
 	if Input.is_action_pressed("up") and player.is_on_floor():
 		position = player.position + Vector2.UP * CAMERA.PEEK_DISTANCE
 		position_smoothing_speed = CAMERA.PEEK_TOWARD_SPEED
-		# lerp(
-		# 	position,
-		# 	player.position + Vector2.UP * CAMERA.PEEK_DISTANCE,
-		# 	CAMERA.PEEK_TOWARD_SPEED * delta
-		# )
 	else:
 		position = player.position
 		position_smoothing_speed = CAMERA.FOLLOW_SPEED
-		# lerp(
-		# 	position,
-		# 	player.position,
-		# 	CAMERA.FOLLOW_SPEED * delta
-		# )
 
 func handle_shake():
 	if shake_timer.is_stopped():
