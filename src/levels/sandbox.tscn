@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dcf1k6whcfars"]
+[gd_scene load_steps=13 format=3 uid="uid://dcf1k6whcfars"]
 
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="2_4vrwf"]
 [ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="2_gfulr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://src/level_elements/camera/camera_bound.gd" id="5_50w0r"]
 [ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="6_yuoqp"]
 [ext_resource type="PackedScene" uid="uid://bnxmdjk1mqgxv" path="res://src/levels/TEST_screen_puzzle.tscn" id="7_fstat"]
+[ext_resource type="Script" path="res://src/level_elements/camera/camera_point_focus.gd" id="8_irl7a"]
 [ext_resource type="Script" path="res://src/level_elements/camera/camera_track.gd" id="8_y82k3"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_4ko8k"]
@@ -17,6 +18,9 @@ size = Vector2(1264.5, 142)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fiugs"]
 size = Vector2(272, 3052)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vmkq"]
+size = Vector2(1383, 655)
 
 [node name="Main" type="Node2D"]
 position = Vector2(200, 0)
@@ -64,3 +68,15 @@ polygon = PackedVector2Array(-453, -247, -6, -245, 1049, -787, 3592, -786, 1049,
 [node name="Screen" parent="." instance=ExtResource("6_yuoqp")]
 position = Vector2(2892, -984)
 screen = ExtResource("7_fstat")
+
+[node name="CameraPointFocus" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("8_irl7a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraPointFocus"]
+position = Vector2(250.5, 455.5)
+shape = SubResource("RectangleShape2D_5vmkq")
+
+[node name="Marker2D" type="Marker2D" parent="CameraPointFocus"]
+position = Vector2(302, 566)

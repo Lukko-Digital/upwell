@@ -43,22 +43,25 @@ func _process(delta):
 	handle_shake()
 	handle_particle_tracking()
 
-## Zoom and translate the camera to focus on a screen
+## Translate the camera to focus on a focus point. Zoom on screens.
 func handle_focus(delta):
-	var zoom_amount = CAMERA.NORMAL_ZOOM
 	if focus:
 		# Lerp position to target position
 		global_position = lerp(global_position, focus.global_position, CAMERA.MAP_TRANSLATE_SPEED * delta)
-		zoom_amount = CAMERA.MAP_ZOOM
-	zoom = lerp(zoom, Vector2.ONE * zoom_amount, CAMERA.MAP_ZOOM_SPEED * delta)
+		# Zoon on screen interactable
+		if focus is ScreenInteractable:
+			zoom = lerp(zoom, Vector2.ONE * CAMERA.MAP_ZOOM, CAMERA.MAP_ZOOM_SPEED * delta)
 
 	# Check if focus should be broken
 	if abs(player.position.x - position.x) > CAMERA.MAP_EXIT_DISTANCE:
 		Global.set_camera_focus.emit(null)
 
-## Checks for train tracks, bounds and point focuses and sets limits accordingly.
+## Checks for train tracks and bounds and sets limits accordingly. Prioritizes
+## point focuses, then train tracks, then bounds.
 func handle_limits():
 	reset_limits()
+	if focus:
+		return
 	var tracked = handle_camera_track()
 	handle_camera_bounds(tracked)
 
@@ -111,9 +114,9 @@ func get_ray_collision(ray: RayCast2D, type: Variant):
 		return ray.get_collision_point()
 	return null
 
-## Set camera position to follow palyer. Also handles peeking, moving the
-## camera up when the player presses [w]
-func handle_follow_player(_delta):
+## Set camera position to follow player, resets zoom to default. Also handles
+## peeking, moving the camera up when the player presses [w].
+func handle_follow_player(delta):
 	if focus:
 		return
 	if (
@@ -126,6 +129,8 @@ func handle_follow_player(_delta):
 	else:
 		position = player.position
 		position_smoothing_speed = CAMERA.FOLLOW_SPEED
+		
+	zoom = lerp(zoom, Vector2.ONE * CAMERA.NORMAL_ZOOM, CAMERA.MAP_ZOOM_SPEED * delta)
 
 ## Shake the camera for a given time by changing [offset]
 func handle_shake():
