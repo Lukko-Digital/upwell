@@ -61,9 +61,8 @@ collision_layer = 128
 collision_mask = 0
 script = ExtResource("8_y82k3")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CameraTrack"]
-build_mode = 1
-polygon = PackedVector2Array(-453, -247, -6, -245, 1049, -787, 3592, -786, 1049, -787, -6, -245)
+[node name="Line2D" type="Line2D" parent="CameraTrack"]
+points = PackedVector2Array(-2, -11, 598, -599, 1374, -923, 2754, -839)
 
 [node name="Screen" parent="." instance=ExtResource("6_yuoqp")]
 position = Vector2(2892, -984)
