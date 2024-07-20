@@ -14,7 +14,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_sr4fx"]
 gradient = SubResource("Gradient_lu00i")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7e47x"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gfmur"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -30,7 +30,7 @@ color = Color(1, 1, 1, 0.560784)
 color_ramp = SubResource("GradientTexture1D_sr4fx")
 hue_variation_min = -0.03
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tj5su"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_51ncv"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -46,7 +46,7 @@ color = Color(1, 1, 1, 0.560784)
 color_ramp = SubResource("GradientTexture1D_sr4fx")
 hue_variation_min = -0.03
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_louys"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m4byd"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -62,7 +62,7 @@ color = Color(1, 1, 1, 0.560784)
 color_ramp = SubResource("GradientTexture1D_sr4fx")
 hue_variation_min = -0.03
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5kwi0"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_np1gu"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -78,7 +78,7 @@ color = Color(1, 1, 1, 0.560784)
 color_ramp = SubResource("GradientTexture1D_sr4fx")
 hue_variation_min = -0.03
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sxtx7"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3jjir"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -105,7 +105,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_mivn7"]
 gradient = SubResource("Gradient_fxa3u")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ctyvr"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7tcle"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -127,14 +127,14 @@ follow_viewport_enabled = true
 follow_viewport_scale = 0.9
 
 [node name="Particles" parent="0_9" instance=ExtResource("1_psgww")]
-process_material = SubResource("ParticleProcessMaterial_7e47x")
+process_material = SubResource("ParticleProcessMaterial_gfmur")
 maximum_scale = 0.022
 
 [node name="1" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
 [node name="Particles" parent="1" instance=ExtResource("1_psgww")]
-process_material = SubResource("ParticleProcessMaterial_tj5su")
+process_material = SubResource("ParticleProcessMaterial_51ncv")
 texture = ExtResource("2_7a52j")
 
 [node name="1_1" type="CanvasLayer" parent="."]
@@ -142,7 +142,7 @@ follow_viewport_enabled = true
 follow_viewport_scale = 1.1
 
 [node name="Particles" parent="1_1" instance=ExtResource("1_psgww")]
-process_material = SubResource("ParticleProcessMaterial_louys")
+process_material = SubResource("ParticleProcessMaterial_m4byd")
 texture = ExtResource("3_lb862")
 maximum_scale = 0.015
 
@@ -151,18 +151,17 @@ follow_viewport_enabled = true
 follow_viewport_scale = 1.2
 
 [node name="Particles" parent="1_2" instance=ExtResource("1_psgww")]
-process_material = SubResource("ParticleProcessMaterial_5kwi0")
+process_material = SubResource("ParticleProcessMaterial_np1gu")
 maximum_scale = 0.075
 
 [node name="1_4" type="CanvasLayer" parent="."]
-layer = 2
 follow_viewport_enabled = true
 follow_viewport_scale = 1.4
 
 [node name="Particles" parent="1_4" instance=ExtResource("1_psgww")]
 visible = false
 modulate = Color(1, 0.531904, 0.345592, 0.529412)
-process_material = SubResource("ParticleProcessMaterial_sxtx7")
+process_material = SubResource("ParticleProcessMaterial_3jjir")
 texture = ExtResource("4_1uku8")
 lifetime = 12.05
 maximum_scale = 0.42
@@ -173,7 +172,7 @@ material = SubResource("ShaderMaterial_g55n7")
 use_parent_material = true
 position = Vector2(-0.714286, -0.714287)
 amount = 1024
-process_material = SubResource("ParticleProcessMaterial_ctyvr")
+process_material = SubResource("ParticleProcessMaterial_7tcle")
 texture = ExtResource("4_1uku8")
 lifetime = 7.0
 randomness = 0.47
