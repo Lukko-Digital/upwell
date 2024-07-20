@@ -121,7 +121,8 @@ func _input(event: InputEvent) -> void:
 		throw()
 
 	if event.is_action_pressed("ui_cancel"):
-		dialogue_ui.exit_dialogue()
+		if in_dialogue:
+			dialogue_ui.exit_dialogue()
 
 ## ------------------------------ GRAVITY ------------------------------
 
