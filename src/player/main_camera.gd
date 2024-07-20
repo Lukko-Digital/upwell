@@ -11,6 +11,7 @@ const CAMERA = {
 	MAP_ZOOM_SPEED = 3.0,
 	MAP_TRANSLATE_SPEED = 6.0,
 }
+const LIMIT_DEFAULT = 10000000
 
 @export var player: Player
 
@@ -35,7 +36,7 @@ func _ready():
 
 func _process(delta):
 	handle_focus(delta)
-	handle_camera_track()
+	handle_limits()
 	handle_follow_player(delta)
 	handle_shake()
 	handle_particle_tracking()
@@ -53,13 +54,36 @@ func handle_focus(delta):
 	if abs(player.position.x - position.x) > CAMERA.MAP_EXIT_DISTANCE:
 		Global.set_camera_focus.emit(null)
 
-## Raycast for [CameraTrack], set top and bottom bounds accordingly
-func handle_camera_track():
+## Checks for train tracks, bounds and point focuses and sets limits accordingly.
+func handle_limits():
+	reset_limits()
+	var tracking = handle_camera_track()
+
+func reset_limits():
+	limit_top = -LIMIT_DEFAULT
+	limit_bottom = LIMIT_DEFAULT
+	limit_left = -LIMIT_DEFAULT
+	limit_right = LIMIT_DEFAULT
+
+## Raycast for [CameraTrack], if found, set top and bottom limits.
+## Returns true if a [CameraTrack] is found, otherwise false
+func handle_camera_track() -> bool:
 	for ray in [up_ray, down_ray]:
-		if ray.get_collider() is CameraTrack:
-			var col_point = ray.get_collision_point()
+		# if ray.get_collider() is CameraTrack:
+		# 	var col_point = ray.get_collision_point()
+		var col_point = get_ray_collision(ray, CameraTrack)
+		if col_point != null:
 			limit_bottom = col_point.y + viewport_size.y / 2 + 2
 			limit_top = col_point.y - viewport_size.y / 2 - 2
+			return true
+	return false
+
+## Checks if the collider of [ray] is of type [type], if so, returns the
+## collision point. Otherwise returns null.
+func get_ray_collision(ray: RayCast2D, type: Variant):
+	if is_instance_of(ray.get_collider(), type):
+		return ray.get_collision_point()
+	return null
 
 ## Set camera position to follow palyer. Also handles peeking, moving the
 ## camera up when the player presses [w]
