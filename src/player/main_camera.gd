@@ -44,8 +44,6 @@ func handle_focus(delta):
 	if abs(player.position.x - position.x) > CAMERA.MAP_EXIT_DISTANCE:
 		Global.set_camera_focus.emit(null)
 
-	handle_particle_tracking()
-
 ## Set camera position to follow palyer. Also handles peeking, moving the
 ## camera up when the player presses [w]
 func handle_follow_player(_delta):
