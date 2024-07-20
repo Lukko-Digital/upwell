@@ -624,7 +624,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1s7rc"]
 gradient = SubResource("Gradient_oo52l")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m60s4"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b2xm6"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -786,7 +786,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_sr4fx"]
 gradient = SubResource("Gradient_lu00i")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f2yvn"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xxob4"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -819,7 +819,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_830gk"]
 gradient = SubResource("Gradient_0oqtj")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vlp2o"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tfkre"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -1349,7 +1349,7 @@ modulate = Color(0.952099, 0.402827, 0.320554, 1)
 material = SubResource("CanvasItemMaterial_n8gfo")
 position = Vector2(-9, -742)
 amount = 1024
-process_material = SubResource("ParticleProcessMaterial_m60s4")
+process_material = SubResource("ParticleProcessMaterial_b2xm6")
 texture = ExtResource("6_4xlin")
 lifetime = 7.0
 randomness = 0.47
@@ -1790,7 +1790,7 @@ follow_viewport_scale = 1.21
 
 [node name="Particles" parent="3" instance=ExtResource("34_jgmqm")]
 visible = false
-process_material = SubResource("ParticleProcessMaterial_f2yvn")
+process_material = SubResource("ParticleProcessMaterial_xxob4")
 
 [node name="TileMap" type="TileMap" parent="3"]
 modulate = Color(0.621049, 0.359803, 0.250508, 1)
@@ -1896,7 +1896,7 @@ material = SubResource("ShaderMaterial_2pjlt")
 use_parent_material = true
 position = Vector2(-1.5, -10.5423)
 amount = 1024
-process_material = SubResource("ParticleProcessMaterial_vlp2o")
+process_material = SubResource("ParticleProcessMaterial_tfkre")
 texture = ExtResource("28_onkcr")
 lifetime = 7.0
 randomness = 0.47
