@@ -130,10 +130,11 @@ height = 279.879
 [sub_resource type="Gradient" id="Gradient_2aots"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("grav_component", "interactable_detector", "dialogue_ui", "level_unlock_popup", "coyote_timer", "jump_buffer_timer", "min_jump_timer", "throw_arc_line")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_sprite", "grav_component", "interactable_detector", "dialogue_ui", "level_unlock_popup", "coyote_timer", "jump_buffer_timer", "min_jump_timer", "throw_arc_line")]
 z_index = 5
 collision_layer = 2
 script = ExtResource("1_lbj7m")
+player_sprite = NodePath("AnimatedSprite2D")
 grav_component = NodePath("GravitizedComponent")
 interactable_detector = NodePath("DetectionAreas/InteractableDetector")
 dialogue_ui = NodePath("DialogueUi")
@@ -153,7 +154,7 @@ material = SubResource("CanvasItemMaterial_pasi1")
 position = Vector2(0, 8)
 scale = Vector2(0.20283, 0.20283)
 sprite_frames = SubResource("SpriteFrames_nrpse")
-animation = &"Run"
+animation = &"Idle"
 autoplay = "Run"
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
