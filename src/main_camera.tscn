@@ -3,12 +3,64 @@
 [ext_resource type="Script" path="res://src/player/main_camera.gd" id="1_c0f23"]
 
 [node name="MainCamera" type="Camera2D"]
-position = Vector2(0, -128)
 zoom = Vector2(0.5, 0.5)
 limit_smoothed = true
 position_smoothing_enabled = true
+position_smoothing_speed = 3.0
 editor_draw_limits = true
 script = ExtResource("1_c0f23")
+
+[node name="BoundRays" type="Node2D" parent="."]
+
+[node name="BoundUp" type="RayCast2D" parent="BoundRays"]
+unique_name_in_owner = true
+target_position = Vector2(0, -2000)
+collision_mask = 64
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="BoundDown" type="RayCast2D" parent="BoundRays"]
+unique_name_in_owner = true
+target_position = Vector2(0, 2000)
+collision_mask = 64
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="BoundLeft" type="RayCast2D" parent="BoundRays"]
+unique_name_in_owner = true
+target_position = Vector2(-2700, 0)
+collision_mask = 64
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="BoundRight" type="RayCast2D" parent="BoundRays"]
+unique_name_in_owner = true
+target_position = Vector2(2700, 0)
+collision_mask = 64
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="TrackRays" type="Node2D" parent="."]
+
+[node name="TrackUp" type="RayCast2D" parent="TrackRays"]
+unique_name_in_owner = true
+target_position = Vector2(0, -2000)
+collision_mask = 128
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="TrackDown" type="RayCast2D" parent="TrackRays"]
+unique_name_in_owner = true
+target_position = Vector2(0, 2000)
+collision_mask = 128
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="ShakeTimer" type="Timer" parent="."]
 one_shot = true

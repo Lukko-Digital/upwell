@@ -95,6 +95,8 @@ cancel={
 2d_physics/layer_4="INTERACTABLE"
 2d_physics/layer_5="CLICKER"
 2d_physics/layer_6="SCREEN_ELEMENTS"
+2d_physics/layer_7="CAMERA_BOUNDS"
+2d_physics/layer_8="CAMERA_TRACKS"
 
 [physics]
 
