@@ -14,7 +14,15 @@ const CAMERA = {
 
 @export var player: Player
 
+# Node References
+@onready var up_ray: RayCast2D = %Up
+@onready var down_ray: RayCast2D = %Down
+@onready var left_ray: RayCast2D = %Left
+@onready var right_ray: RayCast2D = %Right
 @onready var shake_timer: Timer = $ShakeTimer
+
+## Should be 3840 x 2160, double 1920 x 1080
+@onready var viewport_size = get_viewport().get_visible_rect().size / CAMERA.NORMAL_ZOOM
 
 var focus: Node2D = null
 var shake_amount: float
@@ -27,6 +35,7 @@ func _ready():
 
 func _process(delta):
 	handle_focus(delta)
+	handle_camera_track()
 	handle_follow_player(delta)
 	handle_shake()
 	handle_particle_tracking()
@@ -43,6 +52,14 @@ func handle_focus(delta):
 	# Check if focus should be broken
 	if abs(player.position.x - position.x) > CAMERA.MAP_EXIT_DISTANCE:
 		Global.set_camera_focus.emit(null)
+
+## Raycast for [CameraTrack], set top and bottom bounds accordingly
+func handle_camera_track():
+	for ray in [up_ray, down_ray]:
+		if ray.get_collider() is CameraTrack:
+			var col_point = ray.get_collision_point()
+			limit_bottom = col_point.y + viewport_size.y / 2 + 2
+			limit_top = col_point.y - viewport_size.y / 2 - 2
 
 ## Set camera position to follow palyer. Also handles peeking, moving the
 ## camera up when the player presses [w]
