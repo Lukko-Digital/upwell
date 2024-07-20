@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dcutfavearmas"]
+
+[ext_resource type="Texture2D" uid="uid://cidfdyjuyn64a" path="res://assets/character/player/sprite/animations/player-sheet.png" id="1_rwgui"]
+
+[resource]
+atlas = ExtResource("1_rwgui")
+region = Rect2(4182, 0, 1187, 1177)
+margin = Rect2(1199, 500, 2653, 983)
