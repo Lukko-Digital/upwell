@@ -16,10 +16,12 @@ const LIMIT_DEFAULT = 10000000
 @export var player: Player
 
 # Node References
-@onready var up_ray: RayCast2D = %Up
-@onready var down_ray: RayCast2D = %Down
-@onready var left_ray: RayCast2D = %Left
-@onready var right_ray: RayCast2D = %Right
+@onready var bound_up_ray: RayCast2D = %BoundUp
+@onready var bound_down_ray: RayCast2D = %BoundDown
+@onready var bound_left_ray: RayCast2D = %BoundLeft
+@onready var bound_right_ray: RayCast2D = %BoundRight
+@onready var track_up_ray: RayCast2D = %TrackUp
+@onready var track_down_ray: RayCast2D = %TrackDown
 @onready var shake_timer: Timer = $ShakeTimer
 
 ## Should be 3840 x 2160, double 1920 x 1080
@@ -69,7 +71,7 @@ func reset_limits():
 ## Raycast for [CameraTrack], if found, set top and bottom limits.
 ## Returns true if a [CameraTrack] is found, otherwise false
 func handle_camera_track() -> bool:
-	for ray in [up_ray, down_ray]:
+	for ray in [track_up_ray, track_down_ray]:
 		var col_point = get_ray_collision(ray, CameraTrack)
 		if col_point != null:
 			limit_bottom = col_point.y + viewport_size.y / 2 + 2
@@ -81,11 +83,11 @@ func handle_camera_track() -> bool:
 ## [tracked], only horizontal bounds will be set.
 func handle_camera_bounds(tracked):
 	# Set horizontal bounds
-	var left_point = get_ray_collision(left_ray, CameraBound)
+	var left_point = get_ray_collision(bound_left_ray, CameraBound)
 	if left_point != null:
 		limit_left = left_point.x
 
-	var right_point = get_ray_collision(right_ray, CameraBound)
+	var right_point = get_ray_collision(bound_right_ray, CameraBound)
 	if right_point != null:
 		limit_right = right_point.x
 
@@ -94,11 +96,11 @@ func handle_camera_bounds(tracked):
 		return
 
 	# Set vertical bounds
-	var up_point = get_ray_collision(up_ray, CameraBound)
+	var up_point = get_ray_collision(bound_up_ray, CameraBound)
 	if up_point != null:
 		limit_top = up_point.y
 
-	var down_point = get_ray_collision(down_ray, CameraBound)
+	var down_point = get_ray_collision(bound_down_ray, CameraBound)
 	if down_point != null:
 		limit_bottom = down_point.y
 
