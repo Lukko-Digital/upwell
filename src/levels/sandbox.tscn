@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dcf1k6whcfars"]
+[gd_scene load_steps=15 format=3 uid="uid://dcf1k6whcfars"]
 
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="2_4vrwf"]
 [ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="2_gfulr"]
@@ -7,7 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="6_yuoqp"]
 [ext_resource type="PackedScene" uid="uid://bnxmdjk1mqgxv" path="res://src/levels/TEST_screen_puzzle.tscn" id="7_fstat"]
 [ext_resource type="Script" path="res://src/level_elements/camera/camera_point_focus.gd" id="8_irl7a"]
+[ext_resource type="Script" path="res://src/level_elements/camera/powered_limit_setter.gd" id="8_xa2b3"]
 [ext_resource type="Script" path="res://src/level_elements/camera/camera_track.gd" id="8_y82k3"]
+[ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/holder/clicker_holder.tscn" id="10_ogth4"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_4ko8k"]
 a = Vector2(-568, -40)
@@ -56,14 +58,6 @@ shape = SubResource("RectangleShape2D_tpo3b")
 position = Vector2(-1593, -879)
 shape = SubResource("RectangleShape2D_fiugs")
 
-[node name="CameraTrack" type="Area2D" parent="."]
-collision_layer = 128
-collision_mask = 0
-script = ExtResource("8_y82k3")
-
-[node name="Line2D" type="Line2D" parent="CameraTrack"]
-points = PackedVector2Array(-2, -11, 598, -599, 1374, -923, 2754, -839)
-
 [node name="Screen" parent="." instance=ExtResource("6_yuoqp")]
 position = Vector2(2892, -984)
 screen = ExtResource("7_fstat")
@@ -79,3 +73,18 @@ shape = SubResource("RectangleShape2D_5vmkq")
 
 [node name="Marker2D" type="Marker2D" parent="CameraPointFocus"]
 position = Vector2(302, 566)
+
+[node name="PoweredLimitSetter" type="Node2D" parent="." node_paths=PackedStringArray("power_holder")]
+script = ExtResource("8_xa2b3")
+power_holder = NodePath("../ClickerHolder")
+
+[node name="CameraTrack" type="Area2D" parent="PoweredLimitSetter"]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("8_y82k3")
+
+[node name="Line2D" type="Line2D" parent="PoweredLimitSetter/CameraTrack"]
+points = PackedVector2Array(29, -273, 1045, -797, 3460, -838)
+
+[node name="ClickerHolder" parent="." instance=ExtResource("10_ogth4")]
+position = Vector2(1606, -579)
