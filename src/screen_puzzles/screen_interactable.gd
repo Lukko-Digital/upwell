@@ -13,6 +13,8 @@ var warp_current: float = 0;
 func _ready() -> void:
 	subviewport.add_child(screen.instantiate())
 	Global.set_camera_focus.connect(_on_set_focus)
+	VHS_shader.material = VHS_shader.material.duplicate()
+	# VHS_shader.material.shader = VHS_shader.material.shader.duplicate()
 
 func interact(_player: Player):
 	if not focused:
@@ -55,8 +57,8 @@ func _on_set_focus(_focus: Node2D):
 	if _focus == self:
 		focused = true
 		subviewport.physics_object_picking = true
-		hider.hide()
+		# hider.hide()
 	else:
 		focused = false
 		subviewport.physics_object_picking = false
-		hider.show()
+		# hider.show()

@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://ceyls3ogt3vol"]
+[gd_scene load_steps=10 format=3 uid="uid://ceyls3ogt3vol"]
 
 [ext_resource type="Script" path="res://src/screen_puzzles/screen_interactable.gd" id="1_40edb"]
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="2_krocg"]
 [ext_resource type="Shader" path="res://src/shaders/overlay.gdshader" id="2_ryd2b"]
 [ext_resource type="Texture2D" uid="uid://bbjdwc6iyldfv" path="res://assets/ui/map/scanlines.png" id="4_38kih"]
-[ext_resource type="Texture2D" uid="uid://bkx3m3c8bdjp5" path="res://assets/ui/map/cover.png" id="5_gtjll"]
 [ext_resource type="Texture2D" uid="uid://dl7wqp5bheye5" path="res://assets/mvp3_assets/screenpuzzle/border.png" id="5_hn87c"]
 [ext_resource type="Shader" path="res://src/shaders/vhs.gdshader" id="5_tlclc"]
 
@@ -120,13 +119,6 @@ position = Vector2(5, 3)
 scale = Vector2(0.296, 0.328)
 texture = ExtResource("5_hn87c")
 
-[node name="Cover" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-549, -303)
-scale = Vector2(0.285189, 0.282499)
-texture = ExtResource("5_gtjll")
-offset = Vector2(1920, 1080)
-
 [node name="Border3" type="Sprite2D" parent="."]
 position = Vector2(5, 3)
 scale = Vector2(0.309, 0.328)
@@ -140,8 +132,6 @@ offset_right = 556.0
 offset_bottom = 317.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
