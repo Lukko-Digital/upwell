@@ -25,7 +25,7 @@ const SPEECH_BUBBLE_OFFSET = Vector2( - 60, -110)
 @onready var response_button_scene = preload ("res://src/dialogue/response_button.tscn")
 @onready var speech_bubble_scene = preload ("res://src/dialogue/speech_bubble.tscn")
 
-var active_speech_bubble: SpeechBubble
+var active_dialogue_display: DialogueDisplay
 var current_conversation: ConversationTree
 var next_branch: String
 var display_speed_coef = 1
@@ -44,7 +44,7 @@ func start_dialogue(npc: NPC):
 	# Spawn speech bubble
 	var instance = speech_bubble_scene.instantiate()
 	instance.position = npc.nodule.position
-	active_speech_bubble = instance
+	active_dialogue_display = instance
 	npc.add_child(instance)
 
 	play_branch(DialogueParser.START_BRANCH_TAG)
@@ -57,10 +57,10 @@ func play_branch(branch_id: String):
 	clear_responses()
 	var branch: ConversationBranch = current_conversation.branches[branch_id]
 	# Set dialogue text
-	active_speech_bubble.dialogue_label.text = DialogueParser.strip_dialogue_commands(branch.dialogue_line)
+	active_dialogue_display.dialogue_label.text = DialogueParser.strip_dialogue_commands(branch.dialogue_line)
 	# If there is a name, set it
 	if branch.npc_name != "":
-		active_speech_bubble.name_label.text = "[b]" + branch.npc_name + "[/b]"
+		active_dialogue_display.name_label.text = "[b]" + branch.npc_name + "[/b]"
 	# If there is a variable to set, set it
 	if branch.variable_to_set != "":
 		Global.dialogue_conditions[branch.variable_to_set] = branch.variable_value
@@ -97,19 +97,19 @@ func play_branch(branch_id: String):
 
 func animate_display(dialogue_line: String):
 	## Just the characters that will be seen, no bbcode
-	active_speech_bubble.dialogue_label.visible_characters = 0
+	active_dialogue_display.dialogue_label.visible_characters = 0
 	var command_text = BBCodeParser.strip_bbcode(dialogue_line)
 	var bbcode_text = DialogueParser.strip_dialogue_commands(dialogue_line)
 	var idx = 0
 	while idx < command_text.length():
 		# Exit if the active speech bubble gets despawned. This will happen
 		# when the player exits dialogue prematurely via [esc].
-		if active_speech_bubble == null:
+		if active_dialogue_display == null:
 			return
 
 		# Cancel this instance of display animation if text is mismatched
 		# This will happen when an impulsive response is pressed
-		if active_speech_bubble.dialogue_label.text != bbcode_text:
+		if active_dialogue_display.dialogue_label.text != bbcode_text:
 			return
 
 		var new_char = command_text[idx]
@@ -121,7 +121,7 @@ func animate_display(dialogue_line: String):
 			var wait_time = calculate_wait_time(new_char, command_text, idx)
 			display_timer.start(wait_time)
 			# Show new character
-			active_speech_bubble.dialogue_label.visible_characters += 1
+			active_dialogue_display.dialogue_label.visible_characters += 1
 			idx += 1
 			
 		if not display_timer.is_stopped():
@@ -193,10 +193,10 @@ func exit_dialogue():
 	hide()
 
 	# Despawn speech bubble
-	if active_speech_bubble:
-		active_speech_bubble.get_parent().remove_child(active_speech_bubble)
-		active_speech_bubble.queue_free()
-		active_speech_bubble = null
+	if active_dialogue_display is SpeechBubble:
+		active_dialogue_display.get_parent().remove_child(active_dialogue_display)
+		active_dialogue_display.queue_free()
+		active_dialogue_display = null
 
 	dialogue_finished.emit()
 

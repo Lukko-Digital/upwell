@@ -8,11 +8,12 @@
 [ext_resource type="FontFile" uid="uid://dpvvg0gwxfjxp" path="res://assets/ui/fonts/LibreBaskerville-Bold.ttf" id="5_j1yx8"]
 [ext_resource type="FontFile" uid="uid://cmkra16htorm3" path="res://assets/ui/fonts/LibreBaskerville-Italic.ttf" id="6_xra7x"]
 
-[node name="SpeechBubble" type="Control" node_paths=PackedStringArray("dialogue_label", "name_label")]
+[node name="SpeechBubble" type="Control" node_paths=PackedStringArray("nodule", "dialogue_label", "name_label")]
 z_index = 100
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_c5fww")
+nodule = NodePath("Nodule")
 dialogue_label = NodePath("Nodule/BubbleContainer/TextContainer/VBoxContainer/DialogueLabel")
 name_label = NodePath("Nodule/BubbleContainer/TextContainer/VBoxContainer/NameLabel")
 
