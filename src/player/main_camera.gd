@@ -41,15 +41,7 @@ func _process(delta):
 	handle_particle_tracking()
 
 func handle_particle_tracking():
-	
-	if $"../ActiveLevel" == null:
-		return
-	
-	for child in $"../ActiveLevel".get_child(0).get_children():
-		if child != CanvasLayer:
-			pass
-		for child2 in child.get_children():
-			if child2 is GPUParticles2D: child2.global_position = position
+	get_tree().call_group("Particles", "move_particles", position)
 
 func handle_camera_peek(_delta):
 	if Input.is_action_pressed("up") and player.is_on_floor():

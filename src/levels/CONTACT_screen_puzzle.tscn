@@ -40,7 +40,7 @@ shape = SubResource("RectangleShape2D_tk24l")
 
 [node name="ScreenCore" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("10_b30k3")]
 position = Vector2(-402, -230)
-label = NodePath("../ScreenPuzzleUI/ColorRect3/VBoxContainer/TextBacker/ScrollContainer/RichTextLabel")
+label = NodePath("../ScreenPuzzleUI/ColorRect3/VBoxContainer/TextBacker/ScrollContainer/MarginContainer/RichTextLabel")
 text = "[center][b]9/24/35[/b][/center]
 
 Nice job! Remember, [b][bgcolor=993e00][color=ff8400]<orbit>[/color][/bgcolor][/b] is [i]the[/i] most important function of nodes.
@@ -59,7 +59,7 @@ glow = NodePath("../ScreenPuzzleUI/ClickerGlow")
 
 [node name="ScreenCore2" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("10_b30k3")]
 position = Vector2(-1088, -230)
-label = NodePath("../ScreenPuzzleUI/ColorRect3/VBoxContainer/TextBacker/ScrollContainer/RichTextLabel")
+label = NodePath("../ScreenPuzzleUI/ColorRect3/VBoxContainer/TextBacker/ScrollContainer/MarginContainer/RichTextLabel")
 text = "[center][b]9/24/35[/b][/center]
 
 Congratulations on reaching your [b][color=a14000]first waypoint[/color][/b]! You're on your way to becoming a real scout.

@@ -1,0 +1,198 @@
+{
+	"textures": [
+		{
+			"image": "player_idle-sheet.png",
+			"size": {
+				"w": 2076,
+				"h": 1187
+			},
+			"sprites": [
+				{
+					"filename": "plyr_run-0001.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 692,
+						"h": 1187
+					},
+					"margin": {
+						"x": 1494,
+						"y": 522,
+						"w": 3148,
+						"h": 973
+					}
+				},
+				{
+					"filename": "plyr_run-0002.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 692,
+						"h": 1187
+					},
+					"margin": {
+						"x": 1494,
+						"y": 522,
+						"w": 3148,
+						"h": 973
+					}
+				},
+				{
+					"filename": "plyr_run-0003.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 692,
+						"h": 1187
+					},
+					"margin": {
+						"x": 1494,
+						"y": 522,
+						"w": 3148,
+						"h": 973
+					}
+				},
+				{
+					"filename": "plyr_run-0004.png",
+					"region": {
+						"x": 692,
+						"y": 0,
+						"w": 600,
+						"h": 1118
+					},
+					"margin": {
+						"x": 1577,
+						"y": 586,
+						"w": 3240,
+						"h": 1042
+					}
+				},
+				{
+					"filename": "plyr_run-0005.png",
+					"region": {
+						"x": 692,
+						"y": 0,
+						"w": 600,
+						"h": 1118
+					},
+					"margin": {
+						"x": 1577,
+						"y": 586,
+						"w": 3240,
+						"h": 1042
+					}
+				},
+				{
+					"filename": "plyr_run-0006.png",
+					"region": {
+						"x": 692,
+						"y": 0,
+						"w": 600,
+						"h": 1118
+					},
+					"margin": {
+						"x": 1577,
+						"y": 586,
+						"w": 3240,
+						"h": 1042
+					}
+				},
+				{
+					"filename": "plyr_run-0010.png",
+					"region": {
+						"x": 692,
+						"y": 0,
+						"w": 600,
+						"h": 1118
+					},
+					"margin": {
+						"x": 1577,
+						"y": 586,
+						"w": 3240,
+						"h": 1042
+					}
+				},
+				{
+					"filename": "plyr_run-0011.png",
+					"region": {
+						"x": 692,
+						"y": 0,
+						"w": 600,
+						"h": 1118
+					},
+					"margin": {
+						"x": 1577,
+						"y": 586,
+						"w": 3240,
+						"h": 1042
+					}
+				},
+				{
+					"filename": "plyr_run-0012.png",
+					"region": {
+						"x": 692,
+						"y": 0,
+						"w": 600,
+						"h": 1118
+					},
+					"margin": {
+						"x": 1577,
+						"y": 586,
+						"w": 3240,
+						"h": 1042
+					}
+				},
+				{
+					"filename": "plyr_run-0007.png",
+					"region": {
+						"x": 1384,
+						"y": 0,
+						"w": 616,
+						"h": 1112
+					},
+					"margin": {
+						"x": 1570,
+						"y": 597,
+						"w": 3224,
+						"h": 1048
+					}
+				},
+				{
+					"filename": "plyr_run-0008.png",
+					"region": {
+						"x": 1384,
+						"y": 0,
+						"w": 616,
+						"h": 1112
+					},
+					"margin": {
+						"x": 1570,
+						"y": 597,
+						"w": 3224,
+						"h": 1048
+					}
+				},
+				{
+					"filename": "plyr_run-0009.png",
+					"region": {
+						"x": 1384,
+						"y": 0,
+						"w": 616,
+						"h": 1112
+					},
+					"margin": {
+						"x": 1570,
+						"y": 597,
+						"w": 3224,
+						"h": 1048
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:c951611e84d892b2bd18ec31c93f0187:499803a44a5653e5a908e936accc79cd:ad39edcd62b2dda9ebf04a2a7b23dd0d$"
+	}
+}
