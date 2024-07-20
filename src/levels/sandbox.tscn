@@ -3,13 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="2_4vrwf"]
 [ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="2_gfulr"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="2_owwjj"]
-[ext_resource type="PackedScene" uid="uid://3164lljjdjfp" path="res://src/level_elements/camera/camera_track.tscn" id="4_wplel"]
 [ext_resource type="Script" path="res://src/level_elements/camera/camera_bound.gd" id="5_50w0r"]
 [ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="6_yuoqp"]
 [ext_resource type="PackedScene" uid="uid://bnxmdjk1mqgxv" path="res://src/levels/TEST_screen_puzzle.tscn" id="7_fstat"]
+[ext_resource type="Script" path="res://src/level_elements/camera/camera_track.gd" id="8_y82k3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjiir"]
-size = Vector2(1222, 142)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_4ko8k"]
+a = Vector2(-568, -40)
+b = Vector2(417, -40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tpo3b"]
 size = Vector2(1264.5, 142)
@@ -34,21 +35,14 @@ limit_right = 3510
 limit_bottom = 2000
 player = NodePath("../Player")
 
-[node name="CameraTrack" parent="." instance=ExtResource("4_wplel")]
-collision_layer = 128
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CameraTrack"]
-build_mode = 1
-polygon = PackedVector2Array(-453, -247, -6, -245, 1049, -787, 3592, -786, 1049, -787, -6, -245)
-
 [node name="CameraBound" type="Area2D" parent="."]
 collision_layer = 64
 collision_mask = 0
 script = ExtResource("5_50w0r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBound"]
-position = Vector2(-1030, 687)
-shape = SubResource("RectangleShape2D_hjiir")
+position = Vector2(-1030, 619)
+shape = SubResource("SegmentShape2D_4ko8k")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraBound"]
 position = Vector2(-866.75, -2452)
@@ -57,6 +51,15 @@ shape = SubResource("RectangleShape2D_tpo3b")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="CameraBound"]
 position = Vector2(-1593, -879)
 shape = SubResource("RectangleShape2D_fiugs")
+
+[node name="CameraTrack" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("8_y82k3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CameraTrack"]
+build_mode = 1
+polygon = PackedVector2Array(-453, -247, -6, -245, 1049, -787, 3592, -786, 1049, -787, -6, -245)
 
 [node name="Screen" parent="." instance=ExtResource("6_yuoqp")]
 position = Vector2(2892, -984)

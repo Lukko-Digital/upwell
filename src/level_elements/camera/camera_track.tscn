@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://3164lljjdjfp"]
-
-[ext_resource type="Script" path="res://src/level_elements/camera/camera_track.gd" id="1_ityke"]
-
-[node name="CameraTrack" type="Area2D"]
-collision_layer = 64
-collision_mask = 0
-script = ExtResource("1_ityke")

@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsu4ws8fj7qp"]
-
-[ext_resource type="Script" path="res://src/level_elements/camera/camera_bound.gd" id="1_ric1l"]
-
-[node name="CameraBound" type="Area2D"]
-collision_layer = 64
-collision_mask = 0
-script = ExtResource("1_ric1l")
