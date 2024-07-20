@@ -20,6 +20,8 @@ const PLAYER = {
 }
 
 @export_group("Node References")
+## Camera reference for a level's test player, does not need to be set for the
+## player in [Game]
 @export var camera: Camera2D
 @export var grav_component: GravitizedComponent
 @export var interactable_detector: Area2D
@@ -75,10 +77,8 @@ func _ready() -> void:
 
 	# Retrieve Game node 
 	var current_scene = get_tree().get_current_scene()
+	# Kill level's test player
 	if current_scene is Game and not owner is Game:
-		# var main_camera: Camera2D = current_scene.get_node("Camera2D")
-		# main_camera.limit_bottom = camera.limit_bottom
-		# main_camera.limit_top = camera.limit_top
 		camera.queue_free()
 		queue_free()
 
