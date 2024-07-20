@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcf1k6whcfars"]
+[gd_scene load_steps=8 format=3 uid="uid://dcf1k6whcfars"]
 
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="2_4vrwf"]
 [ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="2_gfulr"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="2_owwjj"]
 [ext_resource type="PackedScene" uid="uid://3164lljjdjfp" path="res://src/level_elements/camera/camera_track.tscn" id="4_wplel"]
+[ext_resource type="Script" path="res://src/level_elements/camera/camera_bound.gd" id="5_50w0r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjiir"]
+size = Vector2(1494.5, 142)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fiugs"]
+size = Vector2(272, 2791)
 
 [node name="Main" type="Node2D"]
 position = Vector2(200, 0)
@@ -26,4 +33,21 @@ player = NodePath("../Player")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CameraTrack"]
 build_mode = 1
-polygon = PackedVector2Array(-1279, -245, -6, -245, 1049, -787, 2313, -790, 1049, -787, -6, -245)
+polygon = PackedVector2Array(-60, -246, -6, -245, 1049, -787, 2313, -790, 1049, -787, -6, -245)
+
+[node name="CameraBound" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("5_50w0r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBound"]
+position = Vector2(-829.25, 396)
+shape = SubResource("RectangleShape2D_hjiir")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraBound"]
+position = Vector2(-829.25, -2452)
+shape = SubResource("RectangleShape2D_hjiir")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="CameraBound"]
+position = Vector2(-1593, -1009.5)
+shape = SubResource("RectangleShape2D_fiugs")

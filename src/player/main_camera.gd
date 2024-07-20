@@ -57,7 +57,8 @@ func handle_focus(delta):
 ## Checks for train tracks, bounds and point focuses and sets limits accordingly.
 func handle_limits():
 	reset_limits()
-	var tracking = handle_camera_track()
+	var tracked = handle_camera_track()
+	handle_camera_bounds(tracked)
 
 func reset_limits():
 	limit_top = -LIMIT_DEFAULT
@@ -69,14 +70,37 @@ func reset_limits():
 ## Returns true if a [CameraTrack] is found, otherwise false
 func handle_camera_track() -> bool:
 	for ray in [up_ray, down_ray]:
-		# if ray.get_collider() is CameraTrack:
-		# 	var col_point = ray.get_collision_point()
 		var col_point = get_ray_collision(ray, CameraTrack)
 		if col_point != null:
 			limit_bottom = col_point.y + viewport_size.y / 2 + 2
 			limit_top = col_point.y - viewport_size.y / 2 - 2
 			return true
 	return false
+
+## Raycast for [CameraBound], if found, set limits. If the camera is on a track
+## [tracked], only horizontal bounds will be set.
+func handle_camera_bounds(tracked):
+	# Set horizontal bounds
+	var left_point = get_ray_collision(left_ray, CameraBound)
+	if left_point != null:
+		limit_left = left_point.x
+
+	var right_point = get_ray_collision(right_ray, CameraBound)
+	if right_point != null:
+		limit_right = right_point.x
+
+	# Don't set vertical bounds if tracked
+	if tracked:
+		return
+
+	# Set vertical bounds
+	var up_point = get_ray_collision(up_ray, CameraBound)
+	if up_point != null:
+		limit_top = up_point.y
+
+	var down_point = get_ray_collision(down_ray, CameraBound)
+	if down_point != null:
+		limit_bottom = down_point.y
 
 ## Checks if the collider of [ray] is of type [type], if so, returns the
 ## collision point. Otherwise returns null.
