@@ -102,7 +102,15 @@ offset_right = 1160.0
 offset_bottom = 1427.0
 size_flags_vertical = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect3/VBoxContainer/TextBacker/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect3/VBoxContainer/TextBacker/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 110
+theme_override_constants/margin_top = 115
+theme_override_constants/margin_right = 110
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect3/VBoxContainer/TextBacker/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -117,9 +125,7 @@ theme_override_font_sizes/italics_font_size = 50
 theme_override_font_sizes/bold_italics_font_size = 50
 theme_override_font_sizes/mono_font_size = 50
 bbcode_enabled = true
-text = "
-
-[center][b]FILEPATH MISSING[/b]
+text = "[center][b]FILEPATH MISSING[/b]
 
 Please drag [b]<action>[/b]
 onto flightpath to reach

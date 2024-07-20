@@ -1,0 +1,115 @@
+[gd_scene load_steps=11 format=3 uid="uid://dq2hd4c7by8ms"]
+
+[ext_resource type="PackedScene" uid="uid://bvkim1x1vvm81" path="res://src/screen_puzzles/screen_puzzle_ui.tscn" id="1_6g2i3"]
+[ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/screen_player.tscn" id="1_ptcri"]
+[ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/screen_ag.tscn" id="2_yc2uy"]
+[ext_resource type="Texture2D" uid="uid://bgrbrq2ad7fkk" path="res://assets/ui/screen_puzzle/reference2.png" id="8_b3ynt"]
+[ext_resource type="PackedScene" uid="uid://c1fatgffin6hd" path="res://src/screen_puzzles/screen_core.tscn" id="10_4xx6a"]
+[ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="11_x315f"]
+[ext_resource type="PackedScene" uid="uid://bdt2psjmwjsy6" path="res://src/screen_puzzles/screen_button_orbit.tscn" id="12_ofn7a"]
+[ext_resource type="PackedScene" uid="uid://bwbpi60st6gme" path="res://src/screen_puzzles/screen_button_unorbit.tscn" id="13_o7qgy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_51swq"]
+radius = 281.143
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tk24l"]
+size = Vector2(1763, 1481)
+
+[node name="ScreenPuzzle" type="Node2D"]
+metadata/_edit_lock_ = true
+
+[node name="ScreenPuzzleUI" parent="." instance=ExtResource("1_6g2i3")]
+
+[node name="ScreenPlayer" parent="." instance=ExtResource("1_ptcri")]
+position = Vector2(-1220, 340)
+
+[node name="ScreenAG2" parent="." instance=ExtResource("2_yc2uy")]
+position = Vector2(-894, -192)
+scale = Vector2(1.57597, 1.57597)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenAG2"]
+shape = SubResource("CircleShape2D_51swq")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+metadata/_edit_lock_ = true
+
+[node name="PlaceableArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaceableArea"]
+position = Vector2(-700.5, 15.5)
+shape = SubResource("RectangleShape2D_tk24l")
+
+[node name="ScreenCore" parent="." node_paths=PackedStringArray("glow") instance=ExtResource("10_4xx6a")]
+position = Vector2(-134, -529)
+text = "
+[center][b]RECORDING STARTED[/b][/center]
+
+[i]remember how nodes orbit their hosts? via [b][color=a14000]remote control[/color][/b], right?
+
+or direct control, right?
+
+right, but in the case of remote, the connection is peer to peer.
+
+meaning?
+
+[b][bgcolor=753C00][color=FF8F00]meaning you can remote control as many nodes as you carry and no more.[/color][/bgcolor][/b]
+
+right...
+
+well the nodes in the chasms have a dual purpose.
+
+explain
+
+they also extend to [bgcolor=black]no spoilers buddy[/bgcolor]
+
+
+
+
+show me
+
+[b][color=a14000]sure, let's meet at 005[/color][/b]
+[/i]
+
+[center][b]RECORDING STOPPED[/b][/center]
+
+
+
+
+
+"
+glow = NodePath("../ClickerGlow")
+
+[node name="ClickerGlow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(787, -943)
+scale = Vector2(2, 2)
+texture = ExtResource("11_x315f")
+
+[node name="ScreenButtonOrbit" parent="." instance=ExtResource("12_ofn7a")]
+position = Vector2(-1623, 776)
+
+[node name="ScreenButtonUnorbit" parent="." instance=ExtResource("13_o7qgy")]
+position = Vector2(-1397, 776)
+
+[node name="ScreenCore3" parent="." node_paths=PackedStringArray("glow") instance=ExtResource("10_4xx6a")]
+position = Vector2(64, -251)
+text = "[center][b]9/25/35[/b][/center]
+
+Using <orbit> correctly is a good first step.
+
+[b][bgcolor=753C00][color=FF8F00]Leaving orbit, while limiting your angle of exit, is just as useful.[/color][/bgcolor][/b]
+
+Rheuman
+
+
+"
+glow = NodePath("../ClickerGlow")
+
+[node name="Reference2" type="Sprite2D" parent="."]
+position = Vector2(6, 12)
+scale = Vector2(1.63829, 1.63829)
+texture = ExtResource("8_b3ynt")

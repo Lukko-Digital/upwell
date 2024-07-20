@@ -16,7 +16,6 @@ const CAMERA = {
 
 @onready var shake_timer: Timer = $ShakeTimer
 
-var game: Game
 var focus: Node2D = null
 var shake_amount: float
 
@@ -25,10 +24,6 @@ func _ready():
 	Global.camera_shake.connect(_shake)
 	Global.stop_camera_shake.connect(_stop_shake)
 	Global.set_camera_focus.connect(_set_focus)
-	# Find game scene
-	var current_scene = get_tree().get_current_scene()
-	if current_scene is Game:
-		game = current_scene
 
 func _process(delta):
 	handle_focus(delta)
@@ -48,6 +43,8 @@ func handle_focus(delta):
 	# Check if focus should be broken
 	if abs(player.position.x - position.x) > CAMERA.MAP_EXIT_DISTANCE:
 		Global.set_camera_focus.emit(null)
+
+	handle_particle_tracking()
 
 ## Set camera position to follow palyer. Also handles peeking, moving the
 ## camera up when the player presses [w]
@@ -76,21 +73,9 @@ func handle_shake():
 	) * shake_amount
 	offset = shake_offset
 
-## Track all particles to the camera. Particles must be organized in the scene
-## tree like so:
-## 	> root level node
-## 		> CanvasLayer
-##			> GPUParticles2D
+## Track all particles to the camera
 func handle_particle_tracking():
-	if game == null:
-		return
-	
-	for child in game.active_level.get_child(0).get_children():
-		if child != CanvasLayer:
-			continue
-		for child2 in child.get_children():
-			if child2 is GPUParticles2D:
-				child2.global_position = position
+	get_tree().call_group("Particles", "move_particles", position)
 
 ## Receiver for the global [camera_shake] signal
 func _shake(duration: float, amount: float):

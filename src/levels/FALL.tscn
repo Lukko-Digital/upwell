@@ -183,6 +183,7 @@ shape = SubResource("CircleShape2D_s7mn8")
 [node name="ClickerHolder" parent="Holders" instance=ExtResource("1_dgotf")]
 position = Vector2(218, 2644)
 rotation = -1.57079
+scale = Vector2(-1, 1)
 
 [node name="ClickerHolder2" parent="Holders" instance=ExtResource("1_dgotf")]
 position = Vector2(-858, 2645)
@@ -202,19 +203,19 @@ starts_with_clicker = false
 
 [node name="ClickerHolder8" parent="Holders" instance=ExtResource("1_dgotf")]
 position = Vector2(-3270, 12372)
+scale = Vector2(-1, 1)
 
 [node name="ClickerHolder9" parent="Holders" instance=ExtResource("1_dgotf")]
 position = Vector2(-1212, 12372)
 
-[node name="TimedMultiReceiver" type="Node2D" parent="Holders" node_paths=PackedStringArray("countdown_bar", "receivers")]
+[node name="TimedMultiReceiver" type="Node2D" parent="Holders"]
 script = ExtResource("2_xfdrp")
 countdown_time = 0.2
-countdown_bar = NodePath("TimedMultiReceiverBar")
-receivers = [NodePath("ClickerHolder10"), NodePath("ClickerHolder11")]
 
 [node name="ClickerHolder10" parent="Holders/TimedMultiReceiver" instance=ExtResource("1_dgotf")]
 position = Vector2(-1219, 11564)
 rotation = 3.14159
+scale = Vector2(-1, 1)
 starts_with_clicker = false
 
 [node name="ClickerHolder11" parent="Holders/TimedMultiReceiver" instance=ExtResource("1_dgotf")]
@@ -233,12 +234,11 @@ position = Vector2(-3264, 8407)
 
 [node name="ClickerHolder11" parent="Holders" instance=ExtResource("1_dgotf")]
 position = Vector2(-1222, 8404)
+scale = Vector2(-1, 1)
 
-[node name="TimedMultiReceiver2" type="Node2D" parent="Holders" node_paths=PackedStringArray("countdown_bar", "receivers")]
+[node name="TimedMultiReceiver2" type="Node2D" parent="Holders"]
 script = ExtResource("2_xfdrp")
 countdown_time = 4.0
-countdown_bar = NodePath("TimedMultiReceiverBar")
-receivers = [NodePath("ClickerHolder12"), NodePath("ClickerHolder13")]
 
 [node name="TimedMultiReceiverBar" parent="Holders/TimedMultiReceiver2" instance=ExtResource("12_wde18")]
 offset_left = -2594.0
@@ -250,23 +250,16 @@ offset_bottom = 8147.0
 position = Vector2(-1216, 7593)
 rotation = 3.14159
 starts_with_clicker = false
-clicker_sprite = NodePath("../../ClickerHolder10/ClickerSprite")
-holder_sprite = NodePath("../../ClickerHolder10/HolderSprite")
-catcher_field = NodePath("../../ClickerHolder10/CatcherField")
 
 [node name="ClickerHolder13" parent="Holders/TimedMultiReceiver2" instance=ExtResource("1_dgotf")]
 position = Vector2(-3267, 7593)
 rotation = -3.14159
+scale = Vector2(-1, 1)
 starts_with_clicker = false
-clicker_sprite = NodePath("../../ClickerHolder11/ClickerSprite")
-holder_sprite = NodePath("../../ClickerHolder11/HolderSprite")
-catcher_field = NodePath("../../ClickerHolder11/CatcherField")
 
-[node name="TimedMultiReceiver3" type="Node2D" parent="Holders" node_paths=PackedStringArray("countdown_bar", "receivers")]
+[node name="TimedMultiReceiver3" type="Node2D" parent="Holders"]
 script = ExtResource("2_xfdrp")
 countdown_time = 1.0
-countdown_bar = NodePath("TimedMultiReceiverBar")
-receivers = [NodePath("ClickerHolder18"), NodePath("ClickerHolder19")]
 
 [node name="TimedMultiReceiverBar" parent="Holders/TimedMultiReceiver3" instance=ExtResource("12_wde18")]
 offset_left = -2456.0
@@ -278,6 +271,7 @@ rotation = -1.57079
 [node name="ClickerHolder18" parent="Holders/TimedMultiReceiver3" instance=ExtResource("1_dgotf")]
 position = Vector2(-2784, 15877)
 rotation = -0.436651
+scale = Vector2(-1, 1)
 starts_with_clicker = false
 
 [node name="ClickerHolder19" parent="Holders/TimedMultiReceiver3" instance=ExtResource("1_dgotf")]
@@ -302,23 +296,19 @@ is_catcher = false
 [node name="ClickerHolder13" parent="Holders" instance=ExtResource("1_dgotf")]
 position = Vector2(-1878, 12585)
 rotation = -0.785397
+scale = Vector2(-1, 1)
 is_catcher = false
 
 [node name="ClickerHolder6" parent="Holders" instance=ExtResource("1_dgotf")]
 position = Vector2(-3241, 17062)
 rotation = -1.57079
 is_catcher = false
-clicker_sprite = NodePath("../ClickerHolder/ClickerSprite")
-holder_sprite = NodePath("../ClickerHolder/HolderSprite")
-catcher_field = NodePath("../ClickerHolder/CatcherField")
 
 [node name="ClickerHolder7" parent="Holders" instance=ExtResource("1_dgotf")]
 position = Vector2(-1237, 17061)
 rotation = 1.57079
+scale = Vector2(-1, 1)
 is_catcher = false
-clicker_sprite = NodePath("../ClickerHolder2/ClickerSprite")
-holder_sprite = NodePath("../ClickerHolder2/HolderSprite")
-catcher_field = NodePath("../ClickerHolder2/CatcherField")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("4_32b8o")]
 position = Vector2(-1845, 5391)
@@ -361,26 +351,23 @@ position = Vector2(-2223, 16869)
 rotation = 1.57079
 power_multi = NodePath("../../Holders/TimedMultiReceiver3")
 
-[node name="ClickerBlocker3" parent="Doors_Blockers" node_paths=PackedStringArray("sprite") instance=ExtResource("5_8o3dx")]
+[node name="ClickerBlocker3" parent="Doors_Blockers" instance=ExtResource("5_8o3dx")]
 position = Vector2(-1222, 3294)
 rotation = 1.57079
-sprite = NodePath("../ClickerBlocker/Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker3"]
 shape = SubResource("CapsuleShape2D_bthli")
 
-[node name="ClickerBlocker4" parent="Doors_Blockers" node_paths=PackedStringArray("sprite") instance=ExtResource("5_8o3dx")]
+[node name="ClickerBlocker4" parent="Doors_Blockers" instance=ExtResource("5_8o3dx")]
 position = Vector2(-2249, 5720)
 rotation = 1.57079
-sprite = NodePath("../ClickerBlocker/Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker4"]
 shape = SubResource("CapsuleShape2D_bthli")
 
-[node name="ClickerBlocker5" parent="Doors_Blockers" node_paths=PackedStringArray("sprite") instance=ExtResource("5_8o3dx")]
+[node name="ClickerBlocker5" parent="Doors_Blockers" instance=ExtResource("5_8o3dx")]
 position = Vector2(-2254, 8808)
 rotation = 1.57079
-sprite = NodePath("../ClickerBlocker/Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker5"]
 shape = SubResource("CapsuleShape2D_bthli")
@@ -394,7 +381,6 @@ negative_relationship = true
 [node name="ClickerBlocker6" parent="Doors_Blockers" instance=ExtResource("5_8o3dx")]
 position = Vector2(-3163, 16189)
 rotation = -1.57079
-sprite = NodePath("../ClickerBlocker/Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker6"]
 shape = SubResource("CapsuleShape2D_3y0kj")
@@ -402,7 +388,6 @@ shape = SubResource("CapsuleShape2D_3y0kj")
 [node name="ClickerBlocker7" parent="Doors_Blockers" instance=ExtResource("5_8o3dx")]
 position = Vector2(-1388, 16289)
 rotation = -3.14159
-sprite = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker7"]
 shape = SubResource("CapsuleShape2D_nnt8c")
@@ -410,7 +395,6 @@ shape = SubResource("CapsuleShape2D_nnt8c")
 [node name="ClickerBlocker8" parent="Doors_Blockers" instance=ExtResource("5_8o3dx")]
 position = Vector2(-840, 17266)
 rotation = -1.5708
-sprite = NodePath("../ClickerBlocker3/Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker8"]
 shape = SubResource("CapsuleShape2D_w8wro")
@@ -418,15 +402,13 @@ shape = SubResource("CapsuleShape2D_w8wro")
 [node name="ClickerBlocker9" parent="Doors_Blockers" instance=ExtResource("5_8o3dx")]
 position = Vector2(-3592, 17266)
 rotation = -1.5708
-sprite = NodePath("../ClickerBlocker4/Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker9"]
 shape = SubResource("CapsuleShape2D_w8wro")
 
-[node name="ClickerBlocker10" parent="Doors_Blockers" node_paths=PackedStringArray("sprite") instance=ExtResource("5_8o3dx")]
+[node name="ClickerBlocker10" parent="Doors_Blockers" instance=ExtResource("5_8o3dx")]
 position = Vector2(-2241, 16866)
 rotation = -1.57079
-sprite = NodePath("../ClickerBlocker/Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker10"]
 shape = SubResource("CapsuleShape2D_bthli")
@@ -434,7 +416,6 @@ shape = SubResource("CapsuleShape2D_bthli")
 [node name="ClickerBlocker11" parent="Doors_Blockers" instance=ExtResource("5_8o3dx")]
 position = Vector2(-3268, 12434)
 rotation = -1.57079
-sprite = NodePath("../ClickerBlocker/Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker11"]
 shape = SubResource("CapsuleShape2D_3y0kj")
@@ -442,7 +423,6 @@ shape = SubResource("CapsuleShape2D_3y0kj")
 [node name="ClickerBlocker12" parent="Doors_Blockers" instance=ExtResource("5_8o3dx")]
 position = Vector2(-1207, 12434)
 rotation = -1.57079
-sprite = NodePath("../ClickerBlocker/Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors_Blockers/ClickerBlocker12"]
 shape = SubResource("CapsuleShape2D_3y0kj")

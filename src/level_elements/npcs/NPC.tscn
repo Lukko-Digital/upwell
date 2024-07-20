@@ -1,14 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://6aouvsx0hvfm"]
+[gd_scene load_steps=4 format=3 uid="uid://6aouvsx0hvfm"]
 
 [ext_resource type="Script" path="res://src/abstract_base_classes/npc.gd" id="1_wmwre"]
-[ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="2_g0k2r"]
+[ext_resource type="FontFile" uid="uid://cmkra16htorm3" path="res://assets/ui/fonts/LibreBaskerville-Italic.ttf" id="2_avyvd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6qdgt"]
 radius = 219.002
-
-[sub_resource type="FontVariation" id="FontVariation_ciso7"]
-base_font = ExtResource("2_g0k2r")
-variation_embolden = 0.15
 
 [node name="NPC" type="Area2D"]
 collision_layer = 8
@@ -20,14 +16,15 @@ dialogue_file = "res://assets/test1.csv"
 shape = SubResource("CircleShape2D_6qdgt")
 
 [node name="InteractLabel" type="Label" parent="."]
-modulate = Color(1, 1, 1, 0.709804)
-offset_left = -221.0
-offset_top = -283.0
-offset_right = 247.0
-offset_bottom = -174.0
+modulate = Color(1, 1, 1, 0.352941)
+offset_left = -136.0
+offset_top = -274.0
+offset_right = 328.0
+offset_bottom = -166.0
 rotation = -0.000660069
-theme_override_fonts/font = SubResource("FontVariation_ciso7")
-theme_override_font_sizes/font_size = 86
+scale = Vector2(0.610999, 0.610999)
+theme_override_fonts/font = ExtResource("2_avyvd")
+theme_override_font_sizes/font_size = 81
 text = "E to talk"
 horizontal_alignment = 1
 

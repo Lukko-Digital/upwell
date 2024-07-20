@@ -16,7 +16,7 @@ const SHAKE_DEFAULT = {
 const END_CHARACTER_PAUSE = 0.5
 const COMMA_PAUSE = 0.15
 ## Distance from nodule origin to npc origin
-const SPEECH_BUBBLE_OFFSET = Vector2( - 100, -130)
+const SPEECH_BUBBLE_OFFSET = Vector2( -60, -110)
 
 @export var dialogue_label: RichTextLabel
 @export var name_label: RichTextLabel

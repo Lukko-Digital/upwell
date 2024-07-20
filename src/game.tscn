@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnrwuscuadbgg"]
+[gd_scene load_steps=6 format=3 uid="uid://dnrwuscuadbgg"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_5wj68"]
 [ext_resource type="PackedScene" uid="uid://dw50qvw1e418b" path="res://src/level_elements/pod/pod.tscn" id="3_t6iyq"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="4_aavje"]
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="4_gj13g"]
+[ext_resource type="PackedScene" uid="uid://clv3h7rrcfdt8" path="res://src/particles/layered_particles.tscn" id="5_0dipe"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_5wj68")
@@ -19,3 +20,6 @@ position = Vector2(0, -256)
 
 [node name="MainCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_gj13g")]
 player = NodePath("../Player")
+
+[node name="LayeredParticles" parent="." instance=ExtResource("5_0dipe")]
+position = Vector2(-35, -418)

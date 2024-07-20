@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://db6b8gkgjtce1"]
+
+[ext_resource type="Texture2D" uid="uid://dlotw1db3i7xq" path="res://assets/character/player/sprite/animations/player_idle-sheet.png" id="1_s6ieo"]
+
+[resource]
+atlas = ExtResource("1_s6ieo")
+region = Rect2(0, 0, 692, 1187)
+margin = Rect2(1494, 522, 3148, 973)

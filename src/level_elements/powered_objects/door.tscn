@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bifs4cy21hluc"]
 
 [ext_resource type="Script" path="res://src/powered_objects/door.gd" id="1_0nxxg"]
-[ext_resource type="Texture2D" uid="uid://sk76how7sexv" path="res://assets/mvp3_assets/door-sheet.png" id="1_3japl"]
+[ext_resource type="Texture2D" uid="uid://cj0u5u6iuyjsg" path="res://assets/mvp4_assets/door-sheet.png" id="2_e8w0a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m8d3s"]
 size = Vector2(198, 4)
@@ -98,7 +98,7 @@ z_index = 9
 script = ExtResource("1_0nxxg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_3japl")
+texture = ExtResource("2_e8w0a")
 hframes = 2
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

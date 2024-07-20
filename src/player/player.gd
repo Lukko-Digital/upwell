@@ -20,7 +20,10 @@ const PLAYER = {
 }
 
 @export_group("Node References")
+## Camera reference for a level's test player, does not need to be set for the
+## player in [Game]
 @export var camera: Camera2D
+@export var player_sprite: AnimatedSprite2D
 @export var grav_component: GravitizedComponent
 @export var interactable_detector: Area2D
 @export var dialogue_ui: DialogueUI
@@ -66,7 +69,7 @@ var highlighted_interactable: Interactable = null:
 		if highlighted_interactable != null:
 			highlighted_interactable.highlighted = true
 
-### ------------------------------ CORE ------------------------------
+## ------------------------------ CORE ------------------------------
 
 func _ready() -> void:
 	# Connect signal
@@ -75,10 +78,8 @@ func _ready() -> void:
 
 	# Retrieve Game node 
 	var current_scene = get_tree().get_current_scene()
+	# Kill level's test player
 	if current_scene is Game and not owner is Game:
-		# var main_camera: Camera2D = current_scene.get_node("Camera2D")
-		# main_camera.limit_bottom = camera.limit_bottom
-		# main_camera.limit_top = camera.limit_top
 		camera.queue_free()
 		queue_free()
 
@@ -87,7 +88,8 @@ func _physics_process(delta):
 		return
 	var gravity_state: GravitizedComponent.GravityState = handle_artificial_gravity(delta)
 	handle_world_gravity(delta, gravity_state)
-	handle_movement(delta, gravity_state)
+	var input_dir = handle_movement(delta, gravity_state)
+	handle_player_animation(input_dir)
 	move_and_slide()
 	handle_coyote_timing(gravity_state)
 
@@ -144,7 +146,7 @@ func handle_world_gravity(delta: float, gravity_state: GravitizedComponent.Gravi
 
 ## ------------------------------ MOVEMENT ------------------------------
 
-func handle_movement(delta: float, gravity_state: GravitizedComponent.GravityState):
+func handle_movement(delta: float, gravity_state: GravitizedComponent.GravityState) -> float:
 	var speed_coef = 1.0
 	if gravity_state == GravitizedComponent.GravityState.ORBIT:
 		speed_coef = PLAYER.ORBIT_STRAFE_SLOWDOWN
@@ -171,14 +173,28 @@ func handle_movement(delta: float, gravity_state: GravitizedComponent.GravitySta
 			# If there is no player input, and airborne decel is disabled from
 			# boosting or the player is currently in an orbit, exit so the
 			# player is not decelerated.
-			return
+			return 0
 		velocity.x = move_toward(
 			velocity.x,
 			top_speed * input_direction,
 			PLAYER.ACCELERATION * speed_coef * delta
 		)
+	return input_direction
 
-# ----------------------------- JUMP -----------------------------
+## ----------------------------- ANIMATION -----------------------------
+
+func handle_player_animation(input_dir: float):
+	match round(input_dir):
+		0.0:
+			player_sprite.play("Idle")
+		- 1.0:
+			player_sprite.flip_h = true
+			player_sprite.play("Run")
+		1.0:
+			player_sprite.flip_h = false
+			player_sprite.play("Run")
+
+## ----------------------------- JUMP -----------------------------
 
 ## Should be called after [move_and_slide] in [_physics_process]
 func handle_coyote_timing(gravity_state: GravitizedComponent.GravityState):
@@ -197,6 +213,7 @@ func handle_coyote_timing(gravity_state: GravitizedComponent.GravityState):
 		jump()
 
 	previously_grounded = currently_grounded
+
 func jump():
 	# No jump when holding shift
 	if Input.is_action_pressed("orbit"):
@@ -221,7 +238,7 @@ func _min_jump_timer_timeout():
 	if !Input.is_action_pressed("jump"):
 		jump_end()
 
-### ----------------------------- OBJECT INTERACT -----------------------------
+## ----------------------------- OBJECT INTERACT -----------------------------
 
 func sort_closest(a: Node2D, b: Node2D):
 	var distance_to = func(node: Node2D):
@@ -291,7 +308,7 @@ func home_all_clickers():
 		var clicker = spawn_clicker()
 		clicker.return_to_home()
 
-### ----------------------------- THROW -----------------------------
+## ----------------------------- THROW -----------------------------
 
 func throw():
 	if not (
