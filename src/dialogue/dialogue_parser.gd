@@ -13,6 +13,9 @@ const DEFUALT = {
 	# Default dialogue duration is 1.2x the time it takes to display the line
 	DIALOGUE_DURATION = 1.2
 }
+
+enum DisplayType {SPEECH_BUBBLE, FULLSCREEN}
+
 static func parse_csv(dialogue_file: String) -> ConversationTree:
 	var file = FileAccess.open(dialogue_file, FileAccess.READ)
 	var keys := file.get_csv_line()
@@ -75,6 +78,7 @@ static func parse_csv(dialogue_file: String) -> ConversationTree:
 		var dialogue_line = BBCodeParser.parse(get_key.call(line, "Dialogue Text"))
 		safety_check_dialogue_commands(dialogue_line)
 		var npc_name = get_key.call(line, "Name")
+		var display_type = to_display_type(get_key.call(line, "Display Type"))
 		var variable_to_set = get_key.call(line, "Variable To Set")
 		var variable_value = to_bool(get_key.call(line, "Variable Value"))
 		var next_branch_id = get_key.call(line, "Next Branch")
@@ -97,6 +101,7 @@ static func parse_csv(dialogue_file: String) -> ConversationTree:
 			branch_id,
 			dialogue_line,
 			npc_name,
+			display_type,
 			variable_to_set,
 			variable_value,
 			next_branch_id,
@@ -123,6 +128,15 @@ static func to_bool(string: String):
 		"": return false
 		_:
 			assert(false, "Error when parsing dialogue, tried to convert " + string + " to bool, expected '0' or '1'")
+
+static func to_display_type(string: String):
+	match string:
+		"", "Speech Bubble":
+			return DisplayType.SPEECH_BUBBLE
+		"Fullscreen":
+			return DisplayType.FULLSCREEN
+		_:
+			assert(false, "Error when parsing dialogue, received \"" + string + "\" in display type column, expected an empty string, \"Speech Bubble\" or \"Fullscreen\"")
 
 static func error_if_empty(string: String, error_msg: String):
 	if string.is_empty():
