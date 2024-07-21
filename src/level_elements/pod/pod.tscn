@@ -1,15 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://dw50qvw1e418b"]
+[gd_scene load_steps=9 format=3 uid="uid://dw50qvw1e418b"]
 
 [ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="1_pv0jy"]
 [ext_resource type="Script" path="res://src/level_elements/pod/pod.gd" id="1_urr8o"]
 [ext_resource type="PackedScene" uid="uid://bb68hmcptqlgt" path="res://src/map/map.tscn" id="2_uerrb"]
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/holder/clicker_holder.tscn" id="4_goton"]
+[ext_resource type="Script" path="res://src/level_elements/camera/camera_point_focus.gd" id="5_0tuqc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fgq61"]
 size = Vector2(440, 1338)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eg7vv"]
 size = Vector2(1534, 1060)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qgxty"]
+size = Vector2(1666, 1392)
 
 [node name="Pod" type="Node2D" node_paths=PackedStringArray("pod_holder", "walls_static_body", "walls_visual")]
 script = ExtResource("1_urr8o")
@@ -83,5 +87,17 @@ collision_mask = 18
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PodClickerRehomeArea"]
 position = Vector2(0, -540)
 shape = SubResource("RectangleShape2D_eg7vv")
+
+[node name="CameraPointFocus" type="Area2D" parent="."]
+position = Vector2(11, -515)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("5_0tuqc")
+
+[node name="Marker2D" type="Marker2D" parent="CameraPointFocus"]
+position = Vector2(-8, 81)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraPointFocus"]
+shape = SubResource("RectangleShape2D_qgxty")
 
 [connection signal="body_entered" from="PodClickerRehomeArea" to="." method="_on_pod_clicker_rehome_area_body_entered"]
