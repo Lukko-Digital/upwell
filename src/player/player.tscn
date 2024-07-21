@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://tfy83b2uc6hh"]
+[gd_scene load_steps=77 format=3 uid="uid://tfy83b2uc6hh"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_lbj7m"]
 [ext_resource type="Texture2D" uid="uid://cnuqbnvjsg53d" path="res://assets/mvp4_assets/player.png" id="2_6q4jk"]
@@ -48,8 +48,6 @@
 [ext_resource type="Texture2D" uid="uid://d1g7rgff2hxi2" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Run-0008.tres" id="22_ejggs"]
 [ext_resource type="Texture2D" uid="uid://do704k6266nn1" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0029.tres" id="22_hme7c"]
 [ext_resource type="Texture2D" uid="uid://c7vvpjh8446p4" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Run-0009.tres" id="23_rs58p"]
-[ext_resource type="Texture2D" uid="uid://yipdum75sg7p" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0030.tres" id="23_wbx66"]
-[ext_resource type="Texture2D" uid="uid://cxpsxq3eg2n2y" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0031.tres" id="24_qq7a4"]
 [ext_resource type="Texture2D" uid="uid://b5shr5df442js" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Run-0010.tres" id="24_wxhv4"]
 [ext_resource type="Texture2D" uid="uid://cp60ij3tvv1ea" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Run-0011.tres" id="25_5hrev"]
 [ext_resource type="Texture2D" uid="uid://do8kw0vjqt6ch" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Run-0012.tres" id="26_xuo4f"]
@@ -101,7 +99,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Fall_Loop",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -112,7 +110,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Fall_Start",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -150,16 +148,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("22_hme7c")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_wbx66")
-}, {
-"duration": 1.0,
-"texture": ExtResource("24_qq7a4")
 }],
 "loop": true,
 "name": &"Hover",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -220,7 +212,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Jump",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -252,7 +244,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Land",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -352,8 +344,9 @@ texture = ExtResource("3_ru4vn")
 position = Vector2(0, 8)
 scale = Vector2(0.239959, 0.239959)
 sprite_frames = SubResource("SpriteFrames_nrpse")
-animation = &"Land"
+animation = &"Stop"
 autoplay = "Idle"
+frame_progress = 0.219706
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 visible = false
