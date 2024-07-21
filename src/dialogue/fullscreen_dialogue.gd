@@ -1,0 +1,2 @@
+extends DialogueDisplay
+class_name FullscreenDialogue
