@@ -359,6 +359,7 @@ func handle_throw_arc():
 
 func _on_dialogue_ui_dialogue_finished() -> void:
 	in_dialogue = false
+	Global.set_camera_focus.emit(null)
 	velocity = Vector2.ZERO
 
 func _camera_focus_net(focus: Node2D):
