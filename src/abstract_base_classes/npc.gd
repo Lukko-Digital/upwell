@@ -16,3 +16,4 @@ func _ready() -> void:
 
 func interact(player: Player):
 	player.start_dialogue(self)
+	Global.set_camera_focus.emit(self)

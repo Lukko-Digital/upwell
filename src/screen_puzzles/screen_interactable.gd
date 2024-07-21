@@ -21,9 +21,6 @@ func interact(_player: Player):
 		Global.set_camera_focus.emit(self)
 	else:
 		Global.set_camera_focus.emit(null)
-		
-		
-		
 
 # func _on_body_exited(body: Node2D):
 # 	if body is Player:
@@ -33,6 +30,7 @@ func interact(_player: Player):
 # 	if body is Player:
 # 		subviewport.physics_object_picking = true
 
+# Lerps screen warping on VHS filter when focusing on a screen from 0 to chosen target
 func lerp_warp_amount(delta: float):
 	var target
 	if focused:
