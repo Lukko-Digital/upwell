@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://6aouvsx0hvfm"]
+[gd_scene load_steps=5 format=3 uid="uid://6aouvsx0hvfm"]
 
 [ext_resource type="Script" path="res://src/abstract_base_classes/npc.gd" id="1_wmwre"]
 [ext_resource type="FontFile" uid="uid://cmkra16htorm3" path="res://assets/ui/fonts/LibreBaskerville-Italic.ttf" id="2_avyvd"]
+[ext_resource type="PackedScene" uid="uid://bg636q5nculbs" path="res://src/dialogue/nodule.tscn" id="3_x8mvx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6qdgt"]
 radius = 219.002
@@ -27,6 +28,13 @@ theme_override_fonts/font = ExtResource("2_avyvd")
 theme_override_font_sizes/font_size = 81
 text = "E to talk"
 horizontal_alignment = 1
+
+[node name="Nodule" parent="." instance=ExtResource("3_x8mvx")]
+offset_left = -121.0
+offset_top = -174.0
+offset_right = -65.0
+offset_bottom = -116.0
+metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
