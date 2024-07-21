@@ -3,15 +3,345 @@
 		{
 			"image": "player-sheet.png",
 			"size": {
-				"w": 15334,
-				"h": 2752
+				"w": 9758,
+				"h": 8340
 			},
 			"sprites": [
 				{
-					"filename": "Player_Idle-0001.png",
+					"filename": "Player_Fall-0032.png",
 					"region": {
 						"x": 0,
 						"y": 0,
+						"w": 839,
+						"h": 1227
+					},
+					"margin": {
+						"x": 1512,
+						"y": 0,
+						"w": 3001,
+						"h": 933
+					}
+				},
+				{
+					"filename": "Player_Fall-0033.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 839,
+						"h": 1227
+					},
+					"margin": {
+						"x": 1512,
+						"y": 0,
+						"w": 3001,
+						"h": 933
+					}
+				},
+				{
+					"filename": "Player_Fall-0034.png",
+					"region": {
+						"x": 1394,
+						"y": 0,
+						"w": 813,
+						"h": 1380
+					},
+					"margin": {
+						"x": 1540,
+						"y": 187,
+						"w": 3027,
+						"h": 780
+					}
+				},
+				{
+					"filename": "Player_Fall-0035.png",
+					"region": {
+						"x": 1394,
+						"y": 0,
+						"w": 813,
+						"h": 1380
+					},
+					"margin": {
+						"x": 1540,
+						"y": 187,
+						"w": 3027,
+						"h": 780
+					}
+				},
+				{
+					"filename": "Player_Fall-0036.png",
+					"region": {
+						"x": 2788,
+						"y": 0,
+						"w": 813,
+						"h": 1386
+					},
+					"margin": {
+						"x": 1540,
+						"y": 181,
+						"w": 3027,
+						"h": 774
+					}
+				},
+				{
+					"filename": "Player_Fall-0037.png",
+					"region": {
+						"x": 2788,
+						"y": 0,
+						"w": 813,
+						"h": 1386
+					},
+					"margin": {
+						"x": 1540,
+						"y": 181,
+						"w": 3027,
+						"h": 774
+					}
+				},
+				{
+					"filename": "Player_Fall-0038.png",
+					"region": {
+						"x": 4182,
+						"y": 0,
+						"w": 804,
+						"h": 1390
+					},
+					"margin": {
+						"x": 1537,
+						"y": 177,
+						"w": 3036,
+						"h": 770
+					}
+				},
+				{
+					"filename": "Player_Fall-0039.png",
+					"region": {
+						"x": 4182,
+						"y": 0,
+						"w": 804,
+						"h": 1390
+					},
+					"margin": {
+						"x": 1537,
+						"y": 177,
+						"w": 3036,
+						"h": 770
+					}
+				},
+				{
+					"filename": "Player_Hover-0018.png",
+					"region": {
+						"x": 5576,
+						"y": 0,
+						"w": 839,
+						"h": 1158
+					},
+					"margin": {
+						"x": 1525,
+						"y": 0,
+						"w": 3001,
+						"h": 1002
+					}
+				},
+				{
+					"filename": "Player_Hover-0019.png",
+					"region": {
+						"x": 5576,
+						"y": 0,
+						"w": 839,
+						"h": 1158
+					},
+					"margin": {
+						"x": 1525,
+						"y": 0,
+						"w": 3001,
+						"h": 1002
+					}
+				},
+				{
+					"filename": "Player_Hover-0030.png",
+					"region": {
+						"x": 5576,
+						"y": 0,
+						"w": 839,
+						"h": 1158
+					},
+					"margin": {
+						"x": 1525,
+						"y": 0,
+						"w": 3001,
+						"h": 1002
+					}
+				},
+				{
+					"filename": "Player_Hover-0031.png",
+					"region": {
+						"x": 5576,
+						"y": 0,
+						"w": 839,
+						"h": 1158
+					},
+					"margin": {
+						"x": 1525,
+						"y": 0,
+						"w": 3001,
+						"h": 1002
+					}
+				},
+				{
+					"filename": "Player_Hover-0020.png",
+					"region": {
+						"x": 6970,
+						"y": 0,
+						"w": 841,
+						"h": 1158
+					},
+					"margin": {
+						"x": 1523,
+						"y": 0,
+						"w": 2999,
+						"h": 1002
+					}
+				},
+				{
+					"filename": "Player_Hover-0021.png",
+					"region": {
+						"x": 6970,
+						"y": 0,
+						"w": 841,
+						"h": 1158
+					},
+					"margin": {
+						"x": 1523,
+						"y": 0,
+						"w": 2999,
+						"h": 1002
+					}
+				},
+				{
+					"filename": "Player_Hover-0022.png",
+					"region": {
+						"x": 8364,
+						"y": 0,
+						"w": 838,
+						"h": 1158
+					},
+					"margin": {
+						"x": 1526,
+						"y": 0,
+						"w": 3002,
+						"h": 1002
+					}
+				},
+				{
+					"filename": "Player_Hover-0023.png",
+					"region": {
+						"x": 8364,
+						"y": 0,
+						"w": 838,
+						"h": 1158
+					},
+					"margin": {
+						"x": 1526,
+						"y": 0,
+						"w": 3002,
+						"h": 1002
+					}
+				},
+				{
+					"filename": "Player_Hover-0024.png",
+					"region": {
+						"x": 0,
+						"y": 1390,
+						"w": 836,
+						"h": 1158
+					},
+					"margin": {
+						"x": 1528,
+						"y": 0,
+						"w": 3004,
+						"h": 1002
+					}
+				},
+				{
+					"filename": "Player_Hover-0025.png",
+					"region": {
+						"x": 0,
+						"y": 1390,
+						"w": 836,
+						"h": 1158
+					},
+					"margin": {
+						"x": 1528,
+						"y": 0,
+						"w": 3004,
+						"h": 1002
+					}
+				},
+				{
+					"filename": "Player_Hover-0026.png",
+					"region": {
+						"x": 1394,
+						"y": 1390,
+						"w": 834,
+						"h": 1158
+					},
+					"margin": {
+						"x": 1530,
+						"y": 0,
+						"w": 3006,
+						"h": 1002
+					}
+				},
+				{
+					"filename": "Player_Hover-0027.png",
+					"region": {
+						"x": 1394,
+						"y": 1390,
+						"w": 834,
+						"h": 1158
+					},
+					"margin": {
+						"x": 1530,
+						"y": 0,
+						"w": 3006,
+						"h": 1002
+					}
+				},
+				{
+					"filename": "Player_Hover-0028.png",
+					"region": {
+						"x": 2788,
+						"y": 1390,
+						"w": 835,
+						"h": 1158
+					},
+					"margin": {
+						"x": 1529,
+						"y": 0,
+						"w": 3005,
+						"h": 1002
+					}
+				},
+				{
+					"filename": "Player_Hover-0029.png",
+					"region": {
+						"x": 2788,
+						"y": 1390,
+						"w": 835,
+						"h": 1158
+					},
+					"margin": {
+						"x": 1529,
+						"y": 0,
+						"w": 3005,
+						"h": 1002
+					}
+				},
+				{
+					"filename": "Player_Idle-0001.png",
+					"region": {
+						"x": 4182,
+						"y": 1390,
 						"w": 1027,
 						"h": 1346
 					},
@@ -25,8 +355,8 @@
 				{
 					"filename": "Player_Idle-0002.png",
 					"region": {
-						"x": 0,
-						"y": 0,
+						"x": 4182,
+						"y": 1390,
 						"w": 1027,
 						"h": 1346
 					},
@@ -40,8 +370,8 @@
 				{
 					"filename": "Player_Idle-0003.png",
 					"region": {
-						"x": 0,
-						"y": 0,
+						"x": 4182,
+						"y": 1390,
 						"w": 1027,
 						"h": 1346
 					},
@@ -55,8 +385,8 @@
 				{
 					"filename": "Player_Idle-0004.png",
 					"region": {
-						"x": 1394,
-						"y": 0,
+						"x": 5576,
+						"y": 1390,
 						"w": 542,
 						"h": 1334
 					},
@@ -70,8 +400,8 @@
 				{
 					"filename": "Player_Idle-0005.png",
 					"region": {
-						"x": 1394,
-						"y": 0,
+						"x": 5576,
+						"y": 1390,
 						"w": 542,
 						"h": 1334
 					},
@@ -85,8 +415,8 @@
 				{
 					"filename": "Player_Idle-0006.png",
 					"region": {
-						"x": 1394,
-						"y": 0,
+						"x": 5576,
+						"y": 1390,
 						"w": 542,
 						"h": 1334
 					},
@@ -100,8 +430,8 @@
 				{
 					"filename": "Player_Idle-0010.png",
 					"region": {
-						"x": 1394,
-						"y": 0,
+						"x": 5576,
+						"y": 1390,
 						"w": 542,
 						"h": 1334
 					},
@@ -115,8 +445,8 @@
 				{
 					"filename": "Player_Idle-0011.png",
 					"region": {
-						"x": 1394,
-						"y": 0,
+						"x": 5576,
+						"y": 1390,
 						"w": 542,
 						"h": 1334
 					},
@@ -130,8 +460,8 @@
 				{
 					"filename": "Player_Idle-0012.png",
 					"region": {
-						"x": 1394,
-						"y": 0,
+						"x": 5576,
+						"y": 1390,
 						"w": 542,
 						"h": 1334
 					},
@@ -145,8 +475,8 @@
 				{
 					"filename": "Player_Idle-0007.png",
 					"region": {
-						"x": 2788,
-						"y": 0,
+						"x": 6970,
+						"y": 1390,
 						"w": 572,
 						"h": 1357
 					},
@@ -160,8 +490,8 @@
 				{
 					"filename": "Player_Idle-0008.png",
 					"region": {
-						"x": 2788,
-						"y": 0,
+						"x": 6970,
+						"y": 1390,
 						"w": 572,
 						"h": 1357
 					},
@@ -175,8 +505,8 @@
 				{
 					"filename": "Player_Idle-0009.png",
 					"region": {
-						"x": 2788,
-						"y": 0,
+						"x": 6970,
+						"y": 1390,
 						"w": 572,
 						"h": 1357
 					},
@@ -188,10 +518,220 @@
 					}
 				},
 				{
-					"filename": "Player_Run-0001.png",
+					"filename": "Player_Jump-0013.png",
+					"region": {
+						"x": 8364,
+						"y": 1390,
+						"w": 813,
+						"h": 1347
+					},
+					"margin": {
+						"x": 1460,
+						"y": 359,
+						"w": 3027,
+						"h": 813
+					}
+				},
+				{
+					"filename": "Player_Jump-0014.png",
+					"region": {
+						"x": 0,
+						"y": 2780,
+						"w": 813,
+						"h": 1334
+					},
+					"margin": {
+						"x": 1540,
+						"y": 234,
+						"w": 3027,
+						"h": 826
+					}
+				},
+				{
+					"filename": "Player_Jump-0015.png",
+					"region": {
+						"x": 1394,
+						"y": 2780,
+						"w": 848,
+						"h": 1334
+					},
+					"margin": {
+						"x": 1503,
+						"y": 0,
+						"w": 2992,
+						"h": 826
+					}
+				},
+				{
+					"filename": "Player_Jump-0016.png",
+					"region": {
+						"x": 2788,
+						"y": 2780,
+						"w": 849,
+						"h": 1168
+					},
+					"margin": {
+						"x": 1513,
+						"y": 0,
+						"w": 2991,
+						"h": 992
+					}
+				},
+				{
+					"filename": "Player_Jump-0017.png",
+					"region": {
+						"x": 2788,
+						"y": 2780,
+						"w": 849,
+						"h": 1168
+					},
+					"margin": {
+						"x": 1513,
+						"y": 0,
+						"w": 2991,
+						"h": 992
+					}
+				},
+				{
+					"filename": "Player_Land-0040.png",
 					"region": {
 						"x": 4182,
-						"y": 0,
+						"y": 2780,
+						"w": 849,
+						"h": 917
+					},
+					"margin": {
+						"x": 1505,
+						"y": 779,
+						"w": 2991,
+						"h": 1243
+					}
+				},
+				{
+					"filename": "Player_Land-0041.png",
+					"region": {
+						"x": 5576,
+						"y": 2780,
+						"w": 896,
+						"h": 885
+					},
+					"margin": {
+						"x": 1502,
+						"y": 811,
+						"w": 2944,
+						"h": 1275
+					}
+				},
+				{
+					"filename": "Player_Land-0042.png",
+					"region": {
+						"x": 5576,
+						"y": 2780,
+						"w": 896,
+						"h": 885
+					},
+					"margin": {
+						"x": 1502,
+						"y": 811,
+						"w": 2944,
+						"h": 1275
+					}
+				},
+				{
+					"filename": "Player_Land-0043.png",
+					"region": {
+						"x": 6970,
+						"y": 2780,
+						"w": 855,
+						"h": 879
+					},
+					"margin": {
+						"x": 1516,
+						"y": 820,
+						"w": 2985,
+						"h": 1281
+					}
+				},
+				{
+					"filename": "Player_Land-0044.png",
+					"region": {
+						"x": 6970,
+						"y": 2780,
+						"w": 855,
+						"h": 879
+					},
+					"margin": {
+						"x": 1516,
+						"y": 820,
+						"w": 2985,
+						"h": 1281
+					}
+				},
+				{
+					"filename": "Player_Land-0045.png",
+					"region": {
+						"x": 8364,
+						"y": 2780,
+						"w": 773,
+						"h": 909
+					},
+					"margin": {
+						"x": 1547,
+						"y": 789,
+						"w": 3067,
+						"h": 1251
+					}
+				},
+				{
+					"filename": "Player_Land-0046.png",
+					"region": {
+						"x": 8364,
+						"y": 2780,
+						"w": 773,
+						"h": 909
+					},
+					"margin": {
+						"x": 1547,
+						"y": 789,
+						"w": 3067,
+						"h": 1251
+					}
+				},
+				{
+					"filename": "Player_Land-0047.png",
+					"region": {
+						"x": 0,
+						"y": 4170,
+						"w": 686,
+						"h": 1175
+					},
+					"margin": {
+						"x": 1569,
+						"y": 521,
+						"w": 3154,
+						"h": 985
+					}
+				},
+				{
+					"filename": "Player_Land-0048.png",
+					"region": {
+						"x": 0,
+						"y": 4170,
+						"w": 686,
+						"h": 1175
+					},
+					"margin": {
+						"x": 1569,
+						"y": 521,
+						"w": 3154,
+						"h": 985
+					}
+				},
+				{
+					"filename": "Player_Run-0001.png",
+					"region": {
+						"x": 1394,
+						"y": 4170,
 						"w": 1187,
 						"h": 1177
 					},
@@ -205,8 +745,8 @@
 				{
 					"filename": "Player_Run-0002.png",
 					"region": {
-						"x": 5576,
-						"y": 0,
+						"x": 2788,
+						"y": 4170,
 						"w": 1205,
 						"h": 1028
 					},
@@ -220,8 +760,8 @@
 				{
 					"filename": "Player_Run-0003.png",
 					"region": {
-						"x": 6970,
-						"y": 0,
+						"x": 4182,
+						"y": 4170,
 						"w": 1271,
 						"h": 1192
 					},
@@ -235,8 +775,8 @@
 				{
 					"filename": "Player_Run-0004.png",
 					"region": {
-						"x": 8364,
-						"y": 0,
+						"x": 5576,
+						"y": 4170,
 						"w": 1022,
 						"h": 1169
 					},
@@ -250,8 +790,8 @@
 				{
 					"filename": "Player_Run-0005.png",
 					"region": {
-						"x": 9758,
-						"y": 0,
+						"x": 6970,
+						"y": 4170,
 						"w": 820,
 						"h": 1078
 					},
@@ -265,8 +805,8 @@
 				{
 					"filename": "Player_Run-0006.png",
 					"region": {
-						"x": 11152,
-						"y": 0,
+						"x": 8364,
+						"y": 4170,
 						"w": 767,
 						"h": 1121
 					},
@@ -280,8 +820,8 @@
 				{
 					"filename": "Player_Run-0007.png",
 					"region": {
-						"x": 12546,
-						"y": 0,
+						"x": 0,
+						"y": 5560,
 						"w": 1187,
 						"h": 1177
 					},
@@ -295,8 +835,8 @@
 				{
 					"filename": "Player_Run-0008.png",
 					"region": {
-						"x": 13940,
-						"y": 0,
+						"x": 1394,
+						"y": 5560,
 						"w": 1205,
 						"h": 1028
 					},
@@ -310,8 +850,8 @@
 				{
 					"filename": "Player_Run-0009.png",
 					"region": {
-						"x": 0,
-						"y": 1376,
+						"x": 2788,
+						"y": 5560,
 						"w": 1271,
 						"h": 1192
 					},
@@ -325,8 +865,8 @@
 				{
 					"filename": "Player_Run-0010.png",
 					"region": {
-						"x": 1394,
-						"y": 1376,
+						"x": 4182,
+						"y": 5560,
 						"w": 1030,
 						"h": 1169
 					},
@@ -340,8 +880,8 @@
 				{
 					"filename": "Player_Run-0011.png",
 					"region": {
-						"x": 2788,
-						"y": 1376,
+						"x": 5576,
+						"y": 5560,
 						"w": 820,
 						"h": 1078
 					},
@@ -355,8 +895,8 @@
 				{
 					"filename": "Player_Run-0012.png",
 					"region": {
-						"x": 4182,
-						"y": 1376,
+						"x": 6970,
+						"y": 5560,
 						"w": 767,
 						"h": 1121
 					},
@@ -370,8 +910,8 @@
 				{
 					"filename": "Player_Stop-0013.png",
 					"region": {
-						"x": 5576,
-						"y": 1376,
+						"x": 8364,
+						"y": 5560,
 						"w": 1225,
 						"h": 1257
 					},
@@ -385,8 +925,8 @@
 				{
 					"filename": "Player_Stop-0014.png",
 					"region": {
-						"x": 6970,
-						"y": 1376,
+						"x": 0,
+						"y": 6950,
 						"w": 1225,
 						"h": 1276
 					},
@@ -400,8 +940,8 @@
 				{
 					"filename": "Player_Stop-0015.png",
 					"region": {
-						"x": 8364,
-						"y": 1376,
+						"x": 1394,
+						"y": 6950,
 						"w": 1276,
 						"h": 1298
 					},
@@ -415,8 +955,8 @@
 				{
 					"filename": "Player_Stop-0016.png",
 					"region": {
-						"x": 9758,
-						"y": 1376,
+						"x": 2788,
+						"y": 6950,
 						"w": 636,
 						"h": 1376
 					},
@@ -430,8 +970,8 @@
 				{
 					"filename": "Player_Stop-0017.png",
 					"region": {
-						"x": 11152,
-						"y": 1376,
+						"x": 4182,
+						"y": 6950,
 						"w": 1394,
 						"h": 1362
 					},
@@ -445,8 +985,8 @@
 				{
 					"filename": "Player_Stop-0018.png",
 					"region": {
-						"x": 12546,
-						"y": 1376,
+						"x": 5576,
+						"y": 6950,
 						"w": 702,
 						"h": 1361
 					},
@@ -460,8 +1000,8 @@
 				{
 					"filename": "Player_Stop-0019.png",
 					"region": {
-						"x": 13940,
-						"y": 1376,
+						"x": 6970,
+						"y": 6950,
 						"w": 592,
 						"h": 1338
 					},
@@ -478,6 +1018,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "1.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:ef6f08cc6cbe81ec23ff72ec0c9b9729:4b777f6a38c438634791c1b56850c2d5:20933cb8829427d9a9b85955082aece0$"
+		"smartupdate": "$TexturePacker:SmartUpdate:0f3dab4c8096c90e569dda752da396cb:8b9d04f15ea81dd90131af6375010897:20933cb8829427d9a9b85955082aece0$"
 	}
 }

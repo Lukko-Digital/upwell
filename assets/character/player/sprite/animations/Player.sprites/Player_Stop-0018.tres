@@ -4,5 +4,5 @@
 
 [resource]
 atlas = ExtResource("1_uvttf")
-region = Rect2(12546, 1376, 702, 1361)
+region = Rect2(5576, 6950, 702, 1361)
 margin = Rect2(1509, 350, 3138, 799)
