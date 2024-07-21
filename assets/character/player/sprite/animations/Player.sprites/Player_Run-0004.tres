@@ -4,5 +4,5 @@
 
 [resource]
 atlas = ExtResource("1_gtvki")
-region = Rect2(8364, 0, 1022, 1169)
+region = Rect2(5576, 4170, 1022, 1169)
 margin = Rect2(1440, 523, 2818, 991)
