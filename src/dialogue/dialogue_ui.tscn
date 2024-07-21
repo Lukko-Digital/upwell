@@ -1,17 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://br8qm13yce4pr"]
+[gd_scene load_steps=4 format=3 uid="uid://br8qm13yce4pr"]
 
 [ext_resource type="Script" path="res://src/dialogue/dialogue_ui.gd" id="1_28e40"]
+[ext_resource type="PackedScene" uid="uid://b46vbuqx0s8a7" path="res://src/dialogue/fullscreen_dialogue.tscn" id="3_n472f"]
 [ext_resource type="PackedScene" uid="uid://xgi8pcnjfsvh" path="res://src/dialogue/response_button.tscn" id="3_y57cq"]
 
-[node name="DialogueUi" type="CanvasLayer" node_paths=PackedStringArray("display_timer", "response_box")]
+[node name="DialogueUi" type="CanvasLayer" node_paths=PackedStringArray("display_timer", "response_box", "fullscreen_display")]
 script = ExtResource("1_28e40")
 display_timer = NodePath("DisplayTimer")
 response_box = NodePath("ResponseBox")
+fullscreen_display = NodePath("FullscreenDialogue")
 
 [node name="DisplayTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="ResponseBox" type="VBoxContainer" parent="."]
+z_index = 1
 custom_minimum_size = Vector2(700, 0)
 anchors_preset = 7
 anchor_left = 0.5
@@ -38,3 +41,5 @@ text = "response 2"
 [node name="ResponseButton3" parent="ResponseBox" instance=ExtResource("3_y57cq")]
 layout_mode = 2
 text = "response 3"
+
+[node name="FullscreenDialogue" parent="." instance=ExtResource("3_n472f")]

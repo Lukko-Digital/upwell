@@ -21,11 +21,13 @@ const SPEECH_BUBBLE_OFFSET = Vector2( - 60, -110)
 # Timer for animating text display, value set to TEXT_SPEED
 @export var display_timer: Timer
 @export var response_box: VBoxContainer
+@export var fullscreen_display: FullscreenDialogue
 
 @onready var response_button_scene = preload ("res://src/dialogue/response_button.tscn")
 @onready var speech_bubble_scene = preload ("res://src/dialogue/speech_bubble.tscn")
 
 var active_dialogue_display: DialogueDisplay
+var current_speech_bubble: SpeechBubble
 var current_conversation: ConversationTree
 var next_branch: String
 var display_speed_coef = 1
@@ -38,13 +40,14 @@ func _ready():
 	clear_responses()
 
 func start_dialogue(npc: NPC):
+	fullscreen_display.hide()
 	show()
 	current_conversation = npc.conversation_tree
 	
 	# Spawn speech bubble
 	var instance = speech_bubble_scene.instantiate()
 	instance.position = npc.nodule.position
-	active_dialogue_display = instance
+	current_speech_bubble = instance
 	npc.add_child(instance)
 
 	play_branch(DialogueParser.START_BRANCH_TAG)
@@ -56,6 +59,14 @@ func play_branch(branch_id: String):
 
 	clear_responses()
 	var branch: ConversationBranch = current_conversation.branches[branch_id]
+	# Determine if speech bubble or fullscreen should be used
+	match branch.display_type:
+		DialogueParser.DisplayType.SPEECH_BUBBLE:
+			active_dialogue_display = current_speech_bubble
+			fullscreen_display.hide()
+		DialogueParser.DisplayType.FULLSCREEN:
+			active_dialogue_display = fullscreen_display
+			fullscreen_display.show()
 	# Set dialogue text
 	active_dialogue_display.dialogue_label.text = DialogueParser.strip_dialogue_commands(branch.dialogue_line)
 	# If there is a name, set it
