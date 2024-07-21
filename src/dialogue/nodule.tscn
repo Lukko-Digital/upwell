@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg636q5nculbs"]
+
+[ext_resource type="Texture2D" uid="uid://u728ukrl5nfv" path="res://assets/mvp4_assets/Dialogue_nodule.png" id="1_314xn"]
+
+[node name="Nodule" type="TextureRect"]
+z_index = 1
+offset_right = 56.0
+offset_bottom = 58.0
+size_flags_horizontal = 4
+texture = ExtResource("1_314xn")

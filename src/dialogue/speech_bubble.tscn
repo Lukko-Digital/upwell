@@ -1,0 +1,89 @@
+[gd_scene load_steps=8 format=3 uid="uid://cirh13lsj80hm"]
+
+[ext_resource type="Script" path="res://src/dialogue/speech_bubble.gd" id="1_c5fww"]
+[ext_resource type="PackedScene" uid="uid://bg636q5nculbs" path="res://src/dialogue/nodule.tscn" id="1_s2l78"]
+[ext_resource type="Script" path="res://src/dialogue/speech_bubble_container.gd" id="2_ohaor"]
+[ext_resource type="Texture2D" uid="uid://e07jxr5ilqnk" path="res://assets/mvp4_assets/Dialogue_circle.png" id="3_05grf"]
+[ext_resource type="FontFile" uid="uid://dugjy5jt8bi0x" path="res://assets/ui/fonts/LibreBaskerville-Regular.ttf" id="4_lrslx"]
+[ext_resource type="FontFile" uid="uid://dpvvg0gwxfjxp" path="res://assets/ui/fonts/LibreBaskerville-Bold.ttf" id="5_j1yx8"]
+[ext_resource type="FontFile" uid="uid://cmkra16htorm3" path="res://assets/ui/fonts/LibreBaskerville-Italic.ttf" id="6_xra7x"]
+
+[node name="SpeechBubble" type="Control" node_paths=PackedStringArray("nodule", "dialogue_label", "name_label")]
+z_index = 100
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_c5fww")
+nodule = NodePath("Nodule")
+dialogue_label = NodePath("Nodule/BubbleContainer/TextContainer/VBoxContainer/DialogueLabel")
+name_label = NodePath("Nodule/BubbleContainer/TextContainer/VBoxContainer/NameLabel")
+
+[node name="Nodule" parent="." instance=ExtResource("1_s2l78")]
+layout_mode = 0
+
+[node name="BubbleContainer" type="MarginContainer" parent="Nodule"]
+layout_mode = 0
+offset_left = -713.819
+offset_top = -204.389
+offset_right = 1056.18
+offset_bottom = 195.611
+scale = Vector2(0.555972, 0.555972)
+script = ExtResource("2_ohaor")
+
+[node name="BubbleNinePatch" type="NinePatchRect" parent="Nodule/BubbleContainer"]
+z_as_relative = false
+layout_mode = 2
+texture = ExtResource("3_05grf")
+patch_margin_left = 200
+patch_margin_top = 200
+patch_margin_right = 200
+patch_margin_bottom = 200
+
+[node name="TextContainer" type="MarginContainer" parent="Nodule/BubbleContainer"]
+z_as_relative = false
+layout_mode = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Nodule/BubbleContainer/TextContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="NameLabel" type="RichTextLabel" parent="Nodule/BubbleContainer/TextContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(977.1, 0)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_lrslx")
+theme_override_fonts/bold_font = ExtResource("5_j1yx8")
+theme_override_fonts/italics_font = ExtResource("6_xra7x")
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+bbcode_enabled = true
+text = "[b]Dad[/b]"
+fit_content = true
+scroll_active = false
+visible_characters_behavior = 1
+
+[node name="DialogueLabel" type="RichTextLabel" parent="Nodule/BubbleContainer/TextContainer/VBoxContainer"]
+custom_minimum_size = Vector2(977.1, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_lrslx")
+theme_override_fonts/bold_font = ExtResource("5_j1yx8")
+theme_override_fonts/italics_font = ExtResource("6_xra7x")
+theme_override_font_sizes/normal_font_size = 90
+theme_override_font_sizes/bold_font_size = 90
+theme_override_font_sizes/italics_font_size = 90
+theme_override_font_sizes/bold_italics_font_size = 90
+theme_override_font_sizes/mono_font_size = 90
+bbcode_enabled = true
+text = "hello good sir how are you today"
+fit_content = true
+scroll_active = false
+visible_characters_behavior = 1
