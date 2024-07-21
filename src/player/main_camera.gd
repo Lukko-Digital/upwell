@@ -10,6 +10,7 @@ const CAMERA = {
 	MAP_ZOOM = 1.5,
 	MAP_ZOOM_SPEED = 3.0,
 	MAP_TRANSLATE_SPEED = 6.0,
+	NPC_ZOOM = 0.8,
 }
 const LIMIT_DEFAULT = 10000000
 
@@ -46,15 +47,29 @@ func _process(delta):
 ## Translate the camera to focus on a focus point. Zoom on screens.
 func handle_focus(delta):
 	if focus:
-		# Lerp position to target position
-		global_position = lerp(global_position, focus.global_position, CAMERA.MAP_TRANSLATE_SPEED * delta)
-		# Zoon on screen interactable
+		# Lerp and zoom to screen position
 		if focus is ScreenInteractable:
+			lerp_position(0.8, 1.0, delta)
 			zoom = lerp(zoom, Vector2.ONE * CAMERA.MAP_ZOOM, CAMERA.MAP_ZOOM_SPEED * delta)
+		
+		#zoom position to between player and npc
+		if focus is NPC:
+			lerp_position(0.5, 0.5, delta)
+			zoom = lerp(zoom, Vector2.ONE * CAMERA.NPC_ZOOM, CAMERA.MAP_ZOOM_SPEED * delta)
+		
+		#zoom position to camera point focus
+		if focus is Marker2D:
+			lerp_position(0.6, 1.0, delta)
+			zoom = lerp(zoom, Vector2.ONE * CAMERA.NPC_ZOOM, CAMERA.MAP_ZOOM_SPEED * delta)
 
-	# Check if focus should be broken
-	if abs(player.position.x - position.x) > CAMERA.MAP_EXIT_DISTANCE:
+	# Check if focus should be broken in screen case (for npc, it is always ended by dialogue end)
+	if (abs(player.position.x - position.x) > CAMERA.MAP_EXIT_DISTANCE) && focus == ScreenInteractable:
 		Global.set_camera_focus.emit(null)
+
+## Creates correct in between for player and focus with intensity between 0 and 1, 1 meaning target gets full control of camera in that dimension and 0 giving control to player
+func lerp_position(x_intensity: float, y_intensity: float, delta):
+	var in_between = Vector2(focus.global_position.lerp(player.global_position, 1.0-x_intensity).x, focus.global_position.lerp(player.global_position, 1.0-y_intensity).y)
+	global_position = lerp(global_position, in_between, CAMERA.MAP_TRANSLATE_SPEED * delta)
 
 ## Checks for train tracks and bounds and sets limits accordingly. Prioritizes
 ## point focuses, then train tracks, then bounds.
