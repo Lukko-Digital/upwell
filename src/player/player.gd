@@ -85,8 +85,6 @@ func _ready() -> void:
 		queue_free()
 
 func _physics_process(delta):
-	if in_dialogue:
-		return
 	var gravity_state: GravitizedComponent.GravityState = handle_artificial_gravity(delta)
 	handle_world_gravity(delta, gravity_state)
 	var input_dir = handle_movement(delta, gravity_state)
@@ -128,7 +126,10 @@ func _input(event: InputEvent) -> void:
 ## ------------------------------ GRAVITY ------------------------------
 
 func handle_artificial_gravity(delta) -> GravitizedComponent.GravityState:
-	if not has_clicker():
+	if (
+		not has_clicker() or
+		in_dialogue
+	):
 		return GravitizedComponent.GravityState.NONE
 
 	var active_ag = grav_component.check_active_ag()
@@ -149,6 +150,9 @@ func handle_world_gravity(delta: float, gravity_state: GravitizedComponent.Gravi
 ## ------------------------------ MOVEMENT ------------------------------
 
 func handle_movement(delta: float, gravity_state: GravitizedComponent.GravityState) -> float:
+	if in_dialogue:
+		return 0
+
 	var speed_coef = 1.0
 	if gravity_state == GravitizedComponent.GravityState.ORBIT:
 		speed_coef = PLAYER.ORBIT_STRAFE_SLOWDOWN
@@ -306,6 +310,7 @@ func interact():
 func start_dialogue(npc: NPC):
 	if in_dialogue:
 		return
+	velocity = Vector2.ZERO
 	dialogue_ui.start_dialogue(npc)
 	in_dialogue = true
 
@@ -401,7 +406,6 @@ func handle_throw_arc():
 func _on_dialogue_ui_dialogue_finished() -> void:
 	in_dialogue = false
 	Global.set_camera_focus.emit(null)
-	velocity = Vector2.ZERO
 
 func _camera_focus_net(focus: Node2D):
 	if focus == null:
