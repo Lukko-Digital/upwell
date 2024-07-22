@@ -1,18 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhjj5tgw8y2es"]
+[gd_scene load_steps=3 format=3 uid="uid://dhjj5tgw8y2es"]
 
-[ext_resource type="Shader" path="res://src/shaders/individual_blur.gdshader" id="1_01tkt"]
 [ext_resource type="Script" path="res://src/level_elements/view_blocker.gd" id="1_ryx1y"]
 [ext_resource type="Texture2D" uid="uid://cajem2c8rhe54" path="res://assets/mvp4_assets/viewblocker_blur.png" id="2_uo2fw"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sjhsp"]
-shader = ExtResource("1_01tkt")
-shader_parameter/radius = 5.076
-shader_parameter/steps = 32
-shader_parameter/vertex_expand = 2.0
-
 [node name="ViewBlocker" type="Node2D"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 script = ExtResource("1_ryx1y")
 
@@ -22,7 +14,6 @@ follow_viewport_enabled = true
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="10"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -33,7 +24,6 @@ follow_viewport_scale = 1.1
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="11"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -44,7 +34,6 @@ follow_viewport_scale = 1.2
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="12"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -55,7 +44,6 @@ follow_viewport_scale = 1.3
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="13"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -66,7 +54,6 @@ follow_viewport_scale = 1.4
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="14"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -77,7 +64,6 @@ follow_viewport_scale = 1.5
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="15"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -88,7 +74,6 @@ follow_viewport_scale = 1.6
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="16"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -99,7 +84,6 @@ follow_viewport_scale = 1.7
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="17"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -110,7 +94,6 @@ follow_viewport_scale = 1.8
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="18"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -121,7 +104,6 @@ follow_viewport_scale = 1.9
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="19"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -132,7 +114,6 @@ follow_viewport_scale = 2.0
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="20"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -143,7 +124,6 @@ follow_viewport_scale = 2.1
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="21"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -154,7 +134,6 @@ follow_viewport_scale = 2.2
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="22"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -165,7 +144,6 @@ follow_viewport_scale = 2.3
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="23"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -176,7 +154,6 @@ follow_viewport_scale = 2.4
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="24"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -187,7 +164,6 @@ follow_viewport_scale = 2.5
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="25"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -198,7 +174,6 @@ follow_viewport_scale = 2.6
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="26"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -209,7 +184,6 @@ follow_viewport_scale = 2.7
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="27"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -220,7 +194,6 @@ follow_viewport_scale = 2.8
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="28"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -231,7 +204,6 @@ follow_viewport_scale = 2.9
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="29"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -242,7 +214,6 @@ follow_viewport_scale = 3.0
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="30"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -253,7 +224,6 @@ follow_viewport_scale = 3.1
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="31"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -264,7 +234,6 @@ follow_viewport_scale = 3.2
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="32"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -275,7 +244,6 @@ follow_viewport_scale = 3.3
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="33"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -286,7 +254,6 @@ follow_viewport_scale = 3.4
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="34"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -297,7 +264,6 @@ follow_viewport_scale = 3.5
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="35"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -308,7 +274,6 @@ follow_viewport_scale = 3.6
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="36"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -319,7 +284,6 @@ follow_viewport_scale = 3.7
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="37"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -330,7 +294,6 @@ follow_viewport_scale = 3.8
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="38"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -341,7 +304,6 @@ follow_viewport_scale = 3.9
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="39"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -352,7 +314,6 @@ follow_viewport_scale = 4.0
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="40"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -363,7 +324,6 @@ follow_viewport_scale = 4.5
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="45"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -374,7 +334,6 @@ follow_viewport_scale = 5.0
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="50"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -385,7 +344,6 @@ follow_viewport_scale = 5.5
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="55"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -396,7 +354,6 @@ follow_viewport_scale = 6.0
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="60"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -407,7 +364,6 @@ follow_viewport_scale = 6.5
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="65"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -418,7 +374,6 @@ follow_viewport_scale = 7.0
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="70"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -429,7 +384,6 @@ follow_viewport_scale = 7.5
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="75"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -440,7 +394,6 @@ follow_viewport_scale = 8.0
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="80"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -451,7 +404,6 @@ follow_viewport_scale = 8.5
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="85"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -462,7 +414,6 @@ follow_viewport_scale = 9.0
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="90"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -473,7 +424,6 @@ follow_viewport_scale = 9.5
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="95"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -484,7 +434,6 @@ follow_viewport_scale = 10.0
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="100"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -495,7 +444,6 @@ follow_viewport_scale = 12.0
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="120break"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -506,7 +454,6 @@ follow_viewport_scale = 14.0
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="140 break"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -517,7 +464,6 @@ follow_viewport_scale = 13.0
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="130 break"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -528,7 +474,6 @@ follow_viewport_scale = 18.0
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="180 break2"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")
 
@@ -539,6 +484,5 @@ follow_viewport_scale = 1.05
 
 [node name="ClickerBlocker-sheet" type="Sprite2D" parent="10_5 break4"]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_sjhsp")
 scale = Vector2(1.9, 4.2)
 texture = ExtResource("2_uo2fw")

@@ -2,13 +2,13 @@
 extends Node2D
 class_name ViewBlocker
 
-@export_range(0, 1000) var amount_of_blur: float = 0:
-	set(value):
-		material.set("shader_parameter/radius",amount_of_blur)
-		amount_of_blur = value
+# @export_range(0, 1000) var amount_of_blur: float = 0:
+# 	set(value):
+# 		material.set("shader_parameter/radius",amount_of_blur)
+# 		amount_of_blur = value
 
-func _ready():
-	material = material.duplicate()
+# func _ready():
+# 	material = material.duplicate()
 
 func _process(_delta):
 	handle_sprites()
@@ -22,7 +22,7 @@ func handle_sprites():
 		target.visible = visible
 		target.scale = scale
 		target.modulate = modulate
-		target.material = material
+		# target.material = material
 
 func handle_canvas():
 	for child in get_children():
