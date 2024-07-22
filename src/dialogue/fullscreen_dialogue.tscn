@@ -1,34 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b46vbuqx0s8a7"]
+[gd_scene load_steps=5 format=3 uid="uid://b46vbuqx0s8a7"]
 
 [ext_resource type="Script" path="res://src/dialogue/fullscreen_dialogue.gd" id="1_u6ujp"]
 [ext_resource type="FontFile" uid="uid://dugjy5jt8bi0x" path="res://assets/ui/fonts/LibreBaskerville-Regular.ttf" id="2_oc02p"]
 [ext_resource type="FontFile" uid="uid://dpvvg0gwxfjxp" path="res://assets/ui/fonts/LibreBaskerville-Bold.ttf" id="3_3b8wm"]
 [ext_resource type="FontFile" uid="uid://cmkra16htorm3" path="res://assets/ui/fonts/LibreBaskerville-Italic.ttf" id="4_ovev2"]
-[ext_resource type="Shader" path="res://src/shaders/vhs.gdshader" id="5_kgtve"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ika21"]
-shader = ExtResource("5_kgtve")
-shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.0
-shader_parameter/scanlines_width = 0.5
-shader_parameter/grille_opacity = 0.0
-shader_parameter/resolution = Vector2(640, 480)
-shader_parameter/pixelate = false
-shader_parameter/roll = false
-shader_parameter/roll_speed = 0.0
-shader_parameter/roll_size = 0.0
-shader_parameter/roll_variation = 0.1
-shader_parameter/distort_intensity = 0.0
-shader_parameter/noise_opacity = 0.0
-shader_parameter/noise_speed = 1.19
-shader_parameter/static_noise_intensity = 0.0
-shader_parameter/aberration = 4.75e-08
-shader_parameter/brightness = 1.365
-shader_parameter/discolor = false
-shader_parameter/warp_amount = 1.055
-shader_parameter/clip_warp = false
-shader_parameter/vignette_intensity = 0.4
-shader_parameter/vignette_opacity = 0.5
 
 [node name="FullscreenDialogue" type="Control" node_paths=PackedStringArray("dialogue_label", "name_label")]
 layout_mode = 3
@@ -60,13 +35,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -624.0
-offset_top = -56.0
-offset_right = 564.0
-offset_bottom = 7.0
+offset_left = -572.0
+offset_top = -24.9999
+offset_right = 616.0
+offset_bottom = 38.0001
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.052, 1.052)
+scale = Vector2(0.964826, 0.964826)
 size_flags_vertical = 6
 theme_override_fonts/normal_font = ExtResource("2_oc02p")
 theme_override_fonts/bold_font = ExtResource("3_3b8wm")
@@ -111,12 +86,3 @@ text = "[center][b] Dad [/b][/center]"
 fit_content = true
 scroll_active = false
 visible_characters_behavior = 1
-
-[node name="VHS" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_ika21")
-offset_left = -10.0
-offset_top = -4.0
-offset_right = 1057.0
-offset_bottom = 602.0
-scale = Vector2(1.82, 1.82)
-mouse_filter = 2
