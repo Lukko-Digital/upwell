@@ -29,6 +29,8 @@ window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
+mouse_cursor/custom_image="res://assets/mvp4_assets/temp_mouse.png"
+mouse_cursor/custom_image_hotspot=Vector2(64, 64)
 
 [editor_plugins]
 
