@@ -15,7 +15,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1s7rc"]
 gradient = SubResource("Gradient_oo52l")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0t542"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ldpp7"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -32,11 +32,10 @@ color_ramp = SubResource("GradientTexture1D_1s7rc")
 hue_variation_min = -0.03
 
 [node name="Particles" type="GPUParticles2D"]
-modulate = Color(1, 0.53761, 0.266442, 0.529412)
 material = SubResource("ShaderMaterial_8w3q7")
 position = Vector2(-9, -651.24)
 amount = 1024
-process_material = SubResource("ParticleProcessMaterial_0t542")
+process_material = SubResource("ParticleProcessMaterial_ldpp7")
 texture = ExtResource("2_5p106")
 lifetime = 7.0
 randomness = 0.47
