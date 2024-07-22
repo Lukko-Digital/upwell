@@ -60,8 +60,6 @@ func play_branch(branch_id: String):
 	clear_responses()
 	var branch: ConversationBranch = current_conversation.branches[branch_id]
 	# Determine if speech bubble or fullscreen should be used
-	var prefix: String = ""
-	var suffix: String = ""
 	match branch.display_type:
 		DialogueParser.DisplayType.SPEECH_BUBBLE:
 			active_dialogue_display = current_speech_bubble
@@ -69,10 +67,8 @@ func play_branch(branch_id: String):
 		DialogueParser.DisplayType.FULLSCREEN:
 			active_dialogue_display = fullscreen_display
 			fullscreen_display.show()
-			prefix = "[center]"
-			suffix = "[/center]"
 	# Set dialogue text
-	active_dialogue_display.dialogue_label.text = prefix + DialogueParser.strip_dialogue_commands(branch.dialogue_line) + suffix
+	active_dialogue_display.dialogue_label.text = DialogueParser.strip_dialogue_commands(branch.dialogue_line)
 	# If there is a name, set it
 	if branch.npc_name != "":
 		active_dialogue_display.name_label.text = "[b]" + branch.npc_name + "[/b]"

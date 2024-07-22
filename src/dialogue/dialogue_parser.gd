@@ -94,6 +94,10 @@ static func parse_csv(dialogue_file: String) -> ConversationTree:
 			else:
 				expected_condition_value = true
 		
+		# Center fullscreen dialogue
+		if display_type == DisplayType.FULLSCREEN:
+			dialogue_line = "[center]" + dialogue_line + "[/center]"
+		
 		init_global_variable(variable_to_set)
 		init_global_variable(condition)
 
