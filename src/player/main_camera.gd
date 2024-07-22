@@ -30,6 +30,7 @@ const LIMIT_DEFAULT = 10000000
 
 var focus: Node2D = null
 var shake_amount: float
+var tween
 
 func _ready():
 	# Connect signals
@@ -37,12 +38,19 @@ func _ready():
 	Global.stop_camera_shake.connect(_stop_shake)
 	Global.set_camera_focus.connect(_set_focus)
 
+	tween = get_tree().create_tween()
+
 func _process(delta):
 	handle_focus(delta)
 	handle_limits()
 	handle_follow_player(delta)
 	handle_shake()
 	handle_particle_tracking()
+
+	print(limit_left)
+
+	# print(player.global_position.y + 1080)
+	# print(limit_bottom)
 
 ## Translate the camera to focus on a focus point. Zoom on screens.
 func handle_focus(delta):
@@ -66,25 +74,33 @@ func handle_focus(delta):
 	if (abs(player.position.x - position.x) > CAMERA.MAP_EXIT_DISTANCE) && focus == ScreenInteractable:
 		Global.set_camera_focus.emit(null)
 
-## Creates correct in between for player and focus with intensity between 0 and 1, 1 meaning target gets full control of camera in that dimension and 0 giving control to player
+## Creates correct in between for player and focus with intensity between 0 and
+## 1, 1 meaning target gets full control of camera in that dimension and 0
+## giving control to player
 func lerp_position(x_intensity: float, y_intensity: float, delta):
-	var in_between = Vector2(focus.global_position.lerp(player.global_position, 1.0-x_intensity).x, focus.global_position.lerp(player.global_position, 1.0-y_intensity).y)
+	var in_between = Vector2(
+		focus.global_position.lerp(player.global_position, 1.0-x_intensity).x,
+		focus.global_position.lerp(player.global_position, 1.0-y_intensity).y
+	)
 	global_position = lerp(global_position, in_between, CAMERA.MAP_TRANSLATE_SPEED * delta)
+
+# func reset_limits():
+# 	if limit_top < (player.global_position.y - 1200):
+# 			limit_top = get_target_position().y - 1080
+# 	if limit_bottom > (player.global_position.y + 1200):
+# 			limit_bottom = get_target_position().y + 1080
+# 	if limit_left < (player.global_position.y - 2000):
+# 			limit_left = get_target_position().y - 2000
+# 	if limit_right > (player.global_position.y + 2000):
+# 			limit_right = get_target_position().y + 2000
 
 ## Checks for train tracks and bounds and sets limits accordingly. Prioritizes
 ## point focuses, then train tracks, then bounds.
 func handle_limits():
-	reset_limits()
 	if focus:
 		return
 	var tracked = handle_camera_track()
 	handle_camera_bounds(tracked)
-
-func reset_limits():
-	limit_top = -LIMIT_DEFAULT
-	limit_bottom = LIMIT_DEFAULT
-	limit_left = -LIMIT_DEFAULT
-	limit_right = LIMIT_DEFAULT
 
 ## Raycast for [CameraTrack], if found, set top and bottom limits.
 ## Returns true if a [CameraTrack] is found, otherwise false
@@ -104,10 +120,14 @@ func handle_camera_bounds(tracked):
 	var left_point = get_ray_collision(bound_left_ray, CameraBound)
 	if left_point != null:
 		limit_left = left_point.x
+	else:
+		limit_left = -LIMIT_DEFAULT
 
 	var right_point = get_ray_collision(bound_right_ray, CameraBound)
 	if right_point != null:
 		limit_right = right_point.x
+	else:
+		limit_right = LIMIT_DEFAULT
 
 	# Don't set vertical bounds if tracked
 	if tracked:
@@ -117,10 +137,21 @@ func handle_camera_bounds(tracked):
 	var up_point = get_ray_collision(bound_up_ray, CameraBound)
 	if up_point != null:
 		limit_top = up_point.y
+	else:
+		limit_top = -LIMIT_DEFAULT
 
 	var down_point = get_ray_collision(bound_down_ray, CameraBound)
+	var target_position
+	var neutral_bottom_limit = player.global_position.y + viewport_size.y/2
 	if down_point != null:
-		limit_bottom = down_point.y
+		if limit_bottom > neutral_bottom_limit:
+			limit_bottom = neutral_bottom_limit
+		target_position = down_point.y
+	else:
+		target_position = neutral_bottom_limit
+	tween.kill()
+	tween = create_tween()
+	tween.tween_property(self, "limit_bottom", target_position, 2)
 
 ## Checks if the collider of [ray] is of type [type], if so, returns the
 ## collision point. Otherwise returns null.
@@ -142,7 +173,8 @@ func handle_follow_player(delta):
 		position = player.position + Vector2.UP * CAMERA.PEEK_DISTANCE
 		position_smoothing_speed = CAMERA.PEEK_TOWARD_SPEED
 	else:
-		position = player.position
+		if position != player.position:
+			position = lerp(global_position, player.position, CAMERA.MAP_TRANSLATE_SPEED * delta)
 		position_smoothing_speed = CAMERA.FOLLOW_SPEED
 		
 	zoom = lerp(zoom, Vector2.ONE * CAMERA.NORMAL_ZOOM, CAMERA.MAP_ZOOM_SPEED * delta)

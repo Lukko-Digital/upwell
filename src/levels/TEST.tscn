@@ -606,61 +606,61 @@ terrain_set_0/terrain_1/name = "Terrain 1"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_s7w2h")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_li1u4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v6eqh"]
 shader = ExtResource("29_u7xh6")
 shader_parameter/radius = 5.076
 shader_parameter/steps = 32
 shader_parameter/vertex_expand = 2.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ohjt6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7m5e2"]
 shader = ExtResource("29_u7xh6")
 shader_parameter/radius = 5.076
 shader_parameter/steps = 32
 shader_parameter/vertex_expand = 2.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_e31nk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6mfai"]
 shader = ExtResource("29_u7xh6")
 shader_parameter/radius = 5.076
 shader_parameter/steps = 32
 shader_parameter/vertex_expand = 2.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xgxhh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hle1s"]
 shader = ExtResource("29_u7xh6")
 shader_parameter/radius = 5.076
 shader_parameter/steps = 32
 shader_parameter/vertex_expand = 2.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lh33p"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b4le5"]
 shader = ExtResource("29_u7xh6")
 shader_parameter/radius = 5.076
 shader_parameter/steps = 32
 shader_parameter/vertex_expand = 2.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbuth"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r5gbt"]
 shader = ExtResource("29_u7xh6")
 shader_parameter/radius = 5.076
 shader_parameter/steps = 32
 shader_parameter/vertex_expand = 2.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cemar"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hsdte"]
 shader = ExtResource("29_u7xh6")
 shader_parameter/radius = 5.076
 shader_parameter/steps = 32
 shader_parameter/vertex_expand = 2.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qcdt3"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iis0u"]
 shader = ExtResource("29_u7xh6")
 shader_parameter/radius = 5.076
 shader_parameter/steps = 32
 shader_parameter/vertex_expand = 2.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qxgsq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hirua"]
 shader = ExtResource("29_u7xh6")
 shader_parameter/radius = 5.076
 shader_parameter/steps = 32
 shader_parameter/vertex_expand = 2.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kjruj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tvb28"]
 shader = ExtResource("29_u7xh6")
 shader_parameter/radius = 5.076
 shader_parameter/steps = 32
@@ -684,7 +684,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1s7rc"]
 gradient = SubResource("Gradient_oo52l")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a5d1h"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xu57p"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -846,7 +846,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_sr4fx"]
 gradient = SubResource("Gradient_lu00i")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k2wmu"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4ak5d"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -879,7 +879,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_830gk"]
 gradient = SubResource("Gradient_0oqtj")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rb4cv"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fr3wq"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -1250,50 +1250,50 @@ texture = ExtResource("22_be20a")
 [node name="viewblopckers" type="Node2D" parent="LEVEL"]
 
 [node name="ViewBlocker" parent="LEVEL/viewblopckers" instance=ExtResource("24_2lqp4")]
-material = SubResource("ShaderMaterial_li1u4")
+material = SubResource("ShaderMaterial_v6eqh")
 position = Vector2(1325, -231)
 scale = Vector2(4.19729, -6.10712)
 
 [node name="ViewBlocker3" parent="LEVEL/viewblopckers" instance=ExtResource("24_2lqp4")]
-material = SubResource("ShaderMaterial_ohjt6")
+material = SubResource("ShaderMaterial_7m5e2")
 position = Vector2(20029, -3544)
 scale = Vector2(3.03096, -2.86093)
 
 [node name="ViewBlocker2" parent="LEVEL/viewblopckers" instance=ExtResource("24_2lqp4")]
-material = SubResource("ShaderMaterial_e31nk")
+material = SubResource("ShaderMaterial_6mfai")
 position = Vector2(6569, 190)
 scale = Vector2(3.00033, 2.19977)
 
 [node name="ViewBlocker7" parent="LEVEL/viewblopckers" instance=ExtResource("24_2lqp4")]
-material = SubResource("ShaderMaterial_xgxhh")
+material = SubResource("ShaderMaterial_hle1s")
 position = Vector2(27079, -2931)
 rotation = 1.57079
 scale = Vector2(0.877849, 2.49533)
 
 [node name="ViewBlocker4" parent="LEVEL/viewblopckers" instance=ExtResource("24_2lqp4")]
-material = SubResource("ShaderMaterial_lh33p")
+material = SubResource("ShaderMaterial_b4le5")
 position = Vector2(2696, -276)
 
 [node name="ViewBlocker5" parent="LEVEL/viewblopckers" instance=ExtResource("24_2lqp4")]
-material = SubResource("ShaderMaterial_tbuth")
+material = SubResource("ShaderMaterial_r5gbt")
 position = Vector2(3362, -241)
 
 [node name="ViewBlocker6" parent="LEVEL/viewblopckers" instance=ExtResource("24_2lqp4")]
-material = SubResource("ShaderMaterial_cemar")
+material = SubResource("ShaderMaterial_hsdte")
 position = Vector2(4261, -263)
 scale = Vector2(2.91882, 6.45214)
 
 [node name="ViewBlocker8" parent="LEVEL/viewblopckers" instance=ExtResource("24_2lqp4")]
-material = SubResource("ShaderMaterial_qcdt3")
+material = SubResource("ShaderMaterial_iis0u")
 position = Vector2(16593, -3550)
 
 [node name="ViewBlocker9" parent="LEVEL/viewblopckers" instance=ExtResource("24_2lqp4")]
-material = SubResource("ShaderMaterial_qxgsq")
+material = SubResource("ShaderMaterial_hirua")
 position = Vector2(15974, -3474)
 
 [node name="ViewBlocker10" parent="LEVEL/viewblopckers" instance=ExtResource("24_2lqp4")]
 visible = false
-material = SubResource("ShaderMaterial_kjruj")
+material = SubResource("ShaderMaterial_tvb28")
 position = Vector2(-3156, -449)
 scale = Vector2(4.10958, 12.5732)
 
@@ -1419,7 +1419,7 @@ modulate = Color(0.952099, 0.402827, 0.320554, 1)
 material = SubResource("CanvasItemMaterial_n8gfo")
 position = Vector2(-9, -742)
 amount = 1024
-process_material = SubResource("ParticleProcessMaterial_a5d1h")
+process_material = SubResource("ParticleProcessMaterial_xu57p")
 texture = ExtResource("6_4xlin")
 lifetime = 7.0
 randomness = 0.47
@@ -1860,7 +1860,7 @@ follow_viewport_scale = 1.21
 
 [node name="Particles" parent="3" instance=ExtResource("34_jgmqm")]
 visible = false
-process_material = SubResource("ParticleProcessMaterial_k2wmu")
+process_material = SubResource("ParticleProcessMaterial_4ak5d")
 
 [node name="TileMap" type="TileMap" parent="3"]
 modulate = Color(0.621049, 0.359803, 0.250508, 1)
@@ -1966,7 +1966,7 @@ material = SubResource("ShaderMaterial_2pjlt")
 use_parent_material = true
 position = Vector2(-1.5, -10.5423)
 amount = 1024
-process_material = SubResource("ParticleProcessMaterial_rb4cv")
+process_material = SubResource("ParticleProcessMaterial_fr3wq")
 texture = ExtResource("28_onkcr")
 lifetime = 7.0
 randomness = 0.47
