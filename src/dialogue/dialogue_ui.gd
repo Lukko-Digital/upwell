@@ -204,10 +204,10 @@ func exit_dialogue():
 	hide()
 
 	# Despawn speech bubble
-	if active_dialogue_display is SpeechBubble:
-		active_dialogue_display.get_parent().remove_child(active_dialogue_display)
-		active_dialogue_display.queue_free()
-		active_dialogue_display = null
+	if current_speech_bubble:
+		current_speech_bubble.get_parent().remove_child(current_speech_bubble)
+		current_speech_bubble.queue_free()
+		current_speech_bubble = null
 
 	dialogue_finished.emit()
 
