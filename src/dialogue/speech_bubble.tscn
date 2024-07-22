@@ -12,7 +12,7 @@
 [ext_resource type="FontFile" uid="uid://c8ewp3x7h67h3" path="res://assets/ui/fonts/CrimsonText-Italic.ttf" id="10_wmqur"]
 
 [node name="SpeechBubble" type="Control" node_paths=PackedStringArray("nodule", "dialogue_label", "name_label")]
-z_index = 100
+z_index = 20
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_c5fww")
@@ -21,6 +21,7 @@ dialogue_label = NodePath("Nodule/BubbleContainer/TextContainer/VBoxContainer/Di
 name_label = NodePath("Nodule/BubbleContainer/TextContainer/VBoxContainer/NameLabel")
 
 [node name="Nodule" parent="." instance=ExtResource("1_s2l78")]
+z_index = 0
 scale = Vector2(0.742772, 0.742772)
 
 [node name="BubbleContainer" type="MarginContainer" parent="Nodule"]
@@ -32,7 +33,7 @@ scale = Vector2(0.555972, 0.555972)
 script = ExtResource("2_ohaor")
 
 [node name="BubbleNinePatch" type="NinePatchRect" parent="Nodule/BubbleContainer"]
-z_as_relative = false
+z_index = -1
 layout_mode = 2
 texture = ExtResource("3_05grf")
 patch_margin_left = 200
@@ -41,7 +42,6 @@ patch_margin_right = 200
 patch_margin_bottom = 200
 
 [node name="TextContainer" type="MarginContainer" parent="Nodule/BubbleContainer"]
-z_as_relative = false
 layout_mode = 2
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_top = 100
