@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://ceyls3ogt3vol"]
+[gd_scene load_steps=11 format=3 uid="uid://ceyls3ogt3vol"]
 
 [ext_resource type="Script" path="res://src/screen_puzzles/screen_interactable.gd" id="1_40edb"]
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="2_krocg"]
 [ext_resource type="Shader" path="res://src/shaders/overlay.gdshader" id="2_ryd2b"]
+[ext_resource type="PackedScene" uid="uid://cfad1wka7bkpr" path="res://src/screen_puzzles/virtual_mouse.tscn" id="4_8hctd"]
 [ext_resource type="Texture2D" uid="uid://bbjdwc6iyldfv" path="res://assets/ui/map/scanlines.png" id="4_38kih"]
 [ext_resource type="Texture2D" uid="uid://dl7wqp5bheye5" path="res://assets/mvp3_assets/screenpuzzle/border.png" id="5_hn87c"]
 [ext_resource type="Shader" path="res://src/shaders/vhs.gdshader" id="5_tlclc"]
@@ -78,6 +79,9 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+
+[node name="virtual_mouse" parent="SubViewportContainer/SubViewport/CanvasLayer" instance=ExtResource("4_8hctd")]
+visible = false
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]
 layer = -1

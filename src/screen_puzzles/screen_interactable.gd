@@ -4,6 +4,7 @@ class_name ScreenInteractable
 @onready var subviewport: SubViewport = $SubViewportContainer/SubViewport
 @onready var hider: ColorRect = $SubViewportContainer/SubViewport/CanvasLayer/Hider
 @onready var VHS_shader: ColorRect = $VHS
+@onready var virtual_mouse: CharacterBody2D = $SubViewportContainer/SubViewport/CanvasLayer/virtual_mouse
 @export var screen: PackedScene
 
 var focused: bool = false
@@ -19,8 +20,12 @@ func _ready() -> void:
 func interact(_player: Player):
 	if not focused:
 		Global.set_camera_focus.emit(self)
+		virtual_mouse.show()
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	else:
 		Global.set_camera_focus.emit(null)
+		virtual_mouse.hide()
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 # func _on_body_exited(body: Node2D):
 # 	if body is Player:
