@@ -4,5 +4,5 @@
 
 [resource]
 atlas = ExtResource("1_qjcmd")
-region = Rect2(8364, 0, 838, 1158)
-margin = Rect2(1526, 0, 3002, 1002)
+region = Rect2(8364, 0, 838, 1174)
+margin = Rect2(1515, 442, 3002, 986)

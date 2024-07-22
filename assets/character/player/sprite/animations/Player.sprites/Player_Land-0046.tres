@@ -4,5 +4,5 @@
 
 [resource]
 atlas = ExtResource("1_dfvj2")
-region = Rect2(8364, 2780, 773, 909)
+region = Rect2(1394, 2780, 773, 909)
 margin = Rect2(1547, 789, 3067, 1251)
