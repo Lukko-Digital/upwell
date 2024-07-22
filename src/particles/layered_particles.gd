@@ -7,5 +7,4 @@ func _process(_delta):
 func handle_particles():
 	for child in get_children():
 		var target = child.get_child(0)
-		print(target)
 		target.modulate = modulate
