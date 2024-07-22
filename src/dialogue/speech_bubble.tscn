@@ -21,15 +21,13 @@ dialogue_label = NodePath("Nodule/BubbleContainer/TextContainer/VBoxContainer/Di
 name_label = NodePath("Nodule/BubbleContainer/TextContainer/VBoxContainer/NameLabel")
 
 [node name="Nodule" parent="." instance=ExtResource("1_s2l78")]
-layout_mode = 0
 scale = Vector2(0.742772, 0.742772)
 
 [node name="BubbleContainer" type="MarginContainer" parent="Nodule"]
-layout_mode = 0
-offset_left = -410.624
-offset_top = -204.389
-offset_right = 1359.38
-offset_bottom = 195.611
+offset_left = -441.589
+offset_top = -232.389
+offset_right = 1328.42
+offset_bottom = 167.611
 scale = Vector2(0.555972, 0.555972)
 script = ExtResource("2_ohaor")
 

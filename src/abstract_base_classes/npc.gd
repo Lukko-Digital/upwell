@@ -5,7 +5,7 @@ class_name NPC
 
 @export var npc_name: String
 
-@onready var nodule: TextureRect = $Nodule
+@onready var nodule: Sprite2D = $Nodule
 
 var conversation_tree: ConversationTree
 

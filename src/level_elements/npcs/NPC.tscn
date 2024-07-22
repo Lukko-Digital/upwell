@@ -30,10 +30,7 @@ text = "E to talk"
 horizontal_alignment = 1
 
 [node name="Nodule" parent="." instance=ExtResource("3_x8mvx")]
-offset_left = -121.0
-offset_top = -174.0
-offset_right = -65.0
-offset_bottom = -116.0
+position = Vector2(-105, -151)
 metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
