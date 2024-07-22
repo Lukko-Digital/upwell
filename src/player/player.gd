@@ -190,8 +190,7 @@ func handle_movement(delta: float, gravity_state: GravitizedComponent.GravitySta
 func handle_player_animation(input_dir: float, gravity_state: GravitizedComponent.GravityState):
 	# Don't interrupt certain animations
 	if (
-		currently_playing("Jump") or
-		currently_playing("Land")
+		currently_playing("Jump")
 	):
 		return
 	
@@ -206,9 +205,13 @@ func handle_player_animation(input_dir: float, gravity_state: GravitizedComponen
 	
 	if is_on_floor():
 		# Grounded animation
-		if not previously_grounded:
+
+		# Interrupt land animation past frame 1 when moving
+		if dir_int != 0 and currently_playing("Land") and player_sprite.frame > 1:
+			player_sprite.play("Run")
+		elif not previously_grounded or currently_playing("Land"):
 			player_sprite.play("Land")
-		elif abs(dir_int) == 1:
+		elif dir_int != 0:
 			player_sprite.play("Run")
 		elif dir_int == 0 and currently_playing("Run"):
 			player_sprite.play("Stop")
