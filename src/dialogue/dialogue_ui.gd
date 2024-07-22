@@ -47,6 +47,7 @@ func start_dialogue(npc: NPC):
 	# Spawn speech bubble
 	var instance = speech_bubble_scene.instantiate()
 	instance.position = npc.nodule.position
+	instance.nodule.flip_h = npc.nodule.flip_h
 	current_speech_bubble = instance
 	npc.add_child(instance)
 
