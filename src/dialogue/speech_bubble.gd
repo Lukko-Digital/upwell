@@ -1,4 +1,4 @@
 extends DialogueDisplay
 class_name SpeechBubble
 
-@export var nodule: TextureRect
+@export var nodule: Sprite2D
