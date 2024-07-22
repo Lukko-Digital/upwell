@@ -4,49 +4,49 @@
 [ext_resource type="Texture2D" uid="uid://cnuqbnvjsg53d" path="res://assets/mvp4_assets/player.png" id="2_6q4jk"]
 [ext_resource type="PackedScene" uid="uid://br8qm13yce4pr" path="res://src/dialogue/dialogue_ui.tscn" id="2_cft6f"]
 [ext_resource type="Texture2D" uid="uid://m6aa6qxtafpu" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Idle-0001.tres" id="3_arfd1"]
-[ext_resource type="Texture2D" uid="uid://beqw2kqt8bvnj" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Fall-0034.tres" id="3_ba3dt"]
+[ext_resource type="Texture2D" uid="uid://drcdlpncucblm" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Fall-0034.tres" id="3_ba3dt"]
 [ext_resource type="Texture2D" uid="uid://cb1ud4vqk0bd5" path="res://assets/ui/map/player_glow.png" id="3_ru4vn"]
 [ext_resource type="Texture2D" uid="uid://dskxpfuf0eo8y" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Idle-0002.tres" id="4_k6xfi"]
-[ext_resource type="Texture2D" uid="uid://vab56wf7t7l8" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Fall-0035.tres" id="4_lqd55"]
+[ext_resource type="Texture2D" uid="uid://d2kstkk13k5d2" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Fall-0035.tres" id="4_lqd55"]
 [ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="4_wg5r1"]
 [ext_resource type="Texture2D" uid="uid://bi2byggy5du54" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Idle-0003.tres" id="5_h877a"]
-[ext_resource type="Texture2D" uid="uid://cay03nro5lubx" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Fall-0036.tres" id="5_xutp7"]
+[ext_resource type="Texture2D" uid="uid://b1k4t5ktjlxbg" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Fall-0036.tres" id="5_xutp7"]
 [ext_resource type="Texture2D" uid="uid://dwywxmxhphsqt" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Idle-0004.tres" id="6_2euio"]
-[ext_resource type="Texture2D" uid="uid://bf180u8iyp4pl" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Fall-0037.tres" id="6_hmyxy"]
+[ext_resource type="Texture2D" uid="uid://cx5f0r8jbby7o" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Fall-0037.tres" id="6_hmyxy"]
 [ext_resource type="Texture2D" uid="uid://2idgorc23fon" path="res://assets/ui/map/travel_line_texture.png" id="6_hr78g"]
 [ext_resource type="PackedScene" uid="uid://b3xmpb6et0p0g" path="res://src/player/clicker_ui.tscn" id="6_j7ju8"]
 [ext_resource type="Texture2D" uid="uid://cs8n376njp8tu" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Idle-0005.tres" id="7_35k80"]
-[ext_resource type="Texture2D" uid="uid://c13feipt5kgax" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Fall-0038.tres" id="7_nqvqs"]
-[ext_resource type="Texture2D" uid="uid://dq4kqch7ob3s7" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Fall-0039.tres" id="8_2p72e"]
+[ext_resource type="Texture2D" uid="uid://csoj7nekedxpd" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Fall-0038.tres" id="7_nqvqs"]
+[ext_resource type="Texture2D" uid="uid://b1ngkuo74fkfu" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Fall-0039.tres" id="8_2p72e"]
 [ext_resource type="Texture2D" uid="uid://bohhvgjbf2is6" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Idle-0006.tres" id="8_hn2fj"]
 [ext_resource type="Texture2D" uid="uid://csqgxujr06yjt" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Idle-0007.tres" id="9_2vyka"]
-[ext_resource type="Texture2D" uid="uid://ct5giqhl4tmmr" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Fall-0032.tres" id="9_kbi3m"]
-[ext_resource type="Texture2D" uid="uid://b6h7i3g7naa34" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Fall-0033.tres" id="10_7p8tr"]
+[ext_resource type="Texture2D" uid="uid://bru0ckqygrpks" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Fall-0032.tres" id="9_kbi3m"]
+[ext_resource type="Texture2D" uid="uid://v3gworqnx0k6" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Fall-0033.tres" id="10_7p8tr"]
 [ext_resource type="Texture2D" uid="uid://cwhx4vepubjml" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Idle-0008.tres" id="10_h8k06"]
 [ext_resource type="Texture2D" uid="uid://b4tll8poa2tww" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Idle-0009.tres" id="11_7hp7l"]
-[ext_resource type="Texture2D" uid="uid://dbh2i2mmppka" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0018.tres" id="11_gka2f"]
+[ext_resource type="Texture2D" uid="uid://cxuf1p6po222i" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0018.tres" id="11_gka2f"]
 [ext_resource type="Texture2D" uid="uid://d06gbnva0bed" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Idle-0010.tres" id="12_ai58c"]
-[ext_resource type="Texture2D" uid="uid://c15gkmi5ijqv8" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0019.tres" id="12_x7khy"]
+[ext_resource type="Texture2D" uid="uid://cwpbjv2q2rq8y" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0019.tres" id="12_x7khy"]
 [ext_resource type="Texture2D" uid="uid://dkhjl6bvva2m4" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Idle-0011.tres" id="13_arel7"]
-[ext_resource type="Texture2D" uid="uid://bmdpujy2opgji" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0020.tres" id="13_kyedy"]
+[ext_resource type="Texture2D" uid="uid://blmyu14yhg5kr" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0020.tres" id="13_kyedy"]
 [ext_resource type="Texture2D" uid="uid://dacq2lc1poujq" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Idle-0012.tres" id="14_4it2f"]
-[ext_resource type="Texture2D" uid="uid://drg5epl1i862s" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0021.tres" id="14_25nwl"]
+[ext_resource type="Texture2D" uid="uid://d1myly0iiooo5" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0021.tres" id="14_25nwl"]
 [ext_resource type="Texture2D" uid="uid://dcutfavearmas" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Run-0001.tres" id="15_43hse"]
-[ext_resource type="Texture2D" uid="uid://gdlhn6jtev3i" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0022.tres" id="15_55im2"]
+[ext_resource type="Texture2D" uid="uid://c5p3u8r5icec6" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0022.tres" id="15_55im2"]
 [ext_resource type="Texture2D" uid="uid://pk20f0he4yey" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Run-0002.tres" id="16_erk3t"]
-[ext_resource type="Texture2D" uid="uid://cf5t4suhxdnjt" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0023.tres" id="16_mb7n3"]
+[ext_resource type="Texture2D" uid="uid://j44qda6ps5rw" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0023.tres" id="16_mb7n3"]
 [ext_resource type="Texture2D" uid="uid://x3obk4hb3p22" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Run-0003.tres" id="17_xf2k7"]
-[ext_resource type="Texture2D" uid="uid://dqbxraggpx8gf" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0024.tres" id="17_yvjg4"]
+[ext_resource type="Texture2D" uid="uid://bgfisycw006ij" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0024.tres" id="17_yvjg4"]
 [ext_resource type="Texture2D" uid="uid://b0v85ci8de7of" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Run-0004.tres" id="18_5a686"]
-[ext_resource type="Texture2D" uid="uid://b3ko17gm174vo" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0025.tres" id="18_ew38c"]
-[ext_resource type="Texture2D" uid="uid://ba888th2hvndx" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0026.tres" id="19_8rot2"]
+[ext_resource type="Texture2D" uid="uid://bd5slphdpudsn" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0025.tres" id="18_ew38c"]
+[ext_resource type="Texture2D" uid="uid://tpt1jojp1aup" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0026.tres" id="19_8rot2"]
 [ext_resource type="Texture2D" uid="uid://bh8k08py5oxcv" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Run-0005.tres" id="19_vfv38"]
-[ext_resource type="Texture2D" uid="uid://boa568nv5p63n" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0027.tres" id="20_1unwu"]
+[ext_resource type="Texture2D" uid="uid://b4jk7v4psfyg0" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0027.tres" id="20_1unwu"]
 [ext_resource type="Texture2D" uid="uid://bu4gnhv1mw7ew" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Run-0006.tres" id="20_t03og"]
 [ext_resource type="Texture2D" uid="uid://2k6m6h6urh8n" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Run-0007.tres" id="21_k2quk"]
-[ext_resource type="Texture2D" uid="uid://qpollhwmxhf0" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0028.tres" id="21_rw0y1"]
+[ext_resource type="Texture2D" uid="uid://ddsnjapmwaxx4" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0028.tres" id="21_rw0y1"]
 [ext_resource type="Texture2D" uid="uid://d1g7rgff2hxi2" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Run-0008.tres" id="22_ejggs"]
-[ext_resource type="Texture2D" uid="uid://do704k6266nn1" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0029.tres" id="22_hme7c"]
+[ext_resource type="Texture2D" uid="uid://cpgj07ns0ukha" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Hover-0029.tres" id="22_hme7c"]
 [ext_resource type="Texture2D" uid="uid://c7vvpjh8446p4" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Run-0009.tres" id="23_rs58p"]
 [ext_resource type="Texture2D" uid="uid://b5shr5df442js" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Run-0010.tres" id="24_wxhv4"]
 [ext_resource type="Texture2D" uid="uid://cp60ij3tvv1ea" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Run-0011.tres" id="25_5hrev"]
@@ -58,20 +58,20 @@
 [ext_resource type="Texture2D" uid="uid://cjfqurl3en3cn" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Stop-0017.tres" id="31_dp4wp"]
 [ext_resource type="Texture2D" uid="uid://yb8gt1fgojok" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Stop-0018.tres" id="32_smicg"]
 [ext_resource type="Texture2D" uid="uid://btva0ce26d1to" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Stop-0019.tres" id="33_y2f1x"]
-[ext_resource type="Texture2D" uid="uid://cn3vcu4ytnap5" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Jump-0013.tres" id="37_2t1x8"]
-[ext_resource type="Texture2D" uid="uid://cridxgxnq1a4s" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Jump-0014.tres" id="38_hmh50"]
-[ext_resource type="Texture2D" uid="uid://bmjn28bnofup" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Jump-0015.tres" id="39_bwws7"]
-[ext_resource type="Texture2D" uid="uid://c1f8phihbopeo" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Jump-0016.tres" id="40_k43q7"]
-[ext_resource type="Texture2D" uid="uid://cisageexax1pi" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Jump-0017.tres" id="41_e1iao"]
-[ext_resource type="Texture2D" uid="uid://c8utxuevy1v08" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0040.tres" id="42_biu8k"]
-[ext_resource type="Texture2D" uid="uid://cfttu7fqpbshj" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0041.tres" id="43_sr1nn"]
-[ext_resource type="Texture2D" uid="uid://dd7bkr88uf5qd" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0042.tres" id="44_ggupl"]
-[ext_resource type="Texture2D" uid="uid://crqs3byv5yn7q" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0043.tres" id="45_p2v7u"]
-[ext_resource type="Texture2D" uid="uid://2c0efghi4go3" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0044.tres" id="46_se7ng"]
-[ext_resource type="Texture2D" uid="uid://52wsi77ya8cy" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0045.tres" id="47_xjs5k"]
-[ext_resource type="Texture2D" uid="uid://bwc2m1dgiej4v" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0046.tres" id="48_7hw5u"]
-[ext_resource type="Texture2D" uid="uid://bja44rnyrckbp" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0047.tres" id="49_2loi1"]
-[ext_resource type="Texture2D" uid="uid://cl70b2e23wwkm" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0048.tres" id="50_cwdsw"]
+[ext_resource type="Texture2D" uid="uid://gy1idymjx80a" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Jump-0013.tres" id="37_2t1x8"]
+[ext_resource type="Texture2D" uid="uid://byre3lvd4f7na" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Jump-0014.tres" id="38_hmh50"]
+[ext_resource type="Texture2D" uid="uid://dsrh0g1d7ko3r" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Jump-0015.tres" id="39_bwws7"]
+[ext_resource type="Texture2D" uid="uid://b10bwwo5dal3d" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Jump-0016.tres" id="40_k43q7"]
+[ext_resource type="Texture2D" uid="uid://cplqhw1uhjl6e" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Jump-0017.tres" id="41_e1iao"]
+[ext_resource type="Texture2D" uid="uid://uycm2b52i2xb" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0040.tres" id="42_biu8k"]
+[ext_resource type="Texture2D" uid="uid://cvyffg5vr1qri" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0041.tres" id="43_sr1nn"]
+[ext_resource type="Texture2D" uid="uid://c07aswnbeoecr" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0042.tres" id="44_ggupl"]
+[ext_resource type="Texture2D" uid="uid://cjltmvstlwmti" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0043.tres" id="45_p2v7u"]
+[ext_resource type="Texture2D" uid="uid://c334mt40yhutp" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0044.tres" id="46_se7ng"]
+[ext_resource type="Texture2D" uid="uid://d2c2l365fvxo7" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0045.tres" id="47_xjs5k"]
+[ext_resource type="Texture2D" uid="uid://q0g5yfy2xaxn" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0046.tres" id="48_7hw5u"]
+[ext_resource type="Texture2D" uid="uid://de2verxa6kuoa" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0047.tres" id="49_2loi1"]
+[ext_resource type="Texture2D" uid="uid://d1yesbq45yovv" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0048.tres" id="50_cwdsw"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_y3je8"]
 blend_mode = 1
@@ -108,7 +108,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("10_7p8tr")
 }],
-"loop": true,
+"loop": false,
 "name": &"Fall_Start",
 "speed": 12.0
 }, {
@@ -210,7 +210,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("41_e1iao")
 }],
-"loop": true,
+"loop": false,
 "name": &"Jump",
 "speed": 12.0
 }, {
@@ -242,7 +242,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("50_cwdsw")
 }],
-"loop": true,
+"loop": false,
 "name": &"Land",
 "speed": 12.0
 }, {
@@ -309,7 +309,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("33_y2f1x")
 }],
-"loop": true,
+"loop": false,
 "name": &"Stop",
 "speed": 12.0
 }]

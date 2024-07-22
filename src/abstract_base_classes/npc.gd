@@ -11,6 +11,7 @@ var conversation_tree: ConversationTree
 
 func _ready() -> void:
 	super()
+	assert(nodule != null, "NPC \"" + name + "\" has no nodule")
 	nodule.hide()
 	conversation_tree = DialogueParser.parse_csv(dialogue_file)
 

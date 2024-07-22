@@ -74,6 +74,7 @@ var highlighted_interactable: Interactable = null:
 func _ready() -> void:
 	# Connect signal
 	min_jump_timer.timeout.connect(_min_jump_timer_timeout)
+	player_sprite.animation_finished.connect(_on_animation_finished)
 	Global.set_camera_focus.connect(_camera_focus_net)
 
 	# Retrieve Game node 
@@ -89,8 +90,8 @@ func _physics_process(delta):
 	var gravity_state: GravitizedComponent.GravityState = handle_artificial_gravity(delta)
 	handle_world_gravity(delta, gravity_state)
 	var input_dir = handle_movement(delta, gravity_state)
-	handle_player_animation(input_dir)
 	move_and_slide()
+	handle_player_animation(input_dir, gravity_state)
 	handle_coyote_timing(gravity_state)
 
 func _process(_delta):
@@ -184,16 +185,52 @@ func handle_movement(delta: float, gravity_state: GravitizedComponent.GravitySta
 
 ## ----------------------------- ANIMATION -----------------------------
 
-func handle_player_animation(input_dir: float):
-	match round(input_dir):
-		0.0:
-			player_sprite.play("Idle")
-		- 1.0:
+## Should be called after [move_and_slide] in [_physics_process], but before
+## [handle_coyote_timing]
+func handle_player_animation(input_dir: float, gravity_state: GravitizedComponent.GravityState):
+	# Don't interrupt certain animations
+	if (
+		currently_playing("Jump") or
+		currently_playing("Land")
+	):
+		return
+	
+	var dir_int = int(round(input_dir))
+
+	# Handle flip direction
+	match dir_int:
+		- 1:
 			player_sprite.flip_h = true
-			player_sprite.play("Run")
-		1.0:
+		1:
 			player_sprite.flip_h = false
+	
+	if is_on_floor():
+		# Grounded animation
+		if not previously_grounded:
+			player_sprite.play("Land")
+		elif abs(dir_int) == 1:
 			player_sprite.play("Run")
+		elif dir_int == 0 and currently_playing("Run"):
+			player_sprite.play("Stop")
+		elif not currently_playing("Stop"):
+			player_sprite.play("Idle")
+
+	else:
+		# Airborne animation
+		if gravity_state == GravitizedComponent.GravityState.ORBIT:
+			player_sprite.play("Hover")
+		elif velocity.y > 0:
+			# Falling
+			if not currently_playing("Fall_Loop"):
+				player_sprite.play("Fall_Start")
+
+func _on_animation_finished():
+	match player_sprite.animation:
+		"Fall_Start":
+			player_sprite.play("Fall_Loop")
+
+func currently_playing(animation: String):
+	return player_sprite.is_playing() and player_sprite.animation == animation
 
 ## ----------------------------- JUMP -----------------------------
 
@@ -224,6 +261,7 @@ func jump():
 		jumping = true
 		coyote_timer.stop()
 		min_jump_timer.start(PLAYER.MIN_JUMP_TIME)
+		player_sprite.play("Jump")
 	else:
 		jump_buffer_timer.start(PLAYER.JUMP_BUFFER_TIME)
 
@@ -367,3 +405,6 @@ func _camera_focus_net(focus: Node2D):
 		focused_on_screen = false
 	else:
 		focused_on_screen = true
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	pass # Replace with function body.
