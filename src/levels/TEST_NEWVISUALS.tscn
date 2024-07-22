@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://bttepvab6oghg"]
+[gd_scene load_steps=87 format=3 uid="uid://bttepvab6oghg"]
 
 [ext_resource type="PackedScene" uid="uid://5mnlsyicmwh" path="res://src/level_elements/pod/empty_pod.tscn" id="1_yebsk"]
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="2_v1oi6"]
@@ -13,9 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://bnvxdmarearua" path="res://assets/mvp4_assets/mvp4_tm.png" id="11_xq2bw"]
 [ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="12_eqkl2"]
 [ext_resource type="PackedScene" uid="uid://bnxmdjk1mqgxv" path="res://src/levels/TEST_screen_puzzle.tscn" id="13_hhdsd"]
-[ext_resource type="PackedScene" uid="uid://6aouvsx0hvfm" path="res://src/level_elements/npcs/NPC.tscn" id="14_y4t81"]
-[ext_resource type="Texture2D" uid="uid://k3q6rv5verlh" path="res://assets/mvp3_assets/old_man.png" id="15_4trxo"]
-[ext_resource type="Texture2D" uid="uid://6vx6hhh7i1je" path="res://assets/mvp3_assets/adrik.png" id="16_nwvet"]
 [ext_resource type="Texture2D" uid="uid://bso4h5sv02rtd" path="res://assets/mvp3_assets/tutorial/shift.png" id="17_vud3g"]
 [ext_resource type="Texture2D" uid="uid://dnqjj1lqp4wsx" path="res://assets/mvp3_assets/tutorial/space.png" id="18_25d6w"]
 [ext_resource type="PackedScene" uid="uid://dhjj5tgw8y2es" path="res://src/level_elements/view_blocker.tscn" id="19_eprmi"]
@@ -34,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://1ss88uogpxyu" path="res://assets/mvp4_assets/rckc.png" id="32_8nten"]
 [ext_resource type="Texture2D" uid="uid://jy37ajcn401g" path="res://assets/mvp4_assets/rckb.png" id="33_w5eh3"]
 [ext_resource type="PackedScene" uid="uid://drhckymtu0lkf" path="res://src/particles/particles.tscn" id="34_cqmqj"]
+[ext_resource type="Script" path="res://src/level_elements/camera/camera_bound.gd" id="34_l2kut"]
 [ext_resource type="Shader" path="res://src/shaders/individual_blur.gdshader" id="35_u63vi"]
 [ext_resource type="Texture2D" uid="uid://b271p7ki5b0u8" path="res://assets/mvp4_assets/treea_thinner.png" id="36_ia4jj"]
 
@@ -624,7 +622,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1s7rc"]
 gradient = SubResource("Gradient_oo52l")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_633w4"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2n8ax"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -786,7 +784,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_sr4fx"]
 gradient = SubResource("Gradient_lu00i")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_awwiu"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tgrqw"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -825,6 +823,69 @@ shader = ExtResource("35_u63vi")
 shader_parameter/radius = 4.0
 shader_parameter/steps = 32
 shader_parameter/vertex_expand = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4rabq"]
+shader = ExtResource("35_u63vi")
+shader_parameter/radius = 5.076
+shader_parameter/steps = 32
+shader_parameter/vertex_expand = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ffv0n"]
+shader = ExtResource("35_u63vi")
+shader_parameter/radius = 5.076
+shader_parameter/steps = 32
+shader_parameter/vertex_expand = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_edpsc"]
+shader = ExtResource("35_u63vi")
+shader_parameter/radius = 5.076
+shader_parameter/steps = 32
+shader_parameter/vertex_expand = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3mile"]
+shader = ExtResource("35_u63vi")
+shader_parameter/radius = 5.076
+shader_parameter/steps = 32
+shader_parameter/vertex_expand = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_op38l"]
+shader = ExtResource("35_u63vi")
+shader_parameter/radius = 5.076
+shader_parameter/steps = 32
+shader_parameter/vertex_expand = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xlvee"]
+shader = ExtResource("35_u63vi")
+shader_parameter/radius = 5.076
+shader_parameter/steps = 32
+shader_parameter/vertex_expand = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_76242"]
+shader = ExtResource("35_u63vi")
+shader_parameter/radius = 5.076
+shader_parameter/steps = 32
+shader_parameter/vertex_expand = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dbrid"]
+shader = ExtResource("35_u63vi")
+shader_parameter/radius = 5.076
+shader_parameter/steps = 32
+shader_parameter/vertex_expand = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h5p7u"]
+shader = ExtResource("35_u63vi")
+shader_parameter/radius = 5.076
+shader_parameter/steps = 32
+shader_parameter/vertex_expand = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xaabq"]
+shader = ExtResource("35_u63vi")
+shader_parameter/radius = 5.076
+shader_parameter/steps = 32
+shader_parameter/vertex_expand = 2.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8f4bg"]
+size = Vector2(33.0061, 2744)
 
 [node name="Contact" type="Node2D"]
 
@@ -1114,27 +1175,6 @@ screen = ExtResource("13_hhdsd")
 position = Vector2(13028, -2564)
 power_holder = NodePath("../Holders/ClickerHolder7")
 
-[node name="NPC" parent="LEVEL" instance=ExtResource("14_y4t81")]
-position = Vector2(-2264, -186)
-dialogue_file = "res://assets/dialogue/oldmanmvp3.csv"
-npc_name = "Murrelet"
-
-[node name="OldMan" type="Sprite2D" parent="LEVEL/NPC"]
-position = Vector2(-5, 21)
-scale = Vector2(-0.705, 0.705)
-texture = ExtResource("15_4trxo")
-
-[node name="NPC2" parent="LEVEL" instance=ExtResource("14_y4t81")]
-position = Vector2(27253, -2372)
-dialogue_file = "res://assets/dialogue/upwell dialogue - adrikmvp3.csv"
-npc_name = "Adrik"
-
-[node name="Adrik" type="Sprite2D" parent="LEVEL/NPC2"]
-position = Vector2(-174, -53)
-rotation = 3.14159
-scale = Vector2(0.971357, -0.971357)
-texture = ExtResource("16_nwvet")
-
 [node name="Tutorial" type="Node2D" parent="LEVEL"]
 
 [node name="Shift2" type="Sprite2D" parent="LEVEL/Tutorial"]
@@ -1273,7 +1313,7 @@ modulate = Color(0.952099, 0.402827, 0.320554, 1)
 material = SubResource("CanvasItemMaterial_n8gfo")
 position = Vector2(-9, -742)
 amount = 1024
-process_material = SubResource("ParticleProcessMaterial_633w4")
+process_material = SubResource("ParticleProcessMaterial_2n8ax")
 texture = ExtResource("26_jaqoe")
 lifetime = 7.0
 randomness = 0.47
@@ -1714,7 +1754,7 @@ follow_viewport_scale = 1.19
 
 [node name="Particles" parent="3" instance=ExtResource("34_cqmqj")]
 visible = false
-process_material = SubResource("ParticleProcessMaterial_awwiu")
+process_material = SubResource("ParticleProcessMaterial_tgrqw")
 
 [node name="TileMap" type="TileMap" parent="3"]
 modulate = Color(0.621049, 0.359803, 0.250508, 1)
@@ -1876,39 +1916,68 @@ texture = ExtResource("36_ia4jj")
 
 [node name="ViewBlocker10" parent="viewblopckers" instance=ExtResource("19_eprmi")]
 modulate = Color(0.193621, 0.0288414, 0.0302736, 1)
+material = SubResource("ShaderMaterial_4rabq")
 position = Vector2(-3196, -398)
 scale = Vector2(2.22, 4.2)
 
 [node name="ViewBlocker" parent="viewblopckers" instance=ExtResource("19_eprmi")]
 modulate = Color(0.192157, 0.027451, 0.0313726, 1)
+material = SubResource("ShaderMaterial_ffv0n")
 position = Vector2(1325, -231)
 scale = Vector2(4.19729, -6.10712)
 
 [node name="ViewBlocker3" parent="viewblopckers" instance=ExtResource("19_eprmi")]
+material = SubResource("ShaderMaterial_edpsc")
 position = Vector2(20029, -3544)
 scale = Vector2(3.03096, -2.86093)
 
 [node name="ViewBlocker2" parent="viewblopckers" instance=ExtResource("19_eprmi")]
+material = SubResource("ShaderMaterial_3mile")
 position = Vector2(6569, 190)
 scale = Vector2(3.00033, 2.19977)
 
 [node name="ViewBlocker7" parent="viewblopckers" instance=ExtResource("19_eprmi")]
+material = SubResource("ShaderMaterial_op38l")
 position = Vector2(27079, -2931)
 rotation = 1.57079
 scale = Vector2(0.877849, 2.49533)
 
 [node name="ViewBlocker4" parent="viewblopckers" instance=ExtResource("19_eprmi")]
+material = SubResource("ShaderMaterial_xlvee")
 position = Vector2(2696, -276)
 
 [node name="ViewBlocker5" parent="viewblopckers" instance=ExtResource("19_eprmi")]
+material = SubResource("ShaderMaterial_76242")
 position = Vector2(3362, -241)
 
 [node name="ViewBlocker6" parent="viewblopckers" instance=ExtResource("19_eprmi")]
+material = SubResource("ShaderMaterial_dbrid")
 position = Vector2(4261, -263)
 scale = Vector2(2.91882, 6.45214)
 
 [node name="ViewBlocker8" parent="viewblopckers" instance=ExtResource("19_eprmi")]
+material = SubResource("ShaderMaterial_h5p7u")
 position = Vector2(16593, -3550)
 
 [node name="ViewBlocker9" parent="viewblopckers" instance=ExtResource("19_eprmi")]
+material = SubResource("ShaderMaterial_xaabq")
 position = Vector2(15974, -3474)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="CameraBound" type="Area2D" parent="Node2D"]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("34_l2kut")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/CameraBound"]
+z_as_relative = false
+position = Vector2(-217, 432)
+rotation = -1.57079
+shape = SubResource("RectangleShape2D_8f4bg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/CameraBound"]
+z_as_relative = false
+position = Vector2(-2768, 1115)
+rotation = -2.09439
+shape = SubResource("RectangleShape2D_8f4bg")
