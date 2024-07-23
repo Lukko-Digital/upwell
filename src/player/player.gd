@@ -412,6 +412,3 @@ func _camera_focus_net(focus: Node2D):
 		focused_on_screen = false
 	else:
 		focused_on_screen = true
-
-func _on_animated_sprite_2d_animation_finished() -> void:
-	pass # Replace with function body.
