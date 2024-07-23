@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://xgi8pcnjfsvh" path="res://src/dialogue/response_button.tscn" id="3_y57cq"]
 
 [node name="DialogueUi" type="CanvasLayer" node_paths=PackedStringArray("display_timer", "response_box", "fullscreen_display")]
+layer = 105
 script = ExtResource("1_28e40")
 display_timer = NodePath("DisplayTimer")
 response_box = NodePath("ResponseBox")
