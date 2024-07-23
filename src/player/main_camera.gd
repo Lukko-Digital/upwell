@@ -71,7 +71,7 @@ func handle_focus(delta):
 	# Zoom position to camera point focus
 	elif current_focus is Marker2D:
 		lerp_position(current_focus, 0.6, 1.0, delta)
-		zoom_amount = CAMERA.NPC_ZOOM
+		zoom_amount = CAMERA.SPOT_ZOOM
 
 	zoom = lerp(zoom, Vector2.ONE * zoom_amount, CAMERA.MAP_ZOOM_SPEED * delta)
 
