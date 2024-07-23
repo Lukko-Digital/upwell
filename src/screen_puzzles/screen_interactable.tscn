@@ -68,7 +68,7 @@ render_target_update_mode = 4
 [node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]
 
 [node name="Scanlines" type="Sprite2D" parent="SubViewportContainer/SubViewport/CanvasLayer"]
-modulate = Color(0.435192, 0.435192, 0.435192, 0.478431)
+modulate = Color(1, 1, 1, 0.431373)
 material = SubResource("ShaderMaterial_jls5r")
 position = Vector2(168, 1000)
 texture = ExtResource("4_38kih")
