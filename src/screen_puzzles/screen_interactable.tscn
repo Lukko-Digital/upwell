@@ -1,18 +1,18 @@
 [gd_scene load_steps=11 format=3 uid="uid://ceyls3ogt3vol"]
 
 [ext_resource type="Script" path="res://src/screen_puzzles/screen_interactable.gd" id="1_40edb"]
-[ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="2_krocg"]
-[ext_resource type="Shader" path="res://src/shaders/overlay.gdshader" id="2_ryd2b"]
+[ext_resource type="Shader" path="res://src/shaders/soft_light.gdshader" id="2_tv86y"]
 [ext_resource type="PackedScene" uid="uid://cfad1wka7bkpr" path="res://src/screen_puzzles/virtual_mouse.tscn" id="4_8hctd"]
 [ext_resource type="Texture2D" uid="uid://bbjdwc6iyldfv" path="res://assets/ui/map/scanlines.png" id="4_38kih"]
 [ext_resource type="Texture2D" uid="uid://dl7wqp5bheye5" path="res://assets/mvp3_assets/screenpuzzle/border.png" id="5_hn87c"]
 [ext_resource type="Shader" path="res://src/shaders/vhs.gdshader" id="5_tlclc"]
+[ext_resource type="FontFile" uid="uid://dutpxihkfghcu" path="res://assets/ui/fonts/CrimsonText-BoldItalic.ttf" id="5_y32mw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_monmt"]
 size = Vector2(1268.5, 721)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_akv18"]
-shader = ExtResource("2_ryd2b")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jls5r"]
+shader = ExtResource("2_tv86y")
 shader_parameter/intensity = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qhw5p"]
@@ -68,8 +68,8 @@ render_target_update_mode = 4
 [node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]
 
 [node name="Scanlines" type="Sprite2D" parent="SubViewportContainer/SubViewport/CanvasLayer"]
-modulate = Color(0.372549, 0.372549, 0.372549, 0.447059)
-material = SubResource("ShaderMaterial_akv18")
+modulate = Color(0.435192, 0.435192, 0.435192, 0.478431)
+material = SubResource("ShaderMaterial_jls5r")
 position = Vector2(168, 1000)
 texture = ExtResource("4_38kih")
 
@@ -93,16 +93,16 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="InteractLabel" type="Label" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.466667)
-offset_left = -55.0
-offset_top = 345.0
-offset_right = 236.0
-offset_bottom = 548.0
+modulate = Color(1, 1, 1, 0.65098)
+z_index = 2
+offset_left = -161.0
+offset_top = 365.0
+offset_right = 690.0
+offset_bottom = 575.0
 scale = Vector2(0.374634, 0.374634)
-theme_override_fonts/font = ExtResource("2_krocg")
+theme_override_fonts/font = ExtResource("5_y32mw")
 theme_override_font_sizes/font_size = 161
-text = "<E>"
+text = "<e>"
 horizontal_alignment = 1
 
 [node name="VHS" type="ColorRect" parent="."]
