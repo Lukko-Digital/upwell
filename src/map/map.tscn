@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c413chwmpxtw1" path="res://src/levels/H32_NUCLEAR.tscn" id="5_og8y0"]
 [ext_resource type="PackedScene" uid="uid://bwmwenrm8xori" path="res://src/map/coolant_pocket.tscn" id="6_4a6mq"]
 [ext_resource type="PackedScene" uid="uid://dl1nh6jj657a" path="res://src/levels/FALL.tscn" id="7_kq772"]
-[ext_resource type="PackedScene" uid="uid://db06hxs1wc08q" path="res://src/levels/TEST.tscn" id="8_d5ra6"]
+[ext_resource type="PackedScene" uid="uid://bttepvab6oghg" path="res://src/levels/TEST_NEWVISUALS.tscn" id="8_itcue"]
 [ext_resource type="PackedScene" uid="uid://ckbe13djrw5lh" path="res://src/map/hazard.tscn" id="8_xqpvg"]
 [ext_resource type="PackedScene" uid="uid://cr2ov0m76vreo" path="res://src/levels/RELAPSE.tscn" id="9_bymtf"]
 [ext_resource type="PackedScene" uid="uid://duwam6d8wx6x" path="res://src/levels/RECURRENCE.tscn" id="9_f7cig"]
@@ -50,85 +50,85 @@ follow_viewport_enabled = true
 follow_viewport_scale = 1.24
 
 [node name="ParticleSoftest" type="Sprite2D" parent="FX/CanvasLayer"]
-self_modulate = Color(1, 1, 1, 0.282353)
+self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(-2668.65, -599.677)
 scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
 
 [node name="ParticleSoftest2" type="Sprite2D" parent="FX/CanvasLayer"]
-self_modulate = Color(1, 1, 1, 0.282353)
+self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(1971.35, -631.677)
 scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
 
 [node name="ParticleSoftest3" type="Sprite2D" parent="FX/CanvasLayer"]
-self_modulate = Color(1, 1, 1, 0.282353)
+self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(-396.645, 1288.32)
 scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
 
 [node name="ParticleSoftest4" type="Sprite2D" parent="FX/CanvasLayer"]
-self_modulate = Color(1, 1, 1, 0.282353)
+self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(147.355, -3031.68)
 scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
 
 [node name="ParticleSoftest5" type="Sprite2D" parent="FX/CanvasLayer"]
-self_modulate = Color(1, 1, 1, 0.282353)
+self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(-492.645, -471.677)
 scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
 
 [node name="ParticleSoftest6" type="Sprite2D" parent="FX/CanvasLayer"]
-self_modulate = Color(1, 1, 1, 0.282353)
+self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(-3180.65, -2615.68)
 scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
 
 [node name="ParticleSoftest7" type="Sprite2D" parent="FX/CanvasLayer"]
-self_modulate = Color(1, 1, 1, 0.282353)
+self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(-2476.65, 1992.32)
 scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
 
 [node name="ParticleSoftest8" type="Sprite2D" parent="FX/CanvasLayer"]
-self_modulate = Color(1, 1, 1, 0.282353)
+self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(787.355, 2184.32)
 scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
 
 [node name="ParticleSoftest9" type="Sprite2D" parent="FX/CanvasLayer"]
-self_modulate = Color(1, 1, 1, 0.282353)
+self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(3859.35, 232.322)
 scale = Vector2(4, 4)
 texture = ExtResource("12_kdma8")
 
 [node name="ParticleSoftest10" type="Sprite2D" parent="FX/CanvasLayer"]
-self_modulate = Color(1, 1, 1, 0.282353)
+self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(-2700.65, 1000.32)
 scale = Vector2(0.334836, 0.334836)
 texture = ExtResource("12_kdma8")
 
 [node name="ParticleSoftest11" type="Sprite2D" parent="FX/CanvasLayer"]
-self_modulate = Color(1, 1, 1, 0.282353)
+self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(-556.645, -1143.68)
 scale = Vector2(0.334836, 0.334836)
 texture = ExtResource("12_kdma8")
 
 [node name="ParticleSoftest12" type="Sprite2D" parent="FX/CanvasLayer"]
-self_modulate = Color(1, 1, 1, 0.282353)
+self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(1427.35, -151.677)
 scale = Vector2(0.492604, 0.492604)
 texture = ExtResource("12_kdma8")
 
 [node name="ParticleSoftest13" type="Sprite2D" parent="FX/CanvasLayer"]
-self_modulate = Color(1, 1, 1, 0.282353)
+self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(1843.35, 2696.32)
 scale = Vector2(0.492604, 0.492604)
 texture = ExtResource("12_kdma8")
 
 [node name="ParticleSoftest14" type="Sprite2D" parent="FX/CanvasLayer"]
-self_modulate = Color(1, 1, 1, 0.282353)
+self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(3891.35, 2696.32)
 scale = Vector2(0.492604, 0.492604)
 texture = ExtResource("12_kdma8")
@@ -146,7 +146,7 @@ name_text = "001.CONTACT"
 
 [node name="003_TEST" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(335, 443.25)
-level = ExtResource("8_d5ra6")
+level = ExtResource("8_itcue")
 name_text = "003.TEST"
 sprite_scale = 1.225
 
