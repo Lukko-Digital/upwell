@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dcth1nh1t8nc4" path="res://assets/mvp3_assets/reactor_content_three.png" id="3_u1cnc"]
 [ext_resource type="Texture2D" uid="uid://dv68v7o8ukdhg" path="res://assets/mvp3_assets/reactor_content_one.png" id="3_uhghd"]
 [ext_resource type="Texture2D" uid="uid://bykhr4w3cgete" path="res://assets/mvp3_assets/reactor_content_two.png" id="4_q1f7n"]
+[ext_resource type="Script" path="res://src/player/fps_label.gd" id="6_ljrpc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uprhc"]
 animations = [{
@@ -129,3 +130,11 @@ color = Color(1, 1, 1, 0)
 libraries = {
 "": SubResource("AnimationLibrary_04koj")
 }
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1679.0
+offset_top = 121.0
+offset_right = 1719.0
+offset_bottom = 258.0
+theme_override_font_sizes/font_size = 100
+script = ExtResource("6_ljrpc")
