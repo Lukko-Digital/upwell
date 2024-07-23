@@ -30,7 +30,7 @@ func change_level(level: PackedScene):
 			for child in new_level.get_children():
 				if child is CanvasLayer:
 					for secondChild in child.get_children():
-						secondChild.position -= entry_point.position
+						secondChild.global_position += pod.global_position - entry_point.global_position
 
 	new_level.global_position += pod.global_position - entry_point.global_position
 
