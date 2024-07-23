@@ -79,6 +79,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="17" type="CanvasLayer" parent="."]
 layer = 17
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 1.7
 
@@ -99,6 +100,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="19" type="CanvasLayer" parent="."]
 layer = 19
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 1.9
 
@@ -119,6 +121,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="21" type="CanvasLayer" parent="."]
 layer = 21
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 2.1
 
@@ -139,6 +142,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="23" type="CanvasLayer" parent="."]
 layer = 23
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 2.3
 
@@ -159,6 +163,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="25" type="CanvasLayer" parent="."]
 layer = 25
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 2.5
 
@@ -179,6 +184,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="27" type="CanvasLayer" parent="."]
 layer = 27
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 2.7
 
@@ -199,6 +205,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="29" type="CanvasLayer" parent="."]
 layer = 29
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 2.9
 
@@ -219,6 +226,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="31" type="CanvasLayer" parent="."]
 layer = 31
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 3.1
 
@@ -239,6 +247,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="33" type="CanvasLayer" parent="."]
 layer = 33
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 3.3
 
@@ -259,6 +268,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="35" type="CanvasLayer" parent="."]
 layer = 35
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 3.5
 
@@ -279,6 +289,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="37" type="CanvasLayer" parent="."]
 layer = 37
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 3.7
 
@@ -299,6 +310,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="39" type="CanvasLayer" parent="."]
 layer = 39
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 3.9
 
@@ -319,6 +331,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="45" type="CanvasLayer" parent="."]
 layer = 45
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 4.5
 
@@ -339,6 +352,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="55" type="CanvasLayer" parent="."]
 layer = 55
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 5.5
 
@@ -359,6 +373,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="65" type="CanvasLayer" parent="."]
 layer = 65
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 6.5
 
@@ -379,6 +394,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="75" type="CanvasLayer" parent="."]
 layer = 75
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 7.5
 
@@ -399,6 +415,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="85" type="CanvasLayer" parent="."]
 layer = 85
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 8.5
 
@@ -419,6 +436,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="95" type="CanvasLayer" parent="."]
 layer = 95
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 9.5
 
@@ -439,6 +457,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="120break" type="CanvasLayer" parent="."]
 layer = 101
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 12.0
 
@@ -469,6 +488,7 @@ texture = ExtResource("2_uo2fw")
 
 [node name="180 break2" type="CanvasLayer" parent="."]
 layer = 101
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 18.0
 
