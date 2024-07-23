@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3xmpb6et0p0g"]
+[gd_scene load_steps=12 format=3 uid="uid://b3xmpb6et0p0g"]
 
 [ext_resource type="Script" path="res://src/player/clicker_ui.gd" id="1_bax8t"]
 [ext_resource type="Texture2D" uid="uid://ccc201315ps2p" path="res://assets/mvp3_assets/reactor_base_two.png" id="2_bwvy2"]
+[ext_resource type="Texture2D" uid="uid://6w4m757a0abh" path="res://assets/mvp3_assets/reactor_base.png" id="2_epsau"]
 [ext_resource type="Texture2D" uid="uid://dcth1nh1t8nc4" path="res://assets/mvp3_assets/reactor_content_three.png" id="3_u1cnc"]
 [ext_resource type="Texture2D" uid="uid://dv68v7o8ukdhg" path="res://assets/mvp3_assets/reactor_content_one.png" id="3_uhghd"]
 [ext_resource type="Texture2D" uid="uid://bykhr4w3cgete" path="res://assets/mvp3_assets/reactor_content_two.png" id="4_q1f7n"]
@@ -74,7 +75,7 @@ _data = {
 }
 
 [node name="ClickerUi" type="CanvasLayer" node_paths=PackedStringArray("clickers_sprite", "reactor_animation", "screen_color_animation")]
-layer = 100
+layer = 128
 script = ExtResource("1_bax8t")
 clickers_sprite = NodePath("Reactor/ClickerSprite")
 reactor_animation = NodePath("Reactor/ReactorAnimationPlayer")
@@ -89,7 +90,13 @@ offset_right = 201.0
 offset_bottom = 181.0
 scale = Vector2(0.3, 0.3)
 
+[node name="ReactorBase" type="Sprite2D" parent="Reactor"]
+position = Vector2(0, -3.33331)
+scale = Vector2(0.928487, 0.928487)
+texture = ExtResource("2_epsau")
+
 [node name="OrbitKnob" type="Sprite2D" parent="Reactor"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.129412)
 scale = Vector2(1.35, 1.35)
 texture = ExtResource("2_bwvy2")
@@ -99,8 +106,9 @@ self_modulate = Color(1, 1, 1, 0.415686)
 texture = ExtResource("2_bwvy2")
 
 [node name="ClickerSprite" type="AnimatedSprite2D" parent="Reactor"]
+position = Vector2(-3.33333, -26.6667)
 sprite_frames = SubResource("SpriteFrames_uprhc")
-animation = &"2"
+animation = &"1"
 
 [node name="ReactorAnimationPlayer" type="AnimationPlayer" parent="Reactor"]
 root_node = NodePath("../..")
