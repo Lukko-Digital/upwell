@@ -2,9 +2,10 @@ extends Interactable
 class_name NPC
 
 @export_file("*.csv") var dialogue_file
-@export var faces_you_during_dialogue = true
+@export var faces_you_during_dialogue = false
 ## If the NPC sprite is normally facing to the left, check this box
 @export var default_left_facing = false
+## Only needs to be set if [faces_you_during_dialogue] is true
 @export var npc_sprite: Sprite2D
 
 @onready var nodule: Sprite2D = $Nodule
@@ -18,6 +19,7 @@ func _ready() -> void:
 
 func interact(player: Player):
 	if faces_you_during_dialogue:
+		assert(npc_sprite != null, "You need to set the sprite export variable for NPC \"" + name + "\"")
 		var vec_to_player = player.global_position - global_position
 		var player_on_right = vec_to_player.x > 0
 		## Truth table
