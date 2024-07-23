@@ -302,14 +302,15 @@ func handle_nearby_interactables():
 		highlighted_interactable = nearby_interactables[0]
 
 func interact():
+	if in_dialogue:
+		return
+		
 	if highlighted_interactable != null:
 		highlighted_interactable.interact(self)
 	elif has_clicker():
 		spawn_clicker()
 
 func start_dialogue(npc: NPC):
-	if in_dialogue:
-		return
 	velocity = Vector2.ZERO
 	dialogue_ui.start_dialogue(npc)
 	in_dialogue = true
