@@ -11,6 +11,7 @@ const CAMERA = {
 	MAP_ZOOM_SPEED = 3.0,
 	MAP_TRANSLATE_SPEED = 6.0,
 	NPC_ZOOM = 0.8,
+	SPOT_ZOOM = 0.65,
 }
 const LIMIT_DEFAULT = 10000000
 
@@ -60,7 +61,7 @@ func handle_focus(delta):
 		#zoom position to camera point focus
 		if focus is Marker2D:
 			lerp_position(0.6, 1.0, delta)
-			zoom = lerp(zoom, Vector2.ONE * CAMERA.NPC_ZOOM, CAMERA.MAP_ZOOM_SPEED * delta)
+			zoom = lerp(zoom, Vector2.ONE * CAMERA.SPOT_ZOOM, CAMERA.MAP_ZOOM_SPEED * delta)
 
 	# Check if focus should be broken in screen case (for npc, it is always ended by dialogue end)
 	if (abs(player.position.x - position.x) > CAMERA.MAP_EXIT_DISTANCE) && focus == ScreenInteractable:
