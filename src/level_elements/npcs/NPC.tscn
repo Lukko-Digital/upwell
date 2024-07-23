@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bg636q5nculbs" path="res://src/dialogue/nodule.tscn" id="3_x8mvx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6qdgt"]
-radius = 219.002
+radius = 271.007
 
 [node name="NPC" type="Area2D"]
 collision_layer = 8
