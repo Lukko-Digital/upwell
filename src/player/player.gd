@@ -291,6 +291,14 @@ func sort_closest(a: Node2D, b: Node2D):
 		return global_position.distance_squared_to(node.global_position)
 	return distance_to.call(a) < distance_to.call(b)
 
+func sort_closest_prioritize_clickers(a: Node2D, b: Node2D):
+	var a_is_clicker = a is ClickerInteractable
+	var b_is_clicker = b is ClickerInteractable
+	if a_is_clicker != b_is_clicker:
+		return a_is_clicker
+	else:
+		return sort_closest(a, b)
+
 func handle_nearby_interactables():
 	var nearby_interactables = interactable_detector.get_overlapping_areas().filter(
 		func(interactable): return interactable.interact_condition(self)
@@ -298,18 +306,19 @@ func handle_nearby_interactables():
 	if nearby_interactables.is_empty():
 		highlighted_interactable = null
 	else:
-		nearby_interactables.sort_custom(sort_closest)
+		nearby_interactables.sort_custom(sort_closest_prioritize_clickers)
 		highlighted_interactable = nearby_interactables[0]
 
 func interact():
+	if in_dialogue:
+		return
+
 	if highlighted_interactable != null:
 		highlighted_interactable.interact(self)
 	elif has_clicker():
 		spawn_clicker()
 
 func start_dialogue(npc: NPC):
-	if in_dialogue:
-		return
 	velocity = Vector2.ZERO
 	dialogue_ui.start_dialogue(npc)
 	in_dialogue = true
@@ -412,6 +421,3 @@ func _camera_focus_net(focus: Node2D):
 		focused_on_screen = false
 	else:
 		focused_on_screen = true
-
-func _on_animated_sprite_2d_animation_finished() -> void:
-	pass # Replace with function body.
