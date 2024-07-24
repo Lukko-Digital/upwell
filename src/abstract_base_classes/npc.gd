@@ -18,6 +18,9 @@ func _ready() -> void:
 	conversation_tree = DialogueParser.parse_csv(dialogue_file)
 
 func interact(player: Player):
+
+	interact_label.hide()
+	
 	if faces_you_during_dialogue:
 		assert(npc_sprite != null, "You need to set the sprite export variable for NPC \"" + name + "\"")
 		var vec_to_player = player.global_position - global_position
