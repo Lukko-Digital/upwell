@@ -15,7 +15,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_sr4fx"]
 gradient = SubResource("Gradient_lu00i")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ywux4"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k8vtf"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -31,7 +31,7 @@ color = Color(1, 1, 1, 0.560784)
 color_ramp = SubResource("GradientTexture1D_sr4fx")
 hue_variation_min = -0.03
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_silkd"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rmryv"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -47,7 +47,7 @@ color = Color(1, 1, 1, 0.560784)
 color_ramp = SubResource("GradientTexture1D_sr4fx")
 hue_variation_min = -0.03
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uxi2s"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mwuvx"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -63,7 +63,7 @@ color = Color(1, 1, 1, 0.560784)
 color_ramp = SubResource("GradientTexture1D_sr4fx")
 hue_variation_min = -0.03
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gtbtb"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iy31h"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -90,7 +90,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_mivn7"]
 gradient = SubResource("Gradient_fxa3u")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0rft5"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2o5n0"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -116,7 +116,7 @@ follow_viewport_scale = 0.9
 
 [node name="Particles" parent="0_9" instance=ExtResource("1_psgww")]
 modulate = Color(0.454902, 0.454902, 0.454902, 0.521569)
-process_material = SubResource("ParticleProcessMaterial_ywux4")
+process_material = SubResource("ParticleProcessMaterial_k8vtf")
 maximum_scale = 0.022
 
 [node name="1" type="CanvasLayer" parent="."]
@@ -125,7 +125,7 @@ follow_viewport_enabled = true
 
 [node name="Particles" parent="1" instance=ExtResource("1_psgww")]
 modulate = Color(0.454902, 0.454902, 0.454902, 0.521569)
-process_material = SubResource("ParticleProcessMaterial_silkd")
+process_material = SubResource("ParticleProcessMaterial_rmryv")
 texture = ExtResource("2_7a52j")
 
 [node name="1_1" type="CanvasLayer" parent="."]
@@ -135,7 +135,7 @@ follow_viewport_scale = 1.1
 
 [node name="Particles" parent="1_1" instance=ExtResource("1_psgww")]
 modulate = Color(0.454902, 0.454902, 0.454902, 0.521569)
-process_material = SubResource("ParticleProcessMaterial_uxi2s")
+process_material = SubResource("ParticleProcessMaterial_mwuvx")
 texture = ExtResource("3_lb862")
 maximum_scale = 0.015
 
@@ -146,11 +146,11 @@ follow_viewport_scale = 1.2
 
 [node name="Particles" parent="1_2" instance=ExtResource("1_psgww")]
 modulate = Color(0.454902, 0.454902, 0.454902, 0.521569)
-process_material = SubResource("ParticleProcessMaterial_gtbtb")
+process_material = SubResource("ParticleProcessMaterial_iy31h")
 maximum_scale = 0.075
 
 [node name="1_4" type="CanvasLayer" parent="."]
-layer = 110
+layer = 102
 follow_viewport_enabled = true
 follow_viewport_scale = 1.4
 
@@ -162,7 +162,7 @@ material = SubResource("ShaderMaterial_g55n7")
 use_parent_material = true
 position = Vector2(-0.714286, -0.714287)
 amount = 1024
-process_material = SubResource("ParticleProcessMaterial_0rft5")
+process_material = SubResource("ParticleProcessMaterial_2o5n0")
 texture = ExtResource("4_1uku8")
 lifetime = 7.0
 randomness = 0.47
