@@ -7,9 +7,9 @@
 [ext_resource type="FontFile" uid="uid://dugjy5jt8bi0x" path="res://assets/ui/fonts/LibreBaskerville-Regular.ttf" id="4_lrslx"]
 [ext_resource type="FontFile" uid="uid://dpvvg0gwxfjxp" path="res://assets/ui/fonts/LibreBaskerville-Bold.ttf" id="5_j1yx8"]
 [ext_resource type="FontFile" uid="uid://cmkra16htorm3" path="res://assets/ui/fonts/LibreBaskerville-Italic.ttf" id="6_xra7x"]
-[ext_resource type="FontFile" uid="uid://12lul10wlfah" path="res://assets/ui/fonts/CrimsonText-Regular.ttf" id="8_ko71g"]
+[ext_resource type="FontFile" uid="uid://l50rgyf24fyd" path="res://assets/ui/fonts/CrimsonText-SemiBold.ttf" id="8_v7kwa"]
 [ext_resource type="FontFile" uid="uid://dugy4bpba0o10" path="res://assets/ui/fonts/CrimsonText-Bold.ttf" id="9_w6pgy"]
-[ext_resource type="FontFile" uid="uid://c8ewp3x7h67h3" path="res://assets/ui/fonts/CrimsonText-Italic.ttf" id="10_wmqur"]
+[ext_resource type="FontFile" uid="uid://vmvr5gfrccp1" path="res://assets/ui/fonts/CrimsonText-SemiBoldItalic.ttf" id="10_slrgn"]
 
 [node name="SpeechBubble" type="Control" node_paths=PackedStringArray("nodule", "dialogue_label", "name_label")]
 z_index = 20
@@ -23,13 +23,13 @@ name_label = NodePath("Nodule/BubbleContainer/TextContainer/VBoxContainer/NameLa
 
 [node name="Nodule" parent="." instance=ExtResource("1_s2l78")]
 z_index = 0
-scale = Vector2(1.5321, 1.5321)
+scale = Vector2(1.74802, 1.74802)
 
 [node name="BubbleContainer" type="MarginContainer" parent="Nodule"]
 offset_left = -429.115
-offset_top = -220.844
+offset_top = -214.844
 offset_right = 1340.89
-offset_bottom = 179.156
+offset_bottom = 185.156
 scale = Vector2(0.527109, 0.527109)
 script = ExtResource("2_ohaor")
 
@@ -77,16 +77,16 @@ custom_minimum_size = Vector2(977.1, 0)
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("8_ko71g")
+theme_override_fonts/normal_font = ExtResource("8_v7kwa")
 theme_override_fonts/bold_font = ExtResource("9_w6pgy")
-theme_override_fonts/italics_font = ExtResource("10_wmqur")
+theme_override_fonts/italics_font = ExtResource("10_slrgn")
 theme_override_font_sizes/normal_font_size = 90
 theme_override_font_sizes/bold_font_size = 90
 theme_override_font_sizes/italics_font_size = 90
 theme_override_font_sizes/bold_italics_font_size = 90
 theme_override_font_sizes/mono_font_size = 90
 bbcode_enabled = true
-text = "hello good sir how are you today"
+text = "hello good sir how are you"
 fit_content = true
 scroll_active = false
 visible_characters_behavior = 1

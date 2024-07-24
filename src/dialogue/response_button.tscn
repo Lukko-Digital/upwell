@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://bs6l23gk5qb3p" path="res://assets/ui/dialogue/response_button_hover.png" id="1_aautq"]
 [ext_resource type="Texture2D" uid="uid://dk057pn1a5vu0" path="res://assets/ui/dialogue/response_button_neutral.png" id="1_bwjf0"]
 [ext_resource type="FontFile" uid="uid://dugjy5jt8bi0x" path="res://assets/ui/fonts/LibreBaskerville-Regular.ttf" id="1_ubixl"]
-[ext_resource type="Texture2D" uid="uid://or0qnja6kmwx" path="res://assets/ui/dialogue/response_button_press.png" id="2_d14jg"]
+[ext_resource type="Texture2D" uid="uid://cirp418qaxx05" path="res://assets/ui/dialogue/response_button_press.png" id="2_d14jg"]
 [ext_resource type="FontFile" uid="uid://dpvvg0gwxfjxp" path="res://assets/ui/fonts/LibreBaskerville-Bold.ttf" id="7_k6li1"]
 [ext_resource type="FontFile" uid="uid://cmkra16htorm3" path="res://assets/ui/fonts/LibreBaskerville-Italic.ttf" id="8_7on5q"]
 
-[node name="ResponseButton" type="TextureButton" node_paths=PackedStringArray("label")]
+[node name="TextureButton" type="TextureButton" node_paths=PackedStringArray("label")]
 offset_right = 919.0
 offset_bottom = 128.0
 texture_normal = ExtResource("1_bwjf0")

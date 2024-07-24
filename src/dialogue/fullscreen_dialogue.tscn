@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://b46vbuqx0s8a7"]
+[gd_scene load_steps=9 format=3 uid="uid://b46vbuqx0s8a7"]
 
 [ext_resource type="Script" path="res://src/dialogue/fullscreen_dialogue.gd" id="1_u6ujp"]
+[ext_resource type="FontFile" uid="uid://l50rgyf24fyd" path="res://assets/ui/fonts/CrimsonText-SemiBold.ttf" id="2_lkuet"]
 [ext_resource type="FontFile" uid="uid://dugjy5jt8bi0x" path="res://assets/ui/fonts/LibreBaskerville-Regular.ttf" id="2_oc02p"]
 [ext_resource type="FontFile" uid="uid://dpvvg0gwxfjxp" path="res://assets/ui/fonts/LibreBaskerville-Bold.ttf" id="3_3b8wm"]
+[ext_resource type="FontFile" uid="uid://dugy4bpba0o10" path="res://assets/ui/fonts/CrimsonText-Bold.ttf" id="3_yfgt8"]
+[ext_resource type="FontFile" uid="uid://vmvr5gfrccp1" path="res://assets/ui/fonts/CrimsonText-SemiBoldItalic.ttf" id="4_l51ba"]
 [ext_resource type="FontFile" uid="uid://cmkra16htorm3" path="res://assets/ui/fonts/LibreBaskerville-Italic.ttf" id="4_ovev2"]
+[ext_resource type="FontFile" uid="uid://dutpxihkfghcu" path="res://assets/ui/fonts/CrimsonText-BoldItalic.ttf" id="5_8bvss"]
 
 [node name="FullscreenDialogue" type="Control" node_paths=PackedStringArray("dialogue_label", "name_label")]
 layout_mode = 3
@@ -35,24 +39,25 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -572.0
-offset_top = -24.9999
-offset_right = 616.0
-offset_bottom = 38.0001
+offset_left = -502.0
+offset_top = -46.0
+offset_right = 686.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.964826, 0.964826)
+scale = Vector2(0.858923, 0.858923)
 size_flags_vertical = 6
-theme_override_fonts/normal_font = ExtResource("2_oc02p")
-theme_override_fonts/bold_font = ExtResource("3_3b8wm")
-theme_override_fonts/italics_font = ExtResource("4_ovev2")
+theme_override_fonts/normal_font = ExtResource("2_lkuet")
+theme_override_fonts/bold_font = ExtResource("3_yfgt8")
+theme_override_fonts/italics_font = ExtResource("4_l51ba")
+theme_override_fonts/bold_italics_font = ExtResource("5_8bvss")
 theme_override_font_sizes/normal_font_size = 50
 theme_override_font_sizes/bold_font_size = 50
 theme_override_font_sizes/italics_font_size = 50
 theme_override_font_sizes/bold_italics_font_size = 50
 theme_override_font_sizes/mono_font_size = 50
 bbcode_enabled = true
-text = "[center] hello good sir how are you today [/center]"
+text = "[center]The statue stares back with bleary eyes.[/center]"
 fit_content = true
 scroll_active = false
 visible_characters_behavior = 1
