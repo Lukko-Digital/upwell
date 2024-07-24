@@ -194,7 +194,10 @@ func spawn_reponse(response: Response):
 	var instance: ResponseButton = response_button_scene.instantiate()
 	instance.start(response)
 	instance.response_selected.connect(_response_button_pressed)
+	# if response_box
 	response_box.add_child(instance)
+	if response_box.get_child_count() == 1:
+		instance.grab_focus()
 
 func clear_responses():
 	for button in response_box.get_children():

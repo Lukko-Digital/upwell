@@ -1,24 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://xgi8pcnjfsvh"]
+[gd_scene load_steps=8 format=3 uid="uid://xgi8pcnjfsvh"]
 
 [ext_resource type="Script" path="res://src/dialogue/response_button.gd" id="1_3vvxx"]
+[ext_resource type="Texture2D" uid="uid://bs6l23gk5qb3p" path="res://assets/ui/dialogue/response_button_hover.png" id="1_aautq"]
+[ext_resource type="Texture2D" uid="uid://dk057pn1a5vu0" path="res://assets/ui/dialogue/response_button_neutral.png" id="1_bwjf0"]
 [ext_resource type="FontFile" uid="uid://dugjy5jt8bi0x" path="res://assets/ui/fonts/LibreBaskerville-Regular.ttf" id="1_ubixl"]
+[ext_resource type="Texture2D" uid="uid://or0qnja6kmwx" path="res://assets/ui/dialogue/response_button_press.png" id="2_d14jg"]
+[ext_resource type="FontFile" uid="uid://dpvvg0gwxfjxp" path="res://assets/ui/fonts/LibreBaskerville-Bold.ttf" id="7_k6li1"]
+[ext_resource type="FontFile" uid="uid://cmkra16htorm3" path="res://assets/ui/fonts/LibreBaskerville-Italic.ttf" id="8_7on5q"]
 
-[node name="ResponseButton" type="Button"]
-custom_minimum_size = Vector2(0, 60.69)
-anchors_preset = 8
-anchor_left = 0.5
+[node name="ResponseButton" type="TextureButton" node_paths=PackedStringArray("label")]
+offset_right = 919.0
+offset_bottom = 128.0
+texture_normal = ExtResource("1_bwjf0")
+texture_pressed = ExtResource("2_d14jg")
+texture_focused = ExtResource("1_aautq")
+script = ExtResource("1_3vvxx")
+label = NodePath("ResponseLabel")
+
+[node name="ResponseLabel" type="RichTextLabel" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 14
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -227.5
-offset_top = -25.0
-offset_right = 227.5
-offset_bottom = 25.0
+offset_top = -31.5
+offset_bottom = 31.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_ubixl")
-theme_override_font_sizes/font_size = 25
-text = "wat tghe"
-script = ExtResource("1_3vvxx")
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("1_ubixl")
+theme_override_fonts/bold_font = ExtResource("7_k6li1")
+theme_override_fonts/italics_font = ExtResource("8_7on5q")
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+bbcode_enabled = true
+text = "[center] erm... [/center]"
+fit_content = true
+scroll_active = false
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

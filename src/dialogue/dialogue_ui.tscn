@@ -22,25 +22,23 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -433.0
-offset_top = -287.0
-offset_right = 267.0
-offset_bottom = -99.0
+offset_left = -263.0
+offset_top = -309.0
+offset_right = 656.0
+offset_bottom = 105.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(1.23943, 1.23943)
+scale = Vector2(0.6, 0.6)
+theme_override_constants/separation = 15
 alignment = 2
 
 [node name="ResponseButton" parent="ResponseBox" instance=ExtResource("3_y57cq")]
 layout_mode = 2
-text = "response 1"
 
 [node name="ResponseButton2" parent="ResponseBox" instance=ExtResource("3_y57cq")]
 layout_mode = 2
-text = "response 2"
 
 [node name="ResponseButton3" parent="ResponseBox" instance=ExtResource("3_y57cq")]
 layout_mode = 2
-text = "response 3"
 
 [node name="FullscreenDialogue" parent="." instance=ExtResource("3_n472f")]
