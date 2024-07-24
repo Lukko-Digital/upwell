@@ -15,6 +15,7 @@
 z_index = 20
 layout_mode = 3
 anchors_preset = 0
+scale = Vector2(0.409158, 0.409158)
 script = ExtResource("1_c5fww")
 nodule = NodePath("Nodule")
 dialogue_label = NodePath("Nodule/BubbleContainer/TextContainer/VBoxContainer/DialogueLabel")
@@ -22,14 +23,14 @@ name_label = NodePath("Nodule/BubbleContainer/TextContainer/VBoxContainer/NameLa
 
 [node name="Nodule" parent="." instance=ExtResource("1_s2l78")]
 z_index = 0
-scale = Vector2(0.742772, 0.742772)
+scale = Vector2(1.5321, 1.5321)
 
 [node name="BubbleContainer" type="MarginContainer" parent="Nodule"]
-offset_left = -441.589
-offset_top = -232.389
-offset_right = 1328.42
-offset_bottom = 167.611
-scale = Vector2(0.555972, 0.555972)
+offset_left = -429.115
+offset_top = -220.844
+offset_right = 1340.89
+offset_bottom = 179.156
+scale = Vector2(0.527109, 0.527109)
 script = ExtResource("2_ohaor")
 
 [node name="BubbleNinePatch" type="NinePatchRect" parent="Nodule/BubbleContainer"]
