@@ -83,6 +83,8 @@ func _ready() -> void:
 	if current_scene is Game and not owner is Game:
 		camera.queue_free()
 		queue_free()
+	
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func _physics_process(delta):
 	var gravity_state: GravitizedComponent.GravityState = handle_artificial_gravity(delta)
@@ -320,6 +322,7 @@ func interact():
 
 func start_dialogue(npc: NPC):
 	velocity = Vector2.ZERO
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	dialogue_ui.start_dialogue(npc)
 	in_dialogue = true
 
@@ -421,6 +424,7 @@ func warp_mouse_to_player():
 
 func _on_dialogue_ui_dialogue_finished() -> void:
 	in_dialogue = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	Global.set_camera_focus.emit(null)
 
 func _camera_focus_net(focus: Node2D):

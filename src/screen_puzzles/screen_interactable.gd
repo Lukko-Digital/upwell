@@ -21,11 +21,9 @@ func interact(_player: Player):
 	if not focused:
 		Global.set_camera_focus.emit(self)
 		virtual_mouse.show()
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	else:
 		Global.set_camera_focus.emit(null)
 		virtual_mouse.hide()
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 # func _on_body_exited(body: Node2D):
 # 	if body is Player:
@@ -44,7 +42,7 @@ func lerp_warp_amount(delta: float):
 		target = 0.0
 	if target == warp_current:
 		pass
-	warp_current = lerp(warp_current, target, delta*2)
+	warp_current = lerp(warp_current, target, delta * 2)
 
 func _process(delta):
 	# if (was_focused != focused):
