@@ -31,6 +31,9 @@ window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
 mouse_cursor/custom_image="res://assets/mvp4_assets/temp_mouse.png"
 mouse_cursor/custom_image_hotspot=Vector2(64, 64)
+window/quality/use_taa=false
+window/snap_controls_to_pixels=true
+window/dynamic_fonts/use_oversampling=true
 
 [editor_plugins]
 
@@ -107,3 +110,4 @@ cancel={
 [rendering]
 
 anti_aliasing/quality/msaa_2d=1
+anti_aliasing/quality/use_taa=true

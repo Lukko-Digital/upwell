@@ -28,19 +28,6 @@ radius = 170.746
 scale = Vector2(4, 4)
 script = ExtResource("1_ithwi")
 
-[node name="MapPlayer" parent="." instance=ExtResource("2_uwq5e")]
-
-[node name="Camera2D2" type="Camera2D" parent="MapPlayer"]
-zoom = Vector2(0.15, 0.15)
-
-[node name="Focus" type="Sprite2D" parent="MapPlayer"]
-modulate = Color(1, 1, 1, 0.513726)
-z_index = 10
-position = Vector2(-3.25, -1.25)
-scale = Vector2(0.86, 0.86)
-texture = ExtResource("20_5udhm")
-metadata/_edit_lock_ = true
-
 [node name="Background" type="Node2D" parent="."]
 
 [node name="FX" type="Node2D" parent="."]
@@ -190,6 +177,18 @@ position = Vector2(-1325.5, 443.25)
 label = NodePath("../H43_NUCLEAR/Label")
 name_text = " "
 sprite_scale = 0.0
+
+[node name="MapPlayer" parent="." instance=ExtResource("2_uwq5e")]
+
+[node name="Camera2D2" type="Camera2D" parent="MapPlayer"]
+zoom = Vector2(0.15, 0.15)
+
+[node name="Focus" type="Sprite2D" parent="MapPlayer"]
+modulate = Color(1, 1, 1, 0.513726)
+z_index = 10
+position = Vector2(-3.25, -1.25)
+scale = Vector2(0.846664, 0.846664)
+texture = ExtResource("20_5udhm")
 
 [node name="Hazard" parent="." instance=ExtResource("8_xqpvg")]
 position = Vector2(-162.75, 96)
@@ -456,7 +455,7 @@ polygon = PackedVector2Array(63.7, 147, 64.8, 147, 65.9, 149.5, 61, 154.4, 58.5,
 
 [node name="hazard8" parent="." instance=ExtResource("8_xqpvg")]
 position = Vector2(988, -895.5)
-rotation = 6.19359
+rotation = -0.0895951
 scale = Vector2(4.48883, 4.48883)
 
 [node name="Sprite2D" type="Sprite2D" parent="hazard8"]
