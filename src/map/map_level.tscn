@@ -59,7 +59,6 @@ shape = SubResource("CircleShape2D_r5pps")
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("4_txnlk")
-type = 1
 
 [node name="Glow" parent="Gravity" instance=ExtResource("5_fn1ck")]
 scale = Vector2(0.473418, 0.473418)
