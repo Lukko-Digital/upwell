@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://src/map/hazard.gd" id="1_sg7e8"]
 
 [node name="Hazard" type="Area2D"]
+modulate = Color(1, 1, 1, 0.27451)
 position = Vector2(215.5, 2.5)
 collision_mask = 2
 script = ExtResource("1_sg7e8")
