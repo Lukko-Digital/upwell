@@ -1,10 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://dw50qvw1e418b"]
+[gd_scene load_steps=23 format=3 uid="uid://dw50qvw1e418b"]
 
 [ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="1_pv0jy"]
 [ext_resource type="Script" path="res://src/level_elements/pod/pod.gd" id="1_urr8o"]
 [ext_resource type="PackedScene" uid="uid://bb68hmcptqlgt" path="res://src/map/map.tscn" id="2_uerrb"]
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/holder/clicker_holder.tscn" id="4_goton"]
 [ext_resource type="Script" path="res://src/level_elements/camera/camera_point_focus.gd" id="5_0tuqc"]
+[ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="6_kw5qg"]
+[ext_resource type="Texture2D" uid="uid://bis82a47xh061" path="res://assets/pod/pod_bg.png" id="7_p210d"]
+[ext_resource type="Texture2D" uid="uid://4x0fb21csjof" path="res://assets/pod/pod_door_closed.png" id="8_2qojk"]
+[ext_resource type="Shader" path="res://src/shaders/overlay.gdshader" id="8_jha66"]
+[ext_resource type="Texture2D" uid="uid://hkhamgomvbwo" path="res://assets/mvp3_assets/viewblocker.png" id="9_0klgs"]
+[ext_resource type="Texture2D" uid="uid://nrn5ue0tbc5h" path="res://assets/pod/pod_door light.png" id="9_kb7qy"]
+[ext_resource type="PackedScene" uid="uid://dhjj5tgw8y2es" path="res://src/level_elements/view_blocker.tscn" id="9_u6g7q"]
+[ext_resource type="Texture2D" uid="uid://cecwp7vm8bcq6" path="res://assets/pod/pod_fg.png" id="10_cr7db"]
+[ext_resource type="Texture2D" uid="uid://bqu3dcbksgtgh" path="res://assets/pod/pod_fg_5.png" id="11_8qs7d"]
+[ext_resource type="Texture2D" uid="uid://df6l0exidum0b" path="res://assets/pod/pod_door_open.png" id="13_r68du"]
+[ext_resource type="Script" path="res://src/level_elements/camera/camera_bound.gd" id="17_tbj2n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fgq61"]
 size = Vector2(440, 1338)
@@ -12,8 +23,19 @@ size = Vector2(440, 1338)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eg7vv"]
 size = Vector2(1534, 1060)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3m545"]
+shader = ExtResource("8_jha66")
+shader_parameter/intensity = 1.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qgxty"]
-size = Vector2(1666, 1392)
+size = Vector2(1792, 1542)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82e7y"]
+size = Vector2(1664, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cevex"]
+shader = ExtResource("8_jha66")
+shader_parameter/intensity = 1.0
 
 [node name="Pod" type="Node2D" node_paths=PackedStringArray("pod_holder", "walls_static_body", "walls_visual")]
 script = ExtResource("1_urr8o")
@@ -22,6 +44,8 @@ walls_static_body = NodePath("WallsStaticBody")
 walls_visual = NodePath("WallsVisual")
 
 [node name="Screen" parent="." instance=ExtResource("1_pv0jy")]
+position = Vector2(0, -548)
+scale = Vector2(0.919458, 0.919458)
 screen = ExtResource("2_uerrb")
 
 [node name="WallsStaticBody" type="StaticBody2D" parent="."]
@@ -35,6 +59,7 @@ position = Vector2(988, -419)
 shape = SubResource("RectangleShape2D_fgq61")
 
 [node name="WallsVisual" type="Node2D" parent="."]
+visible = false
 z_index = 20
 position = Vector2(0, 911)
 scale = Vector2(1, 7.13)
@@ -76,7 +101,7 @@ color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="ClickerHolder" parent="." instance=ExtResource("4_goton")]
-position = Vector2(-275, -41)
+position = Vector2(-275, -54)
 starts_with_clicker = false
 is_catcher = false
 
@@ -88,6 +113,84 @@ collision_mask = 18
 position = Vector2(0, -540)
 shape = SubResource("RectangleShape2D_eg7vv")
 
+[node name="TileMap" parent="." instance=ExtResource("6_kw5qg")]
+z_index = 0
+position = Vector2(0, 256)
+layer_0/tile_data = PackedInt32Array(-65542, 65537, 0, -65539, 65537, 0, -65538, 65537, 0, -65537, 65537, 0, -131072, 65537, 0, -131071, 65537, 0, -131070, 65537, 0, -131067, 65537, 0, -6, 65537, 0, -3, 65537, 0, -2, 65537, 0, -1, 65537, 0, -65536, 65537, 0, -65535, 65537, 0, -65534, 65537, 0, -65531, 65537, 0, -131068, 65537, 0, -65541, 65537, 0, -5, 65537, 0, -65540, 65537, 0, -4, 65537, 0, -131069, 65537, 0, -65533, 65537, 0, -65532, 65537, 0)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 689.0
+offset_top = -1248.0
+offset_right = 921.0
+offset_bottom = 209.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -936.0
+offset_top = -1248.0
+offset_right = -704.0
+offset_bottom = 209.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = -755.0
+offset_top = -958.0
+offset_right = -406.0
+offset_bottom = 553.0
+rotation = -1.57079
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+offset_left = -1133.0
+offset_top = 1172.0
+offset_right = -147.0
+offset_bottom = 3439.0
+rotation = -1.57079
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+offset_left = -1131.0
+offset_top = -1252.0
+offset_right = -78.0
+offset_bottom = 1012.0
+rotation = -1.57079
+color = Color(0, 0, 0, 1)
+
+[node name="PodBg" type="Sprite2D" parent="."]
+modulate = Color(0.59776, 0.467614, 0.410186, 1)
+position = Vector2(-1, -509)
+scale = Vector2(0.943436, 0.943436)
+texture = ExtResource("7_p210d")
+
+[node name="PodDoorLight" type="Sprite2D" parent="."]
+modulate = Color(0.789773, 0.690442, 0.573315, 1)
+material = SubResource("ShaderMaterial_3m545")
+position = Vector2(1279, -401)
+texture = ExtResource("9_kb7qy")
+
+[node name="PodDoorLight2" type="Sprite2D" parent="."]
+modulate = Color(0.789773, 0.690442, 0.573315, 1)
+material = SubResource("ShaderMaterial_3m545")
+position = Vector2(-1262, -401)
+scale = Vector2(-1, 1)
+texture = ExtResource("9_kb7qy")
+
+[node name="PodDoorOpen" type="Sprite2D" parent="."]
+position = Vector2(-1134, -604)
+texture = ExtResource("13_r68du")
+
+[node name="PodDoorOpen2" type="Sprite2D" parent="."]
+position = Vector2(1171, -604)
+texture = ExtResource("13_r68du")
+
+[node name="ViewBlocker" parent="." instance=ExtResource("9_u6g7q")]
+visible = false
+position = Vector2(-926, -411)
+
+[node name="ViewBlocker2" parent="." instance=ExtResource("9_u6g7q")]
+visible = false
+position = Vector2(944, -439)
+
 [node name="CameraPointFocus" type="Area2D" parent="."]
 position = Vector2(11, -515)
 collision_layer = 0
@@ -95,9 +198,69 @@ collision_mask = 2
 script = ExtResource("5_0tuqc")
 
 [node name="Marker2D" type="Marker2D" parent="CameraPointFocus"]
-position = Vector2(-8, 81)
+position = Vector2(-8, -67)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraPointFocus"]
+position = Vector2(-8, -76)
 shape = SubResource("RectangleShape2D_qgxty")
+
+[node name="CameraBound" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("17_tbj2n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBound"]
+position = Vector2(0, 550)
+shape = SubResource("RectangleShape2D_82e7y")
+
+[node name="CanvasHolder" type="Node2D" parent="."]
+
+[node name="12" type="CanvasLayer" parent="CanvasHolder"]
+layer = 11
+follow_viewport_enabled = true
+follow_viewport_scale = 1.1
+
+[node name="PodDoorClosed" type="Sprite2D" parent="CanvasHolder/12"]
+position = Vector2(-687.273, -428.091)
+scale = Vector2(-1, 1)
+texture = ExtResource("8_2qojk")
+
+[node name="PodDoorClosed2" type="Sprite2D" parent="CanvasHolder/12"]
+position = Vector2(680.909, -419.091)
+texture = ExtResource("8_2qojk")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasHolder/12"]
+position = Vector2(0.000993925, 559.091)
+rotation = 1.57079
+scale = Vector2(5.86528, 1.57259)
+texture = ExtResource("9_0klgs")
+
+[node name="PodFg" type="Sprite2D" parent="CanvasHolder/12"]
+position = Vector2(5.45455, -455.455)
+scale = Vector2(0.823873, 0.823873)
+texture = ExtResource("10_cr7db")
+
+[node name="13" type="CanvasLayer" parent="CanvasHolder"]
+layer = 13
+follow_viewport_enabled = true
+follow_viewport_scale = 1.3
+
+[node name="PodFg5" type="Sprite2D" parent="CanvasHolder/13"]
+position = Vector2(3.84615, -558.462)
+scale = Vector2(0.625363, 0.625363)
+texture = ExtResource("11_8qs7d")
+
+[node name="14" type="CanvasLayer" parent="CanvasHolder"]
+layer = 5
+follow_viewport_enabled = true
+
+[node name="ColorRect6" type="ColorRect" parent="CanvasHolder/14"]
+material = SubResource("ShaderMaterial_cevex")
+offset_left = -831.0
+offset_top = -1557.0
+offset_right = 772.0
+offset_bottom = 561.0
+mouse_filter = 2
+color = Color(0.733333, 0.580392, 0.443137, 1)
 
 [connection signal="body_entered" from="PodClickerRehomeArea" to="." method="_on_pod_clicker_rehome_area_body_entered"]

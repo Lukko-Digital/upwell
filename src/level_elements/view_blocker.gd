@@ -7,12 +7,15 @@ class_name ViewBlocker
 # 		material.set("shader_parameter/radius",amount_of_blur)
 # 		amount_of_blur = value
 
-# func _ready():
-# 	material = material.duplicate()
-
-func _process(_delta):
+func _ready():
+	# material = material.duplicate()
 	handle_sprites()
 	handle_canvas()
+
+func _process(_delta):
+	if Engine.is_editor_hint():
+		handle_sprites()
+		handle_canvas()
 
 func handle_sprites():
 	for child in get_children():
