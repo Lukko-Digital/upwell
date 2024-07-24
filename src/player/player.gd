@@ -266,8 +266,8 @@ func handle_coyote_timing(gravity_state: GravitizedComponent.GravityState):
 	previously_grounded = currently_grounded
 
 func jump():
-	# No jump when holding shift
-	if Input.is_action_pressed("orbit"):
+	# No jump when holding shift or when in dialogue
+	if Input.is_action_pressed("orbit") or in_dialogue:
 		return
 	if is_on_floor() or not coyote_timer.is_stopped():
 		velocity.y = -PLAYER.JUMP_VELOCITY
@@ -326,7 +326,7 @@ func interact():
 
 func start_dialogue(npc: NPC):
 	velocity = Vector2.ZERO
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	dialogue_ui.start_dialogue(npc)
 	in_dialogue = true
 
