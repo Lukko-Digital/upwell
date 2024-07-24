@@ -389,6 +389,9 @@ func handle_throw_arc():
 	):
 		return
 
+	if Input.is_action_just_pressed("throw"):
+		warp_mouse_to_player()
+
 	var pos = Vector2.ZERO
 	## The rigid body flies in a parabola with slightly less amplitude than
 	## the one calculated below. We add the adjustment factor so the line
@@ -409,6 +412,10 @@ func handle_throw_arc():
 		query.position = global_position + pos
 		if not world_physics.intersect_point(query).is_empty():
 			break
+
+func warp_mouse_to_player():
+	var player_canvas_pos = get_screen_transform().origin
+	get_viewport().warp_mouse(player_canvas_pos)
 
 ## ------------------------------ SIGNAL HANDLES ------------------------------
 
