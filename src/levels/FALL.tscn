@@ -1,5 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://dl1nh6jj657a"]
+[gd_scene load_steps=29 format=3 uid="uid://dl1nh6jj657a"]
 
+[ext_resource type="Script" path="res://src/level.gd" id="1_bbgrm"]
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/holder/clicker_holder.tscn" id="1_dgotf"]
 [ext_resource type="Script" path="res://src/holder/timed_multi_receiver.gd" id="2_xfdrp"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="4_32b8o"]
@@ -115,6 +116,7 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_hcei4")
 
 [node name="Contact" type="Node2D"]
+script = ExtResource("1_bbgrm")
 
 [node name="Orbits" type="Node2D" parent="."]
 

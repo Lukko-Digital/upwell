@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://chgnsi8mbmv5m"]
+[gd_scene load_steps=12 format=3 uid="uid://chgnsi8mbmv5m"]
 
+[ext_resource type="Script" path="res://src/level.gd" id="1_shn2k"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="2_30vum"]
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="3_v07yo"]
 [ext_resource type="PackedScene" uid="uid://5mnlsyicmwh" path="res://src/level_elements/pod/empty_pod.tscn" id="4_ju671"]
@@ -19,6 +20,7 @@ height = 948.0
 size = Vector2(349, 2429)
 
 [node name="Contact" type="Node2D"]
+script = ExtResource("1_shn2k")
 
 [node name="Orbits" type="Node2D" parent="."]
 

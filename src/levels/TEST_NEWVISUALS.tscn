@@ -1,5 +1,6 @@
-[gd_scene load_steps=93 format=3 uid="uid://bttepvab6oghg"]
+[gd_scene load_steps=94 format=3 uid="uid://bttepvab6oghg"]
 
+[ext_resource type="Script" path="res://src/level.gd" id="1_myyie"]
 [ext_resource type="PackedScene" uid="uid://5mnlsyicmwh" path="res://src/level_elements/pod/empty_pod.tscn" id="1_yebsk"]
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="2_v1oi6"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="3_3x2bb"]
@@ -902,7 +903,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1s7rc"]
 gradient = SubResource("Gradient_oo52l")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5727t"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_elfe2"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -1064,7 +1065,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_sr4fx"]
 gradient = SubResource("Gradient_lu00i")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mwd72"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lut8x"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -1170,6 +1171,7 @@ radius = 407.0
 height = 814.0
 
 [node name="Contact" type="Node2D"]
+script = ExtResource("1_myyie")
 
 [node name="EmptyPod" parent="." instance=ExtResource("1_yebsk")]
 position = Vector2(-4224, 0)
@@ -1598,7 +1600,7 @@ modulate = Color(0.952099, 0.402827, 0.320554, 1)
 material = SubResource("CanvasItemMaterial_n8gfo")
 position = Vector2(-9, -742)
 amount = 1024
-process_material = SubResource("ParticleProcessMaterial_5727t")
+process_material = SubResource("ParticleProcessMaterial_elfe2")
 texture = ExtResource("26_jaqoe")
 lifetime = 7.0
 randomness = 0.47
@@ -2041,7 +2043,7 @@ follow_viewport_scale = 1.19
 
 [node name="Particles" parent="3" instance=ExtResource("34_cqmqj")]
 visible = false
-process_material = SubResource("ParticleProcessMaterial_mwd72")
+process_material = SubResource("ParticleProcessMaterial_lut8x")
 
 [node name="TileMap" type="TileMap" parent="3"]
 modulate = Color(0.621049, 0.359803, 0.250508, 1)

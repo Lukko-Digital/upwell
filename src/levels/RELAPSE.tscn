@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://cr2ov0m76vreo"]
+[gd_scene load_steps=14 format=3 uid="uid://cr2ov0m76vreo"]
 
+[ext_resource type="Script" path="res://src/level.gd" id="1_0mr8k"]
 [ext_resource type="PackedScene" uid="uid://dw6autb2hsck1" path="res://src/level_elements/artificial_gravity/orbit_ag.tscn" id="1_mvehs"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="1_t6ojb"]
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="2_nkx3c"]
@@ -16,6 +17,7 @@
 radius = 453.471
 
 [node name="Contact" type="Node2D"]
+script = ExtResource("1_0mr8k")
 
 [node name="Orbits" type="Node2D" parent="."]
 

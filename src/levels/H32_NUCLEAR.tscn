@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://c413chwmpxtw1"]
+[gd_scene load_steps=18 format=3 uid="uid://c413chwmpxtw1"]
 
+[ext_resource type="Script" path="res://src/level.gd" id="1_etx8b"]
 [ext_resource type="Script" path="res://src/levels/H32_entrance_switcher_area.gd" id="5_rk1ei"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="6_urwqu"]
 [ext_resource type="Shader" path="res://src/shaders/individual_blur.gdshader" id="7_2328a"]
@@ -35,6 +36,7 @@ shader_parameter/steps = 32
 shader_parameter/vertex_expand = 2.0
 
 [node name="H32Nuclear" type="Node2D"]
+script = ExtResource("1_etx8b")
 
 [node name="Holders" type="Node2D" parent="."]
 

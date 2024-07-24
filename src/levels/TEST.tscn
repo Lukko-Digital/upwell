@@ -1,6 +1,7 @@
-[gd_scene load_steps=95 format=3 uid="uid://db06hxs1wc08q"]
+[gd_scene load_steps=96 format=3 uid="uid://db06hxs1wc08q"]
 
 [ext_resource type="Texture2D" uid="uid://bd56futu8anvq" path="res://assets/mvp4_assets/wallA.png" id="1_3325c"]
+[ext_resource type="Script" path="res://src/level.gd" id="1_ns6dd"]
 [ext_resource type="Texture2D" uid="uid://cc534m02pm0nf" path="res://assets/mvp4_assets/treeb.png" id="2_8qoh2"]
 [ext_resource type="Shader" path="res://src/shaders/blur.gdshader" id="3_enufc"]
 [ext_resource type="Texture2D" uid="uid://l5gmn5wicxgf" path="res://assets/mvp4_assets/treea.png" id="4_u4xpv"]
@@ -220,7 +221,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1s7rc"]
 gradient = SubResource("Gradient_oo52l")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yxjmt"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s21wi"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -382,7 +383,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_sr4fx"]
 gradient = SubResource("Gradient_lu00i")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dk0f6"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jas58"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -415,7 +416,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_830gk"]
 gradient = SubResource("Gradient_0oqtj")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j8yjl"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i3ofa"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -472,6 +473,7 @@ radius = 407.0
 height = 814.0
 
 [node name="Contact" type="Node2D"]
+script = ExtResource("1_ns6dd")
 
 [node name="EmptyPod" parent="." instance=ExtResource("12_libxc")]
 position = Vector2(-4224, -128)
@@ -955,7 +957,7 @@ modulate = Color(0.952099, 0.402827, 0.320554, 1)
 material = SubResource("CanvasItemMaterial_n8gfo")
 position = Vector2(-9, -742)
 amount = 1024
-process_material = SubResource("ParticleProcessMaterial_yxjmt")
+process_material = SubResource("ParticleProcessMaterial_s21wi")
 texture = ExtResource("6_4xlin")
 lifetime = 7.0
 randomness = 0.47
@@ -1396,7 +1398,7 @@ follow_viewport_scale = 1.21
 
 [node name="Particles" parent="3" instance=ExtResource("34_jgmqm")]
 visible = false
-process_material = SubResource("ParticleProcessMaterial_dk0f6")
+process_material = SubResource("ParticleProcessMaterial_jas58")
 
 [node name="TileMap" type="TileMap" parent="3"]
 modulate = Color(0.621049, 0.359803, 0.250508, 1)
@@ -1502,7 +1504,7 @@ material = SubResource("ShaderMaterial_2pjlt")
 use_parent_material = true
 position = Vector2(-1.5, -10.5423)
 amount = 1024
-process_material = SubResource("ParticleProcessMaterial_j8yjl")
+process_material = SubResource("ParticleProcessMaterial_i3ofa")
 texture = ExtResource("28_onkcr")
 lifetime = 7.0
 randomness = 0.47

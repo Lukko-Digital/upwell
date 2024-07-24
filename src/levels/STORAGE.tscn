@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5vp55dla36kl"]
+[gd_scene load_steps=11 format=3 uid="uid://c5vp55dla36kl"]
 
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="1_8o3gc"]
 [ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="1_15m0b"]
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/holder/clicker_holder.tscn" id="1_aucw5"]
+[ext_resource type="Script" path="res://src/level.gd" id="1_gefyg"]
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="2_875uh"]
 [ext_resource type="PackedScene" uid="uid://5mnlsyicmwh" path="res://src/level_elements/pod/empty_pod.tscn" id="4_nmxjw"]
 [ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="5_5takt"]
@@ -11,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cju0hxa8hklrk" path="res://assets/mvp4_assets/holder-sheet.png" id="9_cfh62"]
 
 [node name="Contact" type="Node2D"]
+script = ExtResource("1_gefyg")
 
 [node name="ClickerGlow" type="Sprite2D" parent="."]
 modulate = Color(0.563626, 0.563626, 0.563626, 1)
@@ -54,7 +56,6 @@ z_index = 10
 [node name="NPC" parent="." node_paths=PackedStringArray("npc_sprite") instance=ExtResource("7_uidh1")]
 position = Vector2(-1262, -198)
 dialogue_file = "res://assets/dialogue/upwell dialogue - tobymvp3.csv"
-faces_you_during_dialogue = false
 npc_sprite = NodePath("Toby")
 
 [node name="Toby" type="Sprite2D" parent="NPC"]
@@ -62,13 +63,11 @@ position = Vector2(8, 16)
 scale = Vector2(-0.631, 0.631)
 texture = ExtResource("8_767uu")
 
-[node name="NPC3" parent="." node_paths=PackedStringArray("npc_sprite") instance=ExtResource("7_uidh1")]
+[node name="NPC3" parent="." instance=ExtResource("7_uidh1")]
 modulate = Color(0.603923, 0.603923, 0.603923, 1)
 position = Vector2(-896, -896)
 rotation = 3.14159
 dialogue_file = "res://assets/dialogue/upwell dialogue - holdermvp4.csv"
-faces_you_during_dialogue = false
-npc_sprite = NodePath("")
 
 [node name="InteractLabel" parent="NPC3" index="1"]
 text = ""
@@ -78,14 +77,12 @@ texture = ExtResource("9_cfh62")
 hframes = 2
 vframes = 2
 
-[node name="NPC4" parent="." node_paths=PackedStringArray("npc_sprite") instance=ExtResource("7_uidh1")]
+[node name="NPC4" parent="." instance=ExtResource("7_uidh1")]
 modulate = Color(0.603923, 0.603923, 0.603923, 1)
 position = Vector2(-1679, -729)
 rotation = 2.35619
 scale = Vector2(-1, 1)
 dialogue_file = "res://assets/dialogue/upwell dialogue - holdermvp4.csv"
-faces_you_during_dialogue = false
-npc_sprite = NodePath("")
 
 [node name="InteractLabel" parent="NPC4" index="1"]
 text = ""
@@ -95,14 +92,12 @@ texture = ExtResource("9_cfh62")
 hframes = 2
 vframes = 2
 
-[node name="NPC6" parent="." node_paths=PackedStringArray("npc_sprite") instance=ExtResource("7_uidh1")]
+[node name="NPC6" parent="." instance=ExtResource("7_uidh1")]
 modulate = Color(0.603923, 0.603923, 0.603923, 1)
 position = Vector2(-777, -244)
 rotation = -0.528526
 scale = Vector2(-1, 1)
 dialogue_file = "res://assets/dialogue/upwell dialogue - holdermvp4.csv"
-faces_you_during_dialogue = false
-npc_sprite = NodePath("")
 
 [node name="InteractLabel" parent="NPC6" index="1"]
 text = ""
@@ -113,13 +108,11 @@ texture = ExtResource("9_cfh62")
 hframes = 2
 vframes = 2
 
-[node name="NPC7" parent="." node_paths=PackedStringArray("npc_sprite") instance=ExtResource("7_uidh1")]
+[node name="NPC7" parent="." instance=ExtResource("7_uidh1")]
 modulate = Color(0.603923, 0.603923, 0.603923, 1)
 position = Vector2(-1372, -912)
 rotation = 2.87979
 dialogue_file = "res://assets/dialogue/upwell dialogue - holdermvp4.csv"
-faces_you_during_dialogue = false
-npc_sprite = NodePath("")
 
 [node name="InteractLabel" parent="NPC7" index="1"]
 text = ""
@@ -129,14 +122,12 @@ texture = ExtResource("9_cfh62")
 hframes = 2
 vframes = 2
 
-[node name="NPC8" parent="." node_paths=PackedStringArray("npc_sprite") instance=ExtResource("7_uidh1")]
+[node name="NPC8" parent="." instance=ExtResource("7_uidh1")]
 modulate = Color(0.603923, 0.603923, 0.603923, 1)
 position = Vector2(-347, -827)
 rotation = -2.95336
 scale = Vector2(-1, 1)
 dialogue_file = "res://assets/dialogue/upwell dialogue - holdermvp4.csv"
-faces_you_during_dialogue = false
-npc_sprite = NodePath("")
 
 [node name="InteractLabel" parent="NPC8" index="1"]
 text = ""
@@ -147,13 +138,11 @@ texture = ExtResource("9_cfh62")
 hframes = 2
 vframes = 2
 
-[node name="NPC9" parent="." node_paths=PackedStringArray("npc_sprite") instance=ExtResource("7_uidh1")]
+[node name="NPC9" parent="." instance=ExtResource("7_uidh1")]
 modulate = Color(0.603923, 0.603923, 0.603923, 1)
 position = Vector2(567, -254)
 rotation = -0.785397
 dialogue_file = "res://assets/dialogue/upwell dialogue - holdermvp4.csv"
-faces_you_during_dialogue = false
-npc_sprite = NodePath("")
 
 [node name="InteractLabel" parent="NPC9" index="1"]
 text = ""
@@ -163,14 +152,12 @@ texture = ExtResource("9_cfh62")
 hframes = 2
 vframes = 2
 
-[node name="NPC10" parent="." node_paths=PackedStringArray("npc_sprite") instance=ExtResource("7_uidh1")]
+[node name="NPC10" parent="." instance=ExtResource("7_uidh1")]
 modulate = Color(0.603923, 0.603923, 0.603923, 1)
 position = Vector2(-18, -243)
 rotation = 0.450862
 scale = Vector2(-1, 1)
 dialogue_file = "res://assets/dialogue/upwell dialogue - holdermvp4.csv"
-faces_you_during_dialogue = false
-npc_sprite = NodePath("")
 
 [node name="InteractLabel" parent="NPC10" index="1"]
 text = ""
@@ -180,13 +167,11 @@ texture = ExtResource("9_cfh62")
 hframes = 2
 vframes = 2
 
-[node name="NPC11" parent="." node_paths=PackedStringArray("npc_sprite") instance=ExtResource("7_uidh1")]
+[node name="NPC11" parent="." instance=ExtResource("7_uidh1")]
 modulate = Color(0.603923, 0.603923, 0.603923, 1)
 position = Vector2(419, -946)
 rotation = -2.87979
 dialogue_file = "res://assets/dialogue/upwell dialogue - holdermvp4.csv"
-faces_you_during_dialogue = false
-npc_sprite = NodePath("")
 
 [node name="InteractLabel" parent="NPC11" index="1"]
 text = ""
@@ -196,14 +181,12 @@ texture = ExtResource("9_cfh62")
 hframes = 2
 vframes = 2
 
-[node name="NPC12" parent="." node_paths=PackedStringArray("npc_sprite") instance=ExtResource("7_uidh1")]
+[node name="NPC12" parent="." instance=ExtResource("7_uidh1")]
 modulate = Color(0.603923, 0.603923, 0.603923, 1)
 position = Vector2(823, -697)
 rotation = -1.83259
 scale = Vector2(-1, 1)
 dialogue_file = "res://assets/dialogue/upwell dialogue - holdermvp4.csv"
-faces_you_during_dialogue = false
-npc_sprite = NodePath("")
 
 [node name="InteractLabel" parent="NPC12" index="1"]
 text = ""
