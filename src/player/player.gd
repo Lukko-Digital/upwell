@@ -19,6 +19,8 @@ const PLAYER = {
 	ARC_POINTS = 100,
 }
 
+const MOUSE_THROW_OFFSET = Vector2(0, -50)
+
 @export_group("Node References")
 ## Camera reference for a level's test player, does not need to be set for the
 ## player in [Game]
@@ -116,7 +118,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("throw"):
 		aiming = true
 	if event.is_action_pressed("cancel"):
-		aiming = false
+		if aiming:
+			aiming = false
+			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
 	if event.is_action_released("throw"):
 		throw()
@@ -377,6 +381,7 @@ func throw():
 		not in_dialogue
 	):
 		return
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	var dir = (get_global_mouse_position() - global_position).normalized()
 	spawn_clicker(dir * PLAYER.THROW_VELOCITY)
 
@@ -394,6 +399,7 @@ func handle_throw_arc():
 
 	if Input.is_action_just_pressed("throw"):
 		warp_mouse_to_player()
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 	var pos = Vector2.ZERO
 	## The rigid body flies in a parabola with slightly less amplitude than
@@ -417,7 +423,7 @@ func handle_throw_arc():
 			break
 
 func warp_mouse_to_player():
-	var player_canvas_pos = get_screen_transform().origin
+	var player_canvas_pos = get_screen_transform().origin + MOUSE_THROW_OFFSET
 	get_viewport().warp_mouse(player_canvas_pos)
 
 ## ------------------------------ SIGNAL HANDLES ------------------------------
