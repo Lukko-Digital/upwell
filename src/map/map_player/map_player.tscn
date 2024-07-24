@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d0rlssnvit7w4"]
+[gd_scene load_steps=24 format=3 uid="uid://d0rlssnvit7w4"]
 
 [ext_resource type="Script" path="res://src/map/map_player/map_player.gd" id="1_g3ols"]
 [ext_resource type="Texture2D" uid="uid://cb1ud4vqk0bd5" path="res://assets/ui/map/player_glow.png" id="2_dt38u"]
@@ -8,9 +8,15 @@
 [ext_resource type="Texture2D" uid="uid://vr33qlvb418f" path="res://assets/ui/map/ring5.png" id="4_rs5vh"]
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="5_57n47"]
 [ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="6_jc7tl"]
+[ext_resource type="Texture2D" uid="uid://du32wpl6hkaff" path="res://assets/mvp4_assets/map_temp.png" id="7_2q3vc"]
+[ext_resource type="Texture2D" uid="uid://cl1p7ygvq4qg" path="res://assets/mvp3_assets/screenpuzzle/text_backer.png" id="10_77bw0"]
+[ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="10_qxwoe"]
 
 [sub_resource type="Gradient" id="Gradient_i3lws"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a7q01"]
+blend_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rmnfs"]
 radius = 16.0
@@ -25,6 +31,24 @@ variation_embolden = 0.76
 [sub_resource type="FontVariation" id="FontVariation_o7465"]
 base_font = ExtResource("5_57n47")
 variation_embolden = 1.06
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bg83i"]
+
+[sub_resource type="FontVariation" id="FontVariation_q6uck"]
+base_font = ExtResource("5_57n47")
+variation_embolden = 0.87
+
+[sub_resource type="FontVariation" id="FontVariation_whvip"]
+base_font = ExtResource("5_57n47")
+variation_embolden = 2.0
+
+[sub_resource type="FontVariation" id="FontVariation_j0s38"]
+base_font = ExtResource("10_qxwoe")
+variation_embolden = 0.87
+
+[sub_resource type="FontVariation" id="FontVariation_mjnts"]
+base_font = ExtResource("10_qxwoe")
+variation_embolden = 1.85
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r58ii"]
 radius = 31.0161
@@ -51,10 +75,14 @@ texture = ExtResource("4_dgis1")
 texture_mode = 2
 
 [node name="Ring1" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.466667)
+material = SubResource("CanvasItemMaterial_a7q01")
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("3_ixl3o")
 
 [node name="Ring5" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.466667)
+material = SubResource("CanvasItemMaterial_a7q01")
 texture = ExtResource("4_rs5vh")
 
 [node name="PlayerBody" type="Area2D" parent="."]
@@ -72,41 +100,101 @@ shape = SubResource("CircleShape2D_qgkvp")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
+
+[node name="MapTemp" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(961, 529)
+texture = ExtResource("7_2q3vc")
 
 [node name="Energy" type="ProgressBar" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0.878431)
-offset_left = 201.0
-offset_top = 836.0
-offset_right = 337.0
-offset_bottom = 1525.0
+offset_left = 542.003
+offset_top = 1688.0
+offset_right = 678.003
+offset_bottom = 2377.0
 rotation = 3.14159
+scale = Vector2(2, 2)
 mouse_filter = 2
 value = 100.0
 fill_mode = 2
 show_percentage = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 62.0
-offset_top = 831.0
-offset_right = 668.0
-offset_bottom = 1104.0
+offset_left = 273.003
+offset_top = 1685.0
+offset_right = 2022.0
+offset_bottom = 2594.0
 scale = Vector2(0.264077, 0.264077)
 mouse_filter = 2
 theme_override_colors/default_color = Color(1, 1, 1, 0.505882)
 theme_override_fonts/normal_font = SubResource("FontVariation_r8fn4")
-theme_override_font_sizes/normal_font_size = 174
+theme_override_font_sizes/normal_font_size = 334
 text = "POWER"
 
 [node name="WarningLabel" type="Label" parent="CanvasLayer"]
 visible = false
 offset_left = -4.0
-offset_top = 907.0
+offset_top = 1074.0
 offset_right = 1921.0
-offset_bottom = 1110.0
+offset_bottom = 1277.0
+scale = Vector2(1.9929, 1.9929)
 theme_override_fonts/font = SubResource("FontVariation_o7465")
 theme_override_font_sizes/font_size = 50
 text = "YOU RAN OUT OF ENERGY"
 horizontal_alignment = 1
+
+[node name="TextBacker" type="TextureRect" parent="CanvasLayer"]
+visible = false
+modulate = Color(0.612036, 0.612036, 0.612036, 1)
+material = SubResource("CanvasItemMaterial_bg83i")
+offset_left = 2554.0
+offset_top = 346.0
+offset_right = 3714.0
+offset_bottom = 1761.0
+texture = ExtResource("10_77bw0")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/TextBacker"]
+layout_mode = 2
+offset_top = -7.0
+offset_right = 1160.0
+offset_bottom = 1427.0
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TextBacker/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 110
+theme_override_constants/margin_top = 115
+theme_override_constants/margin_right = 110
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/TextBacker/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_q6uck")
+theme_override_fonts/bold_font = SubResource("FontVariation_whvip")
+theme_override_fonts/italics_font = SubResource("FontVariation_j0s38")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_mjnts")
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+bbcode_enabled = true
+text = "[center][b]LOCATION DETAILS[/b]
+
+-bla bla bla
+
+
+bla bla bla bla
+
+
+read this later"
+shortcut_keys_enabled = false
 
 [node name="GravityDetector" type="Area2D" parent="."]
 collision_layer = 2
