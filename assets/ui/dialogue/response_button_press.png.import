@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dawuvaani7htj"
-path="res://.godot/imported/hazard_3.png-78cc7513fe105c636c8221ad4493808c.ctex"
+uid="uid://cirp418qaxx05"
+path="res://.godot/imported/response_button_press.png-60736edd0c336f9eb23d1458ccb61cd0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/map/hazards/hazard_3.png"
-dest_files=["res://.godot/imported/hazard_3.png-78cc7513fe105c636c8221ad4493808c.ctex"]
+source_file="res://assets/ui/dialogue/response_button_press.png"
+dest_files=["res://.godot/imported/response_button_press.png-60736edd0c336f9eb23d1458ccb61cd0.ctex"]
 
 [params]
 

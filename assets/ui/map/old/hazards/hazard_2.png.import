@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bg0177p57lhya"
-path="res://.godot/imported/hazard_2.png-0181c853efb599f2f397eb8623940b7c.ctex"
+path="res://.godot/imported/hazard_2.png-e489007f7f180cbbbd60d1dbb128661e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/map/hazards/hazard_2.png"
-dest_files=["res://.godot/imported/hazard_2.png-0181c853efb599f2f397eb8623940b7c.ctex"]
+source_file="res://assets/ui/map/old/hazards/hazard_2.png"
+dest_files=["res://.godot/imported/hazard_2.png-e489007f7f180cbbbd60d1dbb128661e.ctex"]
 
 [params]
 

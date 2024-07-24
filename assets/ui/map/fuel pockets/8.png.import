@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dt6majnh5x6cu"
-path="res://.godot/imported/hazard_4.png-9ce136b9be76ae4a407a0ac87c6125ef.ctex"
+uid="uid://urcj8q4otmsh"
+path="res://.godot/imported/8.png-fea459c628533e3997a97902c13adc53.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/map/hazards/hazard_4.png"
-dest_files=["res://.godot/imported/hazard_4.png-9ce136b9be76ae4a407a0ac87c6125ef.ctex"]
+source_file="res://assets/ui/map/fuel pockets/8.png"
+dest_files=["res://.godot/imported/8.png-fea459c628533e3997a97902c13adc53.ctex"]
 
 [params]
 
