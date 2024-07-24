@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://src/map/coolant_pocket.gd" id="1_f6bxe"]
 
 [node name="CoolantPocket" type="Area2D"]
+modulate = Color(1, 1, 1, 0.443137)
 collision_mask = 2
 script = ExtResource("1_f6bxe")
 

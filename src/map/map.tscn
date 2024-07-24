@@ -46,7 +46,6 @@ follow_viewport_enabled = true
 follow_viewport_scale = 1.24
 
 [node name="ParticleSoftest" type="Sprite2D" parent="FX/CanvasLayer"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(-2668.65, -599.677)
 scale = Vector2(4, 4)
@@ -54,7 +53,6 @@ texture = ExtResource("12_kdma8")
 metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest2" type="Sprite2D" parent="FX/CanvasLayer"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(1971.35, -631.677)
 scale = Vector2(4, 4)
@@ -62,7 +60,6 @@ texture = ExtResource("12_kdma8")
 metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest3" type="Sprite2D" parent="FX/CanvasLayer"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(-396.645, 1288.32)
 scale = Vector2(4, 4)
@@ -70,7 +67,6 @@ texture = ExtResource("12_kdma8")
 metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest4" type="Sprite2D" parent="FX/CanvasLayer"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(147.355, -3031.68)
 scale = Vector2(4, 4)
@@ -78,7 +74,6 @@ texture = ExtResource("12_kdma8")
 metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest5" type="Sprite2D" parent="FX/CanvasLayer"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(-492.645, -471.677)
 scale = Vector2(4, 4)
@@ -86,7 +81,6 @@ texture = ExtResource("12_kdma8")
 metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest6" type="Sprite2D" parent="FX/CanvasLayer"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(-3180.65, -2615.68)
 scale = Vector2(4, 4)
@@ -94,7 +88,6 @@ texture = ExtResource("12_kdma8")
 metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest7" type="Sprite2D" parent="FX/CanvasLayer"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(-2476.65, 1992.32)
 scale = Vector2(4, 4)
@@ -102,7 +95,6 @@ texture = ExtResource("12_kdma8")
 metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest8" type="Sprite2D" parent="FX/CanvasLayer"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(787.355, 2184.32)
 scale = Vector2(4, 4)
@@ -110,7 +102,6 @@ texture = ExtResource("12_kdma8")
 metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest9" type="Sprite2D" parent="FX/CanvasLayer"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(3859.35, 232.322)
 scale = Vector2(4, 4)
@@ -129,7 +120,7 @@ level = ExtResource("5_ga2oe")
 name_text = "001.CONTACT"
 
 [node name="003_TEST" parent="Levels" instance=ExtResource("4_17lxb")]
-position = Vector2(335, 443.25)
+position = Vector2(236.25, 398)
 level = ExtResource("8_itcue")
 name_text = "003.TEST"
 sprite_scale = 1.225
@@ -144,10 +135,10 @@ sprite_scale = 0.785
 position = Vector2(-254, 313)
 level = ExtResource("9_f7cig")
 name_text = "H02.RECURRENCE"
-sprite_scale = 0.435
+sprite_scale = 0.585
 
 [node name="004_RELAPSE" parent="Levels" instance=ExtResource("4_17lxb")]
-position = Vector2(-520, -196)
+position = Vector2(-468.75, -143.75)
 level = ExtResource("9_bymtf")
 name_text = "004.RELAPSE"
 sprite_scale = 0.675
@@ -176,6 +167,7 @@ name_text = " "
 sprite_scale = 0.0
 
 [node name="MapPlayer" parent="." instance=ExtResource("2_uwq5e")]
+metadata/_edit_lock_ = true
 
 [node name="Camera2D2" type="Camera2D" parent="MapPlayer"]
 zoom = Vector2(0.15, 0.15)
@@ -192,7 +184,7 @@ metadata/_edit_lock_ = true
 position = Vector2(-0.5, 0)
 
 [node name="CoolantPocket1" parent="fuel" instance=ExtResource("6_4a6mq")]
-position = Vector2(408.75, -558)
+position = Vector2(-1037.25, -336)
 rotation = -1.0472
 scale = Vector2(0.713269, 0.721043)
 
@@ -210,7 +202,7 @@ polygon = PackedVector2Array(73.5, -114.9, 73.5, -113.2, 94.5, -102.2, 94.5, -10
 metadata/_edit_lock_ = true
 
 [node name="CoolantPocket2" parent="fuel" instance=ExtResource("6_4a6mq")]
-position = Vector2(-426.5, -389.25)
+position = Vector2(-330.75, -242)
 rotation = -1.0472
 scale = Vector2(0.713269, 0.721043)
 
@@ -228,9 +220,9 @@ polygon = PackedVector2Array(17.5, -56.8, 17.5, -55.4, 33.5, -49.4, 33.5, -47.8,
 metadata/_edit_lock_ = true
 
 [node name="CoolantPocket3" parent="fuel" instance=ExtResource("6_4a6mq")]
-position = Vector2(46.75, 389)
+position = Vector2(-35.25, 208)
 rotation = -1.0472
-scale = Vector2(0.713269, 0.721043)
+scale = Vector2(0.51168, 0.517257)
 
 [node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket3"]
 position = Vector2(1.82124, -1.04015)
@@ -246,7 +238,7 @@ polygon = PackedVector2Array(26.5, -79.2, 26.5, -77.9, 43.5, -71.9, 43.5, -70.6,
 metadata/_edit_lock_ = true
 
 [node name="CoolantPocket4" parent="fuel" instance=ExtResource("6_4a6mq")]
-position = Vector2(345.75, 64.25)
+position = Vector2(335.5, -29.5)
 rotation = -1.0472
 scale = Vector2(0.713269, 0.721043)
 
@@ -264,7 +256,7 @@ polygon = PackedVector2Array(15.5, -56.8, 15.5, -55.4, 31.5, -49.4, 31.5, -47.8,
 metadata/_edit_lock_ = true
 
 [node name="CoolantPocket5" parent="fuel" instance=ExtResource("6_4a6mq")]
-position = Vector2(-300.25, 115.5)
+position = Vector2(-675.75, 315.75)
 rotation = -1.0472
 scale = Vector2(0.713269, 0.721043)
 
@@ -282,9 +274,9 @@ polygon = PackedVector2Array(10, -51.8, 10, -50.3, 33, -28.4, 33, -27, 51, 2.9, 
 metadata/_edit_lock_ = true
 
 [node name="CoolantPocket6" parent="fuel" instance=ExtResource("6_4a6mq")]
-position = Vector2(-919.25, 360.25)
-rotation = -3.16277
-scale = Vector2(0.713269, 0.721043)
+position = Vector2(645.75, -219)
+rotation = -3.61318
+scale = Vector2(0.397331, 0.401662)
 
 [node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket6"]
 position = Vector2(1.82124, -1.04015)
@@ -299,11 +291,317 @@ rotation = 2.25714
 polygon = PackedVector2Array(73.5, -114.9, 73.5, -113.2, 94.5, -102.2, 94.5, -100.9, 107.5, -86.8, 107.5, -84.5, 122.5, -59.6, 122.5, -58.4, 127.5, -34.2, 127.5, -33, 128.5, 24, 127, 24, 121.1, 49, 119.9, 49, 114.9, 62, 113.5, 62, 101.5, 79, 99.3, 79, 94.3, 84, 92.8, 84, 75.7, 87, 73.5, 87, -7.5, 89, -7.5, 89.8, -47.4, 93, -48.6, 93, -86.5, 90.9, -86.5, 89.5, -106.5, 83.5, -106.5, 82, -116.5, 74, -116.5, 71.7, -124.5, 61.7, -124.5, 57, -126.7, 34, -125.2, 34, -122.2, 17, -120.7, 17, -107.7, -9, -106.4, -9, -77.4, -44, -75.2, -44, -13.2, -93, -12.1, -93, 21, -111, 25.4, -111, 43.5, -115.5, 43.5, -117.2)
 metadata/_edit_lock_ = true
 
+[node name="CoolantPocket7" parent="fuel" instance=ExtResource("6_4a6mq")]
+position = Vector2(-217.5, 648.75)
+rotation = 0.861351
+scale = Vector2(0.713269, 0.721043)
+
+[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket7"]
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+texture = ExtResource("17_506vn")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket7"]
+visible = false
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+polygon = PackedVector2Array(26.5, -79.2, 26.5, -77.9, 43.5, -71.9, 43.5, -70.6, 60.5, -59.6, 60.5, -58.2, 74.5, -41.2, 74.5, -37.8, 82.5, -18.9, 82.5, -16.5, 83.5, 12.5, 82.2, 12.5, 79.1, 26.5, 77.6, 26.5, 62.6, 51.5, 61.2, 51.5, 39.2, 70.5, 36, 70.5, 21.1, 79.5, 15.6, 79.5, -4.3, 84.5, -6.6, 84.5, -30.5, 81.2, -30.5, 79.8, -44.5, 73.8, -44.5, 72.4, -68.5, 51.4, -68.5, 48, -79.5, 29, -79.5, 27.5, -82.8, 3.5, -81.3, 3.5, -77.3, -27.5, -75.6, -27.5, -60.7, -53.5, -59.4, -53.5, -43.4, -70.5, -41.1, -70.5, -29.1, -78.5, -24.9, -78.5, -15.9, -82.5, 0.5, -82.5, 0.5, -83.9)
+metadata/_edit_lock_ = true
+
+[node name="CoolantPocket8" parent="fuel" instance=ExtResource("6_4a6mq")]
+position = Vector2(193.5, -658)
+rotation = 0.861351
+scale = Vector2(0.713269, 0.721043)
+
+[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket8"]
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+texture = ExtResource("17_506vn")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket8"]
+visible = false
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+polygon = PackedVector2Array(26.5, -79.2, 26.5, -77.9, 43.5, -71.9, 43.5, -70.6, 60.5, -59.6, 60.5, -58.2, 74.5, -41.2, 74.5, -37.8, 82.5, -18.9, 82.5, -16.5, 83.5, 12.5, 82.2, 12.5, 79.1, 26.5, 77.6, 26.5, 62.6, 51.5, 61.2, 51.5, 39.2, 70.5, 36, 70.5, 21.1, 79.5, 15.6, 79.5, -4.3, 84.5, -6.6, 84.5, -30.5, 81.2, -30.5, 79.8, -44.5, 73.8, -44.5, 72.4, -68.5, 51.4, -68.5, 48, -79.5, 29, -79.5, 27.5, -82.8, 3.5, -81.3, 3.5, -77.3, -27.5, -75.6, -27.5, -60.7, -53.5, -59.4, -53.5, -43.4, -70.5, -41.1, -70.5, -29.1, -78.5, -24.9, -78.5, -15.9, -82.5, 0.5, -82.5, 0.5, -83.9)
+metadata/_edit_lock_ = true
+
+[node name="CoolantPocket9" parent="fuel" instance=ExtResource("6_4a6mq")]
+position = Vector2(418.25, 746.5)
+rotation = -1.0472
+scale = Vector2(0.713269, 0.721043)
+
+[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket9"]
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+texture = ExtResource("16_g8ccc")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket9"]
+visible = false
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+polygon = PackedVector2Array(17.5, -56.8, 17.5, -55.4, 33.5, -49.4, 33.5, -47.8, 54.5, -27.9, 54.5, -24.6, 59.5, -17.6, 59.5, -12, 61.7, 9, 60.2, 9, 57.1, 23, 55.8, 23, 49.7, 34, 48.3, 34, 40.3, 42, 37.9, 42, 5.9, 57, 4.5, 57, -25.5, 56, -25.5, 54.4, -46.5, 46.4, -46.5, 44.8, -54.5, 36.8, -54.5, 34.3, -59.5, 22.4, -59.5, 21, -60.6, 1, -59.2, 1, -56.2, -17, -54.7, -17, -44.7, -36, -43.2, -36, -23.2, -53, -18.6, -53, -1.5, -57.5, -1.5, -59.3)
+metadata/_edit_lock_ = true
+
+[node name="CoolantPocket10" parent="fuel" instance=ExtResource("6_4a6mq")]
+position = Vector2(-1145, -3.25001)
+rotation = -1.0472
+scale = Vector2(0.713269, 0.721043)
+
+[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket10"]
+position = Vector2(4.247, 25.9998)
+rotation = 2.25714
+texture = ExtResource("19_fvbb2")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket10"]
+visible = false
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+polygon = PackedVector2Array(10, -51.8, 10, -50.3, 33, -28.4, 33, -27, 51, 2.9, 51, 4.5, 55.3, 39.5, 53.8, 39.5, 50.7, 61.5, 49.2, 61.5, 41.2, 77.5, 39.8, 77.5, 16.8, 98.5, 14.5, 98.5, -6.5, 109.5, -7.8, 109.5, -23, 110.7, -23, 109.2, -45, 105.2, -45, 103.6, -67, 89.6, -67, 88.3, -84, 71.3, -84, 69.2, -93, 59.3, -93, 55.9, -101, 37.9, -101, 30.5, -103.3, 13.5, -101.8, 13.5, -97.8, -17.5, -96.2, -17.5, -86.2, -36.5, -84.8, -36.5, -59.8, -61.5, -56.5, -61.5, -46.5, -66.5, -31, -66.5, -31, -68.5)
+metadata/_edit_lock_ = true
+
+[node name="CoolantPocket11" parent="fuel" instance=ExtResource("6_4a6mq")]
+position = Vector2(-890.5, -597.25)
+rotation = -1.0472
+scale = Vector2(0.713269, 0.721043)
+
+[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket11"]
+position = Vector2(4.247, 25.9998)
+rotation = 2.25714
+texture = ExtResource("19_fvbb2")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket11"]
+visible = false
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+polygon = PackedVector2Array(10, -51.8, 10, -50.3, 33, -28.4, 33, -27, 51, 2.9, 51, 4.5, 55.3, 39.5, 53.8, 39.5, 50.7, 61.5, 49.2, 61.5, 41.2, 77.5, 39.8, 77.5, 16.8, 98.5, 14.5, 98.5, -6.5, 109.5, -7.8, 109.5, -23, 110.7, -23, 109.2, -45, 105.2, -45, 103.6, -67, 89.6, -67, 88.3, -84, 71.3, -84, 69.2, -93, 59.3, -93, 55.9, -101, 37.9, -101, 30.5, -103.3, 13.5, -101.8, 13.5, -97.8, -17.5, -96.2, -17.5, -86.2, -36.5, -84.8, -36.5, -59.8, -61.5, -56.5, -61.5, -46.5, -66.5, -31, -66.5, -31, -68.5)
+metadata/_edit_lock_ = true
+
+[node name="CoolantPocket12" parent="fuel" instance=ExtResource("6_4a6mq")]
+position = Vector2(1145.25, 328)
+rotation = -4.18878
+scale = Vector2(0.713269, 0.721043)
+
+[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket12"]
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+texture = ExtResource("15_4x36h")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket12"]
+visible = false
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+polygon = PackedVector2Array(73.5, -114.9, 73.5, -113.2, 94.5, -102.2, 94.5, -100.9, 107.5, -86.8, 107.5, -84.5, 122.5, -59.6, 122.5, -58.4, 127.5, -34.2, 127.5, -33, 128.5, 24, 127, 24, 121.1, 49, 119.9, 49, 114.9, 62, 113.5, 62, 101.5, 79, 99.3, 79, 94.3, 84, 92.8, 84, 75.7, 87, 73.5, 87, -7.5, 89, -7.5, 89.8, -47.4, 93, -48.6, 93, -86.5, 90.9, -86.5, 89.5, -106.5, 83.5, -106.5, 82, -116.5, 74, -116.5, 71.7, -124.5, 61.7, -124.5, 57, -126.7, 34, -125.2, 34, -122.2, 17, -120.7, 17, -107.7, -9, -106.4, -9, -77.4, -44, -75.2, -44, -13.2, -93, -12.1, -93, 21, -111, 25.4, -111, 43.5, -115.5, 43.5, -117.2)
+metadata/_edit_lock_ = true
+
+[node name="CoolantPocket13" parent="fuel" instance=ExtResource("6_4a6mq")]
+position = Vector2(-628.25, -63)
+rotation = -1.0472
+scale = Vector2(0.713269, 0.721043)
+
+[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket13"]
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+texture = ExtResource("16_g8ccc")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket13"]
+visible = false
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+polygon = PackedVector2Array(17.5, -56.8, 17.5, -55.4, 33.5, -49.4, 33.5, -47.8, 54.5, -27.9, 54.5, -24.6, 59.5, -17.6, 59.5, -12, 61.7, 9, 60.2, 9, 57.1, 23, 55.8, 23, 49.7, 34, 48.3, 34, 40.3, 42, 37.9, 42, 5.9, 57, 4.5, 57, -25.5, 56, -25.5, 54.4, -46.5, 46.4, -46.5, 44.8, -54.5, 36.8, -54.5, 34.3, -59.5, 22.4, -59.5, 21, -60.6, 1, -59.2, 1, -56.2, -17, -54.7, -17, -44.7, -36, -43.2, -36, -23.2, -53, -18.6, -53, -1.5, -57.5, -1.5, -59.3)
+metadata/_edit_lock_ = true
+
+[node name="CoolantPocket14" parent="fuel" instance=ExtResource("6_4a6mq")]
+position = Vector2(-1429.5, 561.5)
+rotation = -1.0472
+scale = Vector2(0.713269, 0.721043)
+
+[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket14"]
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+texture = ExtResource("15_4x36h")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket14"]
+visible = false
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+polygon = PackedVector2Array(73.5, -114.9, 73.5, -113.2, 94.5, -102.2, 94.5, -100.9, 107.5, -86.8, 107.5, -84.5, 122.5, -59.6, 122.5, -58.4, 127.5, -34.2, 127.5, -33, 128.5, 24, 127, 24, 121.1, 49, 119.9, 49, 114.9, 62, 113.5, 62, 101.5, 79, 99.3, 79, 94.3, 84, 92.8, 84, 75.7, 87, 73.5, 87, -7.5, 89, -7.5, 89.8, -47.4, 93, -48.6, 93, -86.5, 90.9, -86.5, 89.5, -106.5, 83.5, -106.5, 82, -116.5, 74, -116.5, 71.7, -124.5, 61.7, -124.5, 57, -126.7, 34, -125.2, 34, -122.2, 17, -120.7, 17, -107.7, -9, -106.4, -9, -77.4, -44, -75.2, -44, -13.2, -93, -12.1, -93, 21, -111, 25.4, -111, 43.5, -115.5, 43.5, -117.2)
+metadata/_edit_lock_ = true
+
+[node name="CoolantPocket15" parent="fuel" instance=ExtResource("6_4a6mq")]
+position = Vector2(-1162, 405.25)
+rotation = -1.0472
+scale = Vector2(0.713269, 0.721043)
+
+[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket15"]
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+texture = ExtResource("16_g8ccc")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket15"]
+visible = false
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+polygon = PackedVector2Array(17.5, -56.8, 17.5, -55.4, 33.5, -49.4, 33.5, -47.8, 54.5, -27.9, 54.5, -24.6, 59.5, -17.6, 59.5, -12, 61.7, 9, 60.2, 9, 57.1, 23, 55.8, 23, 49.7, 34, 48.3, 34, 40.3, 42, 37.9, 42, 5.9, 57, 4.5, 57, -25.5, 56, -25.5, 54.4, -46.5, 46.4, -46.5, 44.8, -54.5, 36.8, -54.5, 34.3, -59.5, 22.4, -59.5, 21, -60.6, 1, -59.2, 1, -56.2, -17, -54.7, -17, -44.7, -36, -43.2, -36, -23.2, -53, -18.6, -53, -1.5, -57.5, -1.5, -59.3)
+metadata/_edit_lock_ = true
+
+[node name="CoolantPocket16" parent="fuel" instance=ExtResource("6_4a6mq")]
+position = Vector2(-1363.75, 265.75)
+rotation = -2.7992
+scale = Vector2(0.713269, 0.721043)
+
+[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket16"]
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+texture = ExtResource("16_g8ccc")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket16"]
+visible = false
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+polygon = PackedVector2Array(17.5, -56.8, 17.5, -55.4, 33.5, -49.4, 33.5, -47.8, 54.5, -27.9, 54.5, -24.6, 59.5, -17.6, 59.5, -12, 61.7, 9, 60.2, 9, 57.1, 23, 55.8, 23, 49.7, 34, 48.3, 34, 40.3, 42, 37.9, 42, 5.9, 57, 4.5, 57, -25.5, 56, -25.5, 54.4, -46.5, 46.4, -46.5, 44.8, -54.5, 36.8, -54.5, 34.3, -59.5, 22.4, -59.5, 21, -60.6, 1, -59.2, 1, -56.2, -17, -54.7, -17, -44.7, -36, -43.2, -36, -23.2, -53, -18.6, -53, -1.5, -57.5, -1.5, -59.3)
+metadata/_edit_lock_ = true
+
+[node name="CoolantPocket17" parent="fuel" instance=ExtResource("6_4a6mq")]
+position = Vector2(-1429.5, 561.5)
+rotation = -1.0472
+scale = Vector2(0.713269, 0.721043)
+
+[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket17"]
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+texture = ExtResource("15_4x36h")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket17"]
+visible = false
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+polygon = PackedVector2Array(73.5, -114.9, 73.5, -113.2, 94.5, -102.2, 94.5, -100.9, 107.5, -86.8, 107.5, -84.5, 122.5, -59.6, 122.5, -58.4, 127.5, -34.2, 127.5, -33, 128.5, 24, 127, 24, 121.1, 49, 119.9, 49, 114.9, 62, 113.5, 62, 101.5, 79, 99.3, 79, 94.3, 84, 92.8, 84, 75.7, 87, 73.5, 87, -7.5, 89, -7.5, 89.8, -47.4, 93, -48.6, 93, -86.5, 90.9, -86.5, 89.5, -106.5, 83.5, -106.5, 82, -116.5, 74, -116.5, 71.7, -124.5, 61.7, -124.5, 57, -126.7, 34, -125.2, 34, -122.2, 17, -120.7, 17, -107.7, -9, -106.4, -9, -77.4, -44, -75.2, -44, -13.2, -93, -12.1, -93, 21, -111, 25.4, -111, 43.5, -115.5, 43.5, -117.2)
+metadata/_edit_lock_ = true
+
+[node name="CoolantPocket18" parent="fuel" instance=ExtResource("6_4a6mq")]
+position = Vector2(-1691.5, 203.5)
+rotation = 0.424863
+scale = Vector2(0.713269, 0.721043)
+
+[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket18"]
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+texture = ExtResource("15_4x36h")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket18"]
+visible = false
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+polygon = PackedVector2Array(73.5, -114.9, 73.5, -113.2, 94.5, -102.2, 94.5, -100.9, 107.5, -86.8, 107.5, -84.5, 122.5, -59.6, 122.5, -58.4, 127.5, -34.2, 127.5, -33, 128.5, 24, 127, 24, 121.1, 49, 119.9, 49, 114.9, 62, 113.5, 62, 101.5, 79, 99.3, 79, 94.3, 84, 92.8, 84, 75.7, 87, 73.5, 87, -7.5, 89, -7.5, 89.8, -47.4, 93, -48.6, 93, -86.5, 90.9, -86.5, 89.5, -106.5, 83.5, -106.5, 82, -116.5, 74, -116.5, 71.7, -124.5, 61.7, -124.5, 57, -126.7, 34, -125.2, 34, -122.2, 17, -120.7, 17, -107.7, -9, -106.4, -9, -77.4, -44, -75.2, -44, -13.2, -93, -12.1, -93, 21, -111, 25.4, -111, 43.5, -115.5, 43.5, -117.2)
+metadata/_edit_lock_ = true
+
+[node name="CoolantPocket19" parent="fuel" instance=ExtResource("6_4a6mq")]
+position = Vector2(391.5, 174.5)
+rotation = -1.0472
+scale = Vector2(0.51168, 0.517257)
+
+[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket19"]
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+texture = ExtResource("17_506vn")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket19"]
+visible = false
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+polygon = PackedVector2Array(26.5, -79.2, 26.5, -77.9, 43.5, -71.9, 43.5, -70.6, 60.5, -59.6, 60.5, -58.2, 74.5, -41.2, 74.5, -37.8, 82.5, -18.9, 82.5, -16.5, 83.5, 12.5, 82.2, 12.5, 79.1, 26.5, 77.6, 26.5, 62.6, 51.5, 61.2, 51.5, 39.2, 70.5, 36, 70.5, 21.1, 79.5, 15.6, 79.5, -4.3, 84.5, -6.6, 84.5, -30.5, 81.2, -30.5, 79.8, -44.5, 73.8, -44.5, 72.4, -68.5, 51.4, -68.5, 48, -79.5, 29, -79.5, 27.5, -82.8, 3.5, -81.3, 3.5, -77.3, -27.5, -75.6, -27.5, -60.7, -53.5, -59.4, -53.5, -43.4, -70.5, -41.1, -70.5, -29.1, -78.5, -24.9, -78.5, -15.9, -82.5, 0.5, -82.5, 0.5, -83.9)
+metadata/_edit_lock_ = true
+
+[node name="CoolantPocket20" parent="fuel" instance=ExtResource("6_4a6mq")]
+position = Vector2(1299.25, 658)
+rotation = -1.0472
+scale = Vector2(0.713269, 0.721043)
+
+[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket20"]
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+texture = ExtResource("16_g8ccc")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket20"]
+visible = false
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+polygon = PackedVector2Array(17.5, -56.8, 17.5, -55.4, 33.5, -49.4, 33.5, -47.8, 54.5, -27.9, 54.5, -24.6, 59.5, -17.6, 59.5, -12, 61.7, 9, 60.2, 9, 57.1, 23, 55.8, 23, 49.7, 34, 48.3, 34, 40.3, 42, 37.9, 42, 5.9, 57, 4.5, 57, -25.5, 56, -25.5, 54.4, -46.5, 46.4, -46.5, 44.8, -54.5, 36.8, -54.5, 34.3, -59.5, 22.4, -59.5, 21, -60.6, 1, -59.2, 1, -56.2, -17, -54.7, -17, -44.7, -36, -43.2, -36, -23.2, -53, -18.6, -53, -1.5, -57.5, -1.5, -59.3)
+metadata/_edit_lock_ = true
+
+[node name="CoolantPocket21" parent="fuel" instance=ExtResource("6_4a6mq")]
+position = Vector2(939.75, -559.25)
+rotation = -1.0472
+scale = Vector2(0.713269, 0.721043)
+
+[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket21"]
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+texture = ExtResource("16_g8ccc")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket21"]
+visible = false
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+polygon = PackedVector2Array(17.5, -56.8, 17.5, -55.4, 33.5, -49.4, 33.5, -47.8, 54.5, -27.9, 54.5, -24.6, 59.5, -17.6, 59.5, -12, 61.7, 9, 60.2, 9, 57.1, 23, 55.8, 23, 49.7, 34, 48.3, 34, 40.3, 42, 37.9, 42, 5.9, 57, 4.5, 57, -25.5, 56, -25.5, 54.4, -46.5, 46.4, -46.5, 44.8, -54.5, 36.8, -54.5, 34.3, -59.5, 22.4, -59.5, 21, -60.6, 1, -59.2, 1, -56.2, -17, -54.7, -17, -44.7, -36, -43.2, -36, -23.2, -53, -18.6, -53, -1.5, -57.5, -1.5, -59.3)
+metadata/_edit_lock_ = true
+
+[node name="CoolantPocket23" parent="fuel" instance=ExtResource("6_4a6mq")]
+position = Vector2(948.5, -272)
+rotation = -4.45058
+scale = Vector2(0.397331, 0.401662)
+
+[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket23"]
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+texture = ExtResource("15_4x36h")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket23"]
+visible = false
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+polygon = PackedVector2Array(73.5, -114.9, 73.5, -113.2, 94.5, -102.2, 94.5, -100.9, 107.5, -86.8, 107.5, -84.5, 122.5, -59.6, 122.5, -58.4, 127.5, -34.2, 127.5, -33, 128.5, 24, 127, 24, 121.1, 49, 119.9, 49, 114.9, 62, 113.5, 62, 101.5, 79, 99.3, 79, 94.3, 84, 92.8, 84, 75.7, 87, 73.5, 87, -7.5, 89, -7.5, 89.8, -47.4, 93, -48.6, 93, -86.5, 90.9, -86.5, 89.5, -106.5, 83.5, -106.5, 82, -116.5, 74, -116.5, 71.7, -124.5, 61.7, -124.5, 57, -126.7, 34, -125.2, 34, -122.2, 17, -120.7, 17, -107.7, -9, -106.4, -9, -77.4, -44, -75.2, -44, -13.2, -93, -12.1, -93, 21, -111, 25.4, -111, 43.5, -115.5, 43.5, -117.2)
+metadata/_edit_lock_ = true
+
+[node name="CoolantPocket24" parent="fuel" instance=ExtResource("6_4a6mq")]
+position = Vector2(1208.25, -450.75)
+rotation = 0.861351
+scale = Vector2(0.713269, 0.721043)
+
+[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket24"]
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+texture = ExtResource("17_506vn")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket24"]
+visible = false
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+polygon = PackedVector2Array(26.5, -79.2, 26.5, -77.9, 43.5, -71.9, 43.5, -70.6, 60.5, -59.6, 60.5, -58.2, 74.5, -41.2, 74.5, -37.8, 82.5, -18.9, 82.5, -16.5, 83.5, 12.5, 82.2, 12.5, 79.1, 26.5, 77.6, 26.5, 62.6, 51.5, 61.2, 51.5, 39.2, 70.5, 36, 70.5, 21.1, 79.5, 15.6, 79.5, -4.3, 84.5, -6.6, 84.5, -30.5, 81.2, -30.5, 79.8, -44.5, 73.8, -44.5, 72.4, -68.5, 51.4, -68.5, 48, -79.5, 29, -79.5, 27.5, -82.8, 3.5, -81.3, 3.5, -77.3, -27.5, -75.6, -27.5, -60.7, -53.5, -59.4, -53.5, -43.4, -70.5, -41.1, -70.5, -29.1, -78.5, -24.9, -78.5, -15.9, -82.5, 0.5, -82.5, 0.5, -83.9)
+metadata/_edit_lock_ = true
+
 [node name="Hazards" type="Node2D" parent="."]
 position = Vector2(-42, -47)
 
 [node name="Hazard1" parent="Hazards" instance=ExtResource("8_xqpvg")]
-position = Vector2(-577.75, 109.5)
+position = Vector2(-1107.5, -812.5)
 rotation = 1.54207
 scale = Vector2(1.66203, 1.66203)
 
@@ -315,7 +613,7 @@ metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard1"]
 visible = false
-position = Vector2(26.7738, 117.176)
+position = Vector2(2.89999, -1.4215)
 rotation = 3.31578
 scale = Vector2(0.256746, -0.226866)
 polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
@@ -334,7 +632,7 @@ metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard2"]
 visible = false
-position = Vector2(-47.5331, 137.482)
+position = Vector2(-18.9527, -3.76058)
 rotation = 5.28084
 scale = Vector2(-0.287033, -0.289083)
 polygon = PackedVector2Array(54.3035, -277.091, 65.7238, -273.838, 70.8756, -269.696, 85.9011, -250.207, 91.3837, -240.719, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 97.2219, 230.38, 92.9651, 232.463, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168.983, 224.489, -165.806, 225.561, -186.132, 209.433, -185.445, 211.467, -202.311, 196.85, -225.63, 192.5, -250.015, 175.86, -271.689, 147.004, -238.932, 100.296, -230.675, 87.0323, -216.211, 61.1876, -206.495, 55.0252, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -159.136, -194.199, -160.129, -210.24, -166.481, -234.612, -151.779, -309.384, -115.406, -333.072, -80.8745, -329.659, -35.0085, -326.025, -14.0939, -317.68, 3.52094, -311.565, 15.4063, -295.023, 27.0231, -294.364, 35.7567, -287.555, 46.8579, -282.865)
@@ -372,14 +670,14 @@ metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard4"]
 visible = false
-position = Vector2(-29.483, 149.817)
+position = Vector2(6.61832, 13.2369)
 rotation = 4.77558
 scale = Vector2(-0.498185, -0.554211)
 polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
 metadata/_edit_lock_ = true
 
 [node name="Hazard5" parent="Hazards" instance=ExtResource("8_xqpvg")]
-position = Vector2(-581.25, 661.75)
+position = Vector2(-516, 608.25)
 scale = Vector2(1.66203, 1.66203)
 
 [node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard5"]
@@ -390,14 +688,14 @@ metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard5"]
 visible = false
-position = Vector2(-60.0179, 145.454)
+position = Vector2(-9.92759, -1.52588e-05)
 rotation = 2.17636
 scale = Vector2(-0.434113, -0.415414)
 polygon = PackedVector2Array(33.9408, -268.1, 38.1047, -260.543, 40.2307, -242.703, 65.1255, -236.933, 79.1946, -229.055, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 203.583, -68.0191, 217.631, -27.0956, 223.22, 36.6829, 216.23, 43.9426, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 141.877, 217.967, 133.046, 224.357, 97.2219, 230.38, 92.9651, 232.463, 18.4, 248, 14.3, 248, -3.83087, 241.031, -6.70175, 236.061, -30.0405, 237.092, -34.5329, 238.581, -56.1189, 218.085, -62.4739, 223.123, -77.2224, 214.857, -76.3679, 208.513, -81.9562, 196.261, -88.8375, 187.147, -109.568, 188.933, -102.359, 189.002, -112.527, 173.018, -109.525, 168.643, -137.247, 166.239, -145.837, 164.087, -152.872, 151.56, -173.34, 134.66, -183.115, 90.6447, -195.08, 64.9502, -197.885, 58.1716, -206.495, 55.0252, -187.5, 38, -186.1, 38, -209.743, -52.5992, -208.144, -94.7138, -206.632, -113.424, -200.474, -124.485, -178.955, -142.256, -182.374, -151.233, -170.781, -176.356, -168.283, -187.852, -159.136, -194.199, -160.129, -210.24, -166.481, -234.612, -151.779, -309.384, -115.406, -333.072, -80.8745, -329.659, -35.0085, -326.025, -14.0939, -317.68, 3.52094, -311.565, 5.9339, -293.199, 15.7516, -286.649, 22.085, -281.543, 26.5337, -274.192)
 metadata/_edit_lock_ = true
 
 [node name="Hazard6" parent="Hazards" instance=ExtResource("8_xqpvg")]
-position = Vector2(-1200.25, -172.25)
+position = Vector2(-1509.5, -330.75)
 rotation = -0.881572
 scale = Vector2(1.66203, 1.66203)
 
@@ -409,15 +707,15 @@ metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard6"]
 visible = false
-position = Vector2(-29.483, 149.817)
+position = Vector2(-5.09817, 12.9721)
 rotation = 4.77558
 scale = Vector2(-0.498185, -0.554211)
 polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
 metadata/_edit_lock_ = true
 
 [node name="Hazard7" parent="Hazards" instance=ExtResource("8_xqpvg")]
-position = Vector2(725.5, -219.75)
-rotation = -1.21276
+position = Vector2(959.25, 12.5)
+rotation = -2.57377
 scale = Vector2(1.66203, 1.66203)
 
 [node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard7"]
@@ -428,7 +726,7 @@ metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard7"]
 visible = false
-position = Vector2(-60.0179, 145.454)
+position = Vector2(-4.81892, 3.07402)
 rotation = 2.17636
 scale = Vector2(-0.434113, -0.415414)
 polygon = PackedVector2Array(33.9408, -268.1, 38.1047, -260.543, 40.2307, -242.703, 65.1255, -236.933, 79.1946, -229.055, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 203.583, -68.0191, 217.631, -27.0956, 223.22, 36.6829, 216.23, 43.9426, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 141.877, 217.967, 133.046, 224.357, 97.2219, 230.38, 92.9651, 232.463, 18.4, 248, 14.3, 248, -3.83087, 241.031, -6.70175, 236.061, -30.0405, 237.092, -34.5329, 238.581, -56.1189, 218.085, -62.4739, 223.123, -77.2224, 214.857, -76.3679, 208.513, -81.9562, 196.261, -88.8375, 187.147, -109.568, 188.933, -102.359, 189.002, -112.527, 173.018, -109.525, 168.643, -137.247, 166.239, -145.837, 164.087, -152.872, 151.56, -173.34, 134.66, -183.115, 90.6447, -195.08, 64.9502, -197.885, 58.1716, -206.495, 55.0252, -187.5, 38, -186.1, 38, -209.743, -52.5992, -208.144, -94.7138, -206.632, -113.424, -200.474, -124.485, -178.955, -142.256, -182.374, -151.233, -170.781, -176.356, -168.283, -187.852, -159.136, -194.199, -160.129, -210.24, -166.481, -234.612, -151.779, -309.384, -115.406, -333.072, -80.8745, -329.659, -35.0085, -326.025, -14.0939, -317.68, 3.52094, -311.565, 5.9339, -293.199, 15.7516, -286.649, 22.085, -281.543, 26.5337, -274.192)
@@ -447,16 +745,16 @@ metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard8"]
 visible = false
-position = Vector2(-60.0179, 145.454)
+position = Vector2(11.0426, -1.82104)
 rotation = 2.17636
 scale = Vector2(-0.434113, -0.415414)
 polygon = PackedVector2Array(33.9408, -268.1, 38.1047, -260.543, 40.2307, -242.703, 65.1255, -236.933, 79.1946, -229.055, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 203.583, -68.0191, 217.631, -27.0956, 223.22, 36.6829, 216.23, 43.9426, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 141.877, 217.967, 133.046, 224.357, 97.2219, 230.38, 92.9651, 232.463, 18.4, 248, 14.3, 248, -3.83087, 241.031, -6.70175, 236.061, -30.0405, 237.092, -34.5329, 238.581, -56.1189, 218.085, -62.4739, 223.123, -77.2224, 214.857, -76.3679, 208.513, -81.9562, 196.261, -88.8375, 187.147, -109.568, 188.933, -102.359, 189.002, -112.527, 173.018, -109.525, 168.643, -137.247, 166.239, -145.837, 164.087, -152.872, 151.56, -173.34, 134.66, -183.115, 90.6447, -195.08, 64.9502, -197.885, 58.1716, -206.495, 55.0252, -187.5, 38, -186.1, 38, -209.743, -52.5992, -208.144, -94.7138, -206.632, -113.424, -200.474, -124.485, -178.955, -142.256, -182.374, -151.233, -170.781, -176.356, -168.283, -187.852, -159.136, -194.199, -160.129, -210.24, -166.481, -234.612, -151.779, -309.384, -115.406, -333.072, -80.8745, -329.659, -35.0085, -326.025, -14.0939, -317.68, 3.52094, -311.565, 5.9339, -293.199, 15.7516, -286.649, 22.085, -281.543, 26.5337, -274.192)
 metadata/_edit_lock_ = true
 
 [node name="Hazard9" parent="Hazards" instance=ExtResource("8_xqpvg")]
-position = Vector2(486, 237)
-rotation = 1.54207
-scale = Vector2(1.66203, 1.66203)
+position = Vector2(-157.25, 143)
+rotation = -1.309
+scale = Vector2(1.49519, 1.49519)
 
 [node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard9"]
 position = Vector2(-26.1599, 29.722)
@@ -468,6 +766,328 @@ metadata/_edit_lock_ = true
 visible = false
 position = Vector2(4.72153, -1.97105)
 rotation = 3.11507
+scale = Vector2(0.256746, -0.226866)
+polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
+metadata/_edit_lock_ = true
+
+[node name="Hazard10" parent="Hazards" instance=ExtResource("8_xqpvg")]
+position = Vector2(1476.5, -252.25)
+rotation = 1.57079
+scale = Vector2(1.66203, 1.66203)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard10"]
+position = Vector2(25.5711, 3.91103)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("22_holn1")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard10"]
+visible = false
+position = Vector2(-25.2703, -7.06964)
+rotation = 5.28084
+scale = Vector2(-0.287033, -0.289083)
+polygon = PackedVector2Array(54.3035, -277.091, 65.7238, -273.838, 70.8756, -269.696, 85.9011, -250.207, 91.3837, -240.719, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 97.2219, 230.38, 92.9651, 232.463, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168.983, 224.489, -165.806, 225.561, -186.132, 209.433, -185.445, 211.467, -202.311, 196.85, -225.63, 192.5, -250.015, 175.86, -271.689, 147.004, -238.932, 100.296, -230.675, 87.0323, -216.211, 61.1876, -206.495, 55.0252, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -159.136, -194.199, -160.129, -210.24, -166.481, -234.612, -151.779, -309.384, -115.406, -333.072, -80.8745, -329.659, -35.0085, -326.025, -14.0939, -317.68, 3.52094, -311.565, 15.4063, -295.023, 27.0231, -294.364, 35.7567, -287.555, 46.8579, -282.865)
+metadata/_edit_lock_ = true
+
+[node name="Hazard11" parent="Hazards" instance=ExtResource("8_xqpvg")]
+position = Vector2(568.5, -617.25)
+rotation = -0.881572
+scale = Vector2(1.66203, 1.66203)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard11"]
+position = Vector2(37.1533, 16.095)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("24_xw48m")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard11"]
+visible = false
+position = Vector2(4.2314, 11.5213)
+rotation = 4.77558
+scale = Vector2(-0.498185, -0.554211)
+polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
+metadata/_edit_lock_ = true
+
+[node name="Hazard12" parent="Hazards" instance=ExtResource("8_xqpvg")]
+position = Vector2(200, -1010.25)
+rotation = -0.306948
+scale = Vector2(1.66203, 1.66203)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard12"]
+position = Vector2(25.5711, 3.91103)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("22_holn1")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard12"]
+visible = false
+position = Vector2(-18.4619, -3.48486)
+rotation = 5.28084
+scale = Vector2(-0.287033, -0.289083)
+polygon = PackedVector2Array(54.3035, -277.091, 65.7238, -273.838, 70.8756, -269.696, 85.9011, -250.207, 91.3837, -240.719, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 97.2219, 230.38, 92.9651, 232.463, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168.983, 224.489, -165.806, 225.561, -186.132, 209.433, -185.445, 211.467, -202.311, 196.85, -225.63, 192.5, -250.015, 175.86, -271.689, 147.004, -238.932, 100.296, -230.675, 87.0323, -216.211, 61.1876, -206.495, 55.0252, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -159.136, -194.199, -160.129, -210.24, -166.481, -234.612, -151.779, -309.384, -115.406, -333.072, -80.8745, -329.659, -35.0085, -326.025, -14.0939, -317.68, 3.52094, -311.565, 15.4063, -295.023, 27.0231, -294.364, 35.7567, -287.555, 46.8579, -282.865)
+metadata/_edit_lock_ = true
+
+[node name="Hazard13" parent="Hazards" instance=ExtResource("8_xqpvg")]
+position = Vector2(-1068.25, 1076)
+rotation = -3.14093
+scale = Vector2(1.66203, 1.66203)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard13"]
+position = Vector2(37.1533, 16.095)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("24_xw48m")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard13"]
+visible = false
+position = Vector2(0.310272, 14.2896)
+rotation = 4.77558
+scale = Vector2(-0.498185, -0.554211)
+polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
+metadata/_edit_lock_ = true
+
+[node name="Hazard14" parent="Hazards" instance=ExtResource("8_xqpvg")]
+position = Vector2(-1778.5, 671.25)
+scale = Vector2(1.66203, 1.66203)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard14"]
+position = Vector2(54.0002, 6.01711)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("23_kra0l")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard14"]
+visible = false
+position = Vector2(-4.57764e-05, -1.52588e-05)
+rotation = 2.17636
+scale = Vector2(-0.434113, -0.415414)
+polygon = PackedVector2Array(33.9408, -268.1, 38.1047, -260.543, 40.2307, -242.703, 65.1255, -236.933, 79.1946, -229.055, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 203.583, -68.0191, 217.631, -27.0956, 223.22, 36.6829, 216.23, 43.9426, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 141.877, 217.967, 133.046, 224.357, 97.2219, 230.38, 92.9651, 232.463, 18.4, 248, 14.3, 248, -3.83087, 241.031, -6.70175, 236.061, -30.0405, 237.092, -34.5329, 238.581, -56.1189, 218.085, -62.4739, 223.123, -77.2224, 214.857, -76.3679, 208.513, -81.9562, 196.261, -88.8375, 187.147, -109.568, 188.933, -102.359, 189.002, -112.527, 173.018, -109.525, 168.643, -137.247, 166.239, -145.837, 164.087, -152.872, 151.56, -173.34, 134.66, -183.115, 90.6447, -195.08, 64.9502, -197.885, 58.1716, -206.495, 55.0252, -187.5, 38, -186.1, 38, -209.743, -52.5992, -208.144, -94.7138, -206.632, -113.424, -200.474, -124.485, -178.955, -142.256, -182.374, -151.233, -170.781, -176.356, -168.283, -187.852, -159.136, -194.199, -160.129, -210.24, -166.481, -234.612, -151.779, -309.384, -115.406, -333.072, -80.8745, -329.659, -35.0085, -326.025, -14.0939, -317.68, 3.52094, -311.565, 5.9339, -293.199, 15.7516, -286.649, 22.085, -281.543, 26.5337, -274.192)
+metadata/_edit_lock_ = true
+
+[node name="Hazard15" parent="Hazards" instance=ExtResource("8_xqpvg")]
+position = Vector2(-739, 119)
+rotation = 0.0848641
+scale = Vector2(1.66203, 1.66203)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard15"]
+position = Vector2(25.5711, 3.91103)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("22_holn1")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard15"]
+visible = false
+position = Vector2(-22.6598, -7.28104)
+rotation = 5.28084
+scale = Vector2(-0.287033, -0.289083)
+polygon = PackedVector2Array(54.3035, -277.091, 65.7238, -273.838, 70.8756, -269.696, 85.9011, -250.207, 91.3837, -240.719, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 97.2219, 230.38, 92.9651, 232.463, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168.983, 224.489, -165.806, 225.561, -186.132, 209.433, -185.445, 211.467, -202.311, 196.85, -225.63, 192.5, -250.015, 175.86, -271.689, 147.004, -238.932, 100.296, -230.675, 87.0323, -216.211, 61.1876, -206.495, 55.0252, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -159.136, -194.199, -160.129, -210.24, -166.481, -234.612, -151.779, -309.384, -115.406, -333.072, -80.8745, -329.659, -35.0085, -326.025, -14.0939, -317.68, 3.52094, -311.565, 15.4063, -295.023, 27.0231, -294.364, 35.7567, -287.555, 46.8579, -282.865)
+metadata/_edit_lock_ = true
+
+[node name="Hazard16" parent="Hazards" instance=ExtResource("8_xqpvg")]
+position = Vector2(-323.5, 1142.75)
+rotation = 0.648878
+scale = Vector2(1.66203, 1.66203)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard16"]
+position = Vector2(-26.1599, 29.722)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("21_ggglp")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard16"]
+visible = false
+position = Vector2(6.75603, 3.18266)
+rotation = 3.31578
+scale = Vector2(0.256746, -0.226866)
+polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
+metadata/_edit_lock_ = true
+
+[node name="Hazard17" parent="Hazards" instance=ExtResource("8_xqpvg")]
+position = Vector2(390, 1332.25)
+rotation = 1.59648
+scale = Vector2(2.70466, 2.70466)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard17"]
+position = Vector2(25.5711, 3.91103)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("22_holn1")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard17"]
+visible = false
+position = Vector2(-23.0606, -5.04788)
+rotation = 5.28084
+scale = Vector2(-0.287033, -0.289083)
+polygon = PackedVector2Array(54.3035, -277.091, 65.7238, -273.838, 70.8756, -269.696, 85.9011, -250.207, 91.3837, -240.719, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 97.2219, 230.38, 92.9651, 232.463, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168.983, 224.489, -165.806, 225.561, -186.132, 209.433, -185.445, 211.467, -202.311, 196.85, -225.63, 192.5, -250.015, 175.86, -271.689, 147.004, -238.932, 100.296, -230.675, 87.0323, -216.211, 61.1876, -206.495, 55.0252, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -159.136, -194.199, -160.129, -210.24, -166.481, -234.612, -151.779, -309.384, -115.406, -333.072, -80.8745, -329.659, -35.0085, -326.025, -14.0939, -317.68, 3.52094, -311.565, 15.4063, -295.023, 27.0231, -294.364, 35.7567, -287.555, 46.8579, -282.865)
+metadata/_edit_lock_ = true
+
+[node name="Hazard18" parent="Hazards" instance=ExtResource("8_xqpvg")]
+position = Vector2(-427, -1430.75)
+rotation = 3.37124
+scale = Vector2(2.22777, 2.22777)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard18"]
+position = Vector2(37.1533, 16.095)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("24_xw48m")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard18"]
+visible = false
+position = Vector2(5.20274, 19.2975)
+rotation = 4.77558
+scale = Vector2(-0.498185, -0.554211)
+polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
+metadata/_edit_lock_ = true
+
+[node name="Hazard19" parent="Hazards" instance=ExtResource("8_xqpvg")]
+position = Vector2(1449.75, -936.5)
+rotation = -2.47268
+scale = Vector2(3.06209, 3.06209)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard19"]
+position = Vector2(25.5711, 3.91103)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("22_holn1")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard19"]
+visible = false
+position = Vector2(-19.607, -2.81747)
+rotation = 5.28084
+scale = Vector2(-0.287033, -0.289083)
+polygon = PackedVector2Array(54.3035, -277.091, 65.7238, -273.838, 70.8756, -269.696, 85.9011, -250.207, 91.3837, -240.719, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 97.2219, 230.38, 92.9651, 232.463, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168.983, 224.489, -165.806, 225.561, -186.132, 209.433, -185.445, 211.467, -202.311, 196.85, -225.63, 192.5, -250.015, 175.86, -271.689, 147.004, -238.932, 100.296, -230.675, 87.0323, -216.211, 61.1876, -206.495, 55.0252, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -159.136, -194.199, -160.129, -210.24, -166.481, -234.612, -151.779, -309.384, -115.406, -333.072, -80.8745, -329.659, -35.0085, -326.025, -14.0939, -317.68, 3.52094, -311.565, 15.4063, -295.023, 27.0231, -294.364, 35.7567, -287.555, 46.8579, -282.865)
+metadata/_edit_lock_ = true
+
+[node name="Hazard20" parent="Hazards" instance=ExtResource("8_xqpvg")]
+position = Vector2(-2577, -388.25)
+rotation = 2.76178
+scale = Vector2(2.48977, 2.48977)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard20"]
+position = Vector2(54.0002, 6.01711)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("23_kra0l")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard20"]
+visible = false
+position = Vector2(-2.12162, 5.85631)
+rotation = 2.17636
+scale = Vector2(-0.434113, -0.415414)
+polygon = PackedVector2Array(33.9408, -268.1, 38.1047, -260.543, 40.2307, -242.703, 65.1255, -236.933, 79.1946, -229.055, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 203.583, -68.0191, 217.631, -27.0956, 223.22, 36.6829, 216.23, 43.9426, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 141.877, 217.967, 133.046, 224.357, 97.2219, 230.38, 92.9651, 232.463, 18.4, 248, 14.3, 248, -3.83087, 241.031, -6.70175, 236.061, -30.0405, 237.092, -34.5329, 238.581, -56.1189, 218.085, -62.4739, 223.123, -77.2224, 214.857, -76.3679, 208.513, -81.9562, 196.261, -88.8375, 187.147, -109.568, 188.933, -102.359, 189.002, -112.527, 173.018, -109.525, 168.643, -137.247, 166.239, -145.837, 164.087, -152.872, 151.56, -173.34, 134.66, -183.115, 90.6447, -195.08, 64.9502, -197.885, 58.1716, -206.495, 55.0252, -187.5, 38, -186.1, 38, -209.743, -52.5992, -208.144, -94.7138, -206.632, -113.424, -200.474, -124.485, -178.955, -142.256, -182.374, -151.233, -170.781, -176.356, -168.283, -187.852, -159.136, -194.199, -160.129, -210.24, -166.481, -234.612, -151.779, -309.384, -115.406, -333.072, -80.8745, -329.659, -35.0085, -326.025, -14.0939, -317.68, 3.52094, -311.565, 5.9339, -293.199, 15.7516, -286.649, 22.085, -281.543, 26.5337, -274.192)
+metadata/_edit_lock_ = true
+
+[node name="Hazard21" parent="Hazards" instance=ExtResource("8_xqpvg")]
+position = Vector2(-2648.25, 488.25)
+rotation = -2.87979
+scale = Vector2(2.63096, 2.63096)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard21"]
+position = Vector2(25.5711, 3.91103)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("22_holn1")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard21"]
+visible = false
+position = Vector2(-10.4903, -4.27206)
+rotation = 5.28084
+scale = Vector2(-0.287033, -0.289083)
+polygon = PackedVector2Array(54.3035, -277.091, 65.7238, -273.838, 70.8756, -269.696, 85.9011, -250.207, 91.3837, -240.719, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 97.2219, 230.38, 92.9651, 232.463, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168.983, 224.489, -165.806, 225.561, -186.132, 209.433, -185.445, 211.467, -202.311, 196.85, -225.63, 192.5, -250.015, 175.86, -271.689, 147.004, -238.932, 100.296, -230.675, 87.0323, -216.211, 61.1876, -206.495, 55.0252, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -159.136, -194.199, -160.129, -210.24, -166.481, -234.612, -151.779, -309.384, -115.406, -333.072, -80.8745, -329.659, -35.0085, -326.025, -14.0939, -317.68, 3.52094, -311.565, 15.4063, -295.023, 27.0231, -294.364, 35.7567, -287.555, 46.8579, -282.865)
+metadata/_edit_lock_ = true
+
+[node name="Hazard22" parent="Hazards" instance=ExtResource("8_xqpvg")]
+position = Vector2(-1739.5, -868.75)
+rotation = 2.87979
+scale = Vector2(2.74682, 2.74682)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard22"]
+position = Vector2(-26.1599, 29.722)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("21_ggglp")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard22"]
+visible = false
+position = Vector2(2.98903, 0.800919)
+rotation = 3.31578
+scale = Vector2(0.256746, -0.226866)
+polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
+metadata/_edit_lock_ = true
+
+[node name="Hazard23" parent="Hazards" instance=ExtResource("8_xqpvg")]
+position = Vector2(-2140, 1213.25)
+rotation = 1.59648
+scale = Vector2(2.54835, 2.54835)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard23"]
+position = Vector2(25.5711, 3.91103)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("22_holn1")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard23"]
+visible = false
+position = Vector2(-23.6607, -11.8552)
+rotation = 5.28084
+scale = Vector2(-0.287033, -0.289083)
+polygon = PackedVector2Array(54.3035, -277.091, 65.7238, -273.838, 70.8756, -269.696, 85.9011, -250.207, 91.3837, -240.719, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 97.2219, 230.38, 92.9651, 232.463, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168.983, 224.489, -165.806, 225.561, -186.132, 209.433, -185.445, 211.467, -202.311, 196.85, -225.63, 192.5, -250.015, 175.86, -271.689, 147.004, -238.932, 100.296, -230.675, 87.0323, -216.211, 61.1876, -206.495, 55.0252, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -159.136, -194.199, -160.129, -210.24, -166.481, -234.612, -151.779, -309.384, -115.406, -333.072, -80.8745, -329.659, -35.0085, -326.025, -14.0939, -317.68, 3.52094, -311.565, 15.4063, -295.023, 27.0231, -294.364, 35.7567, -287.555, 46.8579, -282.865)
+metadata/_edit_lock_ = true
+
+[node name="Hazard24" parent="Hazards" instance=ExtResource("8_xqpvg")]
+position = Vector2(1149, 1257.25)
+rotation = -1.57079
+scale = Vector2(2.0008, 2.0008)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard24"]
+position = Vector2(54.0002, 6.01711)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("23_kra0l")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard24"]
+visible = false
+position = Vector2(-11.8702, 3.05176e-05)
+rotation = 2.17636
+scale = Vector2(-0.434113, -0.415414)
+polygon = PackedVector2Array(33.9408, -268.1, 38.1047, -260.543, 40.2307, -242.703, 65.1255, -236.933, 79.1946, -229.055, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 203.583, -68.0191, 217.631, -27.0956, 223.22, 36.6829, 216.23, 43.9426, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 141.877, 217.967, 133.046, 224.357, 97.2219, 230.38, 92.9651, 232.463, 18.4, 248, 14.3, 248, -3.83087, 241.031, -6.70175, 236.061, -30.0405, 237.092, -34.5329, 238.581, -56.1189, 218.085, -62.4739, 223.123, -77.2224, 214.857, -76.3679, 208.513, -81.9562, 196.261, -88.8375, 187.147, -109.568, 188.933, -102.359, 189.002, -112.527, 173.018, -109.525, 168.643, -137.247, 166.239, -145.837, 164.087, -152.872, 151.56, -173.34, 134.66, -183.115, 90.6447, -195.08, 64.9502, -197.885, 58.1716, -206.495, 55.0252, -187.5, 38, -186.1, 38, -209.743, -52.5992, -208.144, -94.7138, -206.632, -113.424, -200.474, -124.485, -178.955, -142.256, -182.374, -151.233, -170.781, -176.356, -168.283, -187.852, -159.136, -194.199, -160.129, -210.24, -166.481, -234.612, -151.779, -309.384, -115.406, -333.072, -80.8745, -329.659, -35.0085, -326.025, -14.0939, -317.68, 3.52094, -311.565, 5.9339, -293.199, 15.7516, -286.649, 22.085, -281.543, 26.5337, -274.192)
+metadata/_edit_lock_ = true
+
+[node name="Hazard25" parent="Hazards" instance=ExtResource("8_xqpvg")]
+position = Vector2(1664.25, 551.5)
+rotation = -6.28318
+scale = Vector2(3.06209, 3.06209)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard25"]
+position = Vector2(25.5711, 3.91103)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("22_holn1")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard25"]
+visible = false
+position = Vector2(-18.2065, -4.98012)
+rotation = 5.28084
+scale = Vector2(-0.287033, -0.289083)
+polygon = PackedVector2Array(54.3035, -277.091, 65.7238, -273.838, 70.8756, -269.696, 85.9011, -250.207, 91.3837, -240.719, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 97.2219, 230.38, 92.9651, 232.463, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168.983, 224.489, -165.806, 225.561, -186.132, 209.433, -185.445, 211.467, -202.311, 196.85, -225.63, 192.5, -250.015, 175.86, -271.689, 147.004, -238.932, 100.296, -230.675, 87.0323, -216.211, 61.1876, -206.495, 55.0252, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -159.136, -194.199, -160.129, -210.24, -166.481, -234.612, -151.779, -309.384, -115.406, -333.072, -80.8745, -329.659, -35.0085, -326.025, -14.0939, -317.68, 3.52094, -311.565, 15.4063, -295.023, 27.0231, -294.364, 35.7567, -287.555, 46.8579, -282.865)
+metadata/_edit_lock_ = true
+
+[node name="Hazard26" parent="Hazards" instance=ExtResource("8_xqpvg")]
+position = Vector2(655.25, -1422.5)
+rotation = 2.35619
+scale = Vector2(2.71303, 2.71303)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard26"]
+position = Vector2(-26.1599, 29.722)
+scale = Vector2(0.308215, 0.308215)
+texture = ExtResource("21_ggglp")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard26"]
+visible = false
+position = Vector2(2.15023, -2.1502)
+rotation = 3.31578
 scale = Vector2(0.256746, -0.226866)
 polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
 metadata/_edit_lock_ = true
