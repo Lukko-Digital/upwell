@@ -3,13 +3,15 @@ class_name MapPlayer
 
 @onready var line: Line2D = $Line2D
 
+@onready var game: Game = get_tree().get_current_scene()
 @onready var energy_bar: ProgressBar = $CanvasLayer/Energy
 @onready var starting_position: Vector2 = global_position
 @onready var collision_box: Area2D = $PlayerBody
 @onready var warning_label: Label = $CanvasLayer/WarningLabel
 @onready var grav_component: GravitizedComponent = $GravitizedComponent
+@onready var map_animation_player: AnimationPlayer = $MapAnimationPlayer
 
-const HAZARD_TEXT = "RECALLED DUE TO DAMAGE"
+const HAZARD_TEXT = "IMPACT AVOIDED"
 const OUT_OF_ENERGY_TEXT = "RECALLED DUE TO ENERGY LOSS"
 const LOW_ENERGY_TEXT = "You are low on energy"
 const TRAVEL_SHAKE_AMOUNT = 5.0
@@ -134,8 +136,25 @@ func show_warning(warning_text: String) -> void:
 	warning_label.hide()
 
 func hit_hazard() -> void:
-	show_warning(HAZARD_TEXT)
+
+	map_animation_player.play("hitting_hazard")
+	target_shake = TRAVEL_SHAKE_AMOUNT * 3
+
+	await get_tree().create_timer(.4).timeout
+
+	target_shake = TRAVEL_SHAKE_AMOUNT * 25
+	shake_lerp_speed = 2
+	
+	game.pod.pod_animation_player.play("hit_hazard")
+
+	await get_tree().create_timer(.5).timeout
+	Global.set_camera_focus.emit(null)
+	await get_tree().create_timer(.2).timeout
 	recall()
+	await get_tree().create_timer(.3).timeout
+
+	warning_label.text = HAZARD_TEXT
+	map_animation_player.play("hit_hazard")
 
 func _area_scanned(area: Area2D) -> void:
 	if area is MapLevel or area is Hazard or area is CoolantPocket:

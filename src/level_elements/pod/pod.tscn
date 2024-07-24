@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dw50qvw1e418b"]
+[gd_scene load_steps=27 format=3 uid="uid://dw50qvw1e418b"]
 
 [ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="1_pv0jy"]
 [ext_resource type="Script" path="res://src/level_elements/pod/pod.gd" id="1_urr8o"]
@@ -37,6 +37,43 @@ size = Vector2(1664, 0)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cevex"]
 shader = ExtResource("8_jha66")
 shader_parameter/intensity = 1.0
+
+[sub_resource type="Animation" id="Animation_536ni"]
+resource_name = "hit_hazard"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasHolder/15/Node2D/Hider:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.581572, 0.583222, 2.7, 7.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ux768"]
+resource_name = "neutral"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasHolder/15/Node2D/Hider:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s6a1k"]
+_data = {
+"hit_hazard": SubResource("Animation_536ni"),
+"neutral": SubResource("Animation_ux768")
+}
 
 [node name="Pod" type="Node2D" node_paths=PackedStringArray("pod_holder", "walls_static_body", "walls_visual")]
 script = ExtResource("1_urr8o")
@@ -260,13 +297,13 @@ position = Vector2(3.84615, -526.154)
 scale = Vector2(0.625363, 0.625363)
 texture = ExtResource("11_8qs7d")
 
-[node name="14" type="CanvasLayer" parent="CanvasHolder"]
+[node name="05" type="CanvasLayer" parent="CanvasHolder"]
 layer = 5
 follow_viewport_enabled = true
 
-[node name="Node2D" type="Node2D" parent="CanvasHolder/14"]
+[node name="Node2D" type="Node2D" parent="CanvasHolder/05"]
 
-[node name="ColorRect6" type="ColorRect" parent="CanvasHolder/14/Node2D"]
+[node name="ColorRect6" type="ColorRect" parent="CanvasHolder/05/Node2D"]
 material = SubResource("ShaderMaterial_cevex")
 offset_left = -831.0
 offset_top = -1557.0
@@ -274,5 +311,26 @@ offset_right = 772.0
 offset_bottom = 561.0
 mouse_filter = 2
 color = Color(0.733333, 0.580392, 0.443137, 1)
+
+[node name="15" type="CanvasLayer" parent="CanvasHolder"]
+layer = 110
+follow_viewport_enabled = true
+
+[node name="Node2D" type="Node2D" parent="CanvasHolder/15"]
+
+[node name="Hider" type="ColorRect" parent="CanvasHolder/15/Node2D"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -2529.0
+offset_top = -2232.0
+offset_right = 2499.0
+offset_bottom = 1167.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="PodAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s6a1k")
+}
+autoplay = "neutral"
 
 [connection signal="body_entered" from="PodClickerRehomeArea" to="." method="_on_pod_clicker_rehome_area_body_entered"]

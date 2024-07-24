@@ -5,6 +5,8 @@ class_name Pod
 @export var walls_static_body: StaticBody2D
 @export var walls_visual: Node2D
 
+@onready var pod_animation_player: AnimationPlayer = $PodAnimationPlayer
+
 func _ready() -> void:
 	pod_holder.clicker_state_changed.connect(_pod_clicker_state_changed)
 	Global.pod_called.connect(call_pod)
