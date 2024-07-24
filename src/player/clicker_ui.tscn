@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b3xmpb6et0p0g"]
+[gd_scene load_steps=13 format=3 uid="uid://b3xmpb6et0p0g"]
 
 [ext_resource type="Script" path="res://src/player/clicker_ui.gd" id="1_bax8t"]
 [ext_resource type="Texture2D" uid="uid://ccc201315ps2p" path="res://assets/mvp3_assets/reactor_base_two.png" id="2_bwvy2"]
