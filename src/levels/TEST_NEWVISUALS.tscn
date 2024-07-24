@@ -902,7 +902,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1s7rc"]
 gradient = SubResource("Gradient_oo52l")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5727t"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yfluq"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -1064,7 +1064,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_sr4fx"]
 gradient = SubResource("Gradient_lu00i")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mwd72"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lqctw"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -1598,7 +1598,7 @@ modulate = Color(0.952099, 0.402827, 0.320554, 1)
 material = SubResource("CanvasItemMaterial_n8gfo")
 position = Vector2(-9, -742)
 amount = 1024
-process_material = SubResource("ParticleProcessMaterial_5727t")
+process_material = SubResource("ParticleProcessMaterial_yfluq")
 texture = ExtResource("26_jaqoe")
 lifetime = 7.0
 randomness = 0.47
@@ -2041,7 +2041,7 @@ follow_viewport_scale = 1.19
 
 [node name="Particles" parent="3" instance=ExtResource("34_cqmqj")]
 visible = false
-process_material = SubResource("ParticleProcessMaterial_mwd72")
+process_material = SubResource("ParticleProcessMaterial_lqctw")
 
 [node name="TileMap" type="TileMap" parent="3"]
 modulate = Color(0.621049, 0.359803, 0.250508, 1)
@@ -2202,12 +2202,14 @@ texture = ExtResource("36_ia4jj")
 [node name="viewblopckers" type="Node2D" parent="."]
 
 [node name="ViewBlocker10" parent="viewblopckers" instance=ExtResource("19_eprmi")]
+visible = false
 modulate = Color(0.193621, 0.0288414, 0.0302736, 1)
 material = SubResource("ShaderMaterial_4rabq")
 position = Vector2(-3196, -398)
 scale = Vector2(2.22, 4.2)
 
 [node name="ViewBlocker" parent="viewblopckers" instance=ExtResource("19_eprmi")]
+visible = false
 modulate = Color(0.192157, 0.027451, 0.0313726, 1)
 material = SubResource("ShaderMaterial_ffv0n")
 position = Vector2(1325, -231)
@@ -2230,6 +2232,7 @@ rotation = 1.57079
 scale = Vector2(0.877849, 2.49533)
 
 [node name="ViewBlocker6" parent="viewblopckers" instance=ExtResource("19_eprmi")]
+visible = false
 material = SubResource("ShaderMaterial_dbrid")
 position = Vector2(2152, -256)
 scale = Vector2(2.91882, 6.45214)
@@ -2237,6 +2240,7 @@ scale = Vector2(2.91882, 6.45214)
 [node name="ViewBlocker9" parent="viewblopckers" instance=ExtResource("19_eprmi")]
 material = SubResource("ShaderMaterial_xaabq")
 position = Vector2(15974, -3474)
+scale = Vector2(-3.85067, 1.96798)
 
 [node name="Camera Limits" type="Node2D" parent="."]
 z_index = 4096
@@ -2313,6 +2317,10 @@ position = Vector2(-2378, -186)
 dialogue_file = "res://assets/dialogue/oldmanmvp3.csv"
 npc_sprite = NodePath("OldMan")
 
+[node name="Nodule" parent="NPC" index="2"]
+position = Vector2(99, -151)
+flip_h = true
+
 [node name="OldMan" type="Sprite2D" parent="NPC"]
 position = Vector2(6, 21)
 scale = Vector2(-0.705, 0.705)
@@ -2328,3 +2336,5 @@ position = Vector2(-174, -53)
 rotation = 3.14159
 scale = Vector2(0.971357, -0.971357)
 texture = ExtResource("38_hr7vs")
+
+[editable path="NPC"]
