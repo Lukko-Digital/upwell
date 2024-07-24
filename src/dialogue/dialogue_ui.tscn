@@ -15,23 +15,24 @@ fullscreen_display = NodePath("FullscreenDialogue")
 one_shot = true
 
 [node name="ResponseBox" type="VBoxContainer" parent="."]
-z_index = 1
+z_index = 91
 custom_minimum_size = Vector2(700, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -219.0
-offset_top = 277.0
-offset_right = 700.0
-offset_bottom = 669.0
+offset_left = -319.0
+offset_top = 249.0
+offset_right = 1051.0
+offset_bottom = 673.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.505991, 0.505991)
+scale = Vector2(0.490011, 0.490011)
 size_flags_horizontal = 4
 size_flags_vertical = 4
-alignment = 2
+theme_override_constants/separation = 20
+alignment = 1
 
 [node name="ResponseButton" parent="ResponseBox" instance=ExtResource("3_y57cq")]
 layout_mode = 2

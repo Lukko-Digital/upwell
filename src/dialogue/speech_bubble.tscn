@@ -26,11 +26,11 @@ z_index = 0
 scale = Vector2(1.74802, 1.74802)
 
 [node name="BubbleContainer" type="MarginContainer" parent="Nodule"]
-offset_left = -429.115
-offset_top = -214.844
-offset_right = 1340.89
-offset_bottom = 185.156
-scale = Vector2(0.527109, 0.527109)
+offset_left = -383.0
+offset_top = -125.645
+offset_right = 2405.0
+offset_bottom = 274.355
+scale = Vector2(0.291612, 0.291612)
 script = ExtResource("2_ohaor")
 
 [node name="BubbleNinePatch" type="NinePatchRect" parent="Nodule/BubbleContainer"]
@@ -80,11 +80,11 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("8_v7kwa")
 theme_override_fonts/bold_font = ExtResource("9_w6pgy")
 theme_override_fonts/italics_font = ExtResource("10_slrgn")
-theme_override_font_sizes/normal_font_size = 90
-theme_override_font_sizes/bold_font_size = 90
-theme_override_font_sizes/italics_font_size = 90
-theme_override_font_sizes/bold_italics_font_size = 90
-theme_override_font_sizes/mono_font_size = 90
+theme_override_font_sizes/normal_font_size = 130
+theme_override_font_sizes/bold_font_size = 130
+theme_override_font_sizes/italics_font_size = 130
+theme_override_font_sizes/bold_italics_font_size = 130
+theme_override_font_sizes/mono_font_size = 130
 bbcode_enabled = true
 text = "hello good sir how are you"
 fit_content = true

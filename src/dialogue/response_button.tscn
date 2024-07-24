@@ -1,14 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://xgi8pcnjfsvh"]
+[gd_scene load_steps=10 format=3 uid="uid://xgi8pcnjfsvh"]
 
 [ext_resource type="Script" path="res://src/dialogue/response_button.gd" id="1_3vvxx"]
 [ext_resource type="Texture2D" uid="uid://bs6l23gk5qb3p" path="res://assets/ui/dialogue/response_button_hover.png" id="1_aautq"]
 [ext_resource type="Texture2D" uid="uid://dk057pn1a5vu0" path="res://assets/ui/dialogue/response_button_neutral.png" id="1_bwjf0"]
 [ext_resource type="FontFile" uid="uid://dugjy5jt8bi0x" path="res://assets/ui/fonts/LibreBaskerville-Regular.ttf" id="1_ubixl"]
+[ext_resource type="Shader" path="res://src/shaders/screen.gdshader" id="1_wjukv"]
 [ext_resource type="Texture2D" uid="uid://cirp418qaxx05" path="res://assets/ui/dialogue/response_button_press.png" id="2_d14jg"]
 [ext_resource type="FontFile" uid="uid://dpvvg0gwxfjxp" path="res://assets/ui/fonts/LibreBaskerville-Bold.ttf" id="7_k6li1"]
 [ext_resource type="FontFile" uid="uid://cmkra16htorm3" path="res://assets/ui/fonts/LibreBaskerville-Italic.ttf" id="8_7on5q"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mo5h4"]
+shader = ExtResource("1_wjukv")
+shader_parameter/intensity = 1.0
+
 [node name="TextureButton" type="TextureButton" node_paths=PackedStringArray("label")]
+material = SubResource("ShaderMaterial_mo5h4")
 offset_right = 919.0
 offset_bottom = 128.0
 texture_normal = ExtResource("1_bwjf0")
@@ -18,7 +24,7 @@ script = ExtResource("1_3vvxx")
 label = NodePath("ResponseLabel")
 
 [node name="ResponseLabel" type="RichTextLabel" parent="."]
-z_index = -1
+z_index = 1
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
