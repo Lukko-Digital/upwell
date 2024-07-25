@@ -14,7 +14,7 @@ class_name MapPlayer
 const HAZARD_TEXT = "IMPACT AVOIDED"
 const OUT_OF_ENERGY_TEXT = "RECALLED DUE TO ENERGY LOSS"
 const LOW_ENERGY_TEXT = "You are low on energy"
-const TRAVEL_SHAKE_AMOUNT = 5.0
+const TRAVEL_SHAKE_AMOUNT = 2.5
 
 var current_shake: float = 0.0
 var target_shake: float = 0.0
@@ -50,6 +50,7 @@ func _process(delta: float) -> void:
 				active_ag, gravity_state, velocity, delta
 			)
 			velocity = new_vel.normalized() * SPEED
+			target_shake = TRAVEL_SHAKE_AMOUNT / 5
 
 		global_position += velocity * delta
 		if global_position.distance_to(destination.global_position) < 20:
@@ -60,10 +61,13 @@ func _process(delta: float) -> void:
 		if not in_coolant: energy_bar.value -= ENERGY_USE_RATE * delta
 	
 	if energy_bar.value <= 0:
-		show_warning(OUT_OF_ENERGY_TEXT)
-		recall()
-	# elif energy_bar.value <= energy_bar.max_value / 2: # For energy warning
-	# 	show_warning(LOW_ENERGY_TEXT)
+		run_out_of_energy()
+	elif energy_bar.value <= energy_bar.max_value / 5:
+		critical_energy()
+	elif energy_bar.value <= energy_bar.max_value / 2:
+		# Turns out low energy warning is kinda annoying cause you hit it a lot
+		# low_energy()
+		pass
 
 	#handle shake lerping
 	lerp_shake(delta)
@@ -100,17 +104,16 @@ func location_selected(location: MapLevel):
 func enter_coolant_pocket() -> void:
 	energy_bar.value = energy_bar.max_value
 	in_coolant = true
+	target_shake = TRAVEL_SHAKE_AMOUNT
+	map_animation_player.play("neutral")
+	game.pod.pod_animation_player.play("neutral")
 	
 func exit_coolant_pocket() -> void:
 	in_coolant = false
 
 func end_movement() -> void:
-	moving = false
 
-	# Increase shape for landing and kill it quickly
-	current_shake = shake_lerp_speed * 40
-	shake_lerp_speed = 3.0
-	target_shake = 0
+	moving = false
 
 	velocity = Vector2.ZERO
 	energy_bar.value = energy_bar.max_value
@@ -118,7 +121,17 @@ func end_movement() -> void:
 	if line.get_point_count() > 1:
 		line.remove_point(1)
 
-	if not recalled:
+	if recalled:
+		current_shake = shake_lerp_speed/10
+		shake_lerp_speed = 4.0
+		target_shake = 0
+		recalled = false
+	else: # Increase shape for landing and kill it quickly
+		map_animation_player.play("neutral")
+		game.pod.pod_animation_player.play("neutral")
+		current_shake = shake_lerp_speed * 40
+		shake_lerp_speed = 4.0
+		target_shake = 0
 		# 7/13, josh says dont bump you out of map on arrival
 		# await get_tree().create_timer(0.35).timeout
 		# Global.set_camera_focus.emit(null)
@@ -135,28 +148,49 @@ func show_warning(warning_text: String) -> void:
 	await get_tree().create_timer(2).timeout
 	warning_label.hide()
 
+func low_energy() -> void:
+	map_animation_player.play("LOW_ENERGY")
+
+func critical_energy() -> void:
+	map_animation_player.play("OUT_OF_FUEL")
+	game.pod.pod_animation_player.play("crash_warning")
+	target_shake = TRAVEL_SHAKE_AMOUNT * 4
+
+func run_out_of_energy() -> void:
+	game.pod.pod_animation_player.play("crash_blackout")
+	recall()
+	Global.set_camera_focus.emit(null) #(game.pod.point_focus_marker)
+	await get_tree().create_timer(.3).timeout
+	map_animation_player.play("SHUTDOWN_AVOIDED")
+
 func hit_hazard() -> void:
 
-	map_animation_player.play("hitting_hazard")
+	velocity = velocity * 0.5
+	map_animation_player.play("COLLISION_IMMINENT")
+	game.pod.pod_animation_player.play("crash_warning")
+	current_shake = TRAVEL_SHAKE_AMOUNT * 10
+	shake_lerp_speed = 20
 	target_shake = TRAVEL_SHAKE_AMOUNT * 3
-
 	await get_tree().create_timer(.4).timeout
 
-	target_shake = TRAVEL_SHAKE_AMOUNT * 25
-	shake_lerp_speed = 2
+	shake_lerp_speed = .5
+	target_shake = TRAVEL_SHAKE_AMOUNT * 40
 	
-	game.pod.pod_animation_player.play("hit_hazard")
+	await get_tree().create_timer(.8).timeout
 
-	await get_tree().create_timer(.5).timeout
-	Global.set_camera_focus.emit(null)
-	await get_tree().create_timer(.2).timeout
+	game.pod.pod_animation_player.play("crash_blackout")
+	Global.set_camera_focus.emit(null) #(game.pod.point_focus_marker)
+	await get_tree().create_timer(.2).timeout # adds some time for screen to black out so player doesn't see lag caused by recall()
 	recall()
 	await get_tree().create_timer(.3).timeout
 
-	warning_label.text = HAZARD_TEXT
-	map_animation_player.play("hit_hazard")
+	map_animation_player.play("IMPACT_AVOIDED")
 
 func _area_scanned(area: Area2D) -> void:
 	if area is MapLevel or area is Hazard or area is CoolantPocket:
-		if not area.locked:
+		if not area.locked && !area.visible:
+			var base_modulate: Color = area.modulate
+			area.modulate = Color(1,1,1,0)
 			area.show()
+			var tween = get_tree().create_tween()
+			tween.tween_property(area, "modulate", base_modulate, 1)

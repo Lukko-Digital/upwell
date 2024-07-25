@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dw50qvw1e418b"]
+[gd_scene load_steps=29 format=3 uid="uid://dw50qvw1e418b"]
 
 [ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="1_pv0jy"]
 [ext_resource type="Script" path="res://src/level_elements/pod/pod.gd" id="1_urr8o"]
@@ -39,8 +39,8 @@ shader = ExtResource("8_jha66")
 shader_parameter/intensity = 1.0
 
 [sub_resource type="Animation" id="Animation_536ni"]
-resource_name = "hit_hazard"
-length = 8.0
+resource_name = "crash_blackout"
+length = 4.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -48,10 +48,62 @@ tracks/0/path = NodePath("CanvasHolder/15/Node2D/Hider:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.581572, 0.583222, 2.7, 7.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 2.2, 4.7),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasHolder/05/Node2D/WarningLight:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasHolder/15/Node2D/Hider:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasHolder/15/Node2D/Hider:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_au48s"]
+resource_name = "crash_warning"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasHolder/05/Node2D/WarningLight:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4, 4.2, 4.4, 4.6, 4.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ux768"]
@@ -68,18 +120,85 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasHolder/05/Node2D/WarningLight:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k2qsi"]
+resource_name = "recall"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasHolder/15/Node2D/Hider:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasHolder/15/Node2D/Hider:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasHolder/15/Node2D/Hider:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.7, 3.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasHolder/05/Node2D/WarningLight:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s6a1k"]
 _data = {
-"hit_hazard": SubResource("Animation_536ni"),
-"neutral": SubResource("Animation_ux768")
+"crash_blackout": SubResource("Animation_536ni"),
+"crash_warning": SubResource("Animation_au48s"),
+"neutral": SubResource("Animation_ux768"),
+"recall": SubResource("Animation_k2qsi")
 }
 
-[node name="Pod" type="Node2D" node_paths=PackedStringArray("pod_holder", "walls_static_body", "walls_visual")]
+[node name="Pod" type="Node2D" node_paths=PackedStringArray("pod_holder", "walls_static_body", "walls_visual", "point_focus_marker")]
 script = ExtResource("1_urr8o")
 pod_holder = NodePath("ClickerHolder")
 walls_static_body = NodePath("WallsStaticBody")
 walls_visual = NodePath("WallsVisual")
+point_focus_marker = NodePath("CameraPointFocus/Marker2D")
 
 [node name="Screen" parent="." instance=ExtResource("1_pv0jy")]
 position = Vector2(0, -548)
@@ -140,7 +259,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ClickerHolder" parent="." instance=ExtResource("4_goton")]
 position = Vector2(-275, -54)
-starts_with_clicker = false
 is_catcher = false
 
 [node name="PodClickerRehomeArea" type="Area2D" parent="."]
@@ -310,7 +428,17 @@ offset_top = -1557.0
 offset_right = 772.0
 offset_bottom = 561.0
 mouse_filter = 2
-color = Color(0.733333, 0.580392, 0.443137, 1)
+color = Color(0.713726, 0.482353, 0.258824, 0.647059)
+
+[node name="WarningLight" type="ColorRect" parent="CanvasHolder/05/Node2D"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_cevex")
+offset_left = -831.0
+offset_top = -1557.0
+offset_right = 772.0
+offset_bottom = 561.0
+mouse_filter = 2
+color = Color(1, 0, 0, 0.494118)
 
 [node name="15" type="CanvasLayer" parent="CanvasHolder"]
 layer = 110
