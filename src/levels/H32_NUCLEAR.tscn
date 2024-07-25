@@ -52,10 +52,10 @@ player = NodePath("../Player")
 
 [node name="EmptyPod" parent="." instance=ExtResource("11_8j5d3")]
 position = Vector2(2432, 0)
+is_entrace = true
 
 [node name="EmptyPod2" parent="." instance=ExtResource("11_8j5d3")]
 position = Vector2(-7296, 0)
-is_entrace = true
 
 [node name="EntranceSwitcherArea" type="Area2D" parent="." node_paths=PackedStringArray("left", "right")]
 collision_layer = 0
