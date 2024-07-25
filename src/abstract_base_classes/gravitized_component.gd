@@ -34,14 +34,9 @@ var orbit_direction: int
 
 ## Checks if the body is currently interacting with an AG.
 ##  
-## Returns: The overlapping [ArtificialGravity] if the player is pressing the
-##          orbit button and the overlapping [ArtificialGravity] is enabled.
+## Returns: The overlapping [ArtificialGravity] if it is enabled.
 ##          Otherwise returns null.
 func check_active_ag() -> ArtificialGravity:
-	# Check that orbit button is pressed
-	if not Input.is_action_pressed("orbit"):
-		return null
-
 	# Check that body is in an AG
 	var gravity_regions: Array[Area2D] = gravity_detector.get_overlapping_areas()
 	if gravity_regions.is_empty():
@@ -62,12 +57,15 @@ func determine_gravity_state(active_ag: ArtificialGravity) -> GravityState:
 	if active_ag == null:
 		return GravityState.NONE
 
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("boost"):
 		# Defer the call so all bodies get to boost in this frame
 		active_ag.disable.call_deferred()
 		return GravityState.BOOST
 	
-	return GravityState.ORBIT
+	if Input.is_action_pressed("orbit"):
+		return GravityState.ORBIT
+	
+	return GravityState.NONE
 
 ## Calculates the body's velocity for the current frame based on current
 ## velocity and gravity state. Expects active_ag to not be null.
