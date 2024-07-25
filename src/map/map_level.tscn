@@ -26,8 +26,9 @@ radius = 213.038
 [node name="MapLevel" type="Area2D" node_paths=PackedStringArray("label")]
 collision_mask = 2
 script = ExtResource("1_0g7oc")
-label = NodePath("Label")
+locked = null
 sprite_scale = 1.0
+label = NodePath("Label")
 
 [node name="Label" type="Label" parent="."]
 self_modulate = Color(1, 1, 1, 0.545098)

@@ -121,59 +121,69 @@ metadata/_edit_lock_ = true
 
 [node name="H32_NUCLEAR" parent="Levels" instance=ExtResource("4_17lxb")]
 level = ExtResource("5_og8y0")
+locked = false
 name_text = "H32.NUCLEAR"
 
 [node name="001_CONTACT" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(311, -292)
 level = ExtResource("5_ga2oe")
+locked = false
 name_text = "001.CONTACT"
 
 [node name="003_TEST" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(335, 443.25)
 level = ExtResource("8_itcue")
+locked = false
 name_text = "003.TEST"
 sprite_scale = 1.225
 
 [node name="002_FALL" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(681.5, 113.25)
 level = ExtResource("7_kq772")
+locked = false
 name_text = "002.FALL"
 sprite_scale = 0.785
 
 [node name="H02_RECURRENCE" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(-254, 313)
 level = ExtResource("9_f7cig")
+locked = false
 name_text = "H02.RECURRENCE"
 sprite_scale = 0.435
 
 [node name="004_RELAPSE" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(-520, -196)
 level = ExtResource("9_bymtf")
+locked = false
 name_text = "004.RELAPSE"
 sprite_scale = 0.675
 
 [node name="005_STORAGE" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(1043.25, -425.75)
 level = ExtResource("11_ku1uv")
+locked = false
 name_text = "005.STORAGE"
 sprite_scale = 0.505
 
 [node name="H43_NUCLEAR" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(-965.25, -468.5)
+locked = false
 name_text = " "
 sprite_scale = 0.0
 
 [node name="UNKNOWN" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(-2114.75, 0)
 level = ExtResource("12_tpuyl")
+locked = false
 name_text = "UNKNOWN"
 sprite_scale = 6.045
 
 [node name="H43_NUCLEAR2" parent="Levels" node_paths=PackedStringArray("label") instance=ExtResource("4_17lxb")]
 position = Vector2(-1325.5, 443.25)
-label = NodePath("../H43_NUCLEAR/Label")
+locked = false
 name_text = " "
 sprite_scale = 0.0
+label = NodePath("../H43_NUCLEAR/Label")
 
 [node name="MapPlayer" parent="." instance=ExtResource("2_uwq5e")]
 

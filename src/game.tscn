@@ -9,9 +9,7 @@
 [node name="Game" type="Node2D"]
 script = ExtResource("1_5wj68")
 
-[node name="ActiveLevel" type="Node" parent="."]
-
-[node name="Node2D" type="Node2D" parent="ActiveLevel"]
+[node name="Levels" type="Node2D" parent="."]
 
 [node name="Pod" parent="." instance=ExtResource("3_t6iyq")]
 

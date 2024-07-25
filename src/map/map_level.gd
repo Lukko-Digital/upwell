@@ -5,20 +5,20 @@ class_name MapLevel
 @export var level: PackedScene
 @export var locked: bool = false
 
-@export var label: Label
-
 @export var name_text: String:
 	set(value):
 		name_text = value
 		label.text = value
-		
 @export var sprite_scale: float
+@export var label: Label
 
 @onready var player: MapPlayer = owner.get_node("MapPlayer")
 @onready var game: Game = get_tree().get_current_scene()
 @onready var gravity_area = $Gravity
 
 func _ready() -> void:
+	if level:
+		game.init_level.call_deferred(level)
 	if not Engine.is_editor_hint():
 		hide()
 
