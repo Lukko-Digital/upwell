@@ -108,6 +108,7 @@ texture = ExtResource("8_4qf24")
 layer = 11
 follow_viewport_enabled = true
 script = ExtResource("10_4uw8i")
+updates_in_process = null
 
 [node name="Node2D" type="Node2D" parent="ParallaxCanvas"]
 z_index = 4096
