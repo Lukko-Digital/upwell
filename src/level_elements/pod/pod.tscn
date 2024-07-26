@@ -259,6 +259,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ClickerHolder" parent="." instance=ExtResource("4_goton")]
 position = Vector2(-275, -54)
+starts_with_clicker = false
 is_catcher = false
 
 [node name="PodClickerRehomeArea" type="Area2D" parent="."]
@@ -469,3 +470,4 @@ libraries = {
 autoplay = "neutral"
 
 [connection signal="body_entered" from="PodClickerRehomeArea" to="." method="_on_pod_clicker_rehome_area_body_entered"]
+[connection signal="body_exited" from="PodClickerRehomeArea" to="." method="_on_pod_clicker_rehome_area_body_exited"]

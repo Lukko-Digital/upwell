@@ -7,6 +7,7 @@ class_name Pod
 @export var point_focus_marker: Marker2D
 
 @onready var pod_animation_player: AnimationPlayer = $PodAnimationPlayer
+@onready var game: Game = get_tree().get_current_scene()
 
 func _ready() -> void:
 	pod_holder.clicker_state_changed.connect(_pod_clicker_state_changed)
@@ -28,14 +29,19 @@ func _on_pod_clicker_rehome_area_body_entered(body: Node2D) -> void:
 	if body is ClickerBody:
 		body.home_holder = pod_holder
 		if body.get_parent() != self:
-			var pos = body.global_position
-			body.get_parent().remove_child(body)
-			self.add_child.call_deferred(body)
-			body.set_deferred("global_position", pos)
+			body.reparent.call_deferred(self)
 	elif body is Player:
 		for clicker: ClickerInfo in body.clicker_inventory:
 			clicker.home_holder = pod_holder
 			clicker.parent_node = self
+
+func _on_pod_clicker_rehome_area_body_exited(body: Node2D) -> void:
+	var current_level = game.active_level.get_child(0)
+	if body is ClickerBody:
+		body.reparent.call_deferred(current_level)
+	elif body is Player:
+		for clicker: ClickerInfo in body.clicker_inventory:
+			clicker.parent_node = current_level
 
 func _pod_clicker_state_changed(_holder: ClickerHolder, has_clicker: bool):
 	Global.pod_has_clicker = has_clicker

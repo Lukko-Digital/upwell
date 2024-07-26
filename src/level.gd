@@ -22,6 +22,8 @@ func load_from_level_data():
 func save_level_data():
     var clicker_saves: Array[ClickerSaveData] = []
     for clicker: ClickerBody in get_tree().get_nodes_in_group("Clickers"):
+        if not is_ancestor_of(clicker):
+            continue
         var home_holder_path = clicker.home_holder.get_path()
         var location
         if clicker.holder_owned_by:
