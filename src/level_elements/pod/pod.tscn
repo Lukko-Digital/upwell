@@ -7,13 +7,13 @@
 [ext_resource type="Script" path="res://src/level_elements/camera/camera_point_focus.gd" id="5_0tuqc"]
 [ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="6_kw5qg"]
 [ext_resource type="Texture2D" uid="uid://bis82a47xh061" path="res://assets/pod/pod_bg.png" id="7_p210d"]
-[ext_resource type="Texture2D" uid="uid://4x0fb21csjof" path="res://assets/pod/pod_door_closed.png" id="8_2qojk"]
 [ext_resource type="Shader" path="res://src/shaders/overlay.gdshader" id="8_jha66"]
 [ext_resource type="Texture2D" uid="uid://hkhamgomvbwo" path="res://assets/mvp3_assets/viewblocker.png" id="9_0klgs"]
 [ext_resource type="Texture2D" uid="uid://nrn5ue0tbc5h" path="res://assets/pod/pod_door light.png" id="9_kb7qy"]
 [ext_resource type="PackedScene" uid="uid://dhjj5tgw8y2es" path="res://src/level_elements/view_blocker.tscn" id="9_u6g7q"]
 [ext_resource type="Texture2D" uid="uid://cecwp7vm8bcq6" path="res://assets/pod/pod_fg.png" id="10_cr7db"]
 [ext_resource type="Texture2D" uid="uid://bqu3dcbksgtgh" path="res://assets/pod/pod_fg_5.png" id="11_8qs7d"]
+[ext_resource type="PackedScene" uid="uid://dm4d6nx2eryj8" path="res://src/level_elements/pod/pod_door.tscn" id="13_8ngjx"]
 [ext_resource type="Texture2D" uid="uid://df6l0exidum0b" path="res://assets/pod/pod_door_open.png" id="13_r68du"]
 [ext_resource type="Script" path="res://src/level_elements/parallax_canvas.gd" id="14_67fqf"]
 [ext_resource type="Script" path="res://src/level_elements/camera/camera_bound.gd" id="17_tbj2n"]
@@ -193,12 +193,11 @@ _data = {
 "recall": SubResource("Animation_k2qsi")
 }
 
-[node name="Pod" type="Node2D" node_paths=PackedStringArray("pod_holder", "walls_static_body", "walls_visual", "point_focus_marker")]
+[node name="Pod" type="Node2D" node_paths=PackedStringArray("pod_holder", "walls_static_body", "walls_visual")]
 script = ExtResource("1_urr8o")
 pod_holder = NodePath("ClickerHolder")
 walls_static_body = NodePath("WallsStaticBody")
 walls_visual = NodePath("WallsVisual")
-point_focus_marker = NodePath("CameraPointFocus/Marker2D")
 
 [node name="Screen" parent="." instance=ExtResource("1_pv0jy")]
 position = Vector2(0, -548)
@@ -373,18 +372,15 @@ updates_in_process = true
 rotation = 3.14159
 scale = Vector2(1, -1)
 
-[node name="PodDoorClosed" type="Sprite2D" parent="CanvasHolder/12/Node2D"]
-position = Vector2(673.315, -419.91)
-texture = ExtResource("8_2qojk")
-
-[node name="PodDoorClosed2" type="Sprite2D" parent="CanvasHolder/12/Node2D"]
+[node name="RightDoor" parent="CanvasHolder/12/Node2D" instance=ExtResource("13_8ngjx")]
 position = Vector2(-694.865, -410.91)
-rotation = 3.14159
-scale = Vector2(1, -1)
-texture = ExtResource("8_2qojk")
+
+[node name="LeftDoor" parent="CanvasHolder/12/Node2D" instance=ExtResource("13_8ngjx")]
+position = Vector2(673.315, -419.91)
+scale = Vector2(-1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasHolder/12/Node2D"]
-position = Vector2(-13.959, 567.272)
+position = Vector2(-19.0895, 567.273)
 rotation = 1.5708
 scale = Vector2(5.86528, -1.57259)
 texture = ExtResource("9_0klgs")
@@ -446,10 +442,10 @@ updates_in_process = true
 
 [node name="Hider" type="ColorRect" parent="CanvasHolder/15/Node2D"]
 modulate = Color(1, 1, 1, 0)
-offset_left = -2529.0
-offset_top = -2232.0
-offset_right = 2499.0
-offset_bottom = 1167.0
+offset_left = -2332.0
+offset_top = -1940.0
+offset_right = 2696.0
+offset_bottom = 1459.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
