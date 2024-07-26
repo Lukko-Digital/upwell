@@ -1,7 +1,7 @@
 extends Node2D
 class_name Game
 
-@onready var pod: Node2D = $Pod
+@onready var pod: Pod = $Pod
 @onready var active_level: Node = $ActiveLevel
 
 func change_level(level: PackedScene):
