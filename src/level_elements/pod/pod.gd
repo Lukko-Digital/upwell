@@ -38,7 +38,8 @@ func _on_pod_clicker_rehome_area_body_entered(body: Node2D) -> void:
 func _on_pod_clicker_rehome_area_body_exited(body: Node2D) -> void:
 	var current_level = game.active_level.get_child(0)
 	if body is ClickerBody:
-		body.reparent.call_deferred(current_level)
+		if body.get_parent() == self:
+			body.reparent.call_deferred(current_level)
 	elif body is Player:
 		for clicker: ClickerInfo in body.clicker_inventory:
 			clicker.parent_node = current_level
