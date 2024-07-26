@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://bttepvab6oghg"]
+[gd_scene load_steps=95 format=3 uid="uid://bttepvab6oghg"]
 
 [ext_resource type="PackedScene" uid="uid://5mnlsyicmwh" path="res://src/level_elements/pod/empty_pod.tscn" id="1_yebsk"]
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="2_v1oi6"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bnvxdmarearua" path="res://assets/mvp4_assets/mvp4_tm.png" id="11_xq2bw"]
 [ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="12_eqkl2"]
 [ext_resource type="PackedScene" uid="uid://bnxmdjk1mqgxv" path="res://src/levels/TEST_screen_puzzle.tscn" id="13_hhdsd"]
+[ext_resource type="Script" path="res://src/level_elements/parallax_canvas.gd" id="16_pcp8g"]
 [ext_resource type="Texture2D" uid="uid://bso4h5sv02rtd" path="res://assets/mvp3_assets/tutorial/shift.png" id="17_vud3g"]
 [ext_resource type="Texture2D" uid="uid://dnqjj1lqp4wsx" path="res://assets/mvp3_assets/tutorial/space.png" id="18_25d6w"]
 [ext_resource type="PackedScene" uid="uid://dhjj5tgw8y2es" path="res://src/level_elements/view_blocker.tscn" id="19_eprmi"]
@@ -902,7 +903,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1s7rc"]
 gradient = SubResource("Gradient_oo52l")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_df5hy"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jp5ok"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -1064,7 +1065,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_sr4fx"]
 gradient = SubResource("Gradient_lu00i")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_su734"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_06wyh"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -1485,19 +1486,24 @@ texture = ExtResource("17_vud3g")
 layer = -1
 follow_viewport_enabled = true
 follow_viewport_scale = 0.575
+script = ExtResource("16_pcp8g")
+updates_in_process = null
 
-[node name="WallA2" type="Sprite2D" parent="-5"]
+[node name="Node2D" type="Node2D" parent="-5"]
+
+[node name="WallA2" type="Sprite2D" parent="-5/Node2D"]
 position = Vector2(-603.077, -1067.69)
 rotation = -3.14159
 scale = Vector2(4.69899, -4.98281)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA" type="Sprite2D" parent="-5"]
+[node name="WallA" type="Sprite2D" parent="-5/Node2D"]
 position = Vector2(-512.308, -1573.85)
-scale = Vector2(-1.87059, -1.4845)
+rotation = 3.14159
+scale = Vector2(1.87059, 1.4845)
 texture = ExtResource("20_wajrl")
 
-[node name="Treeb" type="Sprite2D" parent="-5"]
+[node name="Treeb" type="Sprite2D" parent="-5/Node2D"]
 visible = false
 position = Vector2(-613.846, -976.923)
 scale = Vector2(2.68919, 2.68919)
@@ -1507,25 +1513,30 @@ texture = ExtResource("21_tdjhb")
 layer = -1
 follow_viewport_enabled = true
 follow_viewport_scale = 0.7
+script = ExtResource("16_pcp8g")
+updates_in_process = null
 
-[node name="WallA2" type="Sprite2D" parent="-4"]
+[node name="Node2D" type="Node2D" parent="-4"]
+
+[node name="WallA2" type="Sprite2D" parent="-4/Node2D"]
 position = Vector2(-1387.92, -404.027)
 rotation = -3.14159
 scale = Vector2(1.22214, -1.29596)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA" type="Sprite2D" parent="-4"]
+[node name="WallA" type="Sprite2D" parent="-4/Node2D"]
 position = Vector2(-115.436, 602.685)
-scale = Vector2(-1.18059, -0.936915)
+rotation = 3.14159
+scale = Vector2(1.18059, 0.936915)
 texture = ExtResource("20_wajrl")
 
-[node name="Treeb" type="Sprite2D" parent="-4"]
+[node name="Treeb" type="Sprite2D" parent="-4/Node2D"]
 visible = false
 position = Vector2(-613.846, -976.923)
 scale = Vector2(2.68919, 2.68919)
 texture = ExtResource("21_tdjhb")
 
-[node name="Blur" type="ColorRect" parent="-4"]
+[node name="Blur" type="ColorRect" parent="-4/Node2D"]
 material = SubResource("ShaderMaterial_o6h1w")
 offset_left = -19099.0
 offset_top = -16732.0
@@ -1537,18 +1548,22 @@ metadata/_edit_lock_ = true
 layer = -1
 follow_viewport_enabled = true
 follow_viewport_scale = 0.82
+script = ExtResource("16_pcp8g")
+updates_in_process = null
 
-[node name="Treeb" type="Sprite2D" parent="-3"]
+[node name="Node2D" type="Node2D" parent="-3"]
+
+[node name="Treeb" type="Sprite2D" parent="-3/Node2D"]
 position = Vector2(-1337.8, -704.878)
 scale = Vector2(2.15823, 2.15823)
 texture = ExtResource("21_tdjhb")
 
-[node name="Treea" type="Sprite2D" parent="-3"]
+[node name="Treea" type="Sprite2D" parent="-3/Node2D"]
 position = Vector2(-31.7073, -736.782)
 scale = Vector2(2.39577, 2.39577)
 texture = ExtResource("23_ot312")
 
-[node name="ColorRect2" type="ColorRect" parent="-3"]
+[node name="ColorRect2" type="ColorRect" parent="-3/Node2D"]
 modulate = Color(1, 1, 1, 0.392157)
 offset_left = -24088.0
 offset_top = -18195.0
@@ -1560,54 +1575,58 @@ metadata/_edit_lock_ = true
 layer = -1
 follow_viewport_enabled = true
 follow_viewport_scale = 0.915
+script = ExtResource("16_pcp8g")
+updates_in_process = null
 
-[node name="WallA" type="Sprite2D" parent="-2"]
+[node name="Node2D" type="Node2D" parent="-2"]
+
+[node name="WallA" type="Sprite2D" parent="-2/Node2D"]
 position = Vector2(894.253, -762.069)
 scale = Vector2(1.34753, 1.34753)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA2" type="Sprite2D" parent="-2"]
+[node name="WallA2" type="Sprite2D" parent="-2/Node2D"]
 position = Vector2(-2478.12, -1386.46)
 rotation = -3.14159
 scale = Vector2(1.73628, -1.84115)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA3" type="Sprite2D" parent="-2"]
+[node name="WallA3" type="Sprite2D" parent="-2/Node2D"]
 position = Vector2(-3512.5, -964.583)
 rotation = 3.14159
 scale = Vector2(1.73628, -1.84115)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA4" type="Sprite2D" parent="-2"]
+[node name="WallA4" type="Sprite2D" parent="-2/Node2D"]
 position = Vector2(-2227.59, -2027.59)
 rotation = 1.57079
 scale = Vector2(1.4861, -1.57586)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA5" type="Sprite2D" parent="-2"]
+[node name="WallA5" type="Sprite2D" parent="-2/Node2D"]
 position = Vector2(912.643, -2164.37)
 rotation = 1.57079
 scale = Vector2(1.4861, -1.57586)
 texture = ExtResource("20_wajrl")
 
-[node name="4Kbrushtexture" type="Sprite2D" parent="-2"]
+[node name="4Kbrushtexture" type="Sprite2D" parent="-2/Node2D"]
 material = SubResource("ShaderMaterial_ff17x")
 position = Vector2(-696.875, -716.667)
 texture = ExtResource("25_ntjt6")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="-2"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="-2/Node2D"]
 visible = false
 modulate = Color(0.952099, 0.402827, 0.320554, 1)
 material = SubResource("CanvasItemMaterial_n8gfo")
 position = Vector2(-9, -742)
 amount = 1024
-process_material = SubResource("ParticleProcessMaterial_df5hy")
+process_material = SubResource("ParticleProcessMaterial_jp5ok")
 texture = ExtResource("26_jaqoe")
 lifetime = 7.0
 randomness = 0.47
 script = ExtResource("27_sh1ar")
 
-[node name="ColorRect2" type="ColorRect" parent="-2"]
+[node name="ColorRect2" type="ColorRect" parent="-2/Node2D"]
 modulate = Color(1, 1, 1, 0.247059)
 offset_left = -24088.0
 offset_top = -18195.0
@@ -1616,7 +1635,7 @@ offset_bottom = 8104.0
 color = Color(1, 1, 1, 0.105882)
 metadata/_edit_lock_ = true
 
-[node name="Blur" type="ColorRect" parent="-2"]
+[node name="Blur" type="ColorRect" parent="-2/Node2D"]
 material = SubResource("ShaderMaterial_o6h1w")
 offset_left = -20063.4
 offset_top = -17731.1
@@ -1628,119 +1647,120 @@ metadata/_edit_lock_ = true
 layer = -1
 follow_viewport_enabled = true
 follow_viewport_scale = 0.935
+script = ExtResource("16_pcp8g")
+updates_in_process = null
 
-[node name="Treeb5" type="Sprite2D" parent="-1"]
+[node name="Node2D" type="Node2D" parent="-1"]
+
+[node name="Treeb5" type="Sprite2D" parent="-1/Node2D"]
 modulate = Color(0.689192, 0.599052, 0.559718, 1)
 position = Vector2(-1055.61, -1559.36)
 rotation = 1.70033
 scale = Vector2(1.31943, -1.4259)
 texture = ExtResource("21_tdjhb")
 
-[node name="WallA" type="Sprite2D" parent="-1"]
+[node name="WallA" type="Sprite2D" parent="-1/Node2D"]
 modulate = Color(0.786726, 0.695899, 0.681109, 1)
 position = Vector2(279.144, -566.845)
-rotation = 6.28318
 scale = Vector2(1.25864, 1.25864)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA2" type="Sprite2D" parent="-1"]
+[node name="WallA2" type="Sprite2D" parent="-1/Node2D"]
 modulate = Color(0.786726, 0.695899, 0.681109, 1)
 position = Vector2(-2527.27, -352.941)
 scale = Vector2(0.701974, -0.681207)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA3" type="Sprite2D" parent="-1"]
+[node name="WallA3" type="Sprite2D" parent="-1/Node2D"]
 modulate = Color(0.786726, 0.695899, 0.681109, 1)
 position = Vector2(-2105.88, -1032.09)
 rotation = 1.5708
 scale = Vector2(0.701974, -0.681207)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA4" type="Sprite2D" parent="-1"]
+[node name="WallA4" type="Sprite2D" parent="-1/Node2D"]
 modulate = Color(0.786726, 0.695899, 0.681109, 1)
 position = Vector2(841.711, 342.246)
 rotation = -3.14159
 scale = Vector2(0.770745, 0.770745)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA5" type="Sprite2D" parent="-1"]
+[node name="WallA5" type="Sprite2D" parent="-1/Node2D"]
 modulate = Color(0.786726, 0.695899, 0.681109, 1)
 position = Vector2(-657, -1824)
 rotation = 1.5708
 scale = Vector2(0.690181, 0.690181)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA6" type="Sprite2D" parent="-1"]
+[node name="WallA6" type="Sprite2D" parent="-1/Node2D"]
 modulate = Color(0.786726, 0.695899, 0.681109, 1)
 position = Vector2(928.342, -955.08)
 rotation = 3.14159
 scale = Vector2(0.690181, 0.690181)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA7" type="Sprite2D" parent="-1"]
+[node name="WallA7" type="Sprite2D" parent="-1/Node2D"]
 modulate = Color(0.786726, 0.695899, 0.681109, 1)
 position = Vector2(96.2567, -1470.59)
 rotation = -1.57079
 scale = Vector2(0.690181, 0.690181)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA8" type="Sprite2D" parent="-1"]
+[node name="WallA8" type="Sprite2D" parent="-1/Node2D"]
 modulate = Color(0.786726, 0.695899, 0.681109, 1)
 position = Vector2(-2227.1, -963.641)
 rotation = 1.5708
 scale = Vector2(0.701974, -0.681207)
 texture = ExtResource("20_wajrl")
 
-[node name="Treeb" type="Sprite2D" parent="-1"]
+[node name="Treeb" type="Sprite2D" parent="-1/Node2D"]
 modulate = Color(0.689192, 0.599052, 0.559718, 1)
 position = Vector2(-2748.66, -638.503)
 rotation = -3.14159
 scale = Vector2(1.15565, -1.24891)
 texture = ExtResource("21_tdjhb")
 
-[node name="Treeb2" type="Sprite2D" parent="-1"]
+[node name="Treeb2" type="Sprite2D" parent="-1/Node2D"]
 modulate = Color(0.689192, 0.599052, 0.559718, 1)
 position = Vector2(-2276, -1069.67)
-rotation = -3.14159
-scale = Vector2(-1.30517, -1.56138)
+scale = Vector2(1.30517, 1.56138)
 texture = ExtResource("21_tdjhb")
 
-[node name="Treeb3" type="Sprite2D" parent="-1"]
+[node name="Treeb3" type="Sprite2D" parent="-1/Node2D"]
 modulate = Color(0.689192, 0.599052, 0.559718, 1)
 position = Vector2(1027.74, -1025.82)
 rotation = -3.14159
 scale = Vector2(1.31943, -1.4259)
 texture = ExtResource("21_tdjhb")
 
-[node name="Treeb4" type="Sprite2D" parent="-1"]
+[node name="Treeb4" type="Sprite2D" parent="-1/Node2D"]
 modulate = Color(0.689192, 0.599052, 0.559718, 1)
 position = Vector2(1746.46, -1424.75)
-rotation = -3.14159
-scale = Vector2(-1.30517, -1.56138)
+scale = Vector2(1.30517, 1.56138)
 texture = ExtResource("21_tdjhb")
 
-[node name="Treeb6" type="Sprite2D" parent="-1"]
+[node name="Treeb6" type="Sprite2D" parent="-1/Node2D"]
 modulate = Color(0.689192, 0.599052, 0.559718, 1)
 position = Vector2(-119.534, -2094.1)
-rotation = -4.71238
-scale = Vector2(-1.30517, -1.56138)
+rotation = -1.57079
+scale = Vector2(1.30517, 1.56138)
 texture = ExtResource("21_tdjhb")
 
-[node name="Treeb7" type="Sprite2D" parent="-1"]
+[node name="Treeb7" type="Sprite2D" parent="-1/Node2D"]
 modulate = Color(0.689192, 0.599052, 0.559718, 1)
 position = Vector2(-124.064, 381.818)
-rotation = 4.61248
+rotation = -1.67071
 scale = Vector2(1.31943, -1.4259)
 texture = ExtResource("21_tdjhb")
 
-[node name="Defocus2" type="Sprite2D" parent="-1"]
+[node name="Defocus2" type="Sprite2D" parent="-1/Node2D"]
 modulate = Color(0, 0, 0, 0.647059)
 material = SubResource("CanvasItemMaterial_v0ikw")
 position = Vector2(-2354, -306)
 scale = Vector2(1.60423, 1.60423)
 texture = ExtResource("28_3hvkv")
 
-[node name="Defocus3" type="Sprite2D" parent="-1"]
+[node name="Defocus3" type="Sprite2D" parent="-1/Node2D"]
 modulate = Color(0, 0, 0, 0.647059)
 material = SubResource("CanvasItemMaterial_v0ikw")
 position = Vector2(872, -348)
@@ -1748,14 +1768,14 @@ scale = Vector2(1.60423, 1.60423)
 texture = ExtResource("28_3hvkv")
 metadata/_edit_lock_ = true
 
-[node name="Focus" type="Sprite2D" parent="-1"]
+[node name="Focus" type="Sprite2D" parent="-1/Node2D"]
 modulate = Color(0.858206, 0.528449, 0.359373, 0.831373)
 material = SubResource("ShaderMaterial_16s8f")
 position = Vector2(-657.754, -576.471)
 scale = Vector2(1.05907, 1.05907)
 texture = ExtResource("28_3hvkv")
 
-[node name="WallA9" type="Sprite2D" parent="-1"]
+[node name="WallA9" type="Sprite2D" parent="-1/Node2D"]
 position = Vector2(-4366.84, -441.711)
 scale = Vector2(2.0726, -2.01129)
 texture = ExtResource("20_wajrl")
@@ -1771,158 +1791,162 @@ color = Color(1, 0.469173, 0.816102, 0.317647)
 
 [node name="1" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
+script = ExtResource("16_pcp8g")
+updates_in_process = null
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="1"]
+[node name="Node2D" type="Node2D" parent="1"]
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="1/Node2D"]
 position = Vector2(946, -1053)
 scale = Vector2(0.999996, 0.999996)
 metadata/_edit_lock_ = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="1/StaticBody2D4"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="1/Node2D/StaticBody2D4"]
 visible = false
 position = Vector2(-16, -57)
 scale = Vector2(0.690181, 0.690181)
 polygon = PackedVector2Array(-318.757, -385.406, -454.953, -165.174, -459.3, 827.319, -440.464, 851.95, 295.575, 844.706, 415.833, 695.469, 482.482, 562.171, 476.686, 401.344, 472.34, -728.794, 425.975, -798.341, -49.2625, -814.279, -114.463, -731.692)
 metadata/_edit_lock_ = true
 
-[node name="WallA" type="Sprite2D" parent="1"]
+[node name="WallA" type="Sprite2D" parent="1/Node2D"]
 modulate = Color(0.40806, 0.247555, 0.198133, 1)
 position = Vector2(-1749, -1478)
 rotation = 1.10446
 scale = Vector2(0.690181, 0.690181)
 texture = ExtResource("20_wajrl")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="1/WallA"]
+[node name="StaticBody2D4" type="StaticBody2D" parent="1/Node2D/WallA"]
 position = Vector2(23.1824, 89.8315)
 scale = Vector2(1.44889, 1.44889)
 metadata/_edit_lock_ = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="1/WallA/StaticBody2D4"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="1/Node2D/WallA/StaticBody2D4"]
 visible = false
 position = Vector2(-16, -57)
 scale = Vector2(0.690181, 0.690181)
 polygon = PackedVector2Array(-318.757, -385.406, -454.953, -165.174, -459.3, 827.319, -440.464, 851.95, 295.575, 844.706, 415.833, 695.469, 482.482, 562.171, 476.686, 401.344, 472.34, -728.794, 425.975, -798.341, -49.2625, -814.279, -114.463, -731.692)
 metadata/_edit_lock_ = true
 
-[node name="WallA2" type="Sprite2D" parent="1"]
+[node name="WallA2" type="Sprite2D" parent="1/Node2D"]
 modulate = Color(0.40806, 0.247555, 0.198133, 1)
 position = Vector2(-2239, -1295)
 scale = Vector2(0.701974, -0.681207)
 texture = ExtResource("20_wajrl")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="1/WallA2"]
+[node name="StaticBody2D4" type="StaticBody2D" parent="1/Node2D/WallA2"]
 position = Vector2(23.1824, 89.8315)
 scale = Vector2(1.44889, 1.44889)
 metadata/_edit_lock_ = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="1/WallA2/StaticBody2D4"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="1/Node2D/WallA2/StaticBody2D4"]
 visible = false
 position = Vector2(-16, -57)
 scale = Vector2(0.690181, 0.690181)
 polygon = PackedVector2Array(-318.757, -385.406, -454.953, -165.174, -459.3, 827.319, -440.464, 851.95, 295.575, 844.706, 415.833, 695.469, 482.482, 562.171, 476.686, 401.344, 472.34, -728.794, 425.975, -798.341, -49.2625, -814.279, -114.463, -731.692)
 metadata/_edit_lock_ = true
 
-[node name="WallA3" type="Sprite2D" parent="1"]
+[node name="WallA3" type="Sprite2D" parent="1/Node2D"]
 modulate = Color(0.40806, 0.247555, 0.198133, 1)
 position = Vector2(-2613, -1090)
 rotation = 1.5708
 scale = Vector2(0.701974, -0.681207)
 texture = ExtResource("20_wajrl")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="1/WallA3"]
+[node name="StaticBody2D4" type="StaticBody2D" parent="1/Node2D/WallA3"]
 position = Vector2(23.1824, 89.8315)
 scale = Vector2(1.44889, 1.44889)
 metadata/_edit_lock_ = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="1/WallA3/StaticBody2D4"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="1/Node2D/WallA3/StaticBody2D4"]
 visible = false
 position = Vector2(-16, -57)
 scale = Vector2(0.690181, 0.690181)
 polygon = PackedVector2Array(-318.757, -385.406, -454.953, -165.174, -459.3, 827.319, -440.464, 851.95, 295.575, 844.706, 415.833, 695.469, 482.482, 562.171, 476.686, 401.344, 472.34, -728.794, 425.975, -798.341, -49.2625, -814.279, -114.463, -731.692)
 metadata/_edit_lock_ = true
 
-[node name="WallA4" type="Sprite2D" parent="1"]
+[node name="WallA4" type="Sprite2D" parent="1/Node2D"]
 modulate = Color(0.40806, 0.247555, 0.198133, 1)
 position = Vector2(-1011, -1751)
-rotation = 3.92699
+rotation = -2.3562
 scale = Vector2(0.690181, 0.690181)
 texture = ExtResource("20_wajrl")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="1/WallA4"]
+[node name="StaticBody2D4" type="StaticBody2D" parent="1/Node2D/WallA4"]
 position = Vector2(23.1824, 89.8315)
 scale = Vector2(1.44889, 1.44889)
 metadata/_edit_lock_ = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="1/WallA4/StaticBody2D4"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="1/Node2D/WallA4/StaticBody2D4"]
 visible = false
 position = Vector2(-16, -57)
 scale = Vector2(0.690181, 0.690181)
 polygon = PackedVector2Array(-318.757, -385.406, -454.953, -165.174, -459.3, 827.319, -440.464, 851.95, 295.575, 844.706, 415.833, 695.469, 482.482, 562.171, 476.686, 401.344, 472.34, -728.794, 425.975, -798.341, -49.2625, -814.279, -114.463, -731.692)
 metadata/_edit_lock_ = true
 
-[node name="WallA5" type="Sprite2D" parent="1"]
+[node name="WallA5" type="Sprite2D" parent="1/Node2D"]
 modulate = Color(0.40806, 0.247555, 0.198133, 1)
 position = Vector2(-657, -1824)
 rotation = 1.5708
 scale = Vector2(0.690181, 0.690181)
 texture = ExtResource("20_wajrl")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="1/WallA5"]
+[node name="StaticBody2D4" type="StaticBody2D" parent="1/Node2D/WallA5"]
 position = Vector2(23.1824, 89.8315)
 scale = Vector2(1.44889, 1.44889)
 metadata/_edit_lock_ = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="1/WallA5/StaticBody2D4"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="1/Node2D/WallA5/StaticBody2D4"]
 visible = false
 position = Vector2(-16, -57)
 scale = Vector2(0.690181, 0.690181)
 polygon = PackedVector2Array(-318.757, -385.406, -454.953, -165.174, -459.3, 827.319, -440.464, 851.95, 295.575, 844.706, 415.833, 695.469, 482.482, 562.171, 476.686, 401.344, 472.34, -728.794, 425.975, -798.341, -49.2625, -814.279, -114.463, -731.692)
 metadata/_edit_lock_ = true
 
-[node name="WallA6" type="Sprite2D" parent="1"]
+[node name="WallA6" type="Sprite2D" parent="1/Node2D"]
 modulate = Color(0.40806, 0.247555, 0.198133, 1)
 position = Vector2(930, -1115)
 scale = Vector2(0.690181, 0.690181)
 texture = ExtResource("20_wajrl")
 
-[node name="4Kbrushtexture" type="Sprite2D" parent="1"]
+[node name="4Kbrushtexture" type="Sprite2D" parent="1/Node2D"]
 modulate = Color(1, 1, 1, 0.443137)
 material = SubResource("ShaderMaterial_2tqix")
 position = Vector2(-726, -627)
 texture = ExtResource("25_ntjt6")
 metadata/_edit_lock_ = true
 
-[node name="WallA7" type="Sprite2D" parent="1"]
+[node name="WallA7" type="Sprite2D" parent="1/Node2D"]
 modulate = Color(0.40806, 0.247555, 0.198133, 1)
 position = Vector2(259, -1513)
 rotation = -1.57079
 scale = Vector2(0.690181, 0.690181)
 texture = ExtResource("20_wajrl")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="1/WallA7"]
+[node name="StaticBody2D4" type="StaticBody2D" parent="1/Node2D/WallA7"]
 position = Vector2(23.1824, 89.8315)
 scale = Vector2(1.44889, 1.44889)
 metadata/_edit_lock_ = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="1/WallA7/StaticBody2D4"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="1/Node2D/WallA7/StaticBody2D4"]
 visible = false
 position = Vector2(-16, -57)
 scale = Vector2(0.690181, 0.690181)
 polygon = PackedVector2Array(-318.757, -385.406, -454.953, -165.174, -459.3, 827.319, -440.464, 851.95, 295.575, 844.706, 415.833, 695.469, 482.482, 562.171, 476.686, 401.344, 472.34, -728.794, 425.975, -798.341, -49.2625, -814.279, -114.463, -731.692)
 metadata/_edit_lock_ = true
 
-[node name="WallA8" type="Sprite2D" parent="1"]
+[node name="WallA8" type="Sprite2D" parent="1/Node2D"]
 modulate = Color(0.40806, 0.247555, 0.198133, 1)
 position = Vector2(-904, 517)
 rotation = 1.57079
 scale = Vector2(0.96318, -0.934686)
 texture = ExtResource("20_wajrl")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="1/WallA8"]
+[node name="StaticBody2D4" type="StaticBody2D" parent="1/Node2D/WallA8"]
 position = Vector2(23.1824, 89.8315)
 scale = Vector2(1.44889, 1.44889)
 metadata/_edit_lock_ = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="1/WallA8/StaticBody2D4"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="1/Node2D/WallA8/StaticBody2D4"]
 visible = false
 position = Vector2(-16, -57)
 scale = Vector2(0.690181, 0.690181)
@@ -1933,84 +1957,88 @@ metadata/_edit_lock_ = true
 layer = 11
 follow_viewport_enabled = true
 follow_viewport_scale = 1.09
+script = ExtResource("16_pcp8g")
+updates_in_process = null
 
-[node name="Rays" type="Sprite2D" parent="2"]
+[node name="Node2D" type="Node2D" parent="2"]
+
+[node name="Rays" type="Sprite2D" parent="2/Node2D"]
 modulate = Color(0.381316, 0.321874, 0.191486, 1)
 material = SubResource("ShaderMaterial_h6nhe")
 position = Vector2(-1176, -459)
 scale = Vector2(1.14265, 1.14265)
 texture = ExtResource("31_61d5t")
 
-[node name="Rckc2" type="Sprite2D" parent="2"]
+[node name="Rckc2" type="Sprite2D" parent="2/Node2D"]
 position = Vector2(351.818, 45.8716)
 rotation = 0.892697
 scale = Vector2(1.58839, 1.58839)
 texture = ExtResource("32_8nten")
 
-[node name="Rckb" type="Sprite2D" parent="2"]
+[node name="Rckb" type="Sprite2D" parent="2/Node2D"]
 position = Vector2(-1995.45, 57.8456)
 texture = ExtResource("33_w5eh3")
 
-[node name="Rckc" type="Sprite2D" parent="2"]
+[node name="Rckc" type="Sprite2D" parent="2/Node2D"]
 position = Vector2(-1424.55, 16.9365)
 scale = Vector2(0.86053, 0.86053)
 texture = ExtResource("32_8nten")
 
-[node name="Rcka" type="Sprite2D" parent="2"]
+[node name="Rcka" type="Sprite2D" parent="2/Node2D"]
 modulate = Color(0.826419, 0.73988, 0.716281, 1)
 position = Vector2(64.8148, 40.2362)
 scale = Vector2(2.32207, 2.32207)
 texture = ExtResource("33_w5eh3")
 
-[node name="WallA4" type="Sprite2D" parent="2"]
+[node name="WallA4" type="Sprite2D" parent="2/Node2D"]
 modulate = Color(0.318697, 0.101893, 0.0136101, 1)
 position = Vector2(-2273.39, -1527.52)
 scale = Vector2(0.881399, 0.881399)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA3" type="Sprite2D" parent="2"]
+[node name="WallA3" type="Sprite2D" parent="2/Node2D"]
 modulate = Color(0.318697, 0.101893, 0.0136101, 1)
 position = Vector2(1320, -873.063)
 rotation = -1.57078
 scale = Vector2(0.881399, 0.881399)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA2" type="Sprite2D" parent="2"]
+[node name="WallA2" type="Sprite2D" parent="2/Node2D"]
 modulate = Color(0.318697, 0.101893, 0.0136101, 1)
 position = Vector2(390, -1620.34)
-rotation = -4.71238
+rotation = 1.57081
 scale = Vector2(0.881399, 0.881399)
 texture = ExtResource("20_wajrl")
 
-[node name="Treeb" type="Sprite2D" parent="2"]
+[node name="Treeb" type="Sprite2D" parent="2/Node2D"]
 modulate = Color(0.689192, 0.599052, 0.559718, 1)
 position = Vector2(971.296, -818.518)
 rotation = -3.14159
 scale = Vector2(1.31943, -1.4259)
 texture = ExtResource("21_tdjhb")
 
-[node name="WallA5" type="Sprite2D" parent="2"]
+[node name="WallA5" type="Sprite2D" parent="2/Node2D"]
 modulate = Color(0.318697, 0.101893, 0.0136101, 1)
 position = Vector2(-2719.27, -1351.25)
 rotation = -3.14159
 scale = Vector2(0.881399, 0.881399)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA6" type="Sprite2D" parent="2"]
+[node name="WallA6" type="Sprite2D" parent="2/Node2D"]
 modulate = Color(0.318697, 0.101893, 0.0136101, 1)
 position = Vector2(-1824.77, -1760.55)
 rotation = -1.83259
 scale = Vector2(1.08545, 1.08545)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA7" type="Sprite2D" parent="2"]
+[node name="WallA7" type="Sprite2D" parent="2/Node2D"]
 modulate = Color(0.318697, 0.101893, 0.0136101, 1)
 position = Vector2(-390.909, -1660.34)
 rotation = -1.57079
 scale = Vector2(0.881399, 0.881399)
 texture = ExtResource("20_wajrl")
 
-[node name="TileMap" type="TileMap" parent="2"]
+[node name="TileMap" type="TileMap" parent="2/Node2D"]
 modulate = Color(0.786407, 0.702058, 0.635822, 1)
 position = Vector2(23.8532, 16.5138)
 scale = Vector2(1.30242, 1.30242)
@@ -2019,13 +2047,13 @@ format = 2
 layer_0/tile_data = PackedInt32Array(-65536, 327680, 8, 0, 327680, 9, -65535, 393216, 8, 1, 393216, 9, -65534, 458752, 8, 2, 458752, 9, -65533, 524288, 8, 3, 524288, 9, -65532, 589824, 8, 4, 589824, 9, -65531, 655360, 8, 5, 655360, 9, -65530, 720896, 8, 6, 720896, 9, -65529, 786432, 8, 7, 786432, 9, -65528, 851968, 8, 8, 851968, 9, -19, 851968, 8, 65517, 851968, 9, -18, 917504, 8, 65518, 917504, 9, -17, 196608, 8, 65519, 196608, 9, -16, 262144, 8, 65520, 262144, 9, -15, 327680, 8, 65521, 327680, 9, -14, 393216, 8, 65522, 393216, 9, -13, 458752, 8, 65523, 458752, 9, -12, 524288, 8, 65524, 524288, 9, -11, 589824, 8, 65525, 589824, 9, -10, 655360, 8, 65526, 655360, 9, -9, 720896, 8, 65527, 720896, 9, -8, 786432, 8, 65528, 786432, 9, 131053, 0, 10, 196589, 0, 10, 262125, 0, 10, 327661, 0, 10, 393197, 0, 10, 458733, 0, 10, 524269, 0, 10, 131054, 0, 10, 196590, 0, 10, 262126, 0, 10, 327662, 0, 10, 393198, 0, 10, 458734, 0, 10, 524270, 0, 10, 131055, 0, 10, 196591, 0, 10, 262127, 0, 10, 327663, 0, 10, 393199, 0, 10, 458735, 0, 10, 524271, 0, 10, 131056, 0, 10, 196592, 0, 10, 262128, 0, 10, 327664, 0, 10, 393200, 0, 10, 458736, 0, 10, 524272, 0, 10, 131057, 0, 10, 196593, 0, 10, 262129, 0, 10, 327665, 0, 10, 393201, 0, 10, 458737, 0, 10, 524273, 0, 10, 131058, 0, 10, 196594, 0, 10, 262130, 0, 10, 327666, 0, 10, 393202, 0, 10, 458738, 0, 10, 524274, 0, 10, 131059, 0, 10, 196595, 0, 10, 262131, 0, 10, 327667, 0, 10, 393203, 0, 10, 458739, 0, 10, 524275, 0, 10, 131060, 0, 10, 196596, 0, 10, 262132, 0, 10, 327668, 0, 10, 393204, 0, 10, 458740, 0, 10, 524276, 0, 10, 131061, 0, 10, 196597, 0, 10, 262133, 0, 10, 327669, 0, 10, 393205, 0, 10, 458741, 0, 10, 524277, 0, 10, 131062, 0, 10, 196598, 0, 10, 262134, 0, 10, 327670, 0, 10, 393206, 0, 10, 458742, 0, 10, 524278, 0, 10, 131063, 0, 10, 196599, 0, 10, 262135, 0, 10, 327671, 0, 10, 393207, 0, 10, 458743, 0, 10, 524279, 0, 10, 131064, 0, 10, 196600, 0, 10, 262136, 0, 10, 327672, 0, 10, 393208, 0, 10, 458744, 0, 10, 524280, 0, 10, 131065, 0, 10, 196601, 0, 10, 262137, 0, 10, 327673, 0, 10, 393209, 0, 10, 458745, 0, 10, 524281, 0, 10, 131066, 0, 10, 196602, 0, 10, 262138, 0, 10, 327674, 0, 10, 393210, 0, 10, 458746, 0, 10, 524282, 0, 10, 131067, 0, 10, 196603, 0, 10, 262139, 0, 10, 327675, 0, 10, 393211, 0, 10, 458747, 0, 10, 524283, 0, 10, 131068, 0, 10, 196604, 0, 10, 262140, 0, 10, 327676, 0, 10, 393212, 0, 10, 458748, 0, 10, 524284, 0, 10, 131069, 0, 10, 196605, 0, 10, 262141, 0, 10, 327677, 0, 10, 393213, 0, 10, 458749, 0, 10, 524285, 0, 10, 131070, 0, 10, 196606, 0, 10, 262142, 0, 10, 327678, 0, 10, 393214, 0, 10, 458750, 0, 10, 524286, 0, 10, 131071, 0, 10, 196607, 0, 10, 262143, 0, 10, 327679, 0, 10, 393215, 0, 10, 458751, 0, 10, 524287, 0, 10, 65536, 0, 10, 131072, 0, 10, 196608, 0, 10, 262144, 0, 10, 327680, 0, 10, 393216, 0, 10, 458752, 0, 10, 65537, 0, 10, 131073, 0, 10, 196609, 0, 10, 262145, 0, 10, 327681, 0, 10, 393217, 0, 10, 458753, 0, 10, 65538, 0, 10, 131074, 0, 10, 196610, 0, 10, 262146, 0, 10, 327682, 0, 10, 393218, 0, 10, 458754, 0, 10, 65539, 0, 10, 131075, 0, 10, 196611, 0, 10, 262147, 0, 10, 327683, 0, 10, 393219, 0, 10, 458755, 0, 10, 65540, 0, 10, 131076, 0, 10, 196612, 0, 10, 262148, 0, 10, 327684, 0, 10, 393220, 0, 10, 458756, 0, 10, 65541, 0, 10, 131077, 0, 10, 196613, 0, 10, 262149, 0, 10, 327685, 0, 10, 393221, 0, 10, 458757, 0, 10, 65542, 0, 10, 131078, 0, 10, 196614, 0, 10, 262150, 0, 10, 327686, 0, 10, 393222, 0, 10, 458758, 0, 10, -1, 589824, 8, 65535, 589824, 9, -20, 786432, 8, 65516, 786432, 9, 131052, 0, 10, 196588, 0, 10, 262124, 0, 10, 327660, 0, 10, 393196, 0, 10, 458732, 0, 10, 524268, 0, 10)
 layer_1/tile_data = PackedInt32Array(65534, 655360, 3, 131070, 262144, 5, 196606, 262144, 6, 65535, 327680, 4, 131071, 327680, 5, 196607, 327680, 6, 0, 393216, 4, 65536, 393216, 5, 131072, 393216, 6, 65528, 262144, 4, 131064, 262144, 5, 196600, 262144, 6, 65529, 327680, 4, 131065, 327680, 5, 196601, 327680, 6, 65530, 720896, 3, 131066, 393216, 5, 196602, 393216, 6)
 
-[node name="Rckb2" type="Sprite2D" parent="2"]
+[node name="Rckb2" type="Sprite2D" parent="2/Node2D"]
 position = Vector2(-1156.48, 151.852)
 rotation = -0.574552
 scale = Vector2(2.66298, 2.66298)
 texture = ExtResource("33_w5eh3")
 
-[node name="Rckc3" type="Sprite2D" parent="2"]
+[node name="Rckc3" type="Sprite2D" parent="2/Node2D"]
 position = Vector2(-146.296, 173.148)
 rotation = 0.944159
 scale = Vector2(1.30389, 1.30389)
@@ -2035,12 +2063,16 @@ texture = ExtResource("32_8nten")
 layer = 12
 follow_viewport_enabled = true
 follow_viewport_scale = 1.19
+script = ExtResource("16_pcp8g")
+updates_in_process = null
 
-[node name="Particles" parent="3" instance=ExtResource("34_cqmqj")]
+[node name="Node2D" type="Node2D" parent="3"]
+
+[node name="Particles" parent="3/Node2D" instance=ExtResource("34_cqmqj")]
 visible = false
-process_material = SubResource("ParticleProcessMaterial_su734")
+process_material = SubResource("ParticleProcessMaterial_06wyh")
 
-[node name="TileMap" type="TileMap" parent="3"]
+[node name="TileMap" type="TileMap" parent="3/Node2D"]
 modulate = Color(0.621049, 0.359803, 0.250508, 1)
 position = Vector2(205.042, 35.2941)
 scale = Vector2(1.92667, 1.92667)
@@ -2048,11 +2080,11 @@ tile_set = SubResource("TileSet_c7goa")
 format = 2
 layer_0/tile_data = PackedInt32Array(-5, 0, 8, 65531, 0, 9, -4, 65536, 8, 65532, 65536, 9, -3, 131072, 8, 65533, 131072, 9, -2, 196608, 8, 65534, 196608, 9, -1, 262144, 8, 65535, 262144, 9, -65536, 327680, 8, 0, 327680, 9, -65535, 393216, 8, 1, 393216, 9, -65534, 458752, 8, 2, 458752, 9, -65533, 524288, 8, 3, 524288, 9, -65532, 589824, 8, 4, 589824, 9, -65531, 655360, 8, 5, 655360, 9, -65530, 720896, 8, 6, 720896, 9, -14, 393216, 8, 65522, 393216, 9, -13, 458752, 8, 65523, 458752, 9, -12, 524288, 8, 65524, 524288, 9, -11, 589824, 8, 65525, 589824, 9, -10, 655360, 8, 65526, 655360, 9, -9, 720896, 8, 65527, 720896, 9, -8, 786432, 8, 65528, 786432, 9, -7, 851968, 8, 65529, 851968, 9, -6, 917504, 8, 65530, 917504, 9, 131058, 0, 10, 196594, 0, 10, 262130, 0, 10, 327666, 0, 10, 393202, 0, 10, 458738, 0, 10, 524274, 0, 10, 131059, 0, 10, 196595, 0, 10, 262131, 0, 10, 327667, 0, 10, 393203, 0, 10, 458739, 0, 10, 524275, 0, 10, 131060, 0, 10, 196596, 0, 10, 262132, 0, 10, 327668, 0, 10, 393204, 0, 10, 458740, 0, 10, 524276, 0, 10, 131061, 0, 10, 196597, 0, 10, 262133, 0, 10, 327669, 0, 10, 393205, 0, 10, 458741, 0, 10, 524277, 0, 10, 131062, 0, 10, 196598, 0, 10, 262134, 0, 10, 327670, 0, 10, 393206, 0, 10, 458742, 0, 10, 524278, 0, 10, 131063, 0, 10, 196599, 0, 10, 262135, 0, 10, 327671, 0, 10, 393207, 0, 10, 458743, 0, 10, 524279, 0, 10, 131064, 0, 10, 196600, 0, 10, 262136, 0, 10, 327672, 0, 10, 393208, 0, 10, 458744, 0, 10, 524280, 0, 10, 131065, 0, 10, 196601, 0, 10, 262137, 0, 10, 327673, 0, 10, 393209, 0, 10, 458745, 0, 10, 524281, 0, 10, 131066, 0, 10, 196602, 0, 10, 262138, 0, 10, 327674, 0, 10, 393210, 0, 10, 458746, 0, 10, 524282, 0, 10, 131067, 0, 10, 196603, 0, 10, 262139, 0, 10, 327675, 0, 10, 393211, 0, 10, 458747, 0, 10, 524283, 0, 10, 131068, 0, 10, 196604, 0, 10, 262140, 0, 10, 327676, 0, 10, 393212, 0, 10, 458748, 0, 10, 524284, 0, 10, 131069, 0, 10, 196605, 0, 10, 262141, 0, 10, 327677, 0, 10, 393213, 0, 10, 458749, 0, 10, 524285, 0, 10, 131070, 0, 10, 196606, 0, 10, 262142, 0, 10, 327678, 0, 10, 393214, 0, 10, 458750, 0, 10, 524286, 0, 10, 131071, 0, 10, 196607, 0, 10, 262143, 0, 10, 327679, 0, 10, 393215, 0, 10, 458751, 0, 10, 524287, 0, 10, 65536, 0, 10, 131072, 0, 10, 196608, 0, 10, 262144, 0, 10, 327680, 0, 10, 393216, 0, 10, 458752, 0, 10, 65537, 0, 10, 131073, 0, 10, 196609, 0, 10, 262145, 0, 10, 327681, 0, 10, 393217, 0, 10, 458753, 0, 10, 65538, 0, 10, 131074, 0, 10, 196610, 0, 10, 262146, 0, 10, 327682, 0, 10, 393218, 0, 10, 458754, 0, 10, 65539, 0, 10, 131075, 0, 10, 196611, 0, 10, 262147, 0, 10, 327683, 0, 10, 393219, 0, 10, 458755, 0, 10, 65540, 0, 10, 131076, 0, 10, 196612, 0, 10, 262148, 0, 10, 327684, 0, 10, 393220, 0, 10, 458756, 0, 10, 65541, 0, 10, 131077, 0, 10, 196613, 0, 10, 262149, 0, 10, 327685, 0, 10, 393221, 0, 10, 458757, 0, 10, 65542, 0, 10, 131078, 0, 10, 196614, 0, 10, 262150, 0, 10, 327686, 0, 10, 393222, 0, 10, 458758, 0, 10)
 
-[node name="Blur_Parent" type="Node2D" parent="3"]
+[node name="Blur_Parent" type="Node2D" parent="3/Node2D"]
 material = SubResource("ShaderMaterial_vqyl0")
 position = Vector2(0, 90.7603)
 
-[node name="WallA5" type="Sprite2D" parent="3/Blur_Parent"]
+[node name="WallA5" type="Sprite2D" parent="3/Node2D/Blur_Parent"]
 modulate = Color(0.227345, 0.0635713, 0.0069744, 1)
 use_parent_material = true
 position = Vector2(-1868.91, -1741.18)
@@ -2060,7 +2092,7 @@ rotation = -2.61799
 scale = Vector2(0.881399, 0.881399)
 texture = ExtResource("20_wajrl")
 
-[node name="Rckb" type="Sprite2D" parent="3/Blur_Parent"]
+[node name="Rckb" type="Sprite2D" parent="3/Node2D/Blur_Parent"]
 self_modulate = Color(0.704518, 0.522985, 0.467678, 1)
 use_parent_material = true
 position = Vector2(-480.165, 181.141)
@@ -2068,14 +2100,14 @@ rotation = -0.00639462
 scale = Vector2(4.9223, 4.9223)
 texture = ExtResource("33_w5eh3")
 
-[node name="Rckc" type="Sprite2D" parent="3/Blur_Parent"]
+[node name="Rckc" type="Sprite2D" parent="3/Node2D/Blur_Parent"]
 self_modulate = Color(0.704518, 0.522985, 0.467678, 1)
 use_parent_material = true
 position = Vector2(-1688.43, -28.5754)
 scale = Vector2(2.695, 2.695)
 texture = ExtResource("32_8nten")
 
-[node name="Rcka" type="Sprite2D" parent="3/Blur_Parent"]
+[node name="Rcka" type="Sprite2D" parent="3/Node2D/Blur_Parent"]
 modulate = Color(0.826419, 0.73988, 0.716281, 1)
 self_modulate = Color(0.704518, 0.522985, 0.467678, 1)
 use_parent_material = true
@@ -2084,7 +2116,7 @@ rotation = -1.10357
 scale = Vector2(3.23946, 3.23946)
 texture = ExtResource("33_w5eh3")
 
-[node name="Treeb" type="Sprite2D" parent="3/Blur_Parent"]
+[node name="Treeb" type="Sprite2D" parent="3/Node2D/Blur_Parent"]
 modulate = Color(0.499195, 0.372674, 0.308898, 1)
 use_parent_material = true
 position = Vector2(1397.5, -754.167)
@@ -2092,7 +2124,7 @@ rotation = -3.14159
 scale = Vector2(1.96033, -2.11851)
 texture = ExtResource("21_tdjhb")
 
-[node name="Treeb2" type="Sprite2D" parent="3/Blur_Parent"]
+[node name="Treeb2" type="Sprite2D" parent="3/Node2D/Blur_Parent"]
 modulate = Color(0.499195, 0.372674, 0.308898, 1)
 use_parent_material = true
 position = Vector2(1152.94, -1326.3)
@@ -2100,7 +2132,7 @@ rotation = -3.14159
 scale = Vector2(1.96033, -2.11851)
 texture = ExtResource("21_tdjhb")
 
-[node name="WallA6" type="Sprite2D" parent="3/Blur_Parent"]
+[node name="WallA6" type="Sprite2D" parent="3/Node2D/Blur_Parent"]
 modulate = Color(0.227345, 0.0635713, 0.0069744, 1)
 use_parent_material = true
 position = Vector2(-712.605, -2108.41)
@@ -2108,7 +2140,7 @@ rotation = -1.57079
 scale = Vector2(0.881399, 0.881399)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA7" type="Sprite2D" parent="3/Blur_Parent"]
+[node name="WallA7" type="Sprite2D" parent="3/Node2D/Blur_Parent"]
 modulate = Color(0.227345, 0.0635713, 0.0069744, 1)
 use_parent_material = true
 position = Vector2(-897.479, -2027.74)
@@ -2116,14 +2148,14 @@ rotation = 1.57081
 scale = Vector2(0.881399, 0.881399)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA8" type="Sprite2D" parent="3/Blur_Parent"]
+[node name="WallA8" type="Sprite2D" parent="3/Node2D/Blur_Parent"]
 modulate = Color(0.227345, 0.0635713, 0.0069744, 1)
 use_parent_material = true
 position = Vector2(739.167, 516.667)
 scale = Vector2(0.881399, 0.881399)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA9" type="Sprite2D" parent="3/Blur_Parent"]
+[node name="WallA9" type="Sprite2D" parent="3/Node2D/Blur_Parent"]
 visible = false
 modulate = Color(0.227345, 0.0635713, 0.0069744, 1)
 use_parent_material = true
@@ -2132,7 +2164,7 @@ rotation = -1.57079
 scale = Vector2(0.881399, 0.881399)
 texture = ExtResource("20_wajrl")
 
-[node name="WallA10" type="Sprite2D" parent="3/Blur_Parent"]
+[node name="WallA10" type="Sprite2D" parent="3/Node2D/Blur_Parent"]
 modulate = Color(0.227345, 0.0635713, 0.0069744, 1)
 use_parent_material = true
 position = Vector2(-2715.97, -1857.15)
@@ -2144,15 +2176,19 @@ texture = ExtResource("20_wajrl")
 layer = 14
 follow_viewport_enabled = true
 follow_viewport_scale = 1.42
+script = ExtResource("16_pcp8g")
+updates_in_process = null
 
-[node name="4Kbrushtexture" type="Sprite2D" parent="4"]
+[node name="Node2D" type="Node2D" parent="4"]
+
+[node name="4Kbrushtexture" type="Sprite2D" parent="4/Node2D"]
 modulate = Color(1, 1, 1, 0.360784)
 material = SubResource("ShaderMaterial_o717t")
 position = Vector2(-877.521, -442.916)
 texture = ExtResource("25_ntjt6")
 metadata/_edit_lock_ = true
 
-[node name="TileMap" type="TileMap" parent="4"]
+[node name="TileMap" type="TileMap" parent="4/Node2D"]
 modulate = Color(0.235365, 0.146529, 0.118502, 1)
 material = SubResource("ShaderMaterial_gd6o4")
 position = Vector2(157.746, 14.7887)
@@ -2161,11 +2197,11 @@ tile_set = SubResource("TileSet_c7goa")
 format = 2
 layer_0/tile_data = PackedInt32Array(-5, 0, 8, 65531, 0, 9, -4, 65536, 8, 65532, 65536, 9, -3, 131072, 8, 65533, 131072, 9, -2, 196608, 8, 65534, 196608, 9, -1, 262144, 8, 65535, 262144, 9, -65536, 327680, 8, 0, 327680, 9, -65535, 393216, 8, 1, 393216, 9, -65534, 458752, 8, 2, 458752, 9, -65533, 524288, 8, 3, 524288, 9, -11, 589824, 8, 65525, 589824, 9, -10, 655360, 8, 65526, 655360, 9, -9, 720896, 8, 65527, 720896, 9, -8, 786432, 8, 65528, 786432, 9, -7, 851968, 8, 65529, 851968, 9, -6, 917504, 8, 65530, 917504, 9, 131061, 0, 10, 196597, 0, 10, 262133, 0, 10, 327669, 0, 10, 393205, 0, 10, 458741, 0, 10, 524277, 0, 10, 131062, 0, 10, 196598, 0, 10, 262134, 0, 10, 327670, 0, 10, 393206, 0, 10, 458742, 0, 10, 524278, 0, 10, 131063, 0, 10, 196599, 0, 10, 262135, 0, 10, 327671, 0, 10, 393207, 0, 10, 458743, 0, 10, 524279, 0, 10, 131064, 0, 10, 196600, 0, 10, 262136, 0, 10, 327672, 0, 10, 393208, 0, 10, 458744, 0, 10, 524280, 0, 10, 131065, 0, 10, 196601, 0, 10, 262137, 0, 10, 327673, 0, 10, 393209, 0, 10, 458745, 0, 10, 524281, 0, 10, 131066, 0, 10, 196602, 0, 10, 262138, 0, 10, 327674, 0, 10, 393210, 0, 10, 458746, 0, 10, 524282, 0, 10, 131067, 0, 10, 196603, 0, 10, 262139, 0, 10, 327675, 0, 10, 393211, 0, 10, 458747, 0, 10, 524283, 0, 10, 131068, 0, 10, 196604, 0, 10, 262140, 0, 10, 327676, 0, 10, 393212, 0, 10, 458748, 0, 10, 524284, 0, 10, 131069, 0, 10, 196605, 0, 10, 262141, 0, 10, 327677, 0, 10, 393213, 0, 10, 458749, 0, 10, 524285, 0, 10, 131070, 0, 10, 196606, 0, 10, 262142, 0, 10, 327678, 0, 10, 393214, 0, 10, 458750, 0, 10, 524286, 0, 10, 131071, 0, 10, 196607, 0, 10, 262143, 0, 10, 327679, 0, 10, 393215, 0, 10, 458751, 0, 10, 524287, 0, 10, 65536, 0, 10, 131072, 0, 10, 196608, 0, 10, 262144, 0, 10, 327680, 0, 10, 393216, 0, 10, 458752, 0, 10, 65537, 0, 10, 131073, 0, 10, 196609, 0, 10, 262145, 0, 10, 327681, 0, 10, 393217, 0, 10, 458753, 0, 10, 65538, 0, 10, 131074, 0, 10, 196610, 0, 10, 262146, 0, 10, 327682, 0, 10, 393218, 0, 10, 458754, 0, 10, 65539, 0, 10, 131075, 0, 10, 196611, 0, 10, 262147, 0, 10, 327683, 0, 10, 393219, 0, 10, 458755, 0, 10, -65532, 589824, 8, 4, 589824, 9, 65540, 0, 10, 131076, 0, 10, 196612, 0, 10, 262148, 0, 10, 327684, 0, 10, 393220, 0, 10, 458756, 0, 10, -65531, 655360, 8, 5, 655360, 9, 65541, 0, 10, 131077, 0, 10, 196613, 0, 10, 262149, 0, 10, 327685, 0, 10, 393221, 0, 10, 458757, 0, 10)
 
-[node name="Blur_Parent" type="Node2D" parent="4"]
+[node name="Blur_Parent" type="Node2D" parent="4/Node2D"]
 material = SubResource("ShaderMaterial_q6cc1")
 position = Vector2(0, 82.3944)
 
-[node name="Rckb" type="Sprite2D" parent="4/Blur_Parent"]
+[node name="Rckb" type="Sprite2D" parent="4/Node2D/Blur_Parent"]
 modulate = Color(0.59524, 0.317855, 0.212476, 1)
 self_modulate = Color(0.427939, 0.240372, 0.174661, 1)
 use_parent_material = true
@@ -2174,7 +2210,7 @@ rotation = -0.523598
 scale = Vector2(9.35787, 9.35787)
 texture = ExtResource("33_w5eh3")
 
-[node name="Rckc" type="Sprite2D" parent="4/Blur_Parent"]
+[node name="Rckc" type="Sprite2D" parent="4/Node2D/Blur_Parent"]
 modulate = Color(0.278983, 0.152678, 0.113113, 1)
 material = SubResource("ShaderMaterial_un0gq")
 use_parent_material = true
@@ -2183,7 +2219,7 @@ rotation = 3.15519
 scale = Vector2(4.21077, -3.50618)
 texture = ExtResource("32_8nten")
 
-[node name="Rcka" type="Sprite2D" parent="4/Blur_Parent"]
+[node name="Rcka" type="Sprite2D" parent="4/Node2D/Blur_Parent"]
 modulate = Color(0.59524, 0.317855, 0.212476, 1)
 self_modulate = Color(0.427939, 0.240372, 0.174661, 1)
 use_parent_material = true
@@ -2191,7 +2227,7 @@ position = Vector2(720.833, -30.2914)
 scale = Vector2(3.23946, 3.23946)
 texture = ExtResource("33_w5eh3")
 
-[node name="Treeb" type="Sprite2D" parent="4/Blur_Parent"]
+[node name="Treeb" type="Sprite2D" parent="4/Node2D/Blur_Parent"]
 visible = false
 modulate = Color(0.301018, 0.240822, 0.182939, 1)
 use_parent_material = true
@@ -2199,7 +2235,7 @@ position = Vector2(475.352, -754.167)
 scale = Vector2(2.27993, 2.91244)
 texture = ExtResource("36_ia4jj")
 
-[node name="WallA10" type="Sprite2D" parent="4/Blur_Parent"]
+[node name="WallA10" type="Sprite2D" parent="4/Node2D/Blur_Parent"]
 modulate = Color(0, 0, 0, 1)
 use_parent_material = true
 position = Vector2(-1747.18, -1690.14)
@@ -2207,14 +2243,14 @@ rotation = 1.06197
 scale = Vector2(0.954847, 0.954847)
 texture = ExtResource("20_wajrl")
 
-[node name="TreeaThinner" type="Sprite2D" parent="4/Blur_Parent"]
+[node name="TreeaThinner" type="Sprite2D" parent="4/Node2D/Blur_Parent"]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(-2400.7, -752.817)
 rotation = 3.14159
 scale = Vector2(2.56513, -2.56513)
 texture = ExtResource("36_ia4jj")
 
-[node name="WallA11" type="Sprite2D" parent="4/Blur_Parent"]
+[node name="WallA11" type="Sprite2D" parent="4/Node2D/Blur_Parent"]
 modulate = Color(0.125535, 0.0232887, 0.0023939, 1)
 use_parent_material = true
 position = Vector2(-520.422, 733.099)
@@ -2222,14 +2258,14 @@ rotation = 1.56004
 scale = Vector2(1.51535, 1.51535)
 texture = ExtResource("20_wajrl")
 
-[node name="TreeaThinner2" type="Sprite2D" parent="4/Blur_Parent"]
+[node name="TreeaThinner2" type="Sprite2D" parent="4/Node2D/Blur_Parent"]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(-1221.13, -2235.92)
 rotation = 1.67427
 scale = Vector2(3.50824, -3.50824)
 texture = ExtResource("21_tdjhb")
 
-[node name="Rcka2" type="Sprite2D" parent="4/Blur_Parent"]
+[node name="Rcka2" type="Sprite2D" parent="4/Node2D/Blur_Parent"]
 modulate = Color(0.59524, 0.317855, 0.212476, 1)
 self_modulate = Color(0.427939, 0.240372, 0.174661, 1)
 use_parent_material = true
@@ -2238,21 +2274,21 @@ rotation = -0.776368
 scale = Vector2(5.20747, 5.20747)
 texture = ExtResource("33_w5eh3")
 
-[node name="TreeaThinner3" type="Sprite2D" parent="4/Blur_Parent"]
+[node name="TreeaThinner3" type="Sprite2D" parent="4/Node2D/Blur_Parent"]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(817.606, -436.62)
 rotation = 6.28318
 scale = Vector2(3.44459, -3.44459)
 texture = ExtResource("36_ia4jj")
 
-[node name="TreeaThinner5" type="Sprite2D" parent="4/Blur_Parent"]
+[node name="TreeaThinner5" type="Sprite2D" parent="4/Node2D/Blur_Parent"]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(3527.46, -778.169)
 rotation = 9.42476
 scale = Vector2(3.04137, -3.04137)
 texture = ExtResource("36_ia4jj")
 
-[node name="WallA12" type="Sprite2D" parent="4/Blur_Parent"]
+[node name="WallA12" type="Sprite2D" parent="4/Node2D/Blur_Parent"]
 modulate = Color(0, 0, 0, 1)
 use_parent_material = true
 position = Vector2(46.4789, -1804.23)

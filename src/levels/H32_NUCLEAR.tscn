@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c413chwmpxtw1"]
+[gd_scene load_steps=18 format=3 uid="uid://c413chwmpxtw1"]
 
 [ext_resource type="Script" path="res://src/levels/H32_entrance_switcher_area.gd" id="5_rk1ei"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="6_urwqu"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="7_buua6"]
 [ext_resource type="PackedScene" uid="uid://6aouvsx0hvfm" path="res://src/level_elements/npcs/NPC.tscn" id="7_vhtfh"]
 [ext_resource type="Texture2D" uid="uid://32wg102n325i" path="res://assets/mvp3_assets/dad.png" id="8_4qf24"]
+[ext_resource type="Script" path="res://src/level_elements/parallax_canvas.gd" id="10_4uw8i"]
 [ext_resource type="Texture2D" uid="uid://bybq5utnqi2ji" path="res://assets/mvp3_assets/tutorial/a.png" id="10_716wx"]
 [ext_resource type="PackedScene" uid="uid://5mnlsyicmwh" path="res://src/level_elements/pod/empty_pod.tscn" id="11_8j5d3"]
 [ext_resource type="Texture2D" uid="uid://nh4auewwuedq" path="res://assets/mvp3_assets/tutorial/d.png" id="11_ifasp"]
@@ -103,33 +104,35 @@ position = Vector2(-0.999977, 29)
 scale = Vector2(-0.636, 0.636)
 texture = ExtResource("8_4qf24")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="ParallaxCanvas" type="CanvasLayer" parent="."]
 layer = 11
 follow_viewport_enabled = true
+script = ExtResource("10_4uw8i")
+updates_in_process = null
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-z_index = 10
-offset_left = -9088.0
-offset_top = -2176.0
-offset_right = -6016.0
-offset_bottom = 1792.0
-color = Color(0, 0, 0, 1)
-
-[node name="Node2D" type="Node2D" parent="CanvasLayer"]
+[node name="Node2D" type="Node2D" parent="ParallaxCanvas"]
 z_index = 4096
 
-[node name="A" type="Sprite2D" parent="CanvasLayer/Node2D"]
+[node name="ColorRect" type="ColorRect" parent="ParallaxCanvas/Node2D"]
+z_index = 10
+offset_left = -8991.0
+offset_top = -2569.0
+offset_right = -5919.0
+offset_bottom = 1399.0
+color = Color(0, 0, 0, 1)
+
+[node name="A" type="Sprite2D" parent="ParallaxCanvas/Node2D"]
 modulate = Color(0.389287, 0.389287, 0.389287, 1)
 position = Vector2(-7330.11, -452.413)
 scale = Vector2(0.814786, 0.814786)
 texture = ExtResource("10_716wx")
 
-[node name="D" type="Sprite2D" parent="CanvasLayer/Node2D"]
+[node name="D" type="Sprite2D" parent="ParallaxCanvas/Node2D"]
 position = Vector2(-7045.11, -395.913)
 scale = Vector2(0.792645, 0.792645)
 texture = ExtResource("11_ifasp")
 
-[node name="Space" type="Sprite2D" parent="CanvasLayer/Node2D"]
+[node name="Space" type="Sprite2D" parent="ParallaxCanvas/Node2D"]
 modulate = Color(1, 1, 1, 0.462745)
 position = Vector2(-2460, -114)
 scale = Vector2(0.497201, 0.497201)
