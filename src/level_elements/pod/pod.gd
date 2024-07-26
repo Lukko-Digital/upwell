@@ -4,7 +4,6 @@ class_name Pod
 @export var pod_holder: ClickerHolder
 @export var walls_static_body: StaticBody2D
 @export var walls_visual: Node2D
-@export var point_focus_marker: Marker2D
 
 @onready var pod_animation_player: AnimationPlayer = $PodAnimationPlayer
 @onready var game: Game = get_tree().get_current_scene()
