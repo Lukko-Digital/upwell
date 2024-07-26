@@ -259,7 +259,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ClickerHolder" parent="." instance=ExtResource("4_goton")]
 position = Vector2(-275, -54)
-is_catcher = false
+starts_with_clicker = false
 
 [node name="PodClickerRehomeArea" type="Area2D" parent="."]
 collision_layer = 0
