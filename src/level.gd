@@ -22,10 +22,10 @@ func load_from_level_data():
 func save_level_data():
     var clicker_saves: Array[ClickerSaveData] = []
     for clicker: ClickerBody in get_tree().get_nodes_in_group("Clickers"):
-        var home_holder_path = get_path_to(clicker.home_holder)
+        var home_holder_path = clicker.home_holder.get_path()
         var location
         if clicker.holder_owned_by:
-            location = get_path_to(clicker.holder_owned_by)
+            location = clicker.holder_owned_by.get_path()
         else:
             location = clicker.position
         clicker_saves.append(
