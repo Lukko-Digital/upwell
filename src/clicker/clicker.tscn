@@ -1,12 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://rc5k8wvetpt6"]
+[gd_scene load_steps=15 format=3 uid="uid://rc5k8wvetpt6"]
 
 [ext_resource type="Script" path="res://src/clicker/clicker_body.gd" id="1_5mmek"]
 [ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="2_ci3is"]
 [ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="3_0ahrw"]
-[ext_resource type="Texture2D" uid="uid://ixmq6ns0unji" path="res://assets/mvp4_assets/clicker.png" id="3_c84nw"]
 [ext_resource type="Texture2D" uid="uid://tj5k6ioldxwr" path="res://assets/mvp4_assets/clicker_lights.png" id="4_8fv0n"]
 [ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="4_53hyt"]
 [ext_resource type="Script" path="res://src/clicker/clicker_interactable.gd" id="4_d7pfq"]
+[ext_resource type="Script" path="res://src/level_elements/parallax_canvas.gd" id="7_p0paf"]
+[ext_resource type="Texture2D" uid="uid://robj743awspg" path="res://assets/mvp4_assets/clicker_finder.png" id="8_ruw1o"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w1b0y"]
 bounce = 0.3
@@ -27,7 +28,6 @@ radius = 32.0624
 radius = 32.0624
 
 [node name="ClickerBody" type="RigidBody2D" node_paths=PackedStringArray("grav_component", "glow_sprite", "lights_sprite", "interactable")]
-z_index = -1
 collision_layer = 16
 physics_material_override = SubResource("PhysicsMaterial_w1b0y")
 freeze_mode = 1
@@ -40,7 +40,6 @@ lights_sprite = NodePath("LightsSprite")
 interactable = NodePath("Interactable")
 
 [node name="ClickerSprite" parent="." instance=ExtResource("2_ci3is")]
-texture = ExtResource("3_c84nw")
 
 [node name="LightsSprite" type="Sprite2D" parent="."]
 position = Vector2(0, 1)
@@ -95,6 +94,16 @@ collision_mask = 8
 visible = false
 position = Vector2(0, -38)
 shape = SubResource("CircleShape2D_4ik21")
+
+[node name="ParallaxCanvas" type="CanvasLayer" parent="."]
+layer = 119
+follow_viewport_enabled = true
+script = ExtResource("7_p0paf")
+updates_in_process = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxCanvas"]
+modulate = Color(1, 1, 1, 0.466667)
+texture = ExtResource("8_ruw1o")
 
 [connection signal="area_entered" from="HolderDetector" to="." method="_on_holder_detector_area_entered"]
 [connection signal="area_exited" from="HolderDetector" to="." method="_on_holder_detector_area_exited"]
