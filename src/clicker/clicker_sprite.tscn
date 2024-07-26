@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d1ev75jm17q8w"]
 
-[ext_resource type="Texture2D" uid="uid://ti8v71g2je0u" path="res://assets/mvp2_assets/clicker.png" id="1_w7bil"]
+[ext_resource type="Texture2D" uid="uid://ixmq6ns0unji" path="res://assets/mvp4_assets/clicker.png" id="1_gft45"]
 
 [node name="ClickerSprite" type="Sprite2D"]
-texture = ExtResource("1_w7bil")
+texture = ExtResource("1_gft45")
