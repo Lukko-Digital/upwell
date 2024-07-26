@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="1_88q8o"]
 [ext_resource type="Script" path="res://src/level.gd" id="1_t5ca7"]
+[ext_resource type="PackedScene" uid="uid://qdspi0dpyqtl" path="res://src/level_elements/holder/clicker_holder_grabber.tscn" id="2_12uvl"]
 [ext_resource type="Script" path="res://src/holder/timed_multi_receiver.gd" id="2_dknni"]
 [ext_resource type="PackedScene" uid="uid://chbldv4vsxwky" path="res://src/level_elements/powered_objects/clicker_blocker.tscn" id="3_e7luc"]
 [ext_resource type="PackedScene" uid="uid://hxthntbfyogp" path="res://src/level_elements/holder/timed_multi_receiver_bar.tscn" id="3_fqaih"]
@@ -27,51 +28,44 @@ script = ExtResource("1_t5ca7")
 
 [node name="ClickerHolder" parent="Holders" instance=ExtResource("3_wyrgq")]
 position = Vector2(-1471, -676)
-is_catcher = false
 
 [node name="ClickerHolder2" parent="Holders" instance=ExtResource("3_wyrgq")]
-position = Vector2(648, -32)
+position = Vector2(848, -32)
+scale = Vector2(-1, 1)
 starts_with_clicker = false
-is_catcher = false
 
 [node name="ClickerHolder4" parent="Holders" instance=ExtResource("3_wyrgq")]
 position = Vector2(2944, -552)
-is_catcher = false
 
 [node name="ClickerHolder3" parent="Holders" instance=ExtResource("3_wyrgq")]
 position = Vector2(4168, -1280)
 rotation = -2.35619
 starts_with_clicker = false
 
+[node name="ClickerGrabber" parent="Holders" instance=ExtResource("2_12uvl")]
+position = Vector2(6011, -1195)
+rotation = -3.14159
+
 [node name="ClickerHolder5" parent="Holders" instance=ExtResource("3_wyrgq")]
 position = Vector2(5280, -40)
-is_catcher = false
-
-[node name="ClickerHolder6" parent="Holders" instance=ExtResource("3_wyrgq")]
-position = Vector2(6824, -1192)
-rotation = -2.35619
-starts_with_clicker = false
 
 [node name="ClickerHolder7" parent="Holders" instance=ExtResource("3_wyrgq")]
 position = Vector2(8056, -40)
-is_catcher = false
-
-[node name="ClickerHolder8" parent="Holders" instance=ExtResource("3_wyrgq")]
-position = Vector2(9608, -1112)
-rotation = -3.14159
-starts_with_clicker = false
 
 [node name="ClickerHolder9" parent="Holders" instance=ExtResource("3_wyrgq")]
 position = Vector2(11616, -299)
-is_catcher = false
 
 [node name="ClickerHolder10" parent="Holders" instance=ExtResource("3_wyrgq")]
 position = Vector2(12160, -296)
-is_catcher = false
+scale = Vector2(-1, 1)
 
 [node name="TimedMultiReceiver" type="Node2D" parent="Holders"]
 position = Vector2(11936, -936)
 script = ExtResource("2_dknni")
+
+[node name="ClickerGrabber3" parent="Holders/TimedMultiReceiver" instance=ExtResource("2_12uvl")]
+position = Vector2(-689, -221)
+rotation = -3.97741
 
 [node name="TimedMultiReceiverBar" parent="Holders/TimedMultiReceiver" instance=ExtResource("3_fqaih")]
 offset_left = -248.0
@@ -80,22 +74,20 @@ offset_right = 168.0
 offset_bottom = -112.0
 metadata/_edit_use_anchors_ = true
 
-[node name="ClickerHolder11" parent="Holders/TimedMultiReceiver" instance=ExtResource("3_wyrgq")]
-position = Vector2(-704, -256)
-rotation = 2.35619
-starts_with_clicker = false
+[node name="ClickerGrabber4" parent="Holders/TimedMultiReceiver" instance=ExtResource("2_12uvl")]
+position = Vector2(606, -220)
+rotation = -2.38091
 
-[node name="ClickerHolder12" parent="Holders/TimedMultiReceiver" instance=ExtResource("3_wyrgq")]
-position = Vector2(640.001, -248)
-rotation = -2.35619
-starts_with_clicker = false
+[node name="ClickerGrabber2" parent="Holders" instance=ExtResource("2_12uvl")]
+position = Vector2(9598, -1076)
+rotation = -3.14159
 
 [node name="Screen" parent="." instance=ExtResource("12_cnxwj")]
 position = Vector2(14468, -746)
 screen = ExtResource("5_8m05o")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_88q8o")]
-position = Vector2(14473, -420)
+position = Vector2(14526, -420)
 camera = NodePath("../Camera2D")
 
 [node name="Camera2D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_tr7ns")]
@@ -168,15 +160,15 @@ power_holder = NodePath("../../Holders/ClickerHolder3")
 
 [node name="Door3" parent="Doors" node_paths=PackedStringArray("power_holder") instance=ExtResource("4_1jypm")]
 position = Vector2(7013, -256)
-power_holder = NodePath("../../Holders/ClickerHolder6")
+power_holder = NodePath("../../Holders/ClickerGrabber")
 
 [node name="Door6" parent="Doors" node_paths=PackedStringArray("power_holder") instance=ExtResource("4_1jypm")]
 position = Vector2(7707, -250)
-power_holder = NodePath("../../Holders/ClickerHolder6")
+power_holder = NodePath("../../Holders/ClickerGrabber")
 
 [node name="Door4" parent="Doors" node_paths=PackedStringArray("power_holder") instance=ExtResource("4_1jypm")]
 position = Vector2(9957, -512)
-power_holder = NodePath("../../Holders/ClickerHolder8")
+power_holder = NodePath("../../Holders/ClickerGrabber2")
 
 [node name="Door5" parent="Doors" node_paths=PackedStringArray("power_multi") instance=ExtResource("4_1jypm")]
 position = Vector2(12775, -512)

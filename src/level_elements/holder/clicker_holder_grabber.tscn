@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://qdspi0dpyqtl"]
+
+[ext_resource type="Script" path="res://src/holder/clicker_holder.gd" id="1_f0ohy"]
+[ext_resource type="Texture2D" uid="uid://ctbvi3xyrwtuc" path="res://assets/mvp4_assets/holder_grabber-sheet.png" id="2_p4tc2"]
+[ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="3_mn60y"]
+[ext_resource type="Texture2D" uid="uid://ceyfrqipxnpj3" path="res://assets/mvp2_assets/field.png" id="4_n7jei"]
+[ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="5_wleef"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pgqne"]
+radius = 115.473
+
+[node name="ClickerGrabber" type="Area2D"]
+z_index = -2
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_f0ohy")
+is_catcher = true
+
+[node name="HolderSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 5
+position = Vector2(0, -52)
+texture = ExtResource("2_p4tc2")
+hframes = 2
+vframes = 2
+frame = 2
+
+[node name="ClickerSprite" parent="." instance=ExtResource("3_mn60y")]
+unique_name_in_owner = true
+position = Vector2(-0.403152, -70.981)
+
+[node name="CatcherField" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0.596878, -73.9438)
+scale = Vector2(0.20683, 0.20683)
+texture = ExtResource("4_n7jei")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.596848, -71.981)
+shape = SubResource("CircleShape2D_pgqne")
+
+[node name="InteractLabel" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.466667)
+offset_left = -55.0
+offset_top = -263.0
+offset_right = 236.0
+offset_bottom = -60.0
+scale = Vector2(0.374634, 0.374634)
+theme_override_fonts/font = ExtResource("5_wleef")
+theme_override_font_sizes/font_size = 161
+horizontal_alignment = 1
