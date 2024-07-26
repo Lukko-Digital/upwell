@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://df6l0exidum0b" path="res://assets/pod/pod_door_open.png" id="8_3vtxv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwy5k"]
-size = Vector2(2266, 2622)
+size = Vector2(2266, 3195)
 
 [node name="EmptyPod" type="Node2D"]
 script = ExtResource("1_i5ays")
@@ -55,7 +55,7 @@ color = Color(0, 0, 0, 1)
 [node name="StaticBody2D" type="StaticBody2D" parent="Hider"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hider/StaticBody2D"]
-position = Vector2(0, -408)
+position = Vector2(0, -694.5)
 shape = SubResource("RectangleShape2D_lwy5k")
 disabled = true
 
@@ -70,5 +70,5 @@ position = Vector2(-1134, -604)
 texture = ExtResource("8_3vtxv")
 
 [node name="PodDoorOpen2" type="Sprite2D" parent="."]
-position = Vector2(1171, -604)
+position = Vector2(1133, -604)
 texture = ExtResource("8_3vtxv")
