@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://bttepvab6oghg"]
+[gd_scene load_steps=96 format=3 uid="uid://bttepvab6oghg"]
 
 [ext_resource type="PackedScene" uid="uid://5mnlsyicmwh" path="res://src/level_elements/pod/empty_pod.tscn" id="1_yebsk"]
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="2_v1oi6"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://src/holder/timed_multi_receiver.gd" id="5_neawc"]
 [ext_resource type="PackedScene" uid="uid://hxthntbfyogp" path="res://src/level_elements/holder/timed_multi_receiver_bar.tscn" id="6_221f4"]
 [ext_resource type="PackedScene" uid="uid://chbldv4vsxwky" path="res://src/level_elements/powered_objects/clicker_blocker.tscn" id="7_6gt03"]
+[ext_resource type="PackedScene" uid="uid://qdspi0dpyqtl" path="res://src/level_elements/holder/clicker_holder_grabber.tscn" id="7_vete4"]
 [ext_resource type="PackedScene" uid="uid://bifs4cy21hluc" path="res://src/level_elements/powered_objects/door.tscn" id="8_5flqu"]
 [ext_resource type="PackedScene" uid="uid://dw6autb2hsck1" path="res://src/level_elements/artificial_gravity/orbit_ag.tscn" id="9_8ql2w"]
 [ext_resource type="Texture2D" uid="uid://dvsqrsyx8m44x" path="res://assets/mvp3_assets/tm.png" id="10_pijsy"]
@@ -903,7 +904,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1s7rc"]
 gradient = SubResource("Gradient_oo52l")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jp5ok"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dkfbw"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -1065,7 +1066,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_sr4fx"]
 gradient = SubResource("Gradient_lu00i")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_06wyh"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1okjh"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -1195,13 +1196,11 @@ camera = NodePath("../Camera2D")
 [node name="Holders" type="Node2D" parent="LEVEL"]
 
 [node name="ClickerHolder" parent="LEVEL/Holders" instance=ExtResource("4_roes5")]
-position = Vector2(-1227.16, -57.6001)
-is_catcher = false
+position = Vector2(-1260, -38)
 
 [node name="ClickerHolder2" parent="LEVEL/Holders" instance=ExtResource("4_roes5")]
-position = Vector2(-56.1602, -60.6001)
+position = Vector2(-7, -37)
 scale = Vector2(-1, 1)
-is_catcher = false
 
 [node name="TimedMultiReceiver" type="Node2D" parent="LEVEL/Holders"]
 position = Vector2(600, -1314)
@@ -1216,21 +1215,18 @@ offset_top = 70.0
 offset_right = 929.0
 offset_bottom = 2122.0
 rotation = 4.71238
+metadata/_edit_lock_ = true
 
-[node name="ClickerHolder3" parent="LEVEL/Holders/TimedMultiReceiver" instance=ExtResource("4_roes5")]
-position = Vector2(-414, -2417)
+[node name="ClickerGrabber" parent="LEVEL/Holders/TimedMultiReceiver" instance=ExtResource("7_vete4")]
+position = Vector2(-407.991, -2437)
 rotation = -3.14159
-starts_with_clicker = false
 
-[node name="ClickerHolder4" parent="LEVEL/Holders/TimedMultiReceiver" instance=ExtResource("4_roes5")]
-position = Vector2(-414, -71.0015)
-scale = Vector2(-1, 1)
-starts_with_clicker = false
+[node name="ClickerGrabber2" parent="LEVEL/Holders/TimedMultiReceiver" instance=ExtResource("7_vete4")]
+position = Vector2(-422, -61.0015)
 
 [node name="ClickerHolder4" parent="LEVEL/Holders" instance=ExtResource("4_roes5")]
 position = Vector2(7505, 347)
 scale = Vector2(-1, 1)
-is_catcher = false
 
 [node name="ClickerHolder3" parent="LEVEL/Holders" instance=ExtResource("4_roes5")]
 position = Vector2(21661, -3236)
@@ -1241,20 +1237,16 @@ starts_with_clicker = false
 
 [node name="ClickerHolder5" parent="LEVEL/Holders" instance=ExtResource("4_roes5")]
 position = Vector2(7718, -1565)
-is_catcher = false
 
 [node name="ClickerHolder7" parent="LEVEL/Holders" instance=ExtResource("4_roes5")]
 position = Vector2(12593, -2343)
 starts_with_clicker = false
-is_catcher = false
 
 [node name="ClickerHolder8" parent="LEVEL/Holders" instance=ExtResource("4_roes5")]
 position = Vector2(13664, -2339)
-is_catcher = false
 
 [node name="ClickerHolder9" parent="LEVEL/Holders" instance=ExtResource("4_roes5")]
 position = Vector2(17465, -3238)
-is_catcher = false
 
 [node name="ClickerHolder10" parent="LEVEL/Holders" instance=ExtResource("4_roes5")]
 position = Vector2(19157, -6773)
@@ -1487,7 +1479,6 @@ layer = -1
 follow_viewport_enabled = true
 follow_viewport_scale = 0.575
 script = ExtResource("16_pcp8g")
-updates_in_process = null
 
 [node name="Node2D" type="Node2D" parent="-5"]
 
@@ -1514,7 +1505,6 @@ layer = -1
 follow_viewport_enabled = true
 follow_viewport_scale = 0.7
 script = ExtResource("16_pcp8g")
-updates_in_process = null
 
 [node name="Node2D" type="Node2D" parent="-4"]
 
@@ -1549,7 +1539,6 @@ layer = -1
 follow_viewport_enabled = true
 follow_viewport_scale = 0.82
 script = ExtResource("16_pcp8g")
-updates_in_process = null
 
 [node name="Node2D" type="Node2D" parent="-3"]
 
@@ -1576,7 +1565,6 @@ layer = -1
 follow_viewport_enabled = true
 follow_viewport_scale = 0.915
 script = ExtResource("16_pcp8g")
-updates_in_process = null
 
 [node name="Node2D" type="Node2D" parent="-2"]
 
@@ -1620,7 +1608,7 @@ modulate = Color(0.952099, 0.402827, 0.320554, 1)
 material = SubResource("CanvasItemMaterial_n8gfo")
 position = Vector2(-9, -742)
 amount = 1024
-process_material = SubResource("ParticleProcessMaterial_jp5ok")
+process_material = SubResource("ParticleProcessMaterial_dkfbw")
 texture = ExtResource("26_jaqoe")
 lifetime = 7.0
 randomness = 0.47
@@ -1648,7 +1636,6 @@ layer = -1
 follow_viewport_enabled = true
 follow_viewport_scale = 0.935
 script = ExtResource("16_pcp8g")
-updates_in_process = null
 
 [node name="Node2D" type="Node2D" parent="-1"]
 
@@ -1780,19 +1767,18 @@ position = Vector2(-4366.84, -441.711)
 scale = Vector2(2.0726, -2.01129)
 texture = ExtResource("20_wajrl")
 
-[node name="BG_SCREEN" type="ColorRect" parent="."]
+[node name="BG_SCREEN" type="ColorRect" parent="-1/Node2D"]
 z_index = -1
 material = SubResource("ShaderMaterial_qtv6a")
-offset_left = -3328.0
-offset_top = -3977.0
-offset_right = 2176.0
-offset_bottom = 2699.0
+offset_left = -3581.0
+offset_top = -3931.0
+offset_right = 1923.0
+offset_bottom = 2745.0
 color = Color(1, 0.469173, 0.816102, 0.317647)
 
 [node name="1" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 script = ExtResource("16_pcp8g")
-updates_in_process = null
 
 [node name="Node2D" type="Node2D" parent="1"]
 
@@ -1958,7 +1944,6 @@ layer = 11
 follow_viewport_enabled = true
 follow_viewport_scale = 1.09
 script = ExtResource("16_pcp8g")
-updates_in_process = null
 
 [node name="Node2D" type="Node2D" parent="2"]
 
@@ -2064,13 +2049,12 @@ layer = 12
 follow_viewport_enabled = true
 follow_viewport_scale = 1.19
 script = ExtResource("16_pcp8g")
-updates_in_process = null
 
 [node name="Node2D" type="Node2D" parent="3"]
 
 [node name="Particles" parent="3/Node2D" instance=ExtResource("34_cqmqj")]
 visible = false
-process_material = SubResource("ParticleProcessMaterial_06wyh")
+process_material = SubResource("ParticleProcessMaterial_1okjh")
 
 [node name="TileMap" type="TileMap" parent="3/Node2D"]
 modulate = Color(0.621049, 0.359803, 0.250508, 1)
@@ -2177,7 +2161,6 @@ layer = 14
 follow_viewport_enabled = true
 follow_viewport_scale = 1.42
 script = ExtResource("16_pcp8g")
-updates_in_process = null
 
 [node name="Node2D" type="Node2D" parent="4"]
 
