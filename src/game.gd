@@ -6,9 +6,11 @@ class_name Game
 
 func change_level(level: PackedScene):
 	var current_level = active_level.get_child(0)
+	if current_level is Level:
+		current_level.save_level_data()
 	active_level.remove_child(current_level)
 	current_level.queue_free()
-	var new_level = level.instantiate()
+	var new_level: Level = level.instantiate()
 
 	var entry_point: EmptyPod
 
@@ -26,4 +28,5 @@ func change_level(level: PackedScene):
 
 	Global.pod_position = entry_point
 
-	active_level.call_deferred("add_child", new_level)
+	active_level.add_child.call_deferred(new_level)
+	new_level.initialize_level.call_deferred()

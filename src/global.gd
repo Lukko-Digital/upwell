@@ -38,6 +38,8 @@ var pod_position: EmptyPod = null
 
 var moving_on_map = false
 
+var level_save_state = {}
+
 ## Signals for [MainCamera]
 signal set_camera_focus(focus: Node2D)
 signal camera_shake(duration: float, amount: float)
