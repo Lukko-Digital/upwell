@@ -11,19 +11,12 @@ enum HolderFrames {
 @onready var clicker_sprite: Sprite2D = %ClickerSprite
 @onready var holder_sprite: Sprite2D = %HolderSprite
 @onready var catcher_field: Sprite2D = %CatcherField
-@onready var id: String = owner.name + name
 @onready var clicker_scene: PackedScene = preload ("res://src/clicker/clicker.tscn")
 
 signal clicker_state_changed(holder: ClickerHolder, has_clicker: bool)
 
 var owned_clicker: ClickerBody = null:
 	set = _set_owned_clicker
-
-## DEPRECATED, LEFT AS REFERENCE
-# func _set_has_clicker(value: bool):
-# 	Global.clicker_state[id] = value
-# 	## Emit signal (ONLY USED IN MULTIRECEIVER)
-# 	clicker_state_changed.emit(self, value)
 
 func _set_highlighted(value: bool):
 	if !has_clicker():
@@ -54,7 +47,10 @@ func _set_owned_clicker(clicker: ClickerBody):
 
 func _ready():
 	super()
-	
+	add_to_group("Holders")
+	catcher_field.visible = is_catcher
+
+func init_starting_clicker():
 	if starts_with_clicker:
 		var instance: ClickerBody = clicker_scene.instantiate()
 		instance.home_holder = self
@@ -63,16 +59,6 @@ func _ready():
 	else:
 		owned_clicker = null
 		holder_sprite.frame = HolderFrames.OFF
-
-	catcher_field.visible = is_catcher
-	
-	## DEPRECATED, LEFT AS REFERENCE
-	# if id not in Global.clicker_state:
-	# 	# Add state to Global state
-	# 	Global.clicker_state[id] = has_clicker
-	# else:
-	# 	# Load from Global state
-	# 	has_clicker = Global.clicker_state[id]
 
 func has_clicker() -> bool:
 	return owned_clicker != null
