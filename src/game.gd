@@ -29,4 +29,4 @@ func change_level(level: PackedScene):
 	Global.pod_position = entry_point
 
 	active_level.add_child.call_deferred(new_level)
-	new_level.load_from_level_data.call_deferred()
+	new_level.initialize_level.call_deferred()
