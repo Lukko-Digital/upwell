@@ -40,9 +40,8 @@ collision_mask = 64
 position = Vector2(-700.5, 15.5)
 shape = SubResource("RectangleShape2D_tk24l")
 
-[node name="ScreenCore" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("10_b30k3")]
+[node name="ScreenCore" parent="." node_paths=PackedStringArray("glow") instance=ExtResource("10_b30k3")]
 position = Vector2(-402, -230)
-label = NodePath("../ScreenPuzzleUI/ColorRect3/VBoxContainer/TextBacker/ScrollContainer/MarginContainer/RichTextLabel")
 text = "[center][b]9/24/35[/b][/center]
 
 Nice job! Remember, [b][bgcolor=993e00][color=ff8400]<orbit>[/color][/bgcolor][/b] is [i]the[/i] most important function of nodes.
@@ -56,12 +55,10 @@ Rheuman
 
 
 "
-indicator = NodePath("../ScreenPuzzleUI/ColorRect3/VBoxContainer/FoldersContainer/TextureRect")
 glow = NodePath("../ClickerGlow")
 
-[node name="ScreenCore2" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("10_b30k3")]
+[node name="ScreenCore2" parent="." node_paths=PackedStringArray("glow") instance=ExtResource("10_b30k3")]
 position = Vector2(-1088, -230)
-label = NodePath("../ScreenPuzzleUI/ColorRect3/VBoxContainer/TextBacker/ScrollContainer/MarginContainer/RichTextLabel")
 text = "[center][b]9/24/35[/b][/center]
 
 Congratulations on reaching your [b][color=a14000]first waypoint[/color][/b]! You're on your way to becoming a real scout.
@@ -72,7 +69,6 @@ Rheuman
 
 
 "
-indicator = NodePath("../ScreenPuzzleUI/ColorRect3/VBoxContainer/FoldersContainer/TextureRect2")
 glow = NodePath("../ClickerGlow")
 
 [node name="ClickerGlow" type="Sprite2D" parent="."]
@@ -80,5 +76,3 @@ visible = false
 position = Vector2(787, -943)
 scale = Vector2(2, 2)
 texture = ExtResource("6_4w246")
-
-[editable path="ScreenPuzzleUI"]

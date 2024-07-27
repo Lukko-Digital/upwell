@@ -49,7 +49,7 @@ layout_mode = 2
 [node name="RightSideContainer" parent="CenterContainer/HBoxContainer" instance=ExtResource("5_00n3v")]
 layout_mode = 2
 
-[node name="LaunchButton" type="Button" parent="."]
+[node name="LaunchButtonss" type="Button" parent="."]
 visible = false
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
@@ -87,7 +87,6 @@ visible = false
 position = Vector2(1928, 1079)
 texture = ExtResource("16_cialb")
 
-[connection signal="pressed" from="LaunchButton" to="." method="_on_launch_button_pressed"]
+[connection signal="pressed" from="LaunchButtonss" to="." method="_on_launch_button_pressed"]
 
 [editable path="CenterContainer/HBoxContainer/PuzzleContainer"]
-[editable path="CenterContainer/HBoxContainer/RightSideContainer"]
