@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvkim1x1vvm81"]
+[gd_scene load_steps=6 format=3 uid="uid://bvkim1x1vvm81"]
 
 [ext_resource type="Script" path="res://src/screen_puzzles/screen_puzzle_ui.gd" id="1_lx7ia"]
 [ext_resource type="Texture2D" uid="uid://c1i3o2d0axw7u" path="res://assets/ui/screen_puzzle/out_of_puzzle_blocker.png" id="2_5x46l"]
 [ext_resource type="PackedScene" uid="uid://da5jk65ly7lyc" path="res://src/screen_puzzles/ui/puzzle_container.tscn" id="4_b7com"]
 [ext_resource type="PackedScene" uid="uid://de1xdb5fsj3ua" path="res://src/screen_puzzles/ui/right_side_container.tscn" id="5_00n3v"]
 [ext_resource type="Texture2D" uid="uid://gpbdqntfl2ae" path="res://assets/ui/screen_puzzle/bg.png" id="9_ajd7s"]
-[ext_resource type="Texture2D" uid="uid://dh1pw3gdl2727" path="res://assets/ui/screen_puzzle/reference.png" id="16_cialb"]
 
 [node name="ScreenPuzzleUI" type="Control" node_paths=PackedStringArray("folders_container", "main_text_label", "launch_result_label")]
 layout_mode = 3
@@ -23,14 +22,17 @@ launch_result_label = NodePath("LaunchResultLabel")
 [node name="Background" type="TextureRect" parent="."]
 z_index = -10
 layout_mode = 0
-offset_right = 3840.0
+offset_left = 10.0
+offset_right = 3850.0
 offset_bottom = 2160.0
 texture = ExtResource("9_ajd7s")
 
 [node name="Lineblocker" type="TextureRect" parent="."]
 layout_mode = 2
-offset_right = 3840.0
-offset_bottom = 2160.0
+offset_left = 47.0
+offset_top = -1.0
+offset_right = 3887.0
+offset_bottom = 2159.0
 texture = ExtResource("2_5x46l")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -72,11 +74,6 @@ fit_content = true
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1920, 1080)
 zoom = Vector2(0.5, 0.5)
-
-[node name="Reference" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(1928, 1079)
-texture = ExtResource("16_cialb")
 
 [connection signal="pressed" from="CenterContainer/HBoxContainer/RightSideContainer/ButtonsBacker/LaunchButton" to="." method="_on_launch_button_pressed"]
 

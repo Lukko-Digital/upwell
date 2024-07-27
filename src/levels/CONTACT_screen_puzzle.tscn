@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b30jo7kace2yj"]
+[gd_scene load_steps=11 format=3 uid="uid://b30jo7kace2yj"]
 
 [ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/screen_player.tscn" id="1_hsobo"]
 [ext_resource type="PackedScene" uid="uid://bvkim1x1vvm81" path="res://src/screen_puzzles/screen_puzzle_ui.tscn" id="2_jcaf3"]
+[ext_resource type="PackedScene" uid="uid://dei1bl8astem7" path="res://src/screen_puzzles/screen_button_boost.tscn" id="6_idve3"]
+[ext_resource type="PackedScene" uid="uid://bwbpi60st6gme" path="res://src/screen_puzzles/screen_button_unorbit.tscn" id="7_22bnm"]
 [ext_resource type="PackedScene" uid="uid://bdt2psjmwjsy6" path="res://src/screen_puzzles/screen_button_orbit.tscn" id="8_2v3tm"]
+[ext_resource type="Script" path="res://src/levels/button_home_handler.gd" id="8_kgvfj"]
 [ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/screen_ag.tscn" id="9_svl6v"]
 [ext_resource type="PackedScene" uid="uid://c1fatgffin6hd" path="res://src/screen_puzzles/screen_core.tscn" id="10_b30k3"]
 
@@ -21,9 +24,6 @@ metadata/_edit_lock_ = true
 
 [node name="ScreenPlayer" parent="." instance=ExtResource("1_hsobo")]
 position = Vector2(-854, 583)
-
-[node name="ScreenButtonOrbit" parent="." instance=ExtResource("8_2v3tm")]
-position = Vector2(-1212, 580)
 
 [node name="ScreenAG" parent="." instance=ExtResource("9_svl6v")]
 position = Vector2(-718, -103)
@@ -72,6 +72,19 @@ Rheuman
 
 "
 folder_button = NodePath("../ScreenPuzzleUI/CenterContainer/HBoxContainer/RightSideContainer/FoldersBacker/FoldersContainer/FolderButton")
+
+[node name="ButtonHomeHandler" type="Node2D" parent="." node_paths=PackedStringArray("puzzle_bar")]
+script = ExtResource("8_kgvfj")
+puzzle_bar = NodePath("../ScreenPuzzleUI/CenterContainer/HBoxContainer/PuzzleContainer/PuzzleBar")
+
+[node name="ScreenButtonOrbit" parent="ButtonHomeHandler" instance=ExtResource("8_2v3tm")]
+position = Vector2(-1341, 463)
+
+[node name="ScreenButtonBoost" parent="ButtonHomeHandler" instance=ExtResource("6_idve3")]
+position = Vector2(-1053, 498)
+
+[node name="ScreenButtonUnorbit" parent="ButtonHomeHandler" instance=ExtResource("7_22bnm")]
+position = Vector2(-577, 612)
 
 [editable path="ScreenPuzzleUI"]
 [editable path="ScreenPuzzleUI/CenterContainer/HBoxContainer/PuzzleContainer"]

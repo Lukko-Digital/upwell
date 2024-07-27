@@ -9,11 +9,13 @@
 theme_override_constants/separation = -5
 
 [node name="PuzzleBg" type="TextureRect" parent="."]
+z_index = -10
 layout_mode = 2
 texture = ExtResource("1_ui1l3")
 stretch_mode = 3
 
 [node name="FuelBacker" type="TextureRect" parent="PuzzleBg"]
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
