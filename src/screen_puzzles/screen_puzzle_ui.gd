@@ -2,6 +2,8 @@ extends Control
 class_name ScreenPuzzleUI
 
 @export var screen_player: ScreenPlayer
+@export var folders_container: HBoxContainer
+@export var main_text_label: RichTextLabel
 @export var launch_result_label: RichTextLabel
 
 const LAUNCH_TEXT = {
@@ -10,7 +12,15 @@ const LAUNCH_TEXT = {
 }
 
 func _ready() -> void:
+	var folder_button_group = ButtonGroup.new()
+	for folder_button: FolderButton in folders_container.get_children():
+		folder_button.button_group = folder_button_group
+		folder_button.folder_opened.connect(_on_folder_opened)
+
 	launch_result_label.hide()
+
+func _on_folder_opened(text: String):
+	main_text_label.text = text
 
 func _on_launch_button_pressed() -> void:
 	var folder_hit: ScreenCore = screen_player.update_tragectory()

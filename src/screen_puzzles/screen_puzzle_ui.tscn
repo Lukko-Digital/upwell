@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://gpbdqntfl2ae" path="res://assets/ui/screen_puzzle/bg.png" id="9_ajd7s"]
 [ext_resource type="Texture2D" uid="uid://dh1pw3gdl2727" path="res://assets/ui/screen_puzzle/reference.png" id="16_cialb"]
 
-[node name="ScreenPuzzleUI" type="Control" node_paths=PackedStringArray("launch_result_label")]
+[node name="ScreenPuzzleUI" type="Control" node_paths=PackedStringArray("folders_container", "main_text_label", "launch_result_label")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -1920.0
@@ -16,6 +16,8 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
 script = ExtResource("1_lx7ia")
+folders_container = NodePath("CenterContainer/HBoxContainer/RightSideContainer/FoldersBacker/FoldersContainer")
+main_text_label = NodePath("CenterContainer/HBoxContainer/RightSideContainer/DialogueBacker/ScrollContainer/MarginContainer/RichTextLabel")
 launch_result_label = NodePath("LaunchResultLabel")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -49,17 +51,6 @@ layout_mode = 2
 [node name="RightSideContainer" parent="CenterContainer/HBoxContainer" instance=ExtResource("5_00n3v")]
 layout_mode = 2
 
-[node name="LaunchButtonss" type="Button" parent="."]
-visible = false
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-offset_left = 2459.0
-offset_top = 1742.0
-offset_right = 3619.0
-offset_bottom = 1942.0
-theme_override_font_sizes/font_size = 100
-text = "LAUNCH"
-
 [node name="LaunchResultLabel" type="RichTextLabel" parent="."]
 visible = false
 layout_mode = 1
@@ -87,6 +78,7 @@ visible = false
 position = Vector2(1928, 1079)
 texture = ExtResource("16_cialb")
 
-[connection signal="pressed" from="LaunchButtonss" to="." method="_on_launch_button_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/RightSideContainer/ButtonsBacker/LaunchButton" to="." method="_on_launch_button_pressed"]
 
 [editable path="CenterContainer/HBoxContainer/PuzzleContainer"]
+[editable path="CenterContainer/HBoxContainer/RightSideContainer"]

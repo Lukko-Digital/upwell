@@ -1,24 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://bl53k36i6wlyr"]
+[gd_scene load_steps=5 format=3 uid="uid://bl53k36i6wlyr"]
 
 [ext_resource type="Texture2D" uid="uid://ccsf35jlguasg" path="res://assets/ui/screen_puzzle/folder_closed.png" id="1_onk1d"]
 [ext_resource type="Texture2D" uid="uid://bwdlx3025vojs" path="res://assets/ui/screen_puzzle/folder_open.png" id="2_lkxvf"]
+[ext_resource type="Texture2D" uid="uid://1jv1w1htx42c" path="res://assets/ui/screen_puzzle/folder_glow_ADD.png" id="3_ajtat"]
+[ext_resource type="Script" path="res://src/screen_puzzles/ui/folder_button.gd" id="3_qo2h5"]
 
 [node name="FolderButton" type="TextureButton"]
+z_index = 1
 custom_minimum_size = Vector2(94, 76)
 offset_right = 94.0
 offset_bottom = 76.0
+toggle_mode = true
+texture_normal = ExtResource("1_onk1d")
+texture_pressed = ExtResource("2_lkxvf")
+texture_hover = ExtResource("2_lkxvf")
+script = ExtResource("3_qo2h5")
 
-[node name="FolderClosed" type="TextureRect" parent="."]
-offset_right = 131.0
-offset_bottom = 106.0
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("1_onk1d")
-stretch_mode = 2
-
-[node name="FolderOpen" type="TextureRect" parent="."]
+[node name="FolderGlow" type="Sprite2D" parent="."]
 visible = false
-layout_mode = 0
-offset_right = 148.0
-offset_bottom = 107.0
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("2_lkxvf")
+position = Vector2(67, 55)
+texture = ExtResource("3_ajtat")
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]
