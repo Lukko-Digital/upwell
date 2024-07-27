@@ -52,6 +52,7 @@ func released():
 	var line_area: TrajectoryLineArea = overlapping_trajectory_line()
 	if line_area != null:
 		# Placed on line
+		placed = true
 		line_area.screen_player.update_main_line()
 		button_sprite.texture = released_texture
 	else:
@@ -86,6 +87,7 @@ func handle_snap():
 		line_area.screen_player.update_main_line()
 
 func snap_home():
+	placed = false
 	global_position = start_position
 	button_sprite.texture = normal_texture
 

@@ -20,13 +20,13 @@ func update_main_line():
 	update_collision_segments()
 
 func update_new_action_line():
-	update_trajectory(new_action_line)
+	update_trajectory(new_action_line, true)
 
 func clear_new_action_line():
 	new_action_line.clear_points()
 
 ## Returns the folder that was hit, if no folder was hit, returns null
-func update_trajectory(line: Line2D) -> ScreenCore:
+func update_trajectory(line: Line2D, detect_unplaced: bool=false) -> ScreenCore:
 	line.clear_points()
 
 	var dir: Vector2 = Vector2.UP
@@ -47,27 +47,34 @@ func update_trajectory(line: Line2D) -> ScreenCore:
 		var overlapping = world_physics.intersect_point(query)
 		
 		in_ag = null
-		for area in overlapping:
-			if area.collider is ScreenAG:
-				in_ag = area.collider
+		for collision in overlapping:
+			var area = collision.collider
+			if area is ScreenAG:
+				in_ag = area
 
-		for area in overlapping:
-			if area.collider is ScreenButton:
-				if in_ag and area.collider.type == ScreenButton.ButtonTypes.ORBIT:
-					orbiting = true
-				if area.collider.type == ScreenButton.ButtonTypes.UNORBIT:
-					orbiting = false
-				if in_ag and area.collider.type == ScreenButton.ButtonTypes.BOOST:
-					orbiting = false
-					dir = -query.position.direction_to(in_ag.global_position)
-			if area.collider is ScreenHazard:
+		for collision in overlapping:
+			var area = collision.collider
+			if area is ScreenButton:
+				if not in_ag:
+					continue
+				if not (detect_unplaced or area.placed):
+					continue
+				match area.type:
+					ScreenButton.ButtonTypes.ORBIT:
+						orbiting = true
+					ScreenButton.ButtonTypes.UNORBIT:
+						orbiting = false
+					ScreenButton.ButtonTypes.BOOST:
+						orbiting = false
+						dir = -query.position.direction_to(in_ag.global_position)
+			if area is ScreenHazard:
 				return null
-			if area.collider is ScreenCore:
-				return area.collider
+			if area is ScreenCore:
+				return area
 
-			if area.collider is ScreenPowerUp:
+			if area is ScreenPowerUp:
 				if can_power_up:
-					power += area.collider.power
+					power += area.power
 					can_power_up = false
 				powered_up = true
 			
