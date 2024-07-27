@@ -70,18 +70,22 @@ func handle_snap():
 	if line_area == null:
 		return
 	
-	var line = line_area.trajectory_line
+	var line: Line2D = line_area.trajectory_line
 
+	# Determine point to snap to
 	var points = Array(line.points)
 	points = points.map(func(point): return point + line.global_position)
 	points.sort_custom(sort_closest)
 	var closest_point = points[0]
 
 	if (global_position + offset).distance_to(closest_point) < SNAP_BREAK_DISTANCE:
+		# Snap
 		global_position = closest_point
 		line_area.screen_player.update_new_action_line()
 	else:
+		# Break snap
 		line_area.screen_player.clear_new_action_line()
+		line_area.screen_player.update_main_line()
 
 ## Returns the [TrajectoryLineArea] if overlapping, otherwise null
 func overlapping_trajectory_line():
