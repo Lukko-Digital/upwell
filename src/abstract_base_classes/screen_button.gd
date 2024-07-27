@@ -33,6 +33,11 @@ func _ready():
 		draggable.set_deferred("input_pickable", false)
 		modulate = Color("727272")
 
+func _process(_delta):
+	if selected:
+		position = get_global_mouse_position() + offset
+		handle_snap()
+
 func pressed():
 	start_position = global_position
 	selected = true
@@ -47,28 +52,10 @@ func released():
 	button_glow.modulate = Color(Color.WHITE, 0.5)
 	button_sprite.texture = normal_texture
 
-func _on_mouse_entered() -> void:
-	button_glow.show()
-
-func _on_mouse_exited() -> void:
-	button_glow.hide()
-
-func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			pressed()
-		else:
-			released()
-
 func sort_closest(a: Vector2, b: Vector2):
 	var distance_to = func(point: Vector2):
 		return global_position.distance_squared_to(point)
 	return distance_to.call(a) < distance_to.call(b)
-
-func _process(_delta):
-	if selected:
-		position = get_global_mouse_position() + offset
-		handle_snap()
 
 func handle_snap():
 	if not has_overlapping_areas():
@@ -90,3 +77,16 @@ func handle_snap():
 		player.update_new_action_line()
 	else:
 		player.clear_new_action_line()
+
+func _on_mouse_entered() -> void:
+	button_glow.show()
+
+func _on_mouse_exited() -> void:
+	button_glow.hide()
+
+func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			pressed()
+		else:
+			released()
