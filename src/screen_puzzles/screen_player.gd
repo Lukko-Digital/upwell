@@ -7,16 +7,27 @@ class_name ScreenPlayer
 const STARTING_POWER: float = 200
 const SPACING: float = 10
 
-@onready var line: Line2D = $Line2D
-@onready var line_area: Area2D = $Line2D/LineCollisionArea
+@onready var trajectory_line: Line2D = %TrajectoryLine
+@onready var line_area: Area2D = %LineCollisionArea
+@onready var new_action_line: Line2D = %NewActionLine
 
 func _ready() -> void:
-	update_tragectory()
+	init_collision_segments()
+	update_main_line()
+
+func update_main_line():
+	update_trajectory(trajectory_line)
+	update_collision_segments()
+
+func update_new_action_line():
+	update_trajectory(new_action_line)
+
+func clear_new_action_line():
+	new_action_line.clear_points()
 
 ## Returns the folder that was hit, if no folder was hit, returns null
-func update_tragectory() -> ScreenCore:
+func update_trajectory(line: Line2D) -> ScreenCore:
 	line.clear_points()
-	clear_collision_segments()
 
 	var dir: Vector2 = Vector2.UP
 	var in_ag: ScreenAG = null
@@ -71,27 +82,29 @@ func update_tragectory() -> ScreenCore:
 				dir = -orth
 
 		line.add_point(query.position - global_position)
-		spawn_collision_segment()
 		query.position += dir * SPACING
 		power -= 1
 	return null
 
-func clear_collision_segments():
-	for child in line_area.get_children():
-		line_area.remove_child.call_deferred(child)
-		child.queue_free()
+func init_collision_segments():
+	for _i in range(STARTING_POWER):
+		var collision = CollisionShape2D.new()
+		var segment = SegmentShape2D.new()
+		segment.a = Vector2.ZERO
+		segment.b = Vector2.ZERO
+		collision.shape = segment
+		line_area.add_child(collision)
 
-func spawn_collision_segment():
-	var points = line.points
-	if points.size() < 2:
-		return
-	var collision = CollisionShape2D.new()
-	var segment = SegmentShape2D.new()
-	segment.a = points[- 1]
-	segment.b = points[- 2]
-	collision.shape = segment
-	line_area.add_child.call_deferred(collision)
-
-# func _process(_delta: float) -> void:
-# 	update_tragectory()
-	# print(line_area.get_child_count())
+func update_collision_segments():
+	var points = Array(trajectory_line.points)
+	var point_a: Vector2 = points.pop_front()
+	var point_b: Vector2
+	for collision: CollisionShape2D in line_area.get_children():
+		if points.is_empty():
+			point_a = Vector2.ZERO
+			point_b = Vector2.ZERO
+		else:
+			point_b = point_a
+			point_a = points.pop_front()
+		collision.shape.a = point_a
+		collision.shape.b = point_b

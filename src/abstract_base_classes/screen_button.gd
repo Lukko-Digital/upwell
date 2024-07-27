@@ -82,5 +82,11 @@ func handle_snap():
 	points = points.map(func(point): return point + line.global_position)
 	points.sort_custom(sort_closest)
 	var closest_point = points[0]
+	
+	var player: ScreenPlayer = line.get_parent()
+
 	if (global_position + offset).distance_to(closest_point) < SNAP_BREAK_DISTANCE:
 		global_position = closest_point
+		player.update_new_action_line()
+	else:
+		player.clear_new_action_line()
