@@ -1,6 +1,8 @@
 extends Area2D
 class_name ScreenButton
 
+const SNAP_BREAK_DISTANCE = 100
+
 enum ButtonTypes {NONE, BOOST, UNORBIT, ORBIT}
 
 @export var type = ButtonTypes.NONE
@@ -19,11 +21,14 @@ var offset: Vector2 = Vector2.ZERO
 var start_position: Vector2 = Vector2.ZERO
 
 func _ready():
-	button_glow.hide()
-	button_glow.modulate = Color(Color.WHITE, 0.5)
 	draggable.input_event.connect(_on_area_2d_input_event)
 	draggable.mouse_entered.connect(_on_mouse_entered)
 	draggable.mouse_exited.connect(_on_mouse_exited)
+
+	# area_shape_entered.connect(_on_area_shape_entered)
+
+	button_glow.hide()
+	button_glow.modulate = Color(Color.WHITE, 0.5)
 	if disabled:
 		draggable.set_deferred("input_pickable", false)
 		modulate = Color("727272")
@@ -54,7 +59,28 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 			pressed()
 		else:
 			released()
-		
+
+func sort_closest(a: Vector2, b: Vector2):
+	var distance_to = func(point: Vector2):
+		return global_position.distance_squared_to(point)
+	return distance_to.call(a) < distance_to.call(b)
+
 func _process(_delta):
 	if selected:
 		position = get_global_mouse_position() + offset
+		handle_snap()
+
+func handle_snap():
+	if not has_overlapping_areas():
+		return
+
+	var line = get_overlapping_areas().front().get_parent()
+	if not line is Line2D:
+		return
+
+	var points = Array(line.points)
+	points = points.map(func(point): return point + line.global_position)
+	points.sort_custom(sort_closest)
+	var closest_point = points[0]
+	if (global_position + offset).distance_to(closest_point) < SNAP_BREAK_DISTANCE:
+		global_position = closest_point
