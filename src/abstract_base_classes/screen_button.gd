@@ -18,6 +18,7 @@ enum ButtonTypes {NONE, BOOST, UNORBIT, ORBIT}
 @onready var line_detection_area: Area2D = $TrajectoryLineDetectionArea
 
 var selected: bool = false
+var placed: bool = false
 var offset: Vector2 = Vector2.ZERO
 var start_position: Vector2 = Vector2.ZERO
 
@@ -26,10 +27,9 @@ func _ready():
 	draggable.mouse_entered.connect(_on_mouse_entered)
 	draggable.mouse_exited.connect(_on_mouse_exited)
 
-	# area_shape_entered.connect(_on_area_shape_entered)
+	line_detection_area.area_exited.connect(_on_line_area_exited)
 
 	button_glow.hide()
-	button_glow.modulate = Color(Color.WHITE, 0.5)
 	if disabled:
 		draggable.set_deferred("input_pickable", false)
 		modulate = Color("727272")
@@ -40,10 +40,8 @@ func _process(_delta):
 		handle_snap()
 
 func pressed():
-	start_position = global_position
 	selected = true
 	offset = global_position - get_global_mouse_position()
-	button_glow.modulate = Color(Color.WHITE, 1.0)
 	button_sprite.texture = held_texture
 
 func released():
@@ -58,8 +56,7 @@ func released():
 		button_sprite.texture = released_texture
 	else:
 		# Not placed on line
-		button_glow.modulate = Color(Color.WHITE, 0.5)
-		button_sprite.texture = normal_texture
+		snap_home()
 
 func sort_closest(a: Vector2, b: Vector2):
 	var distance_to = func(point: Vector2):
@@ -88,6 +85,10 @@ func handle_snap():
 		line_area.screen_player.clear_new_action_line()
 		line_area.screen_player.update_main_line()
 
+func snap_home():
+	global_position = start_position
+	button_sprite.texture = normal_texture
+
 ## Returns the [TrajectoryLineArea] if overlapping, otherwise null
 func overlapping_trajectory_line():
 	for area in line_detection_area.get_overlapping_areas():
@@ -107,3 +108,6 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 			pressed()
 		else:
 			released()
+
+func _on_line_area_exited(_area: Area2D):
+	snap_home()
