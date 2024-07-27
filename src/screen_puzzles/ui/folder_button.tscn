@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl53k36i6wlyr"]
+
+[ext_resource type="Texture2D" uid="uid://ccsf35jlguasg" path="res://assets/ui/screen_puzzle/folder_closed.png" id="1_onk1d"]
+[ext_resource type="Texture2D" uid="uid://bwdlx3025vojs" path="res://assets/ui/screen_puzzle/folder_open.png" id="2_lkxvf"]
+
+[node name="FolderButton" type="TextureButton"]
+custom_minimum_size = Vector2(94, 76)
+offset_right = 94.0
+offset_bottom = 76.0
+
+[node name="FolderClosed" type="TextureRect" parent="."]
+offset_right = 131.0
+offset_bottom = 106.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_onk1d")
+stretch_mode = 2
+
+[node name="FolderOpen" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 148.0
+offset_bottom = 107.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_lkxvf")
