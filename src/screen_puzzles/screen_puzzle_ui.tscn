@@ -1,12 +1,12 @@
 [gd_scene load_steps=13 format=3 uid="uid://bvkim1x1vvm81"]
 
 [ext_resource type="Texture2D" uid="uid://b868h5dr15cxm" path="res://assets/mvp3_assets/screenpuzzle/lineblocker.png" id="1_7bkn7"]
+[ext_resource type="Script" path="res://src/screen_puzzles/screen_puzzle_ui.gd" id="1_lx7ia"]
 [ext_resource type="Texture2D" uid="uid://dhw7wq51its7p" path="res://assets/mvp3_assets/screenpuzzle/layout.png" id="2_6o4a8"]
 [ext_resource type="Texture2D" uid="uid://cl1p7ygvq4qg" path="res://assets/mvp3_assets/screenpuzzle/text_backer.png" id="3_xe0ai"]
 [ext_resource type="Texture2D" uid="uid://ba863aqwujv2p" path="res://assets/mvp3_assets/screenpuzzle/file.png" id="4_y333m"]
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="5_csj0s"]
 [ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="6_i6f60"]
-[ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="7_h8aqo"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yiiot"]
 
@@ -26,7 +26,7 @@ variation_embolden = 0.87
 base_font = ExtResource("6_i6f60")
 variation_embolden = 1.85
 
-[node name="ScreenPuzzleUI" type="Control"]
+[node name="ScreenPuzzleUI" type="Control" node_paths=PackedStringArray("launch_result_label")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -1920.0
@@ -34,6 +34,8 @@ offset_top = -1080.0
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
+script = ExtResource("1_lx7ia")
+launch_result_label = NodePath("LaunchResultLabel")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -71,17 +73,21 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -77.0
+offset_top = -103.0
+offset_right = 77.0002
+offset_bottom = 305.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect3/VBoxContainer"]
+[node name="FoldersContainer" type="HBoxContainer" parent="ColorRect3/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="ColorRect3/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="ColorRect3/VBoxContainer/FoldersContainer"]
 layout_mode = 2
 texture = ExtResource("4_y333m")
 
-[node name="TextureRect2" type="TextureRect" parent="ColorRect3/VBoxContainer/HBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="ColorRect3/VBoxContainer/FoldersContainer"]
 layout_mode = 2
 texture = ExtResource("4_y333m")
 
@@ -143,12 +149,35 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="ClickerGlow" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(787, -943)
-scale = Vector2(2, 2)
-texture = ExtResource("7_h8aqo")
+[node name="LaunchButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+offset_left = 2459.0
+offset_top = 1742.0
+offset_right = 3619.0
+offset_bottom = 1942.0
+theme_override_font_sizes/font_size = 100
+text = "LAUNCH"
+
+[node name="LaunchResultLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 300
+theme_override_font_sizes/bold_font_size = 300
+theme_override_font_sizes/italics_font_size = 300
+theme_override_font_sizes/bold_italics_font_size = 300
+theme_override_font_sizes/mono_font_size = 300
+bbcode_enabled = true
+text = "[center] sdfasdfasdf [/center]"
+fit_content = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1920, 1080)
 zoom = Vector2(0.5, 0.5)
+
+[connection signal="pressed" from="LaunchButton" to="." method="_on_launch_button_pressed"]

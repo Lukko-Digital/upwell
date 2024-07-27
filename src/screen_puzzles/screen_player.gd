@@ -1,12 +1,14 @@
 @tool
 extends Node2D
+class_name ScreenPlayer
 
 @export var STARTING_POWER: float = 1000
 const SPACING: float = 2
 
 @onready var line: Line2D = $Line2D
 
-func update_tragectory():
+## Returns the folder that was hit, if no folder was hit, returns null
+func update_tragectory() -> ScreenCore:
 	line.clear_points()
 
 	var dir: Vector2 = Vector2.UP
@@ -41,10 +43,9 @@ func update_tragectory():
 					orbiting = false
 					dir = -query.position.direction_to(in_ag.global_position)
 			if area.collider is ScreenHazard:
-				return
+				return null
 			if area.collider is ScreenCore:
-				area.collider.visit()
-				return
+				return area.collider
 
 			if area.collider is ScreenPowerUp:
 				if can_power_up:
@@ -65,6 +66,7 @@ func update_tragectory():
 		line.add_point(query.position - global_position)
 		query.position += dir * SPACING
 		power -= 1
+	return null
 
 func _process(_delta: float) -> void:
 	update_tragectory()
