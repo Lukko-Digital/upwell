@@ -442,5 +442,7 @@ func _camera_focus_net(focus: Node2D):
 	# the screen, but that is unlikely to happen.
 	if focus == null:
 		focused_on_screen = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	elif focus is ScreenInteractable:
 		focused_on_screen = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
