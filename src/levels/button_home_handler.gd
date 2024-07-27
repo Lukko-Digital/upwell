@@ -15,7 +15,6 @@ func _ready() -> void:
 	for child in get_children():
 		if not child is ScreenButton:
 			continue
-		print(puzzle_bar.global_position)
 		child.start_position = puzzle_bar.global_position + OFFSET + i * Vector2(SEPARATION, 0)
 		child.global_position = child.start_position
 		i += 1
