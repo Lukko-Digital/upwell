@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c1fatgffin6hd"]
 
-[ext_resource type="Texture2D" uid="uid://ba863aqwujv2p" path="res://assets/mvp3_assets/screenpuzzle/file.png" id="1_hhjci"]
 [ext_resource type="Script" path="res://src/screen_puzzles/screen_core.gd" id="1_lpcxw"]
-[ext_resource type="Texture2D" uid="uid://bkfksvc75voj" path="res://assets/mvp3_assets/screenpuzzle/file_opened.png" id="2_xi4ox"]
+[ext_resource type="Texture2D" uid="uid://ccsf35jlguasg" path="res://assets/ui/screen_puzzle/folder_closed.png" id="2_6jcu7"]
+[ext_resource type="Texture2D" uid="uid://bwdlx3025vojs" path="res://assets/ui/screen_puzzle/folder_open.png" id="3_w034g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vidkj"]
 size = Vector2(167, 125)
@@ -17,9 +17,9 @@ position = Vector2(-0.5, 1.5)
 shape = SubResource("RectangleShape2D_vidkj")
 
 [node name="Unopened" type="Sprite2D" parent="."]
-texture = ExtResource("1_hhjci")
+texture = ExtResource("2_6jcu7")
 
 [node name="Opened" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(8, 0)
-texture = ExtResource("2_xi4ox")
+texture = ExtResource("3_w034g")
