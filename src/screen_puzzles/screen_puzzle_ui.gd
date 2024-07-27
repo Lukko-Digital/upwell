@@ -23,9 +23,9 @@ func _on_folder_opened(text: String):
 	main_text_label.text = text
 
 func _on_launch_button_pressed() -> void:
-	var folder_hit: ScreenCore = screen_player.update_tragectory()
-	if folder_hit:
-		folder_hit.visit()
+	var folder: ScreenCore = screen_player.targeted_folder
+	if folder:
+		folder.visit()
 		launch_result_label.text = LAUNCH_TEXT.SUCCESS
 	else:
 		launch_result_label.text = LAUNCH_TEXT.FAIL

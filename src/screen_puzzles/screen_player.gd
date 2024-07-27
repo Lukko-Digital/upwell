@@ -7,6 +7,8 @@ class_name ScreenPlayer
 const STARTING_POWER: float = 200
 const SPACING: float = 10
 
+var targeted_folder: ScreenCore = null
+
 @onready var trajectory_line: Line2D = %TrajectoryLine
 @onready var line_area: TrajectoryLineArea = %LineCollisionArea
 @onready var new_action_line: Line2D = %NewActionLine
@@ -16,7 +18,7 @@ func _ready() -> void:
 	update_main_line()
 
 func update_main_line():
-	update_trajectory(trajectory_line)
+	targeted_folder = update_trajectory(trajectory_line)
 	update_collision_segments()
 
 func update_new_action_line():
