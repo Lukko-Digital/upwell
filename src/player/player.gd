@@ -437,8 +437,10 @@ func _on_dialogue_ui_dialogue_finished() -> void:
 	Global.set_camera_focus.emit(null)
 
 func _camera_focus_net(focus: Node2D):
-	# TODO: fix to work with focus stack
+	# Simple implementation, does not factor in focus stack. Will be an issue
+	# if play focuses on a screen and then on something else without defocusing
+	# the screen, but that is unlikely to happen.
 	if focus == null:
 		focused_on_screen = false
-	else:
+	elif focus is ScreenInteractable:
 		focused_on_screen = true
