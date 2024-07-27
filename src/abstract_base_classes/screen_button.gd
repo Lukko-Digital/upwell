@@ -58,25 +58,29 @@ func sort_closest(a: Vector2, b: Vector2):
 	return distance_to.call(a) < distance_to.call(b)
 
 func handle_snap():
-	if not has_overlapping_areas():
+	var line_area: TrajectoryLineArea = overlapping_trajectory_line()
+	if line_area == null:
 		return
-
-	var line = get_overlapping_areas().front().get_parent()
-	if not line is Line2D:
-		return
+	
+	var line = line_area.trajectory_line
 
 	var points = Array(line.points)
 	points = points.map(func(point): return point + line.global_position)
 	points.sort_custom(sort_closest)
 	var closest_point = points[0]
-	
-	var player: ScreenPlayer = line.get_parent()
 
 	if (global_position + offset).distance_to(closest_point) < SNAP_BREAK_DISTANCE:
 		global_position = closest_point
-		player.update_new_action_line()
+		line_area.screen_player.update_new_action_line()
 	else:
-		player.clear_new_action_line()
+		line_area.screen_player.clear_new_action_line()
+
+## Returns the [TrajectoryLineArea] if overlapping, otherwise null
+func overlapping_trajectory_line():
+	for area in get_overlapping_areas():
+		if area is TrajectoryLineArea:
+			return area
+	return null
 
 func _on_mouse_entered() -> void:
 	button_glow.show()

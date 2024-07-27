@@ -8,7 +8,7 @@ const STARTING_POWER: float = 200
 const SPACING: float = 10
 
 @onready var trajectory_line: Line2D = %TrajectoryLine
-@onready var line_area: Area2D = %LineCollisionArea
+@onready var line_area: TrajectoryLineArea = %LineCollisionArea
 @onready var new_action_line: Line2D = %NewActionLine
 
 func _ready() -> void:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmpdh7xn4glcr"]
+[gd_scene load_steps=7 format=3 uid="uid://dmpdh7xn4glcr"]
 
 [ext_resource type="Texture2D" uid="uid://5mvprug0ts4q" path="res://assets/mvp3_assets/screenpuzzle/player.png" id="1_0qidp"]
 [ext_resource type="Script" path="res://src/screen_puzzles/screen_player.gd" id="1_m1jys"]
 [ext_resource type="Texture2D" uid="uid://d2ogevyj4d5i4" path="res://assets/ui/screen_puzzle/line_current_path.png" id="2_7o08p"]
+[ext_resource type="Script" path="res://src/screen_puzzles/trajectory_line_area.gd" id="3_btu1o"]
 [ext_resource type="Texture2D" uid="uid://dgftlsp3sy7xk" path="res://assets/ui/screen_puzzle/line_new_action.png" id="3_us082"]
 [ext_resource type="Script" path="res://src/player/fps_label.gd" id="4_jfein"]
 
@@ -20,6 +21,7 @@ texture_mode = 2
 unique_name_in_owner = true
 collision_layer = 2
 collision_mask = 32
+script = ExtResource("3_btu1o")
 
 [node name="NewActionLine" type="Line2D" parent="."]
 unique_name_in_owner = true
