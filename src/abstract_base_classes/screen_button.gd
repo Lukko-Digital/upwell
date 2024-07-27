@@ -49,8 +49,16 @@ func released():
 	selected = false
 	if draggable.get_overlapping_areas().is_empty():
 		global_position = start_position
-	button_glow.modulate = Color(Color.WHITE, 0.5)
-	button_sprite.texture = normal_texture
+	
+	var line_area: TrajectoryLineArea = overlapping_trajectory_line()
+	if line_area != null:
+		# Placed on line
+		line_area.screen_player.update_main_line()
+		button_sprite.texture = released_texture
+	else:
+		# Not placed on line
+		button_glow.modulate = Color(Color.WHITE, 0.5)
+		button_sprite.texture = normal_texture
 
 func sort_closest(a: Vector2, b: Vector2):
 	var distance_to = func(point: Vector2):
