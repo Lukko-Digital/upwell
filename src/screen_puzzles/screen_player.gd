@@ -12,7 +12,7 @@ func update_tragectory() -> ScreenCore:
 	line.clear_points()
 
 	var dir: Vector2 = Vector2.UP
-	var in_ag: ArtificialGravity = null
+	var in_ag: ScreenAG = null
 	var orbiting: bool = false
 
 	var world_physics := get_world_2d().direct_space_state
@@ -30,7 +30,7 @@ func update_tragectory() -> ScreenCore:
 		
 		in_ag = null
 		for area in overlapping:
-			if area.collider is ArtificialGravity:
+			if area.collider is ScreenAG:
 				in_ag = area.collider
 
 		for area in overlapping:

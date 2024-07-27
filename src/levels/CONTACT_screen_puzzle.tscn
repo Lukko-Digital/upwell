@@ -23,7 +23,7 @@ metadata/_edit_lock_ = true
 position = Vector2(-854, 583)
 
 [node name="ScreenButtonOrbit" parent="." instance=ExtResource("8_2v3tm")]
-position = Vector2(-1355, 612)
+position = Vector2(-1212, 580)
 
 [node name="ScreenAG" parent="." instance=ExtResource("9_svl6v")]
 position = Vector2(-718, -103)
