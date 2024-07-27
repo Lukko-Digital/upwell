@@ -40,6 +40,12 @@ func _process(_delta):
 		handle_snap()
 
 func pressed():
+	if placed:
+		placed = false
+		var line_area: TrajectoryLineArea = overlapping_trajectory_line()
+		if line_area != null:
+			line_area.screen_player.update_main_line()
+
 	selected = true
 	offset = global_position - get_global_mouse_position()
 	button_sprite.texture = held_texture
@@ -87,6 +93,8 @@ func handle_snap():
 		line_area.screen_player.update_main_line()
 
 func snap_home():
+	if selected:
+		return
 	placed = false
 	global_position = start_position
 	button_sprite.texture = normal_texture
