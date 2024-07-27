@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dei1bl8astem7"]
+[gd_scene load_steps=9 format=3 uid="uid://dei1bl8astem7"]
 
 [ext_resource type="Script" path="res://src/abstract_base_classes/screen_button.gd" id="1_r5ukt"]
 [ext_resource type="PackedScene" uid="uid://203jmdgiwgko" path="res://src/screen_puzzles/button_glow.tscn" id="2_dvoo1"]
@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://nbku63cre6dq" path="res://src/screen_puzzles/screen_draggable.tscn" id="3_mt3tf"]
 [ext_resource type="Texture2D" uid="uid://fufyp1s66k1n" path="res://assets/ui/screen_puzzle/BOOST.png" id="3_p53nq"]
 [ext_resource type="Texture2D" uid="uid://bijgc8yaiqb13" path="res://assets/ui/screen_puzzle/BOOST_RELEASED.png" id="4_lxt1a"]
+[ext_resource type="PackedScene" uid="uid://b5o52iwq1qlk5" path="res://src/screen_puzzles/trajectory_line_detection_area.tscn" id="7_njdow"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o2uaa"]
-radius = 40.0
 
 [node name="ScreenButtonBoost" type="Area2D"]
 collision_layer = 32
@@ -28,3 +28,5 @@ texture = ExtResource("3_p53nq")
 shape = SubResource("CircleShape2D_o2uaa")
 
 [node name="ScreenDraggable" parent="." instance=ExtResource("3_mt3tf")]
+
+[node name="TrajectoryLineDetectionArea" parent="." instance=ExtResource("7_njdow")]

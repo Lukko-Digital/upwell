@@ -15,6 +15,7 @@ enum ButtonTypes {NONE, BOOST, UNORBIT, ORBIT}
 @onready var button_sprite: Sprite2D = $Sprite2D
 @onready var button_glow: Sprite2D = $ButtonGlow
 @onready var draggable: Area2D = $ScreenDraggable
+@onready var line_detection_area: Area2D = $TrajectoryLineDetectionArea
 
 var selected: bool = false
 var offset: Vector2 = Vector2.ZERO
@@ -89,7 +90,7 @@ func handle_snap():
 
 ## Returns the [TrajectoryLineArea] if overlapping, otherwise null
 func overlapping_trajectory_line():
-	for area in get_overlapping_areas():
+	for area in line_detection_area.get_overlapping_areas():
 		if area is TrajectoryLineArea:
 			return area
 	return null
