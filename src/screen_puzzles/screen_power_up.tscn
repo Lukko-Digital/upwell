@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://xiabu6v8kd6w"]
+[gd_scene load_steps=5 format=3 uid="uid://xiabu6v8kd6w"]
 
 [ext_resource type="Script" path="res://src/screen_puzzles/screen_power_up.gd" id="1_2ydu8"]
 [ext_resource type="Texture2D" uid="uid://dew5hi60yn8hw" path="res://assets/mvp3_assets/screenpuzzle/powerup.png" id="1_5p3rl"]
+[ext_resource type="PackedScene" uid="uid://203jmdgiwgko" path="res://src/screen_puzzles/button_glow.tscn" id="3_h7o44"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_es4gw"]
 radius = 104.0
@@ -17,3 +18,6 @@ texture = ExtResource("1_5p3rl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_es4gw")
+
+[node name="ButtonGlow" parent="." instance=ExtResource("3_h7o44")]
+visible = false
