@@ -6,6 +6,11 @@ enum ButtonTypes {NONE, BOOST, UNORBIT, ORBIT}
 @export var type = ButtonTypes.NONE
 @export var disabled: bool = false
 
+@export var normal_texture: Texture2D
+@export var held_texture: Texture2D
+@export var released_texture: Texture2D
+
+@onready var button_sprite: Sprite2D = $Sprite2D
 @onready var button_glow: Sprite2D = $ButtonGlow
 @onready var draggable: Area2D = $ScreenDraggable
 
@@ -23,6 +28,20 @@ func _ready():
 		draggable.set_deferred("input_pickable", false)
 		modulate = Color("727272")
 
+func pressed():
+	start_position = global_position
+	selected = true
+	offset = global_position - get_global_mouse_position()
+	button_glow.modulate = Color(Color.WHITE, 1.0)
+	button_sprite.texture = held_texture
+
+func released():
+	selected = false
+	if draggable.get_overlapping_areas().is_empty():
+		global_position = start_position
+	button_glow.modulate = Color(Color.WHITE, 0.5)
+	button_sprite.texture = normal_texture
+
 func _on_mouse_entered() -> void:
 	button_glow.show()
 
@@ -31,20 +50,11 @@ func _on_mouse_exited() -> void:
 
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-			if event.pressed:
-				# LMB pressed
-				start_position = global_position
-				selected = true
-				offset = global_position - get_global_mouse_position()
-				button_glow.modulate = Color(Color.WHITE, 1.0)
-			else:
-				# LMB released
-				selected = false
-				if draggable.get_overlapping_areas().is_empty():
-					global_position = start_position
-				button_glow.modulate = Color(Color.WHITE, 0.5)
+		if event.pressed:
+			pressed()
+		else:
+			released()
 		
 func _process(_delta):
 	if selected:
 		position = get_global_mouse_position() + offset
-	
