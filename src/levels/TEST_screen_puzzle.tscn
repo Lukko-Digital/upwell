@@ -19,8 +19,9 @@ radius = 335.215
 [node name="ScreenPuzzle" type="Node2D"]
 metadata/_edit_lock_ = true
 
-[node name="ScreenPuzzleUI" parent="." instance=ExtResource("8_ldg3h")]
+[node name="ScreenPuzzleUI" parent="." node_paths=PackedStringArray("screen_player") instance=ExtResource("8_ldg3h")]
 size_flags_horizontal = 0
+screen_player = NodePath("../ScreenPlayer")
 
 [node name="FolderButton3" parent="ScreenPuzzleUI/CenterContainer/HBoxContainer/RightSideContainer/FoldersBacker/FoldersContainer" index="2" instance=ExtResource("2_iwhmm")]
 layout_mode = 2
