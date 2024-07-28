@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bb68hmcptqlgt"]
+[gd_scene load_steps=32 format=3 uid="uid://bb68hmcptqlgt"]
 
 [ext_resource type="Script" path="res://src/map/map.gd" id="1_ithwi"]
 [ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player/map_player.tscn" id="2_uwq5e"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bbrkg6cjjyr4k" path="res://src/levels/CONTACT.tscn" id="5_ga2oe"]
 [ext_resource type="PackedScene" uid="uid://c413chwmpxtw1" path="res://src/levels/H32_NUCLEAR.tscn" id="5_og8y0"]
 [ext_resource type="PackedScene" uid="uid://bwmwenrm8xori" path="res://src/map/coolant_pocket.tscn" id="6_4a6mq"]
+[ext_resource type="PackedScene" uid="uid://bgym5f33j1iv6" path="res://src/map/entrypoint.tscn" id="6_ei32m"]
 [ext_resource type="PackedScene" uid="uid://dl1nh6jj657a" path="res://src/levels/FALL.tscn" id="7_kq772"]
 [ext_resource type="PackedScene" uid="uid://bttepvab6oghg" path="res://src/levels/TEST_NEWVISUALS.tscn" id="8_itcue"]
 [ext_resource type="PackedScene" uid="uid://ckbe13djrw5lh" path="res://src/map/hazard.tscn" id="8_xqpvg"]
@@ -114,63 +115,84 @@ metadata/_edit_lock_ = true
 level = ExtResource("5_og8y0")
 name_text = "H32.NUCLEAR"
 
+[node name="Entrypoint3" parent="Levels/H32_NUCLEAR" instance=ExtResource("6_ei32m")]
+position = Vector2(47.75, -113)
+
 [node name="001_CONTACT" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(311, -292)
 level = ExtResource("5_ga2oe")
 name_text = "001.CONTACT"
 
+[node name="Entrypoint" parent="Levels/001_CONTACT" instance=ExtResource("6_ei32m")]
+position = Vector2(-116, 67.75)
+
+[node name="Entrypoint2" parent="Levels/001_CONTACT" instance=ExtResource("6_ei32m")]
+position = Vector2(120, 58.25)
+entry_number = 1
+
 [node name="003_TEST" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(236.25, 398)
 level = ExtResource("8_itcue")
 name_text = "003.TEST"
-sprite_scale = 1.225
+
+[node name="Entrypoint4" parent="Levels/003_TEST" instance=ExtResource("6_ei32m")]
+position = Vector2(-13, -114.5)
 
 [node name="002_FALL" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(681.5, 113.25)
 level = ExtResource("7_kq772")
 name_text = "002.FALL"
-sprite_scale = 0.785
+
+[node name="Entrypoint5" parent="Levels/002_FALL" instance=ExtResource("6_ei32m")]
+position = Vector2(-124, -39.25)
 
 [node name="H02_RECURRENCE" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(-254, 313)
 level = ExtResource("9_f7cig")
 name_text = "H02.RECURRENCE"
-sprite_scale = 0.585
+
+[node name="Entrypoint6" parent="Levels/H02_RECURRENCE" instance=ExtResource("6_ei32m")]
+position = Vector2(120.5, 29)
 
 [node name="004_RELAPSE" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(-468.75, -143.75)
 level = ExtResource("9_bymtf")
 name_text = "004.RELAPSE"
-sprite_scale = 0.675
+
+[node name="Entrypoint7" parent="Levels/004_RELAPSE" instance=ExtResource("6_ei32m")]
+position = Vector2(105, 59)
 
 [node name="005_STORAGE" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(1043.25, -425.75)
 level = ExtResource("11_ku1uv")
 name_text = "005.STORAGE"
-sprite_scale = 0.505
+
+[node name="Entrypoint8" parent="Levels/005_STORAGE" instance=ExtResource("6_ei32m")]
+position = Vector2(-104.5, 67.25)
 
 [node name="H43_NUCLEAR" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(-965.25, -468.5)
 name_text = " "
-sprite_scale = 0.0
 
 [node name="UNKNOWN" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(-2114.75, 0)
 level = ExtResource("12_tpuyl")
 name_text = "UNKNOWN"
-sprite_scale = 6.045
+
+[node name="Entrypoint9" parent="Levels/UNKNOWN" instance=ExtResource("6_ei32m")]
+position = Vector2(117.5, 63.5)
 
 [node name="H43_NUCLEAR2" parent="Levels" node_paths=PackedStringArray("label") instance=ExtResource("4_17lxb")]
 position = Vector2(-1325.5, 443.25)
 label = NodePath("../H43_NUCLEAR/Label")
 name_text = " "
-sprite_scale = 0.0
 
 [node name="MapPlayer" parent="." instance=ExtResource("2_uwq5e")]
-metadata/_edit_lock_ = true
+position = Vector2(47.5, -115.25)
 
 [node name="Camera2D2" type="Camera2D" parent="MapPlayer"]
 zoom = Vector2(0.15, 0.15)
+metadata/_edit_lock_ = true
 
 [node name="Focus" type="Sprite2D" parent="MapPlayer"]
 modulate = Color(1, 1, 1, 0.513726)
@@ -752,7 +774,7 @@ polygon = PackedVector2Array(33.9408, -268.1, 38.1047, -260.543, 40.2307, -242.7
 metadata/_edit_lock_ = true
 
 [node name="Hazard9" parent="Hazards" instance=ExtResource("8_xqpvg")]
-position = Vector2(-157.25, 143)
+position = Vector2(-305.25, 205.25)
 rotation = -1.309
 scale = Vector2(1.49519, 1.49519)
 
@@ -933,7 +955,6 @@ texture = ExtResource("24_xw48m")
 metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard18"]
-visible = false
 position = Vector2(5.20274, 19.2975)
 rotation = 4.77558
 scale = Vector2(-0.498185, -0.554211)

@@ -31,7 +31,7 @@ var velocity: Vector2 = Vector2.ZERO
 
 var recalled = false
 
-var destination: MapLevel = null:
+var destination: Entrypoint = null:
 	set(value):
 		destination = value
 		velocity = global_position.direction_to(value.global_position) * SPEED
@@ -40,6 +40,9 @@ const SPEED: float = 800
 const ENERGY_USE_RATE: float = 30
 
 const AG_ACCELERATION: float = 4
+
+func _ready() -> void:
+	Global.pod_called.connect(_on_call_pod)
 
 func _process(delta: float) -> void:
 	if moving:
@@ -78,19 +81,19 @@ func lerp_shake(delta: float):
 	if current_shake != target_shake:
 		Global.camera_shake.emit(INF, current_shake)
 
-func location_hovered(location: MapLevel):
+func location_hovered(location: Entrypoint):
 	if moving:
 		return
 	if line.get_point_count() < 2:
 		line.add_point(location.global_position - global_position)
 
-func location_unhovered(_location: MapLevel):
+func location_unhovered(_location: Entrypoint):
 	if moving:
 		return
 	if line.get_point_count() > 1:
 		line.remove_point(1)
 
-func location_selected(location: MapLevel):
+func location_selected(location: Entrypoint):
 	# Commented out for playtesting purposes
 	if moving: # or drill_heat > 0:
 		return
@@ -122,7 +125,7 @@ func end_movement() -> void:
 		line.remove_point(1)
 
 	if recalled:
-		current_shake = shake_lerp_speed/10
+		current_shake = shake_lerp_speed / 10
 		shake_lerp_speed = 4.0
 		target_shake = 0
 		recalled = false
@@ -159,11 +162,14 @@ func critical_energy() -> void:
 func run_out_of_energy() -> void:
 	game.pod.pod_animation_player.play("crash_blackout")
 	recall()
-	Global.set_camera_focus.emit(null) #(game.pod.point_focus_marker)
+	Global.set_camera_focus.emit(null) # (game.pod.point_focus_marker)
 	await get_tree().create_timer(.3).timeout
 	map_animation_player.play("SHUTDOWN_AVOIDED")
 
 func hit_hazard() -> void:
+	for area in collision_box.get_overlapping_areas():
+		if area is Entrypoint:
+			return
 
 	velocity = velocity * 0.5
 	map_animation_player.play("COLLISION_IMMINENT")
@@ -179,7 +185,7 @@ func hit_hazard() -> void:
 	await get_tree().create_timer(.8).timeout
 
 	game.pod.pod_animation_player.play("crash_blackout")
-	Global.set_camera_focus.emit(null) #(game.pod.point_focus_marker)
+	Global.set_camera_focus.emit(null) # (game.pod.point_focus_marker)
 	await get_tree().create_timer(.2).timeout # adds some time for screen to black out so player doesn't see lag caused by recall()
 	recall()
 	await get_tree().create_timer(.3).timeout
@@ -187,10 +193,24 @@ func hit_hazard() -> void:
 	map_animation_player.play("IMPACT_AVOIDED")
 
 func _area_scanned(area: Area2D) -> void:
-	if area is MapLevel or area is Hazard or area is CoolantPocket:
-		if not area.locked && !area.visible:
+	if area is MapLocation:
+		if not area.locked&&!area.visible:
 			var base_modulate: Color = area.modulate
-			area.modulate = Color(1,1,1,0)
+			area.modulate = Color(1, 1, 1, 0)
 			area.show()
 			var tween = get_tree().create_tween()
 			tween.tween_property(area, "modulate", base_modulate, 1)
+
+func check_entrypoint_exited():
+	for area in collision_box.get_overlapping_areas():
+		if area is MapLocation or area is Hazard:
+			hit_hazard()
+			return
+
+func _on_call_pod(empty_pod: EmptyPod) -> void:
+	var current_level = destination.get_parent()
+
+	for entry_point in current_level.get_children():
+		if entry_point is Entrypoint and entry_point.entry_number == empty_pod.entry_number:
+			entry_point.pod_called()
+			global_position = entry_point.global_position

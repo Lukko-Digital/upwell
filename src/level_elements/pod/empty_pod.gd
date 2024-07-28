@@ -1,13 +1,14 @@
 extends Node2D
 class_name EmptyPod
 
-@export var is_entrace: bool = false
-
+@export_range(0, 10) var entry_number: int = 0
 @onready var hider: Node2D = $Hider
+
+var is_entrace: bool = false
 
 func handle_empty():
     hider.handle_empty()
 
-func _ready():
+func _ready() -> void:
     if not is_entrace:
-        hider.handle_empty()
+        handle_empty()
