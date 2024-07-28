@@ -89,8 +89,9 @@ func _ready() -> void:
 	if current_scene is Game and not owner is Game:
 		camera.queue_free()
 		queue_free()
-	
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	else:
+		# Don't allow test players to set mouse mode
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
 	var gravity_state: GravitizedComponent.GravityState = handle_artificial_gravity(delta)
