@@ -1,21 +1,21 @@
 extends Area2D
 class_name ScreenCore
 
-@export var label: RichTextLabel
 @export_multiline var text: String
-@export var indicator: TextureRect
-@export var glow: Sprite2D
+@export var folder_button: FolderButton
 
 @onready var unopened_sprite: Sprite2D = $Unopened
 @onready var opened_sprite: Sprite2D = $Opened
 
 ## BBCode ready text
-@onready var parsed_text: String = BBCodeParser.parse(text)
+var parsed_text: String
+
+func _ready() -> void:
+	parsed_text = BBCodeParser.parse(text)
+	folder_button.parsed_text = parsed_text
 
 func visit() -> void:
-	label.text = parsed_text
-	indicator.texture = opened_sprite.texture
 	unopened_sprite.hide()
 	opened_sprite.show()
-	glow.show()
-	glow.global_position = indicator.global_position + indicator.size / 2
+	folder_button.disabled = false
+	folder_button.button_pressed = true
