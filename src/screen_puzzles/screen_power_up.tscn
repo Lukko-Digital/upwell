@@ -12,12 +12,15 @@ collision_layer = 32
 collision_mask = 2
 script = ExtResource("1_2ydu8")
 
+[node name="ButtonGlow" parent="." instance=ExtResource("3_h7o44")]
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
 self_modulate = Color(1, 1, 1, 0.462745)
 texture = ExtResource("1_5p3rl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_es4gw")
 
-[node name="ButtonGlow" parent="." instance=ExtResource("3_h7o44")]
-visible = false
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
