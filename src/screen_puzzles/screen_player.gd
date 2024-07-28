@@ -25,37 +25,48 @@ func update_new_action_line():
 func clear_new_action_line():
 	new_action_line.clear_points()
 
+func init_query() -> PhysicsPointQueryParameters2D:
+	var query := PhysicsPointQueryParameters2D.new()
+	query.collide_with_areas = true
+	query.collision_mask = 32 # Layer 6
+	query.position = global_position
+	return query
+
+func check_overlapping_ags(collision_results: Array[Dictionary]) -> ScreenAG:
+	for collision in collision_results:
+		var area = collision.collider
+		if area is ScreenAG:
+			return area
+	return null
+
 ## Returns the folder that was hit, if no folder was hit, returns null
 func update_trajectory(line: Line2D, detect_unplaced: bool=false) -> ScreenCore:
 	line.clear_points()
 
 	var dir: Vector2 = Vector2.UP
-	var in_ag: ScreenAG = null
-	var orbiting: bool = false
-
-	var world_physics := get_world_2d().direct_space_state
-	var query := PhysicsPointQueryParameters2D.new()
-	query.collide_with_areas = true
-	query.collision_mask = 32 # Layer 6
-	query.position = global_position
-
+	# Power
 	var power = STARTING_POWER
 	var used_power_ups = []
 	var total_line_power = power
+	# AG
+	var current_ag: ScreenAG = null
+	var orbiting: bool = false
+	# World query
+	var world_physics := get_world_2d().direct_space_state
+	var query = init_query()
 
 	while power > 0:
-		var overlapping = world_physics.intersect_point(query)
+		var overlapping := world_physics.intersect_point(query)
 		
-		in_ag = null
-		for collision in overlapping:
-			var area = collision.collider
-			if area is ScreenAG:
-				in_ag = area
+		# Check for colliding AGs first
+		current_ag = check_overlapping_ags(overlapping)
 
+		# Resolve other colliding objects
 		for collision in overlapping:
 			var area = collision.collider
+			# Screen buttons
 			if area is ScreenButton:
-				if not in_ag:
+				if not current_ag:
 					continue
 				if not (detect_unplaced or area.placed):
 					continue
@@ -66,27 +77,34 @@ func update_trajectory(line: Line2D, detect_unplaced: bool=false) -> ScreenCore:
 						orbiting = false
 					ScreenButton.ButtonTypes.BOOST:
 						orbiting = false
-						dir = -query.position.direction_to(in_ag.global_position)
+						dir = -query.position.direction_to(current_ag.global_position)
+			# Hazards
 			if area is ScreenHazard:
 				return null
+			# Folders
 			if area is ScreenCore:
 				return area
-
+			# Power ups
 			if area is ScreenPowerUp:
-				if area not in used_power_ups:
-					used_power_ups.append(area)
-					power += area.power
-					total_line_power += area.power
-					var child_diff = total_line_power - line_area.get_child_count()
-					if child_diff > 0:
-						spawn_collision_segments(child_diff)
+				# Only use each power up once
+				if area in used_power_ups:
+					continue
+				used_power_ups.append(area)
+				power += area.power
+				total_line_power += area.power
+				# Spawn more segments if needed
+				var child_diff = total_line_power - line_area.get_child_count()
+				if child_diff > 0:
+					spawn_collision_segments(child_diff)
 
-		if orbiting and in_ag:
-			var vec_to_ag = in_ag.global_position - query.position
+		# Handle orbit direction
+		if orbiting and current_ag:
+			var vec_to_ag = current_ag.global_position - query.position
 			var angle = acos(SPACING / (2 * vec_to_ag.length()))
 			var orbit_dir = sign(vec_to_ag.angle_to(dir))
 			dir = vec_to_ag.normalized().rotated(angle * orbit_dir)
 		
+		# Update line and query
 		line.add_point(query.position - global_position)
 		query.position += dir * SPACING
 		power -= 1
