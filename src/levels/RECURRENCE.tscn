@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="6_6lxgd"]
 [ext_resource type="PackedScene" uid="uid://dhjj5tgw8y2es" path="res://src/level_elements/view_blocker.tscn" id="7_ay25r"]
 [ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="7_nc71i"]
-[ext_resource type="PackedScene" uid="uid://dqpo0ly2l4tmk" path="res://src/levels/RECURRENCE_screen_puzzle.tscn" id="8_51s1f"]
+[ext_resource type="PackedScene" uid="uid://b30jo7kace2yj" path="res://src/levels/CONTACT_screen_puzzle.tscn" id="9_v0dgg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bthli"]
 radius = 48.0
@@ -65,4 +65,4 @@ scale = Vector2(-0.912185, 6.18814)
 
 [node name="Screen" parent="." instance=ExtResource("7_nc71i")]
 position = Vector2(691, -720)
-screen = ExtResource("8_51s1f")
+screen = ExtResource("9_v0dgg")
