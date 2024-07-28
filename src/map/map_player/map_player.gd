@@ -10,6 +10,7 @@ class_name MapPlayer
 @onready var warning_label: Label = $CanvasLayer/WarningLabel
 @onready var grav_component: GravitizedComponent = $GravitizedComponent
 @onready var map_animation_player: AnimationPlayer = $MapAnimationPlayer
+@onready var location_info: TextureRect = $CanvasLayer/TextBacker
 
 const HAZARD_TEXT = "IMPACT AVOIDED"
 const OUT_OF_ENERGY_TEXT = "RECALLED DUE TO ENERGY LOSS"
@@ -25,6 +26,8 @@ var moving = false:
 		moving = value
 		Global.moving_on_map = value
 
+var manual_control: bool = false
+
 var in_coolant = false
 
 var velocity: Vector2 = Vector2.ZERO
@@ -38,8 +41,11 @@ var destination: Entrypoint = null:
 
 const SPEED: float = 800
 const ENERGY_USE_RATE: float = 30
+@onready var distance_per_energy: float = SPEED / (ENERGY_USE_RATE / energy_bar.max_value) * (energy_bar.value / energy_bar.max_value)
 
 const AG_ACCELERATION: float = 4
+
+signal select_destination(location: Entrypoint)
 
 func _ready() -> void:
 	Global.pod_called.connect(_on_call_pod)
@@ -49,19 +55,31 @@ func _process(delta: float) -> void:
 		var active_ag = grav_component.check_active_ag()
 		var gravity_state = grav_component.determine_gravity_state(active_ag)
 		if gravity_state != GravitizedComponent.GravityState.NONE and Global.pod_has_clicker:
+			manual_control = true
 			var new_vel = grav_component.calculate_gravitized_velocity(
 				active_ag, gravity_state, velocity, delta
 			)
 			velocity = new_vel.normalized() * SPEED
 			target_shake = TRAVEL_SHAKE_AMOUNT / 5
 
+		# if you stop holding shift on a entry point, you snap there
+		elif gravity_state == GravitizedComponent.GravityState.NONE:
+			for area in collision_box.get_overlapping_areas():
+				if area is Entrypoint and destination == area:
+					destination = area
+
 		global_position += velocity * delta
+
+		if manual_control:
+			line.set_point_position(1, velocity.normalized() * distance_per_energy)
+		
 		if global_position.distance_to(destination.global_position) < 20:
 			end_movement()
-		else:
-			line.set_point_position(1, destination.global_position - global_position)
+		elif not manual_control:
+			line.set_point_position(1, (destination.global_position - global_position).limit_length(distance_per_energy))
 
 		if not in_coolant: energy_bar.value -= ENERGY_USE_RATE * delta
+		distance_per_energy = SPEED / (ENERGY_USE_RATE / energy_bar.max_value) * (energy_bar.value / energy_bar.max_value)
 	
 	if energy_bar.value <= 0:
 		run_out_of_energy()
@@ -75,17 +93,26 @@ func _process(delta: float) -> void:
 	#handle shake lerping
 	lerp_shake(delta)
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		location_info.hide()
+
 ## Constantly lerps [current_shake] to a [target_shake] in order for smooth shake change
 func lerp_shake(delta: float):
 	current_shake = lerp(current_shake, target_shake, delta * shake_lerp_speed)
 	if current_shake != target_shake:
 		Global.camera_shake.emit(INF, current_shake)
 
-func location_hovered(location: Entrypoint):
+func location_selected(location: Entrypoint):
 	if moving:
 		return
-	if line.get_point_count() < 2:
-		line.add_point(location.global_position - global_position)
+	if line.get_point_count() > 1:
+		line.remove_point(1)
+	destination = location
+	var line_end = (location.global_position - global_position).limit_length(distance_per_energy)
+	line.add_point(line_end)
+	select_destination.emit(location)
+	location_info.show()
 
 func location_unhovered(_location: Entrypoint):
 	if moving:
@@ -93,12 +120,12 @@ func location_unhovered(_location: Entrypoint):
 	if line.get_point_count() > 1:
 		line.remove_point(1)
 
-func location_selected(location: Entrypoint):
+func travel() -> void:
 	# Commented out for playtesting purposes
 	if moving: # or drill_heat > 0:
 		return
-	destination = location
 	moving = true
+	manual_control = false
 
 	# Begin shake by setting target and regular speed
 	shake_lerp_speed = 1
@@ -115,7 +142,6 @@ func exit_coolant_pocket() -> void:
 	in_coolant = false
 
 func end_movement() -> void:
-
 	moving = false
 
 	velocity = Vector2.ZERO
@@ -167,6 +193,9 @@ func run_out_of_energy() -> void:
 	map_animation_player.play("SHUTDOWN_AVOIDED")
 
 func hit_hazard() -> void:
+	if not moving:
+		return
+
 	for area in collision_box.get_overlapping_areas():
 		if area is Entrypoint:
 			return
@@ -214,3 +243,6 @@ func _on_call_pod(empty_pod: EmptyPod) -> void:
 		if entry_point is Entrypoint and entry_point.entry_number == empty_pod.entry_number:
 			entry_point.pod_called()
 			global_position = entry_point.global_position
+
+func _on_travel_button_pressed():
+	travel()

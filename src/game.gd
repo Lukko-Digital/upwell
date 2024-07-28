@@ -16,10 +16,10 @@ func change_level(level: PackedScene, entry_number: int):
 
 	for node in new_level.get_children():
 		## Placeholder for MVP3 so player can spawn on the left, then arrive on the right side subsequently
-		if Global.swap_h32_nuclear_entrances and new_level.name == "H32Nuclear":
-			if node is EmptyPod and not node.is_entrace:
-				entry_point = node
-				break
+		# if Global.swap_h32_nuclear_entrances and new_level.name == "H32Nuclear":
+		# 	if node is EmptyPod and not node.is_entrace:
+		# 		entry_point = node
+		# 		break
 		## end of placeholder code
 		if node is EmptyPod:
 			if entry_number == node.entry_number:
