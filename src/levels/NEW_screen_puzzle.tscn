@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://dq2hd4c7by8ms"]
 
-[ext_resource type="PackedScene" uid="uid://bvkim1x1vvm81" path="res://src/screen_puzzles/screen_puzzle_ui.tscn" id="1_6g2i3"]
-[ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/screen_player.tscn" id="1_ptcri"]
-[ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/screen_ag.tscn" id="2_yc2uy"]
+[ext_resource type="PackedScene" uid="uid://bvkim1x1vvm81" path="res://src/screen_puzzles/ui/screen_puzzle_ui.tscn" id="1_6g2i3"]
+[ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/puzzle_elements/screen_player.tscn" id="1_ptcri"]
+[ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/puzzle_elements/screen_ag.tscn" id="2_yc2uy"]
 [ext_resource type="Texture2D" uid="uid://bgrbrq2ad7fkk" path="res://assets/ui/screen_puzzle/reference2.png" id="8_b3ynt"]
-[ext_resource type="PackedScene" uid="uid://c1fatgffin6hd" path="res://src/screen_puzzles/screen_core.tscn" id="10_4xx6a"]
+[ext_resource type="PackedScene" uid="uid://c1fatgffin6hd" path="res://src/screen_puzzles/puzzle_elements/screen_core.tscn" id="10_4xx6a"]
 [ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="11_x315f"]
-[ext_resource type="PackedScene" uid="uid://bdt2psjmwjsy6" path="res://src/screen_puzzles/screen_button_orbit.tscn" id="12_ofn7a"]
-[ext_resource type="PackedScene" uid="uid://bwbpi60st6gme" path="res://src/screen_puzzles/screen_button_unorbit.tscn" id="13_o7qgy"]
+[ext_resource type="PackedScene" uid="uid://bdt2psjmwjsy6" path="res://src/screen_puzzles/puzzle_elements/screen_button_orbit.tscn" id="12_ofn7a"]
+[ext_resource type="PackedScene" uid="uid://bwbpi60st6gme" path="res://src/screen_puzzles/puzzle_elements/screen_button_unorbit.tscn" id="13_o7qgy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_51swq"]
 radius = 281.143

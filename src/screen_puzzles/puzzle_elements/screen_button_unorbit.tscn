@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://bwbpi60st6gme"]
 
 [ext_resource type="Script" path="res://src/abstract_base_classes/screen_button.gd" id="1_k6nlx"]
-[ext_resource type="PackedScene" uid="uid://203jmdgiwgko" path="res://src/screen_puzzles/button_glow.tscn" id="2_02k4h"]
+[ext_resource type="PackedScene" uid="uid://203jmdgiwgko" path="res://src/screen_puzzles/helper/button_glow.tscn" id="2_02k4h"]
 [ext_resource type="Texture2D" uid="uid://6qnromx6emqm" path="res://assets/ui/screen_puzzle/UNORBIT.png" id="3_3riui"]
-[ext_resource type="PackedScene" uid="uid://nbku63cre6dq" path="res://src/screen_puzzles/screen_draggable.tscn" id="3_11ddv"]
+[ext_resource type="PackedScene" uid="uid://nbku63cre6dq" path="res://src/screen_puzzles/helper/screen_draggable.tscn" id="3_11ddv"]
 [ext_resource type="Texture2D" uid="uid://cvy5nd0anu1m" path="res://assets/ui/screen_puzzle/UNORBIT_HOLD.png" id="3_id24m"]
 [ext_resource type="Texture2D" uid="uid://bn2m342wuaypu" path="res://assets/ui/screen_puzzle/UNORBIT_RELEASED.png" id="4_2mf4o"]
-[ext_resource type="PackedScene" uid="uid://b5o52iwq1qlk5" path="res://src/screen_puzzles/trajectory_line_detection_area.tscn" id="7_7jkap"]
+[ext_resource type="PackedScene" uid="uid://b5o52iwq1qlk5" path="res://src/screen_puzzles/helper/trajectory_line_detection_area.tscn" id="7_7jkap"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cu102"]
 
