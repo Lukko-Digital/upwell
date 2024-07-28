@@ -42,10 +42,9 @@ func update_trajectory(line: Line2D, detect_unplaced: bool=false) -> ScreenCore:
 	query.position = global_position
 
 	var power = STARTING_POWER
-	var can_power_up = true
+	var used_power_ups = []
 
 	while power > 0:
-		var powered_up = false
 		var overlapping = world_physics.intersect_point(query)
 		
 		in_ag = null
@@ -75,13 +74,9 @@ func update_trajectory(line: Line2D, detect_unplaced: bool=false) -> ScreenCore:
 				return area
 
 			if area is ScreenPowerUp:
-				if can_power_up:
+				if area not in used_power_ups:
 					power += area.power
-					can_power_up = false
-				powered_up = true
-			
-		if not powered_up:
-			can_power_up = true
+					used_power_ups.append(area)
 
 		if orbiting and in_ag:
 			var vec_to_ag = in_ag.global_position - query.position
@@ -95,7 +90,7 @@ func update_trajectory(line: Line2D, detect_unplaced: bool=false) -> ScreenCore:
 	return null
 
 func init_collision_segments():
-	for _i in range(STARTING_POWER):
+	for _i in range(STARTING_POWER * 4):
 		var collision = CollisionShape2D.new()
 		var segment = SegmentShape2D.new()
 		segment.a = Vector2.ZERO
