@@ -1,14 +1,14 @@
 [gd_scene load_steps=12 format=3 uid="uid://bnxmdjk1mqgxv"]
 
-[ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/screen_player.tscn" id="1_so3si"]
+[ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/puzzle_elements/screen_player.tscn" id="1_so3si"]
 [ext_resource type="PackedScene" uid="uid://bl53k36i6wlyr" path="res://src/screen_puzzles/ui/folder_button.tscn" id="2_iwhmm"]
-[ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/screen_ag.tscn" id="2_qrsml"]
+[ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/puzzle_elements/screen_ag.tscn" id="2_qrsml"]
 [ext_resource type="Script" path="res://src/levels/button_home_handler.gd" id="6_gpi31"]
-[ext_resource type="PackedScene" uid="uid://bvkim1x1vvm81" path="res://src/screen_puzzles/screen_puzzle_ui.tscn" id="8_ldg3h"]
-[ext_resource type="PackedScene" uid="uid://c1fatgffin6hd" path="res://src/screen_puzzles/screen_core.tscn" id="9_6om2k"]
-[ext_resource type="PackedScene" uid="uid://bdt2psjmwjsy6" path="res://src/screen_puzzles/screen_button_orbit.tscn" id="11_hg2sa"]
-[ext_resource type="PackedScene" uid="uid://bwbpi60st6gme" path="res://src/screen_puzzles/screen_button_unorbit.tscn" id="12_c4umh"]
-[ext_resource type="PackedScene" uid="uid://xiabu6v8kd6w" path="res://src/screen_puzzles/screen_power_up.tscn" id="13_g4lb0"]
+[ext_resource type="PackedScene" uid="uid://bvkim1x1vvm81" path="res://src/screen_puzzles/ui/screen_puzzle_ui.tscn" id="8_ldg3h"]
+[ext_resource type="PackedScene" uid="uid://c1fatgffin6hd" path="res://src/screen_puzzles/puzzle_elements/screen_core.tscn" id="9_6om2k"]
+[ext_resource type="PackedScene" uid="uid://bdt2psjmwjsy6" path="res://src/screen_puzzles/puzzle_elements/screen_button_orbit.tscn" id="11_hg2sa"]
+[ext_resource type="PackedScene" uid="uid://bwbpi60st6gme" path="res://src/screen_puzzles/puzzle_elements/screen_button_unorbit.tscn" id="12_c4umh"]
+[ext_resource type="PackedScene" uid="uid://xiabu6v8kd6w" path="res://src/screen_puzzles/puzzle_elements/screen_power_up.tscn" id="13_g4lb0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tk24l"]
 size = Vector2(1763, 1481)

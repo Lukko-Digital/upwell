@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bb6ywkvlv608d"]
 
-[ext_resource type="Script" path="res://src/screen_puzzles/screen_ag.gd" id="1_nj2f6"]
+[ext_resource type="Script" path="res://src/screen_puzzles/puzzle_elements/screen_ag.gd" id="1_nj2f6"]
 [ext_resource type="Texture2D" uid="uid://bdndkuj1eucd" path="res://assets/ui/screen_puzzle/ag_area_ADD.png" id="2_eel10"]
 
 [node name="ScreenAG" type="Area2D"]
