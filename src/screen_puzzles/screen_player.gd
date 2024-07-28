@@ -2,9 +2,7 @@
 extends Node2D
 class_name ScreenPlayer
 
-# @export var STARTING_POWER: float = 1000
-# const SPACING: float = 2
-const STARTING_POWER: float = 200
+const STARTING_POWER = 200
 const SPACING: float = 10
 
 var targeted_folder: ScreenCore = null
@@ -14,7 +12,7 @@ var targeted_folder: ScreenCore = null
 @onready var new_action_line: Line2D = %NewActionLine
 
 func _ready() -> void:
-	init_collision_segments()
+	spawn_collision_segments(STARTING_POWER)
 	update_main_line()
 
 func update_main_line():
@@ -43,6 +41,7 @@ func update_trajectory(line: Line2D, detect_unplaced: bool=false) -> ScreenCore:
 
 	var power = STARTING_POWER
 	var used_power_ups = []
+	var total_line_power = power
 
 	while power > 0:
 		var overlapping = world_physics.intersect_point(query)
@@ -75,8 +74,12 @@ func update_trajectory(line: Line2D, detect_unplaced: bool=false) -> ScreenCore:
 
 			if area is ScreenPowerUp:
 				if area not in used_power_ups:
-					power += area.power
 					used_power_ups.append(area)
+					power += area.power
+					total_line_power += area.power
+					var child_diff = total_line_power - line_area.get_child_count()
+					if child_diff > 0:
+						spawn_collision_segments(child_diff)
 
 		if orbiting and in_ag:
 			var vec_to_ag = in_ag.global_position - query.position
@@ -89,8 +92,8 @@ func update_trajectory(line: Line2D, detect_unplaced: bool=false) -> ScreenCore:
 		power -= 1
 	return null
 
-func init_collision_segments():
-	for _i in range(STARTING_POWER * 4):
+func spawn_collision_segments(num_segments: int):
+	for _i in range(num_segments):
 		var collision = CollisionShape2D.new()
 		var segment = SegmentShape2D.new()
 		segment.a = Vector2.ZERO
