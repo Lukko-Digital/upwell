@@ -84,12 +84,11 @@ func update_trajectory(line: Line2D, detect_unplaced: bool=false) -> ScreenCore:
 			can_power_up = true
 
 		if orbiting and in_ag:
-			var orth = query.position.direction_to(in_ag.global_position).orthogonal().rotated(0.005)
-			if dir.dot(orth) > 0:
-				dir = orth
-			else:
-				dir = -orth
-
+			var vec_to_ag = in_ag.global_position - query.position
+			var angle = acos(SPACING / (2 * vec_to_ag.length()))
+			var orbit_dir = sign(vec_to_ag.angle_to(dir))
+			dir = vec_to_ag.normalized().rotated(angle * orbit_dir)
+		
 		line.add_point(query.position - global_position)
 		query.position += dir * SPACING
 		power -= 1
