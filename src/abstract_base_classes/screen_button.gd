@@ -90,7 +90,6 @@ func handle_snap():
 	else:
 		# Break snap
 		line_area.screen_player.clear_new_action_line()
-		line_area.screen_player.update_main_line()
 
 func snap_home():
 	if selected:
