@@ -2,6 +2,7 @@ extends Node2D
 class_name MapPlayer
 
 @onready var line: Line2D = $Line2D
+@onready var boost_line: Line2D = $BoostLine2D
 
 @onready var game: Game = get_tree().get_current_scene()
 @onready var energy_bar: ProgressBar = $CanvasLayer/Energy
@@ -72,11 +73,15 @@ func _process(delta: float) -> void:
 
 		if manual_control:
 			line.set_point_position(1, velocity.normalized() * distance_per_energy)
+			if gravity_state == GravitizedComponent.GravityState.ORBIT:
+				boost_line.set_point_position(1, active_ag.global_position.direction_to(global_position) * distance_per_energy)
+			else:
+				boost_line.set_point_position(1, Vector2.ZERO)
 		
 		if global_position.distance_to(destination.global_position) < 20:
 			end_movement()
 		elif not manual_control:
-			line.set_point_position(1, (destination.global_position - global_position).limit_length(distance_per_energy))
+			line.set_point_position(1, global_position.direction_to(destination.global_position).limit_length(distance_per_energy))
 
 		if not in_coolant: energy_bar.value -= ENERGY_USE_RATE * delta
 		distance_per_energy = SPEED / (ENERGY_USE_RATE / energy_bar.max_value) * (energy_bar.value / energy_bar.max_value)

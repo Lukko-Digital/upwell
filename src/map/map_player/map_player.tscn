@@ -562,6 +562,16 @@ gradient = SubResource("Gradient_i3lws")
 texture = ExtResource("4_dgis1")
 texture_mode = 2
 
+[node name="BoostLine2D" type="Line2D" parent="."]
+z_index = -1
+position = Vector2(2, -3)
+scale = Vector2(0.25, 0.25)
+points = PackedVector2Array(0, 0, 0, 0)
+width = 86.17
+gradient = SubResource("Gradient_i3lws")
+texture = ExtResource("4_dgis1")
+texture_mode = 2
+
 [node name="Ring1" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("CanvasItemMaterial_a7q01")
