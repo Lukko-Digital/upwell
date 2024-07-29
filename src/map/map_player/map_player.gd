@@ -17,6 +17,9 @@ const HAZARD_TEXT = "IMPACT AVOIDED"
 const OUT_OF_ENERGY_TEXT = "RECALLED DUE TO ENERGY LOSS"
 const LOW_ENERGY_TEXT = "You are low on energy"
 const TRAVEL_SHAKE_AMOUNT = 2.5
+const ORBIT_SHAKE_AMOUNT = 0.5
+const BOOST_SHAKE_AMOUNT = 5
+const BASE_SHAKE_LERP_SPEED = 1.0
 
 var current_shake: float = 0.0
 var target_shake: float = 0.0
@@ -61,7 +64,6 @@ func _process(delta: float) -> void:
 				active_ag, gravity_state, velocity, delta
 			)
 			velocity = new_vel.normalized() * SPEED
-			target_shake = TRAVEL_SHAKE_AMOUNT / 5
 
 		# if you stop holding shift on a entry point, you snap there
 		elif gravity_state == GravitizedComponent.GravityState.NONE:
@@ -72,19 +74,27 @@ func _process(delta: float) -> void:
 		global_position += velocity * delta
 
 		if manual_control:
+			if gravity_state == GravitizedComponent.GravityState.BOOST:
+				current_shake = BOOST_SHAKE_AMOUNT
+				shake_lerp_speed = 2.0
+				
+			target_shake = ORBIT_SHAKE_AMOUNT
+
 			line.set_point_position(1, velocity.normalized() * distance_per_energy)
 			if gravity_state == GravitizedComponent.GravityState.ORBIT:
-				boost_line.set_point_position(1, active_ag.global_position.direction_to(global_position) * distance_per_energy)
+				boost_line.set_point_position(1, active_ag.global_position.direction_to(global_position) * distance_per_energy / 2)
 			else:
 				boost_line.set_point_position(1, Vector2.ZERO)
 		
-		if global_position.distance_to(destination.global_position) < 20:
+		if at_destination():
 			end_movement()
 		elif not manual_control:
 			line.set_point_position(1, global_position.direction_to(destination.global_position).limit_length(distance_per_energy))
 
 		if not in_coolant: energy_bar.value -= ENERGY_USE_RATE * delta
 		distance_per_energy = SPEED / (ENERGY_USE_RATE / energy_bar.max_value) * (energy_bar.value / energy_bar.max_value)
+	else:
+		boost_line.set_point_position(1, Vector2.ZERO)
 	
 	if energy_bar.value <= 0:
 		run_out_of_energy()
@@ -98,6 +108,9 @@ func _process(delta: float) -> void:
 	#handle shake lerping
 	lerp_shake(delta)
 
+func at_destination() -> bool:
+	return global_position.distance_to(destination.global_position) < 20
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		location_info.hide()
@@ -107,15 +120,20 @@ func lerp_shake(delta: float):
 	current_shake = lerp(current_shake, target_shake, delta * shake_lerp_speed)
 	if current_shake != target_shake:
 		Global.camera_shake.emit(INF, current_shake)
+	else:
+		shake_lerp_speed = BASE_SHAKE_LERP_SPEED
 
 func location_selected(location: Entrypoint):
 	if moving:
 		return
 	if line.get_point_count() > 1:
 		line.remove_point(1)
+
 	destination = location
+
 	var line_end = (location.global_position - global_position).limit_length(distance_per_energy)
 	line.add_point(line_end)
+
 	select_destination.emit(location)
 	location_info.show()
 
@@ -129,17 +147,19 @@ func travel() -> void:
 	# Commented out for playtesting purposes
 	if moving: # or drill_heat > 0:
 		return
+	if at_destination():
+		return
+	
 	moving = true
-	manual_control = false
 
 	# Begin shake by setting target and regular speed
-	shake_lerp_speed = 1
+	shake_lerp_speed = BASE_SHAKE_LERP_SPEED
 	target_shake = TRAVEL_SHAKE_AMOUNT
 
 func enter_coolant_pocket() -> void:
 	energy_bar.value = energy_bar.max_value
 	in_coolant = true
-	target_shake = TRAVEL_SHAKE_AMOUNT
+	# target_shake = TRAVEL_SHAKE_AMOUNT
 	map_animation_player.play("neutral")
 	game.pod.pod_animation_player.play("neutral")
 	
@@ -148,6 +168,7 @@ func exit_coolant_pocket() -> void:
 
 func end_movement() -> void:
 	moving = false
+	manual_control = false
 
 	velocity = Vector2.ZERO
 	energy_bar.value = energy_bar.max_value

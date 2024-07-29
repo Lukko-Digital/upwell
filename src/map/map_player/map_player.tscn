@@ -563,11 +563,12 @@ texture = ExtResource("4_dgis1")
 texture_mode = 2
 
 [node name="BoostLine2D" type="Line2D" parent="."]
+modulate = Color(1, 1, 1, 0.658824)
 z_index = -1
 position = Vector2(2, -3)
 scale = Vector2(0.25, 0.25)
 points = PackedVector2Array(0, 0, 0, 0)
-width = 86.17
+width = 40.405
 gradient = SubResource("Gradient_i3lws")
 texture = ExtResource("4_dgis1")
 texture_mode = 2
