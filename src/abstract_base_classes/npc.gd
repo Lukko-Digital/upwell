@@ -5,17 +5,22 @@ class_name NPC
 @export var faces_you_during_dialogue = false
 ## If the NPC sprite is normally facing to the left, check this box
 @export var default_left_facing = false
-## Only needs to be set if [faces_you_during_dialogue] is true
-@export var npc_sprite: Sprite2D
+## Only needs to be set if [faces_you_during_dialogue] is true.
+## Can be a [Sprite2D] or [AnimatedSprite2D]
+@export var npc_sprite: Node2D
 
 @onready var nodule: Sprite2D = $Nodule
 
 var conversation_tree: ConversationTree
+## In the case that the npc's body isn't centered in the sprite
+var default_sprite_offset: Vector2
 
 func _ready() -> void:
 	super()
-	nodule.hide()
 	conversation_tree = DialogueParser.parse_csv(dialogue_file)
+	nodule.hide()
+	if npc_sprite is Sprite2D or npc_sprite is AnimatedSprite2D:
+		default_sprite_offset = npc_sprite.offset
 
 func interact(player: Player):
 
@@ -33,6 +38,10 @@ func interact(player: Player):
 		## false         		  | true                | false
 		## false          		  | false               | true
 		npc_sprite.flip_h = (player_on_right == default_left_facing)
+
+		var offset_dir = -1 if npc_sprite.flip_h else 1
+		npc_sprite.offset = offset_dir * default_sprite_offset
+
 		nodule.position.x = sign(vec_to_player.x) * abs(nodule.position.x)
 		nodule.flip_h = player_on_right
 
