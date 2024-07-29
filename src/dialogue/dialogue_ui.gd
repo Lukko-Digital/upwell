@@ -1,7 +1,7 @@
 extends CanvasLayer
 class_name DialogueUI
 
-const TEXT_SPEED = 0.03
+const TEXT_SPEED = 0.035
 
 ## Usages:
 ##
@@ -23,11 +23,11 @@ const DIALOGUE_COMMANDS = {
 }
 const SHAKE_DEFAULT = {
 	DURATION = 0.1,
-	AMOUNT = 50
+	AMOUNT = 40
 }
 ## How long it will take for the next character to appear, in seconds
-const END_CHARACTER_PAUSE = 0.5
-const COMMA_PAUSE = 0.15
+const END_CHARACTER_PAUSE = 0.6
+const COMMA_PAUSE = 0.3
 ## Distance from nodule origin to npc origin
 const SPEECH_BUBBLE_OFFSET = Vector2(-60, -110)
 

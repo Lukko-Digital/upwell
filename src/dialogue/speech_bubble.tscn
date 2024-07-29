@@ -7,9 +7,9 @@
 [ext_resource type="FontFile" uid="uid://dugjy5jt8bi0x" path="res://assets/ui/fonts/LibreBaskerville-Regular.ttf" id="4_lrslx"]
 [ext_resource type="FontFile" uid="uid://dpvvg0gwxfjxp" path="res://assets/ui/fonts/LibreBaskerville-Bold.ttf" id="5_j1yx8"]
 [ext_resource type="FontFile" uid="uid://cmkra16htorm3" path="res://assets/ui/fonts/LibreBaskerville-Italic.ttf" id="6_xra7x"]
-[ext_resource type="FontFile" uid="uid://l50rgyf24fyd" path="res://assets/ui/fonts/CrimsonText-SemiBold.ttf" id="8_v7kwa"]
+[ext_resource type="FontFile" uid="uid://12lul10wlfah" path="res://assets/ui/fonts/CrimsonText-Regular.ttf" id="8_fauky"]
 [ext_resource type="FontFile" uid="uid://dugy4bpba0o10" path="res://assets/ui/fonts/CrimsonText-Bold.ttf" id="9_w6pgy"]
-[ext_resource type="FontFile" uid="uid://vmvr5gfrccp1" path="res://assets/ui/fonts/CrimsonText-SemiBoldItalic.ttf" id="10_slrgn"]
+[ext_resource type="FontFile" uid="uid://c8ewp3x7h67h3" path="res://assets/ui/fonts/CrimsonText-Italic.ttf" id="10_b3fvn"]
 
 [node name="SpeechBubble" type="Control" node_paths=PackedStringArray("nodule", "dialogue_label", "name_label")]
 z_index = 20
@@ -77,9 +77,9 @@ custom_minimum_size = Vector2(977.1, 0)
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("8_v7kwa")
+theme_override_fonts/normal_font = ExtResource("8_fauky")
 theme_override_fonts/bold_font = ExtResource("9_w6pgy")
-theme_override_fonts/italics_font = ExtResource("10_slrgn")
+theme_override_fonts/italics_font = ExtResource("10_b3fvn")
 theme_override_font_sizes/normal_font_size = 130
 theme_override_font_sizes/bold_font_size = 130
 theme_override_font_sizes/italics_font_size = 130
