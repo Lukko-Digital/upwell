@@ -16,14 +16,14 @@ const DEFUALT = {
 
 enum DisplayType {SPEECH_BUBBLE, FULLSCREEN}
 
-static func parse_csv(dialogue_file: String) -> ConversationTree:
+static func parse_csv(dialogue_file: String, npc: NPC) -> ConversationTree:
 	var file = FileAccess.open(dialogue_file, FileAccess.READ)
 	var keys := file.get_csv_line()
 
 	# Lambda helpers
 	var get_key = func(csv_line: PackedStringArray, key: String) -> String:
 		var idx = keys.find(key)
-		if idx == - 1:
+		if idx == -1:
 			assert(false, "Error when parsing dialogue, cannot find key " + key)
 		return csv_line[idx]
 
@@ -76,7 +76,7 @@ static func parse_csv(dialogue_file: String) -> ConversationTree:
 			continue
 		
 		var dialogue_line = BBCodeParser.parse(get_key.call(line, "Dialogue Text"))
-		safety_check_dialogue_commands(dialogue_line)
+		safety_check_dialogue_commands(dialogue_line, npc)
 		var npc_name = get_key.call(line, "Name")
 		var display_type = to_display_type(get_key.call(line, "Display Type"))
 		var variable_to_set = get_key.call(line, "Variable To Set")
@@ -154,7 +154,7 @@ static func init_global_variable(variable_name: String):
 	if not Global.dialogue_conditions.has(variable_name):
 		Global.dialogue_conditions[variable_name] = false
 
-static func safety_check_dialogue_commands(string: String):
+static func safety_check_dialogue_commands(string: String, npc: NPC):
 	var command_search = RegEx.new()
 	command_search.compile("{(.+?)}")
 	for command_match: RegExMatch in command_search.search_all(string):
@@ -179,6 +179,15 @@ static func safety_check_dialogue_commands(string: String):
 						arg_match != null,
 						"Issue when parsing dialogue, received argument \"" + arg + "\" for shake command, arguments must be in the format \"amount=#\" or \"duration=#\" where # is any valid float"
 					)
+			DialogueUI.DIALOGUE_COMMANDS.ANIMATION:
+				assert(
+					npc.npc_sprite is AnimatedSprite2D,
+					"Issue when parsing dialogue, trying to call animation dialogue command on npc that doesn't have an AnimatedSprite2D"
+				)
+				assert(
+					npc.npc_sprite.sprite_frames.has_animation(command_line[1]),
+					"Issue when parsing dialogue, dialogue command trying to play animation \"" + command_line[1] + "\", which is not in the AnimatedSprite2D of " + npc.name
+				)
 			_:
 				assert(false, "Issue when parsing dialogue, invalid dialogue command or BBCode macro \"" + command + "\"")
 

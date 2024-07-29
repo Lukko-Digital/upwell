@@ -17,10 +17,10 @@ var default_sprite_offset: Vector2
 
 func _ready() -> void:
 	super()
-	conversation_tree = DialogueParser.parse_csv(dialogue_file)
-	nodule.hide()
 	if npc_sprite is Sprite2D or npc_sprite is AnimatedSprite2D:
 		default_sprite_offset = npc_sprite.offset
+	conversation_tree = DialogueParser.parse_csv(dialogue_file, self)
+	nodule.hide()
 
 func interact(player: Player):
 
