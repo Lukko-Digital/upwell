@@ -4,7 +4,7 @@ S1xa,,,,,,C1,DAD_SPOKE_OF_CLICKER,C3,,TRUE,,,,,,FALSE,,,,,FALSE,,,,,
 S2,,,,,,G1,DAD_MET,S3,,FALSE,,,,,,FALSE,,,,,FALSE,,,,,
 S3,,,,,,LH1,LEFT_HOME,L1,,FALSE,,,,,,FALSE,,,,,FALSE,,,,,
 ,,,GREETING,,,,,,,FALSE,,,,,,FALSE,,,,,FALSE,,,,,
-G1,,,"Everything ready? You have a snack, right?",DAD_MET,1,,,,I'm ready.,FALSE,,,,G3,Please don't worry,FALSE,,,,G2,FALSE,,,,,
+G1,,,"Everything ready? {animation point}You have a snack, right{animation smoke}?",DAD_MET,1,,,,I'm ready.,FALSE,,,,G3,Please don't worry,FALSE,,,,G2,FALSE,,,,,
 G2,Worrying bastard,,I'm not I just... you've never left before.,,,,,,I know,FALSE,,,,G4,,FALSE,,,,,FALSE,,,,,
 G3,,,Right... sorry. I know.,,,,,,It's okay,FALSE,,,,G4,...,FALSE,,,,G4,FALSE,,,,,
 G4,Dad,,"Well remember, you can come to me if you need any help. And if you meet {orange}any other scouts out there{/orange}, they are bound to be useful as well.",,,,,,Of course.,FALSE,,,,G5,...,FALSE,,,,G6,FALSE,,,,,G6
