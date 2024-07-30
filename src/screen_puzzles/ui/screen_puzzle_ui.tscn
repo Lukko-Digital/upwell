@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://bvkim1x1vvm81"]
+[gd_scene load_steps=20 format=3 uid="uid://bvkim1x1vvm81"]
 
 [ext_resource type="Script" path="res://src/screen_puzzles/ui/screen_puzzle_ui.gd" id="1_lx7ia"]
 [ext_resource type="Texture2D" uid="uid://bo4rxkqslvfgs" path="res://assets/ui/screen_puzzle_v2/screen_puzzle_focus.png" id="2_jwgwr"]
+[ext_resource type="Texture2D" uid="uid://bkxyuhhrra235" path="res://assets/ui/screen_puzzle_v2/lineblocker.png" id="3_10m77"]
 [ext_resource type="Texture2D" uid="uid://b4ji6s0lw01b" path="res://assets/ui/screen_puzzle_v2/folder_backer.png" id="3_ayfkr"]
 [ext_resource type="Texture2D" uid="uid://cjb6dnvqb407f" path="res://assets/ui/screen_puzzle_v2/bottom_bar.png" id="4_1qhds"]
 [ext_resource type="PackedScene" uid="uid://bl53k36i6wlyr" path="res://src/screen_puzzles/ui/folder_button.tscn" id="4_74w76"]
@@ -49,6 +50,7 @@ z_index = -10
 layout_mode = 0
 offset_right = 3840.0
 offset_bottom = 2160.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Focus" type="TextureRect" parent="."]
@@ -56,7 +58,17 @@ z_index = 10
 layout_mode = 2
 offset_right = 3840.0
 offset_bottom = 2160.0
+mouse_filter = 2
 texture = ExtResource("2_jwgwr")
+
+[node name="Lineblocker" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_10m77")
 
 [node name="LaunchResultLabel" type="RichTextLabel" parent="."]
 visible = false
@@ -81,6 +93,7 @@ position = Vector2(1920, 1080)
 zoom = Vector2(0.5, 0.5)
 
 [node name="FolderBacker" type="TextureRect" parent="."]
+z_index = 10
 layout_mode = 0
 offset_left = 225.0
 offset_top = 184.0
