@@ -1,34 +1,47 @@
 extends CanvasLayer
 class_name DialogueUI
 
-const TEXT_SPEED = 0.03
+const TEXT_SPEED = 0.035
 
+## Usages:
+##
+## {pause #} where # is pause duration in seconds
+##
+## {speed #} where # is a multiplier on speed (2 means twice as fast, 0.5 means
+##	twice as slow)
+##
+## {shake} {shake duration=#} {shake amount=#} {shake duration=# amount=#}
+## 	# for duration is shake duration in seconds, # for amount is max pixel offset
+##
+## {animation [animation_name]} where [animation_name] is a string corresponding
+##	to an animation on the NPC's AnimatedSprite2D
 const DIALOGUE_COMMANDS = {
 	PAUSE = "pause",
 	SPEED = "speed",
 	SHAKE = "shake",
+	ANIMATION = "animation"
 }
 const SHAKE_DEFAULT = {
 	DURATION = 0.1,
-	AMOUNT = 50
+	AMOUNT = 40
 }
 ## How long it will take for the next character to appear, in seconds
-const END_CHARACTER_PAUSE = 0.5
-const COMMA_PAUSE = 0.15
+const END_CHARACTER_PAUSE = 0.6
+const COMMA_PAUSE = 0.3
 ## Distance from nodule origin to npc origin
-const SPEECH_BUBBLE_OFFSET = Vector2( - 60, -110)
+const SPEECH_BUBBLE_OFFSET = Vector2(-60, -110)
 
 # Timer for animating text display, value set to TEXT_SPEED
 @export var display_timer: Timer
 @export var response_box: VBoxContainer
 @export var fullscreen_display: FullscreenDialogue
 
-@onready var response_button_scene = preload ("res://src/dialogue/response_button.tscn")
-@onready var speech_bubble_scene = preload ("res://src/dialogue/speech_bubble.tscn")
+@onready var response_button_scene = preload("res://src/dialogue/response_button.tscn")
+@onready var speech_bubble_scene = preload("res://src/dialogue/speech_bubble.tscn")
 
 var active_dialogue_display: DialogueDisplay
 var current_speech_bubble: SpeechBubble
-var current_conversation: ConversationTree
+var current_npc: NPC
 var next_branch: String
 var display_speed_coef = 1
 
@@ -42,7 +55,7 @@ func _ready():
 func start_dialogue(npc: NPC):
 	fullscreen_display.hide()
 	show()
-	current_conversation = npc.conversation_tree
+	current_npc = npc
 	
 	# Spawn speech bubble
 	var instance = speech_bubble_scene.instantiate()
@@ -59,7 +72,7 @@ func play_branch(branch_id: String):
 		return
 
 	clear_responses()
-	var branch: ConversationBranch = current_conversation.branches[branch_id]
+	var branch: ConversationBranch = current_npc.conversation_tree.branches[branch_id]
 	# Determine if speech bubble or fullscreen should be used
 	match branch.display_type:
 		DialogueParser.DisplayType.SPEECH_BUBBLE:
@@ -166,6 +179,8 @@ func handle_dialogue_command(command_text: String, idx: int) -> int:
 						"duration":
 							duration = value
 			Global.camera_shake.emit(duration, amount)
+		DIALOGUE_COMMANDS.ANIMATION:
+			current_npc.npc_sprite.play(command_line[1])
 	return re_match.get_end()
 
 func calculate_wait_time(new_char: String, command_text: String, idx: int) -> float:

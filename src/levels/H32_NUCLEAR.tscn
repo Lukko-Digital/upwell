@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c413chwmpxtw1"]
+[gd_scene load_steps=25 format=3 uid="uid://c413chwmpxtw1"]
 
 [ext_resource type="Script" path="res://src/level.gd" id="1_dccwl"]
 [ext_resource type="PackedScene" uid="uid://5mnlsyicmwh" path="res://src/level_elements/pod/empty_pod.tscn" id="4_c3cng"]
@@ -36,6 +36,57 @@ shader_parameter/radius = 5.076
 shader_parameter/steps = 32
 shader_parameter/vertex_expand = 2.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_c70yo"]
+atlas = ExtResource("11_35nmg")
+region = Rect2(0, 381, 310, 381)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_navsi"]
+atlas = ExtResource("11_35nmg")
+region = Rect2(0, 0, 310, 381)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3j32t"]
+atlas = ExtResource("11_35nmg")
+region = Rect2(310, 381, 310, 381)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnnbv"]
+atlas = ExtResource("11_35nmg")
+region = Rect2(310, 0, 310, 381)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lg7j8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c70yo")
+}],
+"loop": true,
+"name": &"cross_arms",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_navsi")
+}],
+"loop": true,
+"name": &"neutral",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3j32t")
+}],
+"loop": true,
+"name": &"point",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnnbv")
+}],
+"loop": true,
+"name": &"smoke",
+"speed": 5.0
+}]
+
 [node name="H32Nuclear" type="Node2D"]
 script = ExtResource("1_dccwl")
 
@@ -53,6 +104,7 @@ player = NodePath("../Player")
 
 [node name="EmptyPod" parent="." instance=ExtResource("4_c3cng")]
 position = Vector2(2432, 0)
+is_entrace = true
 
 [node name="EmptyPod2" parent="." instance=ExtResource("4_c3cng")]
 position = Vector2(-7296, 0)
@@ -92,19 +144,26 @@ material = SubResource("ShaderMaterial_naqd0")
 position = Vector2(-3554, -149)
 
 [node name="NPC" parent="." node_paths=PackedStringArray("npc_sprite") instance=ExtResource("7_vhtfh")]
-position = Vector2(-686, -63)
+position = Vector2(-686, -52)
 dialogue_file = "res://assets/dialogue/upwell dialogue - dadmvp4.csv"
 faces_you_during_dialogue = true
-default_left_facing = true
-npc_sprite = NodePath("Idle")
+npc_sprite = NodePath("AnimatedSprite2D")
 
 [node name="Nodule" parent="NPC" index="2"]
-position = Vector2(-88, -151)
+position = Vector2(76, -193)
+flip_h = true
 
 [node name="Idle" type="Sprite2D" parent="NPC"]
+visible = false
 position = Vector2(-0.999977, 29)
 scale = Vector2(-0.636, 0.636)
 texture = ExtResource("8_4qf24")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NPC"]
+position = Vector2(10, 0)
+sprite_frames = SubResource("SpriteFrames_lg7j8")
+animation = &"cross_arms"
+offset = Vector2(41.46, 0)
 
 [node name="ParallaxCanvas" type="CanvasLayer" parent="."]
 layer = 11

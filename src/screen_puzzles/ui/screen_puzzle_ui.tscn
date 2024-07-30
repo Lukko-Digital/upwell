@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvkim1x1vvm81"]
+
+[ext_resource type="Script" path="res://src/screen_puzzles/ui/screen_puzzle_ui.gd" id="1_lx7ia"]
+[ext_resource type="Texture2D" uid="uid://c1i3o2d0axw7u" path="res://assets/ui/screen_puzzle/out_of_puzzle_blocker.png" id="2_5x46l"]
+[ext_resource type="PackedScene" uid="uid://da5jk65ly7lyc" path="res://src/screen_puzzles/ui/puzzle_container.tscn" id="4_b7com"]
+[ext_resource type="PackedScene" uid="uid://de1xdb5fsj3ua" path="res://src/screen_puzzles/ui/right_side_container.tscn" id="5_00n3v"]
+[ext_resource type="Texture2D" uid="uid://gpbdqntfl2ae" path="res://assets/ui/screen_puzzle/bg.png" id="9_ajd7s"]
+
+[node name="ScreenPuzzleUI" type="Control" node_paths=PackedStringArray("folders_container", "main_text_label", "launch_result_label")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1920.0
+offset_top = -1080.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("1_lx7ia")
+folders_container = NodePath("CenterContainer/HBoxContainer/RightSideContainer/FoldersBacker/FoldersContainer")
+main_text_label = NodePath("CenterContainer/HBoxContainer/RightSideContainer/DialogueBacker/ScrollContainer/MarginContainer/RichTextLabel")
+launch_result_label = NodePath("LaunchResultLabel")
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -10
+layout_mode = 0
+offset_left = 10.0
+offset_right = 3850.0
+offset_bottom = 2160.0
+texture = ExtResource("9_ajd7s")
+
+[node name="Lineblocker" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 47.0
+offset_top = -1.0
+offset_right = 3887.0
+offset_bottom = 2159.0
+texture = ExtResource("2_5x46l")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = -110
+
+[node name="PuzzleContainer" parent="CenterContainer/HBoxContainer" instance=ExtResource("4_b7com")]
+layout_mode = 2
+
+[node name="RightSideContainer" parent="CenterContainer/HBoxContainer" instance=ExtResource("5_00n3v")]
+layout_mode = 2
+
+[node name="LaunchResultLabel" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 300
+theme_override_font_sizes/bold_font_size = 300
+theme_override_font_sizes/italics_font_size = 300
+theme_override_font_sizes/bold_italics_font_size = 300
+theme_override_font_sizes/mono_font_size = 300
+bbcode_enabled = true
+text = "[center] sdfasdfasdf [/center]"
+fit_content = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1920, 1080)
+zoom = Vector2(0.5, 0.5)
+
+[connection signal="pressed" from="CenterContainer/HBoxContainer/RightSideContainer/ButtonsBacker/LaunchButton" to="." method="_on_launch_button_pressed"]
+
+[editable path="CenterContainer/HBoxContainer/PuzzleContainer"]
+[editable path="CenterContainer/HBoxContainer/RightSideContainer"]

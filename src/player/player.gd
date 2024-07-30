@@ -13,13 +13,16 @@ const PLAYER = {
 	COYOTE_TIME = 0.1, # Time you get to jump after running off a ledge
 	JUMP_BUFFER_TIME = 0.3, # Time between a jump input and touching the ground that the jump will still go off
 	# Falling
-	MAX_FALL_SPEED = 2600,
-	# Throw
-	THROW_VELOCITY = 3000,
-	ARC_POINTS = 100,
+	MAX_FALL_SPEED = 2600
 }
 
-const MOUSE_THROW_OFFSET = Vector2(0, -50)
+const THROW = {
+	VELOCITY = 3000,
+	ARC_POINTS = 100,
+	## Equivalent to sensitivity, larger number is lower sensitivity
+	CIRCLE_RADIUS = 150
+}
+var STARTING_THROW_DIRECTION = Vector2.UP
 
 @export_group("Node References")
 ## Camera reference for a level's test player, does not need to be set for the
@@ -48,8 +51,8 @@ var clicker_inventory: Array[ClickerInfo]
 
 ## -------------------------- PLAYER STATE VARIABLES --------------------------
 
-# PLACEHOLDER IMPLEMENTATION, TO BE IMPROVED
 var in_dialogue: bool = false
+var focused_on_screen: bool = false
 
 # Jumping + Air Strafing
 var previously_grounded: bool = false
@@ -59,7 +62,8 @@ var previous_horizontal_direction: float = 0
 
 # Throwing
 var aiming: bool = false
-var focused_on_screen: bool = false
+## Is always a unit vector
+var aiming_direction: Vector2
 
 var highlighted_interactable: Interactable = null:
 	set(interactable):
@@ -85,8 +89,9 @@ func _ready() -> void:
 	if current_scene is Game and not owner is Game:
 		camera.queue_free()
 		queue_free()
-	
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	else:
+		# Don't allow test players to set mouse mode
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
 	var gravity_state: GravitizedComponent.GravityState = handle_artificial_gravity(delta)
@@ -116,12 +121,17 @@ func _input(event: InputEvent) -> void:
 		interact()
 	
 	if event.is_action_pressed("throw"):
-		aiming = true
+		if can_throw():
+			aiming = true
+			aiming_direction = STARTING_THROW_DIRECTION
+			# if player_sprite.flip_h:
+			# 	aiming_direction.x *= - 1
 	if event.is_action_pressed("cancel"):
 		if aiming:
 			aiming = false
-			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	
+	if event is InputEventMouseMotion and aiming:
+		handle_aiming_direction(event)
+
 	if event.is_action_released("throw"):
 		throw()
 
@@ -326,7 +336,6 @@ func interact():
 
 func start_dialogue(npc: NPC):
 	velocity = Vector2.ZERO
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	dialogue_ui.start_dialogue(npc)
 	in_dialogue = true
 
@@ -373,33 +382,33 @@ func home_all_clickers():
 
 ## ----------------------------- THROW -----------------------------
 
-func throw():
-	if not (
+func can_throw():
+	return (
 		has_clicker() and
-		aiming and
 		not focused_on_screen and
 		not in_dialogue
+	)
+
+func throw():
+	if not (
+		can_throw() and
+		aiming
 	):
 		return
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	var dir = (get_global_mouse_position() - global_position).normalized()
-	spawn_clicker(dir * PLAYER.THROW_VELOCITY)
+	spawn_clicker(aiming_direction * THROW.VELOCITY)
+
+func handle_aiming_direction(event: InputEventMouseMotion):
+	aiming_direction = (aiming_direction * THROW.CIRCLE_RADIUS + event.relative).normalized()
 
 func handle_throw_arc():
 	throw_arc_line.clear_points()
 
 	if not (
 		Input.is_action_pressed("throw") and
-		has_clicker() and
-		aiming and
-		not focused_on_screen and
-		not in_dialogue
+		can_throw() and
+		aiming
 	):
 		return
-
-	if Input.is_action_just_pressed("throw"):
-		warp_mouse_to_player()
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 	var pos = Vector2.ZERO
 	## The rigid body flies in a parabola with slightly less amplitude than
@@ -408,13 +417,13 @@ func handle_throw_arc():
 	## case. The line fit when using a character body clicker with coded in
 	## physics.
 	var adjustment_factor = 0.97
-	var vel = (get_global_mouse_position() - global_position).normalized() * PLAYER.THROW_VELOCITY * adjustment_factor
+	var vel = aiming_direction * THROW.VELOCITY * adjustment_factor
 	var delta = get_physics_process_delta_time()
 	var world_physics := get_world_2d().direct_space_state
 	var query := PhysicsPointQueryParameters2D.new()
 	query.collide_with_bodies = true
 	query.collision_mask = 1
-	for i in PLAYER.ARC_POINTS:
+	for i in THROW.ARC_POINTS:
 		throw_arc_line.add_point(pos)
 		vel.y += world_gravity * delta
 		pos += vel * delta
@@ -422,19 +431,19 @@ func handle_throw_arc():
 		if not world_physics.intersect_point(query).is_empty():
 			break
 
-func warp_mouse_to_player():
-	var player_canvas_pos = get_screen_transform().origin + MOUSE_THROW_OFFSET
-	get_viewport().warp_mouse(player_canvas_pos)
-
 ## ------------------------------ SIGNAL HANDLES ------------------------------
 
 func _on_dialogue_ui_dialogue_finished() -> void:
 	in_dialogue = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	Global.set_camera_focus.emit(null)
 
 func _camera_focus_net(focus: Node2D):
+	# Simple implementation, does not factor in focus stack. Will be an issue
+	# if play focuses on a screen and then on something else without defocusing
+	# the screen, but that is unlikely to happen.
 	if focus == null:
 		focused_on_screen = false
-	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	elif focus is ScreenInteractable:
 		focused_on_screen = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)

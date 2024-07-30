@@ -1,147 +1,33 @@
-[gd_scene load_steps=20 format=3 uid="uid://bnxmdjk1mqgxv"]
+[gd_scene load_steps=12 format=3 uid="uid://bnxmdjk1mqgxv"]
 
-[ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/screen_player.tscn" id="1_so3si"]
-[ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/screen_ag.tscn" id="2_qrsml"]
-[ext_resource type="Texture2D" uid="uid://b868h5dr15cxm" path="res://assets/mvp3_assets/screenpuzzle/lineblocker.png" id="3_85b1n"]
-[ext_resource type="Texture2D" uid="uid://dhw7wq51its7p" path="res://assets/mvp3_assets/screenpuzzle/layout.png" id="4_x4tgw"]
-[ext_resource type="Texture2D" uid="uid://cl1p7ygvq4qg" path="res://assets/mvp3_assets/screenpuzzle/text_backer.png" id="5_6kqai"]
-[ext_resource type="Texture2D" uid="uid://ba863aqwujv2p" path="res://assets/mvp3_assets/screenpuzzle/file.png" id="6_ct26h"]
-[ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="7_hu2wv"]
-[ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="8_eak4l"]
-[ext_resource type="PackedScene" uid="uid://c1fatgffin6hd" path="res://src/screen_puzzles/screen_core.tscn" id="9_6om2k"]
-[ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="10_m8ywi"]
-[ext_resource type="PackedScene" uid="uid://bdt2psjmwjsy6" path="res://src/screen_puzzles/screen_button_orbit.tscn" id="11_hg2sa"]
-[ext_resource type="PackedScene" uid="uid://bwbpi60st6gme" path="res://src/screen_puzzles/screen_button_unorbit.tscn" id="12_c4umh"]
-[ext_resource type="PackedScene" uid="uid://xiabu6v8kd6w" path="res://src/screen_puzzles/screen_power_up.tscn" id="13_g4lb0"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_51swq"]
-radius = 215.005
-
-[sub_resource type="FontVariation" id="FontVariation_bfd18"]
-base_font = ExtResource("7_hu2wv")
-variation_embolden = 0.87
-
-[sub_resource type="FontVariation" id="FontVariation_i82gr"]
-base_font = ExtResource("7_hu2wv")
-variation_embolden = 2.0
-
-[sub_resource type="FontVariation" id="FontVariation_2ws21"]
-base_font = ExtResource("8_eak4l")
-variation_embolden = 0.87
-
-[sub_resource type="FontVariation" id="FontVariation_ye6m0"]
-base_font = ExtResource("8_eak4l")
-variation_embolden = 1.85
+[ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/puzzle_elements/screen_player.tscn" id="1_so3si"]
+[ext_resource type="PackedScene" uid="uid://bl53k36i6wlyr" path="res://src/screen_puzzles/ui/folder_button.tscn" id="2_iwhmm"]
+[ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/puzzle_elements/screen_ag.tscn" id="2_qrsml"]
+[ext_resource type="Script" path="res://src/levels/button_home_handler.gd" id="6_gpi31"]
+[ext_resource type="PackedScene" uid="uid://bvkim1x1vvm81" path="res://src/screen_puzzles/ui/screen_puzzle_ui.tscn" id="8_ldg3h"]
+[ext_resource type="PackedScene" uid="uid://c1fatgffin6hd" path="res://src/screen_puzzles/puzzle_elements/screen_core.tscn" id="9_6om2k"]
+[ext_resource type="PackedScene" uid="uid://bdt2psjmwjsy6" path="res://src/screen_puzzles/puzzle_elements/screen_button_orbit.tscn" id="11_hg2sa"]
+[ext_resource type="PackedScene" uid="uid://bwbpi60st6gme" path="res://src/screen_puzzles/puzzle_elements/screen_button_unorbit.tscn" id="12_c4umh"]
+[ext_resource type="PackedScene" uid="uid://xiabu6v8kd6w" path="res://src/screen_puzzles/puzzle_elements/screen_power_up.tscn" id="13_g4lb0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tk24l"]
 size = Vector2(1763, 1481)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_51swq"]
+radius = 335.215
+
 [node name="ScreenPuzzle" type="Node2D"]
 metadata/_edit_lock_ = true
 
-[node name="ColorRect4" type="ColorRect" parent="."]
-offset_left = -1958.0
-offset_top = -1115.0
-offset_right = 1944.0
-offset_bottom = 1108.0
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
+[node name="ScreenPuzzleUI" parent="." node_paths=PackedStringArray("screen_player") instance=ExtResource("8_ldg3h")]
+size_flags_horizontal = 0
+screen_player = NodePath("../ScreenPlayer")
+
+[node name="FolderButton3" parent="ScreenPuzzleUI/CenterContainer/HBoxContainer/RightSideContainer/FoldersBacker/FoldersContainer" index="2" instance=ExtResource("2_iwhmm")]
+layout_mode = 2
 
 [node name="ScreenPlayer" parent="." instance=ExtResource("1_so3si")]
 position = Vector2(-1466, 506)
-STARTING_POWER = 700.0
-
-[node name="ScreenAG3" parent="." instance=ExtResource("2_qrsml")]
-position = Vector2(-161, 87)
-scale = Vector2(1.57597, 1.57597)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenAG3"]
-shape = SubResource("CircleShape2D_51swq")
-metadata/_edit_lock_ = true
-
-[node name="ScreenAG2" parent="." instance=ExtResource("2_qrsml")]
-position = Vector2(-1218, 84)
-scale = Vector2(1.57597, 1.57597)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenAG2"]
-shape = SubResource("CircleShape2D_51swq")
-metadata/_edit_lock_ = true
-
-[node name="Lineblocker" type="Sprite2D" parent="."]
-texture = ExtResource("3_85b1n")
-metadata/_edit_lock_ = true
-
-[node name="Layout" type="Sprite2D" parent="."]
-position = Vector2(-14, 10)
-texture = ExtResource("4_x4tgw")
-
-[node name="TextBacker" type="Sprite2D" parent="."]
-position = Vector2(1101, 47)
-texture = ExtResource("5_6kqai")
-
-[node name="ColorRect3" type="ColorRect" parent="."]
-offset_left = 592.0
-offset_top = -878.0
-offset_right = 1598.0
-offset_bottom = 620.0
-mouse_filter = 2
-color = Color(0.2, 0.2, 0.2, 0)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect3/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="ColorRect3/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("6_ct26h")
-
-[node name="TextureRect2" type="TextureRect" parent="ColorRect3/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("6_ct26h")
-
-[node name="TextureRect3" type="TextureRect" parent="ColorRect3/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("6_ct26h")
-
-[node name="ColorRect" type="ColorRect" parent="ColorRect3/VBoxContainer"]
-custom_minimum_size = Vector2(0, 110)
-layout_mode = 2
-color = Color(1, 1, 1, 0)
-
-[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect3/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect3/VBoxContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = SubResource("FontVariation_bfd18")
-theme_override_fonts/bold_font = SubResource("FontVariation_i82gr")
-theme_override_fonts/italics_font = SubResource("FontVariation_2ws21")
-theme_override_fonts/bold_italics_font = SubResource("FontVariation_ye6m0")
-theme_override_font_sizes/normal_font_size = 50
-theme_override_font_sizes/bold_font_size = 50
-theme_override_font_sizes/italics_font_size = 50
-theme_override_font_sizes/bold_italics_font_size = 50
-theme_override_font_sizes/mono_font_size = 50
-bbcode_enabled = true
-text = "
-
-[center][b]FILEPATH MISSING[/b]
-
-Please drag [b]<action>[/b]
-onto flightpath to reach
-target directory[/center]"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
@@ -156,9 +42,40 @@ collision_mask = 64
 position = Vector2(-700.5, 15.5)
 shape = SubResource("RectangleShape2D_tk24l")
 
-[node name="ScreenCore" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("9_6om2k")]
+[node name="AGs" type="Node2D" parent="."]
+
+[node name="ScreenAG3" parent="AGs" instance=ExtResource("2_qrsml")]
+position = Vector2(-161, 87)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AGs/ScreenAG3"]
+shape = SubResource("CircleShape2D_51swq")
+metadata/_edit_lock_ = true
+
+[node name="ScreenAG2" parent="AGs" instance=ExtResource("2_qrsml")]
+position = Vector2(-1218, 84)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AGs/ScreenAG2"]
+shape = SubResource("CircleShape2D_51swq")
+metadata/_edit_lock_ = true
+
+[node name="PowerUps" type="Node2D" parent="."]
+
+[node name="ScreenPowerUp" parent="PowerUps" instance=ExtResource("13_g4lb0")]
+position = Vector2(-692, 95)
+scale = Vector2(0.87, 0.87)
+
+[node name="ScreenPowerUp2" parent="PowerUps" instance=ExtResource("13_g4lb0")]
+position = Vector2(-443, -446)
+scale = Vector2(0.87, 0.87)
+
+[node name="ScreenPowerUp3" parent="PowerUps" instance=ExtResource("13_g4lb0")]
+position = Vector2(37, 113)
+scale = Vector2(0.87, 0.87)
+
+[node name="Folders" type="Node2D" parent="."]
+
+[node name="ScreenCore" parent="Folders" node_paths=PackedStringArray("folder_button") instance=ExtResource("9_6om2k")]
 position = Vector2(-1005, 85)
-label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
 text = "[center][b]9/25/35[/b][/center]
 
 Sometimes the most direct path isn't the best one!
@@ -169,18 +86,10 @@ Rheuman
 
 
 "
-indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect")
-glow = NodePath("../ClickerGlow")
+folder_button = NodePath("../../ScreenPuzzleUI/CenterContainer/HBoxContainer/RightSideContainer/FoldersBacker/FoldersContainer/FolderButton")
 
-[node name="ClickerGlow" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(787, -943)
-scale = Vector2(2, 2)
-texture = ExtResource("10_m8ywi")
-
-[node name="ScreenCore3" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("9_6om2k")]
+[node name="ScreenCore3" parent="Folders" node_paths=PackedStringArray("folder_button") instance=ExtResource("9_6om2k")]
 position = Vector2(-698, -702)
-label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
 text = "[center][b]9/25/35[/b][/center]
 
 Incredible job scouts! Now let's extrapolate: fuel pockets in the sim are shown as little mushrooms, but [b][color=a14000]in the real world[/color][/b] they present a little differently
@@ -193,37 +102,11 @@ Rheuman
 
 
 "
-indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect2")
-glow = NodePath("../ClickerGlow")
+folder_button = NodePath("../../ScreenPuzzleUI/CenterContainer/HBoxContainer/RightSideContainer/FoldersBacker/FoldersContainer/FolderButton2")
 
-[node name="ScreenButtonOrbit" parent="." instance=ExtResource("11_hg2sa")]
-position = Vector2(-1096, 783)
-
-[node name="ScreenButtonUnorbit" parent="." instance=ExtResource("12_c4umh")]
-position = Vector2(-829, 778)
-
-[node name="ScreenButtonOrbit2" parent="." instance=ExtResource("11_hg2sa")]
-position = Vector2(-566, 779)
-
-[node name="ScreenPowerUp" parent="." instance=ExtResource("13_g4lb0")]
-position = Vector2(-692, 95)
-scale = Vector2(0.87, 0.87)
-
-[node name="ScreenPowerUp2" parent="." instance=ExtResource("13_g4lb0")]
-position = Vector2(-443, -446)
-scale = Vector2(0.87, 0.87)
-
-[node name="ScreenPowerUp3" parent="." instance=ExtResource("13_g4lb0")]
-position = Vector2(37, 113)
-scale = Vector2(0.87, 0.87)
-
-[node name="ScreenButtonUnorbit2" parent="." instance=ExtResource("12_c4umh")]
-position = Vector2(-298, 781)
-
-[node name="ScreenCore4" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("9_6om2k")]
+[node name="ScreenCore4" parent="Folders" node_paths=PackedStringArray("folder_button") instance=ExtResource("9_6om2k")]
 modulate = Color(1, 1, 1, 0.152941)
 position = Vector2(-1218, 315)
-label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
 text = "[center][b]RECORDING STARTED[/b][/center]
 
 hi!
@@ -296,5 +179,24 @@ let's just end the
 
 
 "
-indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect3")
-glow = NodePath("../ClickerGlow")
+folder_button = NodePath("../../ScreenPuzzleUI/CenterContainer/HBoxContainer/RightSideContainer/FoldersBacker/FoldersContainer/FolderButton3")
+
+[node name="ButtonHomeHandler" type="Node2D" parent="." node_paths=PackedStringArray("puzzle_bar")]
+script = ExtResource("6_gpi31")
+puzzle_bar = NodePath("../ScreenPuzzleUI/CenterContainer/HBoxContainer/PuzzleContainer/PuzzleBar")
+
+[node name="ScreenButtonOrbit" parent="ButtonHomeHandler" instance=ExtResource("11_hg2sa")]
+position = Vector2(-1096, 783)
+
+[node name="ScreenButtonUnorbit" parent="ButtonHomeHandler" instance=ExtResource("12_c4umh")]
+position = Vector2(-829, 778)
+
+[node name="ScreenButtonOrbit2" parent="ButtonHomeHandler" instance=ExtResource("11_hg2sa")]
+position = Vector2(-566, 779)
+
+[node name="ScreenButtonUnorbit2" parent="ButtonHomeHandler" instance=ExtResource("12_c4umh")]
+position = Vector2(-298, 781)
+
+[editable path="ScreenPuzzleUI"]
+[editable path="ScreenPuzzleUI/CenterContainer/HBoxContainer/PuzzleContainer"]
+[editable path="ScreenPuzzleUI/CenterContainer/HBoxContainer/RightSideContainer"]

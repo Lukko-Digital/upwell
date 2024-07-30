@@ -9,6 +9,8 @@ class_name ClickerBody
 @export var lights_sprite: Sprite2D
 @export var interactable: Interactable
 
+@onready var default_z_index = z_index
+
 ## Value set by [Player]. Player can only control the closest n clickers, where
 ## n is the number of clickers the player is holding.
 var controllable: bool = false:
@@ -16,7 +18,13 @@ var controllable: bool = false:
 ## Set false when dropped to prevent immediately re-entering holder
 var catchable: bool = true
 ## Value is set by [ClickerHolder] when clicker is inserted/removed
-var holder_owned_by: ClickerHolder
+var holder_owned_by: ClickerHolder:
+	set(value):
+		# Order z index below holder when in holder
+		if value == null:
+			z_index = default_z_index
+		else:
+			z_index = value.z_index - 1
 
 func set_controllable(value: bool):
 	lights_sprite.visible = value
@@ -29,7 +37,7 @@ func _physics_process(delta: float) -> void:
 	var gravity_state: GravitizedComponent.GravityState = handle_artificial_gravity(delta)
 	if gravity_state == GravitizedComponent.GravityState.ORBIT:
 		gravity_scale = 0
-		handle_leave_clicker()
+		handle_leave_holder()
 	else:
 		gravity_scale = 1
 
@@ -55,7 +63,7 @@ func handle_animation():
 		glow_sprite.hide()
 
 ## Clicker can get pulled out of a holder by orbit
-func handle_leave_clicker():
+func handle_leave_holder():
 	if Input.is_action_just_pressed("orbit") and holder_owned_by != null:
 		holder_owned_by.drop_clicker()
 
