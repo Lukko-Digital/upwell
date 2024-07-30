@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://32wg102n325i" path="res://assets/mvp3_assets/dad.png" id="8_4qf24"]
 [ext_resource type="Script" path="res://src/level_elements/parallax_canvas.gd" id="10_4uw8i"]
 [ext_resource type="Texture2D" uid="uid://bybq5utnqi2ji" path="res://assets/mvp3_assets/tutorial/a.png" id="10_716wx"]
+[ext_resource type="Texture2D" uid="uid://ca17uid471m7i" path="res://assets/mvp4_assets/shitty_dad-sheet.png" id="11_35nmg"]
 [ext_resource type="Texture2D" uid="uid://nh4auewwuedq" path="res://assets/mvp3_assets/tutorial/d.png" id="11_ifasp"]
 [ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="12_wx66f"]
 [ext_resource type="Texture2D" uid="uid://dnqjj1lqp4wsx" path="res://assets/mvp3_assets/tutorial/space.png" id="12_x01fa"]
@@ -104,7 +105,6 @@ player = NodePath("../Player")
 
 [node name="EmptyPod" parent="." instance=ExtResource("4_c3cng")]
 position = Vector2(2432, 0)
-is_entrace = true
 
 [node name="EmptyPod2" parent="." instance=ExtResource("4_c3cng")]
 position = Vector2(-7296, 0)
