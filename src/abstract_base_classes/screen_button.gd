@@ -8,12 +8,12 @@ enum ButtonTypes {NONE, BOOST, UNORBIT, ORBIT}
 @export var type = ButtonTypes.NONE
 @export var disabled: bool = false
 
-@export var normal_texture: Texture2D
-@export var held_texture: Texture2D
-@export var released_texture: Texture2D
+# @export var normal_texture: Texture2D
+# @export var held_texture: Texture2D
+# @export var released_texture: Texture2D
 
-@onready var button_sprite: Sprite2D = $Sprite2D
-@onready var button_glow: Sprite2D = $ButtonGlow
+@onready var button_sprite: AnimatedSprite2D = $ButtonSprite
+@onready var button_glow: AnimatedSprite2D = $ButtonGlow
 @onready var draggable: Area2D = $ScreenDraggable
 @onready var line_detection_area: Area2D = $TrajectoryLineDetectionArea
 
@@ -30,6 +30,9 @@ func _ready():
 	line_detection_area.area_exited.connect(_on_line_area_exited)
 
 	button_glow.hide()
+	button_sprite.play("default")
+	button_glow.play("default")
+	
 	if disabled:
 		draggable.set_deferred("input_pickable", false)
 		modulate = Color("727272")
@@ -48,7 +51,8 @@ func pressed():
 
 	selected = true
 	offset = global_position - get_global_mouse_position()
-	button_sprite.texture = held_texture
+	button_sprite.play("held")
+	button_glow.play("held")
 
 func released():
 	selected = false
@@ -60,7 +64,9 @@ func released():
 		# Placed on line
 		placed = true
 		line_area.screen_player.update_main_line()
-		button_sprite.texture = released_texture
+		button_sprite.play("placed")
+		button_glow.play("placed")
+
 	else:
 		# Not placed on line
 		snap_home()
@@ -96,7 +102,8 @@ func snap_home():
 		return
 	placed = false
 	global_position = start_position
-	button_sprite.texture = normal_texture
+	button_sprite.play("default")
+	button_glow.play("default")
 
 ## Returns the [TrajectoryLineArea] if overlapping, otherwise null
 func overlapping_trajectory_line():

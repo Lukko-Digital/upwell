@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwbpi60st6gme"]
+[gd_scene load_steps=13 format=3 uid="uid://bwbpi60st6gme"]
 
 [ext_resource type="Script" path="res://src/abstract_base_classes/screen_button.gd" id="1_k6nlx"]
 [ext_resource type="PackedScene" uid="uid://203jmdgiwgko" path="res://src/screen_puzzles/helper/button_glow.tscn" id="2_02k4h"]
@@ -6,9 +6,38 @@
 [ext_resource type="PackedScene" uid="uid://nbku63cre6dq" path="res://src/screen_puzzles/helper/screen_draggable.tscn" id="3_11ddv"]
 [ext_resource type="Texture2D" uid="uid://cvy5nd0anu1m" path="res://assets/ui/screen_puzzle/UNORBIT_HOLD.png" id="3_id24m"]
 [ext_resource type="Texture2D" uid="uid://bn2m342wuaypu" path="res://assets/ui/screen_puzzle/UNORBIT_RELEASED.png" id="4_2mf4o"]
+[ext_resource type="Texture2D" uid="uid://bv1y7mrj0raq4" path="res://assets/ui/screen_puzzle_v2/deorbit_neutral.png" id="6_f13yo"]
+[ext_resource type="Shape2D" uid="uid://cbk4pg1kawx1n" path="res://src/screen_puzzles/helper/screen_button_active_collider.tres" id="6_tktmn"]
 [ext_resource type="PackedScene" uid="uid://b5o52iwq1qlk5" path="res://src/screen_puzzles/helper/trajectory_line_detection_area.tscn" id="7_7jkap"]
+[ext_resource type="Texture2D" uid="uid://otbvofohcd7w" path="res://assets/ui/screen_puzzle_v2/deorbit_held.png" id="7_p34os"]
+[ext_resource type="Texture2D" uid="uid://c7wn5erwy3r42" path="res://assets/ui/screen_puzzle_v2/deorbit_placed.png" id="8_qxwgm"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cu102"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_iqmq5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_f13yo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_p34os")
+}],
+"loop": true,
+"name": &"held",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_qxwgm")
+}],
+"loop": true,
+"name": &"placed",
+"speed": 5.0
+}]
 
 [node name="ScreenButtonUnorbit" type="Area2D"]
 collision_layer = 32
@@ -21,12 +50,12 @@ released_texture = ExtResource("4_2mf4o")
 
 [node name="ButtonGlow" parent="." instance=ExtResource("2_02k4h")]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-2, 0)
-texture = ExtResource("3_3riui")
+[node name="ButtonSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_iqmq5")
+animation = &"placed"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_cu102")
+shape = ExtResource("6_tktmn")
 
 [node name="ScreenDraggable" parent="." instance=ExtResource("3_11ddv")]
 

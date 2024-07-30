@@ -1,7 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://203jmdgiwgko"]
+[gd_scene load_steps=5 format=3 uid="uid://203jmdgiwgko"]
 
-[ext_resource type="Texture2D" uid="uid://dujtxx3pi4qml" path="res://assets/ui/screen_puzzle/ACTION_HOLD_GLOW_CD.png" id="1_40lde"]
+[ext_resource type="Texture2D" uid="uid://blh1umfhvimt8" path="res://assets/ui/screen_puzzle_v2/action_glow_ADD.png" id="1_2w3rk"]
+[ext_resource type="Texture2D" uid="uid://c04iy4bs4stf" path="res://assets/ui/screen_puzzle_v2/action_glow_placed_DODGE.png" id="1_bnwmo"]
+[ext_resource type="Texture2D" uid="uid://bi6vnouddf4dw" path="res://assets/ui/screen_puzzle_v2/action_glow_held_DODGE.png" id="1_of1gy"]
 
-[node name="ButtonGlow" type="Sprite2D"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_albsx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2w3rk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_of1gy")
+}],
+"loop": true,
+"name": &"held",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bnwmo")
+}],
+"loop": true,
+"name": &"placed",
+"speed": 5.0
+}]
+
+[node name="ButtonGlow" type="AnimatedSprite2D"]
 scale = Vector2(1.7, 1.7)
-texture = ExtResource("1_40lde")
+sprite_frames = SubResource("SpriteFrames_albsx")
