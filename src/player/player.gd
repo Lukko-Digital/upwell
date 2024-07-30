@@ -22,7 +22,7 @@ const THROW = {
 	## Equivalent to sensitivity, larger number is lower sensitivity
 	CIRCLE_RADIUS = 150
 }
-var STARTING_THROW_DIRECTION = Vector2(1, -1).normalized()
+var STARTING_THROW_DIRECTION = Vector2.UP
 
 @export_group("Node References")
 ## Camera reference for a level's test player, does not need to be set for the
@@ -124,8 +124,8 @@ func _input(event: InputEvent) -> void:
 		if can_throw():
 			aiming = true
 			aiming_direction = STARTING_THROW_DIRECTION
-			if player_sprite.flip_h:
-				aiming_direction.x *= - 1
+			# if player_sprite.flip_h:
+			# 	aiming_direction.x *= - 1
 	if event.is_action_pressed("cancel"):
 		if aiming:
 			aiming = false
