@@ -40,9 +40,8 @@ func _process(_delta):
 func pressed():
 	if placed:
 		placed = false
-		if overlapping_trajectory_line():
-			# Update line when picking up button that is placed on the line
-			player.update_main_line()
+		# Update line when picking up button that is placed on the line
+		player.update_main_line()
 
 	selected = true
 	offset = global_position - get_global_mouse_position()
@@ -62,7 +61,6 @@ func released():
 		button_sprite.play("placed")
 		action_glow.play("placed")
 		action_glow.show()
-
 	else:
 		# Not placed on line
 		snap_home()
@@ -95,12 +93,14 @@ func find_snap_point() -> Vector2:
 	return points.front()
 
 func snap_home():
-	if selected:
-		return
-	placed = false
 	global_position = start_position
 	button_sprite.play("default")
 	action_glow.hide()
+	if placed:
+		placed = false
+		# This is in order to update the lines when the reset button is pressed
+		player.update_main_line()
+		player.clear_new_action_line()
 
 ## Returns true if overlapping the main trajectory line, otherwise null
 func overlapping_trajectory_line() -> bool:
@@ -133,4 +133,5 @@ func _input(event: InputEvent) -> void:
 			released()
 
 func _on_line_area_exited(_area: Area2D):
-	snap_home()
+	if not selected:
+		snap_home()

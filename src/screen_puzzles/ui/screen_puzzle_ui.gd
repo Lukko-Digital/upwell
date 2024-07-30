@@ -1,10 +1,11 @@
 extends Control
 class_name ScreenPuzzleUI
 
-@export var screen_player: ScreenPlayer
 @export var folders_container: HBoxContainer
 @export var main_text_label: RichTextLabel
 @export var launch_result_label: RichTextLabel
+
+@onready var screen_player: ScreenPlayer = %ScreenPlayer
 
 const LAUNCH_TEXT = {
 	SUCCESS = "[wave amp=150.0 freq=5.0 connected=1][color=green][center] LAUNCH SUCCESS [/center][/color][/wave]",
@@ -30,3 +31,7 @@ func _on_launch_button_pressed() -> void:
 	launch_result_label.show()
 	await get_tree().create_timer(1).timeout
 	launch_result_label.hide()
+
+func _on_reset_button_pressed() -> void:
+	# Reset all [ScreenButton]
+	get_tree().call_group("ScreenButtons", "snap_home")

@@ -208,3 +208,4 @@ texture_pressed = ExtResource("13_gdf6r")
 texture_hover = ExtResource("14_lyfo2")
 
 [connection signal="pressed" from="BottomBar/LaunchButton" to="." method="_on_launch_button_pressed"]
+[connection signal="pressed" from="BottomBar/ResetButton" to="." method="_on_reset_button_pressed"]
