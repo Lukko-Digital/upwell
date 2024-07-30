@@ -6,14 +6,10 @@ const SNAP_BREAK_DISTANCE = 100
 enum ButtonTypes {NONE, BOOST, UNORBIT, ORBIT}
 
 @export var type = ButtonTypes.NONE
-@export var disabled: bool = false
-
-# @export var normal_texture: Texture2D
-# @export var held_texture: Texture2D
-# @export var released_texture: Texture2D
 
 @onready var button_sprite: AnimatedSprite2D = $ButtonSprite
-@onready var button_glow: AnimatedSprite2D = $ButtonGlow
+@onready var action_glow: AnimatedSprite2D = $ActionGlow
+@onready var hover_glow: Sprite2D = $HoverGlow
 @onready var draggable: Area2D = $ScreenDraggable
 @onready var line_detection_area: Area2D = $TrajectoryLineDetectionArea
 
@@ -29,13 +25,9 @@ func _ready():
 
 	line_detection_area.area_exited.connect(_on_line_area_exited)
 
-	button_glow.hide()
 	button_sprite.play("default")
-	button_glow.play("default")
-	
-	if disabled:
-		draggable.set_deferred("input_pickable", false)
-		modulate = Color("727272")
+	action_glow.play("default")
+	hover_glow.hide()
 
 func _process(_delta):
 	if selected:
@@ -52,7 +44,7 @@ func pressed():
 	selected = true
 	offset = global_position - get_global_mouse_position()
 	button_sprite.play("held")
-	button_glow.play("held")
+	action_glow.play("held")
 
 func released():
 	selected = false
@@ -65,7 +57,7 @@ func released():
 		placed = true
 		line_area.screen_player.update_main_line()
 		button_sprite.play("placed")
-		button_glow.play("placed")
+		action_glow.play("placed")
 
 	else:
 		# Not placed on line
@@ -103,7 +95,7 @@ func snap_home():
 	placed = false
 	global_position = start_position
 	button_sprite.play("default")
-	button_glow.play("default")
+	action_glow.play("default")
 
 ## Returns the [TrajectoryLineArea] if overlapping, otherwise null
 func overlapping_trajectory_line():
@@ -113,10 +105,10 @@ func overlapping_trajectory_line():
 	return null
 
 func _on_mouse_entered() -> void:
-	button_glow.show()
+	hover_glow.show()
 
 func _on_mouse_exited() -> void:
-	button_glow.hide()
+	hover_glow.hide()
 
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 	if (

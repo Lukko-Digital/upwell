@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dei1bl8astem7"]
+[gd_scene load_steps=11 format=3 uid="uid://dei1bl8astem7"]
 
 [ext_resource type="Script" path="res://src/abstract_base_classes/screen_button.gd" id="1_r5ukt"]
-[ext_resource type="PackedScene" uid="uid://203jmdgiwgko" path="res://src/screen_puzzles/helper/button_glow.tscn" id="2_dvoo1"]
+[ext_resource type="PackedScene" uid="uid://203jmdgiwgko" path="res://src/screen_puzzles/helper/action_glow.tscn" id="2_6hlsf"]
+[ext_resource type="PackedScene" uid="uid://q7evm7xgbh36" path="res://src/screen_puzzles/helper/hover_glow.tscn" id="3_ks8iw"]
 [ext_resource type="PackedScene" uid="uid://nbku63cre6dq" path="res://src/screen_puzzles/helper/screen_draggable.tscn" id="3_mt3tf"]
 [ext_resource type="Texture2D" uid="uid://bj0oy01lsod67" path="res://assets/ui/screen_puzzle_v2/boost_neutral.png" id="6_p8itv"]
 [ext_resource type="Texture2D" uid="uid://dsi7gp380oc8c" path="res://assets/ui/screen_puzzle_v2/boost_held.png" id="7_fygcb"]
@@ -42,7 +43,9 @@ collision_mask = 2
 script = ExtResource("1_r5ukt")
 type = 1
 
-[node name="ButtonGlow" parent="." instance=ExtResource("2_dvoo1")]
+[node name="ActionGlow" parent="." instance=ExtResource("2_6hlsf")]
+
+[node name="HoverGlow" parent="." instance=ExtResource("3_ks8iw")]
 
 [node name="ButtonSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7maid")

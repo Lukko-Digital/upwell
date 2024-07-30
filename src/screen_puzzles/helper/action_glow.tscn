@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://203jmdgiwgko"]
+
+[ext_resource type="Shader" path="res://src/shaders/color_dodge.gdshader" id="1_fglum"]
+[ext_resource type="Texture2D" uid="uid://bi6vnouddf4dw" path="res://assets/ui/screen_puzzle_v2/action_glow_held_DODGE.png" id="3_e5ia0"]
+[ext_resource type="Texture2D" uid="uid://c04iy4bs4stf" path="res://assets/ui/screen_puzzle_v2/action_glow_placed_DODGE.png" id="4_dbkwo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rsmga"]
+shader = ExtResource("1_fglum")
+shader_parameter/intensity = 1.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_albsx"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_e5ia0")
+}],
+"loop": true,
+"name": &"held",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dbkwo")
+}],
+"loop": true,
+"name": &"placed",
+"speed": 5.0
+}]
+
+[node name="ActionGlow" type="AnimatedSprite2D"]
+z_index = 1
+material = SubResource("ShaderMaterial_rsmga")
+sprite_frames = SubResource("SpriteFrames_albsx")

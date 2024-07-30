@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://q7evm7xgbh36"]
+
+[ext_resource type="Texture2D" uid="uid://blh1umfhvimt8" path="res://assets/ui/screen_puzzle_v2/action_glow_ADD.png" id="1_tb6je"]
+
+[node name="HoverGlow" type="Sprite2D"]
+z_index = 1
+texture = ExtResource("1_tb6je")
