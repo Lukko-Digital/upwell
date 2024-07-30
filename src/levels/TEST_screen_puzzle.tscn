@@ -19,14 +19,16 @@ radius = 335.215
 [node name="ScreenPuzzle" type="Node2D"]
 metadata/_edit_lock_ = true
 
-[node name="ScreenPuzzleUI" parent="." node_paths=PackedStringArray("screen_player") instance=ExtResource("8_ldg3h")]
+[node name="ScreenPuzzleUI" parent="." instance=ExtResource("8_ldg3h")]
 size_flags_horizontal = 0
-screen_player = NodePath("../ScreenPlayer")
 
-[node name="FolderButton3" parent="ScreenPuzzleUI/CenterContainer/HBoxContainer/RightSideContainer/FoldersBacker/FoldersContainer" index="2" instance=ExtResource("2_iwhmm")]
+[node name="FolderButton3" parent="ScreenPuzzleUI/FolderBacker/MarginContainer/FoldersContainer" index="2" instance=ExtResource("2_iwhmm")]
 layout_mode = 2
 
+[node name="ScreenPuzzleUI_CenterContainer_HBoxContainer_RightSideContainer_FoldersBacker_FoldersContainer#FolderButton3" parent="." instance=ExtResource("2_iwhmm")]
+
 [node name="ScreenPlayer" parent="." instance=ExtResource("1_so3si")]
+unique_name_in_owner = true
 position = Vector2(-1466, 506)
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -75,7 +77,10 @@ scale = Vector2(0.87, 0.87)
 [node name="Folders" type="Node2D" parent="."]
 
 [node name="ScreenCore" parent="Folders" node_paths=PackedStringArray("folder_button") instance=ExtResource("9_6om2k")]
-position = Vector2(-1005, 85)
+offset_left = -1048.0
+offset_top = 38.0
+offset_right = -917.0
+offset_bottom = 144.0
 text = "[center][b]9/25/35[/b][/center]
 
 Sometimes the most direct path isn't the best one!
@@ -86,10 +91,13 @@ Rheuman
 
 
 "
-folder_button = NodePath("../../ScreenPuzzleUI/CenterContainer/HBoxContainer/RightSideContainer/FoldersBacker/FoldersContainer/FolderButton")
+folder_button = NodePath("../../ScreenPuzzleUI/FolderBacker/MarginContainer/FoldersContainer/FolderButton")
 
 [node name="ScreenCore3" parent="Folders" node_paths=PackedStringArray("folder_button") instance=ExtResource("9_6om2k")]
-position = Vector2(-698, -702)
+offset_left = -723.0
+offset_top = -745.0
+offset_right = -592.0
+offset_bottom = -639.0
 text = "[center][b]9/25/35[/b][/center]
 
 Incredible job scouts! Now let's extrapolate: fuel pockets in the sim are shown as little mushrooms, but [b][color=a14000]in the real world[/color][/b] they present a little differently
@@ -102,11 +110,14 @@ Rheuman
 
 
 "
-folder_button = NodePath("../../ScreenPuzzleUI/CenterContainer/HBoxContainer/RightSideContainer/FoldersBacker/FoldersContainer/FolderButton2")
+folder_button = NodePath("../../ScreenPuzzleUI/FolderBacker/MarginContainer/FoldersContainer/FolderButton2")
 
 [node name="ScreenCore4" parent="Folders" node_paths=PackedStringArray("folder_button") instance=ExtResource("9_6om2k")]
 modulate = Color(1, 1, 1, 0.152941)
-position = Vector2(-1218, 315)
+offset_left = -1256.0
+offset_top = 266.0
+offset_right = -1125.0
+offset_bottom = 372.0
 text = "[center][b]RECORDING STARTED[/b][/center]
 
 hi!
@@ -179,11 +190,11 @@ let's just end the
 
 
 "
-folder_button = NodePath("../../ScreenPuzzleUI/CenterContainer/HBoxContainer/RightSideContainer/FoldersBacker/FoldersContainer/FolderButton3")
+folder_button = NodePath("../../ScreenPuzzleUI/FolderBacker/MarginContainer/FoldersContainer/FolderButton3")
 
 [node name="ButtonHomeHandler" type="Node2D" parent="." node_paths=PackedStringArray("puzzle_bar")]
 script = ExtResource("6_gpi31")
-puzzle_bar = NodePath("../ScreenPuzzleUI/CenterContainer/HBoxContainer/PuzzleContainer/PuzzleBar")
+puzzle_bar = NodePath("../ScreenPuzzleUI/BottomBar")
 
 [node name="ScreenButtonOrbit" parent="ButtonHomeHandler" instance=ExtResource("11_hg2sa")]
 position = Vector2(-1096, 783)
@@ -198,5 +209,3 @@ position = Vector2(-566, 779)
 position = Vector2(-298, 781)
 
 [editable path="ScreenPuzzleUI"]
-[editable path="ScreenPuzzleUI/CenterContainer/HBoxContainer/PuzzleContainer"]
-[editable path="ScreenPuzzleUI/CenterContainer/HBoxContainer/RightSideContainer"]

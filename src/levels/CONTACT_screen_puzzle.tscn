@@ -18,8 +18,7 @@ size = Vector2(1763, 1481)
 [node name="ScreenPuzzle" type="Node2D"]
 metadata/_edit_lock_ = true
 
-[node name="ScreenPuzzleUI" parent="." node_paths=PackedStringArray("screen_player") instance=ExtResource("2_jcaf3")]
-screen_player = NodePath("../ScreenPlayer")
+[node name="ScreenPuzzleUI" parent="." instance=ExtResource("2_jcaf3")]
 metadata/_edit_lock_ = true
 
 [node name="ScreenPlayer" parent="." instance=ExtResource("1_hsobo")]
