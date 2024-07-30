@@ -23,7 +23,7 @@ func _on_folder_opened(text: String):
 func _on_launch_button_pressed() -> void:
 	var folder: ScreenCore = screen_player.targeted_folder
 	if folder:
-		folder.visit()
+		folder.opened = true
 		launch_result_label.text = LAUNCH_TEXT.SUCCESS
 	else:
 		launch_result_label.text = LAUNCH_TEXT.FAIL

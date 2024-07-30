@@ -1,11 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1fatgffin6hd"]
+[gd_scene load_steps=7 format=3 uid="uid://c1fatgffin6hd"]
 
 [ext_resource type="Script" path="res://src/screen_puzzles/puzzle_elements/screen_core.gd" id="1_lpcxw"]
 [ext_resource type="Texture2D" uid="uid://cq88cvv8qvyir" path="res://assets/ui/screen_puzzle_v2/folder_closed.png" id="2_f3shp"]
 [ext_resource type="Texture2D" uid="uid://bev1mwuuebyat" path="res://assets/ui/screen_puzzle_v2/folder_open.png" id="3_r3pk1"]
+[ext_resource type="Texture2D" uid="uid://blh1umfhvimt8" path="res://assets/ui/screen_puzzle_v2/action_glow_ADD.png" id="4_u72ux"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vidkj"]
 size = Vector2(119, 93)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ovyaa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f3shp")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_r3pk1")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
 
 [node name="ScreenCore" type="Area2D"]
 collision_layer = 32
@@ -16,10 +36,16 @@ script = ExtResource("1_lpcxw")
 position = Vector2(-0.5, 1.5)
 shape = SubResource("RectangleShape2D_vidkj")
 
-[node name="Unopened" type="Sprite2D" parent="."]
-texture = ExtResource("2_f3shp")
+[node name="FolderSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ovyaa")
+animation = &"closed"
 
-[node name="Opened" type="Sprite2D" parent="."]
+[node name="HoverGlow" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(8, 0)
-texture = ExtResource("3_r3pk1")
+position = Vector2(0, 1)
+scale = Vector2(1.31612, 1.31612)
+texture = ExtResource("4_u72ux")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
