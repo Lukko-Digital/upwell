@@ -28,6 +28,7 @@ radius = 32.0624
 radius = 32.0624
 
 [node name="ClickerBody" type="RigidBody2D" node_paths=PackedStringArray("grav_component", "glow_sprite", "lights_sprite", "interactable")]
+z_index = 3
 collision_layer = 16
 physics_material_override = SubResource("PhysicsMaterial_w1b0y")
 freeze_mode = 1
