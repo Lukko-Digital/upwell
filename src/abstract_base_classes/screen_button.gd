@@ -26,7 +26,7 @@ func _ready():
 	line_detection_area.area_exited.connect(_on_line_area_exited)
 
 	button_sprite.play("default")
-	action_glow.play("default")
+	action_glow.hide()
 	hover_glow.hide()
 
 func _process(_delta):
@@ -45,6 +45,7 @@ func pressed():
 	offset = global_position - get_global_mouse_position()
 	button_sprite.play("held")
 	action_glow.play("held")
+	action_glow.show()
 
 func released():
 	selected = false
@@ -58,6 +59,7 @@ func released():
 		line_area.screen_player.update_main_line()
 		button_sprite.play("placed")
 		action_glow.play("placed")
+		action_glow.show()
 
 	else:
 		# Not placed on line
@@ -95,7 +97,7 @@ func snap_home():
 	placed = false
 	global_position = start_position
 	button_sprite.play("default")
-	action_glow.play("default")
+	action_glow.hide()
 
 ## Returns the [TrajectoryLineArea] if overlapping, otherwise null
 func overlapping_trajectory_line():

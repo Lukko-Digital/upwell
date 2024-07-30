@@ -10,11 +10,6 @@ shader_parameter/intensity = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_albsx"]
 animations = [{
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_e5ia0")
@@ -36,3 +31,4 @@ animations = [{
 z_index = 1
 material = SubResource("ShaderMaterial_rsmga")
 sprite_frames = SubResource("SpriteFrames_albsx")
+animation = &"held"
