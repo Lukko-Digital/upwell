@@ -41,7 +41,8 @@ var recalled = false
 var destination: Entrypoint = null:
 	set(value):
 		destination = value
-		velocity = global_position.direction_to(value.global_position) * SPEED
+		if value:
+			velocity = global_position.direction_to(value.global_position) * SPEED
 
 const SPEED: float = 800
 const ENERGY_USE_RATE: float = 30
@@ -55,6 +56,8 @@ func _ready() -> void:
 	Global.pod_called.connect(_on_call_pod)
 
 func _process(delta: float) -> void:
+	calculate_line_distance()
+	
 	if moving:
 		var active_ag = grav_component.check_active_ag()
 		var gravity_state = grav_component.determine_gravity_state(active_ag)
@@ -74,6 +77,8 @@ func _process(delta: float) -> void:
 		global_position += velocity * delta
 
 		if manual_control:
+			location_deselected()
+
 			if gravity_state == GravitizedComponent.GravityState.BOOST:
 				current_shake = BOOST_SHAKE_AMOUNT
 				shake_lerp_speed = 2.0
@@ -85,14 +90,13 @@ func _process(delta: float) -> void:
 				boost_line.set_point_position(1, active_ag.global_position.direction_to(global_position) * distance_per_energy / 2)
 			else:
 				boost_line.set_point_position(1, Vector2.ZERO)
+		else:
+			line.set_point_position(1, (destination.global_position - global_position).limit_length(distance_per_energy))
 		
 		if at_destination():
 			end_movement()
-		elif not manual_control:
-			line.set_point_position(1, global_position.direction_to(destination.global_position).limit_length(distance_per_energy))
 
 		if not in_coolant: energy_bar.value -= ENERGY_USE_RATE * delta
-		distance_per_energy = SPEED / (ENERGY_USE_RATE / energy_bar.max_value) * (energy_bar.value / energy_bar.max_value)
 	else:
 		boost_line.set_point_position(1, Vector2.ZERO)
 	
@@ -100,20 +104,20 @@ func _process(delta: float) -> void:
 		run_out_of_energy()
 	elif energy_bar.value <= energy_bar.max_value / 5:
 		critical_energy()
-	elif energy_bar.value <= energy_bar.max_value / 2:
-		# Turns out low energy warning is kinda annoying cause you hit it a lot
-		# low_energy()
-		pass
 
 	#handle shake lerping
 	lerp_shake(delta)
+
+func calculate_line_distance() -> float:
+	distance_per_energy = SPEED / (ENERGY_USE_RATE / energy_bar.max_value) * (energy_bar.value / energy_bar.max_value)
+	return distance_per_energy
 
 func at_destination() -> bool:
 	return global_position.distance_to(destination.global_position) < 20
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		location_info.hide()
+		location_deselected()
 
 ## Constantly lerps [current_shake] to a [target_shake] in order for smooth shake change
 func lerp_shake(delta: float):
@@ -126,22 +130,29 @@ func lerp_shake(delta: float):
 func location_selected(location: Entrypoint):
 	if moving:
 		return
-	if line.get_point_count() > 1:
-		line.remove_point(1)
 
 	destination = location
 
-	var line_end = (location.global_position - global_position).limit_length(distance_per_energy)
-	line.add_point(line_end)
+	var line_end = (destination.global_position - global_position).limit_length(distance_per_energy)
+	line.set_point_position(1, line_end)
 
 	select_destination.emit(location)
 	location_info.show()
 
-func location_unhovered(_location: Entrypoint):
+func location_deselected():
 	if moving:
 		return
-	if line.get_point_count() > 1:
-		line.remove_point(1)
+		
+	location_info.hide()
+	destination = null
+	line.set_point_position(1, Vector2.ZERO)
+	select_destination.emit(null)
+
+# Not used anymore
+# func location_unhovered(_location: Entrypoint):
+# 	if moving:
+# 		return
+# 	line.set_point_position(1, Vector2.ZERO)
 
 func travel() -> void:
 	# Commented out for playtesting purposes
@@ -151,6 +162,7 @@ func travel() -> void:
 		return
 	
 	moving = true
+	# manual_control = false
 
 	# Begin shake by setting target and regular speed
 	shake_lerp_speed = BASE_SHAKE_LERP_SPEED
@@ -173,8 +185,9 @@ func end_movement() -> void:
 	velocity = Vector2.ZERO
 	energy_bar.value = energy_bar.max_value
 	starting_position = global_position
-	if line.get_point_count() > 1:
-		line.remove_point(1)
+
+	location_deselected()
+	location_info.show()
 
 	if recalled:
 		current_shake = shake_lerp_speed / 10
@@ -195,6 +208,7 @@ func end_movement() -> void:
 func recall() -> void:
 	recalled = true
 	global_position = starting_position
+	location_deselected()
 	end_movement()
 
 func show_warning(warning_text: String) -> void:

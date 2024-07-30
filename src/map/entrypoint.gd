@@ -29,7 +29,8 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	if not Engine.is_editor_hint():
-		unhovered()
+		if not selected:
+			unhovered()
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
@@ -55,6 +56,5 @@ func hovered() -> void:
 	unhovered_sprite.visible = false
 
 func unhovered() -> void:
-	if not selected:
-		hovered_sprite.visible = false
-		unhovered_sprite.visible = true
+	hovered_sprite.visible = false
+	unhovered_sprite.visible = true

@@ -1,8 +1,4 @@
-extends CharacterBody2D
+extends Sprite2D
 
-const SPEED = 3500 # Set a higher speed to follow the mouse faster
-
-func _physics_process(delta):
-    var direction = get_viewport().get_mouse_position() - self.position
-    velocity = direction * delta * SPEED
-    move_and_slide()
+func _process(_delta):
+    global_position = get_global_mouse_position()

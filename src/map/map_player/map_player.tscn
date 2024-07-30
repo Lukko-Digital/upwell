@@ -556,7 +556,7 @@ texture = ExtResource("2_x6q2x")
 [node name="Line2D" type="Line2D" parent="."]
 z_index = -1
 scale = Vector2(0.25, 0.25)
-points = PackedVector2Array(0, 0)
+points = PackedVector2Array(0, 0, 0, 0)
 width = 86.17
 gradient = SubResource("Gradient_i3lws")
 texture = ExtResource("4_dgis1")
