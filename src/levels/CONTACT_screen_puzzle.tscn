@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dei1bl8astem7" path="res://src/screen_puzzles/puzzle_elements/screen_button_boost.tscn" id="6_idve3"]
 [ext_resource type="PackedScene" uid="uid://bwbpi60st6gme" path="res://src/screen_puzzles/puzzle_elements/screen_button_unorbit.tscn" id="7_22bnm"]
 [ext_resource type="PackedScene" uid="uid://bdt2psjmwjsy6" path="res://src/screen_puzzles/puzzle_elements/screen_button_orbit.tscn" id="8_2v3tm"]
-[ext_resource type="Script" path="res://src/levels/button_home_handler.gd" id="8_kgvfj"]
+[ext_resource type="Script" path="res://src/screen_puzzles/puzzle_elements/button_home_handler.gd" id="8_kgvfj"]
 [ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/puzzle_elements/screen_ag.tscn" id="9_svl6v"]
 [ext_resource type="PackedScene" uid="uid://c1fatgffin6hd" path="res://src/screen_puzzles/puzzle_elements/screen_core.tscn" id="10_b30k3"]
 
@@ -57,7 +57,7 @@ Rheuman
 
 
 "
-folder_button = NodePath("../ScreenPuzzleUI/CenterContainer/HBoxContainer/RightSideContainer/FoldersBacker/FoldersContainer/FolderButton2")
+folder_button = NodePath("../ScreenPuzzleUI/FolderBacker/MarginContainer/FoldersContainer/FolderButton")
 
 [node name="ScreenCore2" parent="." node_paths=PackedStringArray("folder_button") instance=ExtResource("10_b30k3")]
 position = Vector2(-1088, -100)
@@ -71,14 +71,14 @@ Rheuman
 
 
 "
-folder_button = NodePath("../ScreenPuzzleUI/CenterContainer/HBoxContainer/RightSideContainer/FoldersBacker/FoldersContainer/FolderButton")
+folder_button = NodePath("../ScreenPuzzleUI/FolderBacker/MarginContainer/FoldersContainer/FolderButton2")
 
 [node name="ButtonHomeHandler" type="Node2D" parent="." node_paths=PackedStringArray("puzzle_bar")]
 script = ExtResource("8_kgvfj")
-puzzle_bar = NodePath("../ScreenPuzzleUI/CenterContainer/HBoxContainer/PuzzleContainer/PuzzleBar")
+puzzle_bar = NodePath("../ScreenPuzzleUI/BottomBar")
 
 [node name="ScreenButtonOrbit" parent="ButtonHomeHandler" instance=ExtResource("8_2v3tm")]
-position = Vector2(-1341, 463)
+position = Vector2(-708, 343)
 
 [node name="ScreenButtonBoost" parent="ButtonHomeHandler" instance=ExtResource("6_idve3")]
 position = Vector2(-1053, 498)
@@ -87,5 +87,3 @@ position = Vector2(-1053, 498)
 position = Vector2(-577, 612)
 
 [editable path="ScreenPuzzleUI"]
-[editable path="ScreenPuzzleUI/CenterContainer/HBoxContainer/PuzzleContainer"]
-[editable path="ScreenPuzzleUI/CenterContainer/HBoxContainer/RightSideContainer"]
