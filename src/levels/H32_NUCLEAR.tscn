@@ -144,7 +144,7 @@ material = SubResource("ShaderMaterial_naqd0")
 position = Vector2(-3554, -149)
 
 [node name="NPC" parent="." node_paths=PackedStringArray("npc_sprite") instance=ExtResource("7_vhtfh")]
-position = Vector2(-686, -63)
+position = Vector2(-686, -52)
 dialogue_file = "res://assets/dialogue/upwell dialogue - dadmvp4.csv"
 faces_you_during_dialogue = true
 npc_sprite = NodePath("AnimatedSprite2D")
