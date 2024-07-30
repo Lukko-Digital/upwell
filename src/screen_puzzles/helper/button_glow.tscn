@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://203jmdgiwgko"]
+[gd_scene load_steps=7 format=3 uid="uid://203jmdgiwgko"]
 
 [ext_resource type="Texture2D" uid="uid://blh1umfhvimt8" path="res://assets/ui/screen_puzzle_v2/action_glow_ADD.png" id="1_2w3rk"]
 [ext_resource type="Texture2D" uid="uid://c04iy4bs4stf" path="res://assets/ui/screen_puzzle_v2/action_glow_placed_DODGE.png" id="1_bnwmo"]
 [ext_resource type="Texture2D" uid="uid://bi6vnouddf4dw" path="res://assets/ui/screen_puzzle_v2/action_glow_held_DODGE.png" id="1_of1gy"]
+[ext_resource type="Shader" path="res://src/shaders/color_dodge.gdshader" id="1_x6ey0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rsmga"]
+shader = ExtResource("1_x6ey0")
+shader_parameter/intensity = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_albsx"]
 animations = [{
@@ -32,5 +37,5 @@ animations = [{
 }]
 
 [node name="ButtonGlow" type="AnimatedSprite2D"]
-scale = Vector2(1.7, 1.7)
+material = SubResource("ShaderMaterial_rsmga")
 sprite_frames = SubResource("SpriteFrames_albsx")
