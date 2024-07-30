@@ -3,11 +3,8 @@
 [ext_resource type="Script" path="res://src/screen_puzzles/virtual_mouse.gd" id="1_m7xpn"]
 [ext_resource type="Texture2D" uid="uid://bt2qo688i46xr" path="res://assets/ui/screen_puzzle/cursor.png" id="2_paikc"]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
-position = Vector2(0, -480)
-script = ExtResource("1_m7xpn")
-
-[node name="MouseSprite" type="Sprite2D" parent="."]
+[node name="VirtualMouse" type="Sprite2D"]
 position = Vector2(14, 13)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_paikc")
+script = ExtResource("1_m7xpn")

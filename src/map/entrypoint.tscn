@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgym5f33j1iv6"]
+
+[ext_resource type="Script" path="res://src/map/entrypoint.gd" id="1_ir0mg"]
+[ext_resource type="Texture2D" uid="uid://bynhol34a7hm1" path="res://assets/ui/map/entrypoint_unselected.png" id="2_3lf3r"]
+[ext_resource type="Texture2D" uid="uid://q26m7k88guh1" path="res://assets/ui/map/entrypoint_selected.png" id="3_ekrbh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sxoob"]
+radius = 52.0384
+
+[node name="Entrypoint" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_ir0mg")
+entry_number = null
+locked = null
+
+[node name="EntrypointUnselected" type="Sprite2D" parent="."]
+texture = ExtResource("2_3lf3r")
+
+[node name="EntrypointSelected" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_ekrbh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sxoob")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

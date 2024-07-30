@@ -4,7 +4,7 @@ class_name ScreenInteractable
 @onready var subviewport: SubViewport = $SubViewportContainer/SubViewport
 @onready var hider: ColorRect = $SubViewportContainer/SubViewport/CanvasLayer/Hider
 @onready var VHS_shader: ColorRect = $VHS
-@onready var virtual_mouse: CharacterBody2D = $SubViewportContainer/SubViewport/CanvasLayer/virtual_mouse
+@onready var virtual_mouse: Sprite2D = $SubViewportContainer/SubViewport/CanvasLayer/virtual_mouse
 @export var screen: PackedScene
 
 var focused: bool = false
