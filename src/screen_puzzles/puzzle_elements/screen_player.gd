@@ -12,8 +12,19 @@ var targeted_folder: ScreenCore = null
 @onready var new_action_line: Line2D = %NewActionLine
 
 func _ready() -> void:
+	# Counter rotate lines so their coordinate axis is align with the global axis
+	trajectory_line.rotation = -rotation
+	new_action_line.rotation = -rotation
 	spawn_collision_segments(STARTING_POWER)
 	update_main_line()
+	update_new_action_line()
+
+func _process(_delta: float) -> void:
+	if Engine.is_editor_hint():
+		# Counter rotate lines so their coordinate axis is align with the global axis
+		trajectory_line.rotation = -rotation
+		new_action_line.rotation = -rotation
+		update_trajectory(trajectory_line, true)
 
 func update_main_line():
 	targeted_folder = update_trajectory(trajectory_line)
@@ -40,10 +51,10 @@ func check_overlapping_ags(collision_results: Array[Dictionary]) -> ScreenAG:
 	return null
 
 ## Returns the folder that was hit, if no folder was hit, returns null
-func update_trajectory(line: Line2D, detect_unplaced: bool=false) -> ScreenCore:
+func update_trajectory(line: Line2D, detect_unplaced: bool = false) -> ScreenCore:
 	line.clear_points()
 
-	var dir: Vector2 = Vector2.UP
+	var dir: Vector2 = Vector2.UP.rotated(rotation)
 	# Power
 	var power = STARTING_POWER
 	var used_power_ups = []
