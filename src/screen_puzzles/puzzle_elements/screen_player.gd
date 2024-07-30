@@ -93,8 +93,8 @@ func update_trajectory(line: Line2D, detect_unplaced: bool = false) -> ScreenCor
 			if area is ScreenHazard:
 				return null
 			# Folders
-			if area is ScreenCore:
-				return area
+			if area is ScreenCoreArea:
+				return area.get_parent()
 			# Power ups
 			if area is ScreenPowerUp:
 				# Only use each power up once

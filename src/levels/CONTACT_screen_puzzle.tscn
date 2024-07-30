@@ -43,7 +43,10 @@ position = Vector2(-700.5, 15.5)
 shape = SubResource("RectangleShape2D_tk24l")
 
 [node name="ScreenCore" parent="." node_paths=PackedStringArray("folder_button") instance=ExtResource("10_b30k3")]
-position = Vector2(-402, -100)
+offset_left = -470.0
+offset_top = -159.0
+offset_right = -339.0
+offset_bottom = -53.0
 text = "[center][b]9/24/35[/b][/center]
 
 Nice job! Remember, [b][bgcolor=993e00][color=ff8400]<orbit>[/color][/bgcolor][/b] is [i]the[/i] most important function of nodes.
@@ -53,25 +56,22 @@ your angle of travel.[/color][/bgcolor][/b]
 
 Use this to your advantage.
 
-Rheuman
-
-
-"
-folder_button = NodePath("../ScreenPuzzleUI/FolderBacker/MarginContainer/FoldersContainer/FolderButton")
+Rheuman"
+folder_button = NodePath("../ScreenPuzzleUI/FolderBacker/MarginContainer/FoldersContainer/FolderButton2")
 
 [node name="ScreenCore2" parent="." node_paths=PackedStringArray("folder_button") instance=ExtResource("10_b30k3")]
-position = Vector2(-1088, -100)
+offset_left = -1099.0
+offset_top = -157.0
+offset_right = -968.0
+offset_bottom = -51.0
 text = "[center][b]9/24/35[/b][/center]
 
 Congratulations on reaching your [b][color=a14000]first waypoint[/color][/b]! You're on your way to becoming a real scout.
 
 Remember, [b][bgcolor=993e00][color=ffaa4f]just solving the puzzle won't be enough in the real world.[/color][/bgcolor][/b] [i]What is going on here?[/i]
 
-Rheuman
-
-
-"
-folder_button = NodePath("../ScreenPuzzleUI/FolderBacker/MarginContainer/FoldersContainer/FolderButton2")
+Rheuman"
+folder_button = NodePath("../ScreenPuzzleUI/FolderBacker/MarginContainer/FoldersContainer/FolderButton")
 
 [node name="ButtonHomeHandler" type="Node2D" parent="." node_paths=PackedStringArray("puzzle_bar")]
 script = ExtResource("8_kgvfj")
