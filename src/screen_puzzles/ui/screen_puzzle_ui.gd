@@ -12,9 +12,7 @@ const LAUNCH_TEXT = {
 }
 
 func _ready() -> void:
-	var folder_button_group = ButtonGroup.new()
 	for folder_button: FolderButton in folders_container.get_children():
-		folder_button.button_group = folder_button_group
 		folder_button.folder_opened.connect(_on_folder_opened)
 
 	launch_result_label.hide()

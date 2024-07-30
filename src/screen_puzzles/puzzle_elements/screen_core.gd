@@ -17,5 +17,4 @@ func _ready() -> void:
 func visit() -> void:
 	unopened_sprite.hide()
 	opened_sprite.show()
-	folder_button.disabled = false
-	folder_button.button_pressed = true
+	folder_button.opened = true

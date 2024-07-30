@@ -1,25 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl53k36i6wlyr"]
+[gd_scene load_steps=6 format=3 uid="uid://bl53k36i6wlyr"]
 
 [ext_resource type="Texture2D" uid="uid://dm50t65qdvas8" path="res://assets/ui/screen_puzzle_v2/folder_topbar_closed.png" id="1_5icxd"]
 [ext_resource type="Texture2D" uid="uid://c0s3u02vvo4ui" path="res://assets/ui/screen_puzzle_v2/folder_topbar_open.png" id="2_hyojt"]
 [ext_resource type="Texture2D" uid="uid://1jv1w1htx42c" path="res://assets/ui/screen_puzzle/folder_glow_ADD.png" id="3_ajtat"]
 [ext_resource type="Script" path="res://src/screen_puzzles/ui/folder_button.gd" id="3_qo2h5"]
+[ext_resource type="Texture2D" uid="uid://blh1umfhvimt8" path="res://assets/ui/screen_puzzle_v2/action_glow_ADD.png" id="4_tnexc"]
 
-[node name="FolderButton" type="TextureButton"]
-z_index = 1
-custom_minimum_size = Vector2(94, 76)
-offset_right = 94.0
-offset_bottom = 76.0
-toggle_mode = true
-texture_normal = ExtResource("1_5icxd")
-texture_pressed = ExtResource("2_hyojt")
-texture_hover = ExtResource("2_hyojt")
+[node name="FolderButton" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_5icxd")
 script = ExtResource("3_qo2h5")
+closed_texture = ExtResource("1_5icxd")
+open_texture = ExtResource("2_hyojt")
 
-[node name="FolderGlow" type="Sprite2D" parent="."]
+[node name="HoverGlow" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(48, 40)
-scale = Vector2(0.847868, 0.847868)
+z_index = -1
+position = Vector2(46, 43)
+texture = ExtResource("4_tnexc")
+
+[node name="SelectedGlow" type="Sprite2D" parent="."]
+visible = false
+z_index = -1
+position = Vector2(46, 39)
 texture = ExtResource("3_ajtat")
 
-[connection signal="toggled" from="." to="." method="_on_toggled"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
