@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://src/screen_puzzles/puzzle_elements/screen_core_area.gd" id="2_7vidw"]
 [ext_resource type="Texture2D" uid="uid://cq88cvv8qvyir" path="res://assets/ui/screen_puzzle_v2/folder_closed.png" id="2_f3shp"]
 [ext_resource type="Texture2D" uid="uid://bev1mwuuebyat" path="res://assets/ui/screen_puzzle_v2/folder_open.png" id="3_r3pk1"]
-[ext_resource type="Texture2D" uid="uid://blh1umfhvimt8" path="res://assets/ui/screen_puzzle_v2/action_glow_ADD.png" id="4_u72ux"]
-[ext_resource type="Texture2D" uid="uid://1jv1w1htx42c" path="res://assets/ui/screen_puzzle/folder_glow_ADD.png" id="6_qijyk"]
+[ext_resource type="Texture2D" uid="uid://c0et7qrr1u2u8" path="res://assets/ui/screen_puzzle_v2/folder_closed_hover.png" id="5_qed70"]
+[ext_resource type="Texture2D" uid="uid://bcy7n433tid38" path="res://assets/ui/screen_puzzle_v2/folder_open_active.png" id="6_vftc3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vidkj"]
 size = Vector2(119, 93)
@@ -31,11 +31,9 @@ shape = SubResource("RectangleShape2D_vidkj")
 [node name="HoverGlow" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(66, 54)
-scale = Vector2(1.3, 1.3)
-texture = ExtResource("4_u72ux")
+texture = ExtResource("5_qed70")
 
 [node name="SelectedGlow" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(66, 55)
-scale = Vector2(1.3, 1.3)
-texture = ExtResource("6_qijyk")
+position = Vector2(60, 48)
+texture = ExtResource("6_vftc3")
