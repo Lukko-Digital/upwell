@@ -13,18 +13,21 @@ enum ButtonTypes {NONE, BOOST, UNORBIT, ORBIT}
 @onready var draggable: Area2D = $ScreenDraggable
 @onready var line_detection_area: Area2D = $TrajectoryLineDetectionArea
 
+@onready var player: ScreenPlayer = %ScreenPlayer
+
 var selected: bool = false
 var placed: bool = false
 var offset: Vector2 = Vector2.ZERO
 var start_position: Vector2 = Vector2.ZERO
 
 func _ready():
+	add_to_group("ScreenButtons")
+	# Signal connections
 	draggable.input_event.connect(_on_area_2d_input_event)
 	draggable.mouse_entered.connect(_on_mouse_entered)
 	draggable.mouse_exited.connect(_on_mouse_exited)
-
 	line_detection_area.area_exited.connect(_on_line_area_exited)
-
+	# Set visuals to default
 	button_sprite.play("default")
 	action_glow.hide()
 	hover_glow.hide()
@@ -37,9 +40,9 @@ func _process(_delta):
 func pressed():
 	if placed:
 		placed = false
-		var line_area: TrajectoryLineArea = overlapping_trajectory_line()
-		if line_area != null:
-			line_area.screen_player.update_main_line()
+		if overlapping_trajectory_line():
+			# Update line when picking up button that is placed on the line
+			player.update_main_line()
 
 	selected = true
 	offset = global_position - get_global_mouse_position()
@@ -52,11 +55,10 @@ func released():
 	if draggable.get_overlapping_areas().is_empty():
 		global_position = start_position
 	
-	var line_area: TrajectoryLineArea = overlapping_trajectory_line()
-	if line_area != null:
+	if overlapping_trajectory_line():
 		# Placed on line
 		placed = true
-		line_area.screen_player.update_main_line()
+		player.update_main_line()
 		button_sprite.play("placed")
 		action_glow.play("placed")
 		action_glow.show()
@@ -71,25 +73,26 @@ func sort_closest(a: Vector2, b: Vector2):
 	return distance_to.call(a) < distance_to.call(b)
 
 func handle_snap():
-	var line_area: TrajectoryLineArea = overlapping_trajectory_line()
-	if line_area == null:
+	if not overlapping_trajectory_line():
 		return
 	
-	var line: Line2D = line_area.trajectory_line
+	var snap_point = find_snap_point()
+	
+	if (global_position + offset).distance_to(snap_point) < SNAP_BREAK_DISTANCE:
+		# Snap
+		global_position = snap_point
+		player.update_new_action_line()
+	else:
+		# Break snap
+		player.clear_new_action_line()
 
-	# Determine point to snap to
+## Find the closest point on the line to snap to
+func find_snap_point() -> Vector2:
+	var line: Line2D = player.trajectory_line
 	var points = Array(line.points)
 	points = points.map(func(point): return point + line.global_position)
 	points.sort_custom(sort_closest)
-	var closest_point = points[0]
-
-	if (global_position + offset).distance_to(closest_point) < SNAP_BREAK_DISTANCE:
-		# Snap
-		global_position = closest_point
-		line_area.screen_player.update_new_action_line()
-	else:
-		# Break snap
-		line_area.screen_player.clear_new_action_line()
+	return points.front()
 
 func snap_home():
 	if selected:
@@ -99,12 +102,12 @@ func snap_home():
 	button_sprite.play("default")
 	action_glow.hide()
 
-## Returns the [TrajectoryLineArea] if overlapping, otherwise null
-func overlapping_trajectory_line():
+## Returns true if overlapping the main trajectory line, otherwise null
+func overlapping_trajectory_line() -> bool:
 	for area in line_detection_area.get_overlapping_areas():
 		if area is TrajectoryLineArea:
-			return area
-	return null
+			return true
+	return false
 
 func _on_mouse_entered() -> void:
 	hover_glow.show()
