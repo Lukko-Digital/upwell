@@ -3,7 +3,7 @@ extends Node2D
 ## Expects all [ScreenButtons] to be childed to this node
 class_name ButtonHomeHandler
 
-const OFFSET = Vector2(230, 75)
+const OFFSET = 210
 const SEPARATION = 200
 
 @export var puzzle_bar: TextureRect
@@ -15,6 +15,6 @@ func _ready() -> void:
 	for child in get_children():
 		if not child is ScreenButton:
 			continue
-		child.start_position = puzzle_bar.global_position + OFFSET + i * Vector2(SEPARATION, 0)
+		child.start_position = puzzle_bar.global_position + Vector2(OFFSET + i * SEPARATION, puzzle_bar.size.y / 2)
 		child.global_position = child.start_position
 		i += 1
