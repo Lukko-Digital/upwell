@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/puzzle_elements/screen_player.tscn" id="1_so3si"]
 [ext_resource type="PackedScene" uid="uid://bl53k36i6wlyr" path="res://src/screen_puzzles/ui/folder_button.tscn" id="2_iwhmm"]
 [ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/puzzle_elements/screen_ag.tscn" id="2_qrsml"]
-[ext_resource type="Script" path="res://src/levels/button_home_handler.gd" id="6_gpi31"]
+[ext_resource type="Script" path="res://src/screen_puzzles/puzzle_elements/button_home_handler.gd" id="6_gpi31"]
 [ext_resource type="PackedScene" uid="uid://bvkim1x1vvm81" path="res://src/screen_puzzles/ui/screen_puzzle_ui.tscn" id="8_ldg3h"]
 [ext_resource type="PackedScene" uid="uid://c1fatgffin6hd" path="res://src/screen_puzzles/puzzle_elements/screen_core.tscn" id="9_6om2k"]
 [ext_resource type="PackedScene" uid="uid://bdt2psjmwjsy6" path="res://src/screen_puzzles/puzzle_elements/screen_button_orbit.tscn" id="11_hg2sa"]
