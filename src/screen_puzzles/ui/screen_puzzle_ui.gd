@@ -1,3 +1,4 @@
+@tool
 extends Control
 class_name ScreenPuzzleUI
 
@@ -18,6 +19,10 @@ func _ready() -> void:
 		folder_button.folder_opened.connect(_on_folder_opened)
 
 	launch_result_label.hide()
+
+func _process(_delta: float) -> void:
+	if Engine.is_editor_hint():
+		update_configuration_warnings()
 
 func animate_display():
 	main_text_label.visible_characters = 0
@@ -59,3 +64,11 @@ func _on_launch_button_pressed() -> void:
 func _on_reset_button_pressed() -> void:
 	# Reset all [ScreenButton]
 	get_tree().call_group("ScreenButtons", "snap_home")
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings = []
+
+	if %ScreenPlayer == null:
+		warnings.append("ScreenPlayer needs to be set as unique node")
+
+	return warnings

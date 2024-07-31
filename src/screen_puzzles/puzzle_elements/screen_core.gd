@@ -1,8 +1,12 @@
+@tool
 extends FolderClickable
 class_name ScreenCore
 
 @export_multiline var text: String
-@export var folder_button: FolderButton
+@export var folder_button: FolderButton:
+	set(value):
+		folder_button = value
+		update_configuration_warnings()
 
 ## BBCode ready text
 var parsed_text: String
@@ -22,3 +26,11 @@ func open() -> void:
 
 func launch_success():
 	pass
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings = []
+
+	if folder_button == null:
+		warnings.append("Missing folder button export")
+	
+	return warnings
