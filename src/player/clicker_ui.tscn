@@ -92,6 +92,7 @@ offset_bottom = 181.0
 scale = Vector2(0.3, 0.3)
 
 [node name="ReactorBase" type="Sprite2D" parent="Reactor"]
+modulate = Color(1, 1, 1, 0.239216)
 position = Vector2(0, -3.33331)
 scale = Vector2(0.928487, 0.928487)
 texture = ExtResource("2_epsau")
@@ -132,6 +133,7 @@ libraries = {
 }
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = 1679.0
 offset_top = 121.0
 offset_right = 1719.0

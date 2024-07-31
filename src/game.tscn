@@ -22,5 +22,4 @@ position = Vector2(0, -256)
 player = NodePath("../Player")
 
 [node name="LayeredParticles" parent="." instance=ExtResource("5_0dipe")]
-modulate = Color(0.663824, 0.663824, 0.663824, 0.521569)
 position = Vector2(-35, -418)

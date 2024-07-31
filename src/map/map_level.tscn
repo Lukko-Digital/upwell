@@ -18,7 +18,7 @@ variation_embolden = 2.0
 blend_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r5pps"]
-radius = 40.0125
+radius = 39.7171
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ego6m"]
 radius = 213.038
@@ -27,7 +27,6 @@ radius = 213.038
 collision_mask = 2
 script = ExtResource("1_0g7oc")
 label = NodePath("Label")
-sprite_scale = 1.0
 
 [node name="Label" type="Label" parent="."]
 self_modulate = Color(1, 1, 1, 0.545098)
@@ -35,9 +34,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -126.0
-offset_top = 50.0
+offset_top = 150.0
 offset_right = 127.0
-offset_bottom = 96.0
+offset_bottom = 196.0
 grow_horizontal = 2
 theme = SubResource("Theme_30kq5")
 theme_override_fonts/font = SubResource("FontVariation_i4kiy")
@@ -48,11 +47,12 @@ horizontal_alignment = 1
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.813466, 0.254571, 0, 1)
 material = SubResource("CanvasItemMaterial_a1nsj")
-position = Vector2(-3, -2)
+position = Vector2(-9, -7)
+scale = Vector2(3, 3)
 texture = ExtResource("3_dyj0g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_r5pps")
 
 [node name="Gravity" type="Area2D" parent="."]
@@ -72,7 +72,4 @@ shape = SubResource("CircleShape2D_ego6m")
 one_shot = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="timeout" from="Gravity/RegenTimer" to="Gravity" method="_on_regen_timer_timeout"]
