@@ -33,6 +33,7 @@ func _process(_delta: float) -> void:
 func update_main_line():
 	targeted_folder = update_trajectory(trajectory_line, true, false)
 	update_collision_segments()
+	clear_new_action_line()
 	main_line_updated.emit()
 
 func update_new_action_line():
