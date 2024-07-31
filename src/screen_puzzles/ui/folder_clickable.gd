@@ -17,6 +17,8 @@ var opened = false:
             texture = closed_texture
         opened = value
 
+var highlighed = false
+
 var group: String
 
 func _ready() -> void:
@@ -31,9 +33,11 @@ func open():
 
 func highlight():
     get_tree().call_group(group, "dehighlight")
+    highlighed = true
     selected_glow.show()
 
 func dehighlight():
+    highlighed = false
     selected_glow.hide()
 
 func _on_gui_input(event: InputEvent) -> void:
@@ -48,7 +52,7 @@ func _on_gui_input(event: InputEvent) -> void:
         open()
 
 func _on_mouse_entered() -> void:
-    if not opened:
+    if not opened or highlighed:
         return
     hover_glow.show()
 

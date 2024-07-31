@@ -14,6 +14,8 @@ func _ready() -> void:
 	folder_button.paired_core = self
 
 func open() -> void:
+	if highlighed:
+		return
 	# This will highlight the small folder
 	folder_button.opened = true
 	highlight()
