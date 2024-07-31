@@ -2,6 +2,7 @@ extends Area2D
 class_name ScreenButton
 
 const SNAP_BREAK_DISTANCE = 100
+const RESNAP_DISTANCE = 50
 
 enum ButtonTypes {NONE, BOOST, UNORBIT, ORBIT}
 
@@ -15,10 +16,17 @@ enum ButtonTypes {NONE, BOOST, UNORBIT, ORBIT}
 
 @onready var player: ScreenPlayer = %ScreenPlayer
 
+# State variables
 var selected: bool = false
+var snapped_to_line: bool = false
 var placed: bool = false
+
+## The offset from the center of the button where the mouse picked it up
 var offset: Vector2 = Vector2.ZERO
+
 var start_position: Vector2 = Vector2.ZERO
+
+## ------------------------------ CORE ------------------------------
 
 func _ready():
 	add_to_group("ScreenButtons")
@@ -26,7 +34,7 @@ func _ready():
 	draggable.input_event.connect(_on_area_2d_input_event)
 	draggable.mouse_entered.connect(_on_mouse_entered)
 	draggable.mouse_exited.connect(_on_mouse_exited)
-	line_detection_area.area_exited.connect(_on_line_area_exited)
+	player.main_line_updated.connect(_on_main_line_updated)
 	# Set visuals to default
 	button_sprite.play("default")
 	action_glow.hide()
@@ -36,6 +44,8 @@ func _process(_delta):
 	if selected:
 		position = get_global_mouse_position() + offset
 		handle_snap()
+
+## ------------------------------ PICKING ------------------------------
 
 func pressed():
 	if placed:
@@ -54,7 +64,7 @@ func released():
 	if draggable.get_overlapping_areas().is_empty():
 		global_position = start_position
 	
-	if overlapping_trajectory_line():
+	if snapped_to_line:
 		# Placed on line
 		placed = true
 		player.update_main_line()
@@ -65,24 +75,32 @@ func released():
 		# Not placed on line
 		snap_home()
 
-func sort_closest(a: Vector2, b: Vector2):
-	var distance_to = func(point: Vector2):
-		return global_position.distance_squared_to(point)
-	return distance_to.call(a) < distance_to.call(b)
+## ------------------------------ SNAPPING ------------------------------
 
 func handle_snap():
 	if not overlapping_trajectory_line():
 		return
 	
-	var snap_point = find_snap_point()
+	var snap_point: Vector2 = find_snap_point()
+	var point_state: DiscreteScreenPuzzleState = get_point_state(snap_point)
 	
-	if (global_position + offset).distance_to(snap_point) < SNAP_BREAK_DISTANCE:
+	if (
+		(global_position + offset).distance_to(snap_point) < SNAP_BREAK_DISTANCE and
+		snap_conditions_satisfied(point_state)
+	):
 		# Snap
+		snapped_to_line = true
 		global_position = snap_point
 		player.update_new_action_line()
 	else:
 		# Break snap
+		snapped_to_line = false
 		player.clear_new_action_line()
+
+func sort_closest(a: Vector2, b: Vector2):
+	var distance_to = func(point: Vector2):
+		return global_position.distance_squared_to(point)
+	return distance_to.call(a) < distance_to.call(b)
 
 ## Find the closest point on the line to snap to
 func find_snap_point() -> Vector2:
@@ -91,6 +109,52 @@ func find_snap_point() -> Vector2:
 	points = points.map(func(point): return point + line.global_position)
 	points.sort_custom(sort_closest)
 	return points.front()
+
+func get_point_state(point: Vector2) -> DiscreteScreenPuzzleState:
+	var point_local = point - player.trajectory_line.global_position
+	if player.point_states.has(point_local):
+		return player.point_states[point_local]
+	return null
+
+func snap_conditions_satisfied(point_state: DiscreteScreenPuzzleState) -> bool:
+	if point_state == null:
+		return false
+	if not point_state.in_ag:
+		return false
+	match type:
+		ButtonTypes.ORBIT:
+			return not point_state.orbiting
+		ButtonTypes.UNORBIT:
+			return point_state.orbiting
+		ButtonTypes.BOOST:
+			return point_state.orbiting
+		_:
+			return false
+
+## Attempt to resnap to the line when the line is updated, otherwise snap home
+func handle_resnap():
+	var snap_point: Vector2 = find_snap_point()
+	# Backtrack until reaching a point that doesn't overlap the button.
+	# This prevents the issue of a button causing its own snap condition to not
+	# be satisfied, i.e. an orbit button sees a point state with orbiting as
+	# true, but that's only because the orbit button itself is causing orbiting
+	# to be true.
+	var backtrack_point = snap_point - player.trajectory_line.global_position
+	var point_state: DiscreteScreenPuzzleState = player.point_states[backtrack_point]
+	# Should only need to backtrack 1 or 2 points, depending on [player.SPACING]
+	while self in point_state.overlapping_areas:
+		# To prevent going infinite
+		if backtrack_point == Vector2.ZERO:
+			break
+		backtrack_point = point_state.previous_point
+		point_state = player.point_states[backtrack_point]
+	if (
+		(global_position).distance_to(snap_point) < RESNAP_DISTANCE and
+		snap_conditions_satisfied(point_state)
+	):
+		global_position = snap_point
+	else:
+		snap_home()
 
 func snap_home():
 	global_position = start_position
@@ -102,12 +166,16 @@ func snap_home():
 		player.update_main_line()
 		player.clear_new_action_line()
 
+## ------------------------------ HELPER ------------------------------
+
 ## Returns true if overlapping the main trajectory line, otherwise null
 func overlapping_trajectory_line() -> bool:
 	for area in line_detection_area.get_overlapping_areas():
 		if area is TrajectoryLineArea:
 			return true
 	return false
+
+## ------------------------------ SIGNAL RECEIVERS ------------------------------
 
 func _on_mouse_entered() -> void:
 	hover_glow.show()
@@ -132,6 +200,6 @@ func _input(event: InputEvent) -> void:
 		if selected:
 			released()
 
-func _on_line_area_exited(_area: Area2D):
-	if not selected:
-		snap_home()
+func _on_main_line_updated():
+	if placed:
+		handle_resnap()

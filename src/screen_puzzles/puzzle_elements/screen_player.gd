@@ -5,11 +5,15 @@ class_name ScreenPlayer
 const STARTING_POWER = 200
 const SPACING: float = 10
 
-var targeted_folder: ScreenCore = null
+signal main_line_updated()
 
 @onready var trajectory_line: Line2D = %TrajectoryLine
 @onready var line_area: TrajectoryLineArea = %LineCollisionArea
 @onready var new_action_line: Line2D = %NewActionLine
+
+## A map from all [Vector2] points in [trajectory_line] to [DiscreteScreenPuzzleState]
+var point_states: Dictionary = {}
+var targeted_folder: ScreenCore = null
 
 func _ready() -> void:
 	# Counter rotate lines so their coordinate axis is align with the global axis
@@ -24,14 +28,15 @@ func _process(_delta: float) -> void:
 		# Counter rotate lines so their coordinate axis is align with the global axis
 		trajectory_line.rotation = -rotation
 		new_action_line.rotation = -rotation
-		update_trajectory(trajectory_line, true)
+		update_trajectory(trajectory_line, false, true)
 
 func update_main_line():
-	targeted_folder = update_trajectory(trajectory_line)
+	targeted_folder = update_trajectory(trajectory_line, true, false)
 	update_collision_segments()
+	main_line_updated.emit()
 
 func update_new_action_line():
-	update_trajectory(new_action_line, true)
+	update_trajectory(new_action_line, false, true)
 
 func clear_new_action_line():
 	new_action_line.clear_points()
@@ -43,16 +48,21 @@ func init_query() -> PhysicsPointQueryParameters2D:
 	query.position = global_position
 	return query
 
-func check_overlapping_ags(collision_results: Array[Dictionary]) -> ScreenAG:
-	for collision in collision_results:
-		var area = collision.collider
+func check_overlapping_ags(overlapping_areas: Array) -> ScreenAG:
+	for area: Area2D in overlapping_areas:
 		if area is ScreenAG:
 			return area
 	return null
 
 ## Returns the folder that was hit, if no folder was hit, returns null
-func update_trajectory(line: Line2D, detect_unplaced: bool = false) -> ScreenCore:
+func update_trajectory(
+	line: Line2D,
+	record_point_state: bool,
+	detect_unplaced: bool
+) -> ScreenCore:
 	line.clear_points()
+	if record_point_state:
+		point_states.clear()
 
 	var dir: Vector2 = Vector2.UP.rotated(rotation)
 	# Power
@@ -67,14 +77,14 @@ func update_trajectory(line: Line2D, detect_unplaced: bool = false) -> ScreenCor
 	var query = init_query()
 
 	while power > 0:
-		var overlapping := world_physics.intersect_point(query)
+		var query_result := world_physics.intersect_point(query)
+		var overlapping_areas = query_result.map(func(collision): return collision.collider)
 		
 		# Check for colliding AGs first
-		current_ag = check_overlapping_ags(overlapping)
+		current_ag = check_overlapping_ags(overlapping_areas)
 
 		# Resolve other colliding objects
-		for collision in overlapping:
-			var area = collision.collider
+		for area: Area2D in overlapping_areas:
 			# Screen buttons
 			if area is ScreenButton:
 				if not current_ag:
@@ -83,10 +93,16 @@ func update_trajectory(line: Line2D, detect_unplaced: bool = false) -> ScreenCor
 					continue
 				match area.type:
 					ScreenButton.ButtonTypes.ORBIT:
+						if orbiting:
+							continue
 						orbiting = true
 					ScreenButton.ButtonTypes.UNORBIT:
+						if not orbiting:
+							continue
 						orbiting = false
 					ScreenButton.ButtonTypes.BOOST:
+						if not orbiting:
+							continue
 						orbiting = false
 						dir = -query.position.direction_to(current_ag.global_position)
 			# Hazards
@@ -116,7 +132,16 @@ func update_trajectory(line: Line2D, detect_unplaced: bool = false) -> ScreenCor
 			dir = vec_to_ag.normalized().rotated(angle * orbit_dir)
 		
 		# Update line and query
-		line.add_point(query.position - global_position)
+		var previous_point: Vector2 = Vector2.ZERO if line.points.is_empty() else line.points[-1]
+		var point: Vector2 = query.position - global_position
+		if record_point_state and not point_states.has(point):
+			point_states[point] = DiscreteScreenPuzzleState.new(
+				current_ag != null,
+				orbiting,
+				overlapping_areas,
+				previous_point
+			)
+		line.add_point(point)
 		query.position += dir * SPACING
 		power -= 1
 	return null
