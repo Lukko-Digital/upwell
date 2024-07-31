@@ -1,21 +1,36 @@
-extends Area2D
+@tool
+extends FolderClickable
 class_name ScreenCore
 
 @export_multiline var text: String
-@export var folder_button: FolderButton
-
-@onready var unopened_sprite: Sprite2D = $Unopened
-@onready var opened_sprite: Sprite2D = $Opened
+@export var folder_button: FolderButton:
+	set(value):
+		folder_button = value
+		update_configuration_warnings()
 
 ## BBCode ready text
 var parsed_text: String
 
 func _ready() -> void:
+	group = "ScreenCores"
+	super()
 	parsed_text = BBCodeParser.parse(text)
-	folder_button.parsed_text = parsed_text
+	folder_button.paired_core = self
 
-func visit() -> void:
-	unopened_sprite.hide()
-	opened_sprite.show()
-	folder_button.disabled = false
-	folder_button.button_pressed = true
+func open() -> void:
+	if highlighed:
+		return
+	# This will highlight the small folder
+	folder_button.opened = true
+	highlight()
+
+func launch_success():
+	pass
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings = []
+
+	if folder_button == null:
+		warnings.append("Missing folder button export")
+	
+	return warnings

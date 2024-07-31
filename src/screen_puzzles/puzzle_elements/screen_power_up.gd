@@ -3,7 +3,7 @@ class_name ScreenPowerUp
 
 @export var power: float = 100
 
-@onready var glow: Sprite2D = $ButtonGlow
+@onready var glow: Sprite2D = $Glow
 
 func _ready() -> void:
     glow.hide()

@@ -1,17 +1,18 @@
-extends TextureButton
+extends FolderClickable
 class_name FolderButton
 
-@onready var glow: Sprite2D = $FolderGlow
-
-## Set by paried [ScreenCore]
-var parsed_text: String
+## Set by the screen core
+var paired_core: ScreenCore
 
 signal folder_opened(text: String)
 
 func _ready() -> void:
-	disabled = true
+	group = "FolderButtons"
+	super()
 
-func _on_toggled(toggled_on: bool) -> void:
-	glow.visible = toggled_on
-	if toggled_on:
-		folder_opened.emit(parsed_text)
+func open():
+	if highlighed:
+		return
+	folder_opened.emit(paired_core.parsed_text)
+	highlight()
+	paired_core.highlight()

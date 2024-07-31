@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://203jmdgiwgko"]
-
-[ext_resource type="Texture2D" uid="uid://dujtxx3pi4qml" path="res://assets/ui/screen_puzzle/ACTION_HOLD_GLOW_CD.png" id="1_40lde"]
-
-[node name="ButtonGlow" type="Sprite2D"]
-scale = Vector2(1.7, 1.7)
-texture = ExtResource("1_40lde")

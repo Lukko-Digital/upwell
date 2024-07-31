@@ -1,25 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1fatgffin6hd"]
+[gd_scene load_steps=8 format=3 uid="uid://c1fatgffin6hd"]
 
 [ext_resource type="Script" path="res://src/screen_puzzles/puzzle_elements/screen_core.gd" id="1_lpcxw"]
-[ext_resource type="Texture2D" uid="uid://ccsf35jlguasg" path="res://assets/ui/screen_puzzle/folder_closed.png" id="2_6jcu7"]
-[ext_resource type="Texture2D" uid="uid://bwdlx3025vojs" path="res://assets/ui/screen_puzzle/folder_open.png" id="3_w034g"]
+[ext_resource type="Script" path="res://src/screen_puzzles/puzzle_elements/screen_core_area.gd" id="2_7vidw"]
+[ext_resource type="Texture2D" uid="uid://cq88cvv8qvyir" path="res://assets/ui/screen_puzzle_v2/folder_closed.png" id="2_f3shp"]
+[ext_resource type="Texture2D" uid="uid://bev1mwuuebyat" path="res://assets/ui/screen_puzzle_v2/folder_open.png" id="3_r3pk1"]
+[ext_resource type="Texture2D" uid="uid://c0et7qrr1u2u8" path="res://assets/ui/screen_puzzle_v2/folder_closed_hover.png" id="5_qed70"]
+[ext_resource type="Texture2D" uid="uid://bcy7n433tid38" path="res://assets/ui/screen_puzzle_v2/folder_open_active.png" id="6_vftc3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vidkj"]
 size = Vector2(119, 93)
 
-[node name="ScreenCore" type="Area2D"]
+[node name="ScreenCore" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_f3shp")
+script = ExtResource("1_lpcxw")
+text = null
+closed_texture = ExtResource("2_f3shp")
+open_texture = ExtResource("3_r3pk1")
+
+[node name="ScreenCore" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 2
-script = ExtResource("1_lpcxw")
+script = ExtResource("2_7vidw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 1.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenCore"]
+position = Vector2(66, 55)
 shape = SubResource("RectangleShape2D_vidkj")
 
-[node name="Unopened" type="Sprite2D" parent="."]
-texture = ExtResource("2_6jcu7")
-
-[node name="Opened" type="Sprite2D" parent="."]
+[node name="HoverGlow" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(8, 0)
-texture = ExtResource("3_w034g")
+position = Vector2(66, 54)
+texture = ExtResource("5_qed70")
+
+[node name="SelectedGlow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(60, 48)
+texture = ExtResource("6_vftc3")

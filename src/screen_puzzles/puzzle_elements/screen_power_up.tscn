@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/screen_puzzles/puzzle_elements/screen_power_up.gd" id="1_2ydu8"]
 [ext_resource type="Texture2D" uid="uid://dew5hi60yn8hw" path="res://assets/mvp3_assets/screenpuzzle/powerup.png" id="1_5p3rl"]
-[ext_resource type="PackedScene" uid="uid://203jmdgiwgko" path="res://src/screen_puzzles/helper/button_glow.tscn" id="3_h7o44"]
+[ext_resource type="PackedScene" uid="uid://q7evm7xgbh36" path="res://src/screen_puzzles/helper/hover_glow.tscn" id="3_6vnrq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_es4gw"]
 radius = 104.0
@@ -12,12 +12,12 @@ collision_layer = 32
 collision_mask = 2
 script = ExtResource("1_2ydu8")
 
-[node name="ButtonGlow" parent="." instance=ExtResource("3_h7o44")]
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
 self_modulate = Color(1, 1, 1, 0.462745)
 texture = ExtResource("1_5p3rl")
+
+[node name="Glow" parent="." instance=ExtResource("3_6vnrq")]
+scale = Vector2(1.645, 1.645)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_es4gw")

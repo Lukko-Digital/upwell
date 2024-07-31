@@ -1,31 +1,58 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdt2psjmwjsy6"]
+[gd_scene load_steps=11 format=3 uid="uid://bdt2psjmwjsy6"]
 
 [ext_resource type="Script" path="res://src/abstract_base_classes/screen_button.gd" id="1_de8wy"]
-[ext_resource type="PackedScene" uid="uid://203jmdgiwgko" path="res://src/screen_puzzles/helper/button_glow.tscn" id="2_1cpd1"]
-[ext_resource type="Texture2D" uid="uid://cy4uishmqrru5" path="res://assets/ui/screen_puzzle/ORBIT.png" id="3_8un3x"]
-[ext_resource type="Texture2D" uid="uid://b5o6pupk4dyql" path="res://assets/ui/screen_puzzle/ORBIT_HOLD.png" id="3_34ak7"]
+[ext_resource type="PackedScene" uid="uid://203jmdgiwgko" path="res://src/screen_puzzles/helper/action_glow.tscn" id="2_41ry0"]
+[ext_resource type="PackedScene" uid="uid://q7evm7xgbh36" path="res://src/screen_puzzles/helper/hover_glow.tscn" id="3_cdn7q"]
 [ext_resource type="PackedScene" uid="uid://nbku63cre6dq" path="res://src/screen_puzzles/helper/screen_draggable.tscn" id="3_q6umf"]
-[ext_resource type="Texture2D" uid="uid://d01dg8h4nyfr0" path="res://assets/ui/screen_puzzle/ORBIT_RELEASED.png" id="4_2ogto"]
+[ext_resource type="Texture2D" uid="uid://os5j1bg77va1" path="res://assets/ui/screen_puzzle_v2/orbit_neutral.png" id="6_x12oa"]
+[ext_resource type="Texture2D" uid="uid://cfaycmk78weq8" path="res://assets/ui/screen_puzzle_v2/orbit_held.png" id="7_c6ar5"]
 [ext_resource type="PackedScene" uid="uid://b5o52iwq1qlk5" path="res://src/screen_puzzles/helper/trajectory_line_detection_area.tscn" id="7_xr3at"]
+[ext_resource type="Texture2D" uid="uid://dl0d4s2s5q1x8" path="res://assets/ui/screen_puzzle_v2/orbit_placed.png" id="8_nh5rm"]
+[ext_resource type="Shape2D" uid="uid://cbk4pg1kawx1n" path="res://src/screen_puzzles/helper/screen_button_active_collider.tres" id="9_ku63c"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_y1ijg"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_kg03x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_x12oa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_c6ar5")
+}],
+"loop": true,
+"name": &"held",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_nh5rm")
+}],
+"loop": true,
+"name": &"placed",
+"speed": 5.0
+}]
 
 [node name="ScreenButtonOrbit" type="Area2D"]
 collision_layer = 32
 collision_mask = 2
 script = ExtResource("1_de8wy")
 type = 3
-normal_texture = ExtResource("3_8un3x")
-held_texture = ExtResource("3_34ak7")
-released_texture = ExtResource("4_2ogto")
 
-[node name="ButtonGlow" parent="." instance=ExtResource("2_1cpd1")]
+[node name="ActionGlow" parent="." instance=ExtResource("2_41ry0")]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_8un3x")
+[node name="HoverGlow" parent="." instance=ExtResource("3_cdn7q")]
+
+[node name="ButtonSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kg03x")
+animation = &"held"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_y1ijg")
+shape = ExtResource("9_ku63c")
 
 [node name="ScreenDraggable" parent="." instance=ExtResource("3_q6umf")]
 
