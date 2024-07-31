@@ -169,3 +169,6 @@ func update_collision_segments():
 			point_a = points.pop_front()
 		collision.shape.a = point_a
 		collision.shape.b = point_b
+
+func launch_success():
+	pass

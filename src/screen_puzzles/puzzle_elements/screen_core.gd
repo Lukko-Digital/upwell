@@ -17,3 +17,6 @@ func open() -> void:
 	# This will highlight the small folder
 	folder_button.opened = true
 	highlight()
+
+func launch_success():
+	pass

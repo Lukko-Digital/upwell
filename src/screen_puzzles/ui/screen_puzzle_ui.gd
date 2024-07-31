@@ -21,16 +21,33 @@ func _ready() -> void:
 func _on_folder_opened(text: String):
 	main_text_label.text = text
 
-func _on_launch_button_pressed() -> void:
-	var folder: ScreenCore = screen_player.targeted_folder
-	if folder:
-		folder.opened = true
-		launch_result_label.text = LAUNCH_TEXT.SUCCESS
-	else:
-		launch_result_label.text = LAUNCH_TEXT.FAIL
+func launch_success(folder: ScreenCore):
+	folder.opened = true
+	folder.launch_success()
+	screen_player.launch_success()
+	
+	## REPLACE THIS WITH YOUR CODE
+	launch_result_label.text = LAUNCH_TEXT.SUCCESS
 	launch_result_label.show()
 	await get_tree().create_timer(1).timeout
 	launch_result_label.hide()
+	## ---
+
+func launch_fail():
+	## REPLACE THIS WITH YOUR CODE
+	launch_result_label.text = LAUNCH_TEXT.FAIL
+	launch_result_label.show()
+	await get_tree().create_timer(1).timeout
+	launch_result_label.hide()
+	## ---
+
+
+func _on_launch_button_pressed() -> void:
+	var folder: ScreenCore = screen_player.targeted_folder
+	if folder:
+		launch_success(folder)
+	else:
+		launch_fail()
 
 func _on_reset_button_pressed() -> void:
 	# Reset all [ScreenButton]
