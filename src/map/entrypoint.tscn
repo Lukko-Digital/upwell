@@ -14,10 +14,14 @@ entry_number = null
 locked = null
 
 [node name="EntrypointUnselected" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.705882)
+scale = Vector2(0.851185, 0.851185)
 texture = ExtResource("2_3lf3r")
 
 [node name="EntrypointSelected" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(1, 1)
+scale = Vector2(0.983301, 0.983301)
 texture = ExtResource("3_ekrbh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
