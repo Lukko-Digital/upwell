@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c42v1gkf6sf4k"]
+
+[ext_resource type="Script" path="res://src/artificial_gravity/artificial_gravity.gd" id="1_irft5"]
+[ext_resource type="PackedScene" uid="uid://d4jqyovssydvt" path="res://src/artificial_gravity/glow_sprite.tscn" id="2_c2gly"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ego6m"]
+radius = 171.009
+
+[node name="Gravity" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_irft5")
+
+[node name="Glow" parent="." instance=ExtResource("2_c2gly")]
+modulate = Color(1, 1, 1, 0.2)
+scale = Vector2(0.38002, 0.38002)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_ego6m")
+
+[node name="RegenTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
