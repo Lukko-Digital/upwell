@@ -23,27 +23,28 @@ func _ready() -> void:
 	nodule.hide()
 
 func interact(player: Player):
-
 	interact_label.hide()
-	
-	if faces_you_during_dialogue:
-		assert(npc_sprite != null, "You need to set the sprite export variable for NPC \"" + name + "\"")
-		var vec_to_player = player.global_position - global_position
-		var player_on_right = vec_to_player.x > 0
-		## Truth table
-		## player is on the right | default left facing | flip
-		## -------------------------------------------
-		## true           		  | true                | true
-		## true           		  | false               | false
-		## false         		  | true                | false
-		## false          		  | false               | true
-		npc_sprite.flip_h = (player_on_right == default_left_facing)
-
-		var offset_dir = -1 if npc_sprite.flip_h else 1
-		npc_sprite.offset = offset_dir * default_sprite_offset
-
-		nodule.position.x = sign(vec_to_player.x) * abs(nodule.position.x)
-		nodule.flip_h = player_on_right
-
-	player.start_dialogue(self)
+	player.init_npc_interaction(self)
 	Global.set_camera_focus.emit(self)
+
+func face_player(player: Player):
+	if not faces_you_during_dialogue:
+		return
+
+	assert(npc_sprite != null, "You need to set the sprite export variable for NPC \"" + name + "\"")
+	var vec_to_player = player.global_position - global_position
+	var player_on_right = vec_to_player.x > 0
+	## Truth table
+	## player is on the right | default left facing | flip
+	## -------------------------------------------
+	## true           		  | true                | true
+	## true           		  | false               | false
+	## false         		  | true                | false
+	## false          		  | false               | true
+	npc_sprite.flip_h = (player_on_right == default_left_facing)
+
+	var offset_dir = -1 if npc_sprite.flip_h else 1
+	npc_sprite.offset = offset_dir * default_sprite_offset
+
+	nodule.position.x = sign(vec_to_player.x) * abs(nodule.position.x)
+	nodule.flip_h = player_on_right

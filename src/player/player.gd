@@ -22,6 +22,9 @@ const THROW = {
 	## Equivalent to sensitivity, larger number is lower sensitivity
 	CIRCLE_RADIUS = 150
 }
+
+const NPC_WALK_AWAY_DISTANCE = 200
+
 var STARTING_THROW_DIRECTION = Vector2.UP
 
 @export_group("Node References")
@@ -51,7 +54,7 @@ var clicker_inventory: Array[ClickerInfo]
 
 ## -------------------------- PLAYER STATE VARIABLES --------------------------
 
-var in_dialogue: bool = false
+var current_dialogue_npc: NPC = null
 var focused_on_screen: bool = false
 
 # Jumping + Air Strafing
@@ -136,7 +139,7 @@ func _input(event: InputEvent) -> void:
 		throw()
 
 	if event.is_action_pressed("ui_cancel"):
-		if in_dialogue:
+		if in_dialogue():
 			dialogue_ui.exit_dialogue()
 
 ## ------------------------------ GRAVITY ------------------------------
@@ -144,7 +147,7 @@ func _input(event: InputEvent) -> void:
 func handle_artificial_gravity(delta) -> GravitizedComponent.GravityState:
 	if (
 		not has_clicker() or
-		in_dialogue
+		in_dialogue()
 	):
 		return GravitizedComponent.GravityState.NONE
 
@@ -166,9 +169,6 @@ func handle_world_gravity(delta: float, gravity_state: GravitizedComponent.Gravi
 ## ------------------------------ MOVEMENT ------------------------------
 
 func handle_movement(delta: float, gravity_state: GravitizedComponent.GravityState) -> float:
-	if in_dialogue:
-		return 0
-
 	var speed_coef = 1.0
 	if gravity_state == GravitizedComponent.GravityState.ORBIT:
 		speed_coef = PLAYER.ORBIT_STRAFE_SLOWDOWN
@@ -183,8 +183,16 @@ func handle_movement(delta: float, gravity_state: GravitizedComponent.GravitySta
 	elif is_on_floor() or horizontal_direction != previous_horizontal_direction:
 		disable_airborne_decel = false
 	previous_horizontal_direction = horizontal_direction
-	# walking & air strafing
-	var input_direction = Input.get_axis("left", "right")
+
+	# Walking & air strafing
+	var input_direction: float
+
+	# If in dialogue, auto determine input_direction
+	if in_dialogue():
+		input_direction = handle_walk_away_from_npc()
+	else:
+		input_direction = Input.get_axis("left", "right")
+
 	if abs(velocity.x) < top_speed or horizontal_direction != sign(input_direction):
 		# If moving under top speed or input is not in the same direction of
 		# movement, accelerate player towards direction of movement, this
@@ -202,6 +210,32 @@ func handle_movement(delta: float, gravity_state: GravitizedComponent.GravitySta
 			PLAYER.ACCELERATION * speed_coef * delta
 		)
 	return input_direction
+
+## Returns automatically determined input direction for player to move in
+func handle_walk_away_from_npc() -> float:
+	var vec_to_npc = current_dialogue_npc.global_position - global_position
+	var dir_to_npc = sign(vec_to_npc.x)
+	var npc_to_the_right = (dir_to_npc == 1)
+
+	# If the conversation has been started, stay still
+	if dialogue_ui.current_npc == current_dialogue_npc:
+		return 0
+	# If midair, also stay still
+	if not is_on_floor():
+		return 0
+
+	# Walk away if too close
+	if abs(vec_to_npc.x) < NPC_WALK_AWAY_DISTANCE:
+		return -dir_to_npc
+	# If far enough, start dialogue
+	else:
+		current_dialogue_npc.face_player(self)
+		dialogue_ui.start_dialogue(current_dialogue_npc)
+		# If facing the wrong way, turn to face npc
+		if player_sprite.flip_h == npc_to_the_right:
+			return dir_to_npc
+		else:
+			return 0
 
 ## ----------------------------- ANIMATION -----------------------------
 
@@ -277,7 +311,7 @@ func handle_coyote_timing(gravity_state: GravitizedComponent.GravityState):
 
 func jump():
 	# No jump when holding shift or when in dialogue
-	if Input.is_action_pressed("orbit") or in_dialogue:
+	if Input.is_action_pressed("orbit") or in_dialogue():
 		return
 	if is_on_floor() or not coyote_timer.is_stopped():
 		velocity.y = -PLAYER.JUMP_VELOCITY
@@ -326,7 +360,7 @@ func handle_nearby_interactables():
 		highlighted_interactable = nearby_interactables[0]
 
 func interact():
-	if in_dialogue:
+	if in_dialogue():
 		return
 
 	if highlighted_interactable != null:
@@ -334,10 +368,14 @@ func interact():
 	elif has_clicker():
 		spawn_clicker()
 
-func start_dialogue(npc: NPC):
-	velocity = Vector2.ZERO
-	dialogue_ui.start_dialogue(npc)
-	in_dialogue = true
+### ----------------------------- DIALOGUE -----------------------------
+
+func in_dialogue():
+	return current_dialogue_npc != null
+
+## Called when player interacts with an NPC
+func init_npc_interaction(npc: NPC):
+	current_dialogue_npc = npc
 
 ### ----------------------------- CLICKER -----------------------------
 
@@ -386,7 +424,7 @@ func can_throw():
 	return (
 		has_clicker() and
 		not focused_on_screen and
-		not in_dialogue
+		not in_dialogue()
 	)
 
 func throw():
@@ -434,7 +472,7 @@ func handle_throw_arc():
 ## ------------------------------ SIGNAL HANDLES ------------------------------
 
 func _on_dialogue_ui_dialogue_finished() -> void:
-	in_dialogue = false
+	current_dialogue_npc = null
 	Global.set_camera_focus.emit(null)
 
 func _camera_focus_net(focus: Node2D):
