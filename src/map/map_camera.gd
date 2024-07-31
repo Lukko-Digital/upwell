@@ -14,7 +14,6 @@ func _ready() -> void:
 	player.select_destination.connect(destination_selected)
 
 func _process(_delta: float) -> void:
-	return
 	if player.moving:
 		global_position = lerp(global_position, player.global_position, 0.01)
 	elif player_destination:
