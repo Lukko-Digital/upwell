@@ -131,9 +131,9 @@ func animate_display(dialogue_line: String):
 	var bbcode_text = DialogueParser.strip_dialogue_commands(dialogue_line)
 	var idx = 0
 	while idx < command_text.length():
-		# Exit if the active speech bubble gets despawned. This will happen
-		# when the player exits dialogue prematurely via [esc].
-		if active_dialogue_display == null:
+		# Exit if there is no current_npc. This will happen when the player
+		# exits dialogue prematurely via [esc].
+		if current_npc == null:
 			return
 
 		# Cancel this instance of display animation if text is mismatched
