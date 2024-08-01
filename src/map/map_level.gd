@@ -12,7 +12,6 @@ class_name MapLevel
 		label.text = value
 		
 @onready var game: Game = get_tree().get_current_scene()
-@onready var gravity_area = $Gravity
 @onready var level_sprite = get_sprite()
 
 func _on_area_entered(_area: Area2D):
@@ -21,10 +20,6 @@ func _on_area_entered(_area: Area2D):
 func _ready() -> void:
 	if not Engine.is_editor_hint():
 		hide()
-
-func _process(_delta):
-	if not Engine.is_editor_hint():
-		gravity_area.visible = Global.pod_has_clicker
 
 func get_sprite():
 	for child in get_children():
