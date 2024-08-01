@@ -25,6 +25,7 @@ var holder_owned_by: ClickerHolder:
 			z_index = default_z_index
 		else:
 			z_index = value.z_index - 1
+		holder_owned_by = value
 
 func set_controllable(value: bool):
 	lights_sprite.visible = value
