@@ -35,6 +35,8 @@ var shake_amount: float
 
 func _ready():
 	# Connect signals
+	if get_parent() is Game:
+		Global.main_camera = self
 	Global.set_camera_focus.connect(_set_focus)
 
 func _process(delta):
