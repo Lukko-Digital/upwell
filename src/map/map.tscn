@@ -1,10 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://bb68hmcptqlgt"]
+[gd_scene load_steps=32 format=3 uid="uid://bb68hmcptqlgt"]
 
 [ext_resource type="Script" path="res://src/map/map.gd" id="1_ithwi"]
 [ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player/map_player.tscn" id="2_uwq5e"]
 [ext_resource type="PackedScene" uid="uid://ql7gm3yuyicr" path="res://src/map/map_level.tscn" id="4_17lxb"]
+[ext_resource type="PackedScene" uid="uid://ddr5y2jew2y0i" path="res://src/levels/H32_NUCLEAR_NEWVISUALS.tscn" id="4_lnn40"]
 [ext_resource type="PackedScene" uid="uid://bbrkg6cjjyr4k" path="res://src/levels/CONTACT.tscn" id="5_ga2oe"]
-[ext_resource type="PackedScene" uid="uid://c413chwmpxtw1" path="res://src/levels/H32_NUCLEAR.tscn" id="5_og8y0"]
 [ext_resource type="PackedScene" uid="uid://bwmwenrm8xori" path="res://src/map/coolant_pocket.tscn" id="6_4a6mq"]
 [ext_resource type="PackedScene" uid="uid://bgym5f33j1iv6" path="res://src/map/entrypoint.tscn" id="6_ei32m"]
 [ext_resource type="PackedScene" uid="uid://troio1f4apa4" path="res://src/map/map_ag.tscn" id="7_2vcom"]
@@ -32,6 +32,9 @@
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ef2c0"]
 blend_mode = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ahvh1"]
+radius = 215.75
 
 [node name="Map" type="Node2D"]
 scale = Vector2(4, 4)
@@ -120,11 +123,12 @@ metadata/_edit_lock_ = true
 [node name="Levels" type="Node2D" parent="."]
 
 [node name="H32_NUCLEAR" parent="Levels" instance=ExtResource("4_17lxb")]
-level = ExtResource("5_og8y0")
+level = ExtResource("4_lnn40")
 name_text = "H32.NUCLEAR"
 
 [node name="Entrypoint3" parent="Levels/H32_NUCLEAR" instance=ExtResource("6_ei32m")]
 position = Vector2(15.25, -96)
+entry_number = 1
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/H32_NUCLEAR"]
 position = Vector2(-10.8308, -6.19836)
@@ -176,11 +180,12 @@ name_text = "003.TEST"
 
 [node name="Entrypoint4" parent="Levels/003_TEST" instance=ExtResource("6_ei32m")]
 position = Vector2(-13, -88.75)
+entry_number = 1
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/003_TEST"]
 position = Vector2(-4.72519, 19.4886)
 rotation = -1.57079
-polygon = PackedVector2Array(59.0375, -78.5864, 40.6616, 1.5639, 72.7217, 59.4285, 69.9, 73.5, 56.9, 87.5, 54.8, 87.5, 38.7, 100.5, 36.6, 100.5, 14.5, 112.5, 8.3, 112.5, -16, 115.8, -16, 114.1, -34, 110.1, -34, 108.6, -49, 99.6, -49, 98.2, -59, 86.2, -59, 83, -64, 74, -64, 72.9, -71.7, 35.5, -95, -5, -95, -6.5, -99, -22.3, -99, -23.6, -97.9, -39.5, -96.5, -39.5, -89.5, -64.5, -87.9, -64.5, -69.9, -84.5, -2.73685, -96.1804)
+polygon = PackedVector2Array(12.9885, -17.5249, 72.7217, 59.4285, 69.9, 73.5, 56.9, 87.5, 54.8, 87.5, 38.7, 100.5, 36.6, 100.5, 14.5, 112.5, 8.3, 112.5, -16, 115.8, -16, 114.1, -34, 110.1, -34, 108.6, -49, 99.6, -49, 98.2, -59, 86.2, -59, 83, -64, 74, -64, 72.9, -71.7, 35.5, -95, -5, -95, -6.5, -99, -22.3, -99, -23.6, -97.9, -39.5, -96.5, -39.5)
 
 [node name="5" type="Sprite2D" parent="Levels/003_TEST"]
 self_modulate = Color(1, 1, 1, 0.552941)
@@ -188,6 +193,11 @@ material = SubResource("CanvasItemMaterial_ef2c0")
 position = Vector2(-4.72519, 19.4886)
 rotation = -1.57079
 texture = ExtResource("13_qorjw")
+
+[node name="Entrypoint5" parent="Levels/003_TEST" instance=ExtResource("6_ei32m")]
+position = Vector2(-109.25, 45.25)
+
+[node name="MapAG" parent="Levels/003_TEST" instance=ExtResource("7_2vcom")]
 
 [node name="002_FALL" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(681.5, 113.25)
@@ -251,6 +261,14 @@ rotation = -0.785397
 scale = Vector2(0.536984, 0.536984)
 polygon = PackedVector2Array(27, -142.7, 27, -141.3, 51, -131.3, 51, -129.8, 76, -105.9, 76, -103.7, 85.9, -92, 91, -90.4, 91, -87.7, 107, -65.7, 107, -63.4, 116, -43.4, 116, -39, 121, -19.2, 121, 3, 119.7, 3, 113.7, 43, 112.3, 43, 95.3, 80, 94.1, 80, 69.2965, 85.5724, 18.0023, 65.8439, -47.1017, 83.5997, -110, 3.39999, -110, 2, -117, -25.8, -117, -73, -115.4, -73, -105.4, -98, -103.8, -98, -74.8, -126, -71.7, -126, -64.7, -132, -63.3, -132, -36, -140.5, -32.8, -144, -31.1, -144, -6, -145.9, -6, -147.3)
 
+[node name="MapAG" parent="Levels/004_RELAPSE" instance=ExtResource("7_2vcom")]
+
+[node name="Glow" parent="Levels/004_RELAPSE/MapAG" index="0"]
+scale = Vector2(0.479444, 0.479444)
+
+[node name="CollisionShape2D" parent="Levels/004_RELAPSE/MapAG" index="1"]
+shape = SubResource("CircleShape2D_ahvh1")
+
 [node name="005_STORAGE" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(1043.25, -425.75)
 level = ExtResource("11_ku1uv")
@@ -287,6 +305,8 @@ position = Vector2(0, 1.75)
 rotation = -0.785397
 scale = Vector2(0.353635, 0.353635)
 polygon = PackedVector2Array(27, -142.7, 27, -141.3, 51, -131.3, 51, -129.8, 76, -105.9, 76, -103.7, 85.9, -92, 91, -90.4, 91, -87.7, 107, -65.7, 107, -63.4, 116, -43.4, 116, -39, 121, -19.2, 121, 3, 119.7, 3, 113.7, 43, 112.3, 43, 95.3, 80, 94.1, 80, 71.1, 115, 69.8, 115, 44.8, 139, 42.5, 139, 28.5, 147, 23.1, 147, -8, 149.1, -8, 147.4, -32, 139.4, -32, 137.9, -52, 120.9, -52, 118.7, -68, 96.7, -68, 93.4, -110, 3.39999, -110, 2, -117, -25.8, -117, -73, -115.4, -73, -105.4, -98, -103.8, -98, -74.8, -126, -71.7, -126, -64.7, -132, -63.3, -132, -36, -140.5, -32.8, -144, -31.1, -144, -6, -145.9, -6, -147.3)
+
+[node name="MapAG" parent="Levels/UNVISITABLE2" instance=ExtResource("7_2vcom")]
 
 [node name="UNKNOWN" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(-2114.75, 0)
@@ -326,6 +346,14 @@ position = Vector2(0, 1.75)
 rotation = -1.57079
 scale = Vector2(0.259992, 0.259992)
 polygon = PackedVector2Array(27, -142.7, 27, -141.3, 51, -131.3, 51, -129.8, 76, -105.9, 76, -103.7, 85.9, -92, 91, -90.4, 91, -87.7, 107, -65.7, 107, -63.4, 116, -43.4, 116, -39, 121, -19.2, 121, 3, 119.7, 3, 113.7, 43, 112.3, 43, 95.3, 80, 94.1, 80, 71.1, 115, 69.8, 115, 44.8, 139, 42.5, 139, 28.5, 147, 23.1, 147, -8, 149.1, -8, 147.4, -32, 139.4, -32, 137.9, -52, 120.9, -52, 118.7, -68, 96.7, -68, 93.4, -110, 3.39999, -110, 2, -117, -25.8, -117, -73, -115.4, -73, -105.4, -98, -103.8, -98, -74.8, -126, -71.7, -126, -64.7, -132, -63.3, -132, -36, -140.5, -32.8, -144, -31.1, -144, -6, -145.9, -6, -147.3)
+
+[node name="MapAG" parent="Levels/UNVISITABLE" instance=ExtResource("7_2vcom")]
+
+[node name="Glow" parent="Levels/UNVISITABLE/MapAG" index="0"]
+scale = Vector2(0.504934, 0.504934)
+
+[node name="CollisionShape2D" parent="Levels/UNVISITABLE/MapAG" index="1"]
+visible = true
 
 [node name="MapPlayer" parent="." instance=ExtResource("2_uwq5e")]
 position = Vector2(15.25, -96)
@@ -1223,3 +1251,5 @@ metadata/_edit_lock_ = true
 
 [editable path="Levels/H32_NUCLEAR"]
 [editable path="Levels/001_CONTACT"]
+[editable path="Levels/004_RELAPSE/MapAG"]
+[editable path="Levels/UNVISITABLE/MapAG"]
