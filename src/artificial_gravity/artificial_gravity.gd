@@ -7,8 +7,9 @@ const DEATH_TIME = 0.3
 const REGROW_TIME = 1
 const DEATH_TRANSITION = Tween.TRANS_CUBIC
 const REGROW_TRANSITION = Tween.TRANS_CUBIC
+## The radius of the sprite at normal scale
+const DEFAULT_RADIUS = 450
 
-@export var DEFAULT_RADIUS = 450
 ## The time it takes from disabling the AG to it starting to regrow
 @export var regen_wait_time: float = 1.0
 
