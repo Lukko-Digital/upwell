@@ -35,8 +35,6 @@ var shake_amount: float
 
 func _ready():
 	# Connect signals
-	Global.camera_shake.connect(_shake)
-	Global.stop_camera_shake.connect(_stop_shake)
 	Global.set_camera_focus.connect(_set_focus)
 
 func _process(delta):
@@ -45,6 +43,8 @@ func _process(delta):
 	handle_follow_player(delta)
 	handle_shake()
 	handle_particle_tracking()
+
+## -------------------------- CAMERA MOVEMENT & FOCUS --------------------------
 
 ## Translate the camera to focus on a focus point. Zoom on screens.
 func handle_focus(delta):
@@ -159,29 +159,33 @@ func handle_follow_player(delta):
 		
 	zoom = lerp(zoom, Vector2.ONE * CAMERA.NORMAL_ZOOM, CAMERA.MAP_ZOOM_SPEED * delta)
 
+## -------------------------- PARTICLES --------------------------
+
+## Track all particles to the camera
+func handle_particle_tracking():
+	get_tree().call_group("Particles", "move_particles", position)
+
+## -------------------------- SHAKE --------------------------
+
 ## Shake the camera for a given time by changing [offset]
 func handle_shake():
 	if shake_timer.is_stopped():
 		offset = Vector2.ZERO
 		return
 	var shake_offset = Vector2(
-		randf_range( - 1, 1),
-		randf_range( - 1, 1)
+		randf_range(-1, 1),
+		randf_range(-1, 1)
 	) * shake_amount
 	offset = shake_offset
 
-## Track all particles to the camera
-func handle_particle_tracking():
-	get_tree().call_group("Particles", "move_particles", position)
-
 ## Receiver for the global [camera_shake] signal
-func _shake(duration: float, amount: float):
+func set_shake(duration: float, amount: float):
 	shake_timer.stop()
 	shake_timer.start(duration)
 	shake_amount = amount
 
 ## Receiver for the global [stop_camera_shake] signal
-func _stop_shake():
+func stop_shake():
 	shake_timer.stop()
 
 ## Receiver for the global [set_camera_focus] signal

@@ -123,7 +123,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func lerp_shake(delta: float):
 	current_shake = lerp(current_shake, target_shake, delta * shake_lerp_speed)
 	if current_shake != target_shake:
-		Global.camera_shake.emit(INF, current_shake)
+		Global.main_camera.shake(INF, current_shake)
 	else:
 		shake_lerp_speed = BASE_SHAKE_LERP_SPEED
 
@@ -263,7 +263,7 @@ func hit_hazard() -> void:
 
 func _area_scanned(area: Area2D) -> void:
 	if area is MapLocation:
-		if not area.locked&&!area.visible:
+		if not area.locked && !area.visible:
 			var base_modulate: Color = area.modulate
 			area.modulate = Color(1, 1, 1, 0)
 			area.show()
