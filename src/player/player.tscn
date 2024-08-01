@@ -1,6 +1,7 @@
 [gd_scene load_steps=78 format=3 uid="uid://tfy83b2uc6hh"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_lbj7m"]
+[ext_resource type="Shader" path="res://src/shaders/screen.gdshader" id="2_04goy"]
 [ext_resource type="Texture2D" uid="uid://cnuqbnvjsg53d" path="res://assets/mvp4_assets/player.png" id="2_6q4jk"]
 [ext_resource type="PackedScene" uid="uid://br8qm13yce4pr" path="res://src/dialogue/dialogue_ui.tscn" id="2_cft6f"]
 [ext_resource type="Texture2D" uid="uid://beqw2kqt8bvnj" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Fall-0034.tres" id="3_ba3dt"]
@@ -73,8 +74,9 @@
 [ext_resource type="Texture2D" uid="uid://bja44rnyrckbp" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0047.tres" id="49_2loi1"]
 [ext_resource type="Texture2D" uid="uid://cl70b2e23wwkm" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0048.tres" id="50_cwdsw"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_y3je8"]
-blend_mode = 1
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8t666"]
+shader = ExtResource("2_04goy")
+shader_parameter/intensity = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nrpse"]
 animations = [{
@@ -342,7 +344,7 @@ min_jump_timer = NodePath("Timers/MinimumJumpTimer")
 throw_arc_line = NodePath("ThrowArc")
 
 [node name="PlayerGlow" type="Sprite2D" parent="."]
-material = SubResource("CanvasItemMaterial_y3je8")
+material = SubResource("ShaderMaterial_8t666")
 position = Vector2(-8, -23)
 texture = ExtResource("3_ru4vn")
 

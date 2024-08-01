@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bb68hmcptqlgt"]
+[gd_scene load_steps=34 format=3 uid="uid://bb68hmcptqlgt"]
 
 [ext_resource type="Script" path="res://src/map/map.gd" id="1_ithwi"]
 [ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player/map_player.tscn" id="2_uwq5e"]
@@ -6,18 +6,24 @@
 [ext_resource type="PackedScene" uid="uid://bbrkg6cjjyr4k" path="res://src/levels/CONTACT.tscn" id="5_ga2oe"]
 [ext_resource type="PackedScene" uid="uid://c413chwmpxtw1" path="res://src/levels/H32_NUCLEAR.tscn" id="5_og8y0"]
 [ext_resource type="PackedScene" uid="uid://bwmwenrm8xori" path="res://src/map/coolant_pocket.tscn" id="6_4a6mq"]
+[ext_resource type="Script" path="res://src/artificial_gravity/artificial_gravity.gd" id="6_5ab28"]
 [ext_resource type="PackedScene" uid="uid://bgym5f33j1iv6" path="res://src/map/entrypoint.tscn" id="6_ei32m"]
 [ext_resource type="PackedScene" uid="uid://dl1nh6jj657a" path="res://src/levels/FALL.tscn" id="7_kq772"]
+[ext_resource type="PackedScene" uid="uid://d4jqyovssydvt" path="res://src/artificial_gravity/glow_sprite.tscn" id="7_x2yq8"]
 [ext_resource type="PackedScene" uid="uid://bttepvab6oghg" path="res://src/levels/TEST_NEWVISUALS.tscn" id="8_itcue"]
 [ext_resource type="PackedScene" uid="uid://ckbe13djrw5lh" path="res://src/map/hazard.tscn" id="8_xqpvg"]
 [ext_resource type="PackedScene" uid="uid://cr2ov0m76vreo" path="res://src/levels/RELAPSE.tscn" id="9_bymtf"]
 [ext_resource type="PackedScene" uid="uid://duwam6d8wx6x" path="res://src/levels/RECURRENCE.tscn" id="9_f7cig"]
+[ext_resource type="Texture2D" uid="uid://kiyodrjoqrvk" path="res://assets/ui/map/levels/5.png" id="11_1rvr8"]
 [ext_resource type="PackedScene" uid="uid://c5vp55dla36kl" path="res://src/levels/STORAGE.tscn" id="11_ku1uv"]
 [ext_resource type="Texture2D" uid="uid://dc6nfaju78e60" path="res://assets/environment/test_level/particle_softest.png" id="12_kdma8"]
 [ext_resource type="PackedScene" uid="uid://chgnsi8mbmv5m" path="res://src/levels/UNKNOWN.tscn" id="12_tpuyl"]
+[ext_resource type="Texture2D" uid="uid://bkkefy4nsaq2o" path="res://assets/ui/map/levels/6.png" id="13_qorjw"]
 [ext_resource type="Script" path="res://src/map/map_camera.gd" id="14_3djto"]
 [ext_resource type="Texture2D" uid="uid://ixonxlg6v01d" path="res://assets/ui/map/fuel pockets/1.png" id="15_4x36h"]
+[ext_resource type="Texture2D" uid="uid://vilb3ruiunqj" path="res://assets/ui/map/levels/7.png" id="15_aurv3"]
 [ext_resource type="Texture2D" uid="uid://buvp8an66o2uo" path="res://assets/ui/map/fuel pockets/5.png" id="16_g8ccc"]
+[ext_resource type="PackedScene" uid="uid://c42v1gkf6sf4k" path="res://src/map/gravity.tscn" id="16_kt3d7"]
 [ext_resource type="Texture2D" uid="uid://u0jvbltuopk2" path="res://assets/ui/map/fuel pockets/6.png" id="17_506vn"]
 [ext_resource type="Texture2D" uid="uid://dfhiny7pt775r" path="res://assets/ui/map/fuel pockets/7.png" id="18_lb6oq"]
 [ext_resource type="Texture2D" uid="uid://urcj8q4otmsh" path="res://assets/ui/map/fuel pockets/8.png" id="19_fvbb2"]
@@ -25,6 +31,12 @@
 [ext_resource type="Texture2D" uid="uid://1qen0i4e2wgm" path="res://assets/ui/map/hazards/5.png" id="22_holn1"]
 [ext_resource type="Texture2D" uid="uid://wmhlvsrvcevl" path="res://assets/ui/map/hazards/6.png" id="23_kra0l"]
 [ext_resource type="Texture2D" uid="uid://bao31jflk7wxf" path="res://assets/ui/map/hazards/7.png" id="24_xw48m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yyf3a"]
+radius = 196.307
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ef2c0"]
+blend_mode = 1
 
 [node name="Map" type="Node2D"]
 scale = Vector2(4, 4)
@@ -39,6 +51,7 @@ follow_viewport_enabled = true
 follow_viewport_scale = 1.24
 
 [node name="ParticleSoftest" type="Sprite2D" parent="FX/CanvasLayer"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(-2668.65, -599.677)
 scale = Vector2(4, 4)
@@ -46,6 +59,7 @@ texture = ExtResource("12_kdma8")
 metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest2" type="Sprite2D" parent="FX/CanvasLayer"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(1971.35, -631.677)
 scale = Vector2(4, 4)
@@ -53,6 +67,7 @@ texture = ExtResource("12_kdma8")
 metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest3" type="Sprite2D" parent="FX/CanvasLayer"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(-396.645, 1288.32)
 scale = Vector2(4, 4)
@@ -60,6 +75,7 @@ texture = ExtResource("12_kdma8")
 metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest4" type="Sprite2D" parent="FX/CanvasLayer"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(147.355, -3031.68)
 scale = Vector2(4, 4)
@@ -67,6 +83,7 @@ texture = ExtResource("12_kdma8")
 metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest5" type="Sprite2D" parent="FX/CanvasLayer"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(-492.645, -471.677)
 scale = Vector2(4, 4)
@@ -74,6 +91,7 @@ texture = ExtResource("12_kdma8")
 metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest6" type="Sprite2D" parent="FX/CanvasLayer"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(-3180.65, -2615.68)
 scale = Vector2(4, 4)
@@ -81,6 +99,7 @@ texture = ExtResource("12_kdma8")
 metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest7" type="Sprite2D" parent="FX/CanvasLayer"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(-2476.65, 1992.32)
 scale = Vector2(4, 4)
@@ -88,6 +107,7 @@ texture = ExtResource("12_kdma8")
 metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest8" type="Sprite2D" parent="FX/CanvasLayer"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(787.355, 2184.32)
 scale = Vector2(4, 4)
@@ -95,6 +115,7 @@ texture = ExtResource("12_kdma8")
 metadata/_edit_lock_ = true
 
 [node name="ParticleSoftest9" type="Sprite2D" parent="FX/CanvasLayer"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.372549)
 position = Vector2(3859.35, 232.322)
 scale = Vector2(4, 4)
@@ -108,19 +129,80 @@ level = ExtResource("5_og8y0")
 name_text = "H32.NUCLEAR"
 
 [node name="Entrypoint3" parent="Levels/H32_NUCLEAR" instance=ExtResource("6_ei32m")]
-position = Vector2(47.75, -113)
+position = Vector2(15.25, -96)
+
+[node name="Gravity" type="Area2D" parent="Levels/H32_NUCLEAR"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("6_5ab28")
+
+[node name="Glow" parent="Levels/H32_NUCLEAR/Gravity" instance=ExtResource("7_x2yq8")]
+modulate = Color(1, 1, 1, 0.2)
+scale = Vector2(0.436239, 0.436239)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/H32_NUCLEAR/Gravity"]
+visible = false
+shape = SubResource("CircleShape2D_yyf3a")
+
+[node name="RegenTimer" type="Timer" parent="Levels/H32_NUCLEAR/Gravity"]
+one_shot = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/H32_NUCLEAR"]
+position = Vector2(-10.8308, -6.19836)
+rotation = -0.261799
+scale = Vector2(0.716837, 0.716837)
+polygon = PackedVector2Array(-13.2407, -55.2535, 76.2106, -32.0073, 79.5, 85.5, 78.2, 85.5, 70.1, 126.5, 68.9, 126.5, 65.9, 135.5, 64.5, 135.5, 51.5, 151.5, 49.1, 151.5, 31.1, 163.5, 5.5, 164.6, 5.5, 162.9, -9.5, 157.9, -9.5, 156.6, -24.5, 147.6, -24.5, 146.2, -41.5, 127.3, -41.5, 125.1, -61.5, 94.1, -61.5, 92.9, -77.5, 52.9, -77.5, 51.8, -94.5, -6.2, -94.5, -12.5, -97.7, -49.5, -96, -49.5, -69.0049, -69.4734)
+
+[node name="5" type="Sprite2D" parent="Levels/H32_NUCLEAR"]
+self_modulate = Color(1, 1, 1, 0.552941)
+material = SubResource("CanvasItemMaterial_ef2c0")
+position = Vector2(-10.8308, -6.19836)
+rotation = -0.261799
+scale = Vector2(0.716837, 0.716837)
+texture = ExtResource("11_1rvr8")
 
 [node name="001_CONTACT" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(311, -292)
 level = ExtResource("5_ga2oe")
 name_text = "001.CONTACT"
 
+[node name="Label" parent="Levels/001_CONTACT" index="0"]
+text = "001.CONTACT"
+
 [node name="Entrypoint" parent="Levels/001_CONTACT" instance=ExtResource("6_ei32m")]
-position = Vector2(-116, 67.75)
+position = Vector2(-87.75, 34.75)
 
 [node name="Entrypoint2" parent="Levels/001_CONTACT" instance=ExtResource("6_ei32m")]
-position = Vector2(120, 58.25)
+position = Vector2(120, 38.5)
 entry_number = 1
+
+[node name="Gravity" type="Area2D" parent="Levels/001_CONTACT"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("6_5ab28")
+
+[node name="Glow" parent="Levels/001_CONTACT/Gravity" instance=ExtResource("7_x2yq8")]
+modulate = Color(1, 1, 1, 0.2)
+scale = Vector2(0.436239, 0.436239)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/001_CONTACT/Gravity"]
+visible = false
+shape = SubResource("CircleShape2D_yyf3a")
+
+[node name="RegenTimer" type="Timer" parent="Levels/001_CONTACT/Gravity"]
+one_shot = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/001_CONTACT"]
+position = Vector2(2.67044, -15.1468)
+rotation = 0.261799
+polygon = PackedVector2Array(52.4293, -61.5936, 40.6616, 1.5639, 72.7217, 59.4285, 69.9, 73.5, 56.9, 87.5, 36.6, 100.5, 12.0862, 98.5304, -23.1996, 29.4134, -81.8896, 10.7592, -95, -5, -95, -6.5, -99, -22.3, -99, -23.6, -97.9, -39.5, -96.5, -39.5, -89.5, -64.5, -87.9, -64.5, -69.9, -84.5, -2.73685, -96.1804, 37.5388, -83.8848)
+
+[node name="5" type="Sprite2D" parent="Levels/001_CONTACT"]
+self_modulate = Color(1, 1, 1, 0.552941)
+material = SubResource("CanvasItemMaterial_ef2c0")
+position = Vector2(2.67044, -15.1468)
+rotation = 0.261799
+texture = ExtResource("13_qorjw")
 
 [node name="003_TEST" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(236.25, 398)
@@ -128,7 +210,35 @@ level = ExtResource("8_itcue")
 name_text = "003.TEST"
 
 [node name="Entrypoint4" parent="Levels/003_TEST" instance=ExtResource("6_ei32m")]
-position = Vector2(-13, -114.5)
+position = Vector2(-13, -88.75)
+
+[node name="Gravity" type="Area2D" parent="Levels/003_TEST"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("6_5ab28")
+
+[node name="Glow" parent="Levels/003_TEST/Gravity" instance=ExtResource("7_x2yq8")]
+modulate = Color(1, 1, 1, 0.2)
+scale = Vector2(0.436239, 0.436239)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/003_TEST/Gravity"]
+visible = false
+shape = SubResource("CircleShape2D_yyf3a")
+
+[node name="RegenTimer" type="Timer" parent="Levels/003_TEST/Gravity"]
+one_shot = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/003_TEST"]
+position = Vector2(-4.72519, 19.4886)
+rotation = -1.57079
+polygon = PackedVector2Array(59.0375, -78.5864, 40.6616, 1.5639, 72.7217, 59.4285, 69.9, 73.5, 56.9, 87.5, 54.8, 87.5, 38.7, 100.5, 36.6, 100.5, 14.5, 112.5, 8.3, 112.5, -16, 115.8, -16, 114.1, -34, 110.1, -34, 108.6, -49, 99.6, -49, 98.2, -59, 86.2, -59, 83, -64, 74, -64, 72.9, -71.7, 35.5, -95, -5, -95, -6.5, -99, -22.3, -99, -23.6, -97.9, -39.5, -96.5, -39.5, -89.5, -64.5, -87.9, -64.5, -69.9, -84.5, -2.73685, -96.1804)
+
+[node name="5" type="Sprite2D" parent="Levels/003_TEST"]
+self_modulate = Color(1, 1, 1, 0.552941)
+material = SubResource("CanvasItemMaterial_ef2c0")
+position = Vector2(-4.72519, 19.4886)
+rotation = -1.57079
+texture = ExtResource("13_qorjw")
 
 [node name="002_FALL" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(681.5, 113.25)
@@ -136,7 +246,37 @@ level = ExtResource("7_kq772")
 name_text = "002.FALL"
 
 [node name="Entrypoint5" parent="Levels/002_FALL" instance=ExtResource("6_ei32m")]
-position = Vector2(-124, -39.25)
+position = Vector2(-105.75, -16.75)
+
+[node name="Gravity" type="Area2D" parent="Levels/002_FALL"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("6_5ab28")
+
+[node name="Glow" parent="Levels/002_FALL/Gravity" instance=ExtResource("7_x2yq8")]
+modulate = Color(1, 1, 1, 0.2)
+scale = Vector2(0.436239, 0.436239)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/002_FALL/Gravity"]
+visible = false
+shape = SubResource("CircleShape2D_yyf3a")
+
+[node name="RegenTimer" type="Timer" parent="Levels/002_FALL/Gravity"]
+one_shot = true
+
+[node name="5" type="Sprite2D" parent="Levels/002_FALL"]
+self_modulate = Color(1, 1, 1, 0.552941)
+material = SubResource("CanvasItemMaterial_ef2c0")
+position = Vector2(3.57031, 3.28801)
+rotation = 1.83259
+scale = Vector2(0.716837, 0.716837)
+texture = ExtResource("15_aurv3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/002_FALL"]
+position = Vector2(3.57031, 3.28801)
+rotation = 1.83259
+scale = Vector2(0.716837, 0.716837)
+polygon = PackedVector2Array(27, -142.7, 27, -141.3, 51, -131.3, 51, -129.8, 76, -105.9, 76, -103.7, 85.9, -92, 91, -90.4, 91, -87.7, 107, -65.7, 107, -63.4, 116, -43.4, 116, -39, 121, -19.2, 121, 3, 119.7, 3, 113.7, 43, 112.3, 43, 95.3, 80, 94.1, 80, 69.2965, 85.5724, 18.0023, 65.8439, -47.1017, 83.5997, -110, 3.39999, -110, 2, -117, -25.8, -117, -73, -115.4, -73, -105.4, -98, -103.8, -98, -74.8, -126, -71.7, -126, -64.7, -132, -63.3, -132, -36, -140.5, -32.8, -144, -31.1, -144, -6, -145.9, -6, -147.3)
 
 [node name="H02_RECURRENCE" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(-254, 313)
@@ -144,7 +284,33 @@ level = ExtResource("9_f7cig")
 name_text = "H02.RECURRENCE"
 
 [node name="Entrypoint6" parent="Levels/H02_RECURRENCE" instance=ExtResource("6_ei32m")]
-position = Vector2(120.5, 29)
+position = Vector2(73.5, -8.75)
+
+[node name="Gravity" type="Area2D" parent="Levels/H02_RECURRENCE"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("6_5ab28")
+
+[node name="Glow" parent="Levels/H02_RECURRENCE/Gravity" instance=ExtResource("7_x2yq8")]
+modulate = Color(1, 1, 1, 0.2)
+scale = Vector2(0.436239, 0.436239)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/H02_RECURRENCE/Gravity"]
+visible = false
+shape = SubResource("CircleShape2D_yyf3a")
+
+[node name="RegenTimer" type="Timer" parent="Levels/H02_RECURRENCE/Gravity"]
+one_shot = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/H02_RECURRENCE"]
+position = Vector2(-23.75, 3.5)
+polygon = PackedVector2Array(59.0375, -78.5864, 40.6616, 1.5639, 72.7217, 59.4285, 69.9, 73.5, 56.9, 87.5, 54.8, 87.5, 38.7, 100.5, 36.6, 100.5, 14.5, 112.5, 8.3, 112.5, -16, 115.8, -16, 114.1, -34, 110.1, -34, 108.6, -49, 99.6, -49, 98.2, -59, 86.2, -59, 83, -64, 74, -64, 72.9, -71.7, 35.5, -95, -5, -95, -6.5, -99, -22.3, -99, -23.6, -97.9, -39.5, -96.5, -39.5, -89.5, -64.5, -87.9, -64.5, -69.9, -84.5, -2.73685, -96.1804)
+
+[node name="5" type="Sprite2D" parent="Levels/H02_RECURRENCE"]
+self_modulate = Color(1, 1, 1, 0.552941)
+material = SubResource("CanvasItemMaterial_ef2c0")
+position = Vector2(-23.75, 3.5)
+texture = ExtResource("13_qorjw")
 
 [node name="004_RELAPSE" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(-468.75, -143.75)
@@ -152,7 +318,36 @@ level = ExtResource("9_bymtf")
 name_text = "004.RELAPSE"
 
 [node name="Entrypoint7" parent="Levels/004_RELAPSE" instance=ExtResource("6_ei32m")]
-position = Vector2(105, 59)
+position = Vector2(79.75, 59)
+
+[node name="Gravity" type="Area2D" parent="Levels/004_RELAPSE"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("6_5ab28")
+
+[node name="Glow" parent="Levels/004_RELAPSE/Gravity" instance=ExtResource("7_x2yq8")]
+modulate = Color(1, 1, 1, 0.2)
+scale = Vector2(0.436239, 0.436239)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/004_RELAPSE/Gravity"]
+shape = SubResource("CircleShape2D_yyf3a")
+
+[node name="RegenTimer" type="Timer" parent="Levels/004_RELAPSE/Gravity"]
+one_shot = true
+
+[node name="5" type="Sprite2D" parent="Levels/004_RELAPSE"]
+self_modulate = Color(1, 1, 1, 0.552941)
+material = SubResource("CanvasItemMaterial_ef2c0")
+position = Vector2(0, 1.75)
+rotation = -0.785397
+scale = Vector2(0.716837, 0.716837)
+texture = ExtResource("15_aurv3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/004_RELAPSE"]
+position = Vector2(0, 1.75)
+rotation = -0.785397
+scale = Vector2(0.536984, 0.536984)
+polygon = PackedVector2Array(27, -142.7, 27, -141.3, 51, -131.3, 51, -129.8, 76, -105.9, 76, -103.7, 85.9, -92, 91, -90.4, 91, -87.7, 107, -65.7, 107, -63.4, 116, -43.4, 116, -39, 121, -19.2, 121, 3, 119.7, 3, 113.7, 43, 112.3, 43, 95.3, 80, 94.1, 80, 69.2965, 85.5724, 18.0023, 65.8439, -47.1017, 83.5997, -110, 3.39999, -110, 2, -117, -25.8, -117, -73, -115.4, -73, -105.4, -98, -103.8, -98, -74.8, -126, -71.7, -126, -64.7, -132, -63.3, -132, -36, -140.5, -32.8, -144, -31.1, -144, -6, -145.9, -6, -147.3)
 
 [node name="005_STORAGE" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(1043.25, -425.75)
@@ -162,9 +357,67 @@ name_text = "005.STORAGE"
 [node name="Entrypoint8" parent="Levels/005_STORAGE" instance=ExtResource("6_ei32m")]
 position = Vector2(-104.5, 67.25)
 
-[node name="H43_NUCLEAR" parent="Levels" instance=ExtResource("4_17lxb")]
+[node name="Gravity" type="Area2D" parent="Levels/005_STORAGE"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("6_5ab28")
+
+[node name="Glow" parent="Levels/005_STORAGE/Gravity" instance=ExtResource("7_x2yq8")]
+modulate = Color(1, 1, 1, 0.2)
+scale = Vector2(0.436239, 0.436239)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/005_STORAGE/Gravity"]
+visible = false
+shape = SubResource("CircleShape2D_yyf3a")
+
+[node name="RegenTimer" type="Timer" parent="Levels/005_STORAGE/Gravity"]
+one_shot = true
+
+[node name="5" type="Sprite2D" parent="Levels/005_STORAGE"]
+self_modulate = Color(1, 1, 1, 0.552941)
+material = SubResource("CanvasItemMaterial_ef2c0")
+position = Vector2(7.00002, -7)
+rotation = -2.61799
+scale = Vector2(0.716837, 0.716837)
+texture = ExtResource("11_1rvr8")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/005_STORAGE/5"]
+scale = Vector2(1, 1)
+polygon = PackedVector2Array(29.2954, -96.2562, 83.3522, -75.6797, 84.5, -47.5, 79.5, 85.5, 78.2, 85.5, 70.1, 126.5, 68.9, 126.5, 65.9, 135.5, 64.5, 135.5, 51.5, 151.5, 49.1, 151.5, 31.1, 163.5, 5.5, 164.6, 5.5, 162.9, -9.5, 157.9, -9.5, 156.6, -24.5, 147.6, -24.5, 146.2, -41.5, 127.3, -41.5, 125.1, -61.5, 94.1, -61.5, 92.9, -77.5, 52.9, -77.5, 51.8, -94.5, -6.2, -94.5, -12.5, -97.7, -49.5, -96, -49.5, -89, -73.5, -87.6, -73.5, -61.6, -112.5, -59.2, -112.5, -32.3, -136.5, -30.1, -136.5, -12.2064, -141.943)
+
+[node name="UNVISITABLE2" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(-965.25, -468.5)
 name_text = " "
+
+[node name="Gravity" type="Area2D" parent="Levels/UNVISITABLE2"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("6_5ab28")
+
+[node name="Glow" parent="Levels/UNVISITABLE2/Gravity" instance=ExtResource("7_x2yq8")]
+modulate = Color(1, 1, 1, 0.2)
+scale = Vector2(0.436239, 0.436239)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/UNVISITABLE2/Gravity"]
+visible = false
+shape = SubResource("CircleShape2D_yyf3a")
+
+[node name="RegenTimer" type="Timer" parent="Levels/UNVISITABLE2/Gravity"]
+one_shot = true
+
+[node name="5" type="Sprite2D" parent="Levels/UNVISITABLE2"]
+self_modulate = Color(1, 1, 1, 0.447059)
+material = SubResource("CanvasItemMaterial_ef2c0")
+position = Vector2(0, 1.75)
+rotation = -0.785397
+scale = Vector2(0.519216, 0.519216)
+texture = ExtResource("15_aurv3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/UNVISITABLE2"]
+position = Vector2(0, 1.75)
+rotation = -0.785397
+scale = Vector2(0.353635, 0.353635)
+polygon = PackedVector2Array(27, -142.7, 27, -141.3, 51, -131.3, 51, -129.8, 76, -105.9, 76, -103.7, 85.9, -92, 91, -90.4, 91, -87.7, 107, -65.7, 107, -63.4, 116, -43.4, 116, -39, 121, -19.2, 121, 3, 119.7, 3, 113.7, 43, 112.3, 43, 95.3, 80, 94.1, 80, 71.1, 115, 69.8, 115, 44.8, 139, 42.5, 139, 28.5, 147, 23.1, 147, -8, 149.1, -8, 147.4, -32, 139.4, -32, 137.9, -52, 120.9, -52, 118.7, -68, 96.7, -68, 93.4, -110, 3.39999, -110, 2, -117, -25.8, -117, -73, -115.4, -73, -105.4, -98, -103.8, -98, -74.8, -126, -71.7, -126, -64.7, -132, -63.3, -132, -36, -140.5, -32.8, -144, -31.1, -144, -6, -145.9, -6, -147.3)
 
 [node name="UNKNOWN" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(-2114.75, 0)
@@ -174,13 +427,58 @@ name_text = "UNKNOWN"
 [node name="Entrypoint9" parent="Levels/UNKNOWN" instance=ExtResource("6_ei32m")]
 position = Vector2(117.5, 63.5)
 
-[node name="H43_NUCLEAR2" parent="Levels" node_paths=PackedStringArray("label") instance=ExtResource("4_17lxb")]
+[node name="Gravity" type="Area2D" parent="Levels/UNKNOWN"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("6_5ab28")
+
+[node name="Glow" parent="Levels/UNKNOWN/Gravity" instance=ExtResource("7_x2yq8")]
+modulate = Color(1, 1, 1, 0.2)
+scale = Vector2(0.436239, 0.436239)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/UNKNOWN/Gravity"]
+visible = false
+shape = SubResource("CircleShape2D_yyf3a")
+
+[node name="RegenTimer" type="Timer" parent="Levels/UNKNOWN/Gravity"]
+one_shot = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/UNKNOWN"]
+position = Vector2(11.532, -0.841125)
+rotation = 0.523598
+polygon = PackedVector2Array(59.0375, -78.5864, 40.6616, 1.5639, 72.7217, 59.4285, 69.9, 73.5, 56.9, 87.5, 54.8, 87.5, 38.7, 100.5, 36.6, 100.5, 14.5, 112.5, 8.3, 112.5, -16, 115.8, -16, 114.1, -34, 110.1, -34, 108.6, -49, 99.6, -49, 98.2, -59, 86.2, -59, 83, -64, 74, -64, 72.9, -71.7, 35.5, -95, -5, -95, -6.5, -99, -22.3, -99, -23.6, -97.9, -39.5, -96.5, -39.5, -89.5, -64.5, -87.9, -64.5, -69.9, -84.5, -2.73685, -96.1804)
+
+[node name="5" type="Sprite2D" parent="Levels/UNKNOWN"]
+self_modulate = Color(1, 1, 1, 0.552941)
+material = SubResource("CanvasItemMaterial_ef2c0")
+position = Vector2(11.532, -0.841125)
+rotation = 0.523598
+texture = ExtResource("13_qorjw")
+
+[node name="UNVISITABLE" parent="Levels" node_paths=PackedStringArray("label") instance=ExtResource("4_17lxb")]
 position = Vector2(-1325.5, 443.25)
-label = NodePath("../H43_NUCLEAR/Label")
+label = NodePath("../UNVISITABLE2/Label")
 name_text = " "
 
+[node name="Gravity" parent="Levels/UNVISITABLE" instance=ExtResource("16_kt3d7")]
+
+[node name="5" type="Sprite2D" parent="Levels/UNVISITABLE"]
+self_modulate = Color(1, 1, 1, 0.329412)
+material = SubResource("CanvasItemMaterial_ef2c0")
+position = Vector2(0, 1.75)
+rotation = -1.57079
+scale = Vector2(0.375174, 0.375174)
+texture = ExtResource("15_aurv3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/UNVISITABLE"]
+position = Vector2(0, 1.75)
+rotation = -1.57079
+scale = Vector2(0.259992, 0.259992)
+polygon = PackedVector2Array(27, -142.7, 27, -141.3, 51, -131.3, 51, -129.8, 76, -105.9, 76, -103.7, 85.9, -92, 91, -90.4, 91, -87.7, 107, -65.7, 107, -63.4, 116, -43.4, 116, -39, 121, -19.2, 121, 3, 119.7, 3, 113.7, 43, 112.3, 43, 95.3, 80, 94.1, 80, 71.1, 115, 69.8, 115, 44.8, 139, 42.5, 139, 28.5, 147, 23.1, 147, -8, 149.1, -8, 147.4, -32, 139.4, -32, 137.9, -52, 120.9, -52, 118.7, -68, 96.7, -68, 93.4, -110, 3.39999, -110, 2, -117, -25.8, -117, -73, -115.4, -73, -105.4, -98, -103.8, -98, -74.8, -126, -71.7, -126, -64.7, -132, -63.3, -132, -36, -140.5, -32.8, -144, -31.1, -144, -6, -145.9, -6, -147.3)
+
 [node name="MapPlayer" parent="." instance=ExtResource("2_uwq5e")]
-position = Vector2(47.5, -115.25)
+position = Vector2(15.25, -96)
+metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="MapPlayer"]
 zoom = Vector2(0.15, 0.15)
@@ -207,24 +505,6 @@ rotation = 2.25714
 polygon = PackedVector2Array(73.5, -114.9, 73.5, -113.2, 94.5, -102.2, 94.5, -100.9, 107.5, -86.8, 107.5, -84.5, 122.5, -59.6, 122.5, -58.4, 127.5, -34.2, 127.5, -33, 128.5, 24, 127, 24, 121.1, 49, 119.9, 49, 114.9, 62, 113.5, 62, 101.5, 79, 99.3, 79, 94.3, 84, 92.8, 84, 75.7, 87, 73.5, 87, -7.5, 89, -7.5, 89.8, -47.4, 93, -48.6, 93, -86.5, 90.9, -86.5, 89.5, -106.5, 83.5, -106.5, 82, -116.5, 74, -116.5, 71.7, -124.5, 61.7, -124.5, 57, -126.7, 34, -125.2, 34, -122.2, 17, -120.7, 17, -107.7, -9, -106.4, -9, -77.4, -44, -75.2, -44, -13.2, -93, -12.1, -93, 21, -111, 25.4, -111, 43.5, -115.5, 43.5, -117.2)
 metadata/_edit_lock_ = true
 
-[node name="CoolantPocket2" parent="fuel" instance=ExtResource("6_4a6mq")]
-position = Vector2(-330.75, -242)
-rotation = -1.0472
-scale = Vector2(0.713269, 0.721043)
-
-[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket2"]
-position = Vector2(1.82124, -1.04015)
-rotation = 2.25714
-texture = ExtResource("16_g8ccc")
-metadata/_edit_lock_ = true
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket2"]
-visible = false
-position = Vector2(1.82124, -1.04015)
-rotation = 2.25714
-polygon = PackedVector2Array(17.5, -56.8, 17.5, -55.4, 33.5, -49.4, 33.5, -47.8, 54.5, -27.9, 54.5, -24.6, 59.5, -17.6, 59.5, -12, 61.7, 9, 60.2, 9, 57.1, 23, 55.8, 23, 49.7, 34, 48.3, 34, 40.3, 42, 37.9, 42, 5.9, 57, 4.5, 57, -25.5, 56, -25.5, 54.4, -46.5, 46.4, -46.5, 44.8, -54.5, 36.8, -54.5, 34.3, -59.5, 22.4, -59.5, 21, -60.6, 1, -59.2, 1, -56.2, -17, -54.7, -17, -44.7, -36, -43.2, -36, -23.2, -53, -18.6, -53, -1.5, -57.5, -1.5, -59.3)
-metadata/_edit_lock_ = true
-
 [node name="CoolantPocket3" parent="fuel" instance=ExtResource("6_4a6mq")]
 position = Vector2(-35.25, 208)
 rotation = -1.0472
@@ -244,7 +524,7 @@ polygon = PackedVector2Array(26.5, -79.2, 26.5, -77.9, 43.5, -71.9, 43.5, -70.6,
 metadata/_edit_lock_ = true
 
 [node name="CoolantPocket4" parent="fuel" instance=ExtResource("6_4a6mq")]
-position = Vector2(280.75, -64)
+position = Vector2(297.5, -47)
 rotation = -1.0472
 scale = Vector2(0.713269, 0.721043)
 
@@ -406,7 +686,7 @@ polygon = PackedVector2Array(73.5, -114.9, 73.5, -113.2, 94.5, -102.2, 94.5, -10
 metadata/_edit_lock_ = true
 
 [node name="CoolantPocket13" parent="fuel" instance=ExtResource("6_4a6mq")]
-position = Vector2(-628.25, -63)
+position = Vector2(-523.75, -13.5)
 rotation = -1.0472
 scale = Vector2(0.713269, 0.721043)
 
@@ -514,7 +794,7 @@ polygon = PackedVector2Array(73.5, -114.9, 73.5, -113.2, 94.5, -102.2, 94.5, -10
 metadata/_edit_lock_ = true
 
 [node name="CoolantPocket19" parent="fuel" instance=ExtResource("6_4a6mq")]
-position = Vector2(292.75, 174.5)
+position = Vector2(451, 272.5)
 rotation = -1.0472
 scale = Vector2(0.51168, 0.517257)
 
@@ -601,6 +881,42 @@ visible = false
 position = Vector2(1.82124, -1.04015)
 rotation = 2.25714
 polygon = PackedVector2Array(26.5, -79.2, 26.5, -77.9, 43.5, -71.9, 43.5, -70.6, 60.5, -59.6, 60.5, -58.2, 74.5, -41.2, 74.5, -37.8, 82.5, -18.9, 82.5, -16.5, 83.5, 12.5, 82.2, 12.5, 79.1, 26.5, 77.6, 26.5, 62.6, 51.5, 61.2, 51.5, 39.2, 70.5, 36, 70.5, 21.1, 79.5, 15.6, 79.5, -4.3, 84.5, -6.6, 84.5, -30.5, 81.2, -30.5, 79.8, -44.5, 73.8, -44.5, 72.4, -68.5, 51.4, -68.5, 48, -79.5, 29, -79.5, 27.5, -82.8, 3.5, -81.3, 3.5, -77.3, -27.5, -75.6, -27.5, -60.7, -53.5, -59.4, -53.5, -43.4, -70.5, -41.1, -70.5, -29.1, -78.5, -24.9, -78.5, -15.9, -82.5, 0.5, -82.5, 0.5, -83.9)
+metadata/_edit_lock_ = true
+
+[node name="CoolantPocket25" parent="fuel" instance=ExtResource("6_4a6mq")]
+position = Vector2(-618.5, -169.75)
+rotation = -2.09439
+scale = Vector2(0.713269, 0.721043)
+
+[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket25"]
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+texture = ExtResource("16_g8ccc")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket25"]
+visible = false
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+polygon = PackedVector2Array(17.5, -56.8, 17.5, -55.4, 33.5, -49.4, 33.5, -47.8, 54.5, -27.9, 54.5, -24.6, 59.5, -17.6, 59.5, -12, 61.7, 9, 60.2, 9, 57.1, 23, 55.8, 23, 49.7, 34, 48.3, 34, 40.3, 42, 37.9, 42, 5.9, 57, 4.5, 57, -25.5, 56, -25.5, 54.4, -46.5, 46.4, -46.5, 44.8, -54.5, 36.8, -54.5, 34.3, -59.5, 22.4, -59.5, 21, -60.6, 1, -59.2, 1, -56.2, -17, -54.7, -17, -44.7, -36, -43.2, -36, -23.2, -53, -18.6, -53, -1.5, -57.5, -1.5, -59.3)
+metadata/_edit_lock_ = true
+
+[node name="CoolantPocket27" parent="fuel" instance=ExtResource("6_4a6mq")]
+position = Vector2(-749.25, -340.75)
+rotation = -1.0472
+scale = Vector2(-1.30953, -1.3238)
+
+[node name="Sprite2D" type="Sprite2D" parent="fuel/CoolantPocket27"]
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+texture = ExtResource("16_g8ccc")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel/CoolantPocket27"]
+visible = false
+position = Vector2(1.82124, -1.04015)
+rotation = 2.25714
+polygon = PackedVector2Array(17.5, -56.8, 17.5, -55.4, 33.5, -49.4, 33.5, -47.8, 54.5, -27.9, 54.5, -24.6, 59.5, -17.6, 59.5, -12, 61.7, 9, 60.2, 9, 57.1, 23, 55.8, 23, 49.7, 34, 48.3, 34, 40.3, 42, 37.9, 42, 5.9, 57, 4.5, 57, -25.5, 56, -25.5, 54.4, -46.5, 46.4, -46.5, 44.8, -54.5, 36.8, -54.5, 34.3, -59.5, 22.4, -59.5, 21, -60.6, 1, -59.2, 1, -56.2, -17, -54.7, -17, -44.7, -36, -43.2, -36, -23.2, -53, -18.6, -53, -1.5, -57.5, -1.5, -59.3)
 metadata/_edit_lock_ = true
 
 [node name="Hazards" type="Node2D" parent="."]
@@ -749,24 +1065,6 @@ scale = Vector2(-0.434113, -0.415414)
 polygon = PackedVector2Array(33.9408, -268.1, 38.1047, -260.543, 40.2307, -242.703, 65.1255, -236.933, 79.1946, -229.055, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 203.583, -68.0191, 217.631, -27.0956, 223.22, 36.6829, 216.23, 43.9426, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 141.877, 217.967, 133.046, 224.357, 97.2219, 230.38, 92.9651, 232.463, 18.4, 248, 14.3, 248, -3.83087, 241.031, -6.70175, 236.061, -30.0405, 237.092, -34.5329, 238.581, -56.1189, 218.085, -62.4739, 223.123, -77.2224, 214.857, -76.3679, 208.513, -81.9562, 196.261, -88.8375, 187.147, -109.568, 188.933, -102.359, 189.002, -112.527, 173.018, -109.525, 168.643, -137.247, 166.239, -145.837, 164.087, -152.872, 151.56, -173.34, 134.66, -183.115, 90.6447, -195.08, 64.9502, -197.885, 58.1716, -206.495, 55.0252, -187.5, 38, -186.1, 38, -209.743, -52.5992, -208.144, -94.7138, -206.632, -113.424, -200.474, -124.485, -178.955, -142.256, -182.374, -151.233, -170.781, -176.356, -168.283, -187.852, -159.136, -194.199, -160.129, -210.24, -166.481, -234.612, -151.779, -309.384, -115.406, -333.072, -80.8745, -329.659, -35.0085, -326.025, -14.0939, -317.68, 3.52094, -311.565, 5.9339, -293.199, 15.7516, -286.649, 22.085, -281.543, 26.5337, -274.192)
 metadata/_edit_lock_ = true
 
-[node name="Hazard9" parent="Hazards" instance=ExtResource("8_xqpvg")]
-position = Vector2(-305.25, 205.25)
-rotation = -1.309
-scale = Vector2(1.49519, 1.49519)
-
-[node name="Sprite2D" type="Sprite2D" parent="Hazards/Hazard9"]
-position = Vector2(-26.1599, 29.722)
-scale = Vector2(0.308215, 0.308215)
-texture = ExtResource("21_ggglp")
-metadata/_edit_lock_ = true
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/Hazard9"]
-position = Vector2(4.72153, -1.97105)
-rotation = 3.11507
-scale = Vector2(0.256746, -0.226866)
-polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
-metadata/_edit_lock_ = true
-
 [node name="Hazard10" parent="Hazards" instance=ExtResource("8_xqpvg")]
 position = Vector2(1476.5, -252.25)
 rotation = 1.57079
@@ -857,7 +1155,7 @@ polygon = PackedVector2Array(33.9408, -268.1, 38.1047, -260.543, 40.2307, -242.7
 metadata/_edit_lock_ = true
 
 [node name="Hazard15" parent="Hazards" instance=ExtResource("8_xqpvg")]
-position = Vector2(-739, 119)
+position = Vector2(-745.75, 160.25)
 rotation = 0.0848641
 scale = Vector2(1.66203, 1.66203)
 
@@ -1071,3 +1369,16 @@ rotation = 3.31578
 scale = Vector2(0.256746, -0.226866)
 polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
 metadata/_edit_lock_ = true
+
+[connection signal="timeout" from="Levels/H32_NUCLEAR/Gravity/RegenTimer" to="Levels/H32_NUCLEAR/Gravity" method="_on_regen_timer_timeout"]
+[connection signal="timeout" from="Levels/001_CONTACT/Gravity/RegenTimer" to="Levels/001_CONTACT/Gravity" method="_on_regen_timer_timeout"]
+[connection signal="timeout" from="Levels/003_TEST/Gravity/RegenTimer" to="Levels/003_TEST/Gravity" method="_on_regen_timer_timeout"]
+[connection signal="timeout" from="Levels/002_FALL/Gravity/RegenTimer" to="Levels/002_FALL/Gravity" method="_on_regen_timer_timeout"]
+[connection signal="timeout" from="Levels/H02_RECURRENCE/Gravity/RegenTimer" to="Levels/H02_RECURRENCE/Gravity" method="_on_regen_timer_timeout"]
+[connection signal="timeout" from="Levels/004_RELAPSE/Gravity/RegenTimer" to="Levels/004_RELAPSE/Gravity" method="_on_regen_timer_timeout"]
+[connection signal="timeout" from="Levels/005_STORAGE/Gravity/RegenTimer" to="Levels/005_STORAGE/Gravity" method="_on_regen_timer_timeout"]
+[connection signal="timeout" from="Levels/UNVISITABLE2/Gravity/RegenTimer" to="Levels/UNVISITABLE2/Gravity" method="_on_regen_timer_timeout"]
+[connection signal="timeout" from="Levels/UNKNOWN/Gravity/RegenTimer" to="Levels/UNKNOWN/Gravity" method="_on_regen_timer_timeout"]
+
+[editable path="Levels/H32_NUCLEAR"]
+[editable path="Levels/001_CONTACT"]

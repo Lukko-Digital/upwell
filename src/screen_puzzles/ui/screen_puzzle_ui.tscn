@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bvkim1x1vvm81"]
+[gd_scene load_steps=22 format=3 uid="uid://bvkim1x1vvm81"]
 
 [ext_resource type="Script" path="res://src/screen_puzzles/ui/screen_puzzle_ui.gd" id="1_lx7ia"]
 [ext_resource type="Texture2D" uid="uid://bo4rxkqslvfgs" path="res://assets/ui/screen_puzzle_v2/screen_puzzle_focus.png" id="2_jwgwr"]
@@ -14,7 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://cphbacek37g31" path="res://assets/ui/screen_puzzle_v2/launch_hover.png" id="11_boikd"]
 [ext_resource type="Texture2D" uid="uid://gwmus78xlamm" path="res://assets/ui/screen_puzzle_v2/reset_neutral.png" id="12_2sb5j"]
 [ext_resource type="Texture2D" uid="uid://cwt5dn0p5ngcm" path="res://assets/ui/screen_puzzle_v2/reset_press.png" id="13_gdf6r"]
+[ext_resource type="BitMap" uid="uid://dxyo6s4aybc8v" path="res://assets/ui/screen_puzzle_v2/launch_bitmap.bmp" id="13_jb7ge"]
 [ext_resource type="Texture2D" uid="uid://b84ee8pohja5i" path="res://assets/ui/screen_puzzle_v2/reset_hover.png" id="14_lyfo2"]
+[ext_resource type="BitMap" uid="uid://beb2o2mri7fls" path="res://assets/ui/screen_puzzle_v2/reset_bitmap.bmp" id="17_tatrs"]
 
 [sub_resource type="FontVariation" id="FontVariation_nro8r"]
 base_font = ExtResource("6_4wx76")
@@ -93,6 +95,7 @@ position = Vector2(1920, 1080)
 zoom = Vector2(0.5, 0.5)
 
 [node name="FolderBacker" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.74902)
 z_index = 10
 layout_mode = 0
 offset_left = 225.0
@@ -159,13 +162,15 @@ theme_override_fonts/normal_font = SubResource("FontVariation_nro8r")
 theme_override_fonts/bold_font = SubResource("FontVariation_1kus4")
 theme_override_fonts/italics_font = SubResource("FontVariation_hwpmr")
 theme_override_fonts/bold_italics_font = SubResource("FontVariation_ltfqk")
-theme_override_font_sizes/normal_font_size = 50
-theme_override_font_sizes/bold_font_size = 50
-theme_override_font_sizes/italics_font_size = 50
-theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/bold_italics_font_size = 40
 theme_override_font_sizes/mono_font_size = 50
 bbcode_enabled = true
-text = "[center][b]FILEPATH MISSING[/b]
+text = "
+
+[center][b]FILEPATH MISSING[/b]
 
 Please drag [b]<action>[/b]
 onto flightpath to reach
@@ -173,6 +178,7 @@ target directory[/center]"
 shortcut_keys_enabled = false
 
 [node name="BottomBar" type="TextureRect" parent="."]
+self_modulate = Color(0.920995, 0.920995, 0.920995, 1)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -181,31 +187,37 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -1711.0
 offset_top = -282.0
-offset_right = 1702.0
+offset_right = 536.0
 offset_bottom = -89.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("4_1qhds")
 
 [node name="LaunchButton" type="TextureButton" parent="BottomBar"]
+modulate = Color(0.996078, 1, 0.886275, 1)
 layout_mode = 0
 offset_left = 2194.0
-offset_top = -295.0
+offset_top = -297.0
 offset_right = 3016.0
-offset_bottom = 245.0
+offset_bottom = 243.0
+focus_mode = 0
 texture_normal = ExtResource("9_g8wlq")
 texture_pressed = ExtResource("10_i4wk7")
 texture_hover = ExtResource("11_boikd")
+texture_click_mask = ExtResource("13_jb7ge")
 
 [node name="ResetButton" type="TextureButton" parent="BottomBar"]
+modulate = Color(0.996078, 1, 0.886275, 1)
 layout_mode = 0
-offset_left = 2919.0
-offset_top = -295.0
-offset_right = 3453.0
-offset_bottom = 244.0
+offset_left = 2913.0
+offset_top = -296.0
+offset_right = 3447.0
+offset_bottom = 243.0
+focus_mode = 0
 texture_normal = ExtResource("12_2sb5j")
 texture_pressed = ExtResource("13_gdf6r")
 texture_hover = ExtResource("14_lyfo2")
+texture_click_mask = ExtResource("17_tatrs")
 
 [connection signal="pressed" from="BottomBar/LaunchButton" to="." method="_on_launch_button_pressed"]
 [connection signal="pressed" from="BottomBar/ResetButton" to="." method="_on_reset_button_pressed"]

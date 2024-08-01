@@ -37,7 +37,7 @@ func interact(_player: Player):
 func lerp_warp_amount(delta: float):
 	var target
 	if focused:
-		target = 0.8
+		target = 0.6
 	else:
 		target = 0.0
 	if target == warp_current:

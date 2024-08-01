@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://beb2o2mri7fls"
+path="res://.godot/imported/reset_bitmap.bmp-04e5b5259fc0c90772f833ecf768bd41.res"
+
+[deps]
+
+source_file="res://assets/ui/screen_puzzle_v2/reset_bitmap.bmp"
+dest_files=["res://.godot/imported/reset_bitmap.bmp-04e5b5259fc0c90772f833ecf768bd41.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bslamw2r3oexr" path="res://assets/ui/screen_puzzle_v2/folder_topbar_open_active.png" id="5_6cjsg"]
 
 [node name="FolderButton" type="TextureRect"]
+z_index = 1
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_5icxd")

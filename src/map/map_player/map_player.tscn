@@ -675,14 +675,16 @@ texture = ExtResource("9_ig12q")
 [node name="TextBacker" type="TextureRect" parent="CanvasLayer"]
 visible = false
 modulate = Color(0.612036, 0.612036, 0.612036, 1)
+self_modulate = Color(1, 1, 1, 0)
 material = SubResource("CanvasItemMaterial_bg83i")
-offset_left = 2554.0
-offset_top = 346.0
-offset_right = 3714.0
-offset_bottom = 1761.0
+offset_left = 1374.0
+offset_top = 444.0
+offset_right = 2534.0
+offset_bottom = 1859.0
 texture = ExtResource("10_77bw0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TextBacker"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 offset_left = 110.0
 offset_top = 108.0
@@ -690,10 +692,12 @@ offset_right = 1050.0
 offset_bottom = 1427.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/TextBacker/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TextBacker/VBoxContainer/ScrollContainer"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -702,9 +706,11 @@ theme_override_constants/margin_top = 115
 theme_override_constants/margin_right = 110
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/TextBacker/VBoxContainer/ScrollContainer/MarginContainer"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 1
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = SubResource("FontVariation_q6uck")
 theme_override_fonts/bold_font = SubResource("FontVariation_whvip")

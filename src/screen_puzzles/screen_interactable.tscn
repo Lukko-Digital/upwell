@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://src/screen_puzzles/screen_interactable.gd" id="1_40edb"]
 [ext_resource type="Shader" path="res://src/shaders/soft_light.gdshader" id="2_tv86y"]
+[ext_resource type="Texture2D" uid="uid://bb35jkiw72ht3" path="res://assets/ui/screen_puzzle_v2/scan_lines.png" id="3_qkl51"]
 [ext_resource type="PackedScene" uid="uid://cfad1wka7bkpr" path="res://src/screen_puzzles/virtual_mouse.tscn" id="4_8hctd"]
-[ext_resource type="Texture2D" uid="uid://bbjdwc6iyldfv" path="res://assets/ui/map/scanlines.png" id="4_38kih"]
 [ext_resource type="Texture2D" uid="uid://dl7wqp5bheye5" path="res://assets/mvp3_assets/screenpuzzle/border.png" id="5_hn87c"]
 [ext_resource type="Shader" path="res://src/shaders/vhs.gdshader" id="5_tlclc"]
 [ext_resource type="FontFile" uid="uid://dutpxihkfghcu" path="res://assets/ui/fonts/CrimsonText-BoldItalic.ttf" id="5_y32mw"]
@@ -18,7 +18,7 @@ shader_parameter/intensity = 1.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qhw5p"]
 shader = ExtResource("5_tlclc")
 shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.065
+shader_parameter/scanlines_opacity = 0.0
 shader_parameter/scanlines_width = 0.5
 shader_parameter/grille_opacity = 0.0
 shader_parameter/resolution = Vector2(640, 480)
@@ -30,9 +30,9 @@ shader_parameter/roll_variation = 0.1
 shader_parameter/distort_intensity = 0.0
 shader_parameter/noise_opacity = 0.393
 shader_parameter/noise_speed = 0.74
-shader_parameter/static_noise_intensity = 0.037
+shader_parameter/static_noise_intensity = 0.029
 shader_parameter/aberration = -0.00499995
-shader_parameter/brightness = 1.16
+shader_parameter/brightness = 1.1
 shader_parameter/discolor = false
 shader_parameter/warp_amount = 0.0
 shader_parameter/clip_warp = false
@@ -68,10 +68,11 @@ render_target_update_mode = 4
 [node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]
 
 [node name="Scanlines" type="Sprite2D" parent="SubViewportContainer/SubViewport/CanvasLayer"]
-modulate = Color(1, 1, 1, 0.431373)
+modulate = Color(0.941176, 0.960784, 1, 1)
 material = SubResource("ShaderMaterial_jls5r")
-position = Vector2(168, 1000)
-texture = ExtResource("4_38kih")
+position = Vector2(960, 540)
+scale = Vector2(0.645, 0.645)
+texture = ExtResource("3_qkl51")
 
 [node name="Hider" type="ColorRect" parent="SubViewportContainer/SubViewport/CanvasLayer"]
 visible = false
