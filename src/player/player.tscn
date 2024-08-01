@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://tfy83b2uc6hh"]
+[gd_scene load_steps=78 format=3 uid="uid://tfy83b2uc6hh"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_lbj7m"]
 [ext_resource type="Texture2D" uid="uid://cnuqbnvjsg53d" path="res://assets/mvp4_assets/player.png" id="2_6q4jk"]
@@ -63,15 +63,15 @@
 [ext_resource type="Texture2D" uid="uid://bmjn28bnofup" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Jump-0015.tres" id="39_bwws7"]
 [ext_resource type="Texture2D" uid="uid://c1f8phihbopeo" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Jump-0016.tres" id="40_k43q7"]
 [ext_resource type="Texture2D" uid="uid://cisageexax1pi" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Jump-0017.tres" id="41_e1iao"]
-[ext_resource type="Texture2D" uid="uid://uycm2b52i2xb" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0040.tres" id="42_biu8k"]
-[ext_resource type="Texture2D" uid="uid://cvyffg5vr1qri" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0041.tres" id="43_sr1nn"]
-[ext_resource type="Texture2D" uid="uid://c07aswnbeoecr" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0042.tres" id="44_ggupl"]
-[ext_resource type="Texture2D" uid="uid://cjltmvstlwmti" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0043.tres" id="45_p2v7u"]
-[ext_resource type="Texture2D" uid="uid://c334mt40yhutp" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0044.tres" id="46_se7ng"]
-[ext_resource type="Texture2D" uid="uid://d2c2l365fvxo7" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0045.tres" id="47_xjs5k"]
-[ext_resource type="Texture2D" uid="uid://q0g5yfy2xaxn" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0046.tres" id="48_7hw5u"]
-[ext_resource type="Texture2D" uid="uid://de2verxa6kuoa" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0047.tres" id="49_2loi1"]
-[ext_resource type="Texture2D" uid="uid://d1yesbq45yovv" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0048.tres" id="50_cwdsw"]
+[ext_resource type="Texture2D" uid="uid://c8utxuevy1v08" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0040.tres" id="42_biu8k"]
+[ext_resource type="Texture2D" uid="uid://cfttu7fqpbshj" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0041.tres" id="43_sr1nn"]
+[ext_resource type="Texture2D" uid="uid://dd7bkr88uf5qd" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0042.tres" id="44_ggupl"]
+[ext_resource type="Texture2D" uid="uid://crqs3byv5yn7q" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0043.tres" id="45_p2v7u"]
+[ext_resource type="Texture2D" uid="uid://2c0efghi4go3" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0044.tres" id="46_se7ng"]
+[ext_resource type="Texture2D" uid="uid://52wsi77ya8cy" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0045.tres" id="47_xjs5k"]
+[ext_resource type="Texture2D" uid="uid://bwc2m1dgiej4v" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0046.tres" id="48_7hw5u"]
+[ext_resource type="Texture2D" uid="uid://bja44rnyrckbp" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0047.tres" id="49_2loi1"]
+[ext_resource type="Texture2D" uid="uid://cl70b2e23wwkm" path="res://assets/character/player/sprite/animations/Player.sprites/Player_Land-0048.tres" id="50_cwdsw"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_y3je8"]
 blend_mode = 1
@@ -318,10 +318,14 @@ animations = [{
 radius = 68.2904
 height = 273.162
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rm766"]
+radius = 24.0
+height = 244.0
+
 [sub_resource type="Gradient" id="Gradient_2aots"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_sprite", "grav_component", "interactable_detector", "dialogue_ui", "level_unlock_popup", "coyote_timer", "jump_buffer_timer", "min_jump_timer", "throw_arc_line")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_sprite", "grav_component", "interactable_detector", "dialogue_stand_detector", "dialogue_ui", "level_unlock_popup", "coyote_timer", "jump_buffer_timer", "min_jump_timer", "throw_arc_line")]
 z_index = 5
 collision_layer = 2
 floor_snap_length = 16.0
@@ -329,6 +333,7 @@ script = ExtResource("1_lbj7m")
 player_sprite = NodePath("AnimatedSprite2D")
 grav_component = NodePath("GravitizedComponent")
 interactable_detector = NodePath("DetectionAreas/InteractableDetector")
+dialogue_stand_detector = NodePath("DetectionAreas/DialogueStandLocationDetector")
 dialogue_ui = NodePath("DialogueUi")
 level_unlock_popup = NodePath("LevelUnlockPopup")
 coyote_timer = NodePath("Timers/CoyoteTimer")
@@ -367,7 +372,7 @@ gravity_detector = NodePath("../DetectionAreas/GravityDetector")
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="DetectionAreas/GravityDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionAreas/GravityDetector"]
 scale = Vector2(0.893244, 0.893244)
 shape = SubResource("CapsuleShape2D_erpsl")
 
@@ -378,6 +383,13 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionAreas/InteractableDetector"]
 scale = Vector2(0.893244, 0.893244)
 shape = SubResource("CapsuleShape2D_erpsl")
+
+[node name="DialogueStandLocationDetector" type="Area2D" parent="DetectionAreas"]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionAreas/DialogueStandLocationDetector"]
+shape = SubResource("CapsuleShape2D_rm766")
 
 [node name="Timers" type="Node" parent="."]
 

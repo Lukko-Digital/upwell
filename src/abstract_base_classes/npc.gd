@@ -11,14 +11,25 @@ class_name NPC
 
 @onready var nodule: Sprite2D = $Nodule
 
+var standing_locations: Array[DialogueStandLocation]
+
 var conversation_tree: ConversationTree
 ## In the case that the npc's body isn't centered in the sprite
 var default_sprite_offset: Vector2
 
 func _ready() -> void:
 	super()
+	# Get sprite offset
 	if npc_sprite is Sprite2D or npc_sprite is AnimatedSprite2D:
 		default_sprite_offset = npc_sprite.offset
+	# Get DialogueStandLocations
+	for child in get_children():
+		if not child is DialogueStandLocation:
+			continue
+		if child.disabled:
+			continue
+		standing_locations.append(child)
+
 	conversation_tree = DialogueParser.parse_csv(dialogue_file, self)
 	nodule.hide()
 

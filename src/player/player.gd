@@ -34,6 +34,7 @@ var STARTING_THROW_DIRECTION = Vector2.UP
 @export var player_sprite: AnimatedSprite2D
 @export var grav_component: GravitizedComponent
 @export var interactable_detector: Area2D
+@export var dialogue_stand_detector: Area2D
 @export var dialogue_ui: DialogueUI
 @export var level_unlock_popup: CanvasLayer
 @export var coyote_timer: Timer
@@ -54,7 +55,6 @@ var clicker_inventory: Array[ClickerInfo]
 
 ## -------------------------- PLAYER STATE VARIABLES --------------------------
 
-var current_dialogue_npc: NPC = null
 var focused_on_screen: bool = false
 
 # Jumping + Air Strafing
@@ -67,6 +67,10 @@ var previous_horizontal_direction: float = 0
 var aiming: bool = false
 ## Is always a unit vector
 var aiming_direction: Vector2
+
+# Dialogue
+var current_dialogue_npc: NPC = null
+var target_dialogue_stand_location: DialogueStandLocation = null
 
 var highlighted_interactable: Interactable = null:
 	set(interactable):
@@ -189,7 +193,7 @@ func handle_movement(delta: float, gravity_state: GravitizedComponent.GravitySta
 
 	# If in dialogue, auto determine input_direction
 	if in_dialogue():
-		input_direction = handle_walk_away_from_npc()
+		input_direction = handle_walk_to_dialogue_location()
 	else:
 		input_direction = Input.get_axis("left", "right")
 
@@ -212,11 +216,7 @@ func handle_movement(delta: float, gravity_state: GravitizedComponent.GravitySta
 	return input_direction
 
 ## Returns automatically determined input direction for player to move in
-func handle_walk_away_from_npc() -> float:
-	var vec_to_npc = current_dialogue_npc.global_position - global_position
-	var dir_to_npc = sign(vec_to_npc.x)
-	var npc_to_the_right = (dir_to_npc == 1)
-
+func handle_walk_to_dialogue_location() -> float:
 	# If the conversation has been started, stay still
 	if dialogue_ui.current_npc == current_dialogue_npc:
 		return 0
@@ -224,18 +224,21 @@ func handle_walk_away_from_npc() -> float:
 	if not is_on_floor():
 		return 0
 
-	# Walk away if too close
-	if abs(vec_to_npc.x) < NPC_WALK_AWAY_DISTANCE:
-		return -dir_to_npc
-	# If far enough, start dialogue
-	else:
+	# If at location or if no location exists, start dialogue
+	if dialogue_stand_detector.has_overlapping_areas() or target_dialogue_stand_location == null:
+		target_dialogue_stand_location = null
 		current_dialogue_npc.face_player(self)
 		dialogue_ui.start_dialogue(current_dialogue_npc)
 		# If facing the wrong way, turn to face npc
+		var dir_to_npc = sign(current_dialogue_npc.global_position.x - global_position.x)
+		var npc_to_the_right: bool = (dir_to_npc == 1)
 		if player_sprite.flip_h == npc_to_the_right:
 			return dir_to_npc
 		else:
 			return 0
+	# Otherwise walk to location
+	else:
+		return sign(target_dialogue_stand_location.global_position.x - global_position.x)
 
 ## ----------------------------- ANIMATION -----------------------------
 
@@ -376,6 +379,14 @@ func in_dialogue():
 ## Called when player interacts with an NPC
 func init_npc_interaction(npc: NPC):
 	current_dialogue_npc = npc
+	var standing_locations = npc.standing_locations.duplicate()
+	if standing_locations.is_empty():
+		return
+	# Find closest standing location
+	target_dialogue_stand_location = standing_locations.pop_front()
+	for loc: DialogueStandLocation in standing_locations:
+		if abs(loc.global_position.x - global_position.x) < abs(target_dialogue_stand_location.global_position.x - global_position.x):
+			target_dialogue_stand_location = loc
 
 ### ----------------------------- CLICKER -----------------------------
 
