@@ -11,13 +11,14 @@
 [ext_resource type="FontFile" uid="uid://dugy4bpba0o10" path="res://assets/ui/fonts/CrimsonText-Bold.ttf" id="9_w6pgy"]
 [ext_resource type="FontFile" uid="uid://c8ewp3x7h67h3" path="res://assets/ui/fonts/CrimsonText-Italic.ttf" id="10_b3fvn"]
 
-[node name="SpeechBubble" type="Control" node_paths=PackedStringArray("nodule", "dialogue_label", "name_label")]
+[node name="SpeechBubble" type="Control" node_paths=PackedStringArray("nodule", "bubble_container", "dialogue_label", "name_label")]
 z_index = 20
 layout_mode = 3
 anchors_preset = 0
 scale = Vector2(0.409158, 0.409158)
 script = ExtResource("1_c5fww")
 nodule = NodePath("Nodule")
+bubble_container = NodePath("Nodule/BubbleContainer")
 dialogue_label = NodePath("Nodule/BubbleContainer/TextContainer/VBoxContainer/DialogueLabel")
 name_label = NodePath("Nodule/BubbleContainer/TextContainer/VBoxContainer/NameLabel")
 
@@ -26,9 +27,8 @@ z_index = 0
 scale = Vector2(1.74802, 1.74802)
 
 [node name="BubbleContainer" type="MarginContainer" parent="Nodule" node_paths=PackedStringArray("text_container", "dialogue_label")]
-offset_left = -238.0
 offset_top = -166.47
-offset_right = 2633.0
+offset_right = 2871.0
 offset_bottom = 373.53
 scale = Vector2(0.291612, 0.291612)
 script = ExtResource("2_ohaor")

@@ -54,15 +54,20 @@ func _ready():
 	hide()
 	clear_responses()
 
-func start_dialogue(npc: NPC):
+## [dir_to_npc], either 1 or -1, if the npc is to the right or left,
+## respectively, of the player
+func start_dialogue(npc: NPC, dir_to_npc: float):
 	fullscreen_display.hide()
 	show()
 	current_npc = npc
 	
 	# Spawn speech bubble
 	var instance = speech_bubble_scene.instantiate()
-	instance.position = npc.nodule.position
-	instance.nodule.flip_h = npc.nodule.flip_h
+	instance.init(
+		npc.nodule.position,
+		npc.nodule.flip_h,
+		dir_to_npc
+	)
 	current_speech_bubble = instance
 	npc.add_child(instance)
 
