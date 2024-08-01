@@ -2,7 +2,6 @@ extends Area2D
 class_name ScreenButton
 
 const SNAP_BREAK_DISTANCE = 100
-const RESNAP_DISTANCE = 50
 
 enum ButtonTypes {NONE, BOOST, UNORBIT, ORBIT}
 
@@ -35,6 +34,7 @@ func _ready():
 	draggable.mouse_entered.connect(_on_mouse_entered)
 	draggable.mouse_exited.connect(_on_mouse_exited)
 	player.main_line_updated.connect(_on_main_line_updated)
+	area_exited.connect(_on_area_exited)
 	# Set visuals to default
 	button_sprite.play("default")
 	action_glow.hide()
@@ -116,10 +116,13 @@ func get_point_state(point: Vector2) -> DiscreteScreenPuzzleState:
 		return player.point_states[point_local]
 	return null
 
-func snap_conditions_satisfied(point_state: DiscreteScreenPuzzleState) -> bool:
+func snap_conditions_satisfied(
+	point_state: DiscreteScreenPuzzleState,
+	ignore_ag_condition: bool = false
+) -> bool:
 	if point_state == null:
 		return false
-	if not point_state.in_ag:
+	if (not ignore_ag_condition) and (not point_state.in_ag):
 		return false
 	match type:
 		ButtonTypes.ORBIT:
@@ -131,15 +134,18 @@ func snap_conditions_satisfied(point_state: DiscreteScreenPuzzleState) -> bool:
 		_:
 			return false
 
-## Attempt to resnap to the line when the line is updated, otherwise snap home
-func handle_resnap():
-	var snap_point: Vector2 = find_snap_point()
+## Called on placed buttons when line is updated. Check if button is still at
+## a valid point on the line. If it isn't snap home.
+## The button is assumed to still be on the line because if it wasn't it would
+## have snapped home due to [_on_area_exited]
+func check_still_valid():
+	var closest_point: Vector2 = find_snap_point()
 	# Backtrack until reaching a point that doesn't overlap the button.
 	# This prevents the issue of a button causing its own snap condition to not
 	# be satisfied, i.e. an orbit button sees a point state with orbiting as
 	# true, but that's only because the orbit button itself is causing orbiting
 	# to be true.
-	var backtrack_point = snap_point - player.trajectory_line.global_position
+	var backtrack_point = closest_point - player.trajectory_line.global_position
 	var point_state: DiscreteScreenPuzzleState = player.point_states[backtrack_point]
 	# Should only need to backtrack 1 or 2 points, depending on [player.SPACING]
 	while self in point_state.overlapping_areas:
@@ -148,12 +154,11 @@ func handle_resnap():
 			break
 		backtrack_point = point_state.previous_point
 		point_state = player.point_states[backtrack_point]
-	if (
-		(global_position).distance_to(snap_point) < RESNAP_DISTANCE and
-		snap_conditions_satisfied(point_state)
-	):
-		global_position = snap_point
-	else:
+	# AGs are ignored when checking conditions due to the scenario of a button
+	# being placed right on the edge of an AG, causing the backtrack point to
+	# be outside of the AG. The button is assumed to already be in an AG because
+	# it couldn't have been placed otherwise.
+	if not snap_conditions_satisfied(point_state, true):
 		snap_home()
 
 func snap_home():
@@ -202,4 +207,8 @@ func _input(event: InputEvent) -> void:
 
 func _on_main_line_updated():
 	if placed:
-		handle_resnap()
+		check_still_valid()
+
+func _on_area_exited(area: Area2D):
+	if area is TrajectoryLineArea:
+		snap_home()
