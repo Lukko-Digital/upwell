@@ -38,8 +38,15 @@ var shake_lerp_speed: float
 
 func _ready():
 	# Connect signals
-	if get_parent() is Game:
+
+	if get_tree().get_current_scene() is Game:
+		# If playing game scene, only set the real main camera to global
+		if get_parent() is Game:
+			Global.main_camera = self
+	else:
+		# If not playing game scene, set self
 		Global.main_camera = self
+
 	Global.set_camera_focus.connect(_set_focus)
 
 func _process(delta):
