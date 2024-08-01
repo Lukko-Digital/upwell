@@ -79,6 +79,7 @@ static func parse_csv(dialogue_file: String, npc: NPC) -> ConversationTree:
 		safety_check_dialogue_commands(dialogue_line, npc)
 		var npc_name = get_key.call(line, "Name")
 		var display_type = to_display_type(get_key.call(line, "Display Type"))
+		var locked_in_dialogue = to_bool(get_key.call(line, "Locked In Dialogue"))
 		var variable_to_set = get_key.call(line, "Variable To Set")
 		var variable_value = to_bool(get_key.call(line, "Variable Value"))
 		var next_branch_id = get_key.call(line, "Next Branch")
@@ -106,6 +107,7 @@ static func parse_csv(dialogue_file: String, npc: NPC) -> ConversationTree:
 			dialogue_line,
 			npc_name,
 			display_type,
+			locked_in_dialogue,
 			variable_to_set,
 			variable_value,
 			next_branch_id,

@@ -8,6 +8,8 @@ var dialogue_line: String
 var npc_name: String
 ## Default [DialogueParser.DisplayType.SPEECH_BUBBLE]
 var display_type: DialogueParser.DisplayType
+## Default [false]
+var locked_in_dialogue: bool
 ## Optional, empty string if not provided. Key of global dialogue conditions.
 var variable_to_set: String
 ## Optional
@@ -28,6 +30,7 @@ func _init(
 	dialogue_line_: String,
 	npc_name_: String,
 	display_type_: DialogueParser.DisplayType,
+	locked_in_dialogue_: bool,
 	variable_to_set_: String,
 	variable_value_: bool,
 	next_branch_id_: String,
@@ -40,6 +43,7 @@ func _init(
 	dialogue_line = dialogue_line_
 	npc_name = npc_name_
 	display_type = display_type_
+	locked_in_dialogue = locked_in_dialogue_
 	variable_to_set = variable_to_set_
 	variable_value = variable_value_
 	next_branch_id = next_branch_id_
@@ -53,6 +57,7 @@ func print():
 	print("\tdialogue_line: ", dialogue_line)
 	print("\tnpc_name: ", npc_name)
 	print("\tdisplay_type: ", display_type)
+	print("\tlocked_in_dialogue: ", locked_in_dialogue)
 	print("\tvariable_to_set: ", variable_to_set)
 	print("\tvariable_value: ", variable_value)
 	print("\tnext_branch_id: ", next_branch_id)

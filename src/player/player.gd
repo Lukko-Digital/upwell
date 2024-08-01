@@ -143,8 +143,7 @@ func _input(event: InputEvent) -> void:
 		throw()
 
 	if event.is_action_pressed("ui_cancel"):
-		if in_dialogue():
-			dialogue_ui.exit_dialogue()
+		leave_dialogue()
 
 ## ------------------------------ GRAVITY ------------------------------
 
@@ -387,6 +386,11 @@ func init_npc_interaction(npc: NPC):
 	for loc: DialogueStandLocation in standing_locations:
 		if abs(loc.global_position.x - global_position.x) < abs(target_dialogue_stand_location.global_position.x - global_position.x):
 			target_dialogue_stand_location = loc
+
+## Attempt to leave dialogue early by pressing [esc]
+func leave_dialogue():
+	if in_dialogue() and not dialogue_ui.locked_in_dialogue:
+		dialogue_ui.exit_dialogue()
 
 ### ----------------------------- CLICKER -----------------------------
 

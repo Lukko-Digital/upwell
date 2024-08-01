@@ -44,6 +44,8 @@ var current_speech_bubble: SpeechBubble
 var current_npc: NPC
 var next_branch: String
 var display_speed_coef = 1
+## Boolean whether the player can hit [esc] to exit dialogue or not
+var locked_in_dialogue: bool
 
 signal display_animation_finished
 signal dialogue_finished
@@ -73,6 +75,8 @@ func play_branch(branch_id: String):
 
 	clear_responses()
 	var branch: ConversationBranch = current_npc.conversation_tree.branches[branch_id]
+	# Set [locked_in_dialogue]
+	locked_in_dialogue = branch.locked_in_dialogue
 	# Determine if speech bubble or fullscreen should be used
 	match branch.display_type:
 		DialogueParser.DisplayType.SPEECH_BUBBLE:
