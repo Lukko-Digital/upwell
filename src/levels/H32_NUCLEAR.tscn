@@ -160,7 +160,6 @@ scale = Vector2(-0.636, 0.636)
 texture = ExtResource("8_4qf24")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NPC"]
-position = Vector2(10, 0)
 sprite_frames = SubResource("SpriteFrames_lg7j8")
 animation = &"cross_arms"
 offset = Vector2(41.46, 0)
