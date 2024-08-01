@@ -132,21 +132,14 @@ func location_deselected():
 	line.set_point_position(1, Vector2.ZERO)
 	select_destination.emit(null)
 
-# Not used anymore
-# func location_unhovered(_location: Entrypoint):
-# 	if moving:
-# 		return
-# 	line.set_point_position(1, Vector2.ZERO)
 
 func travel() -> void:
-	# Commented out for playtesting purposes
-	if moving: # or drill_heat > 0:
+	if moving:
 		return
 	if at_destination():
 		return
 	
 	moving = true
-	# manual_control = false
 
 	# Begin shake by setting target and regular speed
 	Global.main_camera.start_shake()
@@ -155,7 +148,6 @@ func travel() -> void:
 func enter_coolant_pocket() -> void:
 	energy_bar.value = energy_bar.max_value
 	in_coolant = true
-	# target_shake = TRAVEL_SHAKE_AMOUNT
 	map_animation_player.play("neutral")
 	game.pod.pod_animation_player.play("neutral")
 	
@@ -181,9 +173,6 @@ func end_movement() -> void:
 		game.pod.pod_animation_player.play("neutral")
 		Global.main_camera.shake_amount = 40
 		Global.main_camera.set_shake_lerp(0, 4)
-		# 7/13, josh says dont bump you out of map on arrival
-		# await get_tree().create_timer(0.35).timeout
-		# Global.set_camera_focus.emit(null)
 		recalled = false
 
 func recall() -> void:
@@ -209,7 +198,7 @@ func critical_energy() -> void:
 func run_out_of_energy() -> void:
 	game.pod.pod_animation_player.play("crash_blackout")
 	recall()
-	Global.set_camera_focus.emit(null) # (game.pod.point_focus_marker)
+	Global.set_camera_focus.emit(null)
 	await get_tree().create_timer(.3).timeout
 	map_animation_player.play("SHUTDOWN_AVOIDED")
 
@@ -233,8 +222,9 @@ func hit_hazard() -> void:
 	await get_tree().create_timer(.8).timeout
 
 	game.pod.pod_animation_player.play("crash_blackout")
-	Global.set_camera_focus.emit(null) # (game.pod.point_focus_marker)
-	await get_tree().create_timer(.2).timeout # adds some time for screen to black out so player doesn't see lag caused by recall()
+	Global.set_camera_focus.emit(null)
+	# adds some time for screen to black out so player doesn't see lag caused by recall()
+	await get_tree().create_timer(.2).timeout
 	recall()
 	await get_tree().create_timer(.3).timeout
 
