@@ -25,13 +25,15 @@ name_label = NodePath("Nodule/BubbleContainer/TextContainer/VBoxContainer/NameLa
 z_index = 0
 scale = Vector2(1.74802, 1.74802)
 
-[node name="BubbleContainer" type="MarginContainer" parent="Nodule"]
-offset_left = -383.0
-offset_top = -125.645
-offset_right = 2405.0
-offset_bottom = 274.355
+[node name="BubbleContainer" type="MarginContainer" parent="Nodule" node_paths=PackedStringArray("text_container", "dialogue_label")]
+offset_left = -238.0
+offset_top = -166.47
+offset_right = 2633.0
+offset_bottom = 373.53
 scale = Vector2(0.291612, 0.291612)
 script = ExtResource("2_ohaor")
+text_container = NodePath("TextContainer")
+dialogue_label = NodePath("TextContainer/VBoxContainer/DialogueLabel")
 
 [node name="BubbleNinePatch" type="NinePatchRect" parent="Nodule/BubbleContainer"]
 z_index = -1
@@ -73,7 +75,7 @@ scroll_active = false
 visible_characters_behavior = 1
 
 [node name="DialogueLabel" type="RichTextLabel" parent="Nodule/BubbleContainer/TextContainer/VBoxContainer"]
-custom_minimum_size = Vector2(977.1, 0)
+custom_minimum_size = Vector2(900, 0)
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -86,7 +88,7 @@ theme_override_font_sizes/italics_font_size = 130
 theme_override_font_sizes/bold_italics_font_size = 130
 theme_override_font_sizes/mono_font_size = 130
 bbcode_enabled = true
-text = "hello good sir how are you"
+text = "A control for displaying text that can contain different font styles, images, and basic formatting."
 fit_content = true
 scroll_active = false
 visible_characters_behavior = 1
