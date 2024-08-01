@@ -123,7 +123,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func lerp_shake(delta: float):
 	current_shake = lerp(current_shake, target_shake, delta * shake_lerp_speed)
 	if current_shake != target_shake:
-		Global.main_camera.shake(INF, current_shake)
+		Global.main_camera.set_shake(INF, current_shake)
 	else:
 		shake_lerp_speed = BASE_SHAKE_LERP_SPEED
 

@@ -187,7 +187,7 @@ func handle_dialogue_command(command_text: String, idx: int) -> int:
 							amount = value
 						"duration":
 							duration = value
-			Global.main_camera.shake(duration, amount)
+			Global.main_camera.set_shake(duration, amount)
 		DIALOGUE_COMMANDS.ANIMATION:
 			current_npc.npc_sprite.play(command_line[1])
 	return re_match.get_end()
