@@ -16,12 +16,16 @@ var standing_locations: Array[DialogueStandLocation]
 var conversation_tree: ConversationTree
 ## In the case that the npc's body isn't centered in the sprite
 var default_sprite_offset: Vector2
+## Only on [AnimatedSprite2D]
+var default_animation: StringName
 
 func _ready() -> void:
 	super()
 	# Get sprite offset
 	if npc_sprite is Sprite2D or npc_sprite is AnimatedSprite2D:
 		default_sprite_offset = npc_sprite.offset
+		if npc_sprite is AnimatedSprite2D:
+			default_animation = npc_sprite.animation
 	# Get DialogueStandLocations
 	for child in get_children():
 		if not child is DialogueStandLocation:
@@ -59,3 +63,7 @@ func face_player(player: Player):
 
 	nodule.position.x = sign(vec_to_player.x) * abs(nodule.position.x)
 	nodule.flip_h = player_on_right
+
+func reset():
+	if npc_sprite is AnimatedSprite2D:
+		npc_sprite.play(default_animation)

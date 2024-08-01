@@ -220,6 +220,7 @@ func clear_responses():
 		button.queue_free()
 
 func exit_dialogue():
+	current_npc.reset()
 	current_npc = null
 	hide()
 
