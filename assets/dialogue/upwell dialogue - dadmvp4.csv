@@ -12,7 +12,7 @@ G6,,,Wow. Are we being {angry}SERIOUS?{/angry} You really think... {pause 0.5}{a
 G7,,,{pause 0.2}...now's the time to go play fucking astronaut?{pause 1},FALSE,,,G8,,,,FALSE,,,,,,FALSE,,,,,FALSE,,,,,
 G8,,,{speed 0.5}Are you a {animation point}{angry}FUCKING{/angry} {pause 0.2}{angry}MORON?{/angry},FALSE,,,,,,You said I could,FALSE,,,,G9,Someone has to.,FALSE,,,,G10,FALSE,,,,,
 G9,,,{animation neutral}Like...  five years ago? I don't know how you think that's still relevant.,FALSE,,,,,,Don't smoke inside.,TRUE,,,,G10,Please don't smoke here.,FALSE,,,,G10,FALSE,,,,,
-G10,,Fullscreen,{animation neutral}He focuses on his cigarette. Only the filter remains.[b] This conversation is over.,FALSE,,,,,,Good,FALSE,,,,END,,FALSE,,,,,FALSE,,,,,
+G10,,Fullscreen,{animation neutral}He focuses on his cigarette. Only the filter remains. [b]This conversation is over.[/b],FALSE,,,,,,Good,FALSE,,,,END,,FALSE,,,,,FALSE,,,,,
 G11,,,,FALSE,,,,,,,FALSE,,,,,,FALSE,,,,,FALSE,,,,,
 G12,,,,FALSE,,,,,,,FALSE,,,,,,FALSE,,,,,FALSE,,,,,
 G13,,,,FALSE,,,,,,,FALSE,,,,,,FALSE,,,,,FALSE,,,,,

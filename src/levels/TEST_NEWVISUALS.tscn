@@ -1040,7 +1040,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_sr4fx"]
 gradient = SubResource("Gradient_lu00i")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8vxv1"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1c5gl"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -1156,6 +1156,7 @@ position = Vector2(-4224, 0)
 
 [node name="EmptyPod2" parent="." instance=ExtResource("2_bh8lq")]
 position = Vector2(29440, -3072)
+entry_number = 1
 
 [node name="Camera2D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_v1oi6")]
 position = Vector2(-1653, -322)
@@ -1743,6 +1744,7 @@ color = Color(1, 0.469173, 0.816102, 0.317647)
 metadata/_edit_lock_ = true
 
 [node name="BG_SCREEN" type="ColorRect" parent="-1/Node2D"]
+self_modulate = Color(1, 1, 1, 0.176471)
 offset_left = -3581.0
 offset_top = -3931.0
 offset_right = 1923.0
@@ -2029,7 +2031,7 @@ script = ExtResource("16_pcp8g")
 
 [node name="Particles" parent="3/Node2D" instance=ExtResource("34_cqmqj")]
 visible = false
-process_material = SubResource("ParticleProcessMaterial_8vxv1")
+process_material = SubResource("ParticleProcessMaterial_1c5gl")
 
 [node name="TileMap" type="TileMap" parent="3/Node2D"]
 modulate = Color(0.621049, 0.359803, 0.250508, 1)
