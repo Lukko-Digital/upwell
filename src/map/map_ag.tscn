@@ -1,17 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://c42v1gkf6sf4k"]
+[gd_scene load_steps=4 format=3 uid="uid://troio1f4apa4"]
 
-[ext_resource type="Script" path="res://src/artificial_gravity/artificial_gravity.gd" id="1_irft5"]
-[ext_resource type="PackedScene" uid="uid://d4jqyovssydvt" path="res://src/artificial_gravity/glow_sprite.tscn" id="2_c2gly"]
+[ext_resource type="Script" path="res://src/map/map_ag.gd" id="1_1cvw5"]
+[ext_resource type="PackedScene" uid="uid://d4jqyovssydvt" path="res://src/artificial_gravity/glow_sprite.tscn" id="2_q8ig4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ego6m"]
 radius = 171.009
 
-[node name="Gravity" type="Area2D"]
+[node name="MapAG" type="Area2D"]
 collision_layer = 4
 collision_mask = 0
-script = ExtResource("1_irft5")
+script = ExtResource("1_1cvw5")
 
-[node name="Glow" parent="." instance=ExtResource("2_c2gly")]
+[node name="Glow" parent="." instance=ExtResource("2_q8ig4")]
 modulate = Color(1, 1, 1, 0.2)
 scale = Vector2(0.38002, 0.38002)
 

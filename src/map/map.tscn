@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bb68hmcptqlgt"]
+[gd_scene load_steps=31 format=3 uid="uid://bb68hmcptqlgt"]
 
 [ext_resource type="Script" path="res://src/map/map.gd" id="1_ithwi"]
 [ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player/map_player.tscn" id="2_uwq5e"]
@@ -6,10 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bbrkg6cjjyr4k" path="res://src/levels/CONTACT.tscn" id="5_ga2oe"]
 [ext_resource type="PackedScene" uid="uid://c413chwmpxtw1" path="res://src/levels/H32_NUCLEAR.tscn" id="5_og8y0"]
 [ext_resource type="PackedScene" uid="uid://bwmwenrm8xori" path="res://src/map/coolant_pocket.tscn" id="6_4a6mq"]
-[ext_resource type="Script" path="res://src/artificial_gravity/artificial_gravity.gd" id="6_5ab28"]
 [ext_resource type="PackedScene" uid="uid://bgym5f33j1iv6" path="res://src/map/entrypoint.tscn" id="6_ei32m"]
+[ext_resource type="PackedScene" uid="uid://troio1f4apa4" path="res://src/map/map_ag.tscn" id="7_2vcom"]
 [ext_resource type="PackedScene" uid="uid://dl1nh6jj657a" path="res://src/levels/FALL.tscn" id="7_kq772"]
-[ext_resource type="PackedScene" uid="uid://d4jqyovssydvt" path="res://src/artificial_gravity/glow_sprite.tscn" id="7_x2yq8"]
 [ext_resource type="PackedScene" uid="uid://bttepvab6oghg" path="res://src/levels/TEST_NEWVISUALS.tscn" id="8_itcue"]
 [ext_resource type="PackedScene" uid="uid://ckbe13djrw5lh" path="res://src/map/hazard.tscn" id="8_xqpvg"]
 [ext_resource type="PackedScene" uid="uid://cr2ov0m76vreo" path="res://src/levels/RELAPSE.tscn" id="9_bymtf"]
@@ -23,7 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://ixonxlg6v01d" path="res://assets/ui/map/fuel pockets/1.png" id="15_4x36h"]
 [ext_resource type="Texture2D" uid="uid://vilb3ruiunqj" path="res://assets/ui/map/levels/7.png" id="15_aurv3"]
 [ext_resource type="Texture2D" uid="uid://buvp8an66o2uo" path="res://assets/ui/map/fuel pockets/5.png" id="16_g8ccc"]
-[ext_resource type="PackedScene" uid="uid://c42v1gkf6sf4k" path="res://src/map/gravity.tscn" id="16_kt3d7"]
 [ext_resource type="Texture2D" uid="uid://u0jvbltuopk2" path="res://assets/ui/map/fuel pockets/6.png" id="17_506vn"]
 [ext_resource type="Texture2D" uid="uid://dfhiny7pt775r" path="res://assets/ui/map/fuel pockets/7.png" id="18_lb6oq"]
 [ext_resource type="Texture2D" uid="uid://urcj8q4otmsh" path="res://assets/ui/map/fuel pockets/8.png" id="19_fvbb2"]
@@ -31,9 +29,6 @@
 [ext_resource type="Texture2D" uid="uid://1qen0i4e2wgm" path="res://assets/ui/map/hazards/5.png" id="22_holn1"]
 [ext_resource type="Texture2D" uid="uid://wmhlvsrvcevl" path="res://assets/ui/map/hazards/6.png" id="23_kra0l"]
 [ext_resource type="Texture2D" uid="uid://bao31jflk7wxf" path="res://assets/ui/map/hazards/7.png" id="24_xw48m"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_yyf3a"]
-radius = 196.307
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ef2c0"]
 blend_mode = 1
@@ -131,22 +126,6 @@ name_text = "H32.NUCLEAR"
 [node name="Entrypoint3" parent="Levels/H32_NUCLEAR" instance=ExtResource("6_ei32m")]
 position = Vector2(15.25, -96)
 
-[node name="Gravity" type="Area2D" parent="Levels/H32_NUCLEAR"]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource("6_5ab28")
-
-[node name="Glow" parent="Levels/H32_NUCLEAR/Gravity" instance=ExtResource("7_x2yq8")]
-modulate = Color(1, 1, 1, 0.2)
-scale = Vector2(0.436239, 0.436239)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/H32_NUCLEAR/Gravity"]
-visible = false
-shape = SubResource("CircleShape2D_yyf3a")
-
-[node name="RegenTimer" type="Timer" parent="Levels/H32_NUCLEAR/Gravity"]
-one_shot = true
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/H32_NUCLEAR"]
 position = Vector2(-10.8308, -6.19836)
 rotation = -0.261799
@@ -160,6 +139,8 @@ position = Vector2(-10.8308, -6.19836)
 rotation = -0.261799
 scale = Vector2(0.716837, 0.716837)
 texture = ExtResource("11_1rvr8")
+
+[node name="MapAG" parent="Levels/H32_NUCLEAR" instance=ExtResource("7_2vcom")]
 
 [node name="001_CONTACT" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(311, -292)
@@ -175,22 +156,6 @@ position = Vector2(-87.75, 34.75)
 [node name="Entrypoint2" parent="Levels/001_CONTACT" instance=ExtResource("6_ei32m")]
 position = Vector2(120, 38.5)
 entry_number = 1
-
-[node name="Gravity" type="Area2D" parent="Levels/001_CONTACT"]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource("6_5ab28")
-
-[node name="Glow" parent="Levels/001_CONTACT/Gravity" instance=ExtResource("7_x2yq8")]
-modulate = Color(1, 1, 1, 0.2)
-scale = Vector2(0.436239, 0.436239)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/001_CONTACT/Gravity"]
-visible = false
-shape = SubResource("CircleShape2D_yyf3a")
-
-[node name="RegenTimer" type="Timer" parent="Levels/001_CONTACT/Gravity"]
-one_shot = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/001_CONTACT"]
 position = Vector2(2.67044, -15.1468)
@@ -212,22 +177,6 @@ name_text = "003.TEST"
 [node name="Entrypoint4" parent="Levels/003_TEST" instance=ExtResource("6_ei32m")]
 position = Vector2(-13, -88.75)
 
-[node name="Gravity" type="Area2D" parent="Levels/003_TEST"]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource("6_5ab28")
-
-[node name="Glow" parent="Levels/003_TEST/Gravity" instance=ExtResource("7_x2yq8")]
-modulate = Color(1, 1, 1, 0.2)
-scale = Vector2(0.436239, 0.436239)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/003_TEST/Gravity"]
-visible = false
-shape = SubResource("CircleShape2D_yyf3a")
-
-[node name="RegenTimer" type="Timer" parent="Levels/003_TEST/Gravity"]
-one_shot = true
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/003_TEST"]
 position = Vector2(-4.72519, 19.4886)
 rotation = -1.57079
@@ -247,22 +196,6 @@ name_text = "002.FALL"
 
 [node name="Entrypoint5" parent="Levels/002_FALL" instance=ExtResource("6_ei32m")]
 position = Vector2(-105.75, -16.75)
-
-[node name="Gravity" type="Area2D" parent="Levels/002_FALL"]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource("6_5ab28")
-
-[node name="Glow" parent="Levels/002_FALL/Gravity" instance=ExtResource("7_x2yq8")]
-modulate = Color(1, 1, 1, 0.2)
-scale = Vector2(0.436239, 0.436239)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/002_FALL/Gravity"]
-visible = false
-shape = SubResource("CircleShape2D_yyf3a")
-
-[node name="RegenTimer" type="Timer" parent="Levels/002_FALL/Gravity"]
-one_shot = true
 
 [node name="5" type="Sprite2D" parent="Levels/002_FALL"]
 self_modulate = Color(1, 1, 1, 0.552941)
@@ -286,22 +219,6 @@ name_text = "H02.RECURRENCE"
 [node name="Entrypoint6" parent="Levels/H02_RECURRENCE" instance=ExtResource("6_ei32m")]
 position = Vector2(73.5, -8.75)
 
-[node name="Gravity" type="Area2D" parent="Levels/H02_RECURRENCE"]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource("6_5ab28")
-
-[node name="Glow" parent="Levels/H02_RECURRENCE/Gravity" instance=ExtResource("7_x2yq8")]
-modulate = Color(1, 1, 1, 0.2)
-scale = Vector2(0.436239, 0.436239)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/H02_RECURRENCE/Gravity"]
-visible = false
-shape = SubResource("CircleShape2D_yyf3a")
-
-[node name="RegenTimer" type="Timer" parent="Levels/H02_RECURRENCE/Gravity"]
-one_shot = true
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/H02_RECURRENCE"]
 position = Vector2(-23.75, 3.5)
 polygon = PackedVector2Array(59.0375, -78.5864, 40.6616, 1.5639, 72.7217, 59.4285, 69.9, 73.5, 56.9, 87.5, 54.8, 87.5, 38.7, 100.5, 36.6, 100.5, 14.5, 112.5, 8.3, 112.5, -16, 115.8, -16, 114.1, -34, 110.1, -34, 108.6, -49, 99.6, -49, 98.2, -59, 86.2, -59, 83, -64, 74, -64, 72.9, -71.7, 35.5, -95, -5, -95, -6.5, -99, -22.3, -99, -23.6, -97.9, -39.5, -96.5, -39.5, -89.5, -64.5, -87.9, -64.5, -69.9, -84.5, -2.73685, -96.1804)
@@ -319,21 +236,6 @@ name_text = "004.RELAPSE"
 
 [node name="Entrypoint7" parent="Levels/004_RELAPSE" instance=ExtResource("6_ei32m")]
 position = Vector2(79.75, 59)
-
-[node name="Gravity" type="Area2D" parent="Levels/004_RELAPSE"]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource("6_5ab28")
-
-[node name="Glow" parent="Levels/004_RELAPSE/Gravity" instance=ExtResource("7_x2yq8")]
-modulate = Color(1, 1, 1, 0.2)
-scale = Vector2(0.436239, 0.436239)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/004_RELAPSE/Gravity"]
-shape = SubResource("CircleShape2D_yyf3a")
-
-[node name="RegenTimer" type="Timer" parent="Levels/004_RELAPSE/Gravity"]
-one_shot = true
 
 [node name="5" type="Sprite2D" parent="Levels/004_RELAPSE"]
 self_modulate = Color(1, 1, 1, 0.552941)
@@ -357,22 +259,6 @@ name_text = "005.STORAGE"
 [node name="Entrypoint8" parent="Levels/005_STORAGE" instance=ExtResource("6_ei32m")]
 position = Vector2(-104.5, 67.25)
 
-[node name="Gravity" type="Area2D" parent="Levels/005_STORAGE"]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource("6_5ab28")
-
-[node name="Glow" parent="Levels/005_STORAGE/Gravity" instance=ExtResource("7_x2yq8")]
-modulate = Color(1, 1, 1, 0.2)
-scale = Vector2(0.436239, 0.436239)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/005_STORAGE/Gravity"]
-visible = false
-shape = SubResource("CircleShape2D_yyf3a")
-
-[node name="RegenTimer" type="Timer" parent="Levels/005_STORAGE/Gravity"]
-one_shot = true
-
 [node name="5" type="Sprite2D" parent="Levels/005_STORAGE"]
 self_modulate = Color(1, 1, 1, 0.552941)
 material = SubResource("CanvasItemMaterial_ef2c0")
@@ -382,28 +268,11 @@ scale = Vector2(0.716837, 0.716837)
 texture = ExtResource("11_1rvr8")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/005_STORAGE/5"]
-scale = Vector2(1, 1)
 polygon = PackedVector2Array(29.2954, -96.2562, 83.3522, -75.6797, 84.5, -47.5, 79.5, 85.5, 78.2, 85.5, 70.1, 126.5, 68.9, 126.5, 65.9, 135.5, 64.5, 135.5, 51.5, 151.5, 49.1, 151.5, 31.1, 163.5, 5.5, 164.6, 5.5, 162.9, -9.5, 157.9, -9.5, 156.6, -24.5, 147.6, -24.5, 146.2, -41.5, 127.3, -41.5, 125.1, -61.5, 94.1, -61.5, 92.9, -77.5, 52.9, -77.5, 51.8, -94.5, -6.2, -94.5, -12.5, -97.7, -49.5, -96, -49.5, -89, -73.5, -87.6, -73.5, -61.6, -112.5, -59.2, -112.5, -32.3, -136.5, -30.1, -136.5, -12.2064, -141.943)
 
 [node name="UNVISITABLE2" parent="Levels" instance=ExtResource("4_17lxb")]
 position = Vector2(-965.25, -468.5)
 name_text = " "
-
-[node name="Gravity" type="Area2D" parent="Levels/UNVISITABLE2"]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource("6_5ab28")
-
-[node name="Glow" parent="Levels/UNVISITABLE2/Gravity" instance=ExtResource("7_x2yq8")]
-modulate = Color(1, 1, 1, 0.2)
-scale = Vector2(0.436239, 0.436239)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/UNVISITABLE2/Gravity"]
-visible = false
-shape = SubResource("CircleShape2D_yyf3a")
-
-[node name="RegenTimer" type="Timer" parent="Levels/UNVISITABLE2/Gravity"]
-one_shot = true
 
 [node name="5" type="Sprite2D" parent="Levels/UNVISITABLE2"]
 self_modulate = Color(1, 1, 1, 0.447059)
@@ -427,22 +296,6 @@ name_text = "UNKNOWN"
 [node name="Entrypoint9" parent="Levels/UNKNOWN" instance=ExtResource("6_ei32m")]
 position = Vector2(117.5, 63.5)
 
-[node name="Gravity" type="Area2D" parent="Levels/UNKNOWN"]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource("6_5ab28")
-
-[node name="Glow" parent="Levels/UNKNOWN/Gravity" instance=ExtResource("7_x2yq8")]
-modulate = Color(1, 1, 1, 0.2)
-scale = Vector2(0.436239, 0.436239)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/UNKNOWN/Gravity"]
-visible = false
-shape = SubResource("CircleShape2D_yyf3a")
-
-[node name="RegenTimer" type="Timer" parent="Levels/UNKNOWN/Gravity"]
-one_shot = true
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Levels/UNKNOWN"]
 position = Vector2(11.532, -0.841125)
 rotation = 0.523598
@@ -459,8 +312,6 @@ texture = ExtResource("13_qorjw")
 position = Vector2(-1325.5, 443.25)
 label = NodePath("../UNVISITABLE2/Label")
 name_text = " "
-
-[node name="Gravity" parent="Levels/UNVISITABLE" instance=ExtResource("16_kt3d7")]
 
 [node name="5" type="Sprite2D" parent="Levels/UNVISITABLE"]
 self_modulate = Color(1, 1, 1, 0.329412)
@@ -1369,16 +1220,6 @@ rotation = 3.31578
 scale = Vector2(0.256746, -0.226866)
 polygon = PackedVector2Array(20, -257.8, 38, -255.8, 38, -254.5, 60, -247.5, 60, -246.1, 94, -226.1, 94, -224.8, 122, -196.8, 122, -194.6, 137, -173.6, 137, -171.5, 157, -132.5, 157, -129.4, 189, -43.4, 189, -39, 204, 20.8, 204, 22, 206, 69, 204.7, 69, 198.7, 110, 197.4, 110, 189.4, 133, 188.1, 133, 175.2, 156, 173.9, 156, 150.9, 183, 148.7, 183, 126.7, 201, 124.5, 201, 89.5, 221, 86.4, 221, 18.4, 248, 14.3, 248, -17.7, 258, -19.7, 258, -42.8, 262, -44, 262, -94, 260, -94, 258.5, -121, 250.5, -121, 249.2, -143, 238.2, -143, 237, -168, 217, -168, 214.7, -184, 195.7, -184, 193.5, -197, 168.5, -197, 165.3, -203, 145.3, -203, 144, -204, 91, -202.7, 91, -199.7, 72, -198.4, 72, -187.5, 38, -186.1, 38, -155, -17.5, -155, -19.4, -136, -60.4, -136, -64.3, -130, -85, -130, -87, -127, -150, -125.5, -150, -119.6, -176, -118.2, -176, -103.2, -206, -101.8, -206, -72.8, -236, -70.6, -236, -56.6, -246, -53.5, -246, -39.5, -253, -35.1, -253, -16, -257.5, -16, -259, 20, -259)
 metadata/_edit_lock_ = true
-
-[connection signal="timeout" from="Levels/H32_NUCLEAR/Gravity/RegenTimer" to="Levels/H32_NUCLEAR/Gravity" method="_on_regen_timer_timeout"]
-[connection signal="timeout" from="Levels/001_CONTACT/Gravity/RegenTimer" to="Levels/001_CONTACT/Gravity" method="_on_regen_timer_timeout"]
-[connection signal="timeout" from="Levels/003_TEST/Gravity/RegenTimer" to="Levels/003_TEST/Gravity" method="_on_regen_timer_timeout"]
-[connection signal="timeout" from="Levels/002_FALL/Gravity/RegenTimer" to="Levels/002_FALL/Gravity" method="_on_regen_timer_timeout"]
-[connection signal="timeout" from="Levels/H02_RECURRENCE/Gravity/RegenTimer" to="Levels/H02_RECURRENCE/Gravity" method="_on_regen_timer_timeout"]
-[connection signal="timeout" from="Levels/004_RELAPSE/Gravity/RegenTimer" to="Levels/004_RELAPSE/Gravity" method="_on_regen_timer_timeout"]
-[connection signal="timeout" from="Levels/005_STORAGE/Gravity/RegenTimer" to="Levels/005_STORAGE/Gravity" method="_on_regen_timer_timeout"]
-[connection signal="timeout" from="Levels/UNVISITABLE2/Gravity/RegenTimer" to="Levels/UNVISITABLE2/Gravity" method="_on_regen_timer_timeout"]
-[connection signal="timeout" from="Levels/UNKNOWN/Gravity/RegenTimer" to="Levels/UNKNOWN/Gravity" method="_on_regen_timer_timeout"]
 
 [editable path="Levels/H32_NUCLEAR"]
 [editable path="Levels/001_CONTACT"]
