@@ -31,7 +31,10 @@ const LIMIT_DEFAULT = 10000000
 
 ## LIFO stack, the last element in the array is focused
 var focus_stack: Array[Node2D] = []
+
 var shake_amount: float
+var target_shake_amount: float
+var shake_lerp_speed: float
 
 func _ready():
 	# Connect signals
@@ -43,7 +46,7 @@ func _process(delta):
 	handle_focus(delta)
 	handle_limits()
 	handle_follow_player(delta)
-	handle_shake()
+	handle_shake(delta)
 	handle_particle_tracking()
 
 ## -------------------------- CAMERA MOVEMENT & FOCUS --------------------------
@@ -170,7 +173,9 @@ func handle_particle_tracking():
 ## -------------------------- SHAKE --------------------------
 
 ## Shake the camera for a given time by changing [offset]
-func handle_shake():
+func handle_shake(delta):
+	shake_amount = lerp(shake_amount, target_shake_amount, delta * shake_lerp_speed)
+
 	if shake_timer.is_stopped():
 		offset = Vector2.ZERO
 		return
@@ -180,13 +185,18 @@ func handle_shake():
 	) * shake_amount
 	offset = shake_offset
 
-## Receiver for the global [camera_shake] signal
 func set_shake(duration: float, amount: float):
 	shake_timer.stop()
 	shake_timer.start(duration)
 	shake_amount = amount
 
-## Receiver for the global [stop_camera_shake] signal
+func set_shake_lerp(target_amount: float, lerp_speed: float):
+	target_shake_amount = target_amount
+	shake_lerp_speed = lerp_speed
+
+func start_shake():
+	shake_timer.start(INF)
+
 func stop_shake():
 	shake_timer.stop()
 
