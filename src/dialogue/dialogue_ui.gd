@@ -1,8 +1,6 @@
 extends CanvasLayer
 class_name DialogueUI
 
-const TEXT_SPEED = 0.035
-
 ## Usages:
 ##
 ## {pause #} where # is pause duration in seconds
@@ -10,8 +8,9 @@ const TEXT_SPEED = 0.035
 ## {speed #} where # is a multiplier on speed (2 means twice as fast, 0.5 means
 ##	twice as slow)
 ##
-## {shake} {shake duration=#} {shake amount=#} {shake duration=# amount=#}
-## 	# for duration is shake duration in seconds, # for amount is max pixel offset
+## {shake} {shake amount=#} {shake lerp_speed=#} {shake amount=# lerp_speed=#}
+## 	# for amount is max pixel offset, # for lerp_speed is the speed at which
+## 	the shake lerps down to zero
 ##
 ## {animation [animation_name]} where [animation_name] is a string corresponding
 ##	to an animation on the NPC's AnimatedSprite2D
@@ -22,12 +21,15 @@ const DIALOGUE_COMMANDS = {
 	ANIMATION = "animation"
 }
 const SHAKE_DEFAULT = {
-	DURATION = 0.1,
-	AMOUNT = 40
+	AMOUNT = 50,
+	LERP_SPEED = 10.0
 }
+
+const TEXT_SPEED = 0.035
 ## How long it will take for the next character to appear, in seconds
 const END_CHARACTER_PAUSE = 0.6
 const COMMA_PAUSE = 0.3
+
 ## Distance from nodule origin to npc origin
 const SPEECH_BUBBLE_OFFSET = Vector2(-60, -110)
 
@@ -174,8 +176,8 @@ func handle_dialogue_command(command_text: String, idx: int) -> int:
 		DIALOGUE_COMMANDS.SPEED:
 			display_speed_coef = 1 / command_line[1].to_float()
 		DIALOGUE_COMMANDS.SHAKE:
-			var duration: float = SHAKE_DEFAULT.DURATION
 			var amount: float = SHAKE_DEFAULT.AMOUNT
+			var lerp_speed: float = SHAKE_DEFAULT.LERP_SPEED
 			if command_line.size() != 1:
 				# Override default shake values
 				for arg in command_line.slice(1):
@@ -185,9 +187,10 @@ func handle_dialogue_command(command_text: String, idx: int) -> int:
 					match param:
 						"amount":
 							amount = value
-						"duration":
-							duration = value
-			Global.camera_shake.emit(duration, amount)
+						"lerp_speed":
+							lerp_speed = value
+			Global.main_camera.start_shake()
+			Global.main_camera.set_shake_and_lerp_to_zero(amount, lerp_speed)
 		DIALOGUE_COMMANDS.ANIMATION:
 			current_npc.npc_sprite.play(command_line[1])
 	return re_match.get_end()
