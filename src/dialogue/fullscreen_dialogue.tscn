@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://b46vbuqx0s8a7"]
 
 [ext_resource type="Script" path="res://src/dialogue/fullscreen_dialogue.gd" id="1_u6ujp"]
+[ext_resource type="FontFile" uid="uid://l50rgyf24fyd" path="res://assets/ui/fonts/CrimsonText-SemiBold.ttf" id="2_d7npl"]
 [ext_resource type="FontFile" uid="uid://dugjy5jt8bi0x" path="res://assets/ui/fonts/LibreBaskerville-Regular.ttf" id="2_oc02p"]
-[ext_resource type="FontFile" uid="uid://12lul10wlfah" path="res://assets/ui/fonts/CrimsonText-Regular.ttf" id="2_wnb7n"]
 [ext_resource type="FontFile" uid="uid://dpvvg0gwxfjxp" path="res://assets/ui/fonts/LibreBaskerville-Bold.ttf" id="3_3b8wm"]
 [ext_resource type="FontFile" uid="uid://dugy4bpba0o10" path="res://assets/ui/fonts/CrimsonText-Bold.ttf" id="3_yfgt8"]
-[ext_resource type="FontFile" uid="uid://c8ewp3x7h67h3" path="res://assets/ui/fonts/CrimsonText-Italic.ttf" id="4_bwfes"]
+[ext_resource type="FontFile" uid="uid://vmvr5gfrccp1" path="res://assets/ui/fonts/CrimsonText-SemiBoldItalic.ttf" id="4_id5mo"]
 [ext_resource type="FontFile" uid="uid://cmkra16htorm3" path="res://assets/ui/fonts/LibreBaskerville-Italic.ttf" id="4_ovev2"]
 [ext_resource type="FontFile" uid="uid://dutpxihkfghcu" path="res://assets/ui/fonts/CrimsonText-BoldItalic.ttf" id="5_8bvss"]
 
@@ -47,9 +47,9 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.858923, 0.858923)
 size_flags_vertical = 6
-theme_override_fonts/normal_font = ExtResource("2_wnb7n")
+theme_override_fonts/normal_font = ExtResource("2_d7npl")
 theme_override_fonts/bold_font = ExtResource("3_yfgt8")
-theme_override_fonts/italics_font = ExtResource("4_bwfes")
+theme_override_fonts/italics_font = ExtResource("4_id5mo")
 theme_override_fonts/bold_italics_font = ExtResource("5_8bvss")
 theme_override_font_sizes/normal_font_size = 50
 theme_override_font_sizes/bold_font_size = 50

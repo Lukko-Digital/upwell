@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://br8qm13yce4pr"]
+[gd_scene load_steps=8 format=3 uid="uid://br8qm13yce4pr"]
 
 [ext_resource type="Script" path="res://src/dialogue/dialogue_ui.gd" id="1_28e40"]
 [ext_resource type="PackedScene" uid="uid://b46vbuqx0s8a7" path="res://src/dialogue/fullscreen_dialogue.tscn" id="3_n472f"]
 [ext_resource type="PackedScene" uid="uid://xgi8pcnjfsvh" path="res://src/dialogue/response_button.tscn" id="3_y57cq"]
 [ext_resource type="Texture2D" uid="uid://b0qoidnivfbny" path="res://assets/ui/dialogue/response_button_focus.png" id="4_1g60i"]
 [ext_resource type="Script" path="res://src/dialogue/response_button_selector.gd" id="4_4li68"]
+[ext_resource type="Shader" path="res://src/shaders/screen.gdshader" id="4_4mhkd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ipb4f"]
+shader = ExtResource("4_4mhkd")
+shader_parameter/intensity = 1.0
 
 [node name="DialogueUi" type="CanvasLayer" node_paths=PackedStringArray("display_timer", "response_box", "fullscreen_display", "response_selector")]
 layer = 105
@@ -49,8 +54,10 @@ layout_mode = 2
 [node name="FullscreenDialogue" parent="." instance=ExtResource("3_n472f")]
 
 [node name="ResponseButtonSelector" type="Sprite2D" parent="." node_paths=PackedStringArray("response_box")]
+self_modulate = Color(1, 1, 1, 0.380392)
+material = SubResource("ShaderMaterial_ipb4f")
 position = Vector2(976.658, 892)
-scale = Vector2(0.694476, 0.694476)
+scale = Vector2(0.475602, 0.475602)
 texture = ExtResource("4_1g60i")
 script = ExtResource("4_4li68")
 response_box = NodePath("../ResponseBox")

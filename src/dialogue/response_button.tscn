@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://dk057pn1a5vu0" path="res://assets/ui/dialogue/response_button_neutral.png" id="1_bwjf0"]
 [ext_resource type="Shader" path="res://src/shaders/screen.gdshader" id="1_wjukv"]
 [ext_resource type="Texture2D" uid="uid://cirp418qaxx05" path="res://assets/ui/dialogue/response_button_press.png" id="2_d14jg"]
-[ext_resource type="FontFile" uid="uid://12lul10wlfah" path="res://assets/ui/fonts/CrimsonText-Regular.ttf" id="6_ij8mk"]
+[ext_resource type="FontFile" uid="uid://l50rgyf24fyd" path="res://assets/ui/fonts/CrimsonText-SemiBold.ttf" id="6_pwwu5"]
 [ext_resource type="FontFile" uid="uid://dugy4bpba0o10" path="res://assets/ui/fonts/CrimsonText-Bold.ttf" id="7_ok88q"]
-[ext_resource type="FontFile" uid="uid://c8ewp3x7h67h3" path="res://assets/ui/fonts/CrimsonText-Italic.ttf" id="8_a4mkn"]
+[ext_resource type="FontFile" uid="uid://vmvr5gfrccp1" path="res://assets/ui/fonts/CrimsonText-SemiBoldItalic.ttf" id="8_2cnqt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mo5h4"]
 shader = ExtResource("1_wjukv")
@@ -35,9 +35,9 @@ offset_bottom = 31.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("6_ij8mk")
+theme_override_fonts/normal_font = ExtResource("6_pwwu5")
 theme_override_fonts/bold_font = ExtResource("7_ok88q")
-theme_override_fonts/italics_font = ExtResource("8_a4mkn")
+theme_override_fonts/italics_font = ExtResource("8_2cnqt")
 theme_override_font_sizes/normal_font_size = 60
 theme_override_font_sizes/bold_font_size = 60
 theme_override_font_sizes/italics_font_size = 60
