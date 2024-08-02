@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://du32wpl6hkaff"
-path="res://.godot/imported/map_temp.png-ddeb1db12a17045226b4fbf066c3edd2.ctex"
+uid="uid://cju0hxa8hklrk"
+path="res://.godot/imported/holder-sheet.png-36d54560934d2d26dc0947c9a4a6b5c9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mvp4_assets/map_temp.png"
-dest_files=["res://.godot/imported/map_temp.png-ddeb1db12a17045226b4fbf066c3edd2.ctex"]
+source_file="res://assets/puzzle_elements/holder-sheet.png"
+dest_files=["res://.godot/imported/holder-sheet.png-36d54560934d2d26dc0947c9a4a6b5c9.ctex"]
 
 [params]
 

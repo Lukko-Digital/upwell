@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cju0hxa8hklrk"
-path="res://.godot/imported/holder-sheet.png-0c64c7f3bb0a629d577a9a345f6f0045.ctex"
+uid="uid://c5ixdigev4s4b"
+path="res://.godot/imported/rock_c_BLUR.png-f3d0e422c77ece2a19f96ed8cd2ce280.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mvp4_assets/holder-sheet.png"
-dest_files=["res://.godot/imported/holder-sheet.png-0c64c7f3bb0a629d577a9a345f6f0045.ctex"]
+source_file="res://assets/environment/red_tree/rock_c_BLUR.png"
+dest_files=["res://.godot/imported/rock_c_BLUR.png-f3d0e422c77ece2a19f96ed8cd2ce280.ctex"]
 
 [params]
 

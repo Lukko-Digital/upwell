@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6y0tlf14tbos"
-path="res://.godot/imported/plyr_run-0012.png-62bfcf0fd20b950f564f6196a8c4a1bc.ctex"
+uid="uid://oqdkdq5nw51s"
+path="res://.godot/imported/tree_a_skinny_BLUR.png-d3f3453ab6d6d7f10392506b9631342e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mvp4_assets/plyr_run-0012.png"
-dest_files=["res://.godot/imported/plyr_run-0012.png-62bfcf0fd20b950f564f6196a8c4a1bc.ctex"]
+source_file="res://assets/environment/red_tree/tree_a_skinny_BLUR.png"
+dest_files=["res://.godot/imported/tree_a_skinny_BLUR.png-d3f3453ab6d6d7f10392506b9631342e.ctex"]
 
 [params]
 
