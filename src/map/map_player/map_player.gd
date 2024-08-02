@@ -21,10 +21,6 @@ const ORBIT_SHAKE_AMOUNT = 0.5
 const BOOST_SHAKE_AMOUNT = 5
 const BASE_SHAKE_LERP_SPEED = 1.0
 
-var current_shake: float = 0.0
-var target_shake: float = 0.0
-var shake_lerp_speed: float = 1.0
-
 var moving = false:
 	set(value):
 		moving = value
@@ -80,10 +76,9 @@ func _process(delta: float) -> void:
 			location_deselected()
 
 			if gravity_state == GravitizedComponent.GravityState.BOOST:
-				current_shake = BOOST_SHAKE_AMOUNT
-				shake_lerp_speed = 2.0
+				Global.main_camera.set_shake_lerp(BOOST_SHAKE_AMOUNT, 2.0)
 				
-			target_shake = ORBIT_SHAKE_AMOUNT
+			Global.main_camera.target_shake_amount = ORBIT_SHAKE_AMOUNT
 
 			line.set_point_position(1, velocity.normalized() * distance_per_energy)
 			if gravity_state == GravitizedComponent.GravityState.ORBIT:
@@ -105,9 +100,6 @@ func _process(delta: float) -> void:
 	elif energy_bar.value <= energy_bar.max_value / 5:
 		critical_energy()
 
-	#handle shake lerping
-	lerp_shake(delta)
-
 func calculate_line_distance() -> float:
 	distance_per_energy = SPEED / (ENERGY_USE_RATE / energy_bar.max_value) * (energy_bar.value / energy_bar.max_value)
 	return distance_per_energy
@@ -118,14 +110,6 @@ func at_destination() -> bool:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		location_deselected()
-
-## Constantly lerps [current_shake] to a [target_shake] in order for smooth shake change
-func lerp_shake(delta: float):
-	current_shake = lerp(current_shake, target_shake, delta * shake_lerp_speed)
-	if current_shake != target_shake:
-		Global.camera_shake.emit(INF, current_shake)
-	else:
-		shake_lerp_speed = BASE_SHAKE_LERP_SPEED
 
 func location_selected(location: Entrypoint):
 	if moving:
@@ -148,30 +132,22 @@ func location_deselected():
 	line.set_point_position(1, Vector2.ZERO)
 	select_destination.emit(null)
 
-# Not used anymore
-# func location_unhovered(_location: Entrypoint):
-# 	if moving:
-# 		return
-# 	line.set_point_position(1, Vector2.ZERO)
 
 func travel() -> void:
-	# Commented out for playtesting purposes
-	if moving: # or drill_heat > 0:
+	if moving:
 		return
 	if at_destination():
 		return
 	
 	moving = true
-	# manual_control = false
 
 	# Begin shake by setting target and regular speed
-	shake_lerp_speed = BASE_SHAKE_LERP_SPEED
-	target_shake = TRAVEL_SHAKE_AMOUNT
+	Global.main_camera.start_shake()
+	Global.main_camera.set_shake_lerp(TRAVEL_SHAKE_AMOUNT, BASE_SHAKE_LERP_SPEED)
 
 func enter_coolant_pocket() -> void:
 	energy_bar.value = energy_bar.max_value
 	in_coolant = true
-	# target_shake = TRAVEL_SHAKE_AMOUNT
 	map_animation_player.play("neutral")
 	game.pod.pod_animation_player.play("neutral")
 	
@@ -190,19 +166,12 @@ func end_movement() -> void:
 	location_info.show()
 
 	if recalled:
-		current_shake = shake_lerp_speed / 10
-		shake_lerp_speed = 4.0
-		target_shake = 0
+		Global.main_camera.set_shake_lerp(0, 4)
 		recalled = false
 	else: # Increase shape for landing and kill it quickly
 		map_animation_player.play("neutral")
 		game.pod.pod_animation_player.play("neutral")
-		current_shake = shake_lerp_speed * 40
-		shake_lerp_speed = 4.0
-		target_shake = 0
-		# 7/13, josh says dont bump you out of map on arrival
-		# await get_tree().create_timer(0.35).timeout
-		# Global.set_camera_focus.emit(null)
+		Global.main_camera.set_shake_and_lerp_to_zero(40, 4)
 		recalled = false
 
 func recall() -> void:
@@ -223,12 +192,12 @@ func low_energy() -> void:
 func critical_energy() -> void:
 	map_animation_player.play("OUT_OF_FUEL")
 	game.pod.pod_animation_player.play("crash_warning")
-	target_shake = TRAVEL_SHAKE_AMOUNT * 4
+	Global.main_camera.target_shake_amount = TRAVEL_SHAKE_AMOUNT * 4
 
 func run_out_of_energy() -> void:
 	game.pod.pod_animation_player.play("crash_blackout")
 	recall()
-	Global.set_camera_focus.emit(null) # (game.pod.point_focus_marker)
+	Global.set_camera_focus.emit(null)
 	await get_tree().create_timer(.3).timeout
 	map_animation_player.play("SHUTDOWN_AVOIDED")
 
@@ -243,19 +212,18 @@ func hit_hazard() -> void:
 	velocity = velocity * 0.5
 	map_animation_player.play("COLLISION_IMMINENT")
 	game.pod.pod_animation_player.play("crash_warning")
-	current_shake = TRAVEL_SHAKE_AMOUNT * 10
-	shake_lerp_speed = 20
-	target_shake = TRAVEL_SHAKE_AMOUNT * 3
+	Global.main_camera.shake_amount = TRAVEL_SHAKE_AMOUNT * 10
+	Global.main_camera.set_shake_lerp(TRAVEL_SHAKE_AMOUNT * 3, 20)
 	await get_tree().create_timer(.4).timeout
 
-	shake_lerp_speed = .5
-	target_shake = TRAVEL_SHAKE_AMOUNT * 40
+	Global.main_camera.set_shake_lerp(TRAVEL_SHAKE_AMOUNT * 40, 0.5)
 	
 	await get_tree().create_timer(.8).timeout
 
 	game.pod.pod_animation_player.play("crash_blackout")
-	Global.set_camera_focus.emit(null) # (game.pod.point_focus_marker)
-	await get_tree().create_timer(.2).timeout # adds some time for screen to black out so player doesn't see lag caused by recall()
+	Global.set_camera_focus.emit(null)
+	# adds some time for screen to black out so player doesn't see lag caused by recall()
+	await get_tree().create_timer(.2).timeout
 	recall()
 	await get_tree().create_timer(.3).timeout
 
@@ -263,7 +231,7 @@ func hit_hazard() -> void:
 
 func _area_scanned(area: Area2D) -> void:
 	if area is MapLocation:
-		if not area.locked&&!area.visible:
+		if not area.locked && !area.visible:
 			var base_modulate: Color = area.modulate
 			area.modulate = Color(1, 1, 1, 0)
 			area.show()
