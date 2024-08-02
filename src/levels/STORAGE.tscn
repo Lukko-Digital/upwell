@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="5_5takt"]
 [ext_resource type="PackedScene" uid="uid://6aouvsx0hvfm" path="res://src/level_elements/npcs/NPC.tscn" id="7_uidh1"]
 [ext_resource type="Texture2D" uid="uid://bcdjbk5drod7h" path="res://assets/mvp3_assets/toby.png" id="8_767uu"]
-[ext_resource type="Texture2D" uid="uid://cju0hxa8hklrk" path="res://assets/mvp4_assets/holder-sheet.png" id="9_cfh62"]
+[ext_resource type="Texture2D" uid="uid://cju0hxa8hklrk" path="res://assets/puzzle_elements/holder-sheet.png" id="9_cfh62"]
 
 [node name="Contact" type="Node2D"]
 script = ExtResource("1_0wnhk")
