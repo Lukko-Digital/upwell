@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://072o0php4552"
-path="res://.godot/imported/temp_mouse.png-56fc038ef4efe23a1073c5eb64ce7a4c.ctex"
+uid="uid://cj0u5u6iuyjsg"
+path="res://.godot/imported/door-sheet.png-d45d7750cda11de6f814c10a4905298b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mvp4_assets/temp_mouse.png"
-dest_files=["res://.godot/imported/temp_mouse.png-56fc038ef4efe23a1073c5eb64ce7a4c.ctex"]
+source_file="res://assets/puzzle_elements/door-sheet.png"
+dest_files=["res://.godot/imported/door-sheet.png-d45d7750cda11de6f814c10a4905298b.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ixmq6ns0unji"
-path="res://.godot/imported/clicker.png-f4a07d5dc7e58f6d1841249319aae75e.ctex"
+uid="uid://u728ukrl5nfv"
+path="res://.godot/imported/Dialogue_nodule.png-c6d620466b614a350c53ed00a25b2381.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mvp4_assets/clicker.png"
-dest_files=["res://.godot/imported/clicker.png-f4a07d5dc7e58f6d1841249319aae75e.ctex"]
+source_file="res://assets/ui/dialogue/Dialogue_nodule.png"
+dest_files=["res://.godot/imported/Dialogue_nodule.png-c6d620466b614a350c53ed00a25b2381.ctex"]
 
 [params]
 

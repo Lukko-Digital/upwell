@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://f47yjabhonuj"
-path="res://.godot/imported/defocus.png-198b76088e2e17eaed222fd2e96ce666.ctex"
+uid="uid://072o0php4552"
+path="res://.godot/imported/temp_mouse.png-a66a2218c1ea333ce5eab51de2c8f8c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mvp4_assets/defocus.png"
-dest_files=["res://.godot/imported/defocus.png-198b76088e2e17eaed222fd2e96ce666.ctex"]
+source_file="res://assets/puzzle_elements/temp_mouse.png"
+dest_files=["res://.godot/imported/temp_mouse.png-a66a2218c1ea333ce5eab51de2c8f8c3.ctex"]
 
 [params]
 

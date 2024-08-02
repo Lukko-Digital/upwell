@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://e07jxr5ilqnk"
-path="res://.godot/imported/Dialogue_circle.png-4c12ee7a58f9a505edc70a48966cb2ee.ctex"
+uid="uid://5lc2my673rwf"
+path="res://.godot/imported/rays.png-457a95efefd7e42c81bbd07e948a5162.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mvp4_assets/Dialogue_circle.png"
-dest_files=["res://.godot/imported/Dialogue_circle.png-4c12ee7a58f9a505edc70a48966cb2ee.ctex"]
+source_file="res://assets/environment/red_tree/rays.png"
+dest_files=["res://.godot/imported/rays.png-457a95efefd7e42c81bbd07e948a5162.ctex"]
 
 [params]
 

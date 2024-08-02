@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctbvi3xyrwtuc"
-path="res://.godot/imported/holder_grabber-sheet.png-c112fce1897508a268e9b88db7d775d7.ctex"
+uid="uid://robj743awspg"
+path="res://.godot/imported/clicker_finder.png-f22437c3700d6a960fec7355b7dcd8ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mvp4_assets/holder_grabber-sheet.png"
-dest_files=["res://.godot/imported/holder_grabber-sheet.png-c112fce1897508a268e9b88db7d775d7.ctex"]
+source_file="res://assets/puzzle_elements/clicker_finder.png"
+dest_files=["res://.godot/imported/clicker_finder.png-f22437c3700d6a960fec7355b7dcd8ce.ctex"]
 
 [params]
 

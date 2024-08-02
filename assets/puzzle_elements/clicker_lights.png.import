@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cob3og6bcv5ag"
-path="res://.godot/imported/orbit_core.png-f633cc4eeb7532da937777d37df078aa.ctex"
+uid="uid://tj5k6ioldxwr"
+path="res://.godot/imported/clicker_lights.png-f934b121d9f419588ea7c7db6ad399b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mvp4_assets/orbit_core.png"
-dest_files=["res://.godot/imported/orbit_core.png-f633cc4eeb7532da937777d37df078aa.ctex"]
+source_file="res://assets/puzzle_elements/clicker_lights.png"
+dest_files=["res://.godot/imported/clicker_lights.png-f934b121d9f419588ea7c7db6ad399b2.ctex"]
 
 [params]
 

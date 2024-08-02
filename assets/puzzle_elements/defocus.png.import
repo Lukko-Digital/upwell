@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5lc2my673rwf"
-path="res://.godot/imported/rays.png-06f3e2c002142da23d390b9e494f79ff.ctex"
+uid="uid://f47yjabhonuj"
+path="res://.godot/imported/defocus.png-62cdf4f634125cf1060b97e18d83b0f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mvp4_assets/rays.png"
-dest_files=["res://.godot/imported/rays.png-06f3e2c002142da23d390b9e494f79ff.ctex"]
+source_file="res://assets/puzzle_elements/defocus.png"
+dest_files=["res://.godot/imported/defocus.png-62cdf4f634125cf1060b97e18d83b0f0.ctex"]
 
 [params]
 

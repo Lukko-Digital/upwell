@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tj5k6ioldxwr"
-path="res://.godot/imported/clicker_lights.png-ca6f7042332deecb30f6b6f6fd203f52.ctex"
+uid="uid://ixmq6ns0unji"
+path="res://.godot/imported/clicker.png-fbc6c7e07b4d2d50ce601405a04c4f29.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mvp4_assets/clicker_lights.png"
-dest_files=["res://.godot/imported/clicker_lights.png-ca6f7042332deecb30f6b6f6fd203f52.ctex"]
+source_file="res://assets/puzzle_elements/clicker.png"
+dest_files=["res://.godot/imported/clicker.png-fbc6c7e07b4d2d50ce601405a04c4f29.ctex"]
 
 [params]
 
