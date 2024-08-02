@@ -63,7 +63,7 @@ func _on_launch_button_pressed() -> void:
 
 func _on_reset_button_pressed() -> void:
 	# Reset all [ScreenButton]
-	get_tree().call_group("ScreenButtons", "snap_home")
+	get_tree().call_group("ScreenButtons", "go_home")
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings = []

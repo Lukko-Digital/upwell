@@ -2,6 +2,8 @@ extends Area2D
 class_name ScreenButton
 
 const SNAP_BREAK_DISTANCE = 100
+## Speed for going home
+const TRAVEL_SPEED = 15.0 # lerp speed
 
 enum ButtonTypes {NONE, BOOST, UNORBIT, ORBIT}
 
@@ -24,6 +26,7 @@ var placed: bool = false
 var offset: Vector2 = Vector2.ZERO
 
 var start_position: Vector2 = Vector2.ZERO
+var travelling_home: bool = false
 
 ## ------------------------------ CORE ------------------------------
 
@@ -40,10 +43,12 @@ func _ready():
 	action_glow.hide()
 	hover_glow.hide()
 
-func _process(_delta):
+func _process(delta):
 	if selected:
 		position = get_global_mouse_position() + offset
 		handle_snap()
+	if travelling_home:
+		handle_travel_home(delta)
 
 ## ------------------------------ PICKING ------------------------------
 
@@ -73,7 +78,7 @@ func released():
 		action_glow.show()
 	else:
 		# Not placed on line
-		snap_home()
+		go_home()
 
 ## ------------------------------ SNAPPING ------------------------------
 
@@ -159,17 +164,27 @@ func check_still_valid():
 	# be outside of the AG. The button is assumed to already be in an AG because
 	# it couldn't have been placed otherwise.
 	if not snap_conditions_satisfied(point_state, true):
-		snap_home()
+		go_home()
 
-func snap_home():
-	global_position = start_position
+func go_home():
+	if selected:
+		return
+	travelling_home = true
 	button_sprite.play("default")
 	action_glow.hide()
 	if placed:
 		placed = false
+		snapped_to_line = false
 		# This is in order to update the lines when the reset button is pressed
 		player.update_main_line()
 		player.clear_new_action_line()
+
+func handle_travel_home(delta):
+	const THRESHOLD = 1
+	if (global_position - start_position).length() < THRESHOLD:
+		travelling_home = false
+	else:
+		global_position = global_position.lerp(start_position, TRAVEL_SPEED * delta)
 
 ## ------------------------------ HELPER ------------------------------
 
@@ -211,4 +226,4 @@ func _on_main_line_updated():
 
 func _on_area_exited(area: Area2D):
 	if area is TrajectoryLineArea:
-		snap_home()
+		go_home()
