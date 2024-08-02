@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://qdspi0dpyqtl"]
 
 [ext_resource type="Script" path="res://src/holder/clicker_holder.gd" id="1_f0ohy"]
-[ext_resource type="Texture2D" uid="uid://ctbvi3xyrwtuc" path="res://assets/mvp4_assets/holder_grabber-sheet.png" id="2_p4tc2"]
+[ext_resource type="Texture2D" uid="uid://ctbvi3xyrwtuc" path="res://assets/puzzle_elements/holder_grabber-sheet.png" id="2_p4tc2"]
 [ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="3_mn60y"]
 [ext_resource type="Texture2D" uid="uid://ceyfrqipxnpj3" path="res://assets/mvp2_assets/field.png" id="4_n7jei"]
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="5_wleef"]

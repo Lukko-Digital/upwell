@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bg636q5nculbs"]
 
-[ext_resource type="Texture2D" uid="uid://u728ukrl5nfv" path="res://assets/mvp4_assets/Dialogue_nodule.png" id="1_314xn"]
+[ext_resource type="Texture2D" uid="uid://u728ukrl5nfv" path="res://assets/ui/dialogue/Dialogue_nodule.png" id="1_314xn"]
 
 [node name="Nodule" type="Sprite2D"]
 z_index = 1

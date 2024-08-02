@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://src/clicker/clicker_body.gd" id="1_5mmek"]
 [ext_resource type="PackedScene" uid="uid://d1ev75jm17q8w" path="res://src/clicker/clicker_sprite.tscn" id="2_ci3is"]
 [ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="3_0ahrw"]
-[ext_resource type="Texture2D" uid="uid://tj5k6ioldxwr" path="res://assets/mvp4_assets/clicker_lights.png" id="4_8fv0n"]
+[ext_resource type="Texture2D" uid="uid://tj5k6ioldxwr" path="res://assets/puzzle_elements/clicker_lights.png" id="4_8fv0n"]
 [ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="4_53hyt"]
 [ext_resource type="Script" path="res://src/clicker/clicker_interactable.gd" id="4_d7pfq"]
 [ext_resource type="Script" path="res://src/level_elements/parallax_canvas.gd" id="7_p0paf"]
-[ext_resource type="Texture2D" uid="uid://robj743awspg" path="res://assets/mvp4_assets/clicker_finder.png" id="8_ruw1o"]
+[ext_resource type="Texture2D" uid="uid://robj743awspg" path="res://assets/puzzle_elements/clicker_finder.png" id="8_ruw1o"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w1b0y"]
 bounce = 0.3

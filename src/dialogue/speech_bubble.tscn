@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/dialogue/speech_bubble.gd" id="1_c5fww"]
 [ext_resource type="PackedScene" uid="uid://bg636q5nculbs" path="res://src/dialogue/nodule.tscn" id="1_s2l78"]
 [ext_resource type="Script" path="res://src/dialogue/speech_bubble_container.gd" id="2_ohaor"]
-[ext_resource type="Texture2D" uid="uid://e07jxr5ilqnk" path="res://assets/mvp4_assets/Dialogue_circle.png" id="3_05grf"]
+[ext_resource type="Texture2D" uid="uid://e07jxr5ilqnk" path="res://assets/ui/dialogue/Dialogue_circle.png" id="3_05grf"]
 [ext_resource type="FontFile" uid="uid://dugjy5jt8bi0x" path="res://assets/ui/fonts/LibreBaskerville-Regular.ttf" id="4_lrslx"]
 [ext_resource type="FontFile" uid="uid://dpvvg0gwxfjxp" path="res://assets/ui/fonts/LibreBaskerville-Bold.ttf" id="5_j1yx8"]
 [ext_resource type="FontFile" uid="uid://cmkra16htorm3" path="res://assets/ui/fonts/LibreBaskerville-Italic.ttf" id="6_xra7x"]
