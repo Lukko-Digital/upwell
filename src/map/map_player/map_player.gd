@@ -171,8 +171,7 @@ func end_movement() -> void:
 	else: # Increase shape for landing and kill it quickly
 		map_animation_player.play("neutral")
 		game.pod.pod_animation_player.play("neutral")
-		Global.main_camera.shake_amount = 40
-		Global.main_camera.set_shake_lerp(0, 4)
+		Global.main_camera.set_shake_and_lerp_to_zero(40, 4)
 		recalled = false
 
 func recall() -> void:

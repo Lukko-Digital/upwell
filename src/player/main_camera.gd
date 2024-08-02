@@ -201,6 +201,10 @@ func set_shake_lerp(target_amount: float, lerp_speed: float):
 	target_shake_amount = target_amount
 	shake_lerp_speed = lerp_speed
 
+func set_shake_and_lerp_to_zero(amount: float, lerp_speed: float):
+	shake_amount = amount
+	set_shake_lerp(0, lerp_speed)
+
 func start_shake():
 	shake_timer.start(INF)
 
