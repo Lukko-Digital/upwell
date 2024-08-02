@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1fatgffin6hd"]
+[gd_scene load_steps=10 format=3 uid="uid://c1fatgffin6hd"]
 
 [ext_resource type="Script" path="res://src/screen_puzzles/puzzle_elements/screen_core.gd" id="1_lpcxw"]
 [ext_resource type="Script" path="res://src/screen_puzzles/puzzle_elements/screen_core_area.gd" id="2_7vidw"]
@@ -10,12 +10,32 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vidkj"]
 size = Vector2(119, 93)
 
+[sub_resource type="Animation" id="Animation_mr0ak"]
+resource_name = "launch_success"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SuccessGlow:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.05, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gl2ke"]
+_data = {
+"launch_success": SubResource("Animation_mr0ak")
+}
+
 [node name="ScreenCore" type="TextureRect"]
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_f3shp")
 script = ExtResource("1_lpcxw")
-text = null
 closed_texture = ExtResource("2_f3shp")
 open_texture = ExtResource("3_r3pk1")
 
@@ -37,3 +57,14 @@ texture = ExtResource("5_qed70")
 visible = false
 position = Vector2(60, 48)
 texture = ExtResource("6_vftc3")
+
+[node name="SuccessGlow" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(60, 48)
+texture = ExtResource("6_vftc3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_gl2ke")
+}

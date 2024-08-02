@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bvkim1x1vvm81"]
+[gd_scene load_steps=26 format=3 uid="uid://bvkim1x1vvm81"]
 
 [ext_resource type="Script" path="res://src/screen_puzzles/ui/screen_puzzle_ui.gd" id="1_lx7ia"]
 [ext_resource type="Texture2D" uid="uid://bo4rxkqslvfgs" path="res://assets/ui/screen_puzzle_v2/screen_puzzle_focus.png" id="2_jwgwr"]
@@ -18,6 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://b84ee8pohja5i" path="res://assets/ui/screen_puzzle_v2/reset_hover.png" id="14_lyfo2"]
 [ext_resource type="BitMap" uid="uid://beb2o2mri7fls" path="res://assets/ui/screen_puzzle_v2/reset_bitmap.bmp" id="17_tatrs"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_og8lu"]
+blend_mode = 1
+
 [sub_resource type="FontVariation" id="FontVariation_nro8r"]
 base_font = ExtResource("6_4wx76")
 variation_embolden = 0.87
@@ -33,6 +36,56 @@ variation_embolden = 0.87
 [sub_resource type="FontVariation" id="FontVariation_ltfqk"]
 base_font = ExtResource("7_xu7tl")
 variation_embolden = 1.85
+
+[sub_resource type="Animation" id="Animation_8jw3r"]
+resource_name = "launch_success"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Win:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.6), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DialogueBackerShine:self_modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 2.45909, -0.26, 0, 0.47, 0, 0, -2.275, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.05, 1.9)
+}
+
+[sub_resource type="Animation" id="Animation_ni5gw"]
+resource_name = "dialogue_backer_shine"
+length = 2.0
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DialogueBackerShine:self_modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 2.45909, -0.26, 0, 0.47, 0, 0, -2.275, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.05, 1.9)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dd3t6"]
+_data = {
+"dialogue_backer_shine": SubResource("Animation_ni5gw"),
+"launch_success": SubResource("Animation_8jw3r")
+}
 
 [node name="ScreenPuzzleUI" type="Control" node_paths=PackedStringArray("folders_container", "main_text_label", "launch_result_label")]
 layout_mode = 3
@@ -127,6 +180,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="DialogueBacker" type="TextureRect" parent="."]
+material = SubResource("CanvasItemMaterial_og8lu")
 layout_mode = 0
 offset_left = 2530.0
 offset_top = 250.0
@@ -177,6 +231,18 @@ onto flightpath to reach
 target directory[/center]"
 shortcut_keys_enabled = false
 
+[node name="DialogueBackerShine" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_og8lu")
+layout_mode = 0
+offset_left = 2530.0
+offset_top = 250.0
+offset_right = 3551.0
+offset_bottom = 1843.0
+size_flags_horizontal = 8
+texture = ExtResource("5_3rdof")
+stretch_mode = 2
+
 [node name="BottomBar" type="TextureRect" parent="."]
 self_modulate = Color(0.920995, 0.920995, 0.920995, 1)
 layout_mode = 1
@@ -218,6 +284,19 @@ texture_normal = ExtResource("12_2sb5j")
 texture_pressed = ExtResource("13_gdf6r")
 texture_hover = ExtResource("14_lyfo2")
 texture_click_mask = ExtResource("17_tatrs")
+
+[node name="Win" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 15
+layout_mode = 0
+offset_right = 3832.0
+offset_bottom = 2160.0
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dd3t6")
+}
 
 [connection signal="pressed" from="BottomBar/LaunchButton" to="." method="_on_launch_button_pressed"]
 [connection signal="pressed" from="BottomBar/ResetButton" to="." method="_on_reset_button_pressed"]

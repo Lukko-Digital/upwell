@@ -10,6 +10,7 @@ signal main_line_updated()
 @onready var trajectory_line: Line2D = %TrajectoryLine
 @onready var line_area: TrajectoryLineArea = %LineCollisionArea
 @onready var new_action_line: Line2D = %NewActionLine
+# @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 ## A map from all [Vector2] points in [trajectory_line] to [DiscreteScreenPuzzleState]
 var point_states: Dictionary = {}

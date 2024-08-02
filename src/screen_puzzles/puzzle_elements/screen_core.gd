@@ -8,6 +8,8 @@ class_name ScreenCore
 		folder_button = value
 		update_configuration_warnings()
 
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
+
 ## BBCode ready text
 var parsed_text: String
 
@@ -25,6 +27,7 @@ func open() -> void:
 	highlight()
 
 func launch_success():
+	animation_player.play("launch_success")
 	pass
 
 func _get_configuration_warnings() -> PackedStringArray:
