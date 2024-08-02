@@ -26,35 +26,18 @@ func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		update_configuration_warnings()
 
-## Hey ian you're probably wondering what this is. Well, I was trying to get the text to fade in rather than type in.
-## This came with a number of issues. However, i think it's probably what we should do for dialogue text, because
-## that text wouldn't have the issues present here (highlights underneath text, multiple paragraphs) and so the
-## function below would actually work out the gate.
-# var counter = -20.0
-# var counter = -20.0
-# func animate_display():
-# 	counter = -20.0
-# 	while counter < main_text_label.text.length():
-# 		counter += CHARS_PER_FRAME
-# 		main_text_label.parse_bbcode("[fade start=" + str(counter) + " length=5]" + "INSERTED" + main_text_label.text + "[/fade]")
-# 		await get_tree().create_timer(0.02).timeout
-# 		await get_tree().process_frame
-
 func animate_display():
 	main_text_label.visible_characters = -1
-	## New animations make text readout distracting ? not sure
-	# while main_text_label.visible_characters < main_text_label.text.length():
-	# 	main_text_label.visible_characters += CHARS_PER_FRAME
-	# 	await get_tree().create_timer(0.001).timeout # cannot lower chars per frame below 1
-	# 	await get_tree().process_frame
+	while main_text_label.visible_characters < main_text_label.text.length():
+		main_text_label.visible_characters += CHARS_PER_FRAME
+		await get_tree().process_frame
 
 func _on_folder_opened(text: String):
-	print("recieivng")
 	backer_animation_player.stop()
 	backer_animation_player.play("backer_shine")
 	await get_tree().create_timer(0.1).timeout
 	main_text_label.text = text
-	animate_display()
+	# animate_display() ## New animations make text readout unnecessary
 
 func launch_success(folder: ScreenCore):
 	if !folder.opened:

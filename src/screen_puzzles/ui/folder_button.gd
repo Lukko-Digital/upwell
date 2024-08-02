@@ -11,9 +11,7 @@ func _ready() -> void:
 	super()
 
 func open():
-	# if highlighed:
-	# 	return
-	print("emitting")
+	# removed if highlighted, we want it to emit folder open on every launch, isnt emitting rn though HELP
 	folder_opened.emit(paired_core.parsed_text)
 	highlight()
 	paired_core.highlight()
