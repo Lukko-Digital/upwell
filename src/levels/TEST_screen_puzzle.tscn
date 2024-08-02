@@ -25,6 +25,12 @@ size_flags_horizontal = 0
 [node name="FolderButton3" parent="ScreenPuzzleUI/FolderBacker/MarginContainer/FoldersContainer" index="2" instance=ExtResource("2_iwhmm")]
 layout_mode = 2
 
+[node name="DialogueBackerShine" parent="ScreenPuzzleUI" index="7"]
+offset_left = 2529.0
+offset_top = 252.0
+offset_right = 3550.0
+offset_bottom = 1845.0
+
 [node name="ScreenPlayer" parent="." instance=ExtResource("1_so3si")]
 unique_name_in_owner = true
 position = Vector2(-1466, 506)
