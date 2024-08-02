@@ -228,8 +228,9 @@ func spawn_reponse(response: Response):
 		instance.grab_focus()
 		# Wait for container to position button
 		await get_tree().process_frame
-		response_selector.show()
-		response_selector.teleport_to_button(instance)
+		if is_instance_valid(instance):
+			response_selector.show()
+			response_selector.teleport_to_button(instance)
 
 func clear_responses():
 	response_selector.hide()
