@@ -10,7 +10,7 @@ const CAMERA = {
 	MAP_ZOOM = 1.5,
 	MAP_ZOOM_SPEED = 3.0,
 	MAP_TRANSLATE_SPEED = 6.0,
-	NPC_ZOOM = 1.0,
+	NPC_ZOOM = 0.7,
 	SPOT_ZOOM = 0.65,
 }
 const LIMIT_DEFAULT = 10000000
@@ -31,20 +31,32 @@ const LIMIT_DEFAULT = 10000000
 
 ## LIFO stack, the last element in the array is focused
 var focus_stack: Array[Node2D] = []
+
 var shake_amount: float
+var target_shake_amount: float
+var shake_lerp_speed: float
 
 func _ready():
 	# Connect signals
-	Global.camera_shake.connect(_shake)
-	Global.stop_camera_shake.connect(_stop_shake)
+
+	if get_tree().get_current_scene() is Game:
+		# If playing game scene, only set the real main camera to global
+		if get_parent() is Game:
+			Global.main_camera = self
+	else:
+		# If not playing game scene, set self
+		Global.main_camera = self
+
 	Global.set_camera_focus.connect(_set_focus)
 
 func _process(delta):
 	handle_focus(delta)
 	handle_limits()
 	handle_follow_player(delta)
-	handle_shake()
+	handle_shake(delta)
 	handle_particle_tracking()
+
+## -------------------------- CAMERA MOVEMENT & FOCUS --------------------------
 
 ## Translate the camera to focus on a focus point. Zoom on screens.
 func handle_focus(delta):
@@ -159,29 +171,44 @@ func handle_follow_player(delta):
 		
 	zoom = lerp(zoom, Vector2.ONE * CAMERA.NORMAL_ZOOM, CAMERA.MAP_ZOOM_SPEED * delta)
 
-## Shake the camera for a given time by changing [offset]
-func handle_shake():
-	if shake_timer.is_stopped():
-		offset = Vector2.ZERO
-		return
-	var shake_offset = Vector2(
-		randf_range( - 1, 1),
-		randf_range( - 1, 1)
-	) * shake_amount
-	offset = shake_offset
+## -------------------------- PARTICLES --------------------------
 
 ## Track all particles to the camera
 func handle_particle_tracking():
 	get_tree().call_group("Particles", "move_particles", position)
 
-## Receiver for the global [camera_shake] signal
-func _shake(duration: float, amount: float):
+## -------------------------- SHAKE --------------------------
+
+## Shake the camera for a given time by changing [offset]
+func handle_shake(delta):
+	shake_amount = lerp(shake_amount, target_shake_amount, delta * shake_lerp_speed)
+
+	if shake_timer.is_stopped():
+		offset = Vector2.ZERO
+		return
+	var shake_offset = Vector2(
+		randf_range(-1, 1),
+		randf_range(-1, 1)
+	) * shake_amount
+	offset = shake_offset
+
+func set_shake(duration: float, amount: float):
 	shake_timer.stop()
 	shake_timer.start(duration)
 	shake_amount = amount
 
-## Receiver for the global [stop_camera_shake] signal
-func _stop_shake():
+func set_shake_lerp(target_amount: float, lerp_speed: float):
+	target_shake_amount = target_amount
+	shake_lerp_speed = lerp_speed
+
+func set_shake_and_lerp_to_zero(amount: float, lerp_speed: float):
+	shake_amount = amount
+	set_shake_lerp(0, lerp_speed)
+
+func start_shake():
+	shake_timer.start(INF)
+
+func stop_shake():
 	shake_timer.stop()
 
 ## Receiver for the global [set_camera_focus] signal

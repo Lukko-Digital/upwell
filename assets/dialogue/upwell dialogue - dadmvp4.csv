@@ -1,5 +1,5 @@
 Branch,Name,Display Type,Dialogue Text,Locked In Dialogue,Variable To Set,Variable Value,Next Branch,Condition,Conditional Next Branch,R1 Text,R1 Is Impulsive Response,R1 Spawn Condition,R1 Variable To Set,R1 Variable Value,R1 Next Branch,R2 Text,R2 Is Impulsive Response,R2 Spawn Condition,R2 Variable To Set,R2 Variable Value,R2 Next Branch,R3 Is Impulsive Response,R3 Text,R3 Spawn Condition,R3 Variable To Set,R3 Variable Value,R3 Next Branch
-S1,Dad,,,FALSE,,,G1,,,,TRUE,,,,,,FALSE,,,,,FALSE,,,,,
+S1,Dad,,,FALSE,,,G3,,,,TRUE,,,,,,FALSE,,,,,FALSE,,,,,
 S1xa,,,,FALSE,,,,,,,TRUE,,,,,,FALSE,,,,,FALSE,,,,,
 S2,,,,FALSE,,,,,,,FALSE,,,,,,FALSE,,,,,FALSE,,,,,
 S3,,,,FALSE,,,,,,,FALSE,,,,,,FALSE,,,,,FALSE,,,,,
