@@ -55,6 +55,7 @@ func _process(delta):
 	handle_follow_player(delta)
 	handle_shake(delta)
 	handle_particle_tracking()
+	print(get_viewport().get_visible_rect().size.y)
 
 ## -------------------------- CAMERA MOVEMENT & FOCUS --------------------------
 
@@ -72,26 +73,26 @@ func handle_focus(delta):
 		if (abs(player.position.x - position.x) > CAMERA.MAP_EXIT_DISTANCE):
 			Global.set_camera_focus.emit(null)
 
-		lerp_position(current_focus, 0.8, 1.0, delta)
+		lerp_position(current_focus, 0.8, 1.0, 0, delta)
 		zoom_amount = CAMERA.MAP_ZOOM
 	
 	# Zoom position to between player and npc
 	elif current_focus is NPC:
-		lerp_position(current_focus, 0.5, 0.5, delta)
+		lerp_position(current_focus, 0.5, 0.5, get_viewport().get_visible_rect().size.y*0.1, delta)
 		zoom_amount = CAMERA.NPC_ZOOM
 	
 	# Zoom position to camera point focus
 	elif current_focus is Marker2D:
-		lerp_position(current_focus, 0.6, 1.0, delta)
+		lerp_position(current_focus, 0.6, 1.0, 0, delta)
 		zoom_amount = CAMERA.SPOT_ZOOM
 
 	zoom = lerp(zoom, Vector2.ONE * zoom_amount, CAMERA.MAP_ZOOM_SPEED * delta)
 
 ## Creates correct in between for player and focus with intensity between 0 and 1, 1 meaning target gets full control of camera in that dimension and 0 giving control to player
-func lerp_position(current_focus: Node2D, x_intensity: float, y_intensity: float, delta):
+func lerp_position(current_focus: Node2D, x_intensity: float, y_intensity: float, y_offset: float, delta):
 	var in_between = Vector2(
 		current_focus.global_position.lerp(player.global_position, 1.0 - x_intensity).x,
-		current_focus.global_position.lerp(player.global_position, 1.0 - y_intensity).y
+		current_focus.global_position.lerp(player.global_position, 1.0 - y_intensity).y - y_offset
 		)
 	global_position = lerp(global_position, in_between, CAMERA.MAP_TRANSLATE_SPEED * delta)
 
