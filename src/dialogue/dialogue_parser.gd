@@ -195,7 +195,7 @@ static func safety_check_dialogue_commands(string: String, npc: NPC):
 
 static func match_shake_args(arg: String) -> RegExMatch:
 	var arg_search = RegEx.new()
-	arg_search.compile("(amount|duration)=(\\d*\\.?\\d+)")
+	arg_search.compile("(amount|lerp_speed)=(\\d*\\.?\\d+)")
 	return arg_search.search(arg)
 
 static func strip_dialogue_commands(string: String) -> String:
