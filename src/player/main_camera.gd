@@ -55,7 +55,6 @@ func _process(delta):
 	handle_follow_player(delta)
 	handle_shake(delta)
 	handle_particle_tracking()
-	print(get_viewport().get_visible_rect().size.y)
 
 ## -------------------------- CAMERA MOVEMENT & FOCUS --------------------------
 
@@ -78,7 +77,7 @@ func handle_focus(delta):
 	
 	# Zoom position to between player and npc
 	elif current_focus is NPC:
-		lerp_position(current_focus, 0.5, 0.5, get_viewport().get_visible_rect().size.y*0.1, delta)
+		lerp_position(current_focus, 0.5, 0.5, get_viewport().get_visible_rect().size.y * 0.1, delta)
 		zoom_amount = CAMERA.NPC_ZOOM
 	
 	# Zoom position to camera point focus
