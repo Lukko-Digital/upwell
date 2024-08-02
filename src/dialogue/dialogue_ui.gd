@@ -35,6 +35,7 @@ const SPEECH_BUBBLE_OFFSET = Vector2(-60, -110)
 @export var display_timer: Timer
 @export var response_box: VBoxContainer
 @export var fullscreen_display: FullscreenDialogue
+@export var response_selector: ResponseButtonSelector
 
 @onready var response_button_scene = preload("res://src/dialogue/response_button.tscn")
 @onready var speech_bubble_scene = preload("res://src/dialogue/speech_bubble.tscn")
@@ -218,12 +219,17 @@ func spawn_reponse(response: Response):
 	var instance: ResponseButton = response_button_scene.instantiate()
 	instance.start(response)
 	instance.response_selected.connect(_response_button_pressed)
-	# if response_box
 	response_box.add_child(instance)
 	if response_box.get_child_count() == 1:
+		# Focus the first button
 		instance.grab_focus()
+		# Wait for container to position button
+		await get_tree().process_frame
+		response_selector.show()
+		response_selector.teleport_to_button(instance)
 
 func clear_responses():
+	response_selector.hide()
 	for button in response_box.get_children():
 		response_box.remove_child(button)
 		button.queue_free()
