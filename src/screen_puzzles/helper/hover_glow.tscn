@@ -1,7 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://q7evm7xgbh36"]
+[gd_scene load_steps=3 format=3 uid="uid://q7evm7xgbh36"]
 
-[ext_resource type="Texture2D" uid="uid://blh1umfhvimt8" path="res://assets/ui/screen_puzzle_v2/action_glow_ADD.png" id="1_tb6je"]
+[ext_resource type="Texture2D" uid="uid://c04iy4bs4stf" path="res://assets/ui/screen_puzzle_v2/action_glow_placed_DODGE.png" id="1_0py4u"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l7gt7"]
+blend_mode = 1
 
 [node name="HoverGlow" type="Sprite2D"]
+self_modulate = Color(1, 1, 1, 0.517647)
 z_index = 1
-texture = ExtResource("1_tb6je")
+material = SubResource("CanvasItemMaterial_l7gt7")
+texture = ExtResource("1_0py4u")

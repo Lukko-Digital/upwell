@@ -8,8 +8,9 @@ class_name ScreenPuzzleUI
 
 @onready var screen_player: ScreenPlayer = %ScreenPlayer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var backer_animation_player: AnimationPlayer = $TextBackerAnimationPlayer
 
-const CHARS_PER_FRAME = 1.0
+const CHARS_PER_FRAME = 1
 const LAUNCH_TEXT = {
 	SUCCESS = "[wave amp=150.0 freq=5.0 connected=1][color=green][center] LAUNCH SUCCESS [/center][/color][/wave]",
 	FAIL = "[shake rate=20.0 level=30 connected=1][color=red][center] LAUNCH FAILED [/center][/color][/shake]",
@@ -40,35 +41,36 @@ func _process(_delta: float) -> void:
 # 		await get_tree().process_frame
 
 func animate_display():
-	animation_player.stop()
-	animation_player.play("dialogue_backer_shine")
-	main_text_label.visible_characters = 0
-	while main_text_label.visible_characters < main_text_label.text.length():
-		main_text_label.visible_characters += CHARS_PER_FRAME
-		await get_tree().create_timer(0.001).timeout # cannot lower chars per frame below 1
-		await get_tree().process_frame
+	main_text_label.visible_characters = -1
+	## New animations make text readout distracting ? not sure
+	# while main_text_label.visible_characters < main_text_label.text.length():
+	# 	main_text_label.visible_characters += CHARS_PER_FRAME
+	# 	await get_tree().create_timer(0.001).timeout # cannot lower chars per frame below 1
+	# 	await get_tree().process_frame
 
 func _on_folder_opened(text: String):
+	print("recieivng")
+	backer_animation_player.stop()
+	backer_animation_player.play("backer_shine")
+	await get_tree().create_timer(0.1).timeout
 	main_text_label.text = text
 	animate_display()
 
 func launch_success(folder: ScreenCore):
+	if !folder.opened:
+		print("!folder.opened")
+		animation_player.stop()
+		animation_player.play("launch_success")
 	folder.opened = true
 	folder.launch_success()
 	screen_player.launch_success()
 
-	## REPLACE THIS WITH YOUR CODE
-	animation_player.stop()
-	animation_player.play("launch_success")
-	## ---
-
 func launch_fail():
-	## REPLACE THIS WITH YOUR CODE
-	launch_result_label.text = LAUNCH_TEXT.FAIL
-	launch_result_label.show()
-	await get_tree().create_timer(1).timeout
-	launch_result_label.hide()
-	## ---
+	animation_player.stop()
+	animation_player.play("launch_fail")
+	await get_tree().create_timer(0.001).timeout
+	main_text_label.text = "[p] [/p][p] [/p][p] [/p][b][p][center]File not found at[/center][/p][p][center]specified destination[/center][/p][/b]"
+	animate_display()
 
 func _on_launch_button_pressed() -> void:
 	var folder: ScreenCore = screen_player.targeted_folder
@@ -78,7 +80,7 @@ func _on_launch_button_pressed() -> void:
 		launch_fail()
 
 func _on_reset_button_pressed() -> void:
-	# Reset all [ScreenButton]
+	# Reset all [ScreenButton] 
 	get_tree().call_group("ScreenButtons", "go_home")
 
 func _get_configuration_warnings() -> PackedStringArray:

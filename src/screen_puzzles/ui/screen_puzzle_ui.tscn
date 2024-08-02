@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bvkim1x1vvm81"]
+[gd_scene load_steps=28 format=3 uid="uid://bvkim1x1vvm81"]
 
 [ext_resource type="Script" path="res://src/screen_puzzles/ui/screen_puzzle_ui.gd" id="1_lx7ia"]
 [ext_resource type="Texture2D" uid="uid://bo4rxkqslvfgs" path="res://assets/ui/screen_puzzle_v2/screen_puzzle_focus.png" id="2_jwgwr"]
@@ -37,10 +37,38 @@ variation_embolden = 0.87
 base_font = ExtResource("7_xu7tl")
 variation_embolden = 1.85
 
+[sub_resource type="Animation" id="Animation_yharj"]
+resource_name = "launch_fail"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DialogueBacker:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.08, 0.14, 0.17, 0.26, 0.38, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.596078), Color(1, 1, 1, 0.0784314), Color(1, 1, 1, 0.803922), Color(1, 1, 1, 0.411765), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Win:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.04, 0.32, 0.33),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 0.572549), Color(0, 0, 0, 0), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_8jw3r"]
 resource_name = "launch_success"
-length = 2.0
-step = 0.05
+length = 0.6
+step = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -53,38 +81,45 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.6), Color(1, 1, 1, 0)]
 }
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DialogueBackerShine:self_modulate:a")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 2.45909, -0.26, 0, 0.47, 0, 0, -2.275, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.05, 1.9)
-}
-
-[sub_resource type="Animation" id="Animation_ni5gw"]
-resource_name = "dialogue_backer_shine"
-length = 2.0
-step = 0.05
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DialogueBackerShine:self_modulate:a")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 2.45909, -0.26, 0, 0.47, 0, 0, -2.275, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.05, 1.9)
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dd3t6"]
 _data = {
-"dialogue_backer_shine": SubResource("Animation_ni5gw"),
+"launch_fail": SubResource("Animation_yharj"),
 "launch_success": SubResource("Animation_8jw3r")
+}
+
+[sub_resource type="Animation" id="Animation_p4twv"]
+resource_name = "backer_shine"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DialogueBackerShine:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.3, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DialogueBacker/ScrollContainer/MarginContainer/RichTextLabel:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.25, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rpfok"]
+_data = {
+"backer_shine": SubResource("Animation_p4twv")
 }
 
 [node name="ScreenPuzzleUI" type="Control" node_paths=PackedStringArray("folders_container", "main_text_label", "launch_result_label")]
@@ -180,6 +215,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="DialogueBacker" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.875)
 material = SubResource("CanvasItemMaterial_og8lu")
 layout_mode = 0
 offset_left = 2530.0
@@ -296,6 +332,11 @@ mouse_filter = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_dd3t6")
+}
+
+[node name="TextBackerAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rpfok")
 }
 
 [connection signal="pressed" from="BottomBar/LaunchButton" to="." method="_on_launch_button_pressed"]

@@ -78,6 +78,8 @@ func update_trajectory(
 	var world_physics := get_world_2d().direct_space_state
 	var query = init_query()
 
+	trajectory_line.texture = load("res://assets/ui/screen_puzzle_v2/placed_line_texture.png")
+
 	while power > 0:
 		var query_result := world_physics.intersect_point(query)
 		var overlapping_areas = query_result.map(func(collision): return collision.collider)
@@ -172,4 +174,5 @@ func update_collision_segments():
 		collision.shape.b = point_b
 
 func launch_success():
+	trajectory_line.texture = load("res://assets/ui/screen_puzzle_v2/active_line_texture.png")
 	pass

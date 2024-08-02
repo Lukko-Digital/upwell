@@ -11,8 +11,9 @@ func _ready() -> void:
 	super()
 
 func open():
-	if highlighed:
-		return
+	# if highlighed:
+	# 	return
+	print("emitting")
 	folder_opened.emit(paired_core.parsed_text)
 	highlight()
 	paired_core.highlight()
