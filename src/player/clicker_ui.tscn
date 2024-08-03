@@ -1,57 +1,150 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3xmpb6et0p0g"]
+[gd_scene load_steps=24 format=3 uid="uid://b3xmpb6et0p0g"]
 
 [ext_resource type="Script" path="res://src/player/clicker_ui.gd" id="1_bax8t"]
-[ext_resource type="Texture2D" uid="uid://ccc201315ps2p" path="res://assets/mvp3_assets/reactor_base_two.png" id="2_bwvy2"]
-[ext_resource type="Texture2D" uid="uid://6w4m757a0abh" path="res://assets/mvp3_assets/reactor_base.png" id="2_epsau"]
-[ext_resource type="Texture2D" uid="uid://dcth1nh1t8nc4" path="res://assets/mvp3_assets/reactor_content_three.png" id="3_u1cnc"]
-[ext_resource type="Texture2D" uid="uid://dv68v7o8ukdhg" path="res://assets/mvp3_assets/reactor_content_one.png" id="3_uhghd"]
-[ext_resource type="Texture2D" uid="uid://bykhr4w3cgete" path="res://assets/mvp3_assets/reactor_content_two.png" id="4_q1f7n"]
+[ext_resource type="Texture2D" uid="uid://bu1g5ed2ewnvn" path="res://assets/ui/clicker/bottom_plate.png" id="2_2ycao"]
+[ext_resource type="Texture2D" uid="uid://8rarn8hsy4vq" path="res://assets/ui/clicker/bottom_swivel.png" id="3_0ew31"]
+[ext_resource type="Texture2D" uid="uid://d1e8xsx5vqd5w" path="res://assets/ui/clicker/top swivel.png" id="4_0avj6"]
+[ext_resource type="Script" path="res://src/player/bottom_swivel.gd" id="4_nlcx6"]
+[ext_resource type="Texture2D" uid="uid://bwpj1h64uuhxy" path="res://assets/ui/clicker/clicker_big.png" id="5_yy6oe"]
+[ext_resource type="Texture2D" uid="uid://4tummlcyx5fq" path="res://assets/ui/clicker/clicker_big_glow.png" id="6_b8ati"]
 [ext_resource type="Script" path="res://src/player/fps_label.gd" id="6_ljrpc"]
+[ext_resource type="Script" path="res://src/player/clicker_big.gd" id="7_0rl8k"]
+[ext_resource type="Texture2D" uid="uid://b0gewm35iteq" path="res://assets/ui/clicker/clicker_small.png" id="7_nu75l"]
+[ext_resource type="Script" path="res://src/player/clicker_small.gd" id="8_4vaor"]
+[ext_resource type="Texture2D" uid="uid://bt184tyhn47l4" path="res://assets/ui/clicker/clicker_small_glow.png" id="8_b4pcb"]
+[ext_resource type="Texture2D" uid="uid://biprpv5hljrvh" path="res://assets/ui/clicker/top_plate.png" id="9_fuqja"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_uprhc"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_uhghd")
-}],
-"loop": true,
-"name": &"1",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_q1f7n")
-}],
-"loop": true,
-"name": &"2",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_u1cnc")
-}],
-"loop": true,
-"name": &"3",
-"speed": 5.0
-}]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_t2k8o"]
+blend_mode = 1
 
-[sub_resource type="Animation" id="Animation_hmq3k"]
-resource_name = "pickup"
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h52h1"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rn4rm"]
+
+[sub_resource type="Animation" id="Animation_06tal"]
+resource_name = "drop_last_node"
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Reactor/PickupKnob:rotation")
+tracks/0/path = NodePath("Reactor/top_swivel:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.045, 0, 0.4, -0.05, 0, 0.01, 0, 0, -0.785, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.1, 1)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.475, 0, -3.142, -0.713, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Reactor/bottom_swivel:following")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_hmq3k"]
+resource_name = "pickup"
+
+[sub_resource type="Animation" id="Animation_v2bnp"]
+resource_name = "pickup_first_node"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Reactor/top_swivel:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(3.14159, -0.25, 0, 0.00871866, -1.68243, -0.633728, -0.152, 0, 0.153, 0, 0.216969, -0.115, 0, 0.089, 0, -0.0682024, -0.072, 0, 0.059, 0, 0, -0.065, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.305392, 0.610265, 0.876845, 1.04794)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Reactor/bottom_swivel:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Reactor/bottom_swivel:following")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.129224, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Reactor/clicker_big:following")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.206375),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_jq2e0"]
+resource_name = "pickup_new_node"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Reactor/top_swivel:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.24, 0, 0, 0.628968, 1.22365, -0.128694, -0.00961697, 0.258, 0, -0.303877, -0.112, 0, 0.109, 0, 0.0500573, -0.101, 0, 0.062, 0, -0.0149245, -0.071, 0, 0.031, 0, 0, -0.033, 0, 0.101, 0),
+"times": PackedFloat32Array(0, 0.173634, 0.547459, 0.813716, 0.980524, 1.0784)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Reactor/bottom_swivel:following")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.458599, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Reactor/clicker_big:following")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0857959),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ofva"]
 _data = {
-"pickup": SubResource("Animation_hmq3k")
+"drop_last_node": SubResource("Animation_06tal"),
+"pickup": SubResource("Animation_hmq3k"),
+"pickup_first_node": SubResource("Animation_v2bnp"),
+"pickup_new_node": SubResource("Animation_jq2e0")
 }
 
 [sub_resource type="Animation" id="Animation_oitcb"]
@@ -75,42 +168,81 @@ _data = {
 "flash": SubResource("Animation_oitcb")
 }
 
-[node name="ClickerUi" type="CanvasLayer" node_paths=PackedStringArray("clickers_sprite", "reactor_animation", "screen_color_animation")]
+[node name="ClickerUi" type="CanvasLayer" node_paths=PackedStringArray("clicker_big_sprite", "clicker_small_sprite_1", "clicker_small_sprite_2", "reactor_animation", "screen_color_animation")]
 layer = 102
 script = ExtResource("1_bax8t")
-clickers_sprite = NodePath("Reactor/ClickerSprite")
+clicker_big_sprite = NodePath("Reactor/clicker_big")
+clicker_small_sprite_1 = NodePath("Reactor/clicker_small")
+clicker_small_sprite_2 = NodePath("Reactor/clicker_small2")
 reactor_animation = NodePath("Reactor/ReactorAnimationPlayer")
 screen_color_animation = NodePath("ScreenColor/ScreenAnimationPlayer")
 
 [node name="Reactor" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 201.0
-offset_top = 181.0
-offset_right = 201.0
-offset_bottom = 181.0
-scale = Vector2(0.3, 0.3)
+offset_left = 217.0
+offset_top = 223.0
+offset_right = 217.0
+offset_bottom = 223.0
+scale = Vector2(0.5, 0.5)
 
-[node name="ReactorBase" type="Sprite2D" parent="Reactor"]
-modulate = Color(1, 1, 1, 0.239216)
-position = Vector2(0, -3.33331)
-scale = Vector2(0.928487, 0.928487)
-texture = ExtResource("2_epsau")
+[node name="base_plate" type="Sprite2D" parent="Reactor"]
+material = SubResource("CanvasItemMaterial_t2k8o")
+position = Vector2(160, -2)
+texture = ExtResource("2_2ycao")
 
-[node name="OrbitKnob" type="Sprite2D" parent="Reactor"]
+[node name="bottom_swivel" type="Sprite2D" parent="Reactor" node_paths=PackedStringArray("top_swivel")]
+self_modulate = Color(0.598525, 0.598525, 0.598525, 1)
+material = SubResource("CanvasItemMaterial_t2k8o")
+texture = ExtResource("3_0ew31")
+script = ExtResource("4_nlcx6")
+top_swivel = NodePath("../top_swivel")
+
+[node name="top_swivel" type="Sprite2D" parent="Reactor"]
+self_modulate = Color(0.786347, 0.786347, 0.786346, 1)
+material = SubResource("CanvasItemMaterial_h52h1")
+texture = ExtResource("4_0avj6")
+
+[node name="clicker_big" type="Sprite2D" parent="Reactor" node_paths=PackedStringArray("top_swivel")]
 visible = false
-self_modulate = Color(1, 1, 1, 0.129412)
-scale = Vector2(1.35, 1.35)
-texture = ExtResource("2_bwvy2")
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("5_yy6oe")
+script = ExtResource("7_0rl8k")
+top_swivel = NodePath("../top_swivel")
+orbitting = null
 
-[node name="PickupKnob" type="Sprite2D" parent="Reactor"]
-self_modulate = Color(1, 1, 1, 0.415686)
-texture = ExtResource("2_bwvy2")
+[node name="clicker_big_glow" type="Sprite2D" parent="Reactor/clicker_big"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(6, -8)
+texture = ExtResource("6_b8ati")
 
-[node name="ClickerSprite" type="AnimatedSprite2D" parent="Reactor"]
-position = Vector2(-3.33333, -26.6667)
-sprite_frames = SubResource("SpriteFrames_uprhc")
-animation = &"1"
+[node name="clicker_small" type="Sprite2D" parent="Reactor" node_paths=PackedStringArray("clicker_big")]
+visible = false
+modulate = Color(1, 1, 1, 0)
+position = Vector2(317.5, -176.5)
+texture = ExtResource("7_nu75l")
+script = ExtResource("8_4vaor")
+clicker_big = NodePath("../clicker_big")
+
+[node name="clicker_small_glow" type="Sprite2D" parent="Reactor/clicker_small"]
+self_modulate = Color(1, 1, 1, 0)
+texture = ExtResource("8_b4pcb")
+
+[node name="clicker_small2" type="Sprite2D" parent="Reactor" node_paths=PackedStringArray("clicker_big")]
+visible = false
+modulate = Color(1, 1, 1, 0)
+position = Vector2(491.5, -176.5)
+texture = ExtResource("7_nu75l")
+script = ExtResource("8_4vaor")
+clicker_big = NodePath("../clicker_big")
+
+[node name="clicker_small_glow" type="Sprite2D" parent="Reactor/clicker_small2"]
+self_modulate = Color(1, 1, 1, 0)
+texture = ExtResource("8_b4pcb")
+
+[node name="top_plate" type="Sprite2D" parent="Reactor"]
+material = SubResource("CanvasItemMaterial_rn4rm")
+texture = ExtResource("9_fuqja")
 
 [node name="ReactorAnimationPlayer" type="AnimationPlayer" parent="Reactor"]
 root_node = NodePath("../..")
