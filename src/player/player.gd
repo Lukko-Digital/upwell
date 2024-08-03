@@ -45,7 +45,7 @@ var STARTING_THROW_DIRECTION = Vector2.UP
 @onready var clicker_scene: PackedScene = preload ("res://src/clicker/clicker.tscn")
 
 ## Emitted when player gains or loses a clicker
-signal clicker_count_changed
+signal clicker_count_changed(increased: bool)
 
 var world_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -411,7 +411,7 @@ func handle_controllable_clickers():
 func add_clicker(clicker: ClickerBody):
 	var clicker_info = ClickerInfo.new(clicker.home_holder, clicker.get_parent())
 	clicker_inventory.append(clicker_info)
-	clicker_count_changed.emit()
+	clicker_count_changed.emit(true)
 	clicker.queue_free()
 
 func spawn_clicker(
@@ -420,7 +420,7 @@ func spawn_clicker(
 	if not has_clicker():
 		return
 	var clicker_info: ClickerInfo = clicker_inventory.pop_front()
-	clicker_count_changed.emit()
+	clicker_count_changed.emit(false)
 	var instance = clicker_scene.instantiate()
 	instance.home_holder = clicker_info.home_holder
 	instance.linear_velocity = initial_velocity

@@ -8,10 +8,15 @@ class_name ClickerUI
 @export var reactor_animation: AnimationPlayer
 @export var screen_color_animation: AnimationPlayer
 
+# Map from [Sprite2D] to [Tween]
+var existing_tweens = {}
+
 func _ready() -> void:
+	for sprite in [clicker_big_sprite, clicker_small_sprite_1, clicker_small_sprite_2]:
+		sprite.show()
+		sprite.modulate = Color(Color.WHITE, 0)
 	player.clicker_count_changed.connect(_player_clicker_count_changed)
 	Global.clicker_sent_home.connect(_on_clicker_sent_home)
-	update_clicker_inventory()
 
 func _input(event: InputEvent) -> void:
 	pass
@@ -22,36 +27,40 @@ func _input(event: InputEvent) -> void:
 		clicker_big_sprite.orbitting = false
 		tween_visible(clicker_big_sprite.get_child(0), 0, 1, 0.5)
 
-func update_clicker_inventory():
+func update_clicker_inventory(increased: bool):
 	match player.clicker_inventory.size():
 		0:
-			if clicker_big_sprite.visible:
+			if not increased:
 				reactor_animation.stop()
 				reactor_animation.play("drop_last_node")
 			tween_visible(clicker_big_sprite, 0)
-			tween_visible(clicker_small_sprite_1, 0)
-			tween_visible(clicker_small_sprite_2, 0)
 		1:
-			if !clicker_big_sprite.visible:
+			if increased:
 				reactor_animation.stop()
 				reactor_animation.play("pickup_first_node")
 			tween_visible(clicker_big_sprite, 1)
 			tween_visible(clicker_small_sprite_1, 0)
-			tween_visible(clicker_small_sprite_2, 0)
 		2:
-			if clicker_big_sprite.visible:
+			if increased:
+				reactor_animation.stop()
 				reactor_animation.play("pickup_new_node")
-			tween_visible(clicker_big_sprite, 1)
 			tween_visible(clicker_small_sprite_1, 1)
 			tween_visible(clicker_small_sprite_2, 0)
 		3:
-			if clicker_small_sprite_1.visible:
+			if increased:
+				reactor_animation.stop()
 				reactor_animation.play("pickup_new_node")
-			tween_visible(clicker_big_sprite, 1)
-			tween_visible(clicker_small_sprite_1, 1)
 			tween_visible(clicker_small_sprite_2, 1)
 
-func tween_visible(sprite: Sprite2D, make_visible: bool, self_only: bool = 0, duration: float = 0.25) -> void:
+func tween_visible(
+	sprite: Sprite2D,
+	make_visible: bool,
+	self_only: bool = 0,
+	duration: float = 0.25
+) -> void:
+	if existing_tweens.has(sprite):
+		existing_tweens[sprite].kill()
+
 	var modulation_type: String
 	var target_color: Color
 
@@ -61,22 +70,17 @@ func tween_visible(sprite: Sprite2D, make_visible: bool, self_only: bool = 0, du
 		modulation_type = "modulate"
 	
 	if make_visible:
-		target_color = Color(1,1,1,1)
-		sprite.show()
+		target_color = Color(1, 1, 1, 1)
 	else:
-		target_color = Color(1,1,1,0)
+		target_color = Color(1, 1, 1, 0)
 	
 	var tween = create_tween()
 	tween.tween_property(sprite, modulation_type, target_color, duration)
 
-	if !make_visible:
-		await get_tree().create_timer(duration).timeout
-		sprite.hide()
+	existing_tweens[sprite] = tween
 
-func _player_clicker_count_changed():
-	update_clicker_inventory()
-	# reactor_animation.stop()
-	# reactor_animation.play("pickup")
+func _player_clicker_count_changed(increased: bool):
+	update_clicker_inventory(increased)
 
 func _on_clicker_sent_home():
 	screen_color_animation.play("flash")
