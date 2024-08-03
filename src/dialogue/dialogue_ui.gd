@@ -134,10 +134,10 @@ func play_branch(branch_id: String):
 
 func animate_display(dialogue_line: String):
 	## Just the characters that will be seen, no bbcode
-	active_dialogue_display.dialogue_label.visible_characters = 0
 	var command_text = BBCodeParser.strip_bbcode(dialogue_line)
 	var bbcode_text = DialogueParser.strip_dialogue_commands(dialogue_line)
 	var idx = 0
+	var fade_counter = 0
 	while idx < command_text.length():
 		# Exit if there is no current_npc. This will happen when the player
 		# exits dialogue prematurely via [esc].
@@ -150,7 +150,7 @@ func animate_display(dialogue_line: String):
 			return
 
 		var new_char = command_text[idx]
-		
+
 		if new_char == "{":
 			# Dialogue command
 			idx = handle_dialogue_command(command_text, idx)
@@ -158,8 +158,11 @@ func animate_display(dialogue_line: String):
 			var wait_time = calculate_wait_time(new_char, command_text, idx)
 			display_timer.start(wait_time)
 			# Show new character
-			active_dialogue_display.dialogue_label.visible_characters += 1
+			active_dialogue_display.dialogue_label.parse_bbcode(
+				"[fade start=" + str(fade_counter) + " length=2]" + active_dialogue_display.dialogue_label.text + "[/fade]"
+			)
 			idx += 1
+			fade_counter += 1
 			
 		if not display_timer.is_stopped():
 			await display_timer.timeout
