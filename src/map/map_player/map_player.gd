@@ -52,6 +52,7 @@ func _process(delta: float) -> void:
 	calculate_line_distance()
 	
 	if moving:
+		# Resolve gravitized state
 		var active_ag = grav_component.check_active_ag()
 		var gravity_state = grav_component.determine_gravity_state(active_ag)
 		if gravity_state != GravitizedComponent.GravityState.NONE and Global.pod_has_clicker:
@@ -71,12 +72,11 @@ func _process(delta: float) -> void:
 
 		if manual_control:
 			location_deselected()
-
+			# shake
 			if gravity_state == GravitizedComponent.GravityState.BOOST:
 				Global.main_camera.set_shake_lerp(BOOST_SHAKE_AMOUNT, 2.0)
-				
 			Global.main_camera.target_shake_amount = ORBIT_SHAKE_AMOUNT
-
+			# draw the line
 			line.set_point_position(1, velocity.normalized() * distance_per_energy)
 			if gravity_state == GravitizedComponent.GravityState.ORBIT:
 				boost_line.set_point_position(1, active_ag.global_position.direction_to(global_position) * distance_per_energy / 2)
@@ -97,38 +97,10 @@ func _process(delta: float) -> void:
 	elif energy_bar.value <= energy_bar.max_value / 5:
 		critical_energy()
 
-func calculate_line_distance() -> float:
-	distance_per_energy = SPEED / (ENERGY_USE_RATE / energy_bar.max_value) * (energy_bar.value / energy_bar.max_value)
-	return distance_per_energy
+## ----------------------------- MOVING -----------------------------
 
 func at_destination() -> bool:
 	return global_position.distance_to(destination.global_position) < 20
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		location_deselected()
-
-func location_selected(location: Entrypoint):
-	if moving:
-		return
-
-	destination = location
-
-	var line_end = (destination.global_position - global_position).limit_length(distance_per_energy)
-	line.set_point_position(1, line_end)
-
-	select_destination.emit(location)
-	location_info.show()
-
-func location_deselected():
-	if moving:
-		return
-		
-	location_info.hide()
-	destination = null
-	line.set_point_position(1, Vector2.ZERO)
-	select_destination.emit(null)
-
 
 func travel() -> void:
 	if moving:
@@ -141,15 +113,6 @@ func travel() -> void:
 	# Begin shake by setting target and regular speed
 	Global.main_camera.start_shake()
 	Global.main_camera.set_shake_lerp(TRAVEL_SHAKE_AMOUNT, BASE_SHAKE_LERP_SPEED)
-
-func enter_coolant_pocket() -> void:
-	energy_bar.value = energy_bar.max_value
-	in_coolant = true
-	map_animation_player.play("neutral")
-	game.pod.pod_animation_player.play("neutral")
-	
-func exit_coolant_pocket() -> void:
-	in_coolant = false
 
 func end_movement() -> void:
 	moving = false
@@ -177,11 +140,36 @@ func recall() -> void:
 	location_deselected()
 	end_movement()
 
-func show_warning(warning_text: String) -> void:
-	warning_label.text = warning_text
-	warning_label.show()
-	await get_tree().create_timer(2).timeout
-	warning_label.hide()
+## ----------------------------- MAP INTERACTION -----------------------------
+
+func location_selected(location: Entrypoint):
+	if moving:
+		return
+
+	destination = location
+
+	var line_end = (destination.global_position - global_position).limit_length(distance_per_energy)
+	line.set_point_position(1, line_end)
+
+	select_destination.emit(location)
+	location_info.show()
+
+func location_deselected():
+	if moving:
+		return
+		
+	location_info.hide()
+	destination = null
+	line.set_point_position(1, Vector2.ZERO)
+	select_destination.emit(null)
+
+## ------------------------- DRAW LINE -------------------------
+
+func calculate_line_distance() -> float:
+	distance_per_energy = SPEED / (ENERGY_USE_RATE / energy_bar.max_value) * (energy_bar.value / energy_bar.max_value)
+	return distance_per_energy
+
+## ------------------------- ANIMATION -------------------------
 
 func low_energy() -> void:
 	map_animation_player.play("LOW_ENERGY")
@@ -225,6 +213,8 @@ func hit_hazard() -> void:
 
 	map_animation_player.play("IMPACT_AVOIDED")
 
+## ------------------------- SIGNAL HANDLES -------------------------
+
 func _area_scanned(area: Area2D) -> void:
 	if area is MapLocation:
 		if not area.locked && !area.visible:
@@ -233,12 +223,6 @@ func _area_scanned(area: Area2D) -> void:
 			area.show()
 			var tween = get_tree().create_tween()
 			tween.tween_property(area, "modulate", base_modulate, 1)
-
-func check_entrypoint_exited():
-	for area in collision_box.get_overlapping_areas():
-		if area is MapLocation or area is Hazard:
-			hit_hazard()
-			return
 
 func _on_call_pod(empty_pod: EmptyPod) -> void:
 	var current_level = destination.get_parent()
@@ -250,3 +234,7 @@ func _on_call_pod(empty_pod: EmptyPod) -> void:
 
 func _on_travel_button_pressed():
 	travel()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		location_deselected()
