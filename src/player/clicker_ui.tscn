@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b3xmpb6et0p0g"]
+[gd_scene load_steps=26 format=3 uid="uid://b3xmpb6et0p0g"]
 
 [ext_resource type="Script" path="res://src/player/clicker_ui.gd" id="1_bax8t"]
 [ext_resource type="Texture2D" uid="uid://bu1g5ed2ewnvn" path="res://assets/ui/clicker/bottom_plate.png" id="2_2ycao"]
@@ -147,6 +147,25 @@ _data = {
 "pickup_new_node": SubResource("Animation_jq2e0")
 }
 
+[sub_resource type="Animation" id="Animation_8201i"]
+resource_name = "boost"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("clicker_big:rotation_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.00339059, 0.432317, 0.998276, -0.033, 0, 0.053, 0, -0.487565, -0.051, 0, 0.042, 0, 0.290136, -0.0367697, 0, 0.038, 0, -0.197447, -0.039, 0, 0.031, 0, 0.107713, -0.02, 0, 0.017, 0, -0.09235, -0.024, 0, 0.024, 0, 0.0608631, -0.02, 0, 0.017, 0, -0.0467659, -0.013, 0, 0.016, 0, 0.021, -0.021, 0, 0.011, 0, 0, -0.011, 0, 0.061, 0),
+"times": PackedFloat32Array(0, 0.0503745, 0.131749, 0.218451, 0.279966, 0.332762, 0.371996, 0.404449, 0.433995, 0.4663, 0.493)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2sed7"]
+_data = {
+"boost": SubResource("Animation_8201i")
+}
+
 [sub_resource type="Animation" id="Animation_oitcb"]
 resource_name = "flash"
 length = 0.3
@@ -168,7 +187,7 @@ _data = {
 "flash": SubResource("Animation_oitcb")
 }
 
-[node name="ClickerUi" type="CanvasLayer" node_paths=PackedStringArray("clicker_big_sprite", "clicker_small_sprite_1", "clicker_small_sprite_2", "reactor_animation", "screen_color_animation")]
+[node name="ClickerUi" type="CanvasLayer" node_paths=PackedStringArray("clicker_big_sprite", "clicker_small_sprite_1", "clicker_small_sprite_2", "reactor_animation", "screen_color_animation", "clicker_big_animation")]
 layer = 102
 script = ExtResource("1_bax8t")
 clicker_big_sprite = NodePath("Reactor/clicker_big")
@@ -176,6 +195,7 @@ clicker_small_sprite_1 = NodePath("Reactor/clicker_small")
 clicker_small_sprite_2 = NodePath("Reactor/clicker_small2")
 reactor_animation = NodePath("Reactor/ReactorAnimationPlayer")
 screen_color_animation = NodePath("ScreenColor/ScreenAnimationPlayer")
+clicker_big_animation = NodePath("Reactor/BigClickerAnimationPlayer")
 
 [node name="Reactor" type="Control" parent="."]
 layout_mode = 3
@@ -198,6 +218,7 @@ material = SubResource("CanvasItemMaterial_t2k8o")
 texture = ExtResource("3_0ew31")
 script = ExtResource("4_nlcx6")
 top_swivel = NodePath("../top_swivel")
+following = true
 
 [node name="top_swivel" type="Sprite2D" parent="Reactor"]
 self_modulate = Color(1, 1, 1, 0.364706)
@@ -205,8 +226,6 @@ material = SubResource("CanvasItemMaterial_h52h1")
 texture = ExtResource("4_0avj6")
 
 [node name="clicker_big" type="Sprite2D" parent="Reactor" node_paths=PackedStringArray("top_swivel")]
-visible = false
-modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0.65)
 texture = ExtResource("5_yy6oe")
 script = ExtResource("7_0rl8k")
@@ -218,8 +237,6 @@ position = Vector2(6, -8)
 texture = ExtResource("6_b8ati")
 
 [node name="clicker_small" type="Sprite2D" parent="Reactor" node_paths=PackedStringArray("clicker_big")]
-visible = false
-modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0.65)
 position = Vector2(317.5, -176.5)
 texture = ExtResource("7_nu75l")
@@ -231,8 +248,6 @@ self_modulate = Color(1, 1, 1, 0)
 texture = ExtResource("8_b4pcb")
 
 [node name="clicker_small2" type="Sprite2D" parent="Reactor" node_paths=PackedStringArray("clicker_big")]
-visible = false
-modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0.65)
 position = Vector2(491.5, -176.5)
 texture = ExtResource("7_nu75l")
@@ -252,6 +267,11 @@ texture = ExtResource("9_fuqja")
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_1ofva")
+}
+
+[node name="BigClickerAnimationPlayer" type="AnimationPlayer" parent="Reactor"]
+libraries = {
+"": SubResource("AnimationLibrary_2sed7")
 }
 
 [node name="ScreenColor" type="ColorRect" parent="."]

@@ -7,6 +7,7 @@ class_name ClickerUI
 @export var clicker_small_sprite_2: Sprite2D
 @export var reactor_animation: AnimationPlayer
 @export var screen_color_animation: AnimationPlayer
+@export var clicker_big_animation: AnimationPlayer
 
 # Map from [Sprite2D] to [Tween]
 var existing_tweens = {}
@@ -26,6 +27,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("orbit"):
 		clicker_big_sprite.orbitting = false
 		tween_visible(clicker_big_sprite.get_child(0), 0, 1, 0.5)
+	if event.is_action_pressed("jump") and Input.is_action_pressed("orbit"):
+			print("boosted")
+			clicker_big_animation.stop()
+			clicker_big_animation.play("boost")
 
 func update_clicker_inventory(increased: bool):
 	match player.clicker_inventory.size():
