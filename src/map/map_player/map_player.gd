@@ -13,9 +13,6 @@ class_name MapPlayer
 @onready var map_animation_player: AnimationPlayer = $MapAnimationPlayer
 @onready var location_info: TextureRect = $CanvasLayer/TextBacker
 
-const HAZARD_TEXT = "IMPACT AVOIDED"
-const OUT_OF_ENERGY_TEXT = "RECALLED DUE TO ENERGY LOSS"
-const LOW_ENERGY_TEXT = "You are low on energy"
 const TRAVEL_SHAKE_AMOUNT = 2.5
 const ORBIT_SHAKE_AMOUNT = 0.5
 const BOOST_SHAKE_AMOUNT = 5
@@ -192,7 +189,6 @@ func low_energy() -> void:
 func critical_energy() -> void:
 	map_animation_player.play("OUT_OF_FUEL")
 	game.pod.pod_animation_player.play("crash_warning")
-	Global.main_camera.target_shake_amount = TRAVEL_SHAKE_AMOUNT * 4
 
 func run_out_of_energy() -> void:
 	game.pod.pod_animation_player.play("crash_blackout")
@@ -209,7 +205,7 @@ func hit_hazard() -> void:
 		if area is Entrypoint:
 			return
 
-	velocity = velocity * 0.5
+	velocity = velocity * 0.0
 	map_animation_player.play("COLLISION_IMMINENT")
 	game.pod.pod_animation_player.play("crash_warning")
 	Global.main_camera.shake_amount = TRAVEL_SHAKE_AMOUNT * 10
