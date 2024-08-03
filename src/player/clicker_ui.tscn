@@ -180,36 +180,37 @@ screen_color_animation = NodePath("ScreenColor/ScreenAnimationPlayer")
 [node name="Reactor" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 217.0
-offset_top = 223.0
-offset_right = 217.0
-offset_bottom = 223.0
-scale = Vector2(0.5, 0.5)
+offset_left = 181.0
+offset_top = 192.0
+offset_right = 181.0
+offset_bottom = 192.0
+scale = Vector2(0.393527, 0.393527)
 
 [node name="base_plate" type="Sprite2D" parent="Reactor"]
+self_modulate = Color(1, 1, 1, 0.54902)
 material = SubResource("CanvasItemMaterial_t2k8o")
 position = Vector2(160, -2)
 texture = ExtResource("2_2ycao")
 
 [node name="bottom_swivel" type="Sprite2D" parent="Reactor" node_paths=PackedStringArray("top_swivel")]
-self_modulate = Color(0.598525, 0.598525, 0.598525, 1)
+self_modulate = Color(0.294118, 0.294118, 0.294118, 0.545098)
 material = SubResource("CanvasItemMaterial_t2k8o")
 texture = ExtResource("3_0ew31")
 script = ExtResource("4_nlcx6")
 top_swivel = NodePath("../top_swivel")
 
 [node name="top_swivel" type="Sprite2D" parent="Reactor"]
-self_modulate = Color(0.786347, 0.786347, 0.786346, 1)
+self_modulate = Color(1, 1, 1, 0.364706)
 material = SubResource("CanvasItemMaterial_h52h1")
 texture = ExtResource("4_0avj6")
 
 [node name="clicker_big" type="Sprite2D" parent="Reactor" node_paths=PackedStringArray("top_swivel")]
 visible = false
 modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0.65)
 texture = ExtResource("5_yy6oe")
 script = ExtResource("7_0rl8k")
 top_swivel = NodePath("../top_swivel")
-orbitting = null
 
 [node name="clicker_big_glow" type="Sprite2D" parent="Reactor/clicker_big"]
 self_modulate = Color(1, 1, 1, 0)
@@ -219,6 +220,7 @@ texture = ExtResource("6_b8ati")
 [node name="clicker_small" type="Sprite2D" parent="Reactor" node_paths=PackedStringArray("clicker_big")]
 visible = false
 modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0.65)
 position = Vector2(317.5, -176.5)
 texture = ExtResource("7_nu75l")
 script = ExtResource("8_4vaor")
@@ -231,6 +233,7 @@ texture = ExtResource("8_b4pcb")
 [node name="clicker_small2" type="Sprite2D" parent="Reactor" node_paths=PackedStringArray("clicker_big")]
 visible = false
 modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0.65)
 position = Vector2(491.5, -176.5)
 texture = ExtResource("7_nu75l")
 script = ExtResource("8_4vaor")
@@ -241,6 +244,7 @@ self_modulate = Color(1, 1, 1, 0)
 texture = ExtResource("8_b4pcb")
 
 [node name="top_plate" type="Sprite2D" parent="Reactor"]
+self_modulate = Color(1, 1, 1, 0.509804)
 material = SubResource("CanvasItemMaterial_rn4rm")
 texture = ExtResource("9_fuqja")
 
