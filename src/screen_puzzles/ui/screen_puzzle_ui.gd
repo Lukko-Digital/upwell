@@ -26,22 +26,14 @@ func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		update_configuration_warnings()
 
-func animate_display():
-	main_text_label.visible_characters = -1
-	while main_text_label.visible_characters < main_text_label.text.length():
-		main_text_label.visible_characters += CHARS_PER_FRAME
-		await get_tree().process_frame
-
 func _on_folder_opened(text: String):
 	backer_animation_player.stop()
 	backer_animation_player.play("backer_shine")
 	await get_tree().create_timer(0.1).timeout
 	main_text_label.text = text
-	# animate_display() ## New animations make text readout unnecessary
 
 func launch_success(folder: ScreenCore):
 	if !folder.opened:
-		print("!folder.opened")
 		animation_player.stop()
 		animation_player.play("launch_success")
 	folder.opened = true
@@ -53,7 +45,8 @@ func launch_fail():
 	animation_player.play("launch_fail")
 	await get_tree().create_timer(0.001).timeout
 	main_text_label.text = "[p] [/p][p] [/p][p] [/p][b][p][center]File not found at[/center][/p][p][center]specified destination[/center][/p][/b]"
-	animate_display()
+	get_tree().call_group(FolderButton.GROUP_NAME, "dehighlight")
+	get_tree().call_group(ScreenCore.GROUP_NAME, "dehighlight")
 
 func _on_launch_button_pressed() -> void:
 	var folder: ScreenCore = screen_player.targeted_folder
