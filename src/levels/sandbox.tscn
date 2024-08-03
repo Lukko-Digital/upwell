@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dcf1k6whcfars"]
+[gd_scene load_steps=18 format=3 uid="uid://dcf1k6whcfars"]
 
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="2_4vrwf"]
 [ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="2_gfulr"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://src/level_elements/camera/camera_track.gd" id="8_y82k3"]
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/holder/clicker_holder.tscn" id="10_ogth4"]
 [ext_resource type="Script" path="res://src/level_elements/camera/powered_point_focus.gd" id="11_t14rj"]
+[ext_resource type="PackedScene" uid="uid://dw6autb2hsck1" path="res://src/level_elements/artificial_gravity/orbit_ag.tscn" id="12_useiy"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_4ko8k"]
 a = Vector2(-568, -40)
@@ -24,6 +25,9 @@ size = Vector2(272, 3052)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vmkq"]
 size = Vector2(1383, 655)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d4mg5"]
+radius = 660.927
 
 [node name="Main" type="Node2D"]
 position = Vector2(200, 0)
@@ -96,3 +100,9 @@ position = Vector2(302, 566)
 
 [node name="ClickerHolder2" parent="." instance=ExtResource("10_ogth4")]
 position = Vector2(298, 705)
+
+[node name="OrbitAG" parent="." instance=ExtResource("12_useiy")]
+position = Vector2(-1, -902)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OrbitAG"]
+shape = SubResource("CircleShape2D_d4mg5")
