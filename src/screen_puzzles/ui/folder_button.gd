@@ -1,17 +1,20 @@
 extends FolderClickable
 class_name FolderButton
 
+const GROUP_NAME = "FolderButtons"
+
 ## Set by the screen core
 var paired_core: ScreenCore
 
 signal folder_opened(text: String)
 
 func _ready() -> void:
-	group = "FolderButtons"
+	group = GROUP_NAME
 	super()
 
 func open():
-	# removed if highlighted, we want it to emit folder open on every launch, isnt emitting rn though HELP
+	if highlighed:
+		return
 	folder_opened.emit(paired_core.parsed_text)
 	highlight()
 	paired_core.highlight()
