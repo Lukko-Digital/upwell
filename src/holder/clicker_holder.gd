@@ -11,7 +11,7 @@ enum HolderFrames {
 @onready var clicker_sprite: Sprite2D = %ClickerSprite
 @onready var holder_sprite: Sprite2D = %HolderSprite
 @onready var catcher_field: Sprite2D = %CatcherField
-@onready var clicker_scene: PackedScene = preload ("res://src/clicker/clicker.tscn")
+@onready var clicker_scene: PackedScene = preload("res://src/clicker/clicker.tscn")
 
 signal clicker_state_changed(holder: ClickerHolder, has_clicker: bool)
 
@@ -49,6 +49,9 @@ func _ready():
 	super()
 	add_to_group("Holders")
 	catcher_field.visible = is_catcher
+	## Spawn test clickers
+	if not get_tree().get_current_scene() is Game:
+		init_starting_clicker()
 
 func init_starting_clicker():
 	if starts_with_clicker:
