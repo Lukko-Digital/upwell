@@ -132,10 +132,11 @@ func handle_energy_consumption(delta):
 	energy_bar.value -= ENERGY_USE_RATE * delta
 
 	# Play energy animations
-	if energy_bar.value <= energy_bar.max_value / 5:
-		critical_energy()
-	elif energy_bar.value <= 0:
-		run_out_of_energy()
+	if energy_bar.value <= 0:
+		recall()
+		run_out_of_energy_animation()
+	elif energy_bar.value <= energy_bar.max_value / 5:
+		critical_energy_animation()
 
 ## -------------------------- MAP LOCATION FUNCTIONS --------------------------
 
@@ -219,22 +220,17 @@ func handle_manual_control_shake(gravity_state: GravitizedComponent.GravityState
 		GravitizedComponent.GravityState.ORBIT:
 			Global.main_camera.target_shake_amount = ORBIT_SHAKE_AMOUNT
 
-
 func successful_landing_animation():
 	map_animation_player.play("neutral")
 	game.pod.pod_animation_player.play("neutral")
 	Global.main_camera.set_shake_and_lerp_to_zero(40, 4)
 
-func low_energy() -> void:
-	map_animation_player.play("LOW_ENERGY")
-
-func critical_energy() -> void:
+func critical_energy_animation() -> void:
 	map_animation_player.play("OUT_OF_FUEL")
 	game.pod.pod_animation_player.play("crash_warning")
 
-func run_out_of_energy() -> void:
+func run_out_of_energy_animation() -> void:
 	game.pod.pod_animation_player.play("crash_blackout")
-	recall()
 	Global.set_camera_focus.emit(null)
 	await get_tree().create_timer(.3).timeout
 	map_animation_player.play("SHUTDOWN_AVOIDED")
@@ -255,6 +251,7 @@ func crash_animation():
 	# adds some time for screen to black out so player doesn't see lag caused by recall()
 	await get_tree().create_timer(.2).timeout
 
+## Happens after recalling due to crash
 func post_crash_animation():
 	await get_tree().create_timer(.3).timeout
 	map_animation_player.play("IMPACT_AVOIDED")
