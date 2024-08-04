@@ -28,6 +28,12 @@ var dialogue_conditions = {
 	"LEFT_HOME": false
 }
 
+signal dialogue_variable_changed(key: String, value: bool)
+
+func set_dialogue_variable(key: String, value: bool):
+	dialogue_conditions[key] = value
+	dialogue_variable_changed.emit(key, value)
+
 var current_location_name: String
 
 ## Placeholder for MVP3 so player can spawn on the left, then arrive on the right side subsequently

@@ -100,7 +100,7 @@ func play_branch(branch_id: String):
 		active_dialogue_display.name_label.text = "[b]" + branch.npc_name + "[/b]"
 	# If there is a variable to set, set it
 	if branch.variable_to_set != "":
-		Global.dialogue_conditions[branch.variable_to_set] = branch.variable_value
+		Global.set_dialogue_variable(branch.variable_to_set, branch.variable_value)
 	# Set next branch
 	next_branch = branch.next_branch_id
 	# Check conditional branch advancement
@@ -257,6 +257,6 @@ func exit_dialogue():
 func _response_button_pressed(response: Response):
 	# Set variables
 	if response.variable_to_set != "":
-		Global.dialogue_conditions[response.variable_to_set] = response.variable_value
+		Global.set_dialogue_variable(response.variable_to_set, response.variable_value)
 	# Next branch
 	play_branch(response.next_branch_id)
