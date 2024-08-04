@@ -29,8 +29,6 @@ var in_coolant = false
 
 var velocity: Vector2 = Vector2.ZERO
 
-var recalled = false
-
 var destination: Entrypoint = null:
 	set(value):
 		destination = value
@@ -72,8 +70,15 @@ func _process(delta: float) -> void:
 	handle_manual_control_shake(gravity_state)
 
 	if at_destination():
-		end_movement()
+		end_movement(false)
 	handle_energy_consumption(delta)
+
+## ----------------------------- HELPER -----------------------------
+
+## Checks if we are within a threshold distance to the destination
+func at_destination() -> bool:
+	const THRESHOLD = 20
+	return global_position.distance_to(destination.global_position) < THRESHOLD
 
 ## ----------------------------- MOVING -----------------------------
 
@@ -90,13 +95,8 @@ func handle_artificial_gravity(active_ag: ArtificialGravity, delta) -> Gravitize
 		velocity = new_vel.normalized() * SPEED
 	return gravity_state
 
-## checks if we are within a threshold distance to the destination
-func at_destination() -> bool:
-	const THRESHOLD = 20
-	return global_position.distance_to(destination.global_position) < THRESHOLD
-
 ## called once when you start travelling
-func travel() -> void:
+func start_travel() -> void:
 	if moving:
 		return
 	if at_destination():
@@ -108,8 +108,8 @@ func travel() -> void:
 	Global.main_camera.start_shake()
 	Global.main_camera.set_shake_lerp(TRAVEL_SHAKE_AMOUNT, BASE_SHAKE_LERP_SPEED)
 
-## called when you recall and reach destination
-func end_movement() -> void:
+## Called when you recall or when you reach destination
+func end_movement(recalled: bool) -> void:
 	moving = false
 	manual_control = false
 
@@ -122,19 +122,14 @@ func end_movement() -> void:
 
 	if recalled:
 		Global.main_camera.set_shake_lerp(0, 4)
-		recalled = false
-	else: # Increase shape for landing and kill it quickly
-		map_animation_player.play("neutral")
-		game.pod.pod_animation_player.play("neutral")
-		Global.main_camera.set_shake_and_lerp_to_zero(40, 4)
-		recalled = false
+	else:
+		successful_landing_animation()
 
+## Recall due to running out of fuel or crashing
 func recall() -> void:
-	recalled = true
 	global_position = starting_position
 	location_deselected()
-	end_movement()
-
+	end_movement(true)
 
 ## ----------------------------- FUEL -----------------------------
 
@@ -229,6 +224,12 @@ func handle_manual_control_shake(gravity_state: GravitizedComponent.GravityState
 		GravitizedComponent.GravityState.ORBIT:
 			Global.main_camera.target_shake_amount = ORBIT_SHAKE_AMOUNT
 
+
+func successful_landing_animation():
+	map_animation_player.play("neutral")
+	game.pod.pod_animation_player.play("neutral")
+	Global.main_camera.set_shake_and_lerp_to_zero(40, 4)
+
 func low_energy() -> void:
 	map_animation_player.play("LOW_ENERGY")
 
@@ -283,7 +284,7 @@ func _on_call_pod(empty_pod: EmptyPod) -> void:
 			global_position = entry_point.global_position
 
 func _on_travel_button_pressed():
-	travel()
+	start_travel()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
