@@ -1,27 +1,29 @@
 extends Node2D
 class_name MapPlayer
 
+const SPEED: float = 800
+const ENERGY_USE_RATE: float = 30
+
+const SHAKE = {
+	TRAVEL_AMOUNT = 2.5,
+	ORBIT_AMOUNT = 0.5,
+	BOOST_AMOUNT = 5,
+	LERP_SPEED = 1.0
+}
+
+signal select_destination(location: Entrypoint)
+
+@onready var collision_box: Area2D = $PlayerBody
+@onready var grav_component: GravitizedComponent = $GravitizedComponent
+@onready var energy_bar: ProgressBar = $CanvasLayer/Energy
+@onready var warning_label: Label = $CanvasLayer/WarningLabel
+@onready var map_animation_player: AnimationPlayer = $MapAnimationPlayer
+@onready var location_info: TextureRect = $CanvasLayer/TextBacker
 @onready var line: Line2D = $Line2D
 @onready var boost_line: Line2D = $BoostLine2D
 
 @onready var game: Game = get_tree().get_current_scene()
-@onready var energy_bar: ProgressBar = $CanvasLayer/Energy
 @onready var starting_position: Vector2 = global_position
-@onready var collision_box: Area2D = $PlayerBody
-@onready var warning_label: Label = $CanvasLayer/WarningLabel
-@onready var grav_component: GravitizedComponent = $GravitizedComponent
-@onready var map_animation_player: AnimationPlayer = $MapAnimationPlayer
-@onready var location_info: TextureRect = $CanvasLayer/TextBacker
-
-const TRAVEL_SHAKE_AMOUNT = 2.5
-const ORBIT_SHAKE_AMOUNT = 0.5
-const BOOST_SHAKE_AMOUNT = 5
-const BASE_SHAKE_LERP_SPEED = 1.0
-
-var moving = false:
-	set(value):
-		moving = value
-		Global.moving_on_map = value
 
 ## Used to determine the look of the lines. If orbit is ever used, trajectory
 ## and boost lines are shown until movement is ended.
@@ -31,18 +33,16 @@ var in_coolant = false
 
 var velocity: Vector2 = Vector2.ZERO
 
+var moving = false:
+	set(value):
+		moving = value
+		Global.moving_on_map = value
+
 var destination: Entrypoint = null:
 	set(value):
 		destination = value
 		if value:
 			velocity = global_position.direction_to(value.global_position) * SPEED
-
-const SPEED: float = 800
-const ENERGY_USE_RATE: float = 30
-
-const AG_ACCELERATION: float = 4
-
-signal select_destination(location: Entrypoint)
 
 func _ready() -> void:
 	Global.pod_called.connect(_on_call_pod)
@@ -98,7 +98,7 @@ func start_travel() -> void:
 
 	# Begin shake by setting target and regular speed
 	Global.main_camera.start_shake()
-	Global.main_camera.set_shake_lerp(TRAVEL_SHAKE_AMOUNT, BASE_SHAKE_LERP_SPEED)
+	Global.main_camera.set_shake_lerp(SHAKE.TRAVEL_AMOUNT, SHAKE.LERP_SPEED)
 
 ## Called when you recall or when you reach destination
 func end_movement(recalled: bool) -> void:
@@ -161,8 +161,7 @@ func hit_hazard() -> void:
 	for area in collision_box.get_overlapping_areas():
 		if area is Entrypoint:
 			return
-
-	velocity = velocity * 0.0
+			
 	await crash_animation()
 	recall()
 	post_crash_animation()
@@ -216,9 +215,9 @@ func calculate_distance_per_energy() -> float:
 func handle_manual_control_shake(gravity_state: GravitizedComponent.GravityState):
 	match gravity_state:
 		GravitizedComponent.GravityState.BOOST:
-			Global.main_camera.set_shake_lerp(BOOST_SHAKE_AMOUNT, 2.0)
+			Global.main_camera.set_shake_lerp(SHAKE.BOOST_AMOUNT, 2.0)
 		GravitizedComponent.GravityState.ORBIT:
-			Global.main_camera.target_shake_amount = ORBIT_SHAKE_AMOUNT
+			Global.main_camera.target_shake_amount = SHAKE.ORBIT_AMOUNT
 
 func successful_landing_animation():
 	map_animation_player.play("neutral")
@@ -238,11 +237,11 @@ func run_out_of_energy_animation() -> void:
 func crash_animation():
 	map_animation_player.play("COLLISION_IMMINENT")
 	game.pod.pod_animation_player.play("crash_warning")
-	Global.main_camera.shake_amount = TRAVEL_SHAKE_AMOUNT * 10
-	Global.main_camera.set_shake_lerp(TRAVEL_SHAKE_AMOUNT * 3, 20)
+	Global.main_camera.shake_amount = SHAKE.TRAVEL_AMOUNT * 10
+	Global.main_camera.set_shake_lerp(SHAKE.TRAVEL_AMOUNT * 3, 20)
 	await get_tree().create_timer(.4).timeout
 
-	Global.main_camera.set_shake_lerp(TRAVEL_SHAKE_AMOUNT * 40, 0.5)
+	Global.main_camera.set_shake_lerp(SHAKE.TRAVEL_AMOUNT * 40, 0.5)
 	
 	await get_tree().create_timer(.8).timeout
 
