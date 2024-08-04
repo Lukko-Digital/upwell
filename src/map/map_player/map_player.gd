@@ -3,6 +3,9 @@ class_name MapPlayer
 
 const SPEED: float = 800
 const ENERGY_USE_RATE: float = 30
+## The player ends its movement when its center is within this distance of the
+## center of the entrypoint
+const DESTINATION_REACH_THRESHOLD = 20
 
 const SHAKE = {
 	TRAVEL_AMOUNT = 2.5,
@@ -53,7 +56,6 @@ func _process(delta: float) -> void:
 	if not moving:
 		return
 	
-	# Resolve gravitized state
 	var active_ag = grav_component.check_active_ag()
 	var gravity_state = handle_artificial_gravity(active_ag, delta)
 
@@ -62,10 +64,10 @@ func _process(delta: float) -> void:
 	draw_destination_line()
 	draw_boost_line(active_ag)
 	handle_manual_control_shake(gravity_state)
-
-	if at_destination():
-		end_movement(false)
 	handle_energy_consumption(delta)
+
+	if is_destination_reached():
+		end_movement(false)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -74,9 +76,8 @@ func _unhandled_input(event: InputEvent) -> void:
 ## ----------------------------- HELPER -----------------------------
 
 ## Checks if we are within a threshold distance to the destination
-func at_destination() -> bool:
-	const THRESHOLD = 20
-	return global_position.distance_to(destination.global_position) < THRESHOLD
+func is_destination_reached() -> bool:
+	return global_position.distance_to(destination.global_position) < DESTINATION_REACH_THRESHOLD
 
 ## ----------------------------- MOVING -----------------------------
 
@@ -97,7 +98,7 @@ func handle_artificial_gravity(active_ag: ArtificialGravity, delta) -> Gravitize
 func start_travel() -> void:
 	if moving:
 		return
-	if at_destination():
+	if is_destination_reached():
 		return
 	
 	moving = true
