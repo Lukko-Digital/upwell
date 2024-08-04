@@ -15,30 +15,10 @@ func _ready() -> void:
 	super()
 	player.select_destination.connect(select)
 
-func _on_area_entered(area: Area2D):
-	if area.get_name() == "PlayerBody":
-		if teleporting:
-			teleporting = false
-		else:
-			map_level.visit(entry_number)
-			player.destination = self
-
-func _on_mouse_entered() -> void:
-	if not Engine.is_editor_hint():
-		hovered()
-
-func _on_mouse_exited() -> void:
-	if not Engine.is_editor_hint():
-		if not selected:
-			unhovered()
-
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			player.location_selected(self)
-
-func _on_area_exited(area):
-	player.check_entrypoint_exited()
 
 func pod_called() -> void:
 	teleporting = true
@@ -58,3 +38,23 @@ func hovered() -> void:
 func unhovered() -> void:
 	hovered_sprite.visible = false
 	unhovered_sprite.visible = true
+
+func _on_area_entered(area: Area2D):
+	if area.get_name() == "PlayerBody":
+		if teleporting:
+			teleporting = false
+		else:
+			map_level.visit(entry_number)
+			player.destination = self
+
+func _on_area_exited(_area: Area2D):
+	player.check_entrypoint_exited()
+
+func _on_mouse_entered() -> void:
+	if not Engine.is_editor_hint():
+		hovered()
+
+func _on_mouse_exited() -> void:
+	if not Engine.is_editor_hint():
+		if not selected:
+			unhovered()
