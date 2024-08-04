@@ -23,8 +23,10 @@ var moving = false:
 		moving = value
 		Global.moving_on_map = value
 
+## Used to determine the look of the lines. If orbit is ever used, trajectory
+## and boost lines are shown until movement is ended.
 var manual_control: bool = false
-
+## Set true and false by entering and exiting cooland pockets
 var in_coolant = false
 
 var velocity: Vector2 = Vector2.ZERO
@@ -37,7 +39,6 @@ var destination: Entrypoint = null:
 
 const SPEED: float = 800
 const ENERGY_USE_RATE: float = 30
-@onready var distance_per_energy: float = SPEED / (ENERGY_USE_RATE / energy_bar.max_value) * (energy_bar.value / energy_bar.max_value)
 
 const AG_ACCELERATION: float = 4
 
@@ -49,24 +50,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not moving:
 		return
-
-	calculate_line_distance()
 	
 	# Resolve gravitized state
 	var active_ag = grav_component.check_active_ag()
 	var gravity_state = handle_artificial_gravity(active_ag, delta)
 
-
-	# # if you stop holding shift on a entry point, you snap there
-	# if gravity_state == GravitizedComponent.GravityState.NONE:
-	# 	for area in collision_box.get_overlapping_areas():
-	# 		if area is Entrypoint and destination == area:
-	# 			destination = area
-
 	global_position += velocity * delta
 
-	draw_destination_line(gravity_state)
-	draw_boost_line(gravity_state, active_ag)
+	draw_destination_line()
+	draw_boost_line(active_ag)
 	handle_manual_control_shake(gravity_state)
 
 	if at_destination():
@@ -182,7 +174,7 @@ func location_selected(location: Entrypoint):
 
 	destination = location
 
-	var line_end = (destination.global_position - global_position).limit_length(distance_per_energy)
+	var line_end = (destination.global_position - global_position).limit_length(calculate_distance_per_energy())
 	line.set_point_position(1, line_end)
 
 	select_destination.emit(location)
@@ -199,21 +191,24 @@ func location_deselected():
 
 ## ------------------------- DRAW LINE -------------------------
 
-func draw_destination_line(gravity_state: GravitizedComponent.GravityState):
-	if gravity_state == GravitizedComponent.GravityState.ORBIT:
-		line.set_point_position(1, velocity.normalized() * distance_per_energy)
+func draw_destination_line():
+	if manual_control:
+		# Draw line in direction of velocity
+		line.set_point_position(1, velocity.normalized() * calculate_distance_per_energy())
 	else:
-		line.set_point_position(1, (destination.global_position - global_position).limit_length(distance_per_energy))
+		# Draw line to destination
+		line.set_point_position(1, (destination.global_position - global_position).limit_length(calculate_distance_per_energy()))
 		
-func draw_boost_line(gravity_state: GravitizedComponent.GravityState, active_ag: ArtificialGravity):
-	if gravity_state == GravitizedComponent.GravityState.ORBIT:
-		boost_line.set_point_position(1, active_ag.global_position.direction_to(global_position) * distance_per_energy / 2)
+func draw_boost_line(active_ag: ArtificialGravity):
+	if manual_control and active_ag:
+		# Draw boost line in line with center of active_ag
+		boost_line.set_point_position(1, active_ag.global_position.direction_to(global_position) * calculate_distance_per_energy() / 2)
 	else:
+		# No line
 		boost_line.set_point_position(1, Vector2.ZERO)
 
-func calculate_line_distance() -> float:
-	distance_per_energy = SPEED / (ENERGY_USE_RATE / energy_bar.max_value) * (energy_bar.value / energy_bar.max_value)
-	return distance_per_energy
+func calculate_distance_per_energy() -> float:
+	return SPEED / (ENERGY_USE_RATE / energy_bar.max_value) * (energy_bar.value / energy_bar.max_value)
 
 ## ------------------------- ANIMATION -------------------------
 
