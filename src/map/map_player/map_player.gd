@@ -44,6 +44,8 @@ var destination: Entrypoint = null:
 		if value:
 			velocity = global_position.direction_to(value.global_position) * SPEED
 
+## ----------------------------- CORE -----------------------------
+
 func _ready() -> void:
 	Global.pod_called.connect(_on_call_pod)
 
@@ -64,6 +66,10 @@ func _process(delta: float) -> void:
 	if at_destination():
 		end_movement(false)
 	handle_energy_consumption(delta)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		location_deselected()
 
 ## ----------------------------- HELPER -----------------------------
 
@@ -276,7 +282,3 @@ func _on_call_pod(empty_pod: EmptyPod) -> void:
 
 func _on_travel_button_pressed():
 	start_travel()
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		location_deselected()
