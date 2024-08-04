@@ -22,7 +22,7 @@ signal select_destination(location: Entrypoint)
 @onready var warning_label: Label = $CanvasLayer/WarningLabel
 @onready var map_animation_player: AnimationPlayer = $MapAnimationPlayer
 @onready var location_info: TextureRect = $CanvasLayer/TextBacker
-@onready var line: Line2D = $Line2D
+@onready var destination_line: Line2D = $Line2D
 @onready var boost_line: Line2D = $BoostLine2D
 
 @onready var game: Game = get_tree().get_current_scene()
@@ -181,9 +181,10 @@ func location_selected(location: Entrypoint):
 
 	destination = location
 
-	var line_end = (destination.global_position - global_position).limit_length(calculate_distance_per_energy())
-	line.set_point_position(1, line_end)
-
+	update_line(
+		destination_line,
+		(destination.global_position - global_position).limit_length(calculate_distance_per_energy())
+	)
 	select_destination.emit(location)
 	location_info.show()
 
@@ -193,7 +194,7 @@ func location_deselected():
 		
 	location_info.hide()
 	destination = null
-	line.set_point_position(1, Vector2.ZERO)
+	destination_line.set_point_position(1, Vector2.ZERO)
 	select_destination.emit(null)
 
 ## ------------------------- DRAW LINE -------------------------
@@ -201,18 +202,34 @@ func location_deselected():
 func draw_destination_line():
 	if manual_control:
 		# Draw line in direction of velocity
-		line.set_point_position(1, velocity.normalized() * calculate_distance_per_energy())
+		update_line(
+			destination_line,
+			velocity.normalized() * calculate_distance_per_energy()
+		)
 	else:
 		# Draw line to destination
-		line.set_point_position(1, (destination.global_position - global_position).limit_length(calculate_distance_per_energy()))
+		update_line(
+			destination_line,
+			(destination.global_position - global_position).limit_length(calculate_distance_per_energy())
+		)
 		
 func draw_boost_line(active_ag: ArtificialGravity):
 	if manual_control and active_ag:
 		# Draw boost line in line with center of active_ag
-		boost_line.set_point_position(1, active_ag.global_position.direction_to(global_position) * calculate_distance_per_energy() / 2)
+		update_line(
+			boost_line,
+			active_ag.global_position.direction_to(global_position) * calculate_distance_per_energy() / 2
+		)
 	else:
 		# No line
-		boost_line.set_point_position(1, Vector2.ZERO)
+		update_line(
+			boost_line,
+			Vector2.ZERO
+		)
+
+## Sets the second point of [line] to [new_point]
+func update_line(line: Line2D, new_point: Vector2):
+	line.set_point_position(1, new_point)
 
 func calculate_distance_per_energy() -> float:
 	return SPEED / (ENERGY_USE_RATE / energy_bar.max_value) * (energy_bar.value / energy_bar.max_value)
