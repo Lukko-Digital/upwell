@@ -135,11 +135,6 @@ func recall() -> void:
 	location_deselected()
 	end_movement()
 
-func check_entrypoint_exited():
-	for area in collision_box.get_overlapping_areas():
-		if area is MapLocation or area is Hazard:
-			hit_hazard()
-			return
 
 ## ----------------------------- FUEL -----------------------------
 
@@ -155,6 +150,8 @@ func handle_energy_consumption(delta):
 	elif energy_bar.value <= 0:
 		run_out_of_energy()
 
+## -------------------------- MAP LOCATION FUNCTIONS --------------------------
+
 func enter_coolant_pocket() -> void:
 	energy_bar.value = energy_bar.max_value
 	in_coolant = true
@@ -163,6 +160,24 @@ func enter_coolant_pocket() -> void:
 	
 func exit_coolant_pocket() -> void:
 	in_coolant = false
+
+func check_entrypoint_exited():
+	for area in collision_box.get_overlapping_areas():
+		if area is MapLocation or area is Hazard:
+			hit_hazard()
+
+func hit_hazard() -> void:
+	if not moving:
+		return
+	# Immune when in entrypoint
+	for area in collision_box.get_overlapping_areas():
+		if area is Entrypoint:
+			return
+
+	velocity = velocity * 0.0
+	await crash_animation()
+	recall()
+	post_crash_animation()
 
 ## ----------------------------- MAP INTERACTION -----------------------------
 
@@ -228,15 +243,7 @@ func run_out_of_energy() -> void:
 	await get_tree().create_timer(.3).timeout
 	map_animation_player.play("SHUTDOWN_AVOIDED")
 
-func hit_hazard() -> void:
-	if not moving:
-		return
-
-	for area in collision_box.get_overlapping_areas():
-		if area is Entrypoint:
-			return
-
-	velocity = velocity * 0.0
+func crash_animation():
 	map_animation_player.play("COLLISION_IMMINENT")
 	game.pod.pod_animation_player.play("crash_warning")
 	Global.main_camera.shake_amount = TRAVEL_SHAKE_AMOUNT * 10
@@ -251,9 +258,9 @@ func hit_hazard() -> void:
 	Global.set_camera_focus.emit(null)
 	# adds some time for screen to black out so player doesn't see lag caused by recall()
 	await get_tree().create_timer(.2).timeout
-	recall()
-	await get_tree().create_timer(.3).timeout
 
+func post_crash_animation():
+	await get_tree().create_timer(.3).timeout
 	map_animation_player.play("IMPACT_AVOIDED")
 
 ## ------------------------- SIGNAL HANDLES -------------------------
