@@ -49,37 +49,31 @@ func _ready() -> void:
 	Global.pod_called.connect(_on_call_pod)
 
 func _process(delta: float) -> void:
+	if not moving:
+		return
+
 	calculate_line_distance()
 	
-	if moving:
-		# Resolve gravitized state
-		var active_ag = grav_component.check_active_ag()
-		var gravity_state = handle_artificial_gravity(active_ag, delta)
+	# Resolve gravitized state
+	var active_ag = grav_component.check_active_ag()
+	var gravity_state = handle_artificial_gravity(active_ag, delta)
 
 
-		# # if you stop holding shift on a entry point, you snap there
-		# if gravity_state == GravitizedComponent.GravityState.NONE:
-		# 	for area in collision_box.get_overlapping_areas():
-		# 		if area is Entrypoint and destination == area:
-		# 			destination = area
+	# # if you stop holding shift on a entry point, you snap there
+	# if gravity_state == GravitizedComponent.GravityState.NONE:
+	# 	for area in collision_box.get_overlapping_areas():
+	# 		if area is Entrypoint and destination == area:
+	# 			destination = area
 
-		global_position += velocity * delta
+	global_position += velocity * delta
 
-		draw_destination_line(gravity_state)
-		draw_boost_line(gravity_state, active_ag)
-		handle_manual_control_shake(gravity_state)
+	draw_destination_line(gravity_state)
+	draw_boost_line(gravity_state, active_ag)
+	handle_manual_control_shake(gravity_state)
 
-		if at_destination():
-			end_movement()
-
-		if not in_coolant: energy_bar.value -= ENERGY_USE_RATE * delta
-	else:
-		boost_line.set_point_position(1, Vector2.ZERO)
-	
-	if energy_bar.value <= 0:
-		run_out_of_energy()
-	elif energy_bar.value <= energy_bar.max_value / 5:
-		critical_energy()
+	if at_destination():
+		end_movement()
+	handle_energy_consumption(delta)
 
 ## ----------------------------- MOVING -----------------------------
 
@@ -141,7 +135,25 @@ func recall() -> void:
 	location_deselected()
 	end_movement()
 
+func check_entrypoint_exited():
+	for area in collision_box.get_overlapping_areas():
+		if area is MapLocation or area is Hazard:
+			hit_hazard()
+			return
+
 ## ----------------------------- FUEL -----------------------------
+
+func handle_energy_consumption(delta):
+	if in_coolant:
+		return
+	
+	energy_bar.value -= ENERGY_USE_RATE * delta
+
+	# Play energy animations
+	if energy_bar.value <= energy_bar.max_value / 5:
+		critical_energy()
+	elif energy_bar.value <= 0:
+		run_out_of_energy()
 
 func enter_coolant_pocket() -> void:
 	energy_bar.value = energy_bar.max_value
@@ -199,7 +211,7 @@ func handle_manual_control_shake(gravity_state: GravitizedComponent.GravityState
 	match gravity_state:
 		GravitizedComponent.GravityState.BOOST:
 			Global.main_camera.set_shake_lerp(BOOST_SHAKE_AMOUNT, 2.0)
-		GravitizedComponent.GravityState.ORBIT:	
+		GravitizedComponent.GravityState.ORBIT:
 			Global.main_camera.target_shake_amount = ORBIT_SHAKE_AMOUNT
 
 func low_energy() -> void:
