@@ -31,6 +31,9 @@ signal select_destination(location: Entrypoint)
 ## Used to determine the look of the lines. If orbit is ever used, trajectory
 ## and boost lines are shown until movement is ended.
 var manual_control: bool = false
+## Used to prevent manual control when crashing and to prevent multiple crash
+## animations from being played.
+var crashing = false
 ## Set true and false by entering and exiting cooland pockets
 var in_coolant = false
 
@@ -77,12 +80,17 @@ func _unhandled_input(event: InputEvent) -> void:
 
 ## Checks if we are within a threshold distance to the destination
 func is_destination_reached() -> bool:
+	if destination == null:
+		return false
 	return global_position.distance_to(destination.global_position) < DESTINATION_REACH_THRESHOLD
 
 ## ----------------------------- MOVING -----------------------------
 
 func handle_artificial_gravity(active_ag: ArtificialGravity, delta) -> GravitizedComponent.GravityState:
 	if not Global.pod_has_clicker:
+		return GravitizedComponent.GravityState.NONE
+	
+	if crashing:
 		return GravitizedComponent.GravityState.NONE
 		
 	var gravity_state = grav_component.determine_gravity_state(active_ag)
@@ -168,10 +176,16 @@ func hit_hazard() -> void:
 	for area in collision_box.get_overlapping_areas():
 		if area is Entrypoint:
 			return
-			
+	# Prevent playing crashing animation twice
+	if crashing:
+		return
+
+	crashing = true
+	velocity = Vector2.ZERO
 	await crash_animation()
 	recall()
 	post_crash_animation()
+	crashing = false
 
 ## ----------------------------- MAP INTERACTION -----------------------------
 
