@@ -1,6 +1,8 @@
 extends Interactable
 class_name Phone
 
+const POD_CODE = [1, 1, 1, 1]
+
 @onready var dial: Sprite2D = $RotatableDial
 @onready var buttons_container: Node2D = $PhoneNumberButtons
 @onready var lights_container: HBoxContainer = $Lights
@@ -61,6 +63,11 @@ func phone_picked():
 		reset()
 		return
 	
+	if phone_number == POD_CODE:
+		call_pod()
+		reset()
+		return
+	
 	var key = get_phone_number_key()
 	if not key.is_empty():
 		Global.set_dialogue_variable(key, true)
@@ -79,6 +86,11 @@ func reset():
 	receiver_sprite.play("out")
 	await get_tree().create_timer(0.2).timeout
 	receiver_sprite.play("in")
+
+func call_pod():
+	var parent = get_parent()
+	if parent is EmptyPod:
+		Global.call_pod(parent)
 
 ## Check if the dialed number has a corresponding Global dialogue variable.
 ## Returns the dictionary key for the dialed number if it exists, or the empty
