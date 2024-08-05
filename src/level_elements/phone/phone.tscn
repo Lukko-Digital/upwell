@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://deur4u61t2ew5"]
+[gd_scene load_steps=15 format=3 uid="uid://deur4u61t2ew5"]
 
 [ext_resource type="Script" path="res://src/level_elements/phone/phone.gd" id="1_g3m3t"]
 [ext_resource type="Texture2D" uid="uid://8fjbimmyx7fr" path="res://assets/phone/phone_base.png" id="2_evrkx"]
@@ -9,6 +9,8 @@
 [ext_resource type="Shader" path="res://src/shaders/individual_blur.gdshader" id="7_ey7ai"]
 [ext_resource type="Texture2D" uid="uid://bwmwqcvvhjmlp" path="res://assets/phone/phone_in.png" id="7_heo0q"]
 [ext_resource type="Texture2D" uid="uid://da2au8h7pb1s2" path="res://assets/phone/Phone_out.png" id="8_8762i"]
+[ext_resource type="PackedScene" uid="uid://6aouvsx0hvfm" path="res://src/level_elements/npcs/NPC.tscn" id="10_7tp37"]
+[ext_resource type="Texture2D" uid="uid://xbpouc4cds5f" path="res://assets/phone/phone_small.png" id="11_i7fmr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6n45"]
 size = Vector2(2934, 3550)
@@ -39,6 +41,7 @@ shader_parameter/steps = 40
 shader_parameter/vertex_expand = 2.0
 
 [node name="Phone" type="Area2D"]
+scale = Vector2(0.083, 0.083)
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_g3m3t")
@@ -66,6 +69,12 @@ texture = ExtResource("3_ocpf3")
 [node name="TopPlate" type="Sprite2D" parent="."]
 position = Vector2(71, -45)
 texture = ExtResource("6_fhrkp")
+
+[node name="PhoneSmall" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-43, 1221)
+scale = Vector2(12.07, 12.07)
+texture = ExtResource("11_i7fmr")
 
 [node name="Lights" type="HBoxContainer" parent="."]
 offset_left = -361.0
@@ -149,6 +158,26 @@ material = SubResource("ShaderMaterial_5o1hq")
 position = Vector2(-6, 10)
 texture = ExtResource("7_heo0q")
 
+[node name="PhoneNPC" parent="." instance=ExtResource("10_7tp37")]
+visible = false
+collision_layer = 0
+collision_mask = 0
+dialogue_file = "res://assets/dialogue/upwell dialogue - phone.csv"
+
+[node name="DialogueStandLocation" parent="PhoneNPC" index="3"]
+disabled = true
+
+[node name="CollisionShape2D" parent="PhoneNPC/DialogueStandLocation" index="0"]
+disabled = true
+
+[node name="DialogueStandLocation2" parent="PhoneNPC" index="4"]
+disabled = true
+
+[node name="CollisionShape2D" parent="PhoneNPC/DialogueStandLocation2" index="0"]
+disabled = true
+
 [connection signal="input_event" from="Phone/PhoneArea" to="." method="_on_phone_area_input_event"]
 [connection signal="mouse_entered" from="Phone/PhoneArea" to="." method="_on_phone_area_mouse_entered"]
 [connection signal="mouse_exited" from="Phone/PhoneArea" to="." method="_on_phone_area_mouse_exited"]
+
+[editable path="PhoneNPC"]

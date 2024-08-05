@@ -6,6 +6,10 @@ class_name Phone
 @onready var lights_container: HBoxContainer = $Lights
 @onready var phone_sprite: AnimatedSprite2D = $Phone
 @onready var phone_glow: Sprite2D = $Phone/PhoneGlow
+@onready var npc_node: NPC = $PhoneNPC
+
+## Set when player first interacts
+var player: Player
 
 var focused: bool = false
 var rotating: bool = false
@@ -20,7 +24,8 @@ func _ready() -> void:
 	for button: PhoneNumberButton in buttons_container.get_children():
 		button.clicked.connect(_on_button_clicked)
 
-func interact(player: Player):
+func interact(player_: Player):
+	player = player_
 	if not focused:
 		Global.main_camera.set_focus(self)
 		focused = true
@@ -46,6 +51,43 @@ func number_dialed(number: int):
 	phone_number.append(number)
 	lights_container.get_child(phone_number.size() - 1).glow()
 
+func phone_picked():
+	if phone_number.size() < 4:
+		reset()
+		return
+	
+	var key = get_phone_number_key()
+	if not key.is_empty():
+		Global.set_dialogue_variable(key, true)
+	
+	player.dialogue_ui.start_dialogue(npc_node, 0)
+	await player.dialogue_ui.dialogue_finished
+	reset()
+
+	if not key.is_empty():
+		Global.set_dialogue_variable(key, false)
+
+func reset():
+	phone_number.clear()
+	for light: PhoneLight in lights_container.get_children():
+		light.unglow()
+	phone_sprite.play("out")
+	await get_tree().create_timer(0.2).timeout
+	phone_sprite.play("in")
+
+## Check if the dialed number has a corresponding Global dialogue variable.
+## Returns the dictionary key for the dialed number if it exists, or the empty
+## string if it doesn't
+func get_phone_number_key() -> String:
+	var num_string = ""
+	for num in phone_number:
+		num_string += str(num)
+	var key = num_string + "_DIALED"
+	if Global.dialogue_conditions.has(key):
+		return key
+	else:
+		return ""
+
 func _on_button_clicked(button: PhoneNumberButton):
 	if rotating or phone_number.size() >= 4:
 		return
@@ -64,12 +106,7 @@ func _on_phone_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: 
 		event.button_index == MOUSE_BUTTON_LEFT and
 		event.pressed
 	):
-		phone_number.clear()
-		for light: PhoneLight in lights_container.get_children():
-			light.unglow()
-		phone_sprite.play("out")
-		await get_tree().create_timer(0.2).timeout
-		phone_sprite.play("in")
+		phone_picked()
 
 func _on_phone_area_mouse_entered() -> void:
 	phone_glow.show()
