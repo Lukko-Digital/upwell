@@ -186,10 +186,10 @@ func handle_follow_player(delta):
 		player.is_on_floor()
 	):
 		# Peek up
-		global_position = lerp(global_position, player.position + Vector2.UP * PEEK_DISTANCE, FOCUS_LERP_TRANSLATE_SPEED * delta)
+		global_position = player.position + Vector2.UP * PEEK_DISTANCE
 		position_smoothing_speed = SMOOTHING_SPEEDS.PEEK
 	else:
-		global_position = lerp(global_position, player.position, FOCUS_LERP_TRANSLATE_SPEED * delta)
+		global_position = player.position
 		position_smoothing_speed = SMOOTHING_SPEEDS.FOLLOW
 		
 	zoom_target = ZOOM_AMOUNT.DEFAULT
