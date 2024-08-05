@@ -95,12 +95,20 @@ func play_branch(branch_id: String):
 			fullscreen_display.show()
 	# Set dialogue text
 	active_dialogue_display.dialogue_label.text = DialogueParser.strip_dialogue_commands(branch.dialogue_line)
+	# Hide the display if there is no dialogue text. This will happen in
+	# scripted scenes, such as when the NPC pauses for the player to walk
+	# up to them
+	if active_dialogue_display.dialogue_label.text.is_empty():
+		active_dialogue_display.hide()
+	else:
+		active_dialogue_display.show()
+
 	# If there is a name, set it
 	if branch.npc_name != "":
 		active_dialogue_display.name_label.text = "[b]" + branch.npc_name + "[/b]"
 	# If there is a variable to set, set it
 	if branch.variable_to_set != "":
-		Global.dialogue_conditions[branch.variable_to_set] = branch.variable_value
+		Global.set_dialogue_variable(branch.variable_to_set, branch.variable_value)
 	# Set next branch
 	next_branch = branch.next_branch_id
 	# Check conditional branch advancement
@@ -108,8 +116,8 @@ func play_branch(branch_id: String):
 		if Global.dialogue_conditions[branch.condition] == branch.expected_condition_value:
 			next_branch = branch.conditional_next_branch_id
 
+	# If there is no dialogue text, immediately play next branch, in the case of boolean algebra lines
 	if branch.dialogue_line.is_empty():
-		# If there is no dialogue text, immediately play next branch, in the case of boolean algebra lines
 		play_branch(next_branch)
 		return
 
@@ -257,6 +265,6 @@ func exit_dialogue():
 func _response_button_pressed(response: Response):
 	# Set variables
 	if response.variable_to_set != "":
-		Global.dialogue_conditions[response.variable_to_set] = response.variable_value
+		Global.set_dialogue_variable(response.variable_to_set, response.variable_value)
 	# Next branch
 	play_branch(response.next_branch_id)

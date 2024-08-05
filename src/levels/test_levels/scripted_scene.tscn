@@ -1,0 +1,167 @@
+[gd_scene load_steps=17 format=3 uid="uid://b8t7ietk25g52"]
+
+[ext_resource type="Script" path="res://src/levels/test_levels/test_scripted_scene.gd" id="1_1wmro"]
+[ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="1_jyelj"]
+[ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="2_iwmma"]
+[ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="3_q4pi8"]
+[ext_resource type="Script" path="res://src/level_elements/parallax_canvas.gd" id="4_dv44j"]
+[ext_resource type="PackedScene" uid="uid://6aouvsx0hvfm" path="res://src/level_elements/npcs/NPC.tscn" id="4_k64o7"]
+[ext_resource type="Texture2D" uid="uid://ca17uid471m7i" path="res://assets/mvp4_assets/shitty_dad-sheet.png" id="5_3n2jq"]
+[ext_resource type="Texture2D" uid="uid://6p7halpsoule" path="res://assets/environment/tree_roof/tree_midground_1_BLUR.png" id="5_ub25s"]
+[ext_resource type="Script" path="res://src/level_elements/npcs/dialogue_stand_location.gd" id="9_h381q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mu4t0"]
+atlas = ExtResource("5_3n2jq")
+region = Rect2(0, 381, 310, 381)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q03pg"]
+atlas = ExtResource("5_3n2jq")
+region = Rect2(0, 0, 310, 381)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjnyx"]
+atlas = ExtResource("5_3n2jq")
+region = Rect2(310, 381, 310, 381)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jis5b"]
+atlas = ExtResource("5_3n2jq")
+region = Rect2(310, 0, 310, 381)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_amckx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mu4t0")
+}],
+"loop": true,
+"name": &"cross_arms",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q03pg")
+}],
+"loop": true,
+"name": &"neutral",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjnyx")
+}],
+"loop": true,
+"name": &"point",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jis5b")
+}],
+"loop": true,
+"name": &"smoke",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_145ju"]
+size = Vector2(135.5, 533)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_0ttr7"]
+a = Vector2(0, 250)
+b = Vector2(0, -250)
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("player", "fraud", "out_of_the_trees_location", "approach_location")]
+position = Vector2(200, 0)
+script = ExtResource("1_1wmro")
+player = NodePath("Player")
+fraud = NodePath("Fraud")
+out_of_the_trees_location = NodePath("StandLocations/OutOfTrees")
+approach_location = NodePath("StandLocations/Approach")
+
+[node name="Player" parent="." instance=ExtResource("1_jyelj")]
+position = Vector2(-869, -119)
+
+[node name="TileMap" parent="." instance=ExtResource("2_iwmma")]
+layer_0/tile_data = PackedInt32Array(65533, 65537, 0, 65534, 65537, 0, 65535, 65537, 0, 0, 65537, 0, 1, 65537, 0, 2, 65537, 0, 3, 65537, 0, 65532, 65537, 0, 4, 65537, 0, 5, 65537, 0, 65524, 65537, 0, 131060, 65537, 0, 65525, 65537, 0, 131061, 65537, 0, 65526, 65537, 0, 131062, 65537, 0, 65527, 65537, 0, 131063, 65537, 0, 65528, 65537, 0, 131064, 65537, 0, 65529, 65537, 0, 131065, 65537, 0, 65530, 65537, 0, 131066, 65537, 0, 65531, 65537, 0, 131067, 65537, 0, 131068, 65537, 0, 131069, 65537, 0, 131070, 65537, 0, 131071, 65537, 0, 65536, 65537, 0, 65537, 65537, 0, 65538, 65537, 0, 65539, 65537, 0, 65540, 65537, 0, 65541, 65537, 0, 6, 65537, 0, 65542, 65537, 0, 7, 65537, 0, 65543, 65537, 0, 8, 65537, 0, 65544, 65537, 0, 9, 65537, 0, 65545, 65537, 0, 10, 65537, 0, 65546, 65537, 0, 11, 65537, 0, 65547, 65537, 0, 12, 65537, 0, 65548, 65537, 0, 13, 65537, 0, 65549, 65537, 0, -589836, 65537, 0, -524300, 65537, 0, -458764, 65537, 0, -393228, 65537, 0, -589835, 65537, 0, -524299, 65537, 0, -458763, 65537, 0, -393227, 65537, 0, -720908, 65537, 0, -655372, 65537, 0, -720907, 65537, 0, -655371, 65537, 0, -983052, 65537, 0, -917516, 65537, 0, -851980, 65537, 0, -786444, 65537, 0, -983051, 65537, 0, -917515, 65537, 0, -851979, 65537, 0, -786443, 65537, 0, -1114124, 65537, 0, -1048588, 65537, 0, -1114123, 65537, 0, -1048587, 65537, 0, -1114122, 65537, 0, -1048586, 65537, 0, -1114121, 65537, 0, -1048585, 65537, 0, -1114120, 65537, 0, -1048584, 65537, 0, -1114119, 65537, 0, -1048583, 65537, 0, -1114118, 65537, 0, -1048582, 65537, 0, -1114117, 65537, 0, -1048581, 65537, 0, -1114116, 65537, 0, -1048580, 65537, 0, -1114115, 65537, 0, -1048579, 65537, 0, -1114114, 65537, 0, -1048578, 65537, 0, -1114113, 65537, 0, -1048577, 65537, 0, -1179648, 65537, 0, -1114112, 65537, 0, -1179647, 65537, 0, -1114111, 65537, 0, -1179646, 65537, 0, -1114110, 65537, 0, -1179645, 65537, 0, -1114109, 65537, 0, -1179644, 65537, 0, -1114108, 65537, 0, -1179643, 65537, 0, -1114107, 65537, 0, -1179642, 65537, 0, -1114106, 65537, 0, -1179641, 65537, 0, -1114105, 65537, 0, -1179640, 65537, 0, -1114104, 65537, 0, -1179639, 65537, 0, -1114103, 65537, 0, -1179638, 65537, 0, -1114102, 65537, 0, -1179637, 65537, 0, -1114101, 65537, 0, -1179636, 65537, 0, -1114100, 65537, 0, -1179635, 65537, 0, -1114099, 65537, 0, -1179634, 65537, 0, -1114098, 65537, 0, -1179633, 65537, 0, -1114097, 65537, 0, -1179632, 65537, 0, -1114096, 65537, 0, -1179631, 65537, 0, -1114095, 65537, 0, -1179630, 65537, 0, -1114094, 65537, 0, -1179629, 65537, 0, -1114093, 65537, 0, -1179628, 65537, 0, -1114092, 65537, 0, -1179627, 65537, 0, -1114091, 65537, 0, -1179626, 65537, 0, -1114090, 65537, 0, -1179625, 65537, 0, -1114089, 65537, 0, -1179624, 65537, 0, -1114088, 65537, 0, -1179623, 65537, 0, -1114087, 65537, 0, -1179622, 65537, 0, -1114086, 65537, 0, -1179621, 65537, 0, -1114085, 65537, 0, -1179620, 65537, 0, -1114084, 65537, 0, -1048548, 65537, 0, -983012, 65537, 0, -1179619, 65537, 0, -1114083, 65537, 0, -1048547, 65537, 0, -983011, 65537, 0, -917476, 65537, 0, -917475, 65537, 0, 15, 65537, 0, 65551, 65537, 0, 16, 65537, 0, 65552, 65537, 0, 17, 65537, 0, 65553, 65537, 0, 18, 65537, 0, 65554, 65537, 0, 19, 65537, 0, 65555, 65537, 0, 20, 65537, 0, 65556, 65537, 0, 21, 65537, 0, 65557, 65537, 0, 22, 65537, 0, 65558, 65537, 0, 23, 65537, 0, 65559, 65537, 0, 24, 65537, 0, 65560, 65537, 0, 25, 65537, 0, 65561, 65537, 0, 26, 65537, 0, 65562, 65537, 0, 27, 65537, 0, 65563, 65537, 0, -851940, 65537, 0, 28, 65537, 0, 65564, 65537, 0, -851939, 65537, 0, 29, 65537, 0, 65565, 65537, 0, 14, 65537, 0, 65550, 65537, 0, -393188, 65537, 0, -327652, 65537, 0, -262116, 65537, 0, -393187, 65537, 0, -327651, 65537, 0, -262115, 65537, 0, -327692, 65537, 0, -262156, 65537, 0, -196620, 65537, 0, -131084, 65537, 0, -65548, 65537, 0, -12, 65537, 0, -327691, 65537, 0, -262155, 65537, 0, -196619, 65537, 0, -131083, 65537, 0, -65547, 65537, 0, -11, 65537, 0, -196580, 65537, 0, -131044, 65537, 0, -65508, 65537, 0, -196579, 65537, 0, -131043, 65537, 0, -65507, 65537, 0, -786404, 65537, 0, -720868, 65537, 0, -655332, 65537, 0, -589796, 65537, 0, -524260, 65537, 0, -458724, 65537, 0, -786403, 65537, 0, -720867, 65537, 0, -655331, 65537, 0, -589795, 65537, 0, -524259, 65537, 0, -458723, 65537, 0)
+
+[node name="MainCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_q4pi8")]
+position = Vector2(-869, -247)
+limit_left = -2895
+limit_top = -3015
+limit_right = 3510
+limit_bottom = 2000
+player = NodePath("../Player")
+
+[node name="Fraud" parent="." node_paths=PackedStringArray("npc_sprite") instance=ExtResource("4_k64o7")]
+position = Vector2(1537, -167)
+dialogue_file = "res://assets/dialogue/upwell dialogue - fraudscriptedmvp4.csv"
+faces_you_during_dialogue = true
+npc_sprite = NodePath("AnimatedSprite2D")
+
+[node name="Nodule" parent="Fraud" index="2"]
+position = Vector2(-105, -217)
+
+[node name="DialogueStandLocation" parent="Fraud" index="3"]
+disabled = true
+
+[node name="CollisionShape2D" parent="Fraud/DialogueStandLocation" index="0"]
+disabled = true
+
+[node name="DialogueStandLocation2" parent="Fraud" index="4"]
+position = Vector2(276, 0)
+disabled = true
+
+[node name="CollisionShape2D" parent="Fraud/DialogueStandLocation2" index="0"]
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fraud"]
+sprite_frames = SubResource("SpriteFrames_amckx")
+animation = &"cross_arms"
+offset = Vector2(41.46, 0)
+
+[node name="14" type="CanvasLayer" parent="."]
+layer = 14
+follow_viewport_enabled = true
+follow_viewport_scale = 10.0
+script = ExtResource("4_dv44j")
+updates_in_process = true
+
+[node name="Node2D" type="Node2D" parent="14"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(200, 0)
+
+[node name="TreeMidground1" type="Sprite2D" parent="14/Node2D"]
+use_parent_material = true
+position = Vector2(-398.1, -1972.7)
+scale = Vector2(2.357, 2.357)
+texture = ExtResource("5_ub25s")
+
+[node name="DialogueStartArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueStartArea"]
+position = Vector2(-196.25, -256.5)
+shape = SubResource("RectangleShape2D_145ju")
+
+[node name="StandLocations" type="Node2D" parent="."]
+
+[node name="OutOfTrees" type="Area2D" parent="StandLocations"]
+position = Vector2(181, -198)
+collision_layer = 256
+collision_mask = 0
+script = ExtResource("9_h381q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StandLocations/OutOfTrees"]
+shape = SubResource("SegmentShape2D_0ttr7")
+
+[node name="Approach" type="Area2D" parent="StandLocations"]
+position = Vector2(974, -193)
+collision_layer = 256
+collision_mask = 0
+script = ExtResource("9_h381q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StandLocations/Approach"]
+shape = SubResource("SegmentShape2D_0ttr7")
+
+[connection signal="body_entered" from="DialogueStartArea" to="." method="_on_dialogue_start_area_body_entered"]
+
+[editable path="Fraud"]
