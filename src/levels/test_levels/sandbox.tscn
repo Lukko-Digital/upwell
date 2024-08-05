@@ -110,4 +110,3 @@ shape = SubResource("CircleShape2D_d4mg5")
 
 [node name="Phone" parent="." instance=ExtResource("13_vl6wq")]
 position = Vector2(-592, -240)
-scale = Vector2(0.087444, 0.087444)
