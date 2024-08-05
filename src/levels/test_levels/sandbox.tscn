@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dcf1k6whcfars"]
+[gd_scene load_steps=19 format=3 uid="uid://dcf1k6whcfars"]
 
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="2_4vrwf"]
 [ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="2_gfulr"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/holder/clicker_holder.tscn" id="10_ogth4"]
 [ext_resource type="Script" path="res://src/level_elements/camera/powered_point_focus.gd" id="11_t14rj"]
 [ext_resource type="PackedScene" uid="uid://dw6autb2hsck1" path="res://src/level_elements/artificial_gravity/orbit_ag.tscn" id="12_useiy"]
+[ext_resource type="PackedScene" uid="uid://deur4u61t2ew5" path="res://src/level_elements/phone/phone.tscn" id="13_vl6wq"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_4ko8k"]
 a = Vector2(-568, -40)
@@ -106,3 +107,7 @@ position = Vector2(-1, -902)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OrbitAG"]
 shape = SubResource("CircleShape2D_d4mg5")
+
+[node name="Phone" parent="." instance=ExtResource("13_vl6wq")]
+position = Vector2(-592, -240)
+scale = Vector2(0.087444, 0.087444)
