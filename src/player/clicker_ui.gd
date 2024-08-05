@@ -18,6 +18,7 @@ func _ready() -> void:
 		sprite.modulate = Color(Color.WHITE, 0)
 	player.clicker_count_changed.connect(_player_clicker_count_changed)
 	Global.clicker_sent_home.connect(_on_clicker_sent_home)
+	Global.camera_focus_changed.connect(_on_camera_focus_changed)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("orbit"):
@@ -88,3 +89,9 @@ func _player_clicker_count_changed(increased: bool):
 
 func _on_clicker_sent_home():
 	screen_color_animation.play("flash")
+
+func _on_camera_focus_changed(focus: Node2D):
+	if focus == null:
+		show()
+	elif focus is ScreenInteractable:
+		hide()
