@@ -13,9 +13,20 @@ func _ready() -> void:
 func _on_dialogue_start_area_body_entered(body: Node2D) -> void:
 	if body is Player and not scene_started:
 		player.init_npc_interaction(fraud)
-		player.scripted_dialogue_location = out_of_the_trees_location
 		scene_started = true
+		for child in fraud.get_children():
+			if child is AnimatedSprite2D:
+				child.modulate = Color.BLACK
 
 func _on_dialogue_variable_changed(key: String, value: bool):
 	if key == "APPROACH" and value:
 		player.scripted_dialogue_location = approach_location
+		Global.main_camera.set_focus(fraud)
+	if key == "STILL" and value:
+		player.scripted_dialogue_location = out_of_the_trees_location
+		Global.main_camera.set_focus(fraud)
+	if key == "UNVEIL" and value:
+		for child in fraud.get_children():
+			if child is AnimatedSprite2D:
+				var tween = create_tween()
+				tween.tween_property(child, "modulate", Color.WHITE, 1.0)
