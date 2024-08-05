@@ -281,6 +281,7 @@ offset_left = -10261.0
 offset_top = -7851.0
 offset_right = 6050.0
 offset_bottom = 7220.0
+mouse_filter = 2
 color = Color(0.206845, 0.107755, 0.0298237, 1)
 
 [node name="TreeBg1" type="Sprite2D" parent="-14/Node2D"]
@@ -437,6 +438,7 @@ offset_left = -15644.0
 offset_top = -7680.0
 offset_right = 11193.0
 offset_bottom = 6392.0
+mouse_filter = 2
 color = Color(0.517251, 0.318772, 1.92523e-07, 0.317647)
 
 [node name="-10" type="CanvasLayer" parent="."]
@@ -938,6 +940,7 @@ offset_left = -6408.0
 offset_top = 254.0
 offset_right = 1576.0
 offset_bottom = 1543.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="20" type="CanvasLayer" parent="."]
@@ -986,7 +989,6 @@ texture = ExtResource("31_hk3jc")
 
 [node name="CameraBounds" type="CanvasLayer" parent="."]
 layer = 128
-visible = false
 follow_viewport_enabled = true
 script = ExtResource("12_18ktv")
 updates_in_process = true
@@ -1009,6 +1011,7 @@ layer_0/tile_data = PackedInt32Array(-458789, 65537, 0, -393253, 65537, 0, -3277
 
 [node name="Tutorial" type="CanvasLayer" parent="."]
 layer = 11
+visible = false
 follow_viewport_enabled = true
 script = ExtResource("12_18ktv")
 
@@ -1021,6 +1024,7 @@ offset_left = -8991.0
 offset_top = -2569.0
 offset_right = -5919.0
 offset_bottom = 1399.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="A" type="Sprite2D" parent="Tutorial/Node2D"]
