@@ -92,7 +92,7 @@ func _ready() -> void:
 	# Connect signal
 	min_jump_timer.timeout.connect(_min_jump_timer_timeout)
 	player_sprite.animation_finished.connect(_on_animation_finished)
-	Global.set_camera_focus.connect(_camera_focus_net)
+	Global.camera_focus_changed.connect(_camera_focus_net)
 
 	# Retrieve Game node 
 	var current_scene = get_tree().get_current_scene()
@@ -508,7 +508,7 @@ func handle_throw_arc():
 
 func _on_dialogue_ui_dialogue_finished() -> void:
 	current_dialogue_npc = null
-	Global.set_camera_focus.emit(null)
+	Global.main_camera.set_focus(null)
 
 func _camera_focus_net(focus: Node2D):
 	# Simple implementation, does not factor in focus stack. Will be an issue

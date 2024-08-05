@@ -48,7 +48,7 @@ var level_save_state = {}
 
 ## Signals for [MainCamera]
 var main_camera: MainCamera
-signal set_camera_focus(focus: Node2D)
+signal camera_focus_changed(focus: Node2D)
 
 signal pod_called(empty_pod: EmptyPod)
 

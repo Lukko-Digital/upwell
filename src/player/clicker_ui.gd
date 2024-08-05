@@ -2,6 +2,7 @@ extends CanvasLayer
 class_name ClickerUI
 
 @export var player: Player
+@export var reactor: Control
 @export var clicker_big_sprite: Sprite2D
 @export var clicker_small_sprite_1: Sprite2D
 @export var clicker_small_sprite_2: Sprite2D
@@ -18,9 +19,9 @@ func _ready() -> void:
 		sprite.modulate = Color(Color.WHITE, 0)
 	player.clicker_count_changed.connect(_player_clicker_count_changed)
 	Global.clicker_sent_home.connect(_on_clicker_sent_home)
+	Global.camera_focus_changed.connect(_on_camera_focus_changed)
 
 func _input(event: InputEvent) -> void:
-	pass
 	if event.is_action_pressed("orbit"):
 		clicker_big_sprite.orbitting = true
 		tween_visible(clicker_big_sprite.get_child(0), 1, 1, 0.5)
@@ -89,3 +90,11 @@ func _player_clicker_count_changed(increased: bool):
 
 func _on_clicker_sent_home():
 	screen_color_animation.play("flash")
+
+func _on_camera_focus_changed(focus: Node2D):
+	if focus == null:
+		var tween = create_tween()
+		tween.tween_property(reactor, "modulate", Color(Color.WHITE, 1), 0.25)
+	elif focus is ScreenInteractable:
+		var tween = create_tween()
+		tween.tween_property(reactor, "modulate", Color(Color.WHITE, 0), 0.25)

@@ -47,8 +47,6 @@ func _ready():
 		# If not playing game scene, set self
 		Global.main_camera = self
 
-	Global.set_camera_focus.connect(_set_focus)
-
 func _process(delta):
 	handle_focus(delta)
 	handle_limits()
@@ -56,42 +54,55 @@ func _process(delta):
 	handle_shake(delta)
 	handle_particle_tracking()
 
-## -------------------------- CAMERA MOVEMENT & FOCUS --------------------------
+## -------------------------- GETTING & SETTING FOCUS --------------------------
+
+## If [focus_] is null stack is popped, otherwise the node is pushed to the
+## end of the stack
+func set_focus(focus_: Node2D):
+	if focus_ == null:
+		focus_stack.pop_back()
+	else:
+		focus_stack.append(focus_)
+	Global.camera_focus_changed.emit(focus_)
+
+## Returns the [Node2D] that is being focused or [null] if there is no focus
+func current_focus() -> Node2D:
+	return focus_stack.back()
+
+## -------------------------- CAMERA MOVEMENT  --------------------------
 
 ## Translate the camera to focus on a focus point. Zoom on screens.
 func handle_focus(delta):
 	if focus_stack.is_empty():
 		return
 
-	var current_focus = focus_stack.back()
 	var zoom_amount: float
 
 	# Lerp and zoom to screen position
-	if current_focus is ScreenInteractable:
+	if current_focus() is ScreenInteractable:
+		lerp_position(0.8, 1.0, 0, delta)
+		zoom_amount = CAMERA.MAP_ZOOM
 		# Check if focus should be broken
 		if (abs(player.position.x - position.x) > CAMERA.MAP_EXIT_DISTANCE):
-			Global.set_camera_focus.emit(null)
-
-		lerp_position(current_focus, 0.8, 1.0, 0, delta)
-		zoom_amount = CAMERA.MAP_ZOOM
+			set_focus(null)
 	
 	# Zoom position to between player and npc
-	elif current_focus is NPC:
-		lerp_position(current_focus, 0.5, 0.5, get_viewport().get_visible_rect().size.y * 0.1, delta)
+	elif current_focus() is NPC:
+		lerp_position(0.5, 0.5, get_viewport().get_visible_rect().size.y * 0.1, delta)
 		zoom_amount = CAMERA.NPC_ZOOM
 	
 	# Zoom position to camera point focus
-	elif current_focus is Marker2D:
-		lerp_position(current_focus, 0.6, 1.0, 0, delta)
+	elif current_focus() is Marker2D:
+		lerp_position(0.6, 1.0, 0, delta)
 		zoom_amount = CAMERA.SPOT_ZOOM
 
 	zoom = lerp(zoom, Vector2.ONE * zoom_amount, CAMERA.MAP_ZOOM_SPEED * delta)
 
 ## Creates correct in between for player and focus with intensity between 0 and 1, 1 meaning target gets full control of camera in that dimension and 0 giving control to player
-func lerp_position(current_focus: Node2D, x_intensity: float, y_intensity: float, y_offset: float, delta):
+func lerp_position(x_intensity: float, y_intensity: float, y_offset: float, delta):
 	var in_between = Vector2(
-		current_focus.global_position.lerp(player.global_position, 1.0 - x_intensity).x,
-		current_focus.global_position.lerp(player.global_position, 1.0 - y_intensity).y - y_offset
+		current_focus().global_position.lerp(player.global_position, 1.0 - x_intensity).x,
+		current_focus().global_position.lerp(player.global_position, 1.0 - y_intensity).y - y_offset
 		)
 	global_position = lerp(global_position, in_between, CAMERA.MAP_TRANSLATE_SPEED * delta)
 
@@ -210,12 +221,3 @@ func start_shake():
 
 func stop_shake():
 	shake_timer.stop()
-
-## Receiver for the global [set_camera_focus] signal
-## If [_focus] is null stack is popped, otherwise the node is pushed to the
-## end of the stack
-func _set_focus(_focus: Node2D):
-	if _focus == null:
-		focus_stack.pop_back()
-	else:
-		focus_stack.append(_focus)
