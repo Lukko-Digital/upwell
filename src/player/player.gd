@@ -37,6 +37,7 @@ var STARTING_THROW_DIRECTION = Vector2.UP
 @export var dialogue_stand_detector: Area2D
 @export var dialogue_ui: DialogueUI
 @export var level_unlock_popup: CanvasLayer
+@export var clicker_ui : ClickerUI
 @export var coyote_timer: Timer
 @export var jump_buffer_timer: Timer
 @export var min_jump_timer: Timer
