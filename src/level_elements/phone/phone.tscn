@@ -64,7 +64,7 @@ position = Vector2(62, -93)
 texture = ExtResource("3_ocpf3")
 
 [node name="TopPlate" type="Sprite2D" parent="."]
-position = Vector2(46, 177)
+position = Vector2(71, -45)
 texture = ExtResource("6_fhrkp")
 
 [node name="Lights" type="HBoxContainer" parent="."]

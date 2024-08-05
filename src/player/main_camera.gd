@@ -106,6 +106,10 @@ func handle_focus(delta):
 		lerp_position(0.6, 1.0, 0, delta)
 		zoom_target = ZOOM_AMOUNT.SPOT
 
+	elif current_focus() is Phone:
+		lerp_position(1.0, 1.0, 0, delta)
+		zoom_target = ZOOM_AMOUNT.PHONE
+
 ## Checks that zoom is equal to zoom_target, and if not, tweens zoom over ZOOM_DURATION to zoom_target
 func handle_zoom():
 	if zoom == Vector2.ONE * zoom_target:
