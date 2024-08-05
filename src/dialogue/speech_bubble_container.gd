@@ -41,10 +41,14 @@ func get_text_size(max_width: int) -> Vector2:
 func set_containter_width():
 	## Add some extra padding to account for bold text, each bold character
 	## adds about 1 pixel
-	const PADDING = 20
+	const PADDING = 30
 
 	var text_size = get_text_size(-1)
 	var target_line_count = ceil(text_size.x / float(MAX_TEXT_WIDTH))
+
+	## Makes sure that short lines don't wrap even if [b] makes them larger than expected width
+	if target_line_count < 2: dialogue_label.autowrap_mode = TextServer.AUTOWRAP_OFF
+	else: dialogue_label.autowrap_mode = TextServer.AUTOWRAP_WORD
 
 	var width = int(text_size.x)
 	var smallest_viable_width: int

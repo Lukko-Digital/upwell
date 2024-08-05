@@ -95,6 +95,6 @@ func _on_camera_focus_changed(focus: Node2D):
 	if focus == null:
 		var tween = create_tween()
 		tween.tween_property(reactor, "modulate", Color(Color.WHITE, 1), 0.25)
-	elif focus is ScreenInteractable:
+	elif focus is ScreenInteractable or NPC:
 		var tween = create_tween()
 		tween.tween_property(reactor, "modulate", Color(Color.WHITE, 0), 0.25)
