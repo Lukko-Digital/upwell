@@ -338,8 +338,12 @@ func handle_coyote_timing(gravity_state: GravitizedComponent.GravityState):
 	previously_grounded = currently_grounded
 
 func jump():
-	# No jump when holding shift or when in dialogue
-	if Input.is_action_pressed("orbit") or in_dialogue():
+	# No jump when holding shift, when in dialogue, or when using phone
+	if (
+		Input.is_action_pressed("orbit") or 
+		in_dialogue() or
+		active_phone
+	):
 		return
 	if is_on_floor() or not coyote_timer.is_stopped():
 		velocity.y = -PLAYER.JUMP_VELOCITY
@@ -517,8 +521,9 @@ func handle_throw_arc():
 
 func _on_dialogue_ui_dialogue_finished() -> void:
 	current_dialogue_npc = null
-	if not Global.main_camera.current_focus() is Phone:
-		Global.main_camera.set_focus(null)
+	Global.main_camera.set_focus(null)
+	if active_phone:
+		active_phone.interact(self)
 
 func _camera_focus_net(focus: Node2D):
 	# Simple implementation, does not factor in focus stack. Will be an issue
