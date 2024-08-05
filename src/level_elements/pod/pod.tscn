@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dw50qvw1e418b"]
+[gd_scene load_steps=26 format=3 uid="uid://dw50qvw1e418b"]
 
 [ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="1_pv0jy"]
 [ext_resource type="Script" path="res://src/level_elements/pod/pod.gd" id="1_urr8o"]
@@ -7,14 +7,11 @@
 [ext_resource type="Script" path="res://src/level_elements/camera/camera_point_focus.gd" id="5_0tuqc"]
 [ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="6_kw5qg"]
 [ext_resource type="Texture2D" uid="uid://bis82a47xh061" path="res://assets/pod/pod_bg.png" id="7_p210d"]
-[ext_resource type="Shader" path="res://src/shaders/overlay.gdshader" id="8_jha66"]
 [ext_resource type="Texture2D" uid="uid://hkhamgomvbwo" path="res://assets/mvp3_assets/viewblocker.png" id="9_0klgs"]
-[ext_resource type="Texture2D" uid="uid://nrn5ue0tbc5h" path="res://assets/pod/pod_door light.png" id="9_kb7qy"]
 [ext_resource type="PackedScene" uid="uid://dhjj5tgw8y2es" path="res://src/level_elements/view_blocker.tscn" id="9_u6g7q"]
 [ext_resource type="Texture2D" uid="uid://cecwp7vm8bcq6" path="res://assets/pod/pod_fg.png" id="10_cr7db"]
 [ext_resource type="Texture2D" uid="uid://bqu3dcbksgtgh" path="res://assets/pod/pod_fg_5.png" id="11_8qs7d"]
 [ext_resource type="PackedScene" uid="uid://dm4d6nx2eryj8" path="res://src/level_elements/pod/pod_door.tscn" id="13_8ngjx"]
-[ext_resource type="Texture2D" uid="uid://df6l0exidum0b" path="res://assets/pod/pod_door_open.png" id="13_r68du"]
 [ext_resource type="Script" path="res://src/level_elements/parallax_canvas.gd" id="14_67fqf"]
 [ext_resource type="Script" path="res://src/level_elements/camera/camera_bound.gd" id="17_tbj2n"]
 [ext_resource type="Shader" path="res://src/shaders/color_dodge.gdshader" id="17_w4mln"]
@@ -24,10 +21,6 @@ size = Vector2(440, 2730)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eg7vv"]
 size = Vector2(1534, 1060)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3m545"]
-shader = ExtResource("8_jha66")
-shader_parameter/intensity = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qgxty"]
 size = Vector2(1792, 1542)
@@ -317,27 +310,6 @@ modulate = Color(0.59776, 0.467614, 0.410186, 1)
 position = Vector2(-1, -509)
 scale = Vector2(0.943436, 0.943436)
 texture = ExtResource("7_p210d")
-
-[node name="PodDoorLight" type="Sprite2D" parent="."]
-modulate = Color(0.789773, 0.690442, 0.573315, 1)
-material = SubResource("ShaderMaterial_3m545")
-position = Vector2(1279, -401)
-texture = ExtResource("9_kb7qy")
-
-[node name="PodDoorLight2" type="Sprite2D" parent="."]
-modulate = Color(0.789773, 0.690442, 0.573315, 1)
-material = SubResource("ShaderMaterial_3m545")
-position = Vector2(-1262, -401)
-scale = Vector2(-1, 1)
-texture = ExtResource("9_kb7qy")
-
-[node name="PodDoorOpen" type="Sprite2D" parent="."]
-position = Vector2(-1134, -604)
-texture = ExtResource("13_r68du")
-
-[node name="PodDoorOpen2" type="Sprite2D" parent="."]
-position = Vector2(1171, -604)
-texture = ExtResource("13_r68du")
 
 [node name="CameraPointFocus" type="Area2D" parent="."]
 position = Vector2(11, -515)

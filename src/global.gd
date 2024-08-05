@@ -1,5 +1,7 @@
 extends Node
 
+# ------------------------- DIALOGUE VARIABLES -------------------------
+
 var dialogue_conditions = {
 	
 	#GENERAL
@@ -34,13 +36,26 @@ func set_dialogue_variable(key: String, value: bool):
 	dialogue_conditions[key] = value
 	dialogue_variable_changed.emit(key, value)
 
+# ------------------------- POD CALLING -------------------------
+
+var pod_position: EmptyPod = null
+
+signal pod_called(empty_pod: EmptyPod)
+
+func call_pod(empty_pod: EmptyPod):
+	pod_position.close()
+	pod_position = empty_pod
+	pod_position.open()
+	pod_called.emit(empty_pod)
+
+# --------------------------------------------------
+
 var current_location_name: String
 
 ## Placeholder for MVP3 so player can spawn on the left, then arrive on the right side subsequently
 var swap_h32_nuclear_entrances = false
 
 var pod_has_clicker = false
-var pod_position: EmptyPod = null
 
 var moving_on_map = false
 
@@ -50,16 +65,8 @@ var level_save_state = {}
 var main_camera: MainCamera
 signal camera_focus_changed(focus: Node2D)
 
-signal pod_called(empty_pod: EmptyPod)
-
 ## Used by clicker UI to perform screen flash
 signal clicker_sent_home()
-
-func call_pod(empty_pod: EmptyPod):
-	pod_position.handle_empty()
-	pod_position = empty_pod
-	pod_position.handle_empty()
-	pod_called.emit(empty_pod)
 
 func update_current_location(location_name: String):
 	# Unset last location

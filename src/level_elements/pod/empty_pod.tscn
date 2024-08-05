@@ -1,14 +1,39 @@
-[gd_scene load_steps=8 format=3 uid="uid://5mnlsyicmwh"]
+[gd_scene load_steps=12 format=3 uid="uid://5mnlsyicmwh"]
 
 [ext_resource type="Script" path="res://src/level_elements/pod/empty_pod.gd" id="1_i5ays"]
 [ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="3_uq6ni"]
-[ext_resource type="Script" path="res://src/level_elements/pod/empty_pod_hider.gd" id="5_rlv4i"]
+[ext_resource type="Texture2D" uid="uid://4x0fb21csjof" path="res://assets/pod/pod_door_closed.png" id="7_8kyq6"]
 [ext_resource type="PackedScene" uid="uid://dhjj5tgw8y2es" path="res://src/level_elements/view_blocker.tscn" id="7_gofoe"]
+[ext_resource type="Shader" path="res://src/shaders/overlay.gdshader" id="7_kjd3p"]
 [ext_resource type="Texture2D" uid="uid://df6l0exidum0b" path="res://assets/pod/pod_door_open.png" id="8_3vtxv"]
+[ext_resource type="Texture2D" uid="uid://nrn5ue0tbc5h" path="res://assets/pod/pod_door light.png" id="8_wccjo"]
 [ext_resource type="PackedScene" uid="uid://deur4u61t2ew5" path="res://src/level_elements/phone/phone.tscn" id="9_1yois"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwy5k"]
-size = Vector2(2266, 3195)
+size = Vector2(2430, 3195)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_by1aq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_8kyq6")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_3vtxv")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gph1b"]
+shader = ExtResource("7_kjd3p")
+shader_parameter/intensity = 1.0
 
 [node name="EmptyPod" type="Node2D"]
 script = ExtResource("1_i5ays")
@@ -23,21 +48,9 @@ position = Vector2(-1540, -248)
 [node name="Phone2" parent="." instance=ExtResource("9_1yois")]
 position = Vector2(1540, -248)
 
-[node name="Hider" type="Node2D" parent="."]
-z_index = 10
-script = ExtResource("5_rlv4i")
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="Hider"]
-visible = false
-offset_left = -1042.0
-offset_top = -1921.0
-offset_right = 1042.0
-offset_bottom = 897.0
-color = Color(0, 0, 0, 1)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Hider"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hider/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, -694.5)
 shape = SubResource("RectangleShape2D_lwy5k")
 disabled = true
@@ -46,12 +59,33 @@ disabled = true
 position = Vector2(-926, -411)
 
 [node name="ViewBlocker2" parent="." instance=ExtResource("7_gofoe")]
-position = Vector2(944, -439)
+position = Vector2(926, -439)
 
-[node name="PodDoorOpen" type="Sprite2D" parent="."]
-position = Vector2(-1134, -604)
-texture = ExtResource("8_3vtxv")
+[node name="LeftDoor" type="AnimatedSprite2D" parent="."]
+z_index = 20
+position = Vector2(-1134, -562)
+sprite_frames = SubResource("SpriteFrames_by1aq")
+animation = &"open"
 
-[node name="PodDoorOpen2" type="Sprite2D" parent="."]
-position = Vector2(1133, -604)
-texture = ExtResource("8_3vtxv")
+[node name="RightDoor" type="AnimatedSprite2D" parent="."]
+z_index = 20
+position = Vector2(1133, -562)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_by1aq")
+animation = &"open"
+
+[node name="DoorLights" type="Node2D" parent="."]
+
+[node name="PodDoorLight" type="Sprite2D" parent="DoorLights"]
+modulate = Color(0.789773, 0.690442, 0.573315, 1)
+material = SubResource("ShaderMaterial_gph1b")
+position = Vector2(1279, -352)
+texture = ExtResource("8_wccjo")
+
+[node name="PodDoorLight2" type="Sprite2D" parent="DoorLights"]
+modulate = Color(0.789773, 0.690442, 0.573315, 1)
+material = SubResource("ShaderMaterial_gph1b")
+position = Vector2(-1262, -352)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("8_wccjo")
