@@ -57,7 +57,7 @@ func _process(delta):
 	handle_focus(delta)
 	handle_zoom(delta)
 	handle_limits()
-	handle_follow_player(delta)
+	handle_follow_player()
 	handle_shake(delta)
 	handle_particle_tracking()
 
@@ -178,7 +178,7 @@ func get_ray_collision(ray: RayCast2D, type: Variant):
 
 ## Set camera position to follow player, resets zoom to default. Also handles
 ## peeking, moving the camera up when the player presses [w].
-func handle_follow_player(delta):
+func handle_follow_player():
 	if not focus_stack.is_empty():
 		return
 	if (
