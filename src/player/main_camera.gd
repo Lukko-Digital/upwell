@@ -1,18 +1,22 @@
 extends Camera2D
 class_name MainCamera
 
-const CAMERA = {
-	NORMAL_ZOOM = 0.5,
-	FOLLOW_SPEED = 5.0,
-	PEEK_DISTANCE = 1000.0, # Number of pixels that the camera will peek up (1920x1080 game)
-	PEEK_TOWARD_SPEED = 2.0, # lerp speed, unitless
-	MAP_EXIT_DISTANCE = 700.0,
-	MAP_ZOOM = 1.5,
-	MAP_ZOOM_SPEED = 3.0,
-	MAP_TRANSLATE_SPEED = 6.0,
-	NPC_ZOOM = 0.7,
-	SPOT_ZOOM = 0.65,
+const FOCUS_LERP_TRANSLATE_SPEED = 6.0
+const ZOOM_LERP_SPEED = 3.0
+const ZOOM_AMOUNT = {
+	DEFAULT = 0.5,
+	SCREEN = 1.5,
+	NPC = 0.7,
+	SPOT = 0.65,
+	PHONE = 8
 }
+const SMOOTHING_SPEEDS = {
+	FOLLOW = 5.0,
+	PEEK = 2.0
+}
+const PEEK_DISTANCE = 1000.0 # Number of pixels that the camera will peek up
+const SCREEN_FOCUS_BREAK_DISTANCE = 700.0
+
 const LIMIT_DEFAULT = 10000000
 
 @export var player: Player
@@ -27,7 +31,7 @@ const LIMIT_DEFAULT = 10000000
 @onready var shake_timer: Timer = $ShakeTimer
 
 ## Should be 3840 x 2160, double 1920 x 1080
-@onready var viewport_size = get_viewport().get_visible_rect().size / CAMERA.NORMAL_ZOOM
+@onready var viewport_size = get_viewport().get_visible_rect().size / ZOOM_AMOUNT.DEFAULT
 
 ## LIFO stack, the last element in the array is focused
 var focus_stack: Array[Node2D] = []
@@ -81,26 +85,26 @@ func handle_focus(delta):
 	# Lerp and zoom to screen position
 	if current_focus() is ScreenInteractable:
 		lerp_position(0.8, 1.0, 0, delta)
-		zoom_amount = CAMERA.MAP_ZOOM
+		zoom_amount = ZOOM_AMOUNT.SCREEN
 		# Check if focus should be broken
-		if (abs(player.position.x - position.x) > CAMERA.MAP_EXIT_DISTANCE):
+		if (abs(player.position.x - position.x) > SCREEN_FOCUS_BREAK_DISTANCE):
 			set_focus(null)
 	
 	# Zoom position to between player and npc
 	elif current_focus() is NPC:
 		lerp_position(0.5, 0.5, get_viewport().get_visible_rect().size.y * 0.1, delta)
-		zoom_amount = CAMERA.NPC_ZOOM
+		zoom_amount = ZOOM_AMOUNT.NPC
 	
 	# Zoom position to camera point focus
 	elif current_focus() is Marker2D:
 		lerp_position(0.6, 1.0, 0, delta)
-		zoom_amount = CAMERA.SPOT_ZOOM
+		zoom_amount = ZOOM_AMOUNT.SPOT
 	
 	elif current_focus() is Phone:
 		lerp_position(1.0, 1.0, 0, delta)
-		zoom_amount = 8
+		zoom_amount = ZOOM_AMOUNT.PHONE
 
-	zoom = lerp(zoom, Vector2.ONE * zoom_amount, CAMERA.MAP_ZOOM_SPEED * delta)
+	zoom = lerp(zoom, Vector2.ONE * zoom_amount, ZOOM_LERP_SPEED * delta)
 
 ## Creates correct in between for player and focus with intensity between 0 and 1, 1 meaning target gets full control of camera in that dimension and 0 giving control to player
 func lerp_position(x_intensity: float, y_intensity: float, y_offset: float, delta):
@@ -108,7 +112,7 @@ func lerp_position(x_intensity: float, y_intensity: float, y_offset: float, delt
 		current_focus().global_position.lerp(player.global_position, 1.0 - x_intensity).x,
 		current_focus().global_position.lerp(player.global_position, 1.0 - y_intensity).y - y_offset
 		)
-	global_position = lerp(global_position, in_between, CAMERA.MAP_TRANSLATE_SPEED * delta)
+	global_position = lerp(global_position, in_between, FOCUS_LERP_TRANSLATE_SPEED * delta)
 
 ## Checks for train tracks and bounds and sets limits accordingly. Prioritizes
 ## point focuses, then train tracks, then bounds.
@@ -178,13 +182,13 @@ func handle_follow_player(delta):
 		player.is_on_floor()
 	):
 		# Peek up
-		position = player.position + Vector2.UP * CAMERA.PEEK_DISTANCE
-		position_smoothing_speed = CAMERA.PEEK_TOWARD_SPEED
+		position = player.position + Vector2.UP * PEEK_DISTANCE
+		position_smoothing_speed = SMOOTHING_SPEEDS.PEEK
 	else:
 		position = player.position
-		position_smoothing_speed = CAMERA.FOLLOW_SPEED
+		position_smoothing_speed = SMOOTHING_SPEEDS.FOLLOW
 		
-	zoom = lerp(zoom, Vector2.ONE * CAMERA.NORMAL_ZOOM, CAMERA.MAP_ZOOM_SPEED * delta)
+	zoom = lerp(zoom, Vector2.ONE * ZOOM_AMOUNT.DEFAULT, ZOOM_LERP_SPEED * delta)
 
 ## -------------------------- PARTICLES --------------------------
 
