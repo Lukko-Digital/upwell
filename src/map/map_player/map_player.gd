@@ -149,9 +149,11 @@ func handle_energy_consumption(delta):
 	# Play energy animations
 	if energy_bar.value <= 0:
 		recall()
-		run_out_of_energy_animation()
-	elif energy_bar.value <= energy_bar.max_value / 5:
+		run_out_of_energy_animation() ## await this one and put recall after
+	elif energy_bar.value <= energy_bar.max_value / 6:
 		critical_energy_animation()
+	elif energy_bar.value <= energy_bar.max_value / 2:
+		low_energy_animation()
 
 ## -------------------------- MAP LOCATION FUNCTIONS --------------------------
 
@@ -261,6 +263,9 @@ func successful_landing_animation():
 	map_animation_player.play("neutral")
 	game.pod.pod_animation_player.play("neutral")
 	Global.main_camera.set_shake_and_lerp_to_zero(40, 4)
+
+func low_energy_animation() -> void:
+	map_animation_player.play("LOW_ENERGY")
 
 func critical_energy_animation() -> void:
 	map_animation_player.play("OUT_OF_FUEL")
