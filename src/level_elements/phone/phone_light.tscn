@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bekbwg2vhyauc"]
+
+[ext_resource type="Texture2D" uid="uid://bn2bx42ahep8k" path="res://assets/phone/light.png" id="1_7bqsg"]
+[ext_resource type="Script" path="res://src/level_elements/phone/phone_light.gd" id="2_jo0t1"]
+[ext_resource type="Texture2D" uid="uid://pngmdovnbo5n" path="res://assets/phone/light_glow_DODGE.png" id="3_f2w07"]
+
+[sub_resource type="Shader" id="Shader_rwnis"]
+code = "shader_type canvas_item;
+uniform sampler2D SCREEN_TEXTURE:hint_screen_texture;
+uniform float intensity : hint_range(0,1) = 1.0;
+
+vec4 color_dodge(vec4 base, vec4 blend){
+	return base / (1.0 - blend);
+}
+
+void fragment()
+{
+  vec4 bg_color = texture( SCREEN_TEXTURE, SCREEN_UV );
+
+  // mix() if you want to be able to set 'intensity' to different values.
+  COLOR.rgb = mix( COLOR, color_dodge(bg_color,COLOR), intensity ).rgb;
+
+  // No need to mix() if you always want 'intensity' to be 1.0 (uncomment):
+   //COLOR.rgb = color_dodge( bg_color, COLOR ).rgb;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wna2y"]
+shader = SubResource("Shader_rwnis")
+shader_parameter/intensity = 1.0
+
+[node name="PhoneLight" type="TextureRect"]
+texture = ExtResource("1_7bqsg")
+script = ExtResource("2_jo0t1")
+
+[node name="LightGlowDodge" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_wna2y")
+position = Vector2(120, 130)
+texture = ExtResource("3_f2w07")

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://50sfufvmuw2u"]
+
+[ext_resource type="Script" path="res://src/level_elements/phone/phone_number_button.gd" id="1_4u6l5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8w2ba"]
+radius = 55.0
+
+[node name="PhoneNumberButton" type="Area2D"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_4u6l5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8w2ba")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
