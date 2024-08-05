@@ -1,6 +1,7 @@
 Branch,Name,Display Type,Dialogue Text,Next Branch,Variable To Set,Variable Value,Condition,Conditional Next Branch,Locked In Dialogue,R1 Text,R1 Next Branch,R1 Spawn Condition,R1 Variable To Set,R1 Variable Value,R1 Is Impulsive Response,R2 Text,R2 Next Branch,R2 Spawn Condition,R2 Variable To Set,R2 Variable Value,R2 Is Impulsive Response,R3 Text,R3 Next Branch,R3 Spawn Condition,R3 Variable To Set,R3 Variable Value,R3 Is Impulsive Response
-S1,Fraud,,,G1,,,,,FALSE,,,,,,FALSE,,,,,,FALSE,,,,,,FALSE
+S1,Fraud,,,G0,,,,,FALSE,,,,,,FALSE,,,,,,FALSE,,,,,,FALSE
 ,,,,,,,,,FALSE,,,,,,FALSE,,,,,,FALSE,,,,,,FALSE
+G0,,,{pause 0.2},G1,,,,,,,,,,,,,,,,,,,,,,,
 G1,,Fullscreen,{angry}YOU{/angry}{pause 2},G2,,,,,FALSE,,,,,,FALSE,,,,,,FALSE,,,,,,FALSE
 G2,,Fullscreen,Come over here,,,,,,FALSE,[i]Approach[/i],G2a,,APPROACH,1,FALSE,[i]stay still[/i],G3,,STILL,1,FALSE,,,,,,FALSE
 G2a,,,{pause 2},G3,,,,,FALSE,,,,,,FALSE,,,,,,FALSE,,,,,,FALSE

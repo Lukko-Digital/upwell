@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://tfy83b2uc6hh"]
+[gd_scene load_steps=79 format=3 uid="uid://tfy83b2uc6hh"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_lbj7m"]
 [ext_resource type="Shader" path="res://src/shaders/screen.gdshader" id="2_04goy"]
@@ -327,7 +327,7 @@ height = 244.0
 [sub_resource type="Gradient" id="Gradient_2aots"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_sprite", "grav_component", "interactable_detector", "dialogue_stand_detector", "dialogue_ui", "level_unlock_popup", "coyote_timer", "jump_buffer_timer", "min_jump_timer", "throw_arc_line")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_sprite", "grav_component", "interactable_detector", "dialogue_stand_detector", "dialogue_ui", "level_unlock_popup", "clicker_ui", "coyote_timer", "jump_buffer_timer", "min_jump_timer", "throw_arc_line")]
 z_index = 5
 collision_layer = 2
 floor_snap_length = 16.0
@@ -338,6 +338,7 @@ interactable_detector = NodePath("DetectionAreas/InteractableDetector")
 dialogue_stand_detector = NodePath("DetectionAreas/DialogueStandLocationDetector")
 dialogue_ui = NodePath("DialogueUi")
 level_unlock_popup = NodePath("LevelUnlockPopup")
+clicker_ui = NodePath("ClickerUi")
 coyote_timer = NodePath("Timers/CoyoteTimer")
 jump_buffer_timer = NodePath("Timers/JumpBufferTimer")
 min_jump_timer = NodePath("Timers/MinimumJumpTimer")
