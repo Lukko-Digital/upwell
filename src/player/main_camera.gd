@@ -8,8 +8,8 @@ const CAMERA = {
 	PEEK_TOWARD_SPEED = 2.0, # lerp speed, unitless
 	MAP_EXIT_DISTANCE = 700.0,
 	MAP_ZOOM = 1.5,
-	MAP_ZOOM_SPEED = 3.0,
-	MAP_TRANSLATE_SPEED = 6.0,
+	ZOOM_DURATION = 2,
+	MAP_TRANSLATE_SPEED = 3.0, #6.0,
 	NPC_ZOOM = 0.7,
 	SPOT_ZOOM = 0.65,
 }
@@ -35,6 +35,10 @@ var focus_stack: Array[Node2D] = []
 var shake_amount: float
 var target_shake_amount: float
 var shake_lerp_speed: float
+var zoom_target: float = CAMERA.NORMAL_ZOOM
+var zooming: bool = false
+var current_zoom_tween: Tween
+var zooming_to = CAMERA.NORMAL_ZOOM
 
 func _ready():
 	# Connect signals
@@ -49,10 +53,14 @@ func _ready():
 
 func _process(delta):
 	handle_focus(delta)
+	handle_zoom()
 	handle_limits()
-	handle_follow_player(delta)
+	handle_follow_player()
 	handle_shake(delta)
 	handle_particle_tracking()
+	# print(zooming_to != zoom_target)
+	# print(zoom, " | ", zoom_target)
+	# print(zoom == Vector2.ONE * zoom_target)
 
 ## -------------------------- GETTING & SETTING FOCUS --------------------------
 
@@ -76,12 +84,10 @@ func handle_focus(delta):
 	if focus_stack.is_empty():
 		return
 
-	var zoom_amount: float
-
 	# Lerp and zoom to screen position
 	if current_focus() is ScreenInteractable:
 		lerp_position(0.8, 1.0, 0, delta)
-		zoom_amount = CAMERA.MAP_ZOOM
+		zoom_target = CAMERA.MAP_ZOOM
 		# Check if focus should be broken
 		if (abs(player.position.x - position.x) > CAMERA.MAP_EXIT_DISTANCE):
 			set_focus(null)
@@ -89,14 +95,28 @@ func handle_focus(delta):
 	# Zoom position to between player and npc
 	elif current_focus() is NPC:
 		lerp_position(0.5, 0.5, get_viewport().get_visible_rect().size.y * 0.1, delta)
-		zoom_amount = CAMERA.NPC_ZOOM
+		zoom_target = CAMERA.NPC_ZOOM
 	
 	# Zoom position to camera point focus
 	elif current_focus() is Marker2D:
 		lerp_position(0.6, 1.0, 0, delta)
-		zoom_amount = CAMERA.SPOT_ZOOM
+		zoom_target = CAMERA.SPOT_ZOOM
 
-	zoom = lerp(zoom, Vector2.ONE * zoom_amount, CAMERA.MAP_ZOOM_SPEED * delta)
+## Checks that zoom is equal to zoom_target, and if not, tweens zoom over ZOOM_DURATION to zoom_target
+func handle_zoom():
+	if zoom == Vector2.ONE * zoom_target:
+		zooming = false
+		return
+	
+	if zooming && zooming_to == zoom_target:
+		return
+	
+	zooming = true
+	zooming_to = zoom_target
+	if current_zoom_tween:
+		current_zoom_tween.kill()
+	current_zoom_tween = create_tween()
+	current_zoom_tween.tween_property(self, "zoom", Vector2.ONE * zooming_to, CAMERA.ZOOM_DURATION).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 ## Creates correct in between for player and focus with intensity between 0 and 1, 1 meaning target gets full control of camera in that dimension and 0 giving control to player
 func lerp_position(x_intensity: float, y_intensity: float, y_offset: float, delta):
@@ -166,7 +186,7 @@ func get_ray_collision(ray: RayCast2D, type: Variant):
 
 ## Set camera position to follow player, resets zoom to default. Also handles
 ## peeking, moving the camera up when the player presses [w].
-func handle_follow_player(delta):
+func handle_follow_player():
 	if not focus_stack.is_empty():
 		return
 	if (
@@ -179,8 +199,8 @@ func handle_follow_player(delta):
 	else:
 		position = player.position
 		position_smoothing_speed = CAMERA.FOLLOW_SPEED
-		
-	zoom = lerp(zoom, Vector2.ONE * CAMERA.NORMAL_ZOOM, CAMERA.MAP_ZOOM_SPEED * delta)
+
+	zoom_target = CAMERA.NORMAL_ZOOM
 
 ## -------------------------- PARTICLES --------------------------
 
