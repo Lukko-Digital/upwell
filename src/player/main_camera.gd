@@ -39,10 +39,10 @@ var focus_stack: Array[Node2D] = []
 var shake_amount: float
 var target_shake_amount: float
 var shake_lerp_speed: float
-var zoom_target: float = CAMERA.NORMAL_ZOOM
+var zoom_target: float = ZOOM_AMOUNT.DEFAULT
 var zooming: bool = false
 var current_zoom_tween: Tween
-var zooming_to = CAMERA.NORMAL_ZOOM
+var zooming_to = ZOOM_AMOUNT.DEFAULT
 
 func _ready():
 	# Connect signals
@@ -104,7 +104,7 @@ func handle_focus(delta):
 	# Zoom position to camera point focus
 	elif current_focus() is Marker2D:
 		lerp_position(0.6, 1.0, 0, delta)
-		zoom_amount = CAMERA.SPOT_ZOOM
+		zoom_target = ZOOM_AMOUNT.SPOT
 
 ## Checks that zoom is equal to zoom_target, and if not, tweens zoom over ZOOM_DURATION to zoom_target
 func handle_zoom():
