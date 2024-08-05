@@ -2,6 +2,7 @@ extends CanvasLayer
 class_name ClickerUI
 
 @export var player: Player
+@export var reactor: Control
 @export var clicker_big_sprite: Sprite2D
 @export var clicker_small_sprite_1: Sprite2D
 @export var clicker_small_sprite_2: Sprite2D
@@ -92,6 +93,8 @@ func _on_clicker_sent_home():
 
 func _on_camera_focus_changed(focus: Node2D):
 	if focus == null:
-		show()
+		var tween = create_tween()
+		tween.tween_property(reactor, "modulate", Color(Color.WHITE, 1), 0.25)
 	elif focus is ScreenInteractable:
-		hide()
+		var tween = create_tween()
+		tween.tween_property(reactor, "modulate", Color(Color.WHITE, 0), 0.25)

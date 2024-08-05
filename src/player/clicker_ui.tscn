@@ -187,9 +187,10 @@ _data = {
 "flash": SubResource("Animation_oitcb")
 }
 
-[node name="ClickerUi" type="CanvasLayer" node_paths=PackedStringArray("clicker_big_sprite", "clicker_small_sprite_1", "clicker_small_sprite_2", "reactor_animation", "screen_color_animation", "clicker_big_animation")]
+[node name="ClickerUi" type="CanvasLayer" node_paths=PackedStringArray("reactor", "clicker_big_sprite", "clicker_small_sprite_1", "clicker_small_sprite_2", "reactor_animation", "screen_color_animation", "clicker_big_animation")]
 layer = 102
 script = ExtResource("1_bax8t")
+reactor = NodePath("Reactor")
 clicker_big_sprite = NodePath("Reactor/clicker_big")
 clicker_small_sprite_1 = NodePath("Reactor/clicker_small")
 clicker_small_sprite_2 = NodePath("Reactor/clicker_small2")
