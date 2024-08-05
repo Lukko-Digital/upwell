@@ -65,13 +65,12 @@ func phone_picked():
 	
 	if phone_number == POD_CODE:
 		call_pod()
-		reset()
-		return
 	
 	var key = get_phone_number_key()
 	if not key.is_empty():
 		Global.set_dialogue_variable(key, true)
 	
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	player.dialogue_ui.start_dialogue(npc_node, 0)
 	await player.dialogue_ui.dialogue_finished
 	reset()
