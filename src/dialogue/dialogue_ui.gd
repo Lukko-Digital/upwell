@@ -95,6 +95,14 @@ func play_branch(branch_id: String):
 			fullscreen_display.show()
 	# Set dialogue text
 	active_dialogue_display.dialogue_label.text = DialogueParser.strip_dialogue_commands(branch.dialogue_line)
+	# Hide the display if there is no dialogue text. This will happen in
+	# scripted scenes, such as when the NPC pauses for the player to walk
+	# up to them
+	if active_dialogue_display.dialogue_label.text.is_empty():
+		active_dialogue_display.hide()
+	else:
+		active_dialogue_display.show()
+
 	# If there is a name, set it
 	if branch.npc_name != "":
 		active_dialogue_display.name_label.text = "[b]" + branch.npc_name + "[/b]"
@@ -108,8 +116,8 @@ func play_branch(branch_id: String):
 		if Global.dialogue_conditions[branch.condition] == branch.expected_condition_value:
 			next_branch = branch.conditional_next_branch_id
 
+	# If there is no dialogue text, immediately play next branch, in the case of boolean algebra lines
 	if branch.dialogue_line.is_empty():
-		# If there is no dialogue text, immediately play next branch, in the case of boolean algebra lines
 		play_branch(next_branch)
 		return
 
