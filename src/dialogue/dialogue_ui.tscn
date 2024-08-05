@@ -12,7 +12,7 @@ shader = ExtResource("4_4mhkd")
 shader_parameter/intensity = 1.0
 
 [node name="DialogueUi" type="CanvasLayer" node_paths=PackedStringArray("display_timer", "response_box", "fullscreen_display", "response_selector")]
-layer = 102
+layer = 110
 script = ExtResource("1_28e40")
 display_timer = NodePath("DisplayTimer")
 response_box = NodePath("ResponseBox")
