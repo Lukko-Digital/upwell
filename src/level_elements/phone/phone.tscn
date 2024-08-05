@@ -1,0 +1,132 @@
+[gd_scene load_steps=10 format=3 uid="uid://deur4u61t2ew5"]
+
+[ext_resource type="Script" path="res://src/level_elements/phone/phone.gd" id="1_g3m3t"]
+[ext_resource type="Texture2D" uid="uid://8fjbimmyx7fr" path="res://assets/phone/phone_base.png" id="2_evrkx"]
+[ext_resource type="Texture2D" uid="uid://dlflnsfe8xiyn" path="res://assets/phone/rotatable_dial.png" id="3_ocpf3"]
+[ext_resource type="PackedScene" uid="uid://bekbwg2vhyauc" path="res://src/level_elements/phone/phone_light.tscn" id="5_doetx"]
+[ext_resource type="Texture2D" uid="uid://8uyjqju0k5ui" path="res://assets/phone/top_plate.png" id="6_fhrkp"]
+[ext_resource type="PackedScene" uid="uid://50sfufvmuw2u" path="res://src/level_elements/phone/phone_number_button.tscn" id="6_uao22"]
+[ext_resource type="Texture2D" uid="uid://bwmwqcvvhjmlp" path="res://assets/phone/phone_in.png" id="7_heo0q"]
+[ext_resource type="Texture2D" uid="uid://da2au8h7pb1s2" path="res://assets/phone/Phone_out.png" id="8_8762i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_546lh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_heo0q")
+}],
+"loop": true,
+"name": &"in",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_8762i")
+}],
+"loop": true,
+"name": &"out",
+"speed": 5.0
+}]
+
+[node name="Phone" type="Area2D" node_paths=PackedStringArray("dial", "buttons_container", "lights_container", "phone_sprite")]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_g3m3t")
+dial = NodePath("RotatableDial")
+buttons_container = NodePath("PhoneNumberButtons")
+lights_container = NodePath("Lights")
+phone_sprite = NodePath("Phone")
+
+[node name="InteractLabel" type="Label" parent="."]
+visible = false
+offset_top = -2173.0
+offset_right = 40.0
+offset_bottom = -2150.0
+text = "<E>"
+
+[node name="PhoneBase" type="Sprite2D" parent="."]
+texture = ExtResource("2_evrkx")
+
+[node name="RotatableDial" type="Sprite2D" parent="."]
+position = Vector2(62, -1311)
+texture = ExtResource("3_ocpf3")
+
+[node name="TopPlate" type="Sprite2D" parent="."]
+position = Vector2(46, -1041)
+texture = ExtResource("6_fhrkp")
+
+[node name="Lights" type="HBoxContainer" parent="."]
+offset_left = -361.0
+offset_top = -860.0
+offset_right = 611.0
+offset_bottom = -600.0
+theme_override_constants/separation = -40
+
+[node name="PhoneLight" parent="Lights" instance=ExtResource("5_doetx")]
+layout_mode = 2
+
+[node name="PhoneLight2" parent="Lights" instance=ExtResource("5_doetx")]
+layout_mode = 2
+
+[node name="PhoneLight3" parent="Lights" instance=ExtResource("5_doetx")]
+layout_mode = 2
+
+[node name="PhoneLight4" parent="Lights" instance=ExtResource("5_doetx")]
+layout_mode = 2
+
+[node name="PhoneNumberButtons" type="Node2D" parent="."]
+
+[node name="NumberButton" parent="PhoneNumberButtons" instance=ExtResource("6_uao22")]
+position = Vector2(283, -1527)
+number = 1
+
+[node name="NumberButton2" parent="PhoneNumberButtons" instance=ExtResource("6_uao22")]
+position = Vector2(145, -1608)
+number = 2
+
+[node name="NumberButton3" parent="PhoneNumberButtons" instance=ExtResource("6_uao22")]
+position = Vector2(-15, -1608)
+number = 3
+
+[node name="NumberButton4" parent="PhoneNumberButtons" instance=ExtResource("6_uao22")]
+position = Vector2(-150, -1528)
+number = 4
+
+[node name="NumberButton5" parent="PhoneNumberButtons" instance=ExtResource("6_uao22")]
+position = Vector2(-231, -1390)
+number = 5
+
+[node name="NumberButton6" parent="PhoneNumberButtons" instance=ExtResource("6_uao22")]
+position = Vector2(-231, -1230)
+number = 6
+
+[node name="NumberButton7" parent="PhoneNumberButtons" instance=ExtResource("6_uao22")]
+position = Vector2(-150, -1093)
+number = 7
+
+[node name="NumberButton8" parent="PhoneNumberButtons" instance=ExtResource("6_uao22")]
+position = Vector2(-12, -1015)
+number = 8
+
+[node name="NumberButton9" parent="PhoneNumberButtons" instance=ExtResource("6_uao22")]
+position = Vector2(147, -1012)
+number = 9
+
+[node name="NumberButton10" parent="PhoneNumberButtons" instance=ExtResource("6_uao22")]
+position = Vector2(284, -1090)
+
+[node name="Phone" type="AnimatedSprite2D" parent="."]
+position = Vector2(-587, -118)
+sprite_frames = SubResource("SpriteFrames_546lh")
+animation = &"in"
+
+[node name="PhoneArea" type="Area2D" parent="Phone"]
+position = Vector2(2, 0)
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Phone/PhoneArea"]
+position = Vector2(-2, 8)
+polygon = PackedVector2Array(-32, -1020.4, -32, -1018.4, -22.3, -1009.5, -19.4, -1009.5, -3, -999.6, -3, -998.4, 11, -985.4, 11, -982, 26, -954, 26, -948.5, 37, -904.7, 37, -888.5, 38, -888.5, 38, -859.5, 39, -759.5, 37.9, -759.5, 34.8, -721.5, 32.3, -721.5, 31, -721.1, 31, -718, 12.2, -682.5, 10.8, -682.5, -3.20001, -668.5, -5.5, -668.5, -18.5, -661.5, -26.7, -661.5, -60, -656.2, -60, -658.8, -63, -662.5, -148, -662.5, -148, -661.9, -158, -645.9, -158, -642.2, -171, -594.5, -171, -586.4, -176, -539.3, -176, -482.5, -175.2, -482.5, -171.2, -438.5, -170.3, -438.5, -156.3, -348.5, -155.4, -348.5, -146.3, -306.5, -145.6, -306.5, -133.6, -271.5, -103, -269.6, -103, -270.2, -40.1, -279.5, -32.6, -279.5, -12, -271.9, -12, -270.3, 3, -255.3, 3, -253.1, 24, -220.1, 24, -216.9, 54, -141.9, 54, -138.9, 55.7, -130.5, 59, -127.3, 59, 69.1, 52.8, 77.8, 50, 77, 50, 74.8, 47.2, 66.3, 28, 77.6, 33, 104.3, 33, 139.5, 31.4, 139.5, 26.4, 152.5, 24.8, 152.5, 14.8, 162.5, 11.5, 162.5, 7, 164.8, 7, 165.5, -57.3, 156, -66, 149.5, -66, 147.2, -74, 136.2, -74, 129.9, -77, 121.9, -77, 110.5, -78.9, 88.5, -82.2, 88.5, -125, 80.1, -125, 78.9, -141, 72.9, -141, 71.5, -179, 43.5, -179, 42.3, -190, 31.3, -190, 29.1, -201, 12.1, -201, 9, -230, -52, -230, -56.1, -251, -111.1, -251, -116.2, -260, -147.2, -260, -152.1, -286, -282.3, -286, -291.1, -291, -317.3, -291, -329.5, -299, -413.4, -299, -439.5, -301, -576.5, -299.8, -576.5, -295, -613.8, -295, -627.6, -290.9, -696.5, -289.7, -696.5, -286, -716.9, -286, -753.5, -284.8, -753.5, -276.8, -813.5, -275.5, -813.5, -264.5, -855.5, -263.3, -855.5, -256, -871, -256, -874.8, -251.5, -891.5, -250, -891.5, -244, -900, -244, -902.9, -239.4, -914.5, -237.9, -914.5, -233, -920.2, -233, -921.8, -230.5, -930.5, -228.9, -930.5, -207.9, -954.5, -205.9, -954.5, -189.8, -969.5, -186.7, -969.5, -162.7, -988.5, -160.5, -988.5, -131.5, -1003.5, -127.4, -1003.5, -94.4, -1016.5, -89.3, -1016.5, -62, -1021.2, -62, -1022.7)
+
+[connection signal="input_event" from="Phone/PhoneArea" to="." method="_on_phone_area_input_event"]
