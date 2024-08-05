@@ -13,16 +13,16 @@ var warp_current: float = 0;
 
 func _ready() -> void:
 	subviewport.add_child(screen.instantiate())
-	Global.set_camera_focus.connect(_on_set_focus)
+	Global.camera_focus_changed.connect(_on_set_focus)
 	VHS_shader.material = VHS_shader.material.duplicate()
 	# VHS_shader.material.shader = VHS_shader.material.shader.duplicate()
 
 func interact(_player: Player):
 	if not focused:
-		Global.set_camera_focus.emit(self)
+		Global.main_camera.set_focus(self)
 		virtual_mouse.show()
 	else:
-		Global.set_camera_focus.emit(null)
+		Global.main_camera.set_focus(null)
 		virtual_mouse.hide()
 
 # func _on_body_exited(body: Node2D):

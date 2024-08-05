@@ -27,11 +27,11 @@ func get_marker():
 
 func _on_body_entered(body: Node2D):
     if body is Player:
-        Global.set_camera_focus.emit(marker)
+        Global.main_camera.set_focus(marker)
 
 func _on_body_exited(body: Node2D):
     if body is Player:
-        Global.set_camera_focus.emit(null)
+        Global.main_camera.set_focus(null)
 
 func _get_configuration_warnings() -> PackedStringArray:
     var warnings = []

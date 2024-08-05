@@ -20,7 +20,6 @@ func _ready() -> void:
 	Global.clicker_sent_home.connect(_on_clicker_sent_home)
 
 func _input(event: InputEvent) -> void:
-	pass
 	if event.is_action_pressed("orbit"):
 		clicker_big_sprite.orbitting = true
 		tween_visible(clicker_big_sprite.get_child(0), 1, 1, 0.5)

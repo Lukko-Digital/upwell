@@ -40,7 +40,7 @@ func _ready() -> void:
 func interact(player: Player):
 	interact_label.hide()
 	player.init_npc_interaction(self)
-	Global.set_camera_focus.emit(self)
+	Global.main_camera.set_focus(self)
 
 func face_player(player: Player):
 	if not faces_you_during_dialogue:

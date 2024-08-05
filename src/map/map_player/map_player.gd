@@ -268,7 +268,7 @@ func critical_energy_animation() -> void:
 
 func run_out_of_energy_animation() -> void:
 	game.pod.pod_animation_player.play("crash_blackout")
-	Global.set_camera_focus.emit(null)
+	Global.main_camera.set_focus(null)
 	await get_tree().create_timer(.3).timeout
 	map_animation_player.play("SHUTDOWN_AVOIDED")
 
@@ -284,7 +284,7 @@ func crash_animation():
 	await get_tree().create_timer(.8).timeout
 
 	game.pod.pod_animation_player.play("crash_blackout")
-	Global.set_camera_focus.emit(null)
+	Global.main_camera.set_focus(null)
 	# adds some time for screen to black out so player doesn't see lag caused by recall()
 	await get_tree().create_timer(.2).timeout
 
