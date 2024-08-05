@@ -55,6 +55,7 @@ var clicker_inventory: Array[ClickerInfo]
 
 ## -------------------------- PLAYER STATE VARIABLES --------------------------
 
+var active_phone: Phone = null
 var focused_on_screen: bool = false
 
 # Jumping + Air Strafing
@@ -147,14 +148,15 @@ func _input(event: InputEvent) -> void:
 		throw()
 
 	if event.is_action_pressed("ui_cancel"):
-		leave_dialogue()
+		exit_interaction()
 
 ## ------------------------------ GRAVITY ------------------------------
 
 func handle_artificial_gravity(delta) -> GravitizedComponent.GravityState:
 	if (
 		not has_clicker() or
-		in_dialogue()
+		in_dialogue() or
+		active_phone
 	):
 		return GravitizedComponent.GravityState.NONE
 
@@ -197,6 +199,9 @@ func handle_movement(delta: float, gravity_state: GravitizedComponent.GravitySta
 	# If in dialogue, auto determine input_direction
 	if in_dialogue():
 		input_direction = handle_dialogue_movement()
+	# Don't move if using phone
+	elif active_phone:
+		input_direction = 0
 	else:
 		input_direction = Input.get_axis("left", "right")
 
@@ -407,10 +412,12 @@ func init_npc_interaction(npc: NPC):
 		if abs(loc.global_position.x - global_position.x) < abs(dialogue_start_location.global_position.x - global_position.x):
 			dialogue_start_location = loc
 
-## Attempt to leave dialogue early by pressing [esc]
-func leave_dialogue():
+## Attempt to leave dialogue early by pressing [esc], or leave phone
+func exit_interaction():
 	if in_dialogue() and not dialogue_ui.locked_in_dialogue:
 		dialogue_ui.exit_dialogue()
+	elif active_phone:
+		active_phone.interact(self)
 
 ### ----------------------------- CLICKER -----------------------------
 
@@ -459,6 +466,7 @@ func can_throw():
 	return (
 		has_clicker() and
 		not focused_on_screen and
+		not active_phone and
 		not in_dialogue()
 	)
 

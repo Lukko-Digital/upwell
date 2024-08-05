@@ -95,6 +95,10 @@ func handle_focus(delta):
 	elif current_focus() is Marker2D:
 		lerp_position(0.6, 1.0, 0, delta)
 		zoom_amount = CAMERA.SPOT_ZOOM
+	
+	elif current_focus() is Phone:
+		lerp_position(1.0, 1.0, 0, delta)
+		zoom_amount = 8
 
 	zoom = lerp(zoom, Vector2.ONE * zoom_amount, CAMERA.MAP_ZOOM_SPEED * delta)
 
