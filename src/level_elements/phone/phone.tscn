@@ -38,14 +38,10 @@ shader_parameter/radius = 28.0
 shader_parameter/steps = 40
 shader_parameter/vertex_expand = 2.0
 
-[node name="Phone" type="Area2D" node_paths=PackedStringArray("dial", "buttons_container", "lights_container", "phone_sprite")]
+[node name="Phone" type="Area2D"]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_g3m3t")
-dial = NodePath("RotatableDial")
-buttons_container = NodePath("PhoneNumberButtons")
-lights_container = NodePath("Lights")
-phone_sprite = NodePath("Phone")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1218)
@@ -154,3 +150,5 @@ position = Vector2(-6, 10)
 texture = ExtResource("7_heo0q")
 
 [connection signal="input_event" from="Phone/PhoneArea" to="." method="_on_phone_area_input_event"]
+[connection signal="mouse_entered" from="Phone/PhoneArea" to="." method="_on_phone_area_mouse_entered"]
+[connection signal="mouse_exited" from="Phone/PhoneArea" to="." method="_on_phone_area_mouse_exited"]

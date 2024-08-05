@@ -1,10 +1,11 @@
 extends Interactable
 class_name Phone
 
-@export var dial: Sprite2D
-@export var buttons_container: Node2D
-@export var lights_container: HBoxContainer
-@export var phone_sprite: AnimatedSprite2D
+@onready var dial: Sprite2D = $RotatableDial
+@onready var buttons_container: Node2D = $PhoneNumberButtons
+@onready var lights_container: HBoxContainer = $Lights
+@onready var phone_sprite: AnimatedSprite2D = $Phone
+@onready var phone_glow: Sprite2D = $Phone/PhoneGlow
 
 var focused: bool = false
 var rotating: bool = false
@@ -12,10 +13,12 @@ var phone_number: Array[int] = []
 
 func _ready() -> void:
 	super()
+	# Init visuals
 	phone_sprite.play("in")
+	phone_glow.hide()
+	# Connect signals
 	for button: PhoneNumberButton in buttons_container.get_children():
 		button.clicked.connect(_on_button_clicked)
-	# Global.camera_focus_changed.connect(_on_camera_focus_changed)
 
 func interact(player: Player):
 	if not focused:
@@ -68,10 +71,8 @@ func _on_phone_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: 
 		await get_tree().create_timer(0.2).timeout
 		phone_sprite.play("in")
 
-# func _on_camera_focus_changed(focus: Node2D):
-# 	if focus == self:
-# 		focused = true
-# 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-# 	elif focus == null:
-# 		focused = false
-# 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+func _on_phone_area_mouse_entered() -> void:
+	phone_glow.show()
+
+func _on_phone_area_mouse_exited() -> void:
+	phone_glow.hide()
