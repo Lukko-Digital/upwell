@@ -1,8 +1,8 @@
 extends Camera2D
 class_name MainCamera
 
-const FOCUS_LERP_TRANSLATE_SPEED = 6.0
-const ZOOM_LERP_SPEED = 3.0
+const FOCUS_LERP_TRANSLATE_SPEED = 4.0
+const ZOOM_LERP_SPEED = 4.0
 const ZOOM_AMOUNT = {
 	DEFAULT = 0.5,
 	SCREEN = 1.5,
@@ -40,9 +40,7 @@ var shake_amount: float
 var target_shake_amount: float
 var shake_lerp_speed: float
 var zoom_target: float = ZOOM_AMOUNT.DEFAULT
-var zooming: bool = false
-var current_zoom_tween: Tween
-var zooming_to = ZOOM_AMOUNT.DEFAULT
+var z_distance: float = 1.0
 
 func _ready():
 	# Connect signals
@@ -57,14 +55,11 @@ func _ready():
 
 func _process(delta):
 	handle_focus(delta)
-	handle_zoom()
+	handle_zoom(delta)
 	handle_limits()
-	handle_follow_player()
+	handle_follow_player(delta)
 	handle_shake(delta)
 	handle_particle_tracking()
-	# print(zooming_to != zoom_target)
-	# print(zoom, " | ", zoom_target)
-	# print(zoom == Vector2.ONE * zoom_target)
 
 ## -------------------------- GETTING & SETTING FOCUS --------------------------
 
@@ -111,20 +106,9 @@ func handle_focus(delta):
 		zoom_target = ZOOM_AMOUNT.PHONE
 
 ## Checks that zoom is equal to zoom_target, and if not, tweens zoom over ZOOM_DURATION to zoom_target
-func handle_zoom():
-	if zoom == Vector2.ONE * zoom_target:
-		zooming = false
-		return
-	
-	if zooming && zooming_to == zoom_target:
-		return
-	
-	zooming = true
-	zooming_to = zoom_target
-	if current_zoom_tween:
-		current_zoom_tween.kill()
-	current_zoom_tween = create_tween()
-	current_zoom_tween.tween_property(self, "zoom", Vector2.ONE * zooming_to, 1.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+func handle_zoom(delta):
+	z_distance = lerp(z_distance, 1.0/zoom_target, ZOOM_LERP_SPEED * delta)
+	zoom = Vector2.ONE * (1.0/z_distance)
 
 ## Creates correct in between for player and focus with intensity between 0 and 1, 1 meaning target gets full control of camera in that dimension and 0 giving control to player
 func lerp_position(x_intensity: float, y_intensity: float, y_offset: float, delta):
@@ -194,7 +178,7 @@ func get_ray_collision(ray: RayCast2D, type: Variant):
 
 ## Set camera position to follow player, resets zoom to default. Also handles
 ## peeking, moving the camera up when the player presses [w].
-func handle_follow_player():
+func handle_follow_player(delta):
 	if not focus_stack.is_empty():
 		return
 	if (
@@ -202,10 +186,10 @@ func handle_follow_player():
 		player.is_on_floor()
 	):
 		# Peek up
-		position = player.position + Vector2.UP * PEEK_DISTANCE
+		global_position = lerp(global_position, player.position + Vector2.UP * PEEK_DISTANCE, FOCUS_LERP_TRANSLATE_SPEED * delta)
 		position_smoothing_speed = SMOOTHING_SPEEDS.PEEK
 	else:
-		position = player.position
+		global_position = lerp(global_position, player.position, FOCUS_LERP_TRANSLATE_SPEED * delta)
 		position_smoothing_speed = SMOOTHING_SPEEDS.FOLLOW
 		
 	zoom_target = ZOOM_AMOUNT.DEFAULT
