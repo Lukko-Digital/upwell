@@ -12,6 +12,10 @@ func _ready() -> void:
 
 func _on_dialogue_start_area_body_entered(body: Node2D) -> void:
 	if body is Player and not scene_started:
+
+		var tween = create_tween()
+		tween.tween_property(player.clicker_ui.reactor, "modulate", Color(Color.WHITE, 0), 0.25)
+
 		player.init_npc_interaction(fraud)
 		scene_started = true
 		for child in fraud.get_children():
