@@ -70,7 +70,11 @@ var aiming_direction: Vector2
 
 # Dialogue
 var current_dialogue_npc: NPC = null
-var target_dialogue_stand_location: DialogueStandLocation = null
+## Used for having the character initially move into place and face the NPC
+## before entering dialogue.
+var dialogue_start_location: DialogueStandLocation = null
+## Used for having the charcter walk to set locations during scripted scenes
+var scripted_dialogue_location: DialogueStandLocation = null
 
 var highlighted_interactable: Interactable = null:
 	set(interactable):
@@ -192,7 +196,7 @@ func handle_movement(delta: float, gravity_state: GravitizedComponent.GravitySta
 
 	# If in dialogue, auto determine input_direction
 	if in_dialogue():
-		input_direction = handle_walk_to_dialogue_location()
+		input_direction = handle_dialogue_movement()
 	else:
 		input_direction = Input.get_axis("left", "right")
 
@@ -215,18 +219,25 @@ func handle_movement(delta: float, gravity_state: GravitizedComponent.GravitySta
 	return input_direction
 
 ## Returns automatically determined input direction for player to move in
-func handle_walk_to_dialogue_location() -> float:
-	# If the conversation has been started, stay still
+func handle_dialogue_movement() -> float:
+	## If the conversation has been started, only consider scripted locations
 	if dialogue_ui.current_npc == current_dialogue_npc:
-		return 0
+		return walk_to_scripted_location()
+	## Walk to start location and start the conversation
+	else:
+		return walk_to_dialogue_start()
+
+## Used for having the character initially move into place and face the NPC
+## before entering dialogue.
+func walk_to_dialogue_start() -> float:
 	# If midair, also stay still
 	if not is_on_floor():
 		return 0
 
 	# If at location or if no location exists, start dialogue
-	if dialogue_stand_detector.has_overlapping_areas() or target_dialogue_stand_location == null:
+	if dialogue_stand_detector.has_overlapping_areas() or dialogue_start_location == null:
 		var dir_to_npc = sign(current_dialogue_npc.global_position.x - global_position.x)
-		target_dialogue_stand_location = null
+		dialogue_start_location = null
 		current_dialogue_npc.face_player(self)
 		dialogue_ui.start_dialogue(current_dialogue_npc, dir_to_npc)
 		# If facing the wrong way, turn to face npc
@@ -237,7 +248,16 @@ func handle_walk_to_dialogue_location() -> float:
 			return 0
 	# Otherwise walk to location
 	else:
-		return sign(target_dialogue_stand_location.global_position.x - global_position.x)
+		return sign(dialogue_start_location.global_position.x - global_position.x)
+
+## Used for having the charcter walk to set locations during scripted scenes
+func walk_to_scripted_location() -> float:
+	if dialogue_stand_detector.has_overlapping_areas():
+		# Location reached
+		scripted_dialogue_location = null
+	if scripted_dialogue_location == null:
+		return 0
+	return sign(scripted_dialogue_location.global_position.x - global_position.x)
 
 ## ----------------------------- ANIMATION -----------------------------
 
@@ -382,10 +402,10 @@ func init_npc_interaction(npc: NPC):
 	if standing_locations.is_empty():
 		return
 	# Find closest standing location
-	target_dialogue_stand_location = standing_locations.pop_front()
+	dialogue_start_location = standing_locations.pop_front()
 	for loc: DialogueStandLocation in standing_locations:
-		if abs(loc.global_position.x - global_position.x) < abs(target_dialogue_stand_location.global_position.x - global_position.x):
-			target_dialogue_stand_location = loc
+		if abs(loc.global_position.x - global_position.x) < abs(dialogue_start_location.global_position.x - global_position.x):
+			dialogue_start_location = loc
 
 ## Attempt to leave dialogue early by pressing [esc]
 func leave_dialogue():
