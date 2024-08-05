@@ -26,7 +26,5 @@ func _on_dialogue_variable_changed(key: String, value: bool):
 		player.scripted_dialogue_location = out_of_the_trees_location
 		Global.main_camera.set_focus(fraud)
 	if key == "UNVEIL" and value:
-		for child in fraud.get_children():
-			if child is AnimatedSprite2D:
-				var tween = create_tween()
-				tween.tween_property(child, "modulate", Color.WHITE, 1.0)
+		var tween = create_tween()
+		tween.tween_property(fraud.npc_sprite, "modulate", Color.WHITE, 1.0)
