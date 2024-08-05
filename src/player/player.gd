@@ -517,7 +517,8 @@ func handle_throw_arc():
 
 func _on_dialogue_ui_dialogue_finished() -> void:
 	current_dialogue_npc = null
-	Global.main_camera.set_focus(null)
+	if not Global.main_camera.current_focus() is Phone:
+		Global.main_camera.set_focus(null)
 
 func _camera_focus_net(focus: Node2D):
 	# Simple implementation, does not factor in focus stack. Will be an issue

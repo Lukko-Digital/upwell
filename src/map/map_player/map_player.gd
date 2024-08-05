@@ -310,7 +310,10 @@ func _area_scanned(area: Area2D) -> void:
 			tween.tween_property(area, "modulate", base_modulate, 1)
 
 func _on_call_pod(empty_pod: EmptyPod) -> void:
-	var current_level = destination.get_parent()
+	var current_level: MapLevel
+	for area in collision_box.get_overlapping_areas():
+		if area is Entrypoint:
+			current_level = area.get_parent()
 
 	for entry_point in current_level.get_children():
 		if entry_point is Entrypoint and entry_point.entry_number == empty_pod.entry_number:

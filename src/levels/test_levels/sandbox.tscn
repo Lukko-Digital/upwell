@@ -84,20 +84,3 @@ shape = SubResource("CircleShape2D_d4mg5")
 
 [node name="Phone" parent="." instance=ExtResource("13_vl6wq")]
 position = Vector2(-592, -240)
-scale = Vector2(0.087444, 0.087444)
-
-[node name="NPC3" parent="." node_paths=PackedStringArray("npc_sprite") instance=ExtResource("13_vqqob")]
-modulate = Color(0.603923, 0.603923, 0.603923, 1)
-position = Vector2(-1001, -161)
-dialogue_file = "res://assets/dialogue/upwell dialogue - holdermvp4.csv"
-npc_sprite = NodePath("Holder-sheet")
-
-[node name="InteractLabel" parent="NPC3" index="1"]
-text = ""
-
-[node name="Holder-sheet" type="Sprite2D" parent="NPC3"]
-texture = ExtResource("14_aamwj")
-hframes = 2
-vframes = 2
-
-[editable path="NPC3"]
