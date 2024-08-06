@@ -19,31 +19,32 @@ is_catcher = true
 [node name="HolderSprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 z_index = 5
-position = Vector2(0, -52)
+position = Vector2(0, -132)
 texture = ExtResource("2_p4tc2")
 hframes = 2
 vframes = 2
 
 [node name="ClickerSprite" parent="." instance=ExtResource("3_mn60y")]
 unique_name_in_owner = true
-position = Vector2(-0.403152, -70.981)
+position = Vector2(-0.403152, -166)
 
 [node name="CatcherField" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0.596878, -73.9438)
+position = Vector2(0.596878, -153.944)
 scale = Vector2(0.20683, 0.20683)
 texture = ExtResource("4_n7jei")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.596848, -71.981)
+z_index = 11
+position = Vector2(0.596848, -151.981)
 shape = SubResource("CircleShape2D_pgqne")
 
 [node name="InteractLabel" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.466667)
 offset_left = -55.0
-offset_top = -263.0
+offset_top = -343.0
 offset_right = 236.0
-offset_bottom = -60.0
+offset_bottom = -140.0
 scale = Vector2(0.374634, 0.374634)
 theme_override_fonts/font = ExtResource("5_wleef")
 theme_override_font_sizes/font_size = 161
