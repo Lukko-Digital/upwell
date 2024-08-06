@@ -1,0 +1,485 @@
+[gd_scene load_steps=22 format=3 uid="uid://dltpg108effdh"]
+
+[ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="1_jfwm8"]
+[ext_resource type="Texture2D" uid="uid://b1tya4oq7twf2" path="res://assets/ui/map/focus.png" id="2_bj0n5"]
+[ext_resource type="Texture2D" uid="uid://dy02yd3yonudp" path="res://assets/ui/map/log/backer.png" id="3_18sc1"]
+[ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="4_s7rmj"]
+[ext_resource type="Texture2D" uid="uid://bpgo65cx8qfrt" path="res://assets/ui/map/log/launch.png" id="6_itkhn"]
+
+[sub_resource type="FontVariation" id="FontVariation_r8fn4"]
+base_font = ExtResource("1_jfwm8")
+variation_embolden = 0.76
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_htyoe"]
+blend_mode = 1
+
+[sub_resource type="FontVariation" id="FontVariation_ntnu0"]
+base_font = ExtResource("1_jfwm8")
+variation_embolden = 0.5
+
+[sub_resource type="FontVariation" id="FontVariation_dnfmk"]
+base_font = ExtResource("1_jfwm8")
+variation_embolden = 2.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bg83i"]
+
+[sub_resource type="FontVariation" id="FontVariation_q6uck"]
+base_font = ExtResource("1_jfwm8")
+variation_embolden = 0.87
+
+[sub_resource type="FontVariation" id="FontVariation_whvip"]
+base_font = ExtResource("1_jfwm8")
+variation_embolden = 2.0
+
+[sub_resource type="FontVariation" id="FontVariation_j0s38"]
+base_font = ExtResource("4_s7rmj")
+variation_embolden = 0.87
+
+[sub_resource type="FontVariation" id="FontVariation_mjnts"]
+base_font = ExtResource("4_s7rmj")
+variation_embolden = 1.85
+
+[sub_resource type="Animation" id="Animation_0vk47"]
+resource_name = "COLLISION_IMMINENT"
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MapUI/CenterContainer/WarningLabelRich:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.1, 0.175, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MapUI/CenterContainer/WarningLabelRich:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MapUI/CenterContainer/WarningLabelRich:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["[center][b][font_size=290]DANGER:[/font_size]
+COLLISION DETECTED[/b][/center]"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MapUI/CenterContainer/WarningLabelRich:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.501961, 0.372549, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8n5iw"]
+resource_name = "IMPACT_AVOIDED"
+length = 7.0
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MapUI/CenterContainer/WarningLabelRich:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0.792157), Color(1, 1, 1, 0), Color(1, 1, 1, 0.631373), Color(1, 1, 1, 0), Color(1, 1, 1, 0.396078), Color(1, 1, 1, 0), Color(1, 1, 1, 0.192157), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MapUI/CenterContainer/WarningLabelRich:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MapUI/CenterContainer/WarningLabelRich:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["[b]IMPACT AVOIDED[/b]
+[center][font_size=110]Recall Succesful[/font_size][/center]"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MapUI/CenterContainer/WarningLabelRich:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.501961, 0.372549, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4aslf"]
+resource_name = "LOW_ENERGY"
+length = 1.5
+loop_mode = 1
+step = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MapUI/CenterContainer/WarningLabelRich:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MapUI/CenterContainer/WarningLabelRich:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MapUI/CenterContainer/WarningLabelRich:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["[font_size=180][b]LOW FUEL[/b][/font_size]
+
+
+
+
+
+
+"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MapUI/CenterContainer/WarningLabelRich:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.501961, 0.372549, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pvdys"]
+resource_name = "OUT_OF_FUEL"
+length = 2.5
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MapUI/CenterContainer/WarningLabelRich:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MapUI/CenterContainer/WarningLabelRich:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MapUI/CenterContainer/WarningLabelRich:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["[b]FUEL CRITICAL[/b]", "[b]INITIATING RECALL[/b]"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MapUI/CenterContainer/WarningLabelRich:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Color(1, 0.501961, 0.372549, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_57mmx"]
+resource_name = "SHUTDOWN_AVOIDED"
+length = 7.0
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MapUI/CenterContainer/WarningLabelRich:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0.792157), Color(1, 1, 1, 0), Color(1, 1, 1, 0.631373), Color(1, 1, 1, 0), Color(1, 1, 1, 0.396078), Color(1, 1, 1, 0), Color(1, 1, 1, 0.192157), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MapUI/CenterContainer/WarningLabelRich:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MapUI/CenterContainer/WarningLabelRich:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["[b]SHUTDOWN AVOIDED[/b]
+[center][font_size=110]Recall Succesful[/font_size][/center]"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MapUI/CenterContainer/WarningLabelRich:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.501961, 0.372549, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vn8l2"]
+resource_name = "neutral"
+length = 0.1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MapUI/CenterContainer/WarningLabelRich:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_326t4"]
+_data = {
+"COLLISION_IMMINENT": SubResource("Animation_0vk47"),
+"IMPACT_AVOIDED": SubResource("Animation_8n5iw"),
+"LOW_ENERGY": SubResource("Animation_4aslf"),
+"OUT_OF_FUEL": SubResource("Animation_pvdys"),
+"SHUTDOWN_AVOIDED": SubResource("Animation_57mmx"),
+"neutral": SubResource("Animation_vn8l2")
+}
+
+[node name="MapUI" type="CanvasLayer"]
+layer = 0
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
+
+[node name="FocusTexture" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.513726)
+z_index = 10
+z_as_relative = false
+offset_right = 3840.0
+offset_bottom = 2160.0
+texture = ExtResource("2_bj0n5")
+
+[node name="Energy" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="EnergyBar" type="ProgressBar" parent="Energy"]
+modulate = Color(1, 1, 1, 0.878431)
+layout_mode = 0
+offset_left = 542.003
+offset_top = 1688.0
+offset_right = 678.003
+offset_bottom = 2377.0
+rotation = 3.14159
+scale = Vector2(2, 2)
+mouse_filter = 2
+value = 100.0
+fill_mode = 2
+show_percentage = false
+
+[node name="EnergyLabel" type="RichTextLabel" parent="Energy"]
+layout_mode = 0
+offset_left = 273.0
+offset_top = 1685.0
+offset_right = 1293.0
+offset_bottom = 2106.0
+scale = Vector2(0.264077, 0.264077)
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 0.505882)
+theme_override_fonts/normal_font = SubResource("FontVariation_r8fn4")
+theme_override_font_sizes/normal_font_size = 334
+text = "POWER"
+fit_content = true
+autowrap_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WarningLabelRich" type="RichTextLabel" parent="CenterContainer"]
+visible = false
+self_modulate = Color(1, 0.501961, 0.372549, 1)
+material = SubResource("CanvasItemMaterial_htyoe")
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_ntnu0")
+theme_override_fonts/bold_font = SubResource("FontVariation_dnfmk")
+theme_override_font_sizes/normal_font_size = 200
+theme_override_font_sizes/bold_font_size = 200
+bbcode_enabled = true
+text = "[b]INITIATING RECALL[/b]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="TextBacker" type="TextureRect" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_bg83i")
+offset_left = 2570.0
+offset_top = 312.0
+offset_right = 3711.0
+offset_bottom = 1936.0
+texture = ExtResource("3_18sc1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextBacker"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+offset_left = 110.0
+offset_top = 108.0
+offset_right = 1050.0
+offset_bottom = 1484.0
+
+[node name="TravelButton" type="TextureButton" parent="TextBacker/VBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("6_itkhn")
+stretch_mode = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TextBacker/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="TextBacker/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 110
+theme_override_constants/margin_top = 115
+theme_override_constants/margin_right = 110
+
+[node name="LogLabel" type="RichTextLabel" parent="TextBacker/VBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_q6uck")
+theme_override_fonts/bold_font = SubResource("FontVariation_whvip")
+theme_override_fonts/italics_font = SubResource("FontVariation_j0s38")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_mjnts")
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+bbcode_enabled = true
+text = "[center][b]LOCATION DETAILS[/b]
+
+-bla bla bla
+
+
+bla bla bla bla
+
+
+read this later"
+shortcut_keys_enabled = false
+
+[node name="MapAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_326t4")
+}
+autoplay = "neutral"
