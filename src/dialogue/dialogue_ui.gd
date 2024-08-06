@@ -215,7 +215,7 @@ func calculate_wait_time(new_char: String, command_text: String, idx: int) -> fl
 		".":
 			# Don't slow down "..." as much
 			if next_char == ".":
-				return COMMA_PAUSE
+				return COMMA_PAUSE/2
 			else:
 				return END_CHARACTER_PAUSE
 		"!", "?":
