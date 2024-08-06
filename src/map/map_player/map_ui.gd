@@ -8,8 +8,8 @@ const UNDISCOVERED_TEXT = "[b]UNDISCOVERED[/b]\n\n"
 
 func _ready() -> void:
     map_player.select_destination.connect(_on_select_destination)
-    Global.set_dialogue_variable("MET_FRAUD", false)
-    Global.set_dialogue_variable("VISITED_RUINS", false)
+    Global.set_dialogue_variable("MET_FRAUD", true)
+    Global.set_dialogue_variable("VISITED_RUINS", true)
     
 func _on_select_destination(location: Entrypoint):
     if location == null:
@@ -24,3 +24,8 @@ func _on_select_destination(location: Entrypoint):
             num_undiscovered += 1
     text += UNDISCOVERED_TEXT.repeat(num_undiscovered)
     log_label.text = text
+
+func _on_text_backer_gui_input(event: InputEvent) -> void:
+    if event is InputEventMouseButton:
+        # Consume mouse inputs to prevent zooming while scrolling the log
+        get_viewport().set_input_as_handled()
