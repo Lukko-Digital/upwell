@@ -11,6 +11,8 @@ var focused: bool = false
 
 var warp_current: float = 0;
 
+var interact_label_tween: Tween
+
 func _ready() -> void:
 	subviewport.add_child(screen.instantiate())
 	Global.camera_focus_changed.connect(_on_set_focus)
@@ -21,9 +23,17 @@ func interact(_player: Player):
 	if not focused:
 		Global.main_camera.set_focus(self)
 		virtual_mouse.show()
+
+		if interact_label_tween: interact_label_tween.kill()
+		interact_label_tween = create_tween()
+		interact_label_tween.tween_property(interact_label, "modulate", Color(Color.WHITE, 0), 0.2)
 	else:
 		Global.main_camera.set_focus(null)
 		virtual_mouse.hide()
+
+		if interact_label_tween: interact_label_tween.kill()
+		interact_label_tween = create_tween()
+		interact_label_tween.tween_property(interact_label, "modulate", Color(Color.WHITE, 1), 0.2)
 
 # func _on_body_exited(body: Node2D):
 # 	if body is Player:

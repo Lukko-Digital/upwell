@@ -94,16 +94,16 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="InteractLabel" type="Label" parent="."]
-modulate = Color(1, 1, 1, 0.65098)
-z_index = 2
-offset_left = -161.0
-offset_top = 365.0
-offset_right = 690.0
-offset_bottom = 575.0
-scale = Vector2(0.374634, 0.374634)
+self_modulate = Color(1, 1, 1, 0.282353)
+z_index = 512
+offset_left = -152.0
+offset_top = 362.0
+offset_right = 898.0
+offset_bottom = 573.0
+scale = Vector2(0.288346, 0.288346)
 theme_override_fonts/font = ExtResource("5_y32mw")
 theme_override_font_sizes/font_size = 161
-text = "<e>"
+text = "log on"
 horizontal_alignment = 1
 
 [node name="VHS" type="ColorRect" parent="."]

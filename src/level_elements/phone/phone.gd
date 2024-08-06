@@ -10,6 +10,8 @@ const POD_CODE = [1, 1, 1, 1]
 @onready var receiver_glow: Sprite2D = $Receiver/ReceiverGlow
 @onready var small_phone_sprite: Sprite2D = $PhoneSmall
 @onready var npc_node: NPC = $PhoneNPC
+@onready var blur: ColorRect = $Blur
+@onready var blur_tween: Tween
 
 ## Set when player first interacts
 var player: Player
@@ -36,14 +38,27 @@ func interact(player_: Player):
 		player.velocity = Vector2.ZERO
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		tween_opacity(player, 0, 0.2)
+		tween_opacity(interact_label, 0, 0.2)
 		tween_opacity(small_phone_sprite, 0, 0.2)
+
+		if blur_tween: blur_tween.kill()
+		await get_tree().create_timer(.3).timeout
+		if blur_tween:
+			if blur_tween.is_running(): return
+		blur_tween = create_tween()
+		blur_tween.tween_property(blur.material, "shader_parameter/blur_amount", 4, 0.3)
 	else:
 		Global.main_camera.set_focus(null)
 		focused = false
 		player.active_phone = null
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		tween_opacity(player, 1, 0.2)
-		tween_opacity(small_phone_sprite, 1, 0.2)
+		tween_opacity(interact_label, 1, 0.3)
+		tween_opacity(small_phone_sprite, 1, 0.3)
+
+		if blur_tween: blur_tween.kill()
+		blur_tween = create_tween()
+		blur_tween.tween_property(blur.material, "shader_parameter/blur_amount", 0, 0.2)
 
 func tween_opacity(node: CanvasItem, opacity: float, time: float):
 	var tween = create_tween()
