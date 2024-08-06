@@ -8,7 +8,7 @@ const ZOOM_AMOUNT = {
 	SCREEN = 1.5,
 	NPC = 0.7,
 	SPOT = 0.65,
-	PHONE = 8
+	PHONE = 5
 }
 const SMOOTHING_SPEEDS = {
 	FOLLOW = 5.0,
