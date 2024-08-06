@@ -1,0 +1,1035 @@
+[gd_scene load_steps=43 format=3 uid="uid://c56l7t8bmqkpu"]
+
+[ext_resource type="Script" path="res://src/level_elements/parallax_canvas.gd" id="1_yylm6"]
+[ext_resource type="Texture2D" uid="uid://mgj6slkpqqnn" path="res://assets/environment/tree_roof/tree_bg_1.png" id="2_m3myp"]
+[ext_resource type="Texture2D" uid="uid://c3t1nbicr3h4o" path="res://assets/environment/tree_roof/tree_bg_1_BLUR.png" id="3_60jym"]
+[ext_resource type="Texture2D" uid="uid://batohj7ha3xvl" path="res://assets/environment/tree_roof/tree_midground_1.png" id="4_q40rc"]
+[ext_resource type="Texture2D" uid="uid://bn5oqbksits33" path="res://assets/environment/tree_roof/yellow_grass_1.png" id="5_cicbf"]
+[ext_resource type="Shader" path="res://src/shaders/screen.gdshader" id="6_a7psl"]
+[ext_resource type="Texture2D" uid="uid://duim3t0v1cmjj" path="res://assets/environment/tree_roof/tree_roof_mg_1.png" id="7_5fd67"]
+[ext_resource type="Texture2D" uid="uid://dkqjmp88y1qya" path="res://assets/environment/tree_roof/house_1.png" id="8_5anvx"]
+[ext_resource type="Script" path="res://src/levels/H32_entrance_switcher_area.gd" id="9_byd5d"]
+[ext_resource type="Texture2D" uid="uid://yqlclxfjqpvx" path="res://assets/environment/tree_roof/pebbles_TM.png" id="10_jmvbe"]
+[ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="11_ookcr"]
+[ext_resource type="Shader" path="res://src/shaders/color_dodge.gdshader" id="12_yurx7"]
+[ext_resource type="Texture2D" uid="uid://f47yjabhonuj" path="res://assets/puzzle_elements/defocus.png" id="13_1xp16"]
+[ext_resource type="Texture2D" uid="uid://ctgpt4kph6eu" path="res://assets/environment/tree_roof/pebbles.png" id="14_oc8q2"]
+[ext_resource type="Shader" path="res://src/shaders/individual_blur.gdshader" id="15_8os4c"]
+[ext_resource type="Texture2D" uid="uid://db3vsuqpquccu" path="res://assets/environment/tree_roof/yellow_grass_fg_1.png" id="16_b47of"]
+[ext_resource type="Texture2D" uid="uid://5lc2my673rwf" path="res://assets/environment/red_tree/rays.png" id="19_3mwnd"]
+[ext_resource type="Texture2D" uid="uid://jpeubaba1qg6" path="res://assets/environment/tree_roof/pebbles_BLUR.png" id="20_elyak"]
+[ext_resource type="Texture2D" uid="uid://eqc4n8p1jbbg" path="res://assets/environment/tree_roof/tree_roof_mg_1_BLUR.png" id="21_rr4ks"]
+[ext_resource type="Texture2D" uid="uid://6p7halpsoule" path="res://assets/environment/tree_roof/tree_midground_1_BLUR.png" id="22_5bd8q"]
+[ext_resource type="Texture2D" uid="uid://du8c1v407kkh4" path="res://assets/environment/tree_roof/yellow_grass_fg_1_BLUR.png" id="23_r3ecp"]
+[ext_resource type="Script" path="res://src/level_elements/camera/camera_track.gd" id="24_cffxt"]
+[ext_resource type="Texture2D" uid="uid://bybq5utnqi2ji" path="res://assets/mvp3_assets/tutorial/a.png" id="25_kgv0g"]
+[ext_resource type="Texture2D" uid="uid://nh4auewwuedq" path="res://assets/mvp3_assets/tutorial/d.png" id="26_qdxuq"]
+[ext_resource type="Texture2D" uid="uid://dnqjj1lqp4wsx" path="res://assets/mvp3_assets/tutorial/space.png" id="27_6on70"]
+[ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="28_bo6j8"]
+[ext_resource type="PackedScene" uid="uid://6aouvsx0hvfm" path="res://src/level_elements/npcs/NPC.tscn" id="28_eldmr"]
+[ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="29_8bf22"]
+[ext_resource type="Texture2D" uid="uid://ca17uid471m7i" path="res://assets/mvp4_assets/shitty_dad-sheet.png" id="29_wt3al"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_61enm"]
+shader = ExtResource("6_a7psl")
+shader_parameter/intensity = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hvpi1"]
+size = Vector2(276, 1238)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6nj8d"]
+texture = ExtResource("10_jmvbe")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0 = 0
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
+6:0/0 = 0
+6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:0/0/physics_layer_0/angular_velocity = 0.0
+7:0/0 = 0
+7:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:0/0/physics_layer_0/angular_velocity = 0.0
+8:0/0 = 0
+8:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+8:0/0/physics_layer_0/angular_velocity = 0.0
+9:0/0 = 0
+9:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:0/0/physics_layer_0/angular_velocity = 0.0
+10:0/0 = 0
+10:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+10:0/0/physics_layer_0/angular_velocity = 0.0
+11:0/0 = 0
+11:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+11:0/0/physics_layer_0/angular_velocity = 0.0
+12:0/0 = 0
+12:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+12:0/0/physics_layer_0/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+3:1/0 = 0
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+4:1/0 = 0
+4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_0/angular_velocity = 0.0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+5:1/0 = 0
+5:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:1/0/physics_layer_0/angular_velocity = 0.0
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+6:1/0 = 0
+6:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:1/0/physics_layer_0/angular_velocity = 0.0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+7:1/0 = 0
+7:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:1/0/physics_layer_0/angular_velocity = 0.0
+7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+8:1/0 = 0
+8:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+8:1/0/physics_layer_0/angular_velocity = 0.0
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+9:1/0 = 0
+9:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:1/0/physics_layer_0/angular_velocity = 0.0
+9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+10:1/0 = 0
+10:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+10:1/0/physics_layer_0/angular_velocity = 0.0
+10:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+11:1/0 = 0
+11:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+11:1/0/physics_layer_0/angular_velocity = 0.0
+11:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+12:1/0 = 0
+12:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+12:1/0/physics_layer_0/angular_velocity = 0.0
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+3:2/0 = 0
+3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_0/angular_velocity = 0.0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+4:2/0 = 0
+4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:2/0/physics_layer_0/angular_velocity = 0.0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+5:2/0 = 0
+5:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:2/0/physics_layer_0/angular_velocity = 0.0
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+6:2/0 = 0
+6:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:2/0/physics_layer_0/angular_velocity = 0.0
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+7:2/0 = 0
+7:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:2/0/physics_layer_0/angular_velocity = 0.0
+7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+8:2/0 = 0
+8:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+8:2/0/physics_layer_0/angular_velocity = 0.0
+8:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+9:2/0 = 0
+9:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:2/0/physics_layer_0/angular_velocity = 0.0
+9:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+10:2/0 = 0
+10:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+10:2/0/physics_layer_0/angular_velocity = 0.0
+10:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+11:2/0 = 0
+11:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+11:2/0/physics_layer_0/angular_velocity = 0.0
+11:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+12:2/0 = 0
+12:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+12:2/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_1rh48"]
+tile_size = Vector2i(128, 128)
+physics_layer_0/collision_layer = 1
+sources/2 = SubResource("TileSetAtlasSource_6nj8d")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vdb20"]
+shader = ExtResource("12_yurx7")
+shader_parameter/intensity = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dy0bx"]
+blend_mode = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yacao"]
+shader = ExtResource("15_8os4c")
+shader_parameter/radius = 11.31
+shader_parameter/steps = 192
+shader_parameter/vertex_expand = 1.065
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1b2eo"]
+shader = ExtResource("12_yurx7")
+shader_parameter/intensity = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mu4t0"]
+atlas = ExtResource("29_wt3al")
+region = Rect2(0, 381, 310, 381)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q03pg"]
+atlas = ExtResource("29_wt3al")
+region = Rect2(0, 0, 310, 381)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjnyx"]
+atlas = ExtResource("29_wt3al")
+region = Rect2(310, 381, 310, 381)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jis5b"]
+atlas = ExtResource("29_wt3al")
+region = Rect2(310, 0, 310, 381)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bokmx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mu4t0")
+}],
+"loop": true,
+"name": &"cross_arms",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q03pg")
+}],
+"loop": true,
+"name": &"neutral",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjnyx")
+}],
+"loop": true,
+"name": &"point",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jis5b")
+}],
+"loop": true,
+"name": &"smoke",
+"speed": 5.0
+}]
+
+[node name="H32NUCLEAR_FORK" type="Node2D"]
+
+[node name="-14" type="CanvasLayer" parent="."]
+layer = -14
+follow_viewport_enabled = true
+follow_viewport_scale = 0.6
+script = ExtResource("1_yylm6")
+updates_in_process = true
+
+[node name="Node2D" type="Node2D" parent="-14"]
+modulate = Color(0.622338, 0.407755, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="-14/Node2D"]
+offset_left = -7467.0
+offset_top = -2560.0
+offset_right = 2347.0
+offset_bottom = 1280.0
+mouse_filter = 2
+color = Color(0.173321, 0.0868922, 0.021425, 1)
+
+[node name="TreeBg1" type="Sprite2D" parent="-14/Node2D"]
+position = Vector2(-2300, -1008.57)
+scale = Vector2(1.65353, 1.65353)
+texture = ExtResource("2_m3myp")
+
+[node name="TreeBg2" type="Sprite2D" parent="-14/Node2D"]
+position = Vector2(1607.14, -1058.57)
+texture = ExtResource("2_m3myp")
+
+[node name="TreeBg3" type="Sprite2D" parent="-14/Node2D"]
+position = Vector2(-1311.43, -754.286)
+scale = Vector2(0.941966, 0.941966)
+texture = ExtResource("2_m3myp")
+
+[node name="TreeBg4" type="Sprite2D" parent="-14/Node2D"]
+position = Vector2(-6595.71, -852.857)
+scale = Vector2(0.941966, 0.941966)
+texture = ExtResource("2_m3myp")
+
+[node name="-13" type="CanvasLayer" parent="."]
+layer = -13
+follow_viewport_enabled = true
+follow_viewport_scale = 0.7
+script = ExtResource("1_yylm6")
+updates_in_process = true
+
+[node name="Node2D" type="Node2D" parent="-13"]
+modulate = Color(0.542382, 0.477791, 0.222367, 1)
+
+[node name="TreeBg1" type="Sprite2D" parent="-13/Node2D"]
+position = Vector2(-3321.43, -837.143)
+scale = Vector2(0.7342, 0.7342)
+texture = ExtResource("3_60jym")
+
+[node name="TreeBg2" type="Sprite2D" parent="-13/Node2D"]
+position = Vector2(-1637.5, -931.25)
+texture = ExtResource("3_60jym")
+
+[node name="TreeBg3" type="Sprite2D" parent="-13/Node2D"]
+position = Vector2(-4231.43, -950)
+texture = ExtResource("3_60jym")
+
+[node name="TreeBg4" type="Sprite2D" parent="-13/Node2D"]
+position = Vector2(-5530, -978.75)
+texture = ExtResource("3_60jym")
+
+[node name="TreeBg5" type="Sprite2D" parent="-13/Node2D"]
+position = Vector2(-522.5, -870)
+scale = Vector2(1.20048, 1.20048)
+texture = ExtResource("3_60jym")
+
+[node name="-12" type="CanvasLayer" parent="."]
+layer = -12
+follow_viewport_enabled = true
+follow_viewport_scale = 0.8
+script = ExtResource("1_yylm6")
+updates_in_process = true
+
+[node name="Node2D" type="Node2D" parent="-12"]
+modulate = Color(0.439484, 0.334084, 0.167949, 1)
+
+[node name="TreeMidground1" type="Sprite2D" parent="-12/Node2D"]
+position = Vector2(-5591.25, -1146.25)
+scale = Vector2(1.37154, 1.37154)
+texture = ExtResource("4_q40rc")
+
+[node name="TreeMidground2" type="Sprite2D" parent="-12/Node2D"]
+position = Vector2(-4705, -906.667)
+rotation = 3.14159
+scale = Vector2(1.95828, -1.95828)
+texture = ExtResource("4_q40rc")
+
+[node name="TreeMidground3" type="Sprite2D" parent="-12/Node2D"]
+position = Vector2(-2151.25, -906.667)
+scale = Vector2(1.38281, 1.38281)
+texture = ExtResource("4_q40rc")
+
+[node name="TreeMidground4" type="Sprite2D" parent="-12/Node2D"]
+position = Vector2(793.75, -906.667)
+rotation = 3.14159
+scale = Vector2(1.95828, -1.95828)
+texture = ExtResource("4_q40rc")
+
+[node name="YellowGrass1" type="Sprite2D" parent="-12/Node2D"]
+position = Vector2(-2439.97, -53.3333)
+scale = Vector2(0.87583, 0.87583)
+texture = ExtResource("5_cicbf")
+
+[node name="YellowGrass2" type="Sprite2D" parent="-12/Node2D"]
+position = Vector2(-795, 4.99998)
+scale = Vector2(1.7445, 1.7445)
+texture = ExtResource("5_cicbf")
+
+[node name="YellowGrass3" type="Sprite2D" parent="-12/Node2D"]
+position = Vector2(-3548.86, -58.8889)
+texture = ExtResource("5_cicbf")
+
+[node name="YellowGrass4" type="Sprite2D" parent="-12/Node2D"]
+position = Vector2(-4307.75, -67.7778)
+texture = ExtResource("5_cicbf")
+
+[node name="-11" type="CanvasLayer" parent="."]
+layer = -11
+follow_viewport_enabled = true
+follow_viewport_scale = 0.9
+script = ExtResource("1_yylm6")
+updates_in_process = true
+
+[node name="Node2D" type="Node2D" parent="-11"]
+modulate = Color(0.503379, 0.43769, 0.342725, 1)
+
+[node name="TreeMidground1" type="Sprite2D" parent="-11/Node2D"]
+position = Vector2(-3674.44, -906.667)
+scale = Vector2(1.37154, 1.37154)
+texture = ExtResource("4_q40rc")
+
+[node name="TreeMidground2" type="Sprite2D" parent="-11/Node2D"]
+position = Vector2(-1262.22, -906.667)
+scale = Vector2(-1.55036, 1.55036)
+texture = ExtResource("4_q40rc")
+
+[node name="TreeMidground3" type="Sprite2D" parent="-11/Node2D"]
+position = Vector2(-4738.89, -906.667)
+texture = ExtResource("4_q40rc")
+
+[node name="YellowGrass1" type="Sprite2D" parent="-11/Node2D"]
+position = Vector2(-3222.22, -53.3333)
+scale = Vector2(0.87583, 0.87583)
+texture = ExtResource("5_cicbf")
+
+[node name="YellowGrass2" type="Sprite2D" parent="-11/Node2D"]
+position = Vector2(-1993.33, -104.444)
+texture = ExtResource("5_cicbf")
+
+[node name="YellowGrass3" type="Sprite2D" parent="-11/Node2D"]
+position = Vector2(-4331.11, -58.8889)
+texture = ExtResource("5_cicbf")
+
+[node name="YellowGrass4" type="Sprite2D" parent="-11/Node2D"]
+position = Vector2(-5090, -67.7778)
+texture = ExtResource("5_cicbf")
+
+[node name="TreeMidground4" type="Sprite2D" parent="-11/Node2D"]
+position = Vector2(57.7776, -906.667)
+scale = Vector2(-1.79953, 1.79953)
+texture = ExtResource("4_q40rc")
+
+[node name="BG_SCREEN2" type="ColorRect" parent="-11/Node2D"]
+z_index = -1
+material = SubResource("ShaderMaterial_61enm")
+offset_left = -7396.0
+offset_top = -2702.0
+offset_right = 2560.0
+offset_bottom = 1280.0
+mouse_filter = 2
+color = Color(0.321591, 0.195664, 0, 0.317647)
+
+[node name="-10" type="CanvasLayer" parent="."]
+layer = -10
+follow_viewport_enabled = true
+script = ExtResource("1_yylm6")
+updates_in_process = true
+
+[node name="Node2D" type="Node2D" parent="-10"]
+modulate = Color(0.82377, 0.763129, 0.682537, 1)
+
+[node name="House1" type="Sprite2D" parent="-10/Node2D"]
+position = Vector2(-2638, -541)
+scale = Vector2(1.19426, 1.19426)
+texture = ExtResource("8_5anvx")
+
+[node name="TreeRoofMg1" type="Sprite2D" parent="-10/Node2D"]
+position = Vector2(-2818, -1512)
+texture = ExtResource("7_5fd67")
+
+[node name="TreeRoofMg2" type="Sprite2D" parent="-10/Node2D"]
+position = Vector2(-189, -1544)
+texture = ExtResource("7_5fd67")
+
+[node name="TreeMidground1" type="Sprite2D" parent="-10/Node2D"]
+position = Vector2(-1812, -923)
+texture = ExtResource("4_q40rc")
+
+[node name="TreeMidground2" type="Sprite2D" parent="-10/Node2D"]
+position = Vector2(-4060, -923)
+texture = ExtResource("4_q40rc")
+
+[node name="YellowGrass1" type="Sprite2D" parent="-10/Node2D"]
+position = Vector2(-2141, -49)
+texture = ExtResource("5_cicbf")
+
+[node name="TreeMidground3" type="Sprite2D" parent="-10/Node2D"]
+position = Vector2(-228, -923)
+texture = ExtResource("4_q40rc")
+
+[node name="LEVEL" type="Node2D" parent="."]
+
+[node name="EntranceSwitcherArea" type="Area2D" parent="LEVEL"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("9_byd5d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LEVEL/EntranceSwitcherArea"]
+position = Vector2(366, -529)
+shape = SubResource("RectangleShape2D_hvpi1")
+disabled = true
+
+[node name="Doors" type="Node2D" parent="LEVEL"]
+
+[node name="TileMap" type="TileMap" parent="."]
+z_index = 10
+tile_set = SubResource("TileSet_1rh48")
+format = 2
+layer_0/tile_data = PackedInt32Array(-34, 2, 0, 65502, 2, 1, 131038, 2, 2, -33, 65538, 0, 65503, 65538, 1, 131039, 65538, 2, -32, 131074, 0, 65504, 131074, 1, 131040, 131074, 2, -31, 196610, 0, 65505, 196610, 1, 131041, 196610, 2, -30, 262146, 0, 65506, 262146, 1, 131042, 262146, 2, -29, 327682, 0, 65507, 327682, 1, 131043, 327682, 2, -28, 393218, 0, 65508, 393218, 1, 131044, 393218, 2, -27, 458754, 0, 65509, 458754, 1, 131045, 458754, 2, -26, 524290, 0, 65510, 524290, 1, 131046, 524290, 2, -25, 589826, 0, 65511, 589826, 1, 131047, 589826, 2, -24, 655362, 0, 65512, 655362, 1, 131048, 655362, 2, -23, 720898, 0, 65513, 720898, 1, 131049, 720898, 2, -22, 2, 0, 65514, 2, 1, 131050, 2, 2, -21, 65538, 0, 65515, 65538, 1, 131051, 65538, 2, -20, 131074, 0, 65516, 131074, 1, 131052, 131074, 2, -19, 196610, 0, 65517, 196610, 1, 131053, 196610, 2, -18, 262146, 0, 65518, 262146, 1, 131054, 262146, 2, -17, 327682, 0, 65519, 327682, 1, 131055, 327682, 2, -16, 393218, 0, 65520, 393218, 1, 131056, 393218, 2, -15, 458754, 0, 65521, 458754, 1, 131057, 458754, 2, -14, 524290, 0, 65522, 524290, 1, 131058, 524290, 2, -13, 589826, 0, 65523, 589826, 1, 131059, 589826, 2, -12, 655362, 0, 65524, 655362, 1, 131060, 655362, 2, -11, 720898, 0, 65525, 720898, 1, 131061, 720898, 2, -10, 2, 0, 65526, 2, 1, 131062, 2, 2, -9, 65538, 0, 65527, 65538, 1, 131063, 65538, 2, -8, 131074, 0, 65528, 131074, 1, 131064, 131074, 2, -7, 196610, 0, 65529, 196610, 1, 131065, 196610, 2, -6, 262146, 0, 65530, 262146, 1, 131066, 262146, 2, -5, 327682, 0, 65531, 327682, 1, 131067, 327682, 2, -4, 393218, 0, 65532, 393218, 1, 131068, 393218, 2, -3, 2, 0, 65533, 2, 1, 131069, 2, 2, -2, 65538, 0, 65534, 65538, 1, 131070, 65538, 2, -1, 131074, 0, 65535, 131074, 1, 131071, 131074, 2, -65536, 196610, 0, 0, 196610, 1, 65536, 196610, 2, -65535, 262146, 0, 1, 262146, 1, 65537, 262146, 2, -65534, 327682, 0, 2, 327682, 1, 65538, 327682, 2, -65533, 393218, 0, 3, 393218, 1, 65539, 393218, 2, -65532, 458754, 0, 4, 458754, 1, 65540, 458754, 2, -65531, 524290, 0, 5, 524290, 1, 65541, 524290, 2, -65530, 589826, 0, 6, 589826, 1, 65542, 589826, 2, -65529, 655362, 0, 7, 655362, 1, 65543, 655362, 2, -65528, 720898, 0, 8, 720898, 1, -46, 196610, 0, 65490, 196610, 1, 131026, 196610, 2, -45, 262146, 0, 65491, 262146, 1, 131027, 262146, 2, -44, 327682, 0, 65492, 327682, 1, 131028, 327682, 2, -43, 393218, 0, 65493, 393218, 1, 131029, 393218, 2, -42, 458754, 0, 65494, 458754, 1, 131030, 458754, 2, -41, 524290, 0, 65495, 524290, 1, 131031, 524290, 2, -40, 589826, 0, 65496, 589826, 1, 131032, 589826, 2, -39, 655362, 0, 65497, 655362, 1, 131033, 655362, 2, -38, 720898, 0, 65498, 720898, 1, 131034, 720898, 2, -37, 589826, 0, 65499, 589826, 1, 131035, 589826, 2, -36, 655362, 0, 65500, 655362, 1, 131036, 655362, 2, -35, 720898, 0, 65501, 720898, 1, 131037, 720898, 2, -49, 2, 0, 65487, 2, 1, 131023, 2, 2, -48, 65538, 0, 65488, 65538, 1, 131024, 65538, 2, -47, 131074, 0, 65489, 131074, 1, 131025, 131074, 2, 65544, 720898, 2)
+
+[node name="TileMapBLACK" parent="." instance=ExtResource("11_ookcr")]
+position = Vector2(256, 0)
+layer_0/tile_data = PackedInt32Array()
+
+[node name="10" type="CanvasLayer" parent="."]
+layer = 10
+follow_viewport_enabled = true
+script = ExtResource("1_yylm6")
+updates_in_process = true
+
+[node name="Node2D" type="Node2D" parent="10"]
+
+[node name="YellowGrass1" type="Sprite2D" parent="10/Node2D"]
+position = Vector2(-2144, 37)
+texture = ExtResource("5_cicbf")
+
+[node name="YellowGrass2" type="Sprite2D" parent="10/Node2D"]
+position = Vector2(-2560, 73)
+scale = Vector2(-1, 1)
+texture = ExtResource("5_cicbf")
+
+[node name="YellowGrass3" type="Sprite2D" parent="10/Node2D"]
+position = Vector2(-3002, 89)
+texture = ExtResource("5_cicbf")
+
+[node name="YellowGrass4" type="Sprite2D" parent="10/Node2D"]
+position = Vector2(-1051, -49)
+texture = ExtResource("5_cicbf")
+
+[node name="YellowGrass5" type="Sprite2D" parent="10/Node2D"]
+position = Vector2(-3886, -49)
+texture = ExtResource("5_cicbf")
+
+[node name="YellowGrass6" type="Sprite2D" parent="10/Node2D"]
+position = Vector2(-243, -25)
+texture = ExtResource("5_cicbf")
+
+[node name="Focus" type="Sprite2D" parent="10/Node2D"]
+modulate = Color(0.203922, 0.203922, 0.203922, 0.427451)
+material = SubResource("ShaderMaterial_vdb20")
+position = Vector2(-2688, -512)
+scale = Vector2(1.05278, 1.05278)
+texture = ExtResource("13_1xp16")
+
+[node name="Defocus2" type="Sprite2D" parent="10/Node2D"]
+modulate = Color(0.380392, 0.262745, 0.145098, 0.384314)
+material = SubResource("CanvasItemMaterial_dy0bx")
+position = Vector2(-4356, -384)
+scale = Vector2(1.60423, 1.60423)
+texture = ExtResource("13_1xp16")
+
+[node name="Defocus3" type="Sprite2D" parent="10/Node2D"]
+modulate = Color(0.380392, 0.262745, 0.145098, 0.384314)
+material = SubResource("CanvasItemMaterial_dy0bx")
+position = Vector2(-630, -512)
+scale = Vector2(1.60423, 1.60423)
+texture = ExtResource("13_1xp16")
+
+[node name="YellowGrass7" type="Sprite2D" parent="10/Node2D"]
+position = Vector2(-3456, 54)
+scale = Vector2(-1, 1)
+texture = ExtResource("5_cicbf")
+
+[node name="11" type="CanvasLayer" parent="."]
+layer = 11
+follow_viewport_enabled = true
+follow_viewport_scale = 1.1
+script = ExtResource("1_yylm6")
+updates_in_process = true
+
+[node name="Node2D" type="Node2D" parent="11"]
+modulate = Color(0.583223, 0.47321, 0.458085, 1)
+
+[node name="Pebbles" type="Sprite2D" parent="11/Node2D"]
+self_modulate = Color(0.960744, 0.817227, 0.422912, 1)
+position = Vector2(-2736.36, 129.091)
+scale = Vector2(1.09612, 1.09612)
+texture = ExtResource("14_oc8q2")
+
+[node name="Pebbles2" type="Sprite2D" parent="11/Node2D"]
+modulate = Color(0.67005, 0.576904, 0.459596, 1)
+position = Vector2(-1300, 155.455)
+scale = Vector2(1.09612, 1.09612)
+texture = ExtResource("14_oc8q2")
+
+[node name="TreeRoofMg3" type="Sprite2D" parent="11/Node2D"]
+position = Vector2(-3478.18, -1477.27)
+scale = Vector2(1.14502, 1.14502)
+texture = ExtResource("7_5fd67")
+
+[node name="TreeRoofMg4" type="Sprite2D" parent="11/Node2D"]
+position = Vector2(-1556.36, -1500)
+scale = Vector2(1.14502, 1.14502)
+texture = ExtResource("7_5fd67")
+
+[node name="TreeRoofMg5" type="Sprite2D" parent="11/Node2D"]
+position = Vector2(399.091, -1487.27)
+scale = Vector2(1.14502, 1.14502)
+texture = ExtResource("7_5fd67")
+
+[node name="TreeRoofMg6" type="Sprite2D" parent="11/Node2D"]
+position = Vector2(-5884.54, -1275.45)
+scale = Vector2(1.14502, 1.14502)
+texture = ExtResource("7_5fd67")
+
+[node name="TreeRoofMg7" type="Sprite2D" parent="11/Node2D"]
+position = Vector2(-2300.91, -1273.64)
+scale = Vector2(1.14502, 1.14502)
+texture = ExtResource("7_5fd67")
+
+[node name="TreeRoofMg8" type="Sprite2D" parent="11/Node2D"]
+position = Vector2(577.273, -1351.82)
+scale = Vector2(1.14502, 1.14502)
+texture = ExtResource("7_5fd67")
+
+[node name="Pebbles3" type="Sprite2D" parent="11/Node2D"]
+modulate = Color(0.67005, 0.576904, 0.459596, 1)
+position = Vector2(351.818, 155.455)
+scale = Vector2(1.09612, 1.09612)
+texture = ExtResource("14_oc8q2")
+
+[node name="YellowGrass1" type="Sprite2D" parent="11/Node2D"]
+position = Vector2(-1789.09, -17.2727)
+scale = Vector2(1.20855, 1.20855)
+texture = ExtResource("5_cicbf")
+
+[node name="YellowGrass2" type="Sprite2D" parent="11/Node2D"]
+self_modulate = Color(1, 1, 1, 0.666667)
+position = Vector2(381.818, 21.8182)
+scale = Vector2(1.20855, 1.20855)
+texture = ExtResource("5_cicbf")
+
+[node name="YellowGrass3" type="Sprite2D" parent="11/Node2D"]
+position = Vector2(-3367.27, 60)
+scale = Vector2(1.20855, 1.20855)
+texture = ExtResource("5_cicbf")
+
+[node name="Pebbles4" type="Sprite2D" parent="11/Node2D"]
+self_modulate = Color(0.960744, 0.817227, 0.422912, 1)
+position = Vector2(-4189.09, 129.091)
+scale = Vector2(1.09612, 1.09612)
+texture = ExtResource("14_oc8q2")
+
+[node name="YellowGrass4" type="Sprite2D" parent="11/Node2D"]
+modulate = Color(0.537011, 0.537011, 0.537011, 1)
+position = Vector2(-4078.18, 57.2727)
+scale = Vector2(1.20855, 1.20855)
+texture = ExtResource("5_cicbf")
+
+[node name="YellowGrass5" type="Sprite2D" parent="11/Node2D"]
+position = Vector2(-2539.09, 142.727)
+scale = Vector2(1.61748, 1.61748)
+texture = ExtResource("5_cicbf")
+
+[node name="12" type="CanvasLayer" parent="."]
+layer = 12
+follow_viewport_enabled = true
+follow_viewport_scale = 1.2
+script = ExtResource("1_yylm6")
+updates_in_process = true
+
+[node name="Node2D" type="Node2D" parent="12"]
+modulate = Color(0.24328, 0.155567, 0.106727, 1)
+
+[node name="TreeMidground1" type="Sprite2D" parent="12/Node2D"]
+position = Vector2(-4480, -1066.67)
+scale = Vector2(1.47367, 1.47367)
+texture = ExtResource("4_q40rc")
+
+[node name="TreeRoofMg3" type="Sprite2D" parent="12/Node2D"]
+use_parent_material = true
+position = Vector2(-2793.33, -1554.17)
+scale = Vector2(1.37013, 1.37013)
+texture = ExtResource("7_5fd67")
+
+[node name="YellowGrass1" type="Sprite2D" parent="12/Node2D"]
+use_parent_material = true
+position = Vector2(-2405, 201.667)
+scale = Vector2(1.34915, 1.34915)
+texture = ExtResource("5_cicbf")
+
+[node name="Pebbles" type="Sprite2D" parent="12/Node2D"]
+material = SubResource("ShaderMaterial_yacao")
+position = Vector2(-2413.33, 194.167)
+scale = Vector2(1.07824, 1.07824)
+texture = ExtResource("14_oc8q2")
+
+[node name="Pebbles2" type="Sprite2D" parent="12/Node2D"]
+material = SubResource("ShaderMaterial_yacao")
+position = Vector2(-4035.83, 194.167)
+scale = Vector2(1.07824, 1.07824)
+texture = ExtResource("14_oc8q2")
+
+[node name="Pebbles3" type="Sprite2D" parent="12/Node2D"]
+material = SubResource("ShaderMaterial_yacao")
+position = Vector2(-5397.5, 194.167)
+scale = Vector2(1.07824, 1.07824)
+texture = ExtResource("14_oc8q2")
+
+[node name="Pebbles4" type="Sprite2D" parent="12/Node2D"]
+material = SubResource("ShaderMaterial_yacao")
+position = Vector2(-776.667, 194.167)
+scale = Vector2(1.07824, 1.07824)
+texture = ExtResource("14_oc8q2")
+
+[node name="YellowGrassFg1" type="Sprite2D" parent="12/Node2D"]
+use_parent_material = true
+position = Vector2(-3335.83, 98.3333)
+scale = Vector2(-1.244, 1.244)
+texture = ExtResource("16_b47of")
+
+[node name="YellowGrass2" type="Sprite2D" parent="12/Node2D"]
+use_parent_material = true
+position = Vector2(-4088.33, 123.333)
+texture = ExtResource("5_cicbf")
+
+[node name="YellowGrass3" type="Sprite2D" parent="12/Node2D"]
+use_parent_material = true
+position = Vector2(-1565, 60.8333)
+scale = Vector2(1.91084, 1.91084)
+texture = ExtResource("5_cicbf")
+
+[node name="Pebbles5" type="Sprite2D" parent="12/Node2D"]
+material = SubResource("ShaderMaterial_yacao")
+position = Vector2(794.167, 194.167)
+scale = Vector2(1.07824, 1.07824)
+texture = ExtResource("14_oc8q2")
+
+[node name="YellowGrass4" type="Sprite2D" parent="12/Node2D"]
+use_parent_material = true
+position = Vector2(749.167, 123.333)
+scale = Vector2(1.80185, 1.80185)
+texture = ExtResource("5_cicbf")
+
+[node name="TreeRoofMg4" type="Sprite2D" parent="12/Node2D"]
+use_parent_material = true
+position = Vector2(-5124.17, -1188.33)
+scale = Vector2(1.37013, 1.37013)
+texture = ExtResource("7_5fd67")
+
+[node name="TreeRoofMg5" type="Sprite2D" parent="12/Node2D"]
+use_parent_material = true
+position = Vector2(-2800, -1263.33)
+scale = Vector2(1.37013, 1.37013)
+texture = ExtResource("7_5fd67")
+
+[node name="TreeRoofMg6" type="Sprite2D" parent="12/Node2D"]
+use_parent_material = true
+position = Vector2(-164.167, -1205)
+scale = Vector2(1.37013, 1.37013)
+texture = ExtResource("7_5fd67")
+
+[node name="Pebbles6" type="Sprite2D" parent="12/Node2D"]
+modulate = Color(0.846906, 0.60224, 0.482097, 1)
+use_parent_material = true
+position = Vector2(-2651.67, 211.667)
+scale = Vector2(1.66394, 1.66394)
+texture = ExtResource("14_oc8q2")
+
+[node name="TreeRoofMg7" type="Sprite2D" parent="12/Node2D"]
+use_parent_material = true
+position = Vector2(426.667, -1280)
+scale = Vector2(1.37013, 1.37013)
+texture = ExtResource("7_5fd67")
+
+[node name="Rays" type="Sprite2D" parent="12/Node2D"]
+modulate = Color(0.603922, 0.517647, 0.337255, 1)
+material = SubResource("ShaderMaterial_1b2eo")
+position = Vector2(-6.10352e-05, -213.333)
+scale = Vector2(1.25545, 1.25545)
+texture = ExtResource("19_3mwnd")
+region_enabled = true
+region_rect = Rect2(1135, 0, 1587, 2160)
+
+[node name="YellowGrass5" type="Sprite2D" parent="12/Node2D"]
+position = Vector2(-2788.33, 120)
+scale = Vector2(1.20855, 1.20855)
+texture = ExtResource("5_cicbf")
+
+[node name="TreeMidground2" type="Sprite2D" parent="12/Node2D"]
+position = Vector2(426.667, -1066.67)
+scale = Vector2(1.47367, 1.47367)
+texture = ExtResource("4_q40rc")
+
+[node name="YellowGrass6" type="Sprite2D" parent="12/Node2D"]
+position = Vector2(-533.333, 65.8333)
+scale = Vector2(1.20855, 1.20855)
+texture = ExtResource("5_cicbf")
+
+[node name="YellowGrass7" type="Sprite2D" parent="12/Node2D"]
+position = Vector2(-4906.67, 65.8333)
+scale = Vector2(1.20855, 1.20855)
+texture = ExtResource("5_cicbf")
+
+[node name="YellowGrass8" type="Sprite2D" parent="12/Node2D"]
+position = Vector2(-5440, 65.8333)
+scale = Vector2(1.20855, 1.20855)
+texture = ExtResource("5_cicbf")
+
+[node name="14" type="CanvasLayer" parent="."]
+layer = 14
+follow_viewport_enabled = true
+follow_viewport_scale = 1.4
+script = ExtResource("1_yylm6")
+updates_in_process = true
+
+[node name="Node2D" type="Node2D" parent="14"]
+modulate = Color(0, 0, 0, 1)
+
+[node name="Pebbles" type="Sprite2D" parent="14/Node2D"]
+use_parent_material = true
+position = Vector2(-3184.29, 191.429)
+scale = Vector2(1.48385, 1.48385)
+texture = ExtResource("20_elyak")
+
+[node name="Pebbles2" type="Sprite2D" parent="14/Node2D"]
+use_parent_material = true
+position = Vector2(-5206.43, 186.429)
+scale = Vector2(1.48385, 1.48385)
+texture = ExtResource("20_elyak")
+
+[node name="Pebbles3" type="Sprite2D" parent="14/Node2D"]
+use_parent_material = true
+position = Vector2(-1.42859, 186.429)
+scale = Vector2(1.48385, 1.48385)
+texture = ExtResource("20_elyak")
+
+[node name="Pebbles4" type="Sprite2D" parent="14/Node2D"]
+use_parent_material = true
+position = Vector2(-1095.71, 191.429)
+scale = Vector2(1.48385, 1.48385)
+texture = ExtResource("20_elyak")
+
+[node name="TreeRoofMg4" type="Sprite2D" parent="14/Node2D"]
+use_parent_material = true
+position = Vector2(-2487.86, -1420)
+scale = Vector2(1.59054, 1.59054)
+texture = ExtResource("21_rr4ks")
+
+[node name="TreeRoofMg5" type="Sprite2D" parent="14/Node2D"]
+use_parent_material = true
+position = Vector2(-302.857, -1528.57)
+scale = Vector2(1.59054, 1.59054)
+texture = ExtResource("21_rr4ks")
+
+[node name="TreeRoofMg6" type="Sprite2D" parent="14/Node2D"]
+use_parent_material = true
+position = Vector2(-4352.86, -1517.14)
+scale = Vector2(1.59054, 1.59054)
+texture = ExtResource("21_rr4ks")
+
+[node name="TreeRoofMg7" type="Sprite2D" parent="14/Node2D"]
+use_parent_material = true
+position = Vector2(-2487.86, -1420)
+scale = Vector2(1.59054, 1.59054)
+texture = ExtResource("21_rr4ks")
+
+[node name="TreeRoofMg8" type="Sprite2D" parent="14/Node2D"]
+use_parent_material = true
+position = Vector2(-6034.29, -1280)
+scale = Vector2(1.59054, 1.59054)
+texture = ExtResource("21_rr4ks")
+
+[node name="TreeRoofMg9" type="Sprite2D" parent="14/Node2D"]
+use_parent_material = true
+position = Vector2(847.143, -1517.14)
+scale = Vector2(1.59054, 1.59054)
+texture = ExtResource("21_rr4ks")
+
+[node name="TreeMidground1" type="Sprite2D" parent="14/Node2D"]
+use_parent_material = true
+position = Vector2(-4022.86, -857.143)
+scale = Vector2(1.23744, 1.23744)
+texture = ExtResource("22_5bd8q")
+
+[node name="TreeMidground2" type="Sprite2D" parent="14/Node2D"]
+use_parent_material = true
+position = Vector2(-1443.57, -822.143)
+scale = Vector2(1.23744, 1.23744)
+texture = ExtResource("22_5bd8q")
+
+[node name="YellowGrass1" type="Sprite2D" parent="14/Node2D"]
+position = Vector2(-2124.29, 57.8571)
+scale = Vector2(1.20855, 1.20855)
+texture = ExtResource("23_r3ecp")
+
+[node name="YellowGrass2" type="Sprite2D" parent="14/Node2D"]
+position = Vector2(-4114.29, -91.4286)
+scale = Vector2(1.20855, 1.20855)
+texture = ExtResource("23_r3ecp")
+
+[node name="YellowGrass3" type="Sprite2D" parent="14/Node2D"]
+position = Vector2(-1092.86, 17.8571)
+scale = Vector2(1.20855, 1.20855)
+texture = ExtResource("23_r3ecp")
+
+[node name="Pebbles5" type="Sprite2D" parent="14/Node2D"]
+use_parent_material = true
+position = Vector2(1005.71, 186.429)
+scale = Vector2(1.48385, 1.48385)
+texture = ExtResource("20_elyak")
+
+[node name="TreeMidground3" type="Sprite2D" parent="14/Node2D"]
+use_parent_material = true
+position = Vector2(-5064.29, -1046.43)
+scale = Vector2(1.85119, 1.85119)
+texture = ExtResource("22_5bd8q")
+
+[node name="TreeMidground4" type="Sprite2D" parent="14/Node2D"]
+use_parent_material = true
+position = Vector2(1067.86, -822.143)
+scale = Vector2(1.23744, 1.23744)
+texture = ExtResource("22_5bd8q")
+
+[node name="ColorRect" type="ColorRect" parent="14/Node2D"]
+offset_left = -6408.0
+offset_top = 254.0
+offset_right = 1576.0
+offset_bottom = 1543.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="20" type="CanvasLayer" parent="."]
+layer = 20
+follow_viewport_enabled = true
+follow_viewport_scale = 2.0
+script = ExtResource("1_yylm6")
+updates_in_process = true
+
+[node name="Node2D" type="Node2D" parent="20"]
+modulate = Color(0, 0, 0, 1)
+
+[node name="TreeMidground1" type="Sprite2D" parent="20/Node2D"]
+use_parent_material = true
+position = Vector2(-766.5, -1104.5)
+scale = Vector2(1.85119, 1.85119)
+texture = ExtResource("22_5bd8q")
+
+[node name="TreeRoofMg8" type="Sprite2D" parent="20/Node2D"]
+use_parent_material = true
+position = Vector2(-2503, -1162)
+scale = Vector2(1.59054, 1.59054)
+texture = ExtResource("21_rr4ks")
+
+[node name="30" type="CanvasLayer" parent="."]
+layer = 30
+follow_viewport_enabled = true
+follow_viewport_scale = 4.0
+script = ExtResource("1_yylm6")
+updates_in_process = true
+
+[node name="Node2D" type="Node2D" parent="30"]
+modulate = Color(0, 0, 0, 1)
+
+[node name="CameraBounds" type="CanvasLayer" parent="."]
+layer = 128
+follow_viewport_enabled = true
+script = ExtResource("1_yylm6")
+updates_in_process = true
+
+[node name="CameraBounds" type="Node2D" parent="CameraBounds"]
+
+[node name="CameraTrack" type="Area2D" parent="CameraBounds/CameraBounds"]
+position = Vector2(-273, -513)
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("24_cffxt")
+
+[node name="Line2D" type="Line2D" parent="CameraBounds/CameraBounds/CameraTrack"]
+position = Vector2(-171, -379)
+points = PackedVector2Array(2492, -4, -6340, -4)
+
+[node name="Tutorial" type="CanvasLayer" parent="."]
+layer = 11
+visible = false
+follow_viewport_enabled = true
+script = ExtResource("1_yylm6")
+
+[node name="Node2D" type="Node2D" parent="Tutorial"]
+z_index = 4096
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial/Node2D"]
+z_index = 10
+offset_left = -8991.0
+offset_top = -2569.0
+offset_right = -5919.0
+offset_bottom = 1399.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="A" type="Sprite2D" parent="Tutorial/Node2D"]
+modulate = Color(0.389287, 0.389287, 0.389287, 1)
+position = Vector2(-7330.11, -452.413)
+scale = Vector2(0.814786, 0.814786)
+texture = ExtResource("25_kgv0g")
+
+[node name="D" type="Sprite2D" parent="Tutorial/Node2D"]
+position = Vector2(-7045.11, -395.913)
+scale = Vector2(0.792645, 0.792645)
+texture = ExtResource("26_qdxuq")
+
+[node name="Space" type="Sprite2D" parent="Tutorial/Node2D"]
+visible = false
+modulate = Color(1, 1, 1, 0.462745)
+position = Vector2(-2460, -114)
+scale = Vector2(0.497201, 0.497201)
+texture = ExtResource("27_6on70")
+
+[node name="NPC" parent="." node_paths=PackedStringArray("npc_sprite") instance=ExtResource("28_eldmr")]
+position = Vector2(-3456, -167)
+dialogue_file = "res://assets/dialogue/upwell dialogue - dadmvp4.csv"
+faces_you_during_dialogue = true
+npc_sprite = NodePath("AnimatedSprite2D")
+
+[node name="Nodule" parent="NPC" index="2"]
+position = Vector2(-105, -217)
+
+[node name="DialogueStandLocation" parent="NPC" index="3"]
+disabled = true
+
+[node name="CollisionShape2D" parent="NPC/DialogueStandLocation" index="0"]
+disabled = true
+
+[node name="DialogueStandLocation2" parent="NPC" index="4"]
+position = Vector2(276, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NPC"]
+sprite_frames = SubResource("SpriteFrames_bokmx")
+animation = &"cross_arms"
+offset = Vector2(41.46, 0)
+
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("28_bo6j8")]
+position = Vector2(-2560, -256)
+camera = NodePath("../MainCamera")
+
+[node name="MainCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("29_8bf22")]
+position = Vector2(-2176, 0)
+player = NodePath("../Player")
+
+[connection signal="body_entered" from="LEVEL/EntranceSwitcherArea" to="LEVEL/EntranceSwitcherArea" method="_on_body_entered"]
+
+[editable path="NPC"]
