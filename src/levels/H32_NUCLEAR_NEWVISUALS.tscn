@@ -18,7 +18,7 @@ position = Vector2(-2594, -378)
 player = NodePath("../Player")
 
 [node name="EmptyPod" parent="." instance=ExtResource("4_tyqaw")]
-position = Vector2(3968, -384)
+position = Vector2(0, 256)
 entry_number = 1
 
 [node name="EmptyPod2" parent="." instance=ExtResource("4_tyqaw")]
