@@ -15,8 +15,9 @@ script = ExtResource("1_5wj68")
 
 [node name="Pod" parent="." instance=ExtResource("3_t6iyq")]
 
-[node name="Player" parent="." instance=ExtResource("4_aavje")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("4_aavje")]
 position = Vector2(0, -256)
+camera = NodePath("../MainCamera")
 
 [node name="MainCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_gj13g")]
 player = NodePath("../Player")
