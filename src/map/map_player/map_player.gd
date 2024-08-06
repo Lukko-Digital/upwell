@@ -105,9 +105,11 @@ func handle_artificial_gravity(active_ag: ArtificialGravity, delta) -> Gravitize
 
 ## called once when you start travelling
 func start_travel() -> void:
-	if moving:
-		return
-	if is_destination_reached():
+	if (
+		moving or
+		destination == null or
+		is_destination_reached()
+	):
 		return
 	
 	moving = true
