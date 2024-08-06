@@ -1,5 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://dltpg108effdh"]
+[gd_scene load_steps=23 format=3 uid="uid://dltpg108effdh"]
 
+[ext_resource type="Script" path="res://src/map/map_player/map_ui.gd" id="1_7y0mi"]
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="1_jfwm8"]
 [ext_resource type="Texture2D" uid="uid://b1tya4oq7twf2" path="res://assets/ui/map/focus.png" id="2_bj0n5"]
 [ext_resource type="Texture2D" uid="uid://dy02yd3yonudp" path="res://assets/ui/map/log/backer.png" id="3_18sc1"]
@@ -345,6 +346,7 @@ _data = {
 layer = 0
 scale = Vector2(0.5, 0.5)
 transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
+script = ExtResource("1_7y0mi")
 
 [node name="FocusTexture" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.513726)
@@ -415,7 +417,6 @@ fit_content = true
 autowrap_mode = 0
 
 [node name="TextBacker" type="TextureRect" parent="."]
-visible = false
 material = SubResource("CanvasItemMaterial_bg83i")
 offset_left = 2570.0
 offset_top = 312.0
@@ -426,9 +427,9 @@ texture = ExtResource("3_18sc1")
 [node name="VBoxContainer" type="VBoxContainer" parent="TextBacker"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-offset_left = 110.0
-offset_top = 108.0
-offset_right = 1050.0
+offset_left = 78.0
+offset_top = 104.0
+offset_right = 1064.0
 offset_bottom = 1484.0
 
 [node name="TravelButton" type="TextureButton" parent="TextBacker/VBoxContainer"]
@@ -446,11 +447,10 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = 110
-theme_override_constants/margin_top = 115
-theme_override_constants/margin_right = 110
+theme_override_constants/margin_top = 60
 
 [node name="LogLabel" type="RichTextLabel" parent="TextBacker/VBoxContainer/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
