@@ -1,24 +1,24 @@
-[gd_scene load_steps=30 format=3 uid="uid://bt2ai7u4bya2h"]
+[gd_scene load_steps=28 format=3 uid="uid://bt2ai7u4bya2h"]
 
 [ext_resource type="PackedScene" uid="uid://dmpdh7xn4glcr" path="res://src/screen_puzzles/puzzle_elements/screen_player.tscn" id="1_nlhq3"]
+[ext_resource type="PackedScene" uid="uid://bvkim1x1vvm81" path="res://src/screen_puzzles/ui/screen_puzzle_ui.tscn" id="1_ocoog"]
 [ext_resource type="PackedScene" uid="uid://bb6ywkvlv608d" path="res://src/screen_puzzles/puzzle_elements/screen_ag.tscn" id="2_a5mxd"]
-[ext_resource type="Texture2D" uid="uid://b868h5dr15cxm" path="res://assets/mvp3_assets/screenpuzzle/lineblocker.png" id="3_uwyd1"]
-[ext_resource type="Texture2D" uid="uid://dhw7wq51its7p" path="res://assets/mvp3_assets/screenpuzzle/layout.png" id="4_ge2ka"]
-[ext_resource type="Texture2D" uid="uid://cl1p7ygvq4qg" path="res://assets/mvp3_assets/screenpuzzle/text_backer.png" id="5_lrrwv"]
-[ext_resource type="Texture2D" uid="uid://ba863aqwujv2p" path="res://assets/mvp3_assets/screenpuzzle/file.png" id="6_sda5p"]
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="7_uaham"]
 [ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="8_1aqre"]
 [ext_resource type="PackedScene" uid="uid://c1fatgffin6hd" path="res://src/screen_puzzles/puzzle_elements/screen_core.tscn" id="9_dn3uw"]
+[ext_resource type="Texture2D" uid="uid://ixonxlg6v01d" path="res://assets/ui/map/fuel pockets/1.png" id="9_g08oe"]
 [ext_resource type="Texture2D" uid="uid://cpv6a32q343av" path="res://assets/mvp3_assets/clicker_glow.png" id="10_bp1l7"]
+[ext_resource type="Texture2D" uid="uid://u0jvbltuopk2" path="res://assets/ui/map/fuel pockets/6.png" id="11_b4bpb"]
 [ext_resource type="PackedScene" uid="uid://dei1bl8astem7" path="res://src/screen_puzzles/puzzle_elements/screen_button_boost.tscn" id="11_u3nd4"]
+[ext_resource type="Texture2D" uid="uid://wmhlvsrvcevl" path="res://assets/ui/map/hazards/6.png" id="12_movw1"]
 [ext_resource type="Texture2D" uid="uid://cu2hfokgxd4pw" path="res://assets/ui/map/destination.png" id="12_wg6ak"]
 [ext_resource type="PackedScene" uid="uid://d3nl8jv07w2yg" path="res://src/screen_puzzles/puzzle_elements/screen_hazard.tscn" id="13_40emf"]
+[ext_resource type="Texture2D" uid="uid://d01trwjo1aulc" path="res://assets/ui/map/hazards/1.png" id="13_picw1"]
+[ext_resource type="Script" path="res://src/screen_puzzles/puzzle_elements/button_home_handler.gd" id="14_h8mb8"]
 [ext_resource type="PackedScene" uid="uid://xiabu6v8kd6w" path="res://src/screen_puzzles/puzzle_elements/screen_power_up.tscn" id="14_r2p6n"]
 [ext_resource type="PackedScene" uid="uid://bdt2psjmwjsy6" path="res://src/screen_puzzles/puzzle_elements/screen_button_orbit.tscn" id="15_0ogu6"]
-[ext_resource type="Texture2D" uid="uid://b7eu5arya2jop" path="res://assets/ui/map/old/fuel/fuel_1.png" id="15_cqr80"]
+[ext_resource type="Texture2D" uid="uid://urcj8q4otmsh" path="res://assets/ui/map/fuel pockets/8.png" id="15_jm1h3"]
 [ext_resource type="PackedScene" uid="uid://bwbpi60st6gme" path="res://src/screen_puzzles/puzzle_elements/screen_button_unorbit.tscn" id="16_yvjcm"]
-[ext_resource type="Texture2D" uid="uid://cshgupmhysmp3" path="res://assets/ui/map/old/hazards/hazard_1.png" id="17_rm1to"]
-[ext_resource type="Texture2D" uid="uid://dawuvaani7htj" path="res://assets/ui/map/old/hazards/hazard_3.png" id="19_qi0yw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ekmx7"]
 radius = 169.224
@@ -26,12 +26,12 @@ radius = 169.224
 [sub_resource type="CircleShape2D" id="CircleShape2D_51swq"]
 radius = 130.266
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4sw1n"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8xjuw"]
 blend_mode = 1
 
-[sub_resource type="FontVariation" id="FontVariation_bfd18"]
+[sub_resource type="FontVariation" id="FontVariation_by2b5"]
 base_font = ExtResource("7_uaham")
-variation_embolden = 0.87
+variation_embolden = 1.71
 
 [sub_resource type="FontVariation" id="FontVariation_i82gr"]
 base_font = ExtResource("7_uaham")
@@ -45,141 +45,79 @@ variation_embolden = 0.87
 base_font = ExtResource("8_1aqre")
 variation_embolden = 1.85
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tk24l"]
-size = Vector2(1763, 1481)
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8xjuw"]
-blend_mode = 1
-
-[sub_resource type="FontVariation" id="FontVariation_by2b5"]
-base_font = ExtResource("7_uaham")
-variation_embolden = 1.71
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7crrq"]
+size = Vector2(2231, 1580)
 
 [node name="ScreenPuzzle" type="Node2D"]
 
-[node name="ColorRect4" type="ColorRect" parent="."]
-offset_left = -1958.0
-offset_top = -1115.0
-offset_right = 1944.0
-offset_bottom = 1108.0
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
+[node name="ScreenPuzzleUI" parent="." instance=ExtResource("1_ocoog")]
+metadata/_edit_lock_ = true
+
+[node name="Background" parent="ScreenPuzzleUI" index="0"]
+metadata/_edit_lock_ = true
+
+[node name="Focus" parent="ScreenPuzzleUI" index="1"]
+metadata/_edit_lock_ = true
+
+[node name="Lineblocker" parent="ScreenPuzzleUI" index="2"]
+metadata/_edit_lock_ = true
+
+[node name="LaunchButton" parent="ScreenPuzzleUI/BottomBar" index="0"]
+metadata/_edit_lock_ = true
+
+[node name="Win" parent="ScreenPuzzleUI" index="9"]
 metadata/_edit_lock_ = true
 
 [node name="ScreenPlayer" parent="." instance=ExtResource("1_nlhq3")]
-position = Vector2(93, 404)
-STARTING_POWER = 800.0
+unique_name_in_owner = true
+position = Vector2(93.9983, 551.913)
 
 [node name="ScreenAG4" parent="." instance=ExtResource("2_a5mxd")]
-position = Vector2(-1363.62, -174.597)
+position = Vector2(-1362.62, -26.6838)
 scale = Vector2(1.57597, 1.57597)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenAG4"]
 shape = SubResource("CircleShape2D_ekmx7")
 
 [node name="ScreenAG3" parent="." instance=ExtResource("2_a5mxd")]
-position = Vector2(-737, 242)
+position = Vector2(-736.002, 389.913)
 scale = Vector2(1.57597, 1.57597)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenAG3"]
 shape = SubResource("CircleShape2D_51swq")
 
 [node name="ScreenAG2" parent="." instance=ExtResource("2_a5mxd")]
-position = Vector2(-9, -370.732)
+position = Vector2(-8.00171, -222.819)
 scale = Vector2(1.57597, 1.57597)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenAG2"]
 shape = SubResource("CircleShape2D_51swq")
 
-[node name="Lineblocker" type="Sprite2D" parent="."]
-texture = ExtResource("3_uwyd1")
-metadata/_edit_lock_ = true
+[node name="ScreenAG5" parent="." instance=ExtResource("2_a5mxd")]
+position = Vector2(-497.002, -421.087)
+scale = Vector2(1.57597, 1.57597)
 
-[node name="Layout" type="Sprite2D" parent="."]
-position = Vector2(-14, 10)
-texture = ExtResource("4_ge2ka")
-metadata/_edit_lock_ = true
-
-[node name="TextBacker" type="Sprite2D" parent="."]
-modulate = Color(0.735926, 0.331098, 9.62615e-08, 1)
-material = SubResource("CanvasItemMaterial_4sw1n")
-position = Vector2(1101, 47)
-texture = ExtResource("5_lrrwv")
-
-[node name="ColorRect3" type="ColorRect" parent="."]
-offset_left = 592.0
-offset_top = -878.0
-offset_right = 1598.0
-offset_bottom = 620.0
-mouse_filter = 2
-color = Color(0.2, 0.2, 0.2, 0)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect3/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="ColorRect3/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("6_sda5p")
-
-[node name="TextureRect2" type="TextureRect" parent="ColorRect3/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("6_sda5p")
-
-[node name="ColorRect" type="ColorRect" parent="ColorRect3/VBoxContainer"]
-custom_minimum_size = Vector2(0, 110)
-layout_mode = 2
-color = Color(1, 1, 1, 0)
-
-[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect3/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect3/VBoxContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = SubResource("FontVariation_bfd18")
-theme_override_fonts/bold_font = SubResource("FontVariation_i82gr")
-theme_override_fonts/italics_font = SubResource("FontVariation_2ws21")
-theme_override_fonts/bold_italics_font = SubResource("FontVariation_ye6m0")
-theme_override_font_sizes/normal_font_size = 50
-theme_override_font_sizes/bold_font_size = 50
-theme_override_font_sizes/italics_font_size = 50
-theme_override_font_sizes/bold_italics_font_size = 50
-theme_override_font_sizes/mono_font_size = 50
-bbcode_enabled = true
-text = "
-
-[center][b][i][bgcolor=993e00][color=ffaa4f]FILEPATH MISSING[/color][/bgcolor][/i][/b][/center]"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenAG5"]
+shape = SubResource("CircleShape2D_51swq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0.998291, 147.913)
 zoom = Vector2(0.5, 0.5)
 
-[node name="PlaceableArea" type="Area2D" parent="."]
-visible = false
-collision_layer = 64
-collision_mask = 64
+[node name="Destination" type="Sprite2D" parent="."]
+position = Vector2(-8.00171, -222.819)
+scale = Vector2(0.674132, 0.674132)
+texture = ExtResource("12_wg6ak")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaceableArea"]
-position = Vector2(-700.5, 15.5)
-shape = SubResource("RectangleShape2D_tk24l")
-
-[node name="ScreenCore" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("9_dn3uw")]
+[node name="ScreenCore" parent="Destination" node_paths=PackedStringArray("folder_button") instance=ExtResource("9_dn3uw")]
 visible = false
-position = Vector2(-10.0001, -371)
+offset_left = -28.1819
+offset_top = -26.9698
+offset_right = 102.818
+offset_bottom = 79.0302
 scale = Vector2(0.541947, 0.541947)
-label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
 text = "
-[center][color=ffaa4f][b]RECORDING STARTED[/b]
+[center][b]RECORDING STARTED[/b]
 
 
 the controls are the same
@@ -189,20 +127,27 @@ in real time
 
 
 
-[center][b]RECORDING STOPPED[/b][/center][/color]"
-indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect2")
-glow = NodePath("../ClickerGlow")
+[center][b]RECORDING STOPPED[/b][/center]"
+folder_button = NodePath("../../ScreenPuzzleUI/FolderBacker/MarginContainer/FoldersContainer/FolderButton2")
 
-[node name="ScreenCore2" parent="." node_paths=PackedStringArray("label", "indicator", "glow") instance=ExtResource("9_dn3uw")]
+[node name="Destination2" type="Sprite2D" parent="."]
+modulate = Color(0.892185, 0.389121, 7.70092e-07, 1)
+material = SubResource("CanvasItemMaterial_8xjuw")
+position = Vector2(-1367.62, -33.6838)
+scale = Vector2(2.3901, 2.3901)
+texture = ExtResource("12_wg6ak")
+
+[node name="ScreenCore2" parent="Destination2" node_paths=PackedStringArray("folder_button") instance=ExtResource("9_dn3uw")]
 visible = false
-position = Vector2(-1360, -182)
-scale = Vector2(1.04016, 1.22542)
-label = NodePath("../ColorRect3/VBoxContainer/ScrollContainer/RichTextLabel")
+offset_left = -25.2627
+offset_top = -25.6906
+offset_right = 105.737
+offset_bottom = 80.3094
+scale = Vector2(0.417425, 0.495542)
 text = "
 
-[center][color=ffaa4f]come find us[/color][/center]"
-indicator = NodePath("../ColorRect3/VBoxContainer/HBoxContainer/TextureRect")
-glow = NodePath("../ClickerGlow")
+[center]come find us[/center]"
+folder_button = NodePath("../../ScreenPuzzleUI/FolderBacker/MarginContainer/FoldersContainer/FolderButton")
 
 [node name="ClickerGlow" type="Sprite2D" parent="."]
 visible = false
@@ -210,23 +155,11 @@ position = Vector2(787, -943)
 scale = Vector2(2, 2)
 texture = ExtResource("10_bp1l7")
 
-[node name="Destination" type="Sprite2D" parent="."]
-position = Vector2(-9, -370.732)
-scale = Vector2(0.674132, 0.674132)
-texture = ExtResource("12_wg6ak")
-
-[node name="Destination2" type="Sprite2D" parent="."]
-modulate = Color(0.892185, 0.389121, 7.70092e-07, 1)
-material = SubResource("CanvasItemMaterial_8xjuw")
-position = Vector2(-1368.62, -181.597)
-scale = Vector2(2.3901, 2.3901)
-texture = ExtResource("12_wg6ak")
-
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = -134.0
-offset_top = -330.732
-offset_right = 225.0
-offset_bottom = -260.732
+offset_left = -133.002
+offset_top = -182.819
+offset_right = 225.998
+offset_bottom = -112.819
 scale = Vector2(0.78, 0.78)
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -244,10 +177,10 @@ bbcode_enabled = true
 text = "004.RELAPSE"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
-offset_left = -1437.62
-offset_top = -70.5969
-offset_right = -1078.62
-offset_bottom = -0.596924
+offset_left = -1445.0
+offset_top = 76.9132
+offset_right = -1086.0
+offset_bottom = 146.913
 scale = Vector2(0.78, 0.78)
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -265,127 +198,90 @@ bbcode_enabled = true
 text = "UNKNOWN"
 
 [node name="Fuel2" type="Sprite2D" parent="."]
-position = Vector2(-622, -112)
-scale = Vector2(0.479572, 0.479572)
-texture = ExtResource("15_cqr80")
-
-[node name="ScreenPowerUp2" parent="Fuel2" instance=ExtResource("14_r2p6n")]
 visible = false
-position = Vector2(2.08521, 6.25558)
-scale = Vector2(1.49555, 1.49555)
+position = Vector2(-621.002, 35.9132)
+scale = Vector2(0.479572, 0.479572)
+texture = ExtResource("9_g08oe")
 
 [node name="Fuel1" type="Sprite2D" parent="."]
-position = Vector2(-1056, 74)
-scale = Vector2(0.479572, 0.479572)
-texture = ExtResource("15_cqr80")
-
-[node name="ScreenPowerUp6" parent="Fuel1" instance=ExtResource("14_r2p6n")]
 visible = false
-position = Vector2(2.08521, 6.25557)
-scale = Vector2(1.49555, 1.49555)
+position = Vector2(-1055, 221.913)
+scale = Vector2(0.741441, 0.741441)
+texture = ExtResource("11_b4bpb")
+
+[node name="Fuel3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-203.002, -436.087)
+scale = Vector2(0.596015, 0.596015)
+texture = ExtResource("15_jm1h3")
+
+[node name="ScreenPowerUp2" parent="." instance=ExtResource("14_r2p6n")]
+position = Vector2(-624, 30)
+scale = Vector2(0.602, 0.602)
+
+[node name="ScreenPowerUp3" parent="." instance=ExtResource("14_r2p6n")]
+position = Vector2(-201.759, -432.358)
+scale = Vector2(0.602, 0.602)
+
+[node name="ScreenPowerUp6" parent="." instance=ExtResource("14_r2p6n")]
+position = Vector2(-1048, 227)
+scale = Vector2(0.602, 0.602)
 
 [node name="Hazard1" type="Sprite2D" parent="."]
-position = Vector2(-908, -447)
-rotation = 2.4892
-texture = ExtResource("17_rm1to")
+position = Vector2(-955.002, -199.087)
+rotation = 1.6035
+scale = Vector2(0.445695, 0.445695)
+texture = ExtResource("12_movw1")
 
 [node name="ScreenHazard2" parent="Hazard1" instance=ExtResource("13_40emf")]
 visible = false
-position = Vector2(2, 9)
-rotation = 3.14159
-scale = Vector2(2.80079, 3.75278)
-
-[node name="ScreenButtonBoost" parent="." instance=ExtResource("11_u3nd4")]
-position = Vector2(-592, 780)
-scale = Vector2(0.64, 0.64)
-
-[node name="ScreenButtonOrbit" parent="." instance=ExtResource("15_0ogu6")]
-position = Vector2(-758, 778)
-scale = Vector2(0.64, 0.64)
-
-[node name="ScreenButtonOrbit2" parent="." instance=ExtResource("15_0ogu6")]
-position = Vector2(-422, 776)
-scale = Vector2(0.64, 0.64)
-
-[node name="ScreenButtonBoost2" parent="." instance=ExtResource("11_u3nd4")]
-position = Vector2(-250, 778)
-scale = Vector2(0.64, 0.64)
-
-[node name="ScreenButtonUnorbit" parent="." instance=ExtResource("16_yvjcm")]
-position = Vector2(-921, 779)
-scale = Vector2(0.64, 0.64)
-
-[node name="ScreenAG5" parent="." instance=ExtResource("2_a5mxd")]
-position = Vector2(-498, -569)
-scale = Vector2(1.57597, 1.57597)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenAG5"]
-shape = SubResource("CircleShape2D_51swq")
+position = Vector2(-266.154, -38.4351)
+rotation = -3.03191
+scale = Vector2(6.83811, 4.94252)
 
 [node name="Hazard2" type="Sprite2D" parent="."]
-position = Vector2(-269, 43)
-rotation = 1.52011
-scale = Vector2(1.18242, 1.18242)
-texture = ExtResource("19_qi0yw")
+z_index = -1
+position = Vector2(-314.002, 120.913)
+rotation = 1.91912
+scale = Vector2(0.954473, 0.954473)
+texture = ExtResource("13_picw1")
 
-[node name="ScreenHazard2" parent="Hazard2" instance=ExtResource("13_40emf")]
+[node name="ScreenHazard3" parent="Hazard2" instance=ExtResource("13_40emf")]
 visible = false
-position = Vector2(2, 9)
-rotation = 1.38055
-scale = Vector2(2.28516, 3.46615)
+position = Vector2(73.0823, -93.417)
+rotation = 0.358278
+scale = Vector2(2.13486, 3.02749)
 
-[node name="Fuel3" type="Sprite2D" parent="."]
-position = Vector2(-204, -584)
-scale = Vector2(0.289543, 0.289543)
-texture = ExtResource("15_cqr80")
+[node name="ButtonHomeHandler" type="Node2D" parent="." node_paths=PackedStringArray("puzzle_bar")]
+script = ExtResource("14_h8mb8")
+puzzle_bar = NodePath("../ScreenPuzzleUI/BottomBar")
 
-[node name="ScreenPowerUp2" parent="Fuel3" instance=ExtResource("14_r2p6n")]
-visible = false
-position = Vector2(2.08521, 6.25558)
-scale = Vector2(1.49555, 1.49555)
-
-[node name="ScreenButtonOrbit3" parent="." instance=ExtResource("15_0ogu6")]
+[node name="ScreenButtonOrbit3" parent="ButtonHomeHandler" instance=ExtResource("15_0ogu6")]
 position = Vector2(-1093, 776)
-scale = Vector2(0.64, 0.64)
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="."]
-offset_left = 809.0
-offset_top = -929.0
-offset_right = 1168.0
-offset_bottom = -859.0
-scale = Vector2(0.78, 0.78)
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_colors/default_color = Color(1, 1, 1, 0.529412)
-theme_override_fonts/normal_font = SubResource("FontVariation_by2b5")
-theme_override_fonts/bold_font = SubResource("FontVariation_i82gr")
-theme_override_fonts/italics_font = SubResource("FontVariation_2ws21")
-theme_override_fonts/bold_italics_font = SubResource("FontVariation_ye6m0")
-theme_override_font_sizes/normal_font_size = 50
-theme_override_font_sizes/bold_font_size = 50
-theme_override_font_sizes/italics_font_size = 50
-theme_override_font_sizes/bold_italics_font_size = 50
-theme_override_font_sizes/mono_font_size = 50
-bbcode_enabled = true
-text = "RELAPSE"
+[node name="ScreenButtonBoost" parent="ButtonHomeHandler" instance=ExtResource("11_u3nd4")]
+position = Vector2(-592, 780)
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="."]
-offset_left = 602.0
-offset_top = -929.0
-offset_right = 961.0
-offset_bottom = -859.0
-scale = Vector2(0.78, 0.78)
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_colors/default_color = Color(1, 1, 1, 0.529412)
-theme_override_fonts/normal_font = SubResource("FontVariation_by2b5")
-theme_override_fonts/bold_font = SubResource("FontVariation_i82gr")
-theme_override_fonts/italics_font = SubResource("FontVariation_2ws21")
-theme_override_fonts/bold_italics_font = SubResource("FontVariation_ye6m0")
-theme_override_font_sizes/normal_font_size = 50
-theme_override_font_sizes/bold_font_size = 50
-theme_override_font_sizes/italics_font_size = 50
-theme_override_font_sizes/bold_italics_font_size = 50
-theme_override_font_sizes/mono_font_size = 50
-bbcode_enabled = true
-text = "UNKNOWN"
+[node name="ScreenButtonOrbit" parent="ButtonHomeHandler" instance=ExtResource("15_0ogu6")]
+position = Vector2(-758, 778)
+
+[node name="ScreenButtonOrbit2" parent="ButtonHomeHandler" instance=ExtResource("15_0ogu6")]
+position = Vector2(-422, 776)
+
+[node name="ScreenButtonBoost2" parent="ButtonHomeHandler" instance=ExtResource("11_u3nd4")]
+position = Vector2(-250, 778)
+
+[node name="ScreenButtonUnorbit" parent="ButtonHomeHandler" instance=ExtResource("16_yvjcm")]
+position = Vector2(-921, 779)
+
+[node name="PlaceableArea" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 64
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaceableArea"]
+visible = false
+position = Vector2(-581.5, -34)
+shape = SubResource("RectangleShape2D_7crrq")
+
+[editable path="ScreenPuzzleUI"]
