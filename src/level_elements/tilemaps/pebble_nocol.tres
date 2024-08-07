@@ -1,9 +1,9 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://5mpfnuqclqyj"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://c6v7o3nui0rss"]
 
-[ext_resource type="Texture2D" uid="uid://cdct52hdbedy6" path="res://assets/environment/tree_roof/pebbles_TM_2.png" id="1_iv4ra"]
+[ext_resource type="Texture2D" uid="uid://cdct52hdbedy6" path="res://assets/environment/tree_roof/pebbles_TM_2.png" id="1_26igj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dphtn"]
-texture = ExtResource("1_iv4ra")
+texture = ExtResource("1_26igj")
 texture_region_size = Vector2i(128, 128)
 0:11/size_in_atlas = Vector2i(4, 4)
 0:11/0 = 0
@@ -129,6 +129,7 @@ texture_region_size = Vector2i(128, 128)
 
 [resource]
 tile_size = Vector2i(128, 128)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 0
+physics_layer_0/collision_mask = 0
 terrain_set_0/mode = 0
 sources/2 = SubResource("TileSetAtlasSource_dphtn")
