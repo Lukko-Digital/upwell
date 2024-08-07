@@ -342,11 +342,14 @@ _data = {
 "neutral": SubResource("Animation_vn8l2")
 }
 
-[node name="MapUI" type="CanvasLayer"]
+[node name="MapUI" type="CanvasLayer" node_paths=PackedStringArray("fuel_launch_label", "trajectory_launch_label", "log_label")]
 layer = 0
 scale = Vector2(0.5, 0.5)
 transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 script = ExtResource("1_7y0mi")
+fuel_launch_label = NodePath("TextBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer/FuelLaunchLabel")
+trajectory_launch_label = NodePath("TextBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer/TrajectoryLaunchLabel")
+log_label = NodePath("TextBacker/TravelInfoContainer/ScrollContainer/MarginContainer/LogLabel")
 
 [node name="FocusTexture" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.513726)
@@ -425,33 +428,93 @@ offset_bottom = 1936.0
 mouse_filter = 0
 texture = ExtResource("3_18sc1")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TextBacker"]
+[node name="TravelInfoContainer" type="VBoxContainer" parent="TextBacker"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-offset_left = 78.0
+offset_left = 102.0
 offset_top = 104.0
-offset_right = 1064.0
+offset_right = 1040.0
 offset_bottom = 1484.0
 
-[node name="LaunchButton" type="TextureButton" parent="TextBacker/VBoxContainer"]
-custom_minimum_size = Vector2(500, 100)
+[node name="TopSectionContainer" type="HBoxContainer" parent="TextBacker/TravelInfoContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+
+[node name="LaunchDetailsContainer" type="VBoxContainer" parent="TextBacker/TravelInfoContainer/TopSectionContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 35
+alignment = 1
+
+[node name="Header" type="RichTextLabel" parent="TextBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_q6uck")
+theme_override_fonts/bold_font = SubResource("FontVariation_whvip")
+theme_override_fonts/italics_font = SubResource("FontVariation_j0s38")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_mjnts")
+theme_override_font_sizes/normal_font_size = 60
+theme_override_font_sizes/bold_font_size = 60
+theme_override_font_sizes/italics_font_size = 60
+theme_override_font_sizes/bold_italics_font_size = 60
+theme_override_font_sizes/mono_font_size = 60
+bbcode_enabled = true
+text = "[b]DETAILS:[/b]"
+fit_content = true
+shortcut_keys_enabled = false
+
+[node name="FuelLaunchLabel" type="RichTextLabel" parent="TextBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_q6uck")
+theme_override_fonts/bold_font = SubResource("FontVariation_whvip")
+theme_override_fonts/italics_font = SubResource("FontVariation_j0s38")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_mjnts")
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/bold_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+theme_override_font_sizes/bold_italics_font_size = 35
+theme_override_font_sizes/mono_font_size = 35
+bbcode_enabled = true
+text = "Fuel consumption is low"
+fit_content = true
+shortcut_keys_enabled = false
+
+[node name="TrajectoryLaunchLabel" type="RichTextLabel" parent="TextBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_q6uck")
+theme_override_fonts/bold_font = SubResource("FontVariation_whvip")
+theme_override_fonts/italics_font = SubResource("FontVariation_j0s38")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_mjnts")
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/bold_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+theme_override_font_sizes/bold_italics_font_size = 35
+theme_override_font_sizes/mono_font_size = 35
+bbcode_enabled = true
+text = "Trajectory is unblocked."
+fit_content = true
+shortcut_keys_enabled = false
+
+[node name="LaunchButton" type="TextureButton" parent="TextBacker/TravelInfoContainer/TopSectionContainer"]
+layout_mode = 2
 texture_normal = ExtResource("6_itkhn")
 stretch_mode = 5
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TextBacker/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TextBacker/TravelInfoContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="TextBacker/VBoxContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TextBacker/TravelInfoContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_top = 60
 
-[node name="LogLabel" type="RichTextLabel" parent="TextBacker/VBoxContainer/ScrollContainer/MarginContainer"]
-unique_name_in_owner = true
+[node name="LogLabel" type="RichTextLabel" parent="TextBacker/TravelInfoContainer/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -467,15 +530,17 @@ theme_override_font_sizes/italics_font_size = 50
 theme_override_font_sizes/bold_italics_font_size = 50
 theme_override_font_sizes/mono_font_size = 50
 bbcode_enabled = true
-text = "[center][b]LOCATION DETAILS[/b]
+text = "[b]FRUAD'S STATEMENT[/b]
+[ul]
+Fraud denied cooperation with the scouts before his initiation
+Mentioned some sort of innate ability of the pod to orbit like a node
+[/ul]
 
--bla bla bla
-
-
-bla bla bla bla
-
-
-read this later"
+[b]STRANGE RUINS[/b]
+[ul]
+Broken rocks on the north side of RELEASE contain a strange code: 001011
+[/ul]
+"
 shortcut_keys_enabled = false
 
 [node name="MapAnimationPlayer" type="AnimationPlayer" parent="."]
@@ -486,6 +551,6 @@ libraries = {
 autoplay = "neutral"
 
 [connection signal="gui_input" from="TextBacker" to="." method="_on_text_backer_gui_input"]
-[connection signal="mouse_entered" from="TextBacker/VBoxContainer/LaunchButton" to="." method="_on_launch_button_mouse_entered"]
-[connection signal="mouse_exited" from="TextBacker/VBoxContainer/LaunchButton" to="." method="_on_launch_button_mouse_exited"]
-[connection signal="pressed" from="TextBacker/VBoxContainer/LaunchButton" to="." method="_on_launch_button_pressed"]
+[connection signal="mouse_entered" from="TextBacker/TravelInfoContainer/TopSectionContainer/LaunchButton" to="." method="_on_launch_button_mouse_entered"]
+[connection signal="mouse_exited" from="TextBacker/TravelInfoContainer/TopSectionContainer/LaunchButton" to="." method="_on_launch_button_mouse_exited"]
+[connection signal="pressed" from="TextBacker/TravelInfoContainer/TopSectionContainer/LaunchButton" to="." method="_on_launch_button_pressed"]

@@ -26,11 +26,14 @@ signal select_destination(location: Entrypoint)
 @export var grav_component: GravitizedComponent
 @export var destination_line: Line2D
 @export var boost_line: Line2D
+@export var collision_x: Sprite2D
+
+@export_category("Map UI Nodes")
+@export var map_ui: MapUI
 @export var map_animation_player: AnimationPlayer
 @export var location_info: TextureRect
 @export var energy_bar: ProgressBar
 @export var launch_button: TextureButton
-@export var collision_x: Sprite2D
 
 @onready var game: Game = get_tree().get_current_scene()
 @onready var starting_position: Vector2 = global_position
@@ -222,17 +225,17 @@ func location_selected(location: Entrypoint):
 
 	# Check for collisions, place x and color line if there is a collision
 	var collision = check_flight_path_clear(location)
-	if collision == null:
-		destination_line.modulate = Color.WHITE
-		collision_x.hide()
-	else:
-		destination_line.modulate = Color.RED
-		collision_x.global_position = collision
-		collision_x.show()
+	handle_flight_path_visuals(collision)
 
+	var vec_to_destination = destination.global_position - global_position
 	update_line(
 		destination_line,
-		(destination.global_position - global_position).limit_length(calculate_travellable_distance())
+		vec_to_destination.limit_length(calculate_travellable_distance())
+	)
+	map_ui.update_travel_info(
+		location,
+		collision == null,
+		vec_to_destination.length() / calculate_travellable_distance()
 	)
 	select_destination.emit(location)
 	location_info.show()
@@ -246,6 +249,17 @@ func location_deselected():
 	destination = null
 	destination_line.set_point_position(1, Vector2.ZERO)
 	select_destination.emit(null)
+
+## [collision] is [Vector2] or null
+func handle_flight_path_visuals(collision):
+	if collision == null:
+		destination_line.modulate = Color.WHITE
+		collision_x.hide()
+	else:
+		destination_line.modulate = Color.RED
+		collision_x.global_position = collision
+		collision_x.show()
+
 
 ## Returns the [Vector2] point of collision, or null if the path is clear
 func check_flight_path_clear(target: Entrypoint):
