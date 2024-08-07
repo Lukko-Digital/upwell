@@ -30,6 +30,7 @@ signal select_destination(location: Entrypoint)
 @export var location_info: TextureRect
 @export var energy_bar: ProgressBar
 @export var launch_button: TextureButton
+@export var collision_x: Sprite2D
 
 @onready var game: Game = get_tree().get_current_scene()
 @onready var starting_position: Vector2 = global_position
@@ -219,6 +220,16 @@ func location_selected(location: Entrypoint):
 
 	destination = location
 
+	# Check for collisions, place x and color line if there is a collision
+	var collision = check_flight_path_clear(location)
+	if collision == null:
+		destination_line.modulate = Color.WHITE
+		collision_x.hide()
+	else:
+		destination_line.modulate = Color.RED
+		collision_x.global_position = collision
+		collision_x.show()
+
 	update_line(
 		destination_line,
 		(destination.global_position - global_position).limit_length(calculate_travellable_distance())
@@ -231,9 +242,27 @@ func location_deselected():
 		return
 		
 	location_info.hide()
+	collision_x.hide()
 	destination = null
 	destination_line.set_point_position(1, Vector2.ZERO)
 	select_destination.emit(null)
+
+## Returns the [Vector2] point of collision, or null if the path is clear
+func check_flight_path_clear(target: Entrypoint):
+	const STEP_SIZE = 20
+	var world_physics := get_world_2d().direct_space_state
+	var query := PhysicsPointQueryParameters2D.new()
+	query.collide_with_areas = true
+	query.collision_mask = 1 # Layer 1
+	query.position = global_position
+	while query.position != target.global_position:
+		var query_result := world_physics.intersect_point(query)
+		var overlapping_areas = query_result.map(func(collision): return collision.collider)
+		for area: Area2D in overlapping_areas:
+			if area is MapLevel or area is Hazard:
+				return query.position
+		query.position = query.position.move_toward(target.global_position, STEP_SIZE)
+	return null
 
 ## ------------------------- DRAW LINE -------------------------
 

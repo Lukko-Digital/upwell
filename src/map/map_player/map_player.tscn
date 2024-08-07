@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d0rlssnvit7w4"]
+[gd_scene load_steps=15 format=3 uid="uid://d0rlssnvit7w4"]
 
 [ext_resource type="Script" path="res://src/map/map_player/map_player.gd" id="1_g3ols"]
 [ext_resource type="Texture2D" uid="uid://cb1ud4vqk0bd5" path="res://assets/ui/map/player_glow.png" id="2_dt38u"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://vr33qlvb418f" path="res://assets/ui/map/ring5.png" id="4_rs5vh"]
 [ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="6_jc7tl"]
 [ext_resource type="PackedScene" uid="uid://dltpg108effdh" path="res://src/map/map_player/map_ui.tscn" id="7_4nrud"]
+[ext_resource type="Texture2D" uid="uid://ckja0m6blyedr" path="res://assets/mvp3_assets/screenpuzzle/hazard.png" id="9_qmotc"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a7q01"]
 blend_mode = 1
@@ -24,7 +25,7 @@ radius = 808.557
 [sub_resource type="CircleShape2D" id="CircleShape2D_r58ii"]
 radius = 31.0161
 
-[node name="MapPlayer" type="Node2D" node_paths=PackedStringArray("collision_box", "grav_component", "destination_line", "boost_line", "map_animation_player", "location_info", "energy_bar", "launch_button")]
+[node name="MapPlayer" type="Node2D" node_paths=PackedStringArray("collision_box", "grav_component", "destination_line", "boost_line", "map_animation_player", "location_info", "energy_bar", "launch_button", "collision_x")]
 z_index = 1
 script = ExtResource("1_g3ols")
 collision_box = NodePath("PlayerBody")
@@ -35,6 +36,7 @@ map_animation_player = NodePath("MapUI/MapAnimationPlayer")
 location_info = NodePath("MapUI/TextBacker")
 energy_bar = NodePath("MapUI/Energy/EnergyBar")
 launch_button = NodePath("MapUI/TextBacker/VBoxContainer/LaunchButton")
+collision_x = NodePath("CollisionX")
 
 [node name="PlayerGlow" type="Sprite2D" parent="."]
 position = Vector2(-15, 2)
@@ -100,6 +102,13 @@ collision_mask = 4
 shape = SubResource("CircleShape2D_r58ii")
 
 [node name="MapUI" parent="." instance=ExtResource("7_4nrud")]
+
+[node name="CollisionX" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-225, 38)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_qmotc")
 
 [connection signal="area_entered" from="ScanArea" to="." method="_area_scanned"]
 
