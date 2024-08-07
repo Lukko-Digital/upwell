@@ -486,3 +486,6 @@ libraries = {
 autoplay = "neutral"
 
 [connection signal="gui_input" from="TextBacker" to="." method="_on_text_backer_gui_input"]
+[connection signal="mouse_entered" from="TextBacker/VBoxContainer/LaunchButton" to="." method="_on_launch_button_mouse_entered"]
+[connection signal="mouse_exited" from="TextBacker/VBoxContainer/LaunchButton" to="." method="_on_launch_button_mouse_exited"]
+[connection signal="pressed" from="TextBacker/VBoxContainer/LaunchButton" to="." method="_on_launch_button_pressed"]
