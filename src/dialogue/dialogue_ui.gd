@@ -45,6 +45,8 @@ const SPEECH_BUBBLE_OFFSET = Vector2(-60, -110)
 var active_dialogue_display: DialogueDisplay
 var current_speech_bubble: SpeechBubble
 var current_npc: NPC
+## Used to track and kill zombie [animate_display] instances
+var interaction_timestamp: int
 var next_branch: String
 var display_speed_coef = 1
 ## Boolean whether the player can hit [esc] to exit dialogue or not
@@ -63,6 +65,7 @@ func start_dialogue(npc: NPC, dir_to_npc: float):
 	fullscreen_display.hide()
 	show()
 	current_npc = npc
+	interaction_timestamp = Time.get_ticks_msec()
 	
 	# Spawn speech bubble
 	var instance = speech_bubble_scene.instantiate()
@@ -146,10 +149,17 @@ func animate_display(dialogue_line: String):
 	var bbcode_text = DialogueParser.strip_dialogue_commands(dialogue_line)
 	var idx = 0
 	var fade_counter = 0
+	active_dialogue_display.dialogue_label.parse_bbcode(
+		"[fade start=" + str(fade_counter - 2) + " length=2]" + active_dialogue_display.dialogue_label.text + "[/fade]"
+	)
+	var init_timestamp = interaction_timestamp
 	while idx < command_text.length():
-		# Exit if there is no current_npc. This will happen when the player
-		# exits dialogue prematurely via [esc].
-		if current_npc == null:
+		# Exit if the interaction timestamp changed from what it was when this
+		# function was instantiated. This will happen when the player exits
+		# dialogue prematurely via [esc]. This also covers the case of the
+		# player exiting dialogue during a {pause} and re-entering with the
+		# same npc on the same first line.
+		if init_timestamp != interaction_timestamp:
 			return
 
 		# Cancel this instance of display animation if text is mismatched
@@ -215,7 +225,7 @@ func calculate_wait_time(new_char: String, command_text: String, idx: int) -> fl
 		".":
 			# Don't slow down "..." as much
 			if next_char == ".":
-				return COMMA_PAUSE/2
+				return COMMA_PAUSE / 2
 			else:
 				return END_CHARACTER_PAUSE
 		"!", "?":
@@ -252,6 +262,7 @@ func clear_responses():
 func exit_dialogue():
 	current_npc.reset()
 	current_npc = null
+	interaction_timestamp = 0
 	hide()
 
 	# Despawn speech bubble
