@@ -20,12 +20,34 @@ class_name ParallaxCanvas
         parallax_layer = value
         update_configuration_warnings()
 
+## Treat this as a button and when you click it the sprites get renamed
+@export var rename_sprites: bool:
+    set(value):
+        if value:
+            update_sprite_grandchildren_name()
+
 func _ready() -> void:
     super()
     follow_viewport_enabled = true
     ## If parallax layer is set, override [UtilityCanvas] setting layer to 128
     if parallax_layer > 0:
         parallax_layer = parallax_layer
+    ## Connect enter tree signals for renaming sprite children
+    child_entered_tree.connect(_on_child_entered_tree)
+    for child in get_children():
+        child.child_entered_tree.connect(_on_grandchild_entered_tree)
+
+func update_sprite_grandchildren_name():
+    for child in get_children():
+        for grandchild in child.get_children():
+            if not grandchild is Sprite2D:
+                continue
+            rename_sprite(grandchild)
+    print("Sprites renamed")
+
+## Rename a sprite to [layer]_[texture name]
+func rename_sprite(sprite: Sprite2D):
+    sprite.name = name + "_" + sprite.texture.resource_path.get_file().get_basename()
 
 func _get_configuration_warnings() -> PackedStringArray:
     var warnings = []
@@ -34,3 +56,10 @@ func _get_configuration_warnings() -> PackedStringArray:
         warnings.append("Parallax Layer must be greater than 0")
 
     return warnings
+
+func _on_child_entered_tree(node: Node):
+    node.child_entered_tree.connect(_on_grandchild_entered_tree)
+
+func _on_grandchild_entered_tree(node: Node):
+    if node is Sprite2D:
+        rename_sprite(node)
