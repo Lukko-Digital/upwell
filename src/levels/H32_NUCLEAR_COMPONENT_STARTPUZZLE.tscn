@@ -137,6 +137,7 @@ follow_viewport_enabled = true
 follow_viewport_scale = 0.5
 script = ExtResource("7_lfki3")
 parallax_layer = 0.5
+rename_sprites = null
 
 [node name="Node2D2" type="Node2D" parent="-50"]
 modulate = Color(1, 0.897701, 0.650028, 1)
@@ -258,6 +259,7 @@ follow_viewport_enabled = true
 follow_viewport_scale = 0.8
 script = ExtResource("7_lfki3")
 parallax_layer = 0.8
+rename_sprites = null
 
 [node name="Node2D" type="Node2D" parent="-20"]
 modulate = Color(0.507982, 0.424367, 0.332158, 1)
@@ -372,6 +374,7 @@ follow_viewport_enabled = true
 follow_viewport_scale = 0.9
 script = ExtResource("7_lfki3")
 parallax_layer = 0.9
+rename_sprites = null
 updates_in_process = true
 
 [node name="Node2D" type="Node2D" parent="-10"]
@@ -534,6 +537,7 @@ follow_viewport_enabled = true
 follow_viewport_scale = 1.1
 script = ExtResource("7_lfki3")
 parallax_layer = 1.1
+rename_sprites = null
 
 [node name="Node2D" type="Node2D" parent="11"]
 
@@ -838,6 +842,7 @@ follow_viewport_enabled = true
 follow_viewport_scale = 1.4
 script = ExtResource("7_lfki3")
 parallax_layer = 1.4
+rename_sprites = null
 
 [node name="Node2D" type="Node2D" parent="14"]
 modulate = Color(0, 0, 0, 1)
@@ -876,6 +881,7 @@ follow_viewport_enabled = true
 follow_viewport_scale = 10.0
 script = ExtResource("7_lfki3")
 parallax_layer = 10.0
+rename_sprites = null
 
 [node name="Node2D" type="Node2D" parent="100"]
 modulate = Color(0, 0, 0, 1)
@@ -891,6 +897,7 @@ region_rect = Rect2(0, 799, 2709, 1186)
 layer = 128
 follow_viewport_enabled = true
 script = ExtResource("7_lfki3")
+rename_sprites = null
 
 [node name="TreeWhispers" type="Node2D" parent="NPCs" node_paths=PackedStringArray("player", "whisper1", "whisper1_end_location")]
 script = ExtResource("19_m2yrv")
@@ -938,6 +945,7 @@ layer = 128
 visible = false
 follow_viewport_enabled = true
 script = ExtResource("7_lfki3")
+rename_sprites = null
 updates_in_process = true
 
 [node name="CameraBounds" type="Node2D" parent="CameraBounds"]
