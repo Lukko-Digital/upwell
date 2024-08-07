@@ -462,6 +462,7 @@ bbcode_enabled = true
 text = "[b]DETAILS:[/b]"
 fit_content = true
 shortcut_keys_enabled = false
+visible_characters_behavior = 1
 
 [node name="FuelLaunchLabel" type="RichTextLabel" parent="TextBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer"]
 layout_mode = 2
@@ -480,6 +481,7 @@ bbcode_enabled = true
 text = "Fuel consumption is low"
 fit_content = true
 shortcut_keys_enabled = false
+visible_characters_behavior = 1
 
 [node name="TrajectoryLaunchLabel" type="RichTextLabel" parent="TextBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer"]
 layout_mode = 2
@@ -498,6 +500,7 @@ bbcode_enabled = true
 text = "Trajectory is unblocked."
 fit_content = true
 shortcut_keys_enabled = false
+visible_characters_behavior = 1
 
 [node name="LaunchButton" type="TextureButton" parent="TextBacker/TravelInfoContainer/TopSectionContainer"]
 layout_mode = 2

@@ -42,6 +42,10 @@ func update_travel_info(location: Entrypoint, path_clear: bool, fuel_consumption
 
     log_label.text = get_log_text(location)
 
+    animate_label_readout(fuel_launch_label, 1)
+    animate_label_readout(trajectory_launch_label, 1)
+    animate_label_readout(log_label, 5)
+
 func get_log_text(location: Entrypoint) -> String:
     var level: MapLevel = location.get_parent()
     var text = ""
@@ -53,6 +57,15 @@ func get_log_text(location: Entrypoint) -> String:
             num_undiscovered += 1
     text += UNDISCOVERED_TEXT.repeat(num_undiscovered)
     return text
+
+## [text_speed] is characters per frame
+func animate_label_readout(label: RichTextLabel, text_speed: int):
+    label.visible_characters = 0
+    # brief pause because it kinda feels good
+    await get_tree().create_timer(0.1).timeout
+    while label.visible_characters < label.get_parsed_text().length():
+        label.visible_characters += text_speed
+        await get_tree().process_frame
 
 func _on_text_backer_gui_input(event: InputEvent) -> void:
     if event is InputEventMouseButton:
