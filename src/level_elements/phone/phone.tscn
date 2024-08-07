@@ -202,8 +202,4 @@ disabled = true
 [node name="CollisionShape2D" parent="PhoneNPC/DialogueStandLocation2" index="0"]
 disabled = true
 
-[connection signal="input_event" from="Receiver/ReceiverArea" to="." method="_on_phone_area_input_event"]
-[connection signal="mouse_entered" from="Receiver/ReceiverArea" to="." method="_on_phone_area_mouse_entered"]
-[connection signal="mouse_exited" from="Receiver/ReceiverArea" to="." method="_on_phone_area_mouse_exited"]
-
 [editable path="PhoneNPC"]
