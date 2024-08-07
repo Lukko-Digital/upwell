@@ -20,6 +20,9 @@ class_name ParallaxCanvas
         parallax_layer = value
         update_configuration_warnings()
 
+## If true, don't apply modulation from sublevel's parallax modulate group
+@export var unique_modulate: bool = false
+
 ## Treat this as a button and when you click it the sprites get renamed
 @export var rename_sprites: bool:
     set(value):
@@ -36,6 +39,27 @@ func _ready() -> void:
     child_entered_tree.connect(_on_child_entered_tree)
     for child in get_children():
         child.child_entered_tree.connect(_on_grandchild_entered_tree)
+    ## Color children
+    set_child_modulate()
+
+## Check the [SubLevel] for parallax modulate data, modulate children if name
+## matches one of the data entries. Connect to the color changed signal of
+## [SubLevel] to keep updating color as it changes
+func set_child_modulate():
+    if unique_modulate:
+        return
+    var sublevel: SubLevel = get_parent()
+    var modulate_group: ParallaxModulateGroup = sublevel.parallax_modulate_group
+    if modulate_group == null:
+        return
+
+    for parallax_modulate: ParallaxModulate in modulate_group.modulate_data:
+        if name != parallax_modulate.parallax_layer:
+            continue
+        for child in get_children():
+            child.modulate = parallax_modulate.modulate
+
+    sublevel.parallax_modulate_color_changed.connect(_on_parallax_modulate_color_changed)
 
 func update_sprite_grandchildren_name():
     for child in get_children():
@@ -63,3 +87,10 @@ func _on_child_entered_tree(node: Node):
 func _on_grandchild_entered_tree(node: Node):
     if node is Sprite2D:
         rename_sprite(node)
+
+func _on_parallax_modulate_color_changed(layer_: String, modulate: Color):
+    if unique_modulate:
+        return
+    if name == layer_:
+        for child in get_children():
+            child.modulate = modulate
