@@ -21,7 +21,7 @@ func _on_whisper_1_start_area_body_entered(body:Node2D) -> void:
 		player.init_npc_interaction(whisper1)
 		whisper1_started = true
 		var tween = create_tween()
-		tween.tween_property(player.clicker_ui.reactor, "modulate", Color(Color.WHITE, 0), 0.25)
+		tween.tween_property(player.clicker_ui.reactor, "modulate", Color(Color.WHITE, 0), 1)
 		await get_tree().create_timer(1).timeout
 		player.clicker_ui.layer = default_clicker_ui_layer
 
@@ -29,5 +29,5 @@ func _on_dialogue_variable_changed(key: String, value: bool):
 	if key == "RUN" and value:
 		player.scripted_dialogue_location = whisper1_end_location
 		var tween = create_tween()
-		tween.tween_property(player.clicker_ui.reactor, "modulate", Color(Color.WHITE, 1), 0.5)
+		tween.tween_property(player.clicker_ui.reactor, "modulate", Color(Color.WHITE, 1), 1)
 	pass

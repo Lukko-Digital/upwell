@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="2_ksgns"]
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="3_2m0ws"]
 [ext_resource type="PackedScene" uid="uid://5mnlsyicmwh" path="res://src/level_elements/pod/empty_pod.tscn" id="4_tyqaw"]
-[ext_resource type="PackedScene" uid="uid://c56l7t8bmqkpu" path="res://src/levels/H32_NUCLEAR_COMPONENT_FORK.tscn" id="5_lsvip"]
+[ext_resource type="PackedScene" uid="uid://bfkdty013w6pt" path="res://src/levels/H32_NUCLEAR_COMPONENT_FORK.tscn" id="5_lsvip"]
 [ext_resource type="PackedScene" uid="uid://d2cdeqk64113c" path="res://src/levels/H32_NUCLEAR_COMPONENT_STARTPUZZLE.tscn" id="6_7lfpq"]
 
 [node name="H32Nuclear" type="Node2D"]
@@ -19,7 +19,7 @@ position = Vector2(-2594, -378)
 player = NodePath("../Player")
 
 [node name="EmptyPod" parent="." instance=ExtResource("4_tyqaw")]
-position = Vector2(0, 256)
+position = Vector2(1152, 256)
 entry_number = 1
 
 [node name="EmptyPod2" parent="." instance=ExtResource("4_tyqaw")]
@@ -29,4 +29,4 @@ position = Vector2(-13312, -1664)
 position = Vector2(-1664, 256)
 
 [node name="H32Nuclear_StartPuzzle" parent="." instance=ExtResource("6_7lfpq")]
-position = Vector2(-13824, 5376)
+position = Vector2(-26624, 14592)
