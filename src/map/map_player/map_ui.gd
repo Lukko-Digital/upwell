@@ -4,6 +4,7 @@ class_name MapUI
 const UNDISCOVERED_TEXT = "[b]UNDISCOVERED[/b]\n\n"
 
 const FUEL_LAUNCH_TEXT = {
+    CURRENT = "Your current location.",
     LOW = "Fuel consumption is low",
     MID = "Fuel consumption is moderate",
     TOO_FAR = "[color=red][b]WARNING. Destination exceeds fuel range."
@@ -28,14 +29,20 @@ func _ready() -> void:
 ## destination. 0.5 means half of the fuel will be used, a number above one
 ## means there is not enough fuel to reach the destination
 func update_travel_info(location: Entrypoint, path_clear: bool, fuel_consumption: float):
-    if fuel_consumption < 0.5:
+    var current = false
+    if fuel_consumption < 0.02:
+        fuel_launch_label.text = FUEL_LAUNCH_TEXT.CURRENT
+        current = true
+    elif fuel_consumption < 0.5:
         fuel_launch_label.text = FUEL_LAUNCH_TEXT.LOW
     elif fuel_consumption < 1:
         fuel_launch_label.text = FUEL_LAUNCH_TEXT.MID
     else:
         fuel_launch_label.text = FUEL_LAUNCH_TEXT.TOO_FAR
 
-    if path_clear:
+    if current:
+        trajectory_launch_label.text = ""
+    elif path_clear:
         trajectory_launch_label.text = TRAJECTORY_LAUNCH_TEXT.CLEAR
     else:
         trajectory_launch_label.text = TRAJECTORY_LAUNCH_TEXT.BLOCKED
