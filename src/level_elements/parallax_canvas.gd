@@ -37,11 +37,8 @@ class_name ParallaxCanvas
             update_sprite_grandchildren_name()
 
 func _ready() -> void:
-    super()
+    move_children()
     follow_viewport_enabled = true
-    ## If parallax layer is set, override [UtilityCanvas] setting layer to 128
-    if parallax_layer > 0:
-        parallax_layer = parallax_layer
     ## Connect enter tree signals for renaming sprite children
     child_entered_tree.connect(_on_child_entered_tree)
     for child in get_children():

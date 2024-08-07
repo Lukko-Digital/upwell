@@ -22,14 +22,12 @@ func _ready() -> void:
 func interact(_player: Player):
 	if not focused:
 		Global.main_camera.set_focus(self)
-		virtual_mouse.show()
 
 		if interact_label_tween: interact_label_tween.kill()
 		interact_label_tween = create_tween()
 		interact_label_tween.tween_property(interact_label, "modulate", Color(Color.WHITE, 0), 0.2)
 	else:
 		Global.main_camera.set_focus(null)
-		virtual_mouse.hide()
 
 		if interact_label_tween: interact_label_tween.kill()
 		interact_label_tween = create_tween()
