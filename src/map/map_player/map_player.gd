@@ -100,6 +100,10 @@ func calculate_max_energy() -> float:
 	var map_scale = get_parent().scale.x
 	return ENERGY_USE_RATE * (TRAVEL_RING_RADIUS * map_scale / SPEED)
 
+## Calculates the distance that can be traveled with the current amount of energy
+func calculate_travellable_distance() -> float:
+	return SPEED * energy_bar.value / ENERGY_USE_RATE
+
 ## ----------------------------- MOVING -----------------------------
 
 func handle_artificial_gravity(active_ag: ArtificialGravity, delta) -> GravitizedComponent.GravityState:
@@ -217,7 +221,7 @@ func location_selected(location: Entrypoint):
 
 	update_line(
 		destination_line,
-		(destination.global_position - global_position).limit_length(calculate_distance_per_energy())
+		(destination.global_position - global_position).limit_length(calculate_travellable_distance())
 	)
 	select_destination.emit(location)
 	location_info.show()
@@ -238,13 +242,13 @@ func draw_destination_line():
 		# Draw line in direction of velocity
 		update_line(
 			destination_line,
-			velocity.normalized() * calculate_distance_per_energy()
+			velocity.normalized() * calculate_travellable_distance()
 		)
 	else:
 		# Draw line to destination
 		update_line(
 			destination_line,
-			(destination.global_position - global_position).limit_length(calculate_distance_per_energy())
+			(destination.global_position - global_position).limit_length(calculate_travellable_distance())
 		)
 		
 func draw_boost_line(active_ag: ArtificialGravity):
@@ -252,7 +256,7 @@ func draw_boost_line(active_ag: ArtificialGravity):
 		# Draw boost line in line with center of active_ag
 		update_line(
 			boost_line,
-			active_ag.global_position.direction_to(global_position) * calculate_distance_per_energy() / 2
+			active_ag.global_position.direction_to(global_position) * calculate_travellable_distance() / 2
 		)
 	else:
 		# No line
@@ -264,9 +268,6 @@ func draw_boost_line(active_ag: ArtificialGravity):
 ## Sets the second point of [line] to [new_point]
 func update_line(line: Line2D, new_point: Vector2):
 	line.set_point_position(1, new_point)
-
-func calculate_distance_per_energy() -> float:
-	return SPEED / (ENERGY_USE_RATE / energy_bar.max_value) * (energy_bar.value / energy_bar.max_value)
 
 ## ------------------------- ANIMATION -------------------------
 
