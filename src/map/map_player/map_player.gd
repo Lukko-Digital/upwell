@@ -1,8 +1,14 @@
 extends Node2D
 class_name MapPlayer
 
+## Pixels per second
 const SPEED: float = 800
-const ENERGY_USE_RATE: float = 30
+## Pixels, at default scale
+const TRAVEL_RING_RADIUS = 606
+## Energy per second
+## Arbitrary value, but causes floating point error when < 2
+const ENERGY_USE_RATE: float = 10
+
 ## The player ends its movement when its center is within this distance of the
 ## center of the entrypoint
 const DESTINATION_REACH_THRESHOLD = 20
@@ -55,6 +61,8 @@ var destination: Entrypoint = null:
 func _ready() -> void:
 	Global.pod_called.connect(_on_call_pod)
 	launch_button.pressed.connect(_on_launch_button_pressed)
+	energy_bar.max_value = calculate_max_energy()
+	energy_bar.value = energy_bar.max_value
 
 func _process(delta: float) -> void:
 	if not moving:
@@ -84,6 +92,13 @@ func is_destination_reached() -> bool:
 	if destination == null:
 		return false
 	return global_position.distance_to(destination.global_position) < DESTINATION_REACH_THRESHOLD
+
+## Calculates the max energy to have in order to just run out of fuel at the
+## edge of the travel ring
+func calculate_max_energy() -> float:
+	## 4 as of last update
+	var map_scale = get_parent().scale.x
+	return ENERGY_USE_RATE * (TRAVEL_RING_RADIUS * map_scale / SPEED)
 
 ## ----------------------------- MOVING -----------------------------
 
