@@ -1,6 +1,5 @@
 @tool
-extends CanvasLayer
-## Moves all child nodes to be the same global position as parent node
+extends UtilityCanvas
 class_name ParallaxCanvas
 
 ## Sets the [follow_viewport_scale] equal to the value and sets [layer] and
@@ -21,27 +20,12 @@ class_name ParallaxCanvas
         parallax_layer = value
         update_configuration_warnings()
 
-## By default only moves children on ready, if true, continuously checks for
-## movement n process
-@export var updates_in_process: bool = false
-
-@onready var parent = get_parent()
-
-var last_parent_pos: Vector2
-
 func _ready() -> void:
+    super()
     follow_viewport_enabled = true
-    move_children()
-
-func _process(_delta: float) -> void:
-    if Engine.is_editor_hint() or updates_in_process:
-        if parent.global_position != last_parent_pos:
-            move_children()
-
-func move_children():
-    last_parent_pos = parent.global_position
-    for child in get_children():
-        child.global_position = last_parent_pos
+    ## If parallax layer is set, override [UtilityCanvas] setting layer to 128
+    if parallax_layer > 0:
+        parallax_layer = parallax_layer
 
 func _get_configuration_warnings() -> PackedStringArray:
     var warnings = []
