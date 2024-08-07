@@ -31,7 +31,7 @@ signal select_destination(location: Entrypoint)
 @export_category("Map UI Nodes")
 @export var map_ui: MapUI
 @export var map_animation_player: AnimationPlayer
-@export var location_info: TextureRect
+@export var launch_info: TextureRect
 @export var energy_bar: ProgressBar
 @export var launch_button: TextureButton
 
@@ -65,8 +65,10 @@ var destination: Entrypoint = null:
 func _ready() -> void:
 	Global.pod_called.connect(_on_call_pod)
 	launch_button.pressed.connect(_on_launch_button_pressed)
+	launch_info.hide()
 	energy_bar.max_value = calculate_max_energy()
 	energy_bar.value = energy_bar.max_value
+	collision_x.reparent.call_deferred(get_parent())
 
 func _process(delta: float) -> void:
 	if not moving:
@@ -151,7 +153,7 @@ func end_movement(recalled: bool) -> void:
 	starting_position = global_position
 
 	location_deselected()
-	location_info.show()
+	launch_info.show()
 
 	if recalled:
 		Global.main_camera.set_shake_lerp(0, 4)
@@ -238,13 +240,13 @@ func location_selected(location: Entrypoint):
 		vec_to_destination.length() / calculate_travellable_distance()
 	)
 	select_destination.emit(location)
-	location_info.show()
+	launch_info.show()
 
 func location_deselected():
 	if moving:
 		return
 		
-	location_info.hide()
+	launch_info.hide()
 	collision_x.hide()
 	destination = null
 	destination_line.set_point_position(1, Vector2.ZERO)
