@@ -11,10 +11,10 @@ default_font = ExtResource("2_y385f")
 base_font = ExtResource("3_s6vqy")
 variation_embolden = 2.0
 
-[node name="MapLevel" type="Area2D" node_paths=PackedStringArray("label")]
+[node name="MapLevel" type="Area2D" node_paths=PackedStringArray("name_label")]
 collision_mask = 2
 script = ExtResource("1_0g7oc")
-label = NodePath("Label")
+name_label = NodePath("Label")
 
 [node name="Label" type="Label" parent="."]
 self_modulate = Color(1, 1, 1, 0.545098)
