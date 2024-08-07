@@ -347,9 +347,9 @@ layer = 0
 scale = Vector2(0.5, 0.5)
 transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 script = ExtResource("1_7y0mi")
-fuel_launch_label = NodePath("TextBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer/FuelLaunchLabel")
-trajectory_launch_label = NodePath("TextBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer/TrajectoryLaunchLabel")
-log_label = NodePath("TextBacker/TravelInfoContainer/ScrollContainer/MarginContainer/LogLabel")
+fuel_launch_label = NodePath("LaunchInfoBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer/FuelLaunchLabel")
+trajectory_launch_label = NodePath("LaunchInfoBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer/TrajectoryLaunchLabel")
+log_label = NodePath("LaunchInfoBacker/TravelInfoContainer/ScrollContainer/MarginContainer/LogLabel")
 
 [node name="FocusTexture" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.513726)
@@ -419,7 +419,7 @@ text = "[b]INITIATING RECALL[/b]"
 fit_content = true
 autowrap_mode = 0
 
-[node name="TextBacker" type="TextureRect" parent="."]
+[node name="LaunchInfoBacker" type="TextureRect" parent="."]
 material = SubResource("CanvasItemMaterial_bg83i")
 offset_left = 2570.0
 offset_top = 312.0
@@ -428,7 +428,7 @@ offset_bottom = 1936.0
 mouse_filter = 0
 texture = ExtResource("3_18sc1")
 
-[node name="TravelInfoContainer" type="VBoxContainer" parent="TextBacker"]
+[node name="TravelInfoContainer" type="VBoxContainer" parent="LaunchInfoBacker"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 offset_left = 102.0
@@ -436,16 +436,16 @@ offset_top = 104.0
 offset_right = 1040.0
 offset_bottom = 1484.0
 
-[node name="TopSectionContainer" type="HBoxContainer" parent="TextBacker/TravelInfoContainer"]
+[node name="TopSectionContainer" type="HBoxContainer" parent="LaunchInfoBacker/TravelInfoContainer"]
 layout_mode = 2
 
-[node name="LaunchDetailsContainer" type="VBoxContainer" parent="TextBacker/TravelInfoContainer/TopSectionContainer"]
+[node name="LaunchDetailsContainer" type="VBoxContainer" parent="LaunchInfoBacker/TravelInfoContainer/TopSectionContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 35
 alignment = 1
 
-[node name="Header" type="RichTextLabel" parent="TextBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer"]
+[node name="Header" type="RichTextLabel" parent="LaunchInfoBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -464,7 +464,7 @@ fit_content = true
 shortcut_keys_enabled = false
 visible_characters_behavior = 1
 
-[node name="FuelLaunchLabel" type="RichTextLabel" parent="TextBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer"]
+[node name="FuelLaunchLabel" type="RichTextLabel" parent="LaunchInfoBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -483,7 +483,7 @@ fit_content = true
 shortcut_keys_enabled = false
 visible_characters_behavior = 1
 
-[node name="TrajectoryLaunchLabel" type="RichTextLabel" parent="TextBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer"]
+[node name="TrajectoryLaunchLabel" type="RichTextLabel" parent="LaunchInfoBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -502,22 +502,22 @@ fit_content = true
 shortcut_keys_enabled = false
 visible_characters_behavior = 1
 
-[node name="LaunchButton" type="TextureButton" parent="TextBacker/TravelInfoContainer/TopSectionContainer"]
+[node name="LaunchButton" type="TextureButton" parent="LaunchInfoBacker/TravelInfoContainer/TopSectionContainer"]
 layout_mode = 2
 texture_normal = ExtResource("6_itkhn")
 stretch_mode = 5
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TextBacker/TravelInfoContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="LaunchInfoBacker/TravelInfoContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="TextBacker/TravelInfoContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="LaunchInfoBacker/TravelInfoContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_top = 60
 
-[node name="LogLabel" type="RichTextLabel" parent="TextBacker/TravelInfoContainer/ScrollContainer/MarginContainer"]
+[node name="LogLabel" type="RichTextLabel" parent="LaunchInfoBacker/TravelInfoContainer/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -553,7 +553,7 @@ libraries = {
 }
 autoplay = "neutral"
 
-[connection signal="gui_input" from="TextBacker" to="." method="_on_text_backer_gui_input"]
-[connection signal="mouse_entered" from="TextBacker/TravelInfoContainer/TopSectionContainer/LaunchButton" to="." method="_on_launch_button_mouse_entered"]
-[connection signal="mouse_exited" from="TextBacker/TravelInfoContainer/TopSectionContainer/LaunchButton" to="." method="_on_launch_button_mouse_exited"]
-[connection signal="pressed" from="TextBacker/TravelInfoContainer/TopSectionContainer/LaunchButton" to="." method="_on_launch_button_pressed"]
+[connection signal="gui_input" from="LaunchInfoBacker" to="." method="_on_text_backer_gui_input"]
+[connection signal="mouse_entered" from="LaunchInfoBacker/TravelInfoContainer/TopSectionContainer/LaunchButton" to="." method="_on_launch_button_mouse_entered"]
+[connection signal="mouse_exited" from="LaunchInfoBacker/TravelInfoContainer/TopSectionContainer/LaunchButton" to="." method="_on_launch_button_mouse_exited"]
+[connection signal="pressed" from="LaunchInfoBacker/TravelInfoContainer/TopSectionContainer/LaunchButton" to="." method="_on_launch_button_pressed"]
