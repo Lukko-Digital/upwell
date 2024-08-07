@@ -46,7 +46,10 @@ func _ready() -> void:
 ## matches one of the data entries. Connect to the color changed signal of
 ## [SubLevel] to keep updating color as it changes
 func set_child_modulate():
-    if unique_modulate:
+    if (
+        unique_modulate or
+        not get_parent() is SubLevel
+    ):
         return
     var sublevel: SubLevel = get_parent()
     var modulate_group: ParallaxModulateGroup = sublevel.parallax_modulate_group
