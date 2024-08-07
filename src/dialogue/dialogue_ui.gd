@@ -144,16 +144,15 @@ func play_branch(branch_id: String):
 				spawn_reponse(response)
 
 func animate_display(dialogue_line: String):
+	var init_timestamp = interaction_timestamp
 	## Just the characters that will be seen, no bbcode
 	var command_text = BBCodeParser.strip_bbcode(dialogue_line)
 	var bbcode_text = DialogueParser.strip_dialogue_commands(dialogue_line)
 	var idx = 0
+	var fade_length = 2
 	var fade_counter = 0
-	active_dialogue_display.dialogue_label.parse_bbcode(
-		"[fade start=" + str(fade_counter - 2) + " length=2]" + active_dialogue_display.dialogue_label.text + "[/fade]"
-	)
-	var init_timestamp = interaction_timestamp
-	while idx < command_text.length():
+	apply_fade(fade_counter, fade_length)
+	while idx < command_text.length() + fade_length:
 		# Exit if the interaction timestamp changed from what it was when this
 		# function was instantiated. This will happen when the player exits
 		# dialogue prematurely via [esc]. This also covers the case of the
@@ -167,7 +166,10 @@ func animate_display(dialogue_line: String):
 		if active_dialogue_display.dialogue_label.text != bbcode_text:
 			return
 
-		var new_char = command_text[idx]
+		var new_char = ""
+		# This will only not happen when fading in the last few characters
+		if idx < command_text.length():
+			new_char = command_text[idx]
 
 		if new_char == "{":
 			# Dialogue command
@@ -176,9 +178,7 @@ func animate_display(dialogue_line: String):
 			var wait_time = calculate_wait_time(new_char, command_text, idx)
 			display_timer.start(wait_time)
 			# Show new character
-			active_dialogue_display.dialogue_label.parse_bbcode(
-				"[fade start=" + str(fade_counter) + " length=2]" + active_dialogue_display.dialogue_label.text + "[/fade]"
-			)
+			apply_fade(fade_counter - fade_length, fade_length)
 			idx += 1
 			fade_counter += 1
 			
@@ -234,6 +234,11 @@ func calculate_wait_time(new_char: String, command_text: String, idx: int) -> fl
 			return COMMA_PAUSE
 		_:
 			return TEXT_SPEED * display_speed_coef
+
+func apply_fade(start: int, length: int):
+	active_dialogue_display.dialogue_label.parse_bbcode(
+		"[fade start=%s length=%s]" % [str(start), str(length)] + active_dialogue_display.dialogue_label.text + "[/fade]"
+	)
 
 func spawn_reponse(response: Response):
 	if response.spawn_condition != "":
