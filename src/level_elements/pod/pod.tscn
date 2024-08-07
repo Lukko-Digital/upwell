@@ -38,7 +38,7 @@ length = 4.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasHolder/11/Node2D/Hider:modulate")
+tracks/0/path = NodePath("CanvasHolder/120/Node2D/Hider:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -50,7 +50,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasHolder/10/Node2D/WarningLight:modulate")
+tracks/1/path = NodePath("CanvasHolder/5/Node2D/WarningLight:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -62,7 +62,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasHolder/11/Node2D/Hider:visible")
+tracks/2/path = NodePath("CanvasHolder/120/Node2D/Hider:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -74,7 +74,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CanvasHolder/11/Node2D/Hider:color")
+tracks/3/path = NodePath("CanvasHolder/120/Node2D/Hider:color")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -90,7 +90,7 @@ length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasHolder/10/Node2D/WarningLight:modulate")
+tracks/0/path = NodePath("CanvasHolder/5/Node2D/WarningLight:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -105,7 +105,7 @@ resource_name = "neutral"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasHolder/11/Node2D/Hider:modulate")
+tracks/0/path = NodePath("CanvasHolder/120/Node2D/Hider:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -117,7 +117,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasHolder/10/Node2D/WarningLight:modulate")
+tracks/1/path = NodePath("CanvasHolder/5/Node2D/WarningLight:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -133,7 +133,7 @@ length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasHolder/11/Node2D/Hider:visible")
+tracks/0/path = NodePath("CanvasHolder/120/Node2D/Hider:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -145,7 +145,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasHolder/11/Node2D/Hider:color")
+tracks/1/path = NodePath("CanvasHolder/120/Node2D/Hider:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -157,7 +157,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasHolder/11/Node2D/Hider:modulate")
+tracks/2/path = NodePath("CanvasHolder/120/Node2D/Hider:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -169,7 +169,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CanvasHolder/10/Node2D/WarningLight:modulate")
+tracks/3/path = NodePath("CanvasHolder/5/Node2D/WarningLight:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -380,16 +380,17 @@ position = Vector2(3.84615, -526.154)
 scale = Vector2(0.625363, 0.625363)
 texture = ExtResource("11_8qs7d")
 
-[node name="10" type="CanvasLayer" parent="CanvasHolder"]
-layer = 10
+[node name="5" type="CanvasLayer" parent="CanvasHolder"]
+layer = 5
 follow_viewport_enabled = true
 script = ExtResource("14_67fqf")
 parallax_layer = 1.0
+unique_layer = true
 updates_in_process = true
 
-[node name="Node2D" type="Node2D" parent="CanvasHolder/10"]
+[node name="Node2D" type="Node2D" parent="CanvasHolder/5"]
 
-[node name="ColorRect6" type="ColorRect" parent="CanvasHolder/10/Node2D"]
+[node name="ColorRect6" type="ColorRect" parent="CanvasHolder/5/Node2D"]
 material = SubResource("ShaderMaterial_cevex")
 offset_left = -831.0
 offset_top = -1557.0
@@ -398,7 +399,7 @@ offset_bottom = 561.0
 mouse_filter = 2
 color = Color(0.413107, 0.223841, 0, 1)
 
-[node name="WarningLight" type="ColorRect" parent="CanvasHolder/10/Node2D"]
+[node name="WarningLight" type="ColorRect" parent="CanvasHolder/5/Node2D"]
 modulate = Color(1, 1, 1, 0)
 material = SubResource("ShaderMaterial_cevex")
 offset_left = -831.0
@@ -408,23 +409,24 @@ offset_bottom = 561.0
 mouse_filter = 2
 color = Color(1, 0, 0, 0.494118)
 
-[node name="11" type="CanvasLayer" parent="CanvasHolder"]
-layer = 10
+[node name="120" type="CanvasLayer" parent="CanvasHolder"]
+layer = 120
 follow_viewport_enabled = true
 script = ExtResource("14_67fqf")
 parallax_layer = 1.0
+unique_layer = true
 updates_in_process = true
 
-[node name="Node2D" type="Node2D" parent="CanvasHolder/11"]
+[node name="Node2D" type="Node2D" parent="CanvasHolder/120"]
 
-[node name="Hider" type="ColorRect" parent="CanvasHolder/11/Node2D"]
-visible = false
-modulate = Color(0, 0, 0, 0)
+[node name="Hider" type="ColorRect" parent="CanvasHolder/120/Node2D"]
+modulate = Color(1, 1, 1, 0)
 offset_left = -2332.0
 offset_top = -1940.0
 offset_right = 2696.0
 offset_bottom = 1459.0
 mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="ViewBlocker" parent="." instance=ExtResource("9_u6g7q")]
 visible = false
