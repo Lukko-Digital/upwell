@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://c56l7t8bmqkpu"]
+[gd_scene load_steps=46 format=3 uid="uid://bfkdty013w6pt"]
 
 [ext_resource type="Script" path="res://src/level_elements/parallax_canvas.gd" id="1_yylm6"]
 [ext_resource type="Texture2D" uid="uid://mgj6slkpqqnn" path="res://assets/environment/tree_roof/tree_bg_1.png" id="2_m3myp"]
@@ -1023,8 +1023,9 @@ animations = [{
 [node name="-14" type="CanvasLayer" parent="."]
 layer = -14
 follow_viewport_enabled = true
-follow_viewport_scale = 0.6
+follow_viewport_scale = 0.86
 script = ExtResource("1_yylm6")
+parallax_layer = 0.86
 updates_in_process = true
 
 [node name="Node2D" type="Node2D" parent="-14"]
@@ -1061,8 +1062,9 @@ texture = ExtResource("2_m3myp")
 [node name="-13" type="CanvasLayer" parent="."]
 layer = -13
 follow_viewport_enabled = true
-follow_viewport_scale = 0.7
+follow_viewport_scale = 0.87
 script = ExtResource("1_yylm6")
+parallax_layer = 0.87
 updates_in_process = true
 
 [node name="Node2D" type="Node2D" parent="-13"]
@@ -1093,8 +1095,9 @@ texture = ExtResource("3_60jym")
 [node name="-12" type="CanvasLayer" parent="."]
 layer = -12
 follow_viewport_enabled = true
-follow_viewport_scale = 0.8
+follow_viewport_scale = 0.88
 script = ExtResource("1_yylm6")
+parallax_layer = 0.88
 updates_in_process = true
 
 [node name="Node2D" type="Node2D" parent="-12"]
@@ -1143,8 +1146,9 @@ texture = ExtResource("5_cicbf")
 [node name="-11" type="CanvasLayer" parent="."]
 layer = -11
 follow_viewport_enabled = true
-follow_viewport_scale = 0.9
+follow_viewport_scale = 0.89
 script = ExtResource("1_yylm6")
+parallax_layer = 0.89
 updates_in_process = true
 
 [node name="Node2D" type="Node2D" parent="-11"]
@@ -1199,7 +1203,9 @@ color = Color(0.321591, 0.195664, 0, 0.317647)
 [node name="-10" type="CanvasLayer" parent="."]
 layer = -10
 follow_viewport_enabled = true
+follow_viewport_scale = 0.9
 script = ExtResource("1_yylm6")
+parallax_layer = 0.9
 updates_in_process = true
 
 [node name="Node2D" type="Node2D" parent="-10"]
@@ -1267,6 +1273,7 @@ format = 2
 layer = 10
 follow_viewport_enabled = true
 script = ExtResource("1_yylm6")
+parallax_layer = 1.0
 updates_in_process = true
 
 [node name="Node2D" type="Node2D" parent="10"]
@@ -1327,6 +1334,7 @@ layer = 11
 follow_viewport_enabled = true
 follow_viewport_scale = 1.1
 script = ExtResource("1_yylm6")
+parallax_layer = 1.1
 updates_in_process = true
 
 [node name="Node2D" type="Node2D" parent="11"]
@@ -1418,6 +1426,7 @@ layer = 12
 follow_viewport_enabled = true
 follow_viewport_scale = 1.2
 script = ExtResource("1_yylm6")
+parallax_layer = 1.2
 updates_in_process = true
 
 [node name="Node2D" type="Node2D" parent="12"]
@@ -1563,6 +1572,7 @@ layer = 14
 follow_viewport_enabled = true
 follow_viewport_scale = 1.4
 script = ExtResource("1_yylm6")
+parallax_layer = 1.4
 updates_in_process = true
 
 [node name="Node2D" type="Node2D" parent="14"]
@@ -1687,6 +1697,7 @@ layer = 20
 follow_viewport_enabled = true
 follow_viewport_scale = 2.0
 script = ExtResource("1_yylm6")
+parallax_layer = 2.0
 updates_in_process = true
 
 [node name="Node2D" type="Node2D" parent="20"]
