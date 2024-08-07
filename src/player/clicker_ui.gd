@@ -92,9 +92,9 @@ func _on_clicker_sent_home():
 	screen_color_animation.play("flash")
 
 func _on_camera_focus_changed(focus: Node2D):
-	if focus == null:
-		var tween = create_tween()
-		tween.tween_property(reactor, "modulate", Color(Color.WHITE, 1), 0.25)
-	elif focus is ScreenInteractable or NPC:
+	if focus is ScreenInteractable or focus is NPC:
 		var tween = create_tween()
 		tween.tween_property(reactor, "modulate", Color(Color.WHITE, 0), 0.25)
+	else:
+		var tween = create_tween()
+		tween.tween_property(reactor, "modulate", Color(Color.WHITE, 1), 0.25)
