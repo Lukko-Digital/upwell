@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bfkdty013w6pt"]
+[gd_scene load_steps=47 format=3 uid="uid://bfkdty013w6pt"]
 
 [ext_resource type="Script" path="res://src/level_elements/parallax_canvas.gd" id="1_yylm6"]
 [ext_resource type="Texture2D" uid="uid://mgj6slkpqqnn" path="res://assets/environment/tree_roof/tree_bg_1.png" id="2_m3myp"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://jpeubaba1qg6" path="res://assets/environment/tree_roof/pebbles_BLUR.png" id="20_elyak"]
 [ext_resource type="Texture2D" uid="uid://eqc4n8p1jbbg" path="res://assets/environment/tree_roof/tree_roof_mg_1_BLUR.png" id="21_rr4ks"]
 [ext_resource type="Texture2D" uid="uid://6p7halpsoule" path="res://assets/environment/tree_roof/tree_midground_1_BLUR.png" id="22_5bd8q"]
+[ext_resource type="Script" path="res://src/level_elements/utility_canvas.gd" id="23_6ogfp"]
 [ext_resource type="Texture2D" uid="uid://du8c1v407kkh4" path="res://assets/environment/tree_roof/yellow_grass_fg_1_BLUR.png" id="23_r3ecp"]
 [ext_resource type="Script" path="res://src/level_elements/camera/camera_track.gd" id="24_cffxt"]
 [ext_resource type="Texture2D" uid="uid://bybq5utnqi2ji" path="res://assets/mvp3_assets/tutorial/a.png" id="25_kgv0g"]
@@ -1718,8 +1719,9 @@ texture = ExtResource("21_rr4ks")
 [node name="30" type="CanvasLayer" parent="."]
 layer = 30
 follow_viewport_enabled = true
-follow_viewport_scale = 4.0
+follow_viewport_scale = 3.0
 script = ExtResource("1_yylm6")
+parallax_layer = 3.0
 updates_in_process = true
 
 [node name="Node2D" type="Node2D" parent="30"]
@@ -1727,9 +1729,8 @@ modulate = Color(0, 0, 0, 1)
 
 [node name="CameraBounds" type="CanvasLayer" parent="."]
 layer = 128
-follow_viewport_enabled = true
-script = ExtResource("1_yylm6")
-updates_in_process = true
+follow_viewport_scale = 0.0
+script = ExtResource("23_6ogfp")
 
 [node name="CameraBounds" type="Node2D" parent="CameraBounds"]
 
@@ -1744,10 +1745,10 @@ position = Vector2(-171, -379)
 points = PackedVector2Array(2492, -4, -6340, -4)
 
 [node name="Tutorial" type="CanvasLayer" parent="."]
-layer = 11
+layer = 128
 visible = false
-follow_viewport_enabled = true
-script = ExtResource("1_yylm6")
+follow_viewport_scale = 0.0
+script = ExtResource("23_6ogfp")
 
 [node name="Node2D" type="Node2D" parent="Tutorial"]
 z_index = 4096
