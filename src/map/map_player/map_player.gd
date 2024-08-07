@@ -68,6 +68,7 @@ func _ready() -> void:
 	launch_info.hide()
 	energy_bar.max_value = calculate_max_energy()
 	energy_bar.value = energy_bar.max_value
+	collision_x.reparent.call_deferred(get_parent())
 
 func _process(delta: float) -> void:
 	if not moving:
