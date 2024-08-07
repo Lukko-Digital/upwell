@@ -10,6 +10,11 @@ class_name ParallaxCanvas
 ## When greater than one, multiply by 10. e.g. 1 = 10, 1.5 = 15, 2.1 = 21
 @export var parallax_layer: float:
     set(value):
+        parallax_layer = value
+        update_configuration_warnings()
+        
+        if unique_layer:
+            return
         if value < 1:
             layer = roundi(100.0 * (value - 1.0))
         elif value >= 1:
@@ -17,8 +22,10 @@ class_name ParallaxCanvas
         
         follow_viewport_scale = value
         name = str(layer).replace(".", "_")
-        parallax_layer = value
-        update_configuration_warnings()
+
+## If true, setting [parallax_layer] won't automatically set
+## [follow_viewport_scale], [layer], and [name]
+@export var unique_layer: bool = false
 
 ## If true, don't apply modulation from sublevel's parallax modulate group
 @export var unique_modulate: bool = false
