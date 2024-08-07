@@ -24,9 +24,17 @@ radius = 808.557
 [sub_resource type="CircleShape2D" id="CircleShape2D_r58ii"]
 radius = 31.0161
 
-[node name="MapPlayer" type="Node2D"]
+[node name="MapPlayer" type="Node2D" node_paths=PackedStringArray("collision_box", "grav_component", "destination_line", "boost_line", "map_animation_player", "location_info", "energy_bar", "launch_button")]
 z_index = 1
 script = ExtResource("1_g3ols")
+collision_box = NodePath("PlayerBody")
+grav_component = NodePath("GravitizedComponent")
+destination_line = NodePath("Line2D")
+boost_line = NodePath("BoostLine2D")
+map_animation_player = NodePath("MapUI/MapAnimationPlayer")
+location_info = NodePath("MapUI/TextBacker")
+energy_bar = NodePath("MapUI/Energy/EnergyBar")
+launch_button = NodePath("MapUI/TextBacker/VBoxContainer/LaunchButton")
 
 [node name="PlayerGlow" type="Sprite2D" parent="."]
 position = Vector2(-15, 2)
@@ -94,3 +102,5 @@ shape = SubResource("CircleShape2D_r58ii")
 [node name="MapUI" parent="." instance=ExtResource("7_4nrud")]
 
 [connection signal="area_entered" from="ScanArea" to="." method="_area_scanned"]
+
+[editable path="MapUI"]

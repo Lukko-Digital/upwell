@@ -433,7 +433,7 @@ offset_top = 104.0
 offset_right = 1064.0
 offset_bottom = 1484.0
 
-[node name="TravelButton" type="TextureButton" parent="TextBacker/VBoxContainer"]
+[node name="LaunchButton" type="TextureButton" parent="TextBacker/VBoxContainer"]
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
 size_flags_horizontal = 4

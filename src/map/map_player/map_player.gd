@@ -16,14 +16,14 @@ const SHAKE = {
 
 signal select_destination(location: Entrypoint)
 
-@onready var collision_box: Area2D = $PlayerBody
-@onready var grav_component: GravitizedComponent = $GravitizedComponent
-@onready var destination_line: Line2D = $Line2D
-@onready var boost_line: Line2D = $BoostLine2D
-@onready var map_animation_player: AnimationPlayer = $MapUI/MapAnimationPlayer
-@onready var location_info: TextureRect = $MapUI/TextBacker
-@onready var energy_bar: ProgressBar = $MapUI/Energy/EnergyBar
-@onready var travel_button: TextureButton = $MapUI/TextBacker/VBoxContainer/TravelButton
+@export var collision_box: Area2D
+@export var grav_component: GravitizedComponent
+@export var destination_line: Line2D
+@export var boost_line: Line2D
+@export var map_animation_player: AnimationPlayer
+@export var location_info: TextureRect
+@export var energy_bar: ProgressBar
+@export var launch_button: TextureButton
 
 @onready var game: Game = get_tree().get_current_scene()
 @onready var starting_position: Vector2 = global_position
@@ -54,7 +54,7 @@ var destination: Entrypoint = null:
 
 func _ready() -> void:
 	Global.pod_called.connect(_on_call_pod)
-	travel_button.pressed.connect(_on_travel_button_pressed)
+	launch_button.pressed.connect(_on_launch_button_pressed)
 
 func _process(delta: float) -> void:
 	if not moving:
@@ -323,5 +323,5 @@ func _on_call_pod(empty_pod: EmptyPod) -> void:
 			entry_point.pod_called()
 			global_position = entry_point.global_position
 
-func _on_travel_button_pressed():
+func _on_launch_button_pressed():
 	start_travel()
