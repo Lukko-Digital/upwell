@@ -89,7 +89,7 @@ player = NodePath("../Player")
 
 [node name="Fraud" parent="." node_paths=PackedStringArray("npc_sprite") instance=ExtResource("4_k64o7")]
 position = Vector2(1537, -167)
-dialogue_file = "res://assets/dialogue/upwell dialogue - fraudscriptedmvp4.csv"
+dialogue_file = "res://assets/dialogue/dialogue_fraudscripted1.csv"
 faces_you_during_dialogue = true
 npc_sprite = NodePath("AnimatedSprite2D")
 
