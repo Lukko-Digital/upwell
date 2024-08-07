@@ -18,14 +18,15 @@ func _process(_delta: float) -> void:
 		global_position = lerp(global_position, player.global_position, 0.01)
 	elif player_destination:
 		global_position = lerp(global_position, (player_destination.global_position + player.global_position) / 2, 0.01)
-	# else:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.is_pressed():
 			zoom *= 1.1
+			player.location_deselected()
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.is_pressed():
 			zoom /= 1.1
+			player.location_deselected()
 
 		if zoom.x < ZOOM_LOWER_BOUND:
 			zoom = Vector2.ONE * ZOOM_LOWER_BOUND
@@ -35,6 +36,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.is_pressed() and not panning:
 				# LMB pressed
+				player.location_deselected()
 				panning = true
 				player_destination = null
 			elif not event.is_pressed():
