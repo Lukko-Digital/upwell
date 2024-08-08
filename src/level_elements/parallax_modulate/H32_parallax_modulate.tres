@@ -13,43 +13,43 @@ modulate = Color(0.252006, 0.172908, 0.00177889, 1)
 resource_name = "0_6"
 script = ExtResource("1_no0pr")
 parallax_layer = "0_6"
-modulate = Color(0.43208, 0.309737, 0.0792729, 1)
+modulate = Color(0.25264, 0.175357, 0.0304121, 1)
 
 [sub_resource type="Resource" id="Resource_v6460"]
 resource_name = "0_7"
 script = ExtResource("1_no0pr")
 parallax_layer = "0_7"
-modulate = Color(0.297669, 0.224249, 0.0576383, 1)
+modulate = Color(0.227195, 0.185536, 0.0906454, 1)
 
 [sub_resource type="Resource" id="Resource_280f3"]
 resource_name = "0_85"
 script = ExtResource("1_no0pr")
 parallax_layer = "0_85"
-modulate = Color(0.429958, 0.351125, 0.166961, 1)
+modulate = Color(0.466791, 0.443265, 0.364937, 1)
 
 [sub_resource type="Resource" id="Resource_ra3ip"]
 resource_name = "0_95"
 script = ExtResource("1_no0pr")
 parallax_layer = "0_95"
-modulate = Color(0.914337, 0.863797, 0.770209, 1)
+modulate = Color(1, 1, 1, 1)
 
 [sub_resource type="Resource" id="Resource_oqtwa"]
 resource_name = "1"
 script = ExtResource("1_no0pr")
 parallax_layer = "1"
-modulate = Color(0.909173, 0.874928, 0.804484, 1)
+modulate = Color(1, 1, 1, 1)
 
 [sub_resource type="Resource" id="Resource_1evtq"]
 resource_name = "1_03"
 script = ExtResource("1_no0pr")
 parallax_layer = "1_03"
-modulate = Color(0.532547, 0.504068, 0.411599, 1)
+modulate = Color(0.994899, 0.725633, 0.483767, 1)
 
 [sub_resource type="Resource" id="Resource_vfbu5"]
 resource_name = "1_11"
 script = ExtResource("1_no0pr")
 parallax_layer = "1_11"
-modulate = Color(0.16327, 0.122164, 0.0771924, 1)
+modulate = Color(0.406749, 0.168409, 0, 1)
 
 [sub_resource type="Resource" id="Resource_gauxw"]
 resource_name = "1_22"
