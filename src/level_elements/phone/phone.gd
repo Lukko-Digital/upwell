@@ -141,10 +141,10 @@ func get_phone_number_key() -> String:
 ## ------------------------------ CURSOR ------------------------------
 
 func set_hovered_cursor():
-	Input.set_custom_mouse_cursor(hovered_cursor)
+	Input.set_custom_mouse_cursor(hovered_cursor, Input.CURSOR_ARROW, Vector2(64,64))
 
 func set_default_cursor():
-	Input.set_custom_mouse_cursor(default_cursor)
+	Input.set_custom_mouse_cursor(default_cursor, Input.CURSOR_ARROW, Vector2(64,64))
 
 ## ------------------------------ SIGNALS ------------------------------
 

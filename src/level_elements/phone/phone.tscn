@@ -67,11 +67,11 @@ shape = SubResource("RectangleShape2D_q6n45")
 
 [node name="InteractLabel" type="Label" parent="."]
 self_modulate = Color(1, 1, 1, 0.803922)
-offset_left = -2819.28
-offset_top = -2240.96
-offset_right = 981.723
-offset_bottom = -876.967
-scale = Vector2(1.48568, 1.48568)
+offset_left = -3156.63
+offset_top = -2337.35
+offset_right = 644.376
+offset_bottom = -973.357
+scale = Vector2(1.71196, 1.71196)
 theme_override_fonts/font = ExtResource("2_jnx5i")
 theme_override_font_sizes/font_size = 416
 text = "make a call?"
