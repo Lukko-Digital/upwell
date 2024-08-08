@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://ceyls3ogt3vol"]
+[gd_scene load_steps=14 format=3 uid="uid://ceyls3ogt3vol"]
 
 [ext_resource type="Script" path="res://src/screen_puzzles/screen_interactable.gd" id="1_40edb"]
 [ext_resource type="Shader" path="res://src/shaders/soft_light.gdshader" id="2_tv86y"]
 [ext_resource type="Texture2D" uid="uid://bb35jkiw72ht3" path="res://assets/ui/screen_puzzle_v2/scan_lines.png" id="3_qkl51"]
 [ext_resource type="PackedScene" uid="uid://cfad1wka7bkpr" path="res://src/screen_puzzles/virtual_mouse.tscn" id="4_8hctd"]
+[ext_resource type="Shader" path="res://src/shaders/overlay.gdshader" id="4_x2dlk"]
+[ext_resource type="Texture2D" uid="uid://d340afuxnga7g" path="res://assets/mvp4_assets/4kbrushtexture.png" id="5_4b8jq"]
 [ext_resource type="Texture2D" uid="uid://dl7wqp5bheye5" path="res://assets/mvp3_assets/screenpuzzle/border.png" id="5_hn87c"]
 [ext_resource type="Shader" path="res://src/shaders/vhs.gdshader" id="5_tlclc"]
 [ext_resource type="FontFile" uid="uid://dutpxihkfghcu" path="res://assets/ui/fonts/CrimsonText-BoldItalic.ttf" id="5_y32mw"]
@@ -13,6 +15,10 @@ size = Vector2(1268.5, 821.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jls5r"]
 shader = ExtResource("2_tv86y")
+shader_parameter/intensity = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1m2ii"]
+shader = ExtResource("4_x2dlk")
 shader_parameter/intensity = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qhw5p"]
@@ -73,6 +79,12 @@ modulate = Color(0.941176, 0.960784, 1, 0.552941)
 material = SubResource("ShaderMaterial_jls5r")
 position = Vector2(960, 540)
 texture = ExtResource("3_qkl51")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport/CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0.447059)
+material = SubResource("ShaderMaterial_1m2ii")
+position = Vector2(960, 540)
+texture = ExtResource("5_4b8jq")
 
 [node name="Hider" type="ColorRect" parent="SubViewportContainer/SubViewport/CanvasLayer"]
 visible = false
