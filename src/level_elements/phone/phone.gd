@@ -66,6 +66,7 @@ func interact(player_: Player):
 		Global.main_camera.set_focus(null)
 		focused = false
 		player.active_phone = null
+		reset()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		tween_opacity(player, 1, 0.2)
 		tween_opacity(interact_label, 1, 0.3)
@@ -141,10 +142,10 @@ func get_phone_number_key() -> String:
 ## ------------------------------ CURSOR ------------------------------
 
 func set_hovered_cursor():
-	Input.set_custom_mouse_cursor(hovered_cursor, Input.CURSOR_ARROW, Vector2(64,64))
+	Input.set_custom_mouse_cursor(hovered_cursor, Input.CURSOR_ARROW, Vector2(64, 64))
 
 func set_default_cursor():
-	Input.set_custom_mouse_cursor(default_cursor, Input.CURSOR_ARROW, Vector2(64,64))
+	Input.set_custom_mouse_cursor(default_cursor, Input.CURSOR_ARROW, Vector2(64, 64))
 
 ## ------------------------------ SIGNALS ------------------------------
 
