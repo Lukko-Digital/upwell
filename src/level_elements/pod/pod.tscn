@@ -1,18 +1,21 @@
-[gd_scene load_steps=26 format=3 uid="uid://dw50qvw1e418b"]
+[gd_scene load_steps=29 format=3 uid="uid://dw50qvw1e418b"]
 
 [ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="1_pv0jy"]
 [ext_resource type="Script" path="res://src/level_elements/pod/pod.gd" id="1_urr8o"]
 [ext_resource type="PackedScene" uid="uid://bb68hmcptqlgt" path="res://src/map/map.tscn" id="2_uerrb"]
-[ext_resource type="PackedScene" uid="uid://cer8t0kfpov7b" path="res://src/level_elements/holder/clicker_holder.tscn" id="4_goton"]
 [ext_resource type="Script" path="res://src/level_elements/camera/camera_point_focus.gd" id="5_0tuqc"]
+[ext_resource type="Texture2D" uid="uid://bo57chd58hkli" path="res://assets/pod/holder_grabber_pod-sheet.png" id="5_hbds8"]
 [ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="6_kw5qg"]
+[ext_resource type="Texture2D" uid="uid://dfk4hd1x0b482" path="res://assets/pod/pod_holder_cover.png" id="6_o1jfq"]
 [ext_resource type="Texture2D" uid="uid://bis82a47xh061" path="res://assets/pod/pod_bg.png" id="7_p210d"]
-[ext_resource type="Texture2D" uid="uid://hkhamgomvbwo" path="res://assets/mvp3_assets/viewblocker.png" id="9_0klgs"]
 [ext_resource type="PackedScene" uid="uid://dhjj5tgw8y2es" path="res://src/level_elements/view_blocker.tscn" id="9_u6g7q"]
 [ext_resource type="Texture2D" uid="uid://cecwp7vm8bcq6" path="res://assets/pod/pod_fg.png" id="10_cr7db"]
+[ext_resource type="Texture2D" uid="uid://cs5i2eevhownx" path="res://assets/pod/pod_cover.png" id="11_7qrh3"]
 [ext_resource type="Texture2D" uid="uid://bqu3dcbksgtgh" path="res://assets/pod/pod_fg_5.png" id="11_8qs7d"]
 [ext_resource type="PackedScene" uid="uid://dm4d6nx2eryj8" path="res://src/level_elements/pod/pod_door.tscn" id="13_8ngjx"]
 [ext_resource type="Script" path="res://src/level_elements/parallax_canvas.gd" id="14_67fqf"]
+[ext_resource type="PackedScene" uid="uid://qdspi0dpyqtl" path="res://src/level_elements/holder/clicker_holder_grabber.tscn" id="16_rqxyl"]
+[ext_resource type="Texture2D" uid="uid://dbeb0mc6rhj73" path="res://assets/mvp3_assets/viewblocker_blur.png" id="16_xyot1"]
 [ext_resource type="Script" path="res://src/level_elements/camera/camera_bound.gd" id="17_tbj2n"]
 [ext_resource type="Shader" path="res://src/shaders/color_dodge.gdshader" id="17_w4mln"]
 
@@ -38,7 +41,7 @@ length = 4.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasHolder/120/Node2D/Hider:modulate")
+tracks/0/path = NodePath("CanvasHolder/200/Node2D/Hider:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -50,7 +53,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasHolder/5/Node2D/WarningLight:modulate")
+tracks/1/path = NodePath("CanvasHolder/10/Node2D/WarningLight:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -62,7 +65,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasHolder/120/Node2D/Hider:visible")
+tracks/2/path = NodePath("CanvasHolder/200/Node2D/Hider:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -74,7 +77,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CanvasHolder/120/Node2D/Hider:color")
+tracks/3/path = NodePath("CanvasHolder/200/Node2D/Hider:color")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -90,7 +93,7 @@ length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasHolder/5/Node2D/WarningLight:modulate")
+tracks/0/path = NodePath("CanvasHolder/10/Node2D/WarningLight:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -105,7 +108,7 @@ resource_name = "neutral"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasHolder/120/Node2D/Hider:modulate")
+tracks/0/path = NodePath("CanvasHolder/200/Node2D/Hider:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -117,7 +120,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasHolder/5/Node2D/WarningLight:modulate")
+tracks/1/path = NodePath("CanvasHolder/10/Node2D/WarningLight:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -133,7 +136,7 @@ length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasHolder/120/Node2D/Hider:visible")
+tracks/0/path = NodePath("CanvasHolder/200/Node2D/Hider:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -145,7 +148,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasHolder/120/Node2D/Hider:color")
+tracks/1/path = NodePath("CanvasHolder/200/Node2D/Hider:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -157,7 +160,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasHolder/120/Node2D/Hider:modulate")
+tracks/2/path = NodePath("CanvasHolder/200/Node2D/Hider:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -169,7 +172,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CanvasHolder/5/Node2D/WarningLight:modulate")
+tracks/3/path = NodePath("CanvasHolder/10/Node2D/WarningLight:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -189,14 +192,29 @@ _data = {
 
 [node name="Pod" type="Node2D" node_paths=PackedStringArray("pod_holder", "walls_static_body", "walls_visual")]
 script = ExtResource("1_urr8o")
-pod_holder = NodePath("ClickerHolder")
+pod_holder = NodePath("ClickerGrabber")
 walls_static_body = NodePath("WallsStaticBody")
 walls_visual = NodePath("WallsVisual")
 
 [node name="Screen" parent="." instance=ExtResource("1_pv0jy")]
-position = Vector2(0, -548)
-scale = Vector2(0.919458, 0.919458)
+position = Vector2(0, -579)
+scale = Vector2(0.900789, 0.900789)
 screen = ExtResource("2_uerrb")
+
+[node name="ClickerGrabber" parent="." instance=ExtResource("16_rqxyl")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-3, -1265)
+rotation = 3.14159
+
+[node name="HolderSprite" parent="ClickerGrabber" index="0"]
+texture = ExtResource("5_hbds8")
+
+[node name="PodHolderCover" type="Sprite2D" parent="."]
+z_index = 11
+z_as_relative = false
+position = Vector2(-15, -1106)
+texture = ExtResource("6_o1jfq")
 
 [node name="WallsStaticBody" type="StaticBody2D" parent="."]
 
@@ -215,17 +233,17 @@ position = Vector2(0, 911)
 scale = Vector2(1, 7.13)
 
 [node name="ColorRect" type="ColorRect" parent="WallsVisual"]
-offset_left = -2890.0
+offset_left = -3066.0
 offset_top = -1105.0
-offset_right = -768.0
+offset_right = -944.0
 offset_bottom = 279.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect2" type="ColorRect" parent="WallsVisual"]
-offset_left = 768.0
+offset_left = 846.0
 offset_top = -1105.0
-offset_right = 2890.0
+offset_right = 2968.0
 offset_bottom = 279.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
@@ -242,16 +260,13 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect4" type="ColorRect" parent="WallsVisual"]
 offset_left = -2445.0
-offset_top = -290.743
+offset_top = -299.439
 offset_right = -323.0
-offset_bottom = 1093.26
+offset_bottom = 1084.56
 rotation = -1.57079
 scale = Vector2(0.235649, 3.61439)
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
-
-[node name="ClickerHolder" parent="." instance=ExtResource("4_goton")]
-position = Vector2(-275, 3)
 
 [node name="PodClickerRehomeArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -282,17 +297,17 @@ color = Color(0, 0, 0, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="."]
 offset_left = -755.0
-offset_top = -958.0
+offset_top = -1020.0
 offset_right = -406.0
-offset_bottom = 553.0
+offset_bottom = 491.0
 rotation = -1.57079
 color = Color(0, 0, 0, 1)
 
 [node name="ColorRect4" type="ColorRect" parent="."]
-offset_left = -1133.0
-offset_top = 1172.0
-offset_right = -147.0
-offset_bottom = 3439.0
+offset_left = -939.0
+offset_top = 1153.0
+offset_right = 47.0
+offset_bottom = 2950.0
 rotation = -1.57079
 color = Color(0, 0, 0, 1)
 
@@ -306,7 +321,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="PodBg" type="Sprite2D" parent="."]
 modulate = Color(0.59776, 0.467614, 0.410186, 1)
-position = Vector2(-1, -509)
+position = Vector2(-1, -542.381)
 scale = Vector2(0.943436, 0.943436)
 texture = ExtResource("7_p210d")
 
@@ -338,6 +353,7 @@ shape = SubResource("RectangleShape2D_82e7y")
 layer = 10
 follow_viewport_enabled = true
 script = ExtResource("14_67fqf")
+unique_layer = true
 parallax_layer = 1.0
 updates_in_process = true
 
@@ -345,10 +361,10 @@ updates_in_process = true
 
 [node name="ColorRect6" type="ColorRect" parent="CanvasHolder/10/Node2D"]
 material = SubResource("ShaderMaterial_cevex")
-offset_left = -831.0
-offset_top = -1557.0
-offset_right = 772.0
-offset_bottom = 561.0
+offset_left = -928.0
+offset_top = -1455.0
+offset_right = 869.0
+offset_bottom = 319.0
 mouse_filter = 2
 color = Color(0.413107, 0.223841, 0, 1)
 
@@ -361,37 +377,69 @@ offset_right = 772.0
 offset_bottom = 561.0
 mouse_filter = 2
 color = Color(1, 0, 0, 0.494118)
+metadata/_edit_use_anchors_ = true
 
-[node name="12" type="CanvasLayer" parent="CanvasHolder"]
-layer = 12
+[node name="1_2, L100" type="CanvasLayer" parent="CanvasHolder"]
+layer = 100
 follow_viewport_enabled = true
 follow_viewport_scale = 1.2
 script = ExtResource("14_67fqf")
+unique_layer = true
 parallax_layer = 1.2
 updates_in_process = true
 
-[node name="Node2D" type="Node2D" parent="CanvasHolder/12"]
+[node name="Node2D" type="Node2D" parent="CanvasHolder/1_2, L100"]
 rotation = 3.14159
 scale = Vector2(1, -1)
 
-[node name="RightDoor" parent="CanvasHolder/12/Node2D" instance=ExtResource("13_8ngjx")]
-position = Vector2(-694.865, -410.91)
+[node name="1_2, L100_pod_cover" type="Sprite2D" parent="CanvasHolder/1_2, L100/Node2D"]
+position = Vector2(-0.00129367, -510.289)
+rotation = 3.14159
+scale = Vector2(0.830455, -0.830455)
+texture = ExtResource("11_7qrh3")
 
-[node name="LeftDoor" parent="CanvasHolder/12/Node2D" instance=ExtResource("13_8ngjx")]
-position = Vector2(673.315, -419.91)
+[node name="RightDoor" parent="CanvasHolder/1_2, L100/Node2D" instance=ExtResource("13_8ngjx")]
+position = Vector2(-680.835, -617.668)
+
+[node name="LeftDoor" parent="CanvasHolder/1_2, L100/Node2D" instance=ExtResource("13_8ngjx")]
+position = Vector2(673.315, -626.668)
 scale = Vector2(-1, 1)
 
-[node name="12_viewblocker" type="Sprite2D" parent="CanvasHolder/12/Node2D"]
-position = Vector2(-19.0895, 567.273)
-rotation = 1.5708
-scale = Vector2(5.86528, -1.57259)
-texture = ExtResource("9_0klgs")
-
-[node name="12_pod_fg" type="Sprite2D" parent="CanvasHolder/12/Node2D"]
-position = Vector2(-19.4131, -447.274)
+[node name="1_2, L100_pod_fg" type="Sprite2D" parent="CanvasHolder/1_2, L100/Node2D"]
+position = Vector2(37.4975, -976.667)
 rotation = 3.14159
 scale = Vector2(0.823873, -0.823873)
 texture = ExtResource("10_cr7db")
+region_enabled = true
+region_rect = Rect2(0, 0, 1553, 610)
+
+[node name="ColorRect4" type="ColorRect" parent="CanvasHolder/1_2, L100/Node2D"]
+offset_left = -659.998
+offset_top = 926.153
+offset_right = 326.002
+offset_bottom = 2342.15
+rotation = -1.57079
+color = Color(0, 0, 0, 1)
+
+[node name="1_2, L100_pod_fg2" type="Sprite2D" parent="CanvasHolder/1_2, L100/Node2D"]
+position = Vector2(-0.834152, -324.167)
+rotation = 3.14159
+scale = Vector2(0.932604, -0.932604)
+texture = ExtResource("10_cr7db")
+region_enabled = true
+region_rect = Rect2(-90, 624, 1623, 1284)
+
+[node name="1_2, L100_viewblocker" type="Sprite2D" parent="CanvasHolder/1_2, L100/Node2D"]
+position = Vector2(868.332, -433.335)
+rotation = 3.14159
+scale = Vector2(1.75054, -2.77408)
+texture = ExtResource("16_xyot1")
+
+[node name="1_2, L100_viewblocker_blur" type="Sprite2D" parent="CanvasHolder/1_2, L100/Node2D"]
+position = Vector2(-870.001, -433.331)
+rotation = 3.14159
+scale = Vector2(1.75054, -2.77408)
+texture = ExtResource("16_xyot1")
 
 [node name="13" type="CanvasLayer" parent="CanvasHolder"]
 layer = 13
@@ -404,8 +452,8 @@ updates_in_process = true
 [node name="Node2D" type="Node2D" parent="CanvasHolder/13"]
 
 [node name="13_pod_fg_5" type="Sprite2D" parent="CanvasHolder/13/Node2D"]
-position = Vector2(3.84615, -526.154)
-scale = Vector2(0.625363, 0.625363)
+position = Vector2(31.5385, -543.846)
+scale = Vector2(0.671659, 0.671659)
 texture = ExtResource("11_8qs7d")
 
 [node name="200" type="CanvasLayer" parent="CanvasHolder"]
@@ -413,6 +461,7 @@ layer = 200
 follow_viewport_enabled = true
 follow_viewport_scale = 20.0
 script = ExtResource("14_67fqf")
+unique_layer = true
 parallax_layer = 20.0
 updates_in_process = true
 
@@ -420,12 +469,13 @@ updates_in_process = true
 
 [node name="Hider" type="ColorRect" parent="CanvasHolder/200/Node2D"]
 modulate = Color(1, 1, 1, 0)
-offset_left = -2332.0
-offset_top = -1940.0
-offset_right = 2696.0
-offset_bottom = 1459.0
+offset_left = -2323.5
+offset_top = -1923.5
+offset_right = 2704.5
+offset_bottom = 1475.5
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ViewBlocker" parent="." instance=ExtResource("9_u6g7q")]
 visible = false
@@ -443,3 +493,5 @@ autoplay = "neutral"
 
 [connection signal="body_entered" from="PodClickerRehomeArea" to="." method="_on_pod_clicker_rehome_area_body_entered"]
 [connection signal="body_exited" from="PodClickerRehomeArea" to="." method="_on_pod_clicker_rehome_area_body_exited"]
+
+[editable path="ClickerGrabber"]
