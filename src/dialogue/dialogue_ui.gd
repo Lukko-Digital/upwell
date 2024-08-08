@@ -26,6 +26,7 @@ const SHAKE_DEFAULT = {
 }
 
 const TEXT_SPEED = 0.035
+const FADE_MAX_LENGTH = 5
 ## How long it will take for the next character to appear, in seconds
 const END_CHARACTER_PAUSE = 0.6
 const COMMA_PAUSE = 0.3
@@ -35,6 +36,7 @@ const SPEECH_BUBBLE_OFFSET = Vector2(-60, -110)
 
 # Timer for animating text display, value set to TEXT_SPEED
 @export var display_timer: Timer
+@export var tail_timer: Timer
 @export var response_box: VBoxContainer
 @export var fullscreen_display: FullscreenDialogue
 @export var response_selector: ResponseButtonSelector
@@ -48,7 +50,14 @@ var current_npc: NPC
 ## Used to track and kill zombie [animate_display] instances
 var interaction_timestamp: int
 var next_branch: String
+
 var display_speed_coef = 1
+var fade_head = 0
+var fade_tail = 0:
+	set(value):
+		# Don't allow tail to exceed head
+		fade_tail = min(value, fade_head)
+
 ## Boolean whether the player can hit [esc] to exit dialogue or not
 var locked_in_dialogue: bool
 
@@ -58,6 +67,15 @@ signal dialogue_finished
 func _ready():
 	hide()
 	clear_responses()
+	tail_timer.timeout.connect(_on_tail_timer_timeout)
+
+func _process(_delta: float) -> void:
+	update_fade()
+	if fade_tail < fade_head - 1 and tail_timer.is_stopped():
+		tail_timer.start(TEXT_SPEED * 2)
+
+func _on_tail_timer_timeout():
+	fade_tail += 1
 
 ## [dir_to_npc], either 1 or -1, if the npc is to the right or left,
 ## respectively, of the player
@@ -143,16 +161,25 @@ func play_branch(branch_id: String):
 			if not response.is_impulsive_reponse:
 				spawn_reponse(response)
 
+func update_fade():
+	if not active_dialogue_display:
+		return
+	active_dialogue_display.dialogue_label.parse_bbcode(
+		"[fade start=%s length=%s]" % [str(fade_tail), str(fade_head - fade_tail)] + active_dialogue_display.dialogue_label.text + "[/fade]"
+	)
+
 func animate_display(dialogue_line: String):
 	var init_timestamp = interaction_timestamp
 	## Just the characters that will be seen, no bbcode
 	var command_text = BBCodeParser.strip_bbcode(dialogue_line)
 	var bbcode_text = DialogueParser.strip_dialogue_commands(dialogue_line)
+	## Current idx of the character of the command_text that animate display
+	## is looking at
 	var idx = 0
-	var fade_length = 2
-	var fade_counter = 0
-	apply_fade(fade_counter, fade_length)
-	while idx < command_text.length() + fade_length:
+	# Reset head and tail
+	fade_head = 0
+	fade_tail = 0
+	while idx < command_text.length():
 		# Exit if the interaction timestamp changed from what it was when this
 		# function was instantiated. This will happen when the player exits
 		# dialogue prematurely via [esc]. This also covers the case of the
@@ -166,10 +193,7 @@ func animate_display(dialogue_line: String):
 		if active_dialogue_display.dialogue_label.text != bbcode_text:
 			return
 
-		var new_char = ""
-		# This will only not happen when fading in the last few characters
-		if idx < command_text.length():
-			new_char = command_text[idx]
+		var new_char = command_text[idx]
 
 		if new_char == "{":
 			# Dialogue command
@@ -177,10 +201,11 @@ func animate_display(dialogue_line: String):
 		else:
 			var wait_time = calculate_wait_time(new_char, command_text, idx)
 			display_timer.start(wait_time)
-			# Show new character
-			apply_fade(fade_counter - fade_length, fade_length)
 			idx += 1
-			fade_counter += 1
+			fade_head += 1
+			# If exceeding max length, pull tail along
+			if fade_head - fade_tail > FADE_MAX_LENGTH:
+				fade_tail += 1
 			
 		if not display_timer.is_stopped():
 			await display_timer.timeout
@@ -234,11 +259,6 @@ func calculate_wait_time(new_char: String, command_text: String, idx: int) -> fl
 			return COMMA_PAUSE
 		_:
 			return TEXT_SPEED * display_speed_coef
-
-func apply_fade(start: int, length: int):
-	active_dialogue_display.dialogue_label.parse_bbcode(
-		"[fade start=%s length=%s]" % [str(start), str(length)] + active_dialogue_display.dialogue_label.text + "[/fade]"
-	)
 
 func spawn_reponse(response: Response):
 	if response.spawn_condition != "":
