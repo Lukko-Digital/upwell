@@ -257,7 +257,6 @@ func walk_to_dialogue_start() -> float:
 			return 0
 	# Otherwise walk to location
 	else:
-		print(Time.get_ticks_msec(), "\t", "walking to location")
 		return sign(dialogue_start_location.global_position.x - global_position.x)
 
 ## Used for having the charcter walk to set locations during scripted scenes
@@ -415,7 +414,6 @@ func in_dialogue():
 ## dialogue. If there is no location to walk to, [walk_to_dialogue_start]
 ## starts dialogue immediately.
 func init_npc_interaction(npc: NPC):
-	print(Time.get_ticks_msec(), "\t", "init npc interaction called")
 	current_dialogue_npc = npc
 	var standing_locations = npc.standing_locations.duplicate()
 	if standing_locations.is_empty():
@@ -425,7 +423,6 @@ func init_npc_interaction(npc: NPC):
 	for loc: DialogueStandLocation in standing_locations:
 		if abs(loc.global_position.x - global_position.x) < abs(dialogue_start_location.global_position.x - global_position.x):
 			dialogue_start_location = loc
-	print(Time.get_ticks_msec(), "\t", "determine start location")
 
 ## Attempt to leave dialogue early by pressing [esc], or leave phone
 func exit_interaction():
