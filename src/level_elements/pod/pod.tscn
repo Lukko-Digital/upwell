@@ -409,7 +409,7 @@ position = Vector2(642.809, -626.668)
 scale = Vector2(-1, 1)
 
 [node name="1_2, L100_pod_fg" type="Sprite2D" parent="CanvasHolder/1_2, L100/Node2D"]
-position = Vector2(74.9975, -985.834)
+position = Vector2(30.8309, -955.833)
 rotation = 3.14159
 scale = Vector2(0.790967, -0.790967)
 texture = ExtResource("10_cr7db")
@@ -468,15 +468,15 @@ updates_in_process = true
 
 [node name="Node2D" type="Node2D" parent="CanvasHolder/1_3"]
 
-[node name="13_pod_fg_5" type="Sprite2D" parent="CanvasHolder/1_3/Node2D"]
-position = Vector2(-23.8462, -955.385)
+[node name="1_3_pod_fg_5" type="Sprite2D" parent="CanvasHolder/1_3/Node2D"]
+position = Vector2(9.23077, -970.769)
 scale = Vector2(0.628134, 0.628134)
 texture = ExtResource("11_8qs7d")
 region_enabled = true
 region_rect = Rect2(0, 0, 1832, 1254)
 
-[node name="13_pod_fg_6" type="Sprite2D" parent="CanvasHolder/1_3/Node2D"]
-position = Vector2(-23.0769, -789.231)
+[node name="1_3_pod_fg_6" type="Sprite2D" parent="CanvasHolder/1_3/Node2D"]
+position = Vector2(33.0769, -822.308)
 scale = Vector2(-0.788832, 0.788832)
 texture = ExtResource("11_8qs7d")
 region_enabled = true
