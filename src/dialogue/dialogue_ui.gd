@@ -80,6 +80,8 @@ var fade_tail: int = 0:
 		fade_tail = min(value, fade_head)
 
 var fade_disabled: bool = false
+## Used to speed up tail when head reaches the end
+var all_characters_visible: bool = false
 
 ## Boolean whether the player can hit [esc] to exit dialogue or not
 var locked_in_dialogue: bool
@@ -95,7 +97,8 @@ func _ready():
 func _process(_delta: float) -> void:
 	update_fade()
 	if fade_tail < fade_head - 1 and tail_timer.is_stopped():
-		tail_timer.start(TAIL_DELAY)
+		var wait_time = TAIL_DELAY if not all_characters_visible else TEXT_SPEED
+		tail_timer.start(wait_time)
 
 func _on_tail_timer_timeout():
 	fade_tail += 1
@@ -193,15 +196,18 @@ func update_fade():
 
 func animate_display(dialogue_line: String):
 	var init_timestamp = interaction_timestamp
+	
+	all_characters_visible = false
+	# Reset head and tail
+	fade_head = 0
+	fade_tail = 0
+
 	## Just the characters that will be seen, no bbcode
 	var command_text = BBCodeParser.strip_bbcode(dialogue_line)
 	var bbcode_text = DialogueParser.strip_dialogue_commands(dialogue_line)
 	## Current idx of the character of the command_text that animate display
 	## is looking at
 	var idx = 0
-	# Reset head and tail
-	fade_head = 0
-	fade_tail = 0
 	while idx < command_text.length():
 		# Exit if the interaction timestamp changed from what it was when this
 		# function was instantiated. This will happen when the player exits
@@ -217,7 +223,6 @@ func animate_display(dialogue_line: String):
 			return
 
 		var new_char = command_text[idx]
-
 		if new_char == "{":
 			# Dialogue command
 			idx = handle_dialogue_command(command_text, idx)
@@ -230,6 +235,7 @@ func animate_display(dialogue_line: String):
 		if not display_timer.is_stopped():
 			await display_timer.timeout
 	display_animation_finished.emit()
+	all_characters_visible = true
 
 ## Returns the index of the end of the command, that should be jumped to
 func handle_dialogue_command(command_text: String, idx: int) -> int:
