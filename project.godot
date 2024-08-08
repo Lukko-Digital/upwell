@@ -30,6 +30,7 @@ window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
 mouse_cursor/custom_image="res://assets/puzzle_elements/temp_mouse.png"
 mouse_cursor/custom_image_hotspot=Vector2(64, 64)
+mouse_cursor/tooltip_position_offset=Vector2(0, 0)
 window/quality/use_taa=false
 window/snap_controls_to_pixels=true
 window/dynamic_fonts/use_oversampling=true
