@@ -106,6 +106,8 @@ func _ready() -> void:
 		# Don't allow test players to set mouse mode
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+var last_process_time = 0
+
 func _physics_process(delta):
 	var gravity_state: GravitizedComponent.GravityState = handle_artificial_gravity(delta)
 	handle_world_gravity(delta, gravity_state)
@@ -113,6 +115,9 @@ func _physics_process(delta):
 	move_and_slide()
 	handle_player_animation(input_dir, gravity_state)
 	handle_coyote_timing(gravity_state)
+	var current_process_time = Time.get_ticks_msec()
+	print("-----------------",current_process_time,"\t", current_process_time - last_process_time, "\t", "process")
+	last_process_time = current_process_time
 
 func _process(_delta):
 	handle_throw_arc()
@@ -242,13 +247,10 @@ func walk_to_dialogue_start() -> float:
 
 	# If at location or if no location exists, start dialogue
 	if dialogue_stand_detector.has_overlapping_areas() or dialogue_start_location == null:
-		print(Time.get_ticks_msec(), "\t", "at location")
 		var dir_to_npc = sign(current_dialogue_npc.global_position.x - global_position.x)
 		dialogue_start_location = null
 		current_dialogue_npc.face_player(self)
-		print(Time.get_ticks_msec(), "\t", "npc face player")
 		dialogue_ui.start_dialogue(current_dialogue_npc, dir_to_npc)
-		print(Time.get_ticks_msec(), "\t", "start dialogue")
 		# If facing the wrong way, turn to face npc
 		var npc_to_the_right: bool = (dir_to_npc == 1)
 		if player_sprite.flip_h == npc_to_the_right:
