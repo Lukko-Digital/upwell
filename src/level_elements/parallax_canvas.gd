@@ -2,6 +2,10 @@
 extends UtilityCanvas
 class_name ParallaxCanvas
 
+## If true, setting [parallax_layer] won't automatically set
+## [follow_viewport_scale], [layer], and [name]
+@export var unique_layer: bool = false
+
 ## Sets the [follow_viewport_scale] equal to the value and sets [layer] and
 ## [name] according to the formula below. Value must be greater than 0.
 ## Converting to canvas layer number:
@@ -22,10 +26,6 @@ class_name ParallaxCanvas
         
         follow_viewport_scale = value
         name = str(layer).replace(".", "_")
-
-## If true, setting [parallax_layer] won't automatically set
-## [follow_viewport_scale], [layer], and [name]
-@export var unique_layer: bool = false
 
 ## If true, don't apply modulation from sublevel's parallax modulate group
 @export var unique_modulate: bool = false
