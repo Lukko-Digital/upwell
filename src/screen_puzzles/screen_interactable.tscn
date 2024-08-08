@@ -9,7 +9,7 @@
 [ext_resource type="FontFile" uid="uid://dutpxihkfghcu" path="res://assets/ui/fonts/CrimsonText-BoldItalic.ttf" id="5_y32mw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_monmt"]
-size = Vector2(1268.5, 721)
+size = Vector2(1268.5, 821.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jls5r"]
 shader = ExtResource("2_tv86y")
@@ -28,10 +28,10 @@ shader_parameter/roll_speed = 0.4
 shader_parameter/roll_size = 0.0
 shader_parameter/roll_variation = 0.1
 shader_parameter/distort_intensity = 0.0
-shader_parameter/noise_opacity = 0.393
+shader_parameter/noise_opacity = 0.193
 shader_parameter/noise_speed = 0.74
 shader_parameter/static_noise_intensity = 0.029
-shader_parameter/aberration = -0.00499995
+shader_parameter/aberration = -0.00199995
 shader_parameter/brightness = 1.1
 shader_parameter/discolor = false
 shader_parameter/warp_amount = 0.0
@@ -47,6 +47,7 @@ collision_mask = 2
 script = ExtResource("1_40edb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 50.25)
 shape = SubResource("RectangleShape2D_monmt")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
@@ -68,10 +69,9 @@ render_target_update_mode = 4
 [node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]
 
 [node name="Scanlines" type="Sprite2D" parent="SubViewportContainer/SubViewport/CanvasLayer"]
-modulate = Color(0.941176, 0.960784, 1, 1)
+modulate = Color(0.941176, 0.960784, 1, 0.552941)
 material = SubResource("ShaderMaterial_jls5r")
 position = Vector2(960, 540)
-scale = Vector2(0.645, 0.645)
 texture = ExtResource("3_qkl51")
 
 [node name="Hider" type="ColorRect" parent="SubViewportContainer/SubViewport/CanvasLayer"]
@@ -95,12 +95,12 @@ color = Color(0, 0, 0, 1)
 
 [node name="InteractLabel" type="Label" parent="."]
 self_modulate = Color(1, 1, 1, 0.282353)
-z_index = 512
-offset_left = -152.0
-offset_top = 362.0
-offset_right = 898.0
-offset_bottom = 573.0
-scale = Vector2(0.288346, 0.288346)
+z_index = 6
+offset_left = -206.0
+offset_top = 391.0
+offset_right = 844.0
+offset_bottom = 602.0
+scale = Vector2(0.392277, 0.392277)
 theme_override_fonts/font = ExtResource("5_y32mw")
 theme_override_font_sizes/font_size = 161
 text = "log on"
