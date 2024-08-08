@@ -21,11 +21,13 @@ class_name ParallaxCanvas
             return
         if value < 1:
             layer = roundi(100.0 * (value - 1.0))
-        elif value >= 1:
+        elif value >= 2:
             layer = roundi(value * 10)
+        else:
+            layer = roundi((value-1)/.05)
         
         follow_viewport_scale = value
-        name = str(layer).replace(".", "_")
+        name = str(snapped(value, 0.01)).replace(".", "_")
 
 ## If true, don't apply modulation from sublevel's parallax modulate group
 @export var unique_modulate: bool = false
@@ -71,9 +73,14 @@ func set_child_modulate():
 func update_sprite_grandchildren_name():
     for child in get_children():
         for grandchild in child.get_children():
-            if not grandchild is Sprite2D:
-                continue
-            rename_sprite(grandchild)
+            if grandchild is Sprite2D:
+                rename_sprite(grandchild)
+            elif grandchild is Node2D:
+                for grandestchild in grandchild.get_children():
+                    if not grandestchild is Sprite2D:
+                        continue
+                    rename_sprite(grandestchild)
+            else: continue
     print("Sprites renamed")
 
 ## Rename a sprite to [layer]_[texture name]
