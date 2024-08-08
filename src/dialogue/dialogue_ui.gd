@@ -25,7 +25,7 @@ const SHAKE_DEFAULT = {
 	LERP_SPEED = 10.0
 }
 
-const TEXT_SPEED = 0.035
+const TEXT_SPEED = 0.04
 ## How long it will take for the next character to appear, in seconds
 const END_CHARACTER_PAUSE = 0.6
 const COMMA_PAUSE = 0.3
@@ -41,6 +41,8 @@ const SPEECH_BUBBLE_OFFSET = Vector2(-60, -110)
 
 @onready var response_button_scene = preload("res://src/dialogue/response_button.tscn")
 @onready var speech_bubble_scene = preload("res://src/dialogue/speech_bubble.tscn")
+
+@onready var player: Player = get_parent()
 
 var active_dialogue_display: DialogueDisplay
 var current_speech_bubble: SpeechBubble
@@ -58,6 +60,9 @@ signal dialogue_finished
 func _ready():
 	hide()
 	clear_responses()
+
+func _process(_delta) -> void:
+	offset = player.camera.offset
 
 ## [dir_to_npc], either 1 or -1, if the npc is to the right or left,
 ## respectively, of the player
