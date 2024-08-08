@@ -146,6 +146,49 @@ func exit_dialogue():
 
 	dialogue_finished.emit()
 
+## ------------------------------ DUMMY RUN ------------------------------
+
+func dummy_run(npc: NPC):
+	var instance = speech_bubble_scene.instantiate()
+	instance.init(
+		npc.nodule.position,
+		npc.nodule.flip_h,
+		1
+	)
+	npc.add_child(instance)
+	dummy_recurse(npc, DialogueParser.START_BRANCH_TAG, instance)
+
+func dummy_recurse(npc: NPC, branch_id: String, speech_bubble: SpeechBubble):
+	var branch: ConversationBranch = npc.conversation_tree.branches[branch_id]
+	match branch.display_type:
+		DialogueParser.DisplayType.SPEECH_BUBBLE:
+			active_dialogue_display = current_speech_bubble
+			fullscreen_display.hide()
+		DialogueParser.DisplayType.FULLSCREEN:
+			active_dialogue_display = fullscreen_display
+			fullscreen_display.show()
+	speech_bubble.dialogue_label.text = DialogueParser.strip_dialogue_commands(branch.dialogue_line)
+	if speech_bubble.dialogue_label.text.is_empty():
+		speech_bubble.hide()
+	else:
+		speech_bubble.show()
+
+	if branch.npc_name != "":
+		speech_bubble.name_label.text = "[b]" + branch.npc_name + "[/b]"
+	# # If there is a variable to set, set it
+	# if branch.variable_to_set != "":
+	# 	Global.set_dialogue_variable(branch.variable_to_set, branch.variable_value)
+	# Set next branch
+	next_branch = branch.next_branch_id
+	# Check conditional branch advancement
+	if branch.condition != "":
+		if Global.dialogue_conditions[branch.condition] == branch.expected_condition_value:
+			next_branch = branch.conditional_next_branch_id
+	# If there is no dialogue text, immediately play next branch, in the case of boolean algebra lines
+	if branch.dialogue_line.is_empty():
+		dummy_recurse(npc, next_branch, speech_bubble)
+		return
+
 ## ------------------------------ DIALOGUE LOGIC ------------------------------
 
 func play_branch(branch_id: String):

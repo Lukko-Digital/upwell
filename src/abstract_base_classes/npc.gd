@@ -10,6 +10,7 @@ class_name NPC
 @export var npc_sprite: Node2D
 
 @onready var nodule: Sprite2D = $Nodule
+@onready var player_: Player = %Player
 
 var standing_locations: Array[DialogueStandLocation]
 
@@ -36,6 +37,8 @@ func _ready() -> void:
 
 	conversation_tree = DialogueParser.parse_csv(dialogue_file, self)
 	nodule.hide()
+
+	player_.dialogue_ui.dummy_run.call_deferred(self)
 
 func interact(player: Player):
 	interact_label.hide()
