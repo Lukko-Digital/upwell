@@ -160,25 +160,10 @@ func dummy_run(npc: NPC):
 
 func dummy_recurse(npc: NPC, branch_id: String, speech_bubble: SpeechBubble):
 	var branch: ConversationBranch = npc.conversation_tree.branches[branch_id]
-	match branch.display_type:
-		DialogueParser.DisplayType.SPEECH_BUBBLE:
-			active_dialogue_display = current_speech_bubble
-			fullscreen_display.hide()
-		DialogueParser.DisplayType.FULLSCREEN:
-			active_dialogue_display = fullscreen_display
-			fullscreen_display.show()
+	print(DialogueParser.strip_dialogue_commands(branch.dialogue_line))
+	speech_bubble.dialogue_label.text = "Kid... What the [b][color=ba0700][shake rate=20.0 level=15 connected=1]FUCK[/shake][/color][/b] are you wearing?"
 	speech_bubble.dialogue_label.text = DialogueParser.strip_dialogue_commands(branch.dialogue_line)
-	if speech_bubble.dialogue_label.text.is_empty():
-		speech_bubble.hide()
-	else:
-		speech_bubble.show()
 
-	if branch.npc_name != "":
-		speech_bubble.name_label.text = "[b]" + branch.npc_name + "[/b]"
-	# # If there is a variable to set, set it
-	# if branch.variable_to_set != "":
-	# 	Global.set_dialogue_variable(branch.variable_to_set, branch.variable_value)
-	# Set next branch
 	next_branch = branch.next_branch_id
 	# Check conditional branch advancement
 	if branch.condition != "":
@@ -192,6 +177,7 @@ func dummy_recurse(npc: NPC, branch_id: String, speech_bubble: SpeechBubble):
 ## ------------------------------ DIALOGUE LOGIC ------------------------------
 
 func play_branch(branch_id: String):
+	print(branch_id)
 	if branch_id == DialogueParser.END_TAG:
 		exit_dialogue()
 		return
