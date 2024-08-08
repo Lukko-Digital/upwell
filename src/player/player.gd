@@ -242,13 +242,13 @@ func walk_to_dialogue_start() -> float:
 
 	# If at location or if no location exists, start dialogue
 	if dialogue_stand_detector.has_overlapping_areas() or dialogue_start_location == null:
-		print("at location", "|", Time.get_ticks_msec())
+		print(Time.get_ticks_msec(), "\t", "at location")
 		var dir_to_npc = sign(current_dialogue_npc.global_position.x - global_position.x)
 		dialogue_start_location = null
 		current_dialogue_npc.face_player(self)
-		print("npc face player", "|", Time.get_ticks_msec())
+		print(Time.get_ticks_msec(), "\t", "npc face player")
 		dialogue_ui.start_dialogue(current_dialogue_npc, dir_to_npc)
-		print("start dialogue", "|", Time.get_ticks_msec())
+		print(Time.get_ticks_msec(), "\t", "start dialogue")
 		# If facing the wrong way, turn to face npc
 		var npc_to_the_right: bool = (dir_to_npc == 1)
 		if player_sprite.flip_h == npc_to_the_right:
@@ -257,6 +257,7 @@ func walk_to_dialogue_start() -> float:
 			return 0
 	# Otherwise walk to location
 	else:
+		print(Time.get_ticks_msec(), "\t", "walking to location")
 		return sign(dialogue_start_location.global_position.x - global_position.x)
 
 ## Used for having the charcter walk to set locations during scripted scenes
@@ -414,7 +415,7 @@ func in_dialogue():
 ## dialogue. If there is no location to walk to, [walk_to_dialogue_start]
 ## starts dialogue immediately.
 func init_npc_interaction(npc: NPC):
-	print("init npc interaction called", "|", Time.get_ticks_msec())
+	print(Time.get_ticks_msec(), "\t", "init npc interaction called")
 	current_dialogue_npc = npc
 	var standing_locations = npc.standing_locations.duplicate()
 	if standing_locations.is_empty():
@@ -424,7 +425,7 @@ func init_npc_interaction(npc: NPC):
 	for loc: DialogueStandLocation in standing_locations:
 		if abs(loc.global_position.x - global_position.x) < abs(dialogue_start_location.global_position.x - global_position.x):
 			dialogue_start_location = loc
-	print("determine start location", "|", Time.get_ticks_msec())
+	print(Time.get_ticks_msec(), "\t", "determine start location")
 
 ## Attempt to leave dialogue early by pressing [esc], or leave phone
 func exit_interaction():

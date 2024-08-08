@@ -42,7 +42,7 @@ const END_CHARACTER_PAUSE = 0.6
 const COMMA_PAUSE = 0.3
 
 ## Distance from nodule origin to npc origin
-const SPEECH_BUBBLE_OFFSET = Vector2( - 60, -110)
+const SPEECH_BUBBLE_OFFSET = Vector2(-60, -110)
 
 # Timer for animating text display, value set to TEXT_SPEED
 @export var display_timer: Timer
@@ -51,8 +51,8 @@ const SPEECH_BUBBLE_OFFSET = Vector2( - 60, -110)
 @export var fullscreen_display: FullscreenDialogue
 @export var response_selector: ResponseButtonSelector
 
-@onready var response_button_scene = preload ("res://src/dialogue/response_button.tscn")
-@onready var speech_bubble_scene = preload ("res://src/dialogue/speech_bubble.tscn")
+@onready var response_button_scene = preload("res://src/dialogue/response_button.tscn")
+@onready var speech_bubble_scene = preload("res://src/dialogue/speech_bubble.tscn")
 
 @onready var player: Player = get_parent()
 
@@ -117,10 +117,10 @@ func _on_tail_timer_timeout():
 func start_dialogue(npc: NPC, dir_to_npc: float):
 	fullscreen_display.hide()
 	show()
-	print("show and hide", "|", Time.get_ticks_msec())
+	print(Time.get_ticks_msec(), "\t", "show and hide")
 	current_npc = npc
 	interaction_timestamp = Time.get_ticks_msec()
-	print("set interaction variables", "|", Time.get_ticks_msec())
+	print(Time.get_ticks_msec(), "\t", "set interaction variables")
 	
 	# Spawn speech bubble
 	var instance = speech_bubble_scene.instantiate()
@@ -129,10 +129,10 @@ func start_dialogue(npc: NPC, dir_to_npc: float):
 		npc.nodule.flip_h,
 		dir_to_npc
 	)
-	print("init speech bubble", "|", Time.get_ticks_msec())
+	print(Time.get_ticks_msec(), "\t", "init speech bubble")
 	current_speech_bubble = instance
 	npc.add_child(instance)
-	print("give npc speech bubble", "|", Time.get_ticks_msec())
+	print(Time.get_ticks_msec(), "\t", "give npc speech bubble")
 
 	play_branch(DialogueParser.START_BRANCH_TAG)
 
@@ -153,13 +153,13 @@ func exit_dialogue():
 ## ------------------------------ DIALOGUE LOGIC ------------------------------
 
 func play_branch(branch_id: String):
-	print("play branch called", "|", Time.get_ticks_msec())
+	print(Time.get_ticks_msec(), "\t", "play branch called")
 	if branch_id == DialogueParser.END_TAG:
 		exit_dialogue()
 		return
 
 	clear_responses()
-	print("clear responses", "|", Time.get_ticks_msec())
+	print(Time.get_ticks_msec(), "\t", "play branch ", branch_id)
 	var branch: ConversationBranch = current_npc.conversation_tree.branches[branch_id]
 	# Set [locked_in_dialogue]
 	locked_in_dialogue = branch.locked_in_dialogue
@@ -180,7 +180,6 @@ func play_branch(branch_id: String):
 		active_dialogue_display.hide()
 	else:
 		active_dialogue_display.show()
-	print("play branch 1", "|", Time.get_ticks_msec())
 
 	# If there is a name, set it
 	if branch.npc_name != "":
@@ -194,7 +193,6 @@ func play_branch(branch_id: String):
 	if branch.condition != "":
 		if Global.dialogue_conditions[branch.condition] == branch.expected_condition_value:
 			next_branch = branch.conditional_next_branch_id
-	print("play branch 2", "|", Time.get_ticks_msec())
 	# If there is no dialogue text, immediately play next branch, in the case of boolean algebra lines
 	if branch.dialogue_line.is_empty():
 		play_branch(next_branch)
