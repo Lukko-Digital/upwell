@@ -16,7 +16,7 @@ entry_number = 1
 position = Vector2(-13312, -1664)
 
 [node name="H32Nuclear_Fork" parent="." instance=ExtResource("3_npwjp")]
-position = Vector2(-1664, 256)
+position = Vector2(-5504, -2432)
 
 [node name="H32Nuclear_StartPuzzle" parent="." instance=ExtResource("4_tfl6e")]
-position = Vector2(-26624, 14592)
+position = Vector2(-24576, 11648)
