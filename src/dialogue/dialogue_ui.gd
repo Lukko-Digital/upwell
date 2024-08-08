@@ -89,6 +89,8 @@ var locked_in_dialogue: bool
 signal display_animation_finished
 signal dialogue_finished
 
+## ------------------------------- CORE -------------------------------
+
 func _ready():
 	hide()
 	clear_responses()
@@ -102,6 +104,8 @@ func _process(_delta: float) -> void:
 
 func _on_tail_timer_timeout():
 	fade_tail += 1
+
+## ------------------------------ ENTER/EXIT ------------------------------
 
 ## [dir_to_npc], either 1 or -1, if the npc is to the right or left,
 ## respectively, of the player
@@ -122,6 +126,22 @@ func start_dialogue(npc: NPC, dir_to_npc: float):
 	npc.add_child(instance)
 
 	play_branch(DialogueParser.START_BRANCH_TAG)
+
+func exit_dialogue():
+	current_npc.reset()
+	current_npc = null
+	interaction_timestamp = 0
+	hide()
+
+	# Despawn speech bubble
+	if current_speech_bubble:
+		current_speech_bubble.get_parent().remove_child(current_speech_bubble)
+		current_speech_bubble.queue_free()
+		current_speech_bubble = null
+
+	dialogue_finished.emit()
+
+## ------------------------------ DIALOGUE LOGIC ------------------------------
 
 func play_branch(branch_id: String):
 	if branch_id == DialogueParser.END_TAG:
@@ -186,6 +206,8 @@ func play_branch(branch_id: String):
 		for response in branch.responses:
 			if not response.is_impulsive_reponse:
 				spawn_reponse(response)
+
+## ---------------------------- DISPLAY ANIMATION ----------------------------
 
 func update_fade():
 	if not active_dialogue_display:
@@ -290,6 +312,8 @@ func calculate_wait_time(new_char: String, command_text: String, idx: int) -> fl
 		_:
 			return TEXT_SPEED * display_speed_coef
 
+## ------------------------------- RESPONSES -------------------------------
+
 func spawn_reponse(response: Response):
 	if response.spawn_condition != "":
 		if Global.dialogue_conditions[response.spawn_condition] != response.expected_condition_value:
@@ -314,19 +338,7 @@ func clear_responses():
 		response_box.remove_child(button)
 		button.queue_free()
 
-func exit_dialogue():
-	current_npc.reset()
-	current_npc = null
-	interaction_timestamp = 0
-	hide()
-
-	# Despawn speech bubble
-	if current_speech_bubble:
-		current_speech_bubble.get_parent().remove_child(current_speech_bubble)
-		current_speech_bubble.queue_free()
-		current_speech_bubble = null
-
-	dialogue_finished.emit()
+## ------------------------------- SIGNALS -------------------------------
 
 func _response_button_pressed(response: Response):
 	# Set variables
