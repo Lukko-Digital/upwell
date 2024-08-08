@@ -1,11 +1,15 @@
-[gd_scene load_steps=23 format=3 uid="uid://dltpg108effdh"]
+[gd_scene load_steps=25 format=3 uid="uid://dltpg108effdh"]
 
 [ext_resource type="Script" path="res://src/map/map_player/map_ui.gd" id="1_7y0mi"]
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="1_jfwm8"]
-[ext_resource type="Texture2D" uid="uid://b1tya4oq7twf2" path="res://assets/ui/map/focus.png" id="2_bj0n5"]
+[ext_resource type="Texture2D" uid="uid://dbi7p834psfx8" path="res://assets/ui/map/focus_subtract.png" id="2_ky4es"]
 [ext_resource type="Texture2D" uid="uid://dy02yd3yonudp" path="res://assets/ui/map/log/backer.png" id="3_18sc1"]
 [ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="4_s7rmj"]
 [ext_resource type="Texture2D" uid="uid://bpgo65cx8qfrt" path="res://assets/ui/map/log/launch.png" id="6_itkhn"]
+[ext_resource type="Theme" uid="uid://dnbl83glwnixk" path="res://src/style_boxes/CustomVscroll.tres" id="7_q8pjy"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pdoej"]
+blend_mode = 3
 
 [sub_resource type="FontVariation" id="FontVariation_r8fn4"]
 base_font = ExtResource("1_jfwm8")
@@ -347,17 +351,17 @@ layer = 0
 scale = Vector2(0.5, 0.5)
 transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 script = ExtResource("1_7y0mi")
-fuel_launch_label = NodePath("LaunchInfoBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer/FuelLaunchLabel")
-trajectory_launch_label = NodePath("LaunchInfoBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer/TrajectoryLaunchLabel")
-log_label = NodePath("LaunchInfoBacker/TravelInfoContainer/ScrollContainer/MarginContainer/LogLabel")
+fuel_launch_label = NodePath("LaunchInfoBacker/LaunchDetailsContainer/FuelLaunchLabel")
+trajectory_launch_label = NodePath("LaunchInfoBacker/LaunchDetailsContainer/TrajectoryLaunchLabel")
+log_label = NodePath("LaunchInfoBacker/ScrollContainer/MarginContainer/LogLabel")
 
 [node name="FocusTexture" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.513726)
-z_index = 10
+self_modulate = Color(1, 1, 1, 0.533333)
 z_as_relative = false
+material = SubResource("CanvasItemMaterial_pdoej")
 offset_right = 3840.0
 offset_bottom = 2160.0
-texture = ExtResource("2_bj0n5")
+texture = ExtResource("2_ky4es")
 
 [node name="Energy" type="Control" parent="."]
 layout_mode = 3
@@ -428,96 +432,23 @@ offset_bottom = 1936.0
 mouse_filter = 0
 texture = ExtResource("3_18sc1")
 
-[node name="TravelInfoContainer" type="VBoxContainer" parent="LaunchInfoBacker"]
-self_modulate = Color(1, 1, 1, 0)
+[node name="ScrollContainer" type="ScrollContainer" parent="LaunchInfoBacker"]
 layout_mode = 2
 offset_left = 102.0
-offset_top = 104.0
+offset_top = 702.0
 offset_right = 1040.0
-offset_bottom = 1484.0
-
-[node name="TopSectionContainer" type="HBoxContainer" parent="LaunchInfoBacker/TravelInfoContainer"]
-layout_mode = 2
-
-[node name="LaunchDetailsContainer" type="VBoxContainer" parent="LaunchInfoBacker/TravelInfoContainer/TopSectionContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 35
-alignment = 1
-
-[node name="Header" type="RichTextLabel" parent="LaunchInfoBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer"]
-layout_mode = 2
-mouse_filter = 1
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = SubResource("FontVariation_q6uck")
-theme_override_fonts/bold_font = SubResource("FontVariation_whvip")
-theme_override_fonts/italics_font = SubResource("FontVariation_j0s38")
-theme_override_fonts/bold_italics_font = SubResource("FontVariation_mjnts")
-theme_override_font_sizes/normal_font_size = 60
-theme_override_font_sizes/bold_font_size = 60
-theme_override_font_sizes/italics_font_size = 60
-theme_override_font_sizes/bold_italics_font_size = 60
-theme_override_font_sizes/mono_font_size = 60
-bbcode_enabled = true
-text = "[b]DETAILS:[/b]"
-fit_content = true
-shortcut_keys_enabled = false
-visible_characters_behavior = 1
-
-[node name="FuelLaunchLabel" type="RichTextLabel" parent="LaunchInfoBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer"]
-layout_mode = 2
-mouse_filter = 1
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = SubResource("FontVariation_q6uck")
-theme_override_fonts/bold_font = SubResource("FontVariation_whvip")
-theme_override_fonts/italics_font = SubResource("FontVariation_j0s38")
-theme_override_fonts/bold_italics_font = SubResource("FontVariation_mjnts")
-theme_override_font_sizes/normal_font_size = 35
-theme_override_font_sizes/bold_font_size = 35
-theme_override_font_sizes/italics_font_size = 35
-theme_override_font_sizes/bold_italics_font_size = 35
-theme_override_font_sizes/mono_font_size = 35
-bbcode_enabled = true
-text = "Fuel consumption is low"
-fit_content = true
-shortcut_keys_enabled = false
-visible_characters_behavior = 1
-
-[node name="TrajectoryLaunchLabel" type="RichTextLabel" parent="LaunchInfoBacker/TravelInfoContainer/TopSectionContainer/LaunchDetailsContainer"]
-layout_mode = 2
-mouse_filter = 1
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = SubResource("FontVariation_q6uck")
-theme_override_fonts/bold_font = SubResource("FontVariation_whvip")
-theme_override_fonts/italics_font = SubResource("FontVariation_j0s38")
-theme_override_fonts/bold_italics_font = SubResource("FontVariation_mjnts")
-theme_override_font_sizes/normal_font_size = 35
-theme_override_font_sizes/bold_font_size = 35
-theme_override_font_sizes/italics_font_size = 35
-theme_override_font_sizes/bold_italics_font_size = 35
-theme_override_font_sizes/mono_font_size = 35
-bbcode_enabled = true
-text = "Trajectory is unblocked."
-fit_content = true
-shortcut_keys_enabled = false
-visible_characters_behavior = 1
-
-[node name="LaunchButton" type="TextureButton" parent="LaunchInfoBacker/TravelInfoContainer/TopSectionContainer"]
-layout_mode = 2
-texture_normal = ExtResource("6_itkhn")
-stretch_mode = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="LaunchInfoBacker/TravelInfoContainer"]
-layout_mode = 2
+offset_bottom = 1580.0
 size_flags_vertical = 3
+theme = ExtResource("7_q8pjy")
+horizontal_scroll_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="LaunchInfoBacker/TravelInfoContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="LaunchInfoBacker/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_top = 60
 
-[node name="LogLabel" type="RichTextLabel" parent="LaunchInfoBacker/TravelInfoContainer/ScrollContainer/MarginContainer"]
+[node name="LogLabel" type="RichTextLabel" parent="LaunchInfoBacker/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -543,8 +474,89 @@ Mentioned some sort of innate ability of the pod to orbit like a node
 [ul]
 Broken rocks on the north side of RELEASE contain a strange code: 001011
 [/ul]
-"
+
+fewfewhfuiweh
+
+few
+fwefwe
+fwe"
 shortcut_keys_enabled = false
+
+[node name="LaunchDetailsContainer" type="VBoxContainer" parent="LaunchInfoBacker"]
+layout_mode = 2
+offset_left = 124.0
+offset_top = 78.0
+offset_right = 507.0
+offset_bottom = 625.0
+size_flags_horizontal = 3
+theme_override_constants/separation = 35
+alignment = 1
+
+[node name="Header" type="RichTextLabel" parent="LaunchInfoBacker/LaunchDetailsContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_q6uck")
+theme_override_fonts/bold_font = SubResource("FontVariation_whvip")
+theme_override_fonts/italics_font = SubResource("FontVariation_j0s38")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_mjnts")
+theme_override_font_sizes/normal_font_size = 60
+theme_override_font_sizes/bold_font_size = 60
+theme_override_font_sizes/italics_font_size = 60
+theme_override_font_sizes/bold_italics_font_size = 60
+theme_override_font_sizes/mono_font_size = 60
+bbcode_enabled = true
+text = "[b]DETAILS:[/b]"
+fit_content = true
+shortcut_keys_enabled = false
+visible_characters_behavior = 1
+
+[node name="FuelLaunchLabel" type="RichTextLabel" parent="LaunchInfoBacker/LaunchDetailsContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_q6uck")
+theme_override_fonts/bold_font = SubResource("FontVariation_whvip")
+theme_override_fonts/italics_font = SubResource("FontVariation_j0s38")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_mjnts")
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/bold_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+theme_override_font_sizes/bold_italics_font_size = 35
+theme_override_font_sizes/mono_font_size = 35
+bbcode_enabled = true
+text = "Fuel consumption is low"
+fit_content = true
+shortcut_keys_enabled = false
+visible_characters_behavior = 1
+
+[node name="TrajectoryLaunchLabel" type="RichTextLabel" parent="LaunchInfoBacker/LaunchDetailsContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_q6uck")
+theme_override_fonts/bold_font = SubResource("FontVariation_whvip")
+theme_override_fonts/italics_font = SubResource("FontVariation_j0s38")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_mjnts")
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/bold_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+theme_override_font_sizes/bold_italics_font_size = 35
+theme_override_font_sizes/mono_font_size = 35
+bbcode_enabled = true
+text = "Trajectory is unblocked."
+fit_content = true
+shortcut_keys_enabled = false
+visible_characters_behavior = 1
+
+[node name="LaunchButton" type="TextureButton" parent="LaunchInfoBacker"]
+layout_mode = 2
+offset_left = 516.0
+offset_top = 58.0
+offset_right = 1067.0
+offset_bottom = 605.0
+texture_normal = ExtResource("6_itkhn")
+stretch_mode = 5
 
 [node name="MapAnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")
@@ -554,6 +566,6 @@ libraries = {
 autoplay = "neutral"
 
 [connection signal="gui_input" from="LaunchInfoBacker" to="." method="_on_text_backer_gui_input"]
-[connection signal="mouse_entered" from="LaunchInfoBacker/TravelInfoContainer/TopSectionContainer/LaunchButton" to="." method="_on_launch_button_mouse_entered"]
-[connection signal="mouse_exited" from="LaunchInfoBacker/TravelInfoContainer/TopSectionContainer/LaunchButton" to="." method="_on_launch_button_mouse_exited"]
-[connection signal="pressed" from="LaunchInfoBacker/TravelInfoContainer/TopSectionContainer/LaunchButton" to="." method="_on_launch_button_pressed"]
+[connection signal="mouse_entered" from="LaunchInfoBacker/LaunchButton" to="." method="_on_launch_button_mouse_entered"]
+[connection signal="mouse_exited" from="LaunchInfoBacker/LaunchButton" to="." method="_on_launch_button_mouse_exited"]
+[connection signal="pressed" from="LaunchInfoBacker/LaunchButton" to="." method="_on_launch_button_pressed"]
