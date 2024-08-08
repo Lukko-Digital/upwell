@@ -1262,7 +1262,7 @@ mouse_filter = 2
 color = Color(0.321591, 0.195664, 0, 0.317647)
 
 [node name="-5" type="CanvasLayer" parent="."]
-layer = -5
+layer = -6
 follow_viewport_enabled = true
 follow_viewport_scale = 0.945
 script = ExtResource("1_yylm6")
