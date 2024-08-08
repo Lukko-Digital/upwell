@@ -1,12 +1,12 @@
 Branch,Name,Display Type,Dialogue Text,Next Branch,Variable To Set,Variable Value,Condition,Conditional Next Branch,Locked In Dialogue,R1 Text,R1 Next Branch,R1 Spawn Condition,R1 Variable To Set,R1 Variable Value,R1 Is Impulsive Response,R2 Text,R2 Next Branch,R2 Spawn Condition,R2 Variable To Set,R2 Variable Value,R2 Is Impulsive Response,R3 Text,R3 Next Branch,R3 Spawn Condition,R3 Variable To Set,R3 Variable Value,R3 Is Impulsive Response
-S1,Fraud,,,W6,,,,,TRUE,,,,,,FALSE,,,,,,FALSE,,,,,,FALSE
+S1,Fraud,,,W1,,,,,TRUE,,,,,,FALSE,,,,,,FALSE,,,,,,FALSE
 ,,,,,,,,,TRUE,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,TRUE,,,,,,,,,,,,,,,,,,
 W1,,Fullscreen,"when he woke up, he found himself deep in a forest{pause 1.5}",W2,WHISPER1,1,,,TRUE,,,,,,FALSE,,,,,,FALSE,,,,,,FALSE
 W2,,Fullscreen,wearing strange clothing{pause 1.5},W3,,,,,TRUE,,,,,,FALSE,,,,,,FALSE,,,,,,FALSE
 W3,,Fullscreen,he wondered to himself…{pause 1.5},,,,,,TRUE,where am I?,W4,,,,FALSE,who am I?,W5,,,,FALSE,what should I do?,W6,,,,FALSE
 W4,,Fullscreen,{pause 1} he asked{pause 0.25}{shake}{speed 4} [b][i]stupid[/i][/b]{speed 1}{pause 0.35} questions about his location{pause 1.5},W4A,,,,,TRUE,,,,,,FALSE,,,,,,FALSE,,,,,,FALSE
-W5,,Fullscreen,{pause 1} he asked{pause 0.25}{shake}{speed 4} [b][i]stupid[/i][/b]{speed 1}{pause 0.35} questions about his identity{pause 1.5},W4A,,,,,TRUE,,,,,,FALSE,,,,,,FALSE,,,,,,FALSE
+W5,,Fullscreen,{pause 1} he asked {pause 0.25}{fade_off}{shake}{speed 4}[b][i]stupid[/i][/b]{speed 1}{fade_on}{pause 0.35} questions about his identity{pause 1.5},W4A,,,,,TRUE,,,,,,FALSE,,,,,,FALSE,,,,,,FALSE
 W6,,Fullscreen,{pause 1} he asked{pause 0.25}{shake}{speed 4} [b][i]stupid[/i][/b]{speed 1}{pause 0.35} questions about his goals{pause 1.5},W6A,,,,,TRUE,,,,,,FALSE,,,,,,FALSE,,,,,,FALSE
 W4A,,Fullscreen,he really should have thought to ask better questions{pause 1.5},W4B,,,,,TRUE,,,,,,FALSE,,,,,,FALSE,,,,,,FALSE
 W4B,,Fullscreen,he was given time to think about his actions{pause 1.5},W7,,,,,TRUE,,,,,,FALSE,,,,,,FALSE,,,,,,FALSE
