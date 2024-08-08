@@ -14,18 +14,28 @@ class_name DialogueUI
 ##
 ## {animation [animation_name]} where [animation_name] is a string corresponding
 ##	to an animation on the NPC's AnimatedSprite2D
+##
+## {fade_off} after this command is seen, tail will be advanced with head,
+## making the fade not visible
+##
+## {fade_on} tail is set to its usual trailing state
 const DIALOGUE_COMMANDS = {
 	PAUSE = "pause",
 	SPEED = "speed",
 	SHAKE = "shake",
-	ANIMATION = "animation"
+	ANIMATION = "animation",
+	FADE_OFF = "fade_off",
+	FADE_ON = "fade_on"
 }
 const SHAKE_DEFAULT = {
 	AMOUNT = 50,
 	LERP_SPEED = 10.0
 }
 
+## Default time it takes to advance fade_head
 const TEXT_SPEED = 0.035
+## The time delay between advancing fade_head to advancing fade_tail
+const TAIL_DELAY = 0.07
 const FADE_MAX_LENGTH = 5
 ## How long it will take for the next character to appear, in seconds
 const END_CHARACTER_PAUSE = 0.6
@@ -44,6 +54,7 @@ const SPEECH_BUBBLE_OFFSET = Vector2(-60, -110)
 @onready var response_button_scene = preload("res://src/dialogue/response_button.tscn")
 @onready var speech_bubble_scene = preload("res://src/dialogue/speech_bubble.tscn")
 
+# ------------- Current Interaction -------------
 var active_dialogue_display: DialogueDisplay
 var current_speech_bubble: SpeechBubble
 var current_npc: NPC
@@ -51,12 +62,24 @@ var current_npc: NPC
 var interaction_timestamp: int
 var next_branch: String
 
-var display_speed_coef = 1
-var fade_head = 0
-var fade_tail = 0:
+# ------------- Display Variables -------------
+var display_speed_coef: float = 1
+var fade_head: int = 0:
+	set(value):
+		fade_head = value
+		# If exceeding max length, pull tail along
+		if fade_head - fade_tail > FADE_MAX_LENGTH:
+			fade_tail += 1
+		# If fade is disabled, set tail to head
+		if fade_disabled:
+			fade_tail = fade_head
+
+var fade_tail: int = 0:
 	set(value):
 		# Don't allow tail to exceed head
 		fade_tail = min(value, fade_head)
+
+var fade_disabled: bool = false
 
 ## Boolean whether the player can hit [esc] to exit dialogue or not
 var locked_in_dialogue: bool
@@ -72,7 +95,7 @@ func _ready():
 func _process(_delta: float) -> void:
 	update_fade()
 	if fade_tail < fade_head - 1 and tail_timer.is_stopped():
-		tail_timer.start(TEXT_SPEED * 2)
+		tail_timer.start(TAIL_DELAY)
 
 func _on_tail_timer_timeout():
 	fade_tail += 1
@@ -203,10 +226,7 @@ func animate_display(dialogue_line: String):
 			display_timer.start(wait_time)
 			idx += 1
 			fade_head += 1
-			# If exceeding max length, pull tail along
-			if fade_head - fade_tail > FADE_MAX_LENGTH:
-				fade_tail += 1
-			
+		
 		if not display_timer.is_stopped():
 			await display_timer.timeout
 	display_animation_finished.emit()
@@ -240,6 +260,10 @@ func handle_dialogue_command(command_text: String, idx: int) -> int:
 			Global.main_camera.set_shake_and_lerp_to_zero(amount, lerp_speed)
 		DIALOGUE_COMMANDS.ANIMATION:
 			current_npc.npc_sprite.play(command_line[1])
+		DIALOGUE_COMMANDS.FADE_OFF:
+			fade_disabled = true
+		DIALOGUE_COMMANDS.FADE_ON:
+			fade_disabled = false
 	return re_match.get_end()
 
 func calculate_wait_time(new_char: String, command_text: String, idx: int) -> float:

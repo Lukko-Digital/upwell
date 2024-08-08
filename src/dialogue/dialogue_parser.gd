@@ -190,6 +190,8 @@ static func safety_check_dialogue_commands(string: String, npc: NPC):
 					npc.npc_sprite.sprite_frames.has_animation(command_line[1]),
 					"Issue when parsing dialogue, dialogue command trying to play animation \"" + command_line[1] + "\", which is not in the AnimatedSprite2D of " + npc.name
 				)
+			DialogueUI.DIALOGUE_COMMANDS.FADE_OFF, DialogueUI.DIALOGUE_COMMANDS.FADE_ON:
+				continue
 			_:
 				assert(false, "Issue when parsing dialogue, invalid dialogue command or BBCode macro \"" + command + "\"")
 
