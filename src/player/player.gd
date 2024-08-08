@@ -405,7 +405,11 @@ func interact():
 func in_dialogue():
 	return current_dialogue_npc != null
 
-## Called when player interacts with an NPC
+## Called when player interacts with an NPC, does not actually start the
+## dialogue. Sets the location that the player should walk to before starting
+## dialogue. Upon reaching that location, [walk_to_dialogue_start] starts the
+## dialogue. If there is no location to walk to, [walk_to_dialogue_start]
+## starts dialogue immediately.
 func init_npc_interaction(npc: NPC):
 	current_dialogue_npc = npc
 	var standing_locations = npc.standing_locations.duplicate()
