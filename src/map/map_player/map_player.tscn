@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d0rlssnvit7w4"]
+[gd_scene load_steps=16 format=3 uid="uid://d0rlssnvit7w4"]
 
 [ext_resource type="Script" path="res://src/map/map_player/map_player.gd" id="1_g3ols"]
 [ext_resource type="Texture2D" uid="uid://cb1ud4vqk0bd5" path="res://assets/ui/map/player_glow.png" id="2_dt38u"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://src/abstract_base_classes/gravitized_component.gd" id="6_jc7tl"]
 [ext_resource type="PackedScene" uid="uid://dltpg108effdh" path="res://src/map/map_player/map_ui.tscn" id="7_4nrud"]
 [ext_resource type="Texture2D" uid="uid://ckja0m6blyedr" path="res://assets/mvp3_assets/screenpuzzle/hazard.png" id="9_qmotc"]
+[ext_resource type="Script" path="res://src/map/map_camera.gd" id="10_5dlha"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a7q01"]
 blend_mode = 1
@@ -37,7 +38,7 @@ map_ui = NodePath("MapUI")
 map_animation_player = NodePath("MapUI/MapAnimationPlayer")
 launch_info = NodePath("MapUI/LaunchInfoBacker")
 energy_bar = NodePath("MapUI/Energy/EnergyBar")
-launch_button = NodePath("MapUI/LaunchInfoBacker/TravelInfoContainer/TopSectionContainer/LaunchButton")
+launch_button = NodePath("MapUI/LaunchInfoBacker/LaunchButton")
 
 [node name="PlayerGlow" type="Sprite2D" parent="."]
 position = Vector2(-15, 2)
@@ -104,12 +105,22 @@ shape = SubResource("CircleShape2D_r58ii")
 
 [node name="MapUI" parent="." instance=ExtResource("7_4nrud")]
 
+[node name="FocusTexture" parent="MapUI" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="LaunchInfoBacker" parent="MapUI" index="3"]
+self_modulate = Color(1, 1, 1, 0.545098)
+
 [node name="CollisionX" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 0, 0, 1)
 position = Vector2(-225, 38)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_qmotc")
+
+[node name="MapCamera" type="Camera2D" parent="."]
+zoom = Vector2(0.15, 0.15)
+script = ExtResource("10_5dlha")
 
 [connection signal="area_entered" from="ScanArea" to="." method="_area_scanned"]
 

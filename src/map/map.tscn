@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bb68hmcptqlgt"]
+[gd_scene load_steps=31 format=3 uid="uid://bb68hmcptqlgt"]
 
 [ext_resource type="Script" path="res://src/map/map.gd" id="1_ithwi"]
 [ext_resource type="PackedScene" uid="uid://d0rlssnvit7w4" path="res://src/map/map_player/map_player.tscn" id="2_uwq5e"]
@@ -18,7 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://dc6nfaju78e60" path="res://assets/environment/test_level/particle_softest.png" id="12_kdma8"]
 [ext_resource type="PackedScene" uid="uid://chgnsi8mbmv5m" path="res://src/levels/UNKNOWN.tscn" id="12_tpuyl"]
 [ext_resource type="Texture2D" uid="uid://bkkefy4nsaq2o" path="res://assets/ui/map/levels/6.png" id="13_qorjw"]
-[ext_resource type="Script" path="res://src/map/map_camera.gd" id="14_3djto"]
 [ext_resource type="Texture2D" uid="uid://ixonxlg6v01d" path="res://assets/ui/map/fuel pockets/1.png" id="15_4x36h"]
 [ext_resource type="Texture2D" uid="uid://vilb3ruiunqj" path="res://assets/ui/map/levels/7.png" id="15_aurv3"]
 [ext_resource type="Texture2D" uid="uid://buvp8an66o2uo" path="res://assets/ui/map/fuel pockets/5.png" id="16_g8ccc"]
@@ -355,10 +354,6 @@ visible = true
 [node name="MapPlayer" parent="." instance=ExtResource("2_uwq5e")]
 position = Vector2(15.25, -96)
 metadata/_edit_lock_ = true
-
-[node name="Camera2D" type="Camera2D" parent="MapPlayer"]
-zoom = Vector2(0.15, 0.15)
-script = ExtResource("14_3djto")
 
 [node name="fuel" type="Node2D" parent="."]
 position = Vector2(-0.5, 0)
