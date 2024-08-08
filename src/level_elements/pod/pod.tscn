@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dw50qvw1e418b"]
+[gd_scene load_steps=32 format=3 uid="uid://dw50qvw1e418b"]
 
 [ext_resource type="PackedScene" uid="uid://ceyls3ogt3vol" path="res://src/screen_puzzles/screen_interactable.tscn" id="1_pv0jy"]
 [ext_resource type="Script" path="res://src/level_elements/pod/pod.gd" id="1_urr8o"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c25b75uq3wncf" path="res://src/level_elements/tilemaps/mvp3_tm.tscn" id="6_kw5qg"]
 [ext_resource type="Texture2D" uid="uid://dfk4hd1x0b482" path="res://assets/pod/pod_holder_cover.png" id="6_o1jfq"]
 [ext_resource type="Texture2D" uid="uid://bis82a47xh061" path="res://assets/pod/pod_bg.png" id="7_p210d"]
+[ext_resource type="Texture2D" uid="uid://hkhamgomvbwo" path="res://assets/mvp3_assets/viewblocker.png" id="9_0klgs"]
 [ext_resource type="PackedScene" uid="uid://dhjj5tgw8y2es" path="res://src/level_elements/view_blocker.tscn" id="9_u6g7q"]
 [ext_resource type="Texture2D" uid="uid://cecwp7vm8bcq6" path="res://assets/pod/pod_fg.png" id="10_cr7db"]
 [ext_resource type="Texture2D" uid="uid://cs5i2eevhownx" path="res://assets/pod/pod_cover.png" id="11_7qrh3"]
@@ -18,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://dbeb0mc6rhj73" path="res://assets/mvp3_assets/viewblocker_blur.png" id="16_xyot1"]
 [ext_resource type="Script" path="res://src/level_elements/camera/camera_bound.gd" id="17_tbj2n"]
 [ext_resource type="Shader" path="res://src/shaders/color_dodge.gdshader" id="17_w4mln"]
+[ext_resource type="Texture2D" uid="uid://bwfj4gx8i25ps" path="res://assets/pod/pod_fg_ground_1.png" id="18_a86vk"]
+[ext_resource type="Texture2D" uid="uid://c7eq0n2svwmpk" path="res://assets/pod/pod_fg_ground_5.png" id="20_b0k0m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fgq61"]
 size = Vector2(440, 2730)
@@ -393,22 +396,22 @@ rotation = 3.14159
 scale = Vector2(1, -1)
 
 [node name="1_2, L100_pod_cover" type="Sprite2D" parent="CanvasHolder/1_2, L100/Node2D"]
-position = Vector2(-0.00129367, -510.289)
+position = Vector2(5.83192, -555.833)
 rotation = 3.14159
-scale = Vector2(0.830455, -0.830455)
+scale = Vector2(0.764577, -0.764577)
 texture = ExtResource("11_7qrh3")
 
 [node name="RightDoor" parent="CanvasHolder/1_2, L100/Node2D" instance=ExtResource("13_8ngjx")]
-position = Vector2(-680.835, -617.668)
+position = Vector2(-634.674, -617.668)
 
 [node name="LeftDoor" parent="CanvasHolder/1_2, L100/Node2D" instance=ExtResource("13_8ngjx")]
-position = Vector2(673.315, -626.668)
+position = Vector2(642.809, -626.668)
 scale = Vector2(-1, 1)
 
 [node name="1_2, L100_pod_fg" type="Sprite2D" parent="CanvasHolder/1_2, L100/Node2D"]
-position = Vector2(37.4975, -976.667)
+position = Vector2(74.9975, -985.834)
 rotation = 3.14159
-scale = Vector2(0.823873, -0.823873)
+scale = Vector2(0.790967, -0.790967)
 texture = ExtResource("10_cr7db")
 region_enabled = true
 region_rect = Rect2(0, 0, 1553, 610)
@@ -422,6 +425,7 @@ rotation = -1.57079
 color = Color(0, 0, 0, 1)
 
 [node name="1_2, L100_pod_fg2" type="Sprite2D" parent="CanvasHolder/1_2, L100/Node2D"]
+visible = false
 position = Vector2(-0.834152, -324.167)
 rotation = 3.14159
 scale = Vector2(0.932604, -0.932604)
@@ -429,32 +433,59 @@ texture = ExtResource("10_cr7db")
 region_enabled = true
 region_rect = Rect2(-90, 624, 1623, 1284)
 
-[node name="1_2, L100_viewblocker" type="Sprite2D" parent="CanvasHolder/1_2, L100/Node2D"]
-position = Vector2(868.332, -433.335)
+[node name="1_2, L100_viewblocker_blur2" type="Sprite2D" parent="CanvasHolder/1_2, L100/Node2D"]
+position = Vector2(837.826, -433.335)
 rotation = 3.14159
 scale = Vector2(1.75054, -2.77408)
 texture = ExtResource("16_xyot1")
 
 [node name="1_2, L100_viewblocker_blur" type="Sprite2D" parent="CanvasHolder/1_2, L100/Node2D"]
-position = Vector2(-870.001, -433.331)
+position = Vector2(-823.84, -433.331)
 rotation = 3.14159
 scale = Vector2(1.75054, -2.77408)
 texture = ExtResource("16_xyot1")
 
-[node name="13" type="CanvasLayer" parent="CanvasHolder"]
-layer = 13
+[node name="1_2, L100_viewblocker" type="Sprite2D" parent="CanvasHolder/1_2, L100/Node2D"]
+position = Vector2(42.4968, -1281.67)
+rotation = 4.71238
+scale = Vector2(1.41552, -1.39314)
+texture = ExtResource("9_0klgs")
+
+[node name="1_2, L100_pod_fg_ground_1" type="Sprite2D" parent="CanvasHolder/1_2, L100/Node2D"]
+position = Vector2(139.166, -94.167)
+rotation = 3.14159
+scale = Vector2(0.730129, -0.730129)
+texture = ExtResource("18_a86vk")
+
+[node name="1_3" type="CanvasLayer" parent="CanvasHolder"]
+layer = 100
 follow_viewport_enabled = true
 follow_viewport_scale = 1.3
 script = ExtResource("14_67fqf")
+unique_layer = true
 parallax_layer = 1.3
 updates_in_process = true
 
-[node name="Node2D" type="Node2D" parent="CanvasHolder/13"]
+[node name="Node2D" type="Node2D" parent="CanvasHolder/1_3"]
 
-[node name="13_pod_fg_5" type="Sprite2D" parent="CanvasHolder/13/Node2D"]
-position = Vector2(31.5385, -543.846)
-scale = Vector2(0.671659, 0.671659)
+[node name="13_pod_fg_5" type="Sprite2D" parent="CanvasHolder/1_3/Node2D"]
+position = Vector2(-23.8462, -955.385)
+scale = Vector2(0.628134, 0.628134)
 texture = ExtResource("11_8qs7d")
+region_enabled = true
+region_rect = Rect2(0, 0, 1832, 1254)
+
+[node name="13_pod_fg_6" type="Sprite2D" parent="CanvasHolder/1_3/Node2D"]
+position = Vector2(-23.0769, -789.231)
+scale = Vector2(-0.788832, 0.788832)
+texture = ExtResource("11_8qs7d")
+region_enabled = true
+region_rect = Rect2(0, 0, 1832, 1254)
+
+[node name="1_3_pod_fg_ground_5" type="Sprite2D" parent="CanvasHolder/1_3/Node2D"]
+position = Vector2(148.462, -30.7692)
+scale = Vector2(0.622148, 0.622148)
+texture = ExtResource("20_b0k0m")
 
 [node name="200" type="CanvasLayer" parent="CanvasHolder"]
 layer = 200
