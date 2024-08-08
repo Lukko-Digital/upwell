@@ -115,7 +115,6 @@ func _on_tail_timer_timeout():
 ## [dir_to_npc], either 1 or -1, if the npc is to the right or left,
 ## respectively, of the player
 func start_dialogue(npc: NPC, dir_to_npc: float):
-	print(Time.get_ticks_msec(), "\t", "start dialogue called")
 	fullscreen_display.hide()
 	show()
 	current_npc = npc
@@ -128,13 +127,10 @@ func start_dialogue(npc: NPC, dir_to_npc: float):
 		npc.nodule.flip_h,
 		dir_to_npc
 	)
-	print(Time.get_ticks_msec(), "\t", "init speech bubble")
 	current_speech_bubble = instance
 	npc.add_child(instance)
-	print(Time.get_ticks_msec(), "\t", "give npc speech bubble")
 
 	play_branch(DialogueParser.START_BRANCH_TAG)
-	print(Time.get_ticks_msec(), "\t", "end of start dialogue")
 
 func exit_dialogue():
 	current_npc.reset()
@@ -153,7 +149,6 @@ func exit_dialogue():
 ## ------------------------------ DIALOGUE LOGIC ------------------------------
 
 func play_branch(branch_id: String):
-	print(Time.get_ticks_msec(), "\t", "play branch ", branch_id)
 	if branch_id == DialogueParser.END_TAG:
 		exit_dialogue()
 		return
