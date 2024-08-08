@@ -1054,7 +1054,7 @@ modulate = Color(0.87557, 0.85609, 0.782629, 1)
 tile_set = SubResource("TileSet_j5df6")
 format = 2
 
-[node name="-50" type="CanvasLayer" parent="."]
+[node name="0_5" type="CanvasLayer" parent="."]
 layer = -50
 follow_viewport_enabled = true
 follow_viewport_scale = 0.5
@@ -1062,10 +1062,10 @@ script = ExtResource("1_yylm6")
 parallax_layer = 0.5
 updates_in_process = true
 
-[node name="Node2D" type="Node2D" parent="-50"]
-modulate = Color(0.358179, 0.276873, 0.159542, 1)
+[node name="Node2D" type="Node2D" parent="0_5"]
+modulate = Color(0.252006, 0.172908, 0.00177889, 1)
 
-[node name="ColorRect" type="ColorRect" parent="-50/Node2D"]
+[node name="ColorRect" type="ColorRect" parent="0_5/Node2D"]
 offset_left = -7467.0
 offset_top = -2560.0
 offset_right = 3646.0
@@ -1073,26 +1073,26 @@ offset_bottom = 1280.0
 mouse_filter = 2
 color = Color(0.173321, 0.0868922, 0.021425, 1)
 
-[node name="-50_tree_bg_1" type="Sprite2D" parent="-50/Node2D"]
+[node name="0_5_tree_bg_1" type="Sprite2D" parent="0_5/Node2D"]
 position = Vector2(-2300, -1008.57)
 scale = Vector2(1.65353, 1.65353)
 texture = ExtResource("2_m3myp")
 
-[node name="-50_tree_bg_2" type="Sprite2D" parent="-50/Node2D"]
+[node name="0_5_tree_bg_2" type="Sprite2D" parent="0_5/Node2D"]
 position = Vector2(893.023, -1058.57)
 texture = ExtResource("2_m3myp")
 
-[node name="-50_tree_bg_3" type="Sprite2D" parent="-50/Node2D"]
+[node name="0_5_tree_bg_3" type="Sprite2D" parent="0_5/Node2D"]
 position = Vector2(-1340, -566)
 scale = Vector2(1.30434, 1.30434)
 texture = ExtResource("2_m3myp")
 
-[node name="-50_tree_bg_4" type="Sprite2D" parent="-50/Node2D"]
+[node name="0_5_tree_bg_4" type="Sprite2D" parent="0_5/Node2D"]
 position = Vector2(-6586, -918)
 scale = Vector2(1.59676, 1.59676)
 texture = ExtResource("2_m3myp")
 
-[node name="-40" type="CanvasLayer" parent="."]
+[node name="0_6" type="CanvasLayer" parent="."]
 layer = -40
 follow_viewport_enabled = true
 follow_viewport_scale = 0.6
@@ -1100,45 +1100,45 @@ script = ExtResource("1_yylm6")
 parallax_layer = 0.6
 updates_in_process = true
 
-[node name="Node2D" type="Node2D" parent="-40"]
-modulate = Color(0.388279, 0.319618, 0.26248, 1)
+[node name="Node2D" type="Node2D" parent="0_6"]
+modulate = Color(0.43208, 0.309737, 0.0792729, 1)
 
-[node name="-40_tree_bg_1_BLUR" type="Sprite2D" parent="-40/Node2D"]
+[node name="0_6_tree_bg_1_BLUR" type="Sprite2D" parent="0_6/Node2D"]
 position = Vector2(-3321.43, -460.739)
 scale = Vector2(0.7342, 0.7342)
 texture = ExtResource("3_60jym")
 
-[node name="-40_tree_bg_1_BLUR2" type="Sprite2D" parent="-40/Node2D"]
+[node name="0_6_tree_bg_1_BLUR2" type="Sprite2D" parent="0_6/Node2D"]
 position = Vector2(-1637.5, -554.846)
 texture = ExtResource("3_60jym")
 
-[node name="-40_tree_bg_1_BLUR3" type="Sprite2D" parent="-40/Node2D"]
+[node name="0_6_tree_bg_1_BLUR3" type="Sprite2D" parent="0_6/Node2D"]
 position = Vector2(-4231.43, -573.596)
 texture = ExtResource("3_60jym")
 
-[node name="-40_tree_bg_1_BLUR4" type="Sprite2D" parent="-40/Node2D"]
+[node name="0_6_tree_bg_1_BLUR4" type="Sprite2D" parent="0_6/Node2D"]
 position = Vector2(-5530, -602.346)
 texture = ExtResource("3_60jym")
 
-[node name="-40_tree_bg_1_BLUR5" type="Sprite2D" parent="-40/Node2D"]
+[node name="0_6_tree_bg_1_BLUR5" type="Sprite2D" parent="0_6/Node2D"]
 position = Vector2(-522.5, -493.596)
 scale = Vector2(1.20048, 1.20048)
 texture = ExtResource("3_60jym")
 
-[node name="-40_tree_bg_1_BLUR6" type="Sprite2D" parent="-40/Node2D"]
+[node name="0_6_tree_bg_1_BLUR6" type="Sprite2D" parent="0_6/Node2D"]
 position = Vector2(1285, -498.492)
 scale = Vector2(1.31084, 1.31084)
 texture = ExtResource("3_60jym")
 region_enabled = true
 region_rect = Rect2(0, 0, 2032, 2396)
 
-[node name="-40_tree_bg_1_BLUR7" type="Sprite2D" parent="-40/Node2D"]
+[node name="0_6_tree_bg_1_BLUR7" type="Sprite2D" parent="0_6/Node2D"]
 position = Vector2(225, -498.492)
 scale = Vector2(1.20048, 1.20048)
 texture = ExtResource("3_60jym")
 region_rect = Rect2(0, 0, 2032, 2396)
 
-[node name="-30" type="CanvasLayer" parent="."]
+[node name="0_7" type="CanvasLayer" parent="."]
 layer = -30
 follow_viewport_enabled = true
 follow_viewport_scale = 0.7
@@ -1146,26 +1146,26 @@ script = ExtResource("1_yylm6")
 parallax_layer = 0.7
 updates_in_process = true
 
-[node name="Node2D" type="Node2D" parent="-30"]
-modulate = Color(0.280771, 0.226024, 0.159423, 1)
+[node name="Node2D" type="Node2D" parent="0_7"]
+modulate = Color(0.297669, 0.224249, 0.0576383, 1)
 
-[node name="-30_tree_midground_1" type="Sprite2D" parent="-30/Node2D"]
+[node name="0_7_tree_midground_1" type="Sprite2D" parent="0_7/Node2D"]
 position = Vector2(-5591.25, -963.03)
 scale = Vector2(1.37154, 1.37154)
 texture = ExtResource("4_q40rc")
 
-[node name="-30_tree_midground_2" type="Sprite2D" parent="-30/Node2D"]
+[node name="0_7_tree_midground_2" type="Sprite2D" parent="0_7/Node2D"]
 position = Vector2(-4705, -723.447)
 rotation = 3.14159
 scale = Vector2(1.95828, -1.95828)
 texture = ExtResource("4_q40rc")
 
-[node name="-30_tree_midground_3" type="Sprite2D" parent="-30/Node2D"]
+[node name="0_7_tree_midground_3" type="Sprite2D" parent="0_7/Node2D"]
 position = Vector2(-2151.25, -723.447)
 scale = Vector2(1.38281, 1.38281)
 texture = ExtResource("4_q40rc")
 
-[node name="-30_tree_midground_4" type="Sprite2D" parent="-30/Node2D"]
+[node name="0_7_tree_midground_4" type="Sprite2D" parent="0_7/Node2D"]
 position = Vector2(145.455, -689.508)
 rotation = 3.14159
 scale = Vector2(1.95828, -1.95828)
@@ -1173,85 +1173,85 @@ texture = ExtResource("4_q40rc")
 region_enabled = true
 region_rect = Rect2(896, 0, 1800, 1953)
 
-[node name="-30_yellow_grass_1" type="Sprite2D" parent="-30/Node2D"]
+[node name="0_7_yellow_grass_1" type="Sprite2D" parent="0_7/Node2D"]
 position = Vector2(-2439.97, 129.886)
 scale = Vector2(0.87583, 0.87583)
 texture = ExtResource("5_cicbf")
 
-[node name="-30_yellow_grass_2" type="Sprite2D" parent="-30/Node2D"]
+[node name="0_7_yellow_grass_2" type="Sprite2D" parent="0_7/Node2D"]
 position = Vector2(-795, 188.22)
 scale = Vector2(1.7445, 1.7445)
 texture = ExtResource("5_cicbf")
 
-[node name="-30_yellow_grass_3" type="Sprite2D" parent="-30/Node2D"]
+[node name="0_7_yellow_grass_3" type="Sprite2D" parent="0_7/Node2D"]
 position = Vector2(-3548.86, 124.331)
 texture = ExtResource("5_cicbf")
 
-[node name="-30_yellow_grass_4" type="Sprite2D" parent="-30/Node2D"]
+[node name="0_7_yellow_grass_4" type="Sprite2D" parent="0_7/Node2D"]
 position = Vector2(-4307.75, 115.442)
 texture = ExtResource("5_cicbf")
 
-[node name="-30_yellow_grass_5" type="Sprite2D" parent="-30/Node2D"]
+[node name="0_7_yellow_grass_5" type="Sprite2D" parent="0_7/Node2D"]
 position = Vector2(1660, 180)
 scale = Vector2(1.7445, 1.7445)
 texture = ExtResource("5_cicbf")
 region_enabled = true
 region_rect = Rect2(0, 0, 794, 294)
 
-[node name="-30_yellow_grass_6" type="Sprite2D" parent="-30/Node2D"]
+[node name="0_7_yellow_grass_6" type="Sprite2D" parent="0_7/Node2D"]
 position = Vector2(344.286, 168.718)
 scale = Vector2(1.7445, 1.7445)
 texture = ExtResource("5_cicbf")
 region_rect = Rect2(0, 0, 794, 294)
 
-[node name="-20" type="CanvasLayer" parent="."]
-layer = -20
+[node name="0_85" type="CanvasLayer" parent="."]
+layer = -15
 follow_viewport_enabled = true
-follow_viewport_scale = 0.8
+follow_viewport_scale = 0.85
 script = ExtResource("1_yylm6")
-parallax_layer = 0.8
+parallax_layer = 0.85
 updates_in_process = true
 
-[node name="Node2D" type="Node2D" parent="-20"]
-modulate = Color(0.396799, 0.358866, 0.26332, 1)
+[node name="Node2D" type="Node2D" parent="0_85"]
+modulate = Color(0.429958, 0.351125, 0.166961, 1)
 
-[node name="-20_tree_midground_1" type="Sprite2D" parent="-20/Node2D"]
+[node name="0_8_tree_midground_1" type="Sprite2D" parent="0_85/Node2D"]
 position = Vector2(-3674.44, -787.167)
 scale = Vector2(1.37154, 1.37154)
 texture = ExtResource("4_q40rc")
 
-[node name="-20_tree_midground_2" type="Sprite2D" parent="-20/Node2D"]
+[node name="0_8_tree_midground_2" type="Sprite2D" parent="0_85/Node2D"]
 position = Vector2(-1262.22, -787.167)
 scale = Vector2(-1.55036, 1.55036)
 texture = ExtResource("4_q40rc")
 
-[node name="-20_tree_midground_3" type="Sprite2D" parent="-20/Node2D"]
+[node name="0_8_tree_midground_3" type="Sprite2D" parent="0_85/Node2D"]
 position = Vector2(-4738.89, -787.167)
 texture = ExtResource("4_q40rc")
 
-[node name="-20_yellow_grass_1" type="Sprite2D" parent="-20/Node2D"]
+[node name="0_8_yellow_grass_1" type="Sprite2D" parent="0_85/Node2D"]
 position = Vector2(-3222.22, 66.1668)
 scale = Vector2(0.87583, 0.87583)
 texture = ExtResource("5_cicbf")
 
-[node name="-20_yellow_grass_2" type="Sprite2D" parent="-20/Node2D"]
+[node name="0_8_yellow_grass_2" type="Sprite2D" parent="0_85/Node2D"]
 position = Vector2(-1993.33, 15.0561)
 texture = ExtResource("5_cicbf")
 
-[node name="-20_yellow_grass_3" type="Sprite2D" parent="-20/Node2D"]
+[node name="0_8_yellow_grass_3" type="Sprite2D" parent="0_85/Node2D"]
 position = Vector2(-4331.11, 60.6112)
 texture = ExtResource("5_cicbf")
 
-[node name="-20_yellow_grass_4" type="Sprite2D" parent="-20/Node2D"]
+[node name="0_8_yellow_grass_4" type="Sprite2D" parent="0_85/Node2D"]
 position = Vector2(-5090, 51.7223)
 texture = ExtResource("5_cicbf")
 
-[node name="-20_tree_midground_4" type="Sprite2D" parent="-20/Node2D"]
+[node name="0_8_tree_midground_4" type="Sprite2D" parent="0_85/Node2D"]
 position = Vector2(57.7776, -787.167)
 scale = Vector2(-1.79953, 1.79953)
 texture = ExtResource("4_q40rc")
 
-[node name="BG_SCREEN2" type="ColorRect" parent="-20/Node2D"]
+[node name="BG_SCREEN2" type="ColorRect" parent="0_85/Node2D"]
 z_index = -1
 material = SubResource("ShaderMaterial_61enm")
 offset_left = -7396.0
@@ -1261,311 +1261,321 @@ offset_bottom = 1400.0
 mouse_filter = 2
 color = Color(0.321591, 0.195664, 0, 0.317647)
 
-[node name="-5" type="CanvasLayer" parent="."]
-layer = -6
+[node name="0_95" type="CanvasLayer" parent="."]
+layer = -5
 follow_viewport_enabled = true
-follow_viewport_scale = 0.945
+follow_viewport_scale = 0.95
 script = ExtResource("1_yylm6")
-parallax_layer = 0.945
+parallax_layer = 0.95
 updates_in_process = true
 
-[node name="Node2D" type="Node2D" parent="-5"]
-modulate = Color(0.823529, 0.764706, 0.682353, 1)
+[node name="Node2D" type="Node2D" parent="0_95"]
+modulate = Color(0.914337, 0.863797, 0.770209, 1)
 
-[node name="-5_house_1" type="Sprite2D" parent="-5/Node2D"]
+[node name="0_96_house_1" type="Sprite2D" parent="0_95/Node2D"]
 position = Vector2(-2638, -460.548)
 scale = Vector2(1.19426, 1.19426)
 texture = ExtResource("8_5anvx")
 
-[node name="-5_tree_roof_mg_1" type="Sprite2D" parent="-5/Node2D"]
+[node name="0_96_tree_roof_mg_1" type="Sprite2D" parent="0_95/Node2D"]
 position = Vector2(-2818, -1116.6)
 texture = ExtResource("7_5fd67")
 
-[node name="-5_tree_roof_mg_2" type="Sprite2D" parent="-5/Node2D"]
+[node name="0_96_tree_roof_mg_2" type="Sprite2D" parent="0_95/Node2D"]
 position = Vector2(-189, -1148.6)
 texture = ExtResource("7_5fd67")
 
-[node name="-5_tree_midground_1" type="Sprite2D" parent="-5/Node2D"]
+[node name="0_96_tree_midground_1" type="Sprite2D" parent="0_95/Node2D"]
 position = Vector2(-1812, -842.548)
 texture = ExtResource("4_q40rc")
 
-[node name="-5_tree_midground_2" type="Sprite2D" parent="-5/Node2D"]
+[node name="0_96_tree_midground_2" type="Sprite2D" parent="0_95/Node2D"]
 position = Vector2(-4060, -842.548)
 texture = ExtResource("4_q40rc")
 
-[node name="-5_yellow_grass_1" type="Sprite2D" parent="-5/Node2D"]
+[node name="0_96_yellow_grass_1" type="Sprite2D" parent="0_95/Node2D"]
 position = Vector2(-2141, 31.4523)
 texture = ExtResource("5_cicbf")
 
-[node name="-5_tree_midground_3" type="Sprite2D" parent="-5/Node2D"]
+[node name="0_96_tree_midground_3" type="Sprite2D" parent="0_95/Node2D"]
 position = Vector2(-228, -842.548)
 texture = ExtResource("4_q40rc")
 
-[node name="10" type="CanvasLayer" parent="."]
-layer = 10
+[node name="1" type="CanvasLayer" parent="."]
+layer = 0
 follow_viewport_enabled = true
 script = ExtResource("1_yylm6")
 parallax_layer = 1.0
+unique_modulate = true
 updates_in_process = true
 
-[node name="Node2D" type="Node2D" parent="10"]
+[node name="Node2D" type="Node2D" parent="1"]
 
-[node name="10_yellow_grass_1" type="Sprite2D" parent="10/Node2D"]
+[node name="1_yellow_grass_1" type="Sprite2D" parent="1/Node2D"]
 position = Vector2(-2144, 66.5774)
 texture = ExtResource("5_cicbf")
 
-[node name="10_yellow_grass_2" type="Sprite2D" parent="10/Node2D"]
+[node name="1_yellow_grass_2" type="Sprite2D" parent="1/Node2D"]
 position = Vector2(-2560, 102.577)
 scale = Vector2(-1, 1)
 texture = ExtResource("5_cicbf")
 
-[node name="10_yellow_grass_3" type="Sprite2D" parent="10/Node2D"]
+[node name="1_yellow_grass_3" type="Sprite2D" parent="1/Node2D"]
 position = Vector2(-2038, -69.4226)
 texture = ExtResource("5_cicbf")
 
-[node name="10_yellow_grass_4" type="Sprite2D" parent="10/Node2D"]
+[node name="1_yellow_grass_4" type="Sprite2D" parent="1/Node2D"]
 position = Vector2(-1051, -19.4226)
 texture = ExtResource("5_cicbf")
 
-[node name="10_yellow_grass_5" type="Sprite2D" parent="10/Node2D"]
+[node name="1_yellow_grass_5" type="Sprite2D" parent="1/Node2D"]
 position = Vector2(-3886, -19.4226)
 texture = ExtResource("5_cicbf")
 
-[node name="10_yellow_grass_6" type="Sprite2D" parent="10/Node2D"]
+[node name="1_yellow_grass_6" type="Sprite2D" parent="1/Node2D"]
 position = Vector2(-243, 4.57739)
 texture = ExtResource("5_cicbf")
 
-[node name="10_defocus" type="Sprite2D" parent="10/Node2D"]
+[node name="1_defocus" type="Sprite2D" parent="1/Node2D"]
 modulate = Color(0.203922, 0.203922, 0.203922, 0.427451)
 material = SubResource("ShaderMaterial_vdb20")
 position = Vector2(-2688, -482.423)
 scale = Vector2(1.05278, 1.05278)
 texture = ExtResource("13_1xp16")
 
-[node name="10_defocus2" type="Sprite2D" parent="10/Node2D"]
+[node name="1_defocus2" type="Sprite2D" parent="1/Node2D"]
 modulate = Color(0.380392, 0.262745, 0.145098, 0.384314)
 material = SubResource("CanvasItemMaterial_dy0bx")
 position = Vector2(-4356, -354.423)
 scale = Vector2(1.60423, 1.60423)
 texture = ExtResource("13_1xp16")
 
-[node name="10_defocus3" type="Sprite2D" parent="10/Node2D"]
+[node name="1_defocus3" type="Sprite2D" parent="1/Node2D"]
 modulate = Color(0.380392, 0.262745, 0.145098, 0.384314)
 material = SubResource("CanvasItemMaterial_dy0bx")
 position = Vector2(-630, -482.423)
 scale = Vector2(1.60423, 1.60423)
 texture = ExtResource("13_1xp16")
 
-[node name="10_yellow_grass_7" type="Sprite2D" parent="10/Node2D"]
+[node name="1_yellow_grass_7" type="Sprite2D" parent="1/Node2D"]
 position = Vector2(-4096, -76.4226)
 scale = Vector2(-1, 1)
 texture = ExtResource("5_cicbf")
 
-[node name="11" type="CanvasLayer" parent="."]
-layer = 11
+[node name="1_03" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
-follow_viewport_scale = 1.1
+follow_viewport_scale = 1.03
 script = ExtResource("1_yylm6")
-parallax_layer = 1.1
+parallax_layer = 1.03
+unique_modulate = true
 updates_in_process = true
 
-[node name="Node2D" type="Node2D" parent="11"]
-modulate = Color(0.539836, 0.501522, 0.406852, 1)
+[node name="Node2D" type="Node2D" parent="1_03"]
+modulate = Color(0.532547, 0.504068, 0.411599, 1)
 
-[node name="11_pebbles" type="Sprite2D" parent="11/Node2D"]
+[node name="Node2D" type="Node2D" parent="1_03/Node2D"]
+position = Vector2(-9.77517, 50.8309)
+
+[node name="1_03_pebbles" type="Sprite2D" parent="1_03/Node2D/Node2D"]
 self_modulate = Color(0.960744, 0.817227, 0.422912, 1)
 position = Vector2(-2736.36, 103.302)
 scale = Vector2(1.09612, 1.09612)
 texture = ExtResource("14_oc8q2")
 
-[node name="11_pebbles2" type="Sprite2D" parent="11/Node2D"]
+[node name="1_03_pebbles2" type="Sprite2D" parent="1_03/Node2D/Node2D"]
 modulate = Color(0.67005, 0.576904, 0.459596, 1)
 position = Vector2(-1300, 129.666)
 scale = Vector2(1.09612, 1.09612)
 texture = ExtResource("14_oc8q2")
 
-[node name="11_tree_roof_mg_1" type="Sprite2D" parent="11/Node2D"]
-position = Vector2(-3478.18, -1248.51)
+[node name="1_03_tree_roof_mg_1" type="Sprite2D" parent="1_03/Node2D/Node2D"]
+position = Vector2(-3825.96, -1361.33)
 scale = Vector2(1.14502, 1.14502)
 texture = ExtResource("7_5fd67")
 
-[node name="11_tree_roof_mg_2" type="Sprite2D" parent="11/Node2D"]
-position = Vector2(-1556.36, -1271.24)
+[node name="1_03_tree_roof_mg_2" type="Sprite2D" parent="1_03/Node2D/Node2D"]
+position = Vector2(-1904.14, -1384.06)
 scale = Vector2(1.14502, 1.14502)
 texture = ExtResource("7_5fd67")
 
-[node name="11_tree_roof_mg_3" type="Sprite2D" parent="11/Node2D"]
-position = Vector2(399.091, -1258.51)
+[node name="1_03_tree_roof_mg_3" type="Sprite2D" parent="1_03/Node2D/Node2D"]
+position = Vector2(51.3073, -1371.33)
 scale = Vector2(1.14502, 1.14502)
 texture = ExtResource("7_5fd67")
 
-[node name="11_tree_roof_mg_4" type="Sprite2D" parent="11/Node2D"]
-position = Vector2(-5884.54, -1046.69)
+[node name="1_03_tree_roof_mg_4" type="Sprite2D" parent="1_03/Node2D/Node2D"]
+position = Vector2(-6232.32, -1159.51)
 scale = Vector2(1.14502, 1.14502)
 texture = ExtResource("7_5fd67")
 
-[node name="11_tree_roof_mg_5" type="Sprite2D" parent="11/Node2D"]
-position = Vector2(-2300.91, -1044.88)
+[node name="1_03_tree_roof_mg_5" type="Sprite2D" parent="1_03/Node2D/Node2D"]
+position = Vector2(-2648.69, -1157.7)
 scale = Vector2(1.14502, 1.14502)
 texture = ExtResource("7_5fd67")
 
-[node name="11_tree_roof_mg_6" type="Sprite2D" parent="11/Node2D"]
-position = Vector2(577.273, -1123.06)
+[node name="1_03_tree_roof_mg_6" type="Sprite2D" parent="1_03/Node2D/Node2D"]
+position = Vector2(229.489, -1235.88)
 scale = Vector2(1.14502, 1.14502)
 texture = ExtResource("7_5fd67")
 
-[node name="11_pebbles3" type="Sprite2D" parent="11/Node2D"]
+[node name="1_03_pebbles3" type="Sprite2D" parent="1_03/Node2D/Node2D"]
 modulate = Color(0.67005, 0.576904, 0.459596, 1)
 position = Vector2(351.818, 129.666)
 scale = Vector2(1.09612, 1.09612)
 texture = ExtResource("14_oc8q2")
 
-[node name="11_yellow_grass_1" type="Sprite2D" parent="11/Node2D"]
+[node name="1_03_yellow_grass_1" type="Sprite2D" parent="1_03/Node2D/Node2D"]
 position = Vector2(-2141.82, -53.0622)
 scale = Vector2(1.20855, 1.20855)
 texture = ExtResource("5_cicbf")
 
-[node name="11_yellow_grass_2" type="Sprite2D" parent="11/Node2D"]
+[node name="1_03_yellow_grass_2" type="Sprite2D" parent="1_03/Node2D/Node2D"]
 self_modulate = Color(1, 1, 1, 0.666667)
 position = Vector2(381.818, -3.97126)
 scale = Vector2(1.20855, 1.20855)
 texture = ExtResource("5_cicbf")
 
-[node name="11_yellow_grass_3" type="Sprite2D" parent="11/Node2D"]
+[node name="1_03_yellow_grass_3" type="Sprite2D" parent="1_03/Node2D/Node2D"]
 position = Vector2(-3367.27, 34.2105)
 scale = Vector2(1.20855, 1.20855)
 texture = ExtResource("5_cicbf")
 
-[node name="11_pebbles4" type="Sprite2D" parent="11/Node2D"]
+[node name="1_03_pebbles4" type="Sprite2D" parent="1_03/Node2D/Node2D"]
 self_modulate = Color(0.960744, 0.817227, 0.422912, 1)
 position = Vector2(-4189.09, 103.302)
 scale = Vector2(1.09612, 1.09612)
 texture = ExtResource("14_oc8q2")
 
-[node name="11_yellow_grass_4" type="Sprite2D" parent="11/Node2D"]
+[node name="1_03_yellow_grass_4" type="Sprite2D" parent="1_03/Node2D/Node2D"]
 modulate = Color(0.537011, 0.537011, 0.537011, 1)
 position = Vector2(-4078.18, 31.4832)
 scale = Vector2(1.20855, 1.20855)
 texture = ExtResource("5_cicbf")
 
-[node name="11_yellow_grass_5" type="Sprite2D" parent="11/Node2D"]
+[node name="1_03_yellow_grass_5" type="Sprite2D" parent="1_03/Node2D/Node2D"]
 position = Vector2(-2539.09, 116.938)
 scale = Vector2(1.61748, 1.61748)
 texture = ExtResource("5_cicbf")
 
-[node name="13" type="CanvasLayer" parent="."]
-layer = 13
+[node name="1_11" type="CanvasLayer" parent="."]
+layer = 2
 follow_viewport_enabled = true
-follow_viewport_scale = 1.294
+follow_viewport_scale = 1.11
 script = ExtResource("1_yylm6")
-parallax_layer = 1.294
+parallax_layer = 1.11
+unique_modulate = true
 updates_in_process = true
 
-[node name="Node2D" type="Node2D" parent="13"]
+[node name="Node2D" type="Node2D" parent="1_11"]
 modulate = Color(0.16327, 0.122164, 0.0771924, 1)
 
-[node name="13_tree_midground_1" type="Sprite2D" parent="13/Node2D"]
+[node name="Node2D" type="Node2D" parent="1_11/Node2D"]
+position = Vector2(375.814, 104.186)
+scale = Vector2(1.11613, 1.11613)
+
+[node name="1_11_tree_midground_1" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 position = Vector2(-4480, -1151.91)
 scale = Vector2(1.47367, 1.47367)
 texture = ExtResource("4_q40rc")
 
-[node name="13_tree_roof_mg_1" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_tree_roof_mg_1" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 use_parent_material = true
-position = Vector2(-2793.33, -1516.02)
+position = Vector2(-2793.33, -1591.11)
 scale = Vector2(1.37013, 1.37013)
 texture = ExtResource("7_5fd67")
 
-[node name="13_yellow_grass_1" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_yellow_grass_1" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 use_parent_material = true
 position = Vector2(-2405, 116.425)
 scale = Vector2(1.34915, 1.34915)
 texture = ExtResource("5_cicbf")
 
-[node name="13_pebbles" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_pebbles" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 material = SubResource("ShaderMaterial_yacao")
 position = Vector2(-2413.33, 108.925)
 scale = Vector2(1.07824, 1.07824)
 texture = ExtResource("14_oc8q2")
 
-[node name="13_pebbles2" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_pebbles2" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 material = SubResource("ShaderMaterial_yacao")
 position = Vector2(-4035.83, 108.925)
 scale = Vector2(1.07824, 1.07824)
 texture = ExtResource("14_oc8q2")
 
-[node name="13_pebbles3" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_pebbles3" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 material = SubResource("ShaderMaterial_yacao")
 position = Vector2(-5397.5, 108.925)
 scale = Vector2(1.07824, 1.07824)
 texture = ExtResource("14_oc8q2")
 
-[node name="13_pebbles4" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_pebbles4" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 material = SubResource("ShaderMaterial_yacao")
 position = Vector2(-776.667, 108.925)
 scale = Vector2(1.07824, 1.07824)
 texture = ExtResource("14_oc8q2")
 
-[node name="13_yellow_grass_fg_1" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_yellow_grass_fg_1" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 use_parent_material = true
 position = Vector2(-3335.83, 13.0916)
-scale = Vector2(-1.244, 1.244)
+rotation = 3.14159
+scale = Vector2(1.244, -1.244)
 texture = ExtResource("16_b47of")
 
-[node name="13_yellow_grass_2" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_yellow_grass_2" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 use_parent_material = true
 position = Vector2(-4088.33, 38.0913)
 texture = ExtResource("5_cicbf")
 
-[node name="13_yellow_grass_3" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_yellow_grass_3" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 use_parent_material = true
 position = Vector2(-1565, -24.4084)
 scale = Vector2(1.91084, 1.91084)
 texture = ExtResource("5_cicbf")
 
-[node name="13_pebbles5" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_pebbles5" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 material = SubResource("ShaderMaterial_yacao")
 position = Vector2(533.333, 21.425)
 scale = Vector2(1.07824, 1.07824)
 texture = ExtResource("14_oc8q2")
 
-[node name="13_yellow_grass_4" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_yellow_grass_4" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 use_parent_material = true
 position = Vector2(749.167, 38.0913)
 scale = Vector2(1.80185, 1.80185)
 texture = ExtResource("5_cicbf")
 
-[node name="13_tree_roof_mg_2" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_tree_roof_mg_2" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 use_parent_material = true
-position = Vector2(-5124.17, -1150.18)
+position = Vector2(-5124.17, -1225.27)
 scale = Vector2(1.37013, 1.37013)
 texture = ExtResource("7_5fd67")
 
-[node name="13_tree_roof_mg_3" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_tree_roof_mg_3" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 use_parent_material = true
-position = Vector2(-2800, -1225.18)
+position = Vector2(-2800, -1300.27)
 scale = Vector2(1.37013, 1.37013)
 texture = ExtResource("7_5fd67")
 
-[node name="13_tree_roof_mg_4" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_tree_roof_mg_4" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 use_parent_material = true
-position = Vector2(-164.167, -1166.85)
+position = Vector2(-164.167, -1241.94)
 scale = Vector2(1.37013, 1.37013)
 texture = ExtResource("7_5fd67")
 
-[node name="13_pebbles6" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_pebbles6" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 modulate = Color(0.846906, 0.60224, 0.482097, 1)
 use_parent_material = true
 position = Vector2(-2651.67, 126.425)
 scale = Vector2(1.66394, 1.66394)
 texture = ExtResource("14_oc8q2")
 
-[node name="13_tree_roof_mg_5" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_tree_roof_mg_5" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 use_parent_material = true
-position = Vector2(426.667, -1241.85)
+position = Vector2(426.667, -1316.94)
 scale = Vector2(1.37013, 1.37013)
 texture = ExtResource("7_5fd67")
 
-[node name="13_rays" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_rays" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 modulate = Color(0.603922, 0.517647, 0.337255, 1)
 material = SubResource("ShaderMaterial_1b2eo")
 position = Vector2(-6.10352e-05, -298.575)
@@ -1574,177 +1584,182 @@ texture = ExtResource("19_3mwnd")
 region_enabled = true
 region_rect = Rect2(1135, 0, 1587, 2160)
 
-[node name="13_yellow_grass_5" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_yellow_grass_5" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 position = Vector2(-2240, -65.2417)
 scale = Vector2(1.20855, 1.20855)
 texture = ExtResource("5_cicbf")
 
-[node name="13_tree_midground_2" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_tree_midground_2" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 position = Vector2(-213.333, -1151.91)
 scale = Vector2(1.47367, 1.47367)
 texture = ExtResource("4_q40rc")
 region_enabled = true
 region_rect = Rect2(0, 0, 2012, 1953)
 
-[node name="13_yellow_grass_6" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_yellow_grass_6" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 position = Vector2(-533.333, -19.4084)
 scale = Vector2(1.20855, 1.20855)
 texture = ExtResource("5_cicbf")
 
-[node name="13_yellow_grass_7" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_yellow_grass_7" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 position = Vector2(-4906.67, -19.4084)
 scale = Vector2(1.20855, 1.20855)
 texture = ExtResource("5_cicbf")
 
-[node name="13_yellow_grass_8" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_yellow_grass_8" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 position = Vector2(-5440, -19.4084)
 scale = Vector2(1.20855, 1.20855)
 texture = ExtResource("5_cicbf")
 
-[node name="13_pebbles7" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_pebbles7" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 material = SubResource("ShaderMaterial_yacao")
 position = Vector2(960, 21.425)
 scale = Vector2(1.07824, 1.07824)
 texture = ExtResource("14_oc8q2")
 
-[node name="13_yellow_grass_9" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_yellow_grass_9" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 position = Vector2(1304.48, 108.192)
 scale = Vector2(1.20855, 1.20855)
 texture = ExtResource("5_cicbf")
 region_enabled = true
 region_rect = Rect2(0, 0, 813, 294)
 
-[node name="13_tree_midground_1_BLUR" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_tree_midground_1_BLUR" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 use_parent_material = true
 position = Vector2(-766.5, -1189.74)
 scale = Vector2(1.85119, 1.85119)
 texture = ExtResource("22_5bd8q")
 
-[node name="13_tree_roof_mg_1_BLUR" type="Sprite2D" parent="13/Node2D"]
+[node name="1_11_tree_roof_mg_1_BLUR" type="Sprite2D" parent="1_11/Node2D/Node2D"]
 use_parent_material = true
-position = Vector2(-2503, -1123.85)
+position = Vector2(-2503, -1198.94)
 scale = Vector2(1.59054, 1.59054)
 texture = ExtResource("21_rr4ks")
 
-[node name="20" type="CanvasLayer" parent="."]
-layer = 20
+[node name="1_22" type="CanvasLayer" parent="."]
+layer = 4
 follow_viewport_enabled = true
-follow_viewport_scale = 2.0
+follow_viewport_scale = 1.22
 script = ExtResource("1_yylm6")
-parallax_layer = 2.0
+parallax_layer = 1.22
+unique_modulate = true
 updates_in_process = true
 
-[node name="Node2D" type="Node2D" parent="20"]
+[node name="Node2D" type="Node2D" parent="1_22"]
 modulate = Color(0, 0, 0, 1)
 
-[node name="20_pebbles_BLUR" type="Sprite2D" parent="20/Node2D"]
+[node name="Node2D" type="Node2D" parent="1_22/Node2D"]
+position = Vector2(494.262, 191.803)
+scale = Vector2(1.24029, 1.24029)
+
+[node name="1_22_pebbles_BLUR" type="Sprite2D" parent="1_22/Node2D/Node2D"]
 use_parent_material = true
 position = Vector2(-3184.29, 22.6651)
 scale = Vector2(1.48385, 1.48385)
 texture = ExtResource("20_elyak")
 
-[node name="20_pebbles_BLUR2" type="Sprite2D" parent="20/Node2D"]
+[node name="1_22_pebbles_BLUR2" type="Sprite2D" parent="1_22/Node2D/Node2D"]
 use_parent_material = true
 position = Vector2(-5206.43, 17.6651)
 scale = Vector2(1.48385, 1.48385)
 texture = ExtResource("20_elyak")
 
-[node name="20_pebbles_BLUR3" type="Sprite2D" parent="20/Node2D"]
+[node name="1_22_pebbles_BLUR3" type="Sprite2D" parent="1_22/Node2D/Node2D"]
 use_parent_material = true
 position = Vector2(-1.42859, 17.6651)
 scale = Vector2(1.48385, 1.48385)
 texture = ExtResource("20_elyak")
 
-[node name="20_pebbles_BLUR4" type="Sprite2D" parent="20/Node2D"]
+[node name="1_22_pebbles_BLUR4" type="Sprite2D" parent="1_22/Node2D/Node2D"]
 use_parent_material = true
 position = Vector2(-1095.71, 22.6651)
 scale = Vector2(1.48385, 1.48385)
 texture = ExtResource("20_elyak")
 
-[node name="20_tree_roof_mg_1_BLUR" type="Sprite2D" parent="20/Node2D"]
+[node name="1_22_tree_roof_mg_1_BLUR" type="Sprite2D" parent="1_22/Node2D/Node2D"]
 use_parent_material = true
-position = Vector2(-2487.86, -1186.45)
+position = Vector2(-2487.86, -1231.89)
 scale = Vector2(1.59054, 1.59054)
 texture = ExtResource("21_rr4ks")
 
-[node name="20_tree_roof_mg_1_BLUR2" type="Sprite2D" parent="20/Node2D"]
+[node name="1_22_tree_roof_mg_1_BLUR2" type="Sprite2D" parent="1_22/Node2D/Node2D"]
 use_parent_material = true
-position = Vector2(-302.857, -1295.02)
+position = Vector2(-302.857, -1340.46)
 scale = Vector2(1.59054, 1.59054)
 texture = ExtResource("21_rr4ks")
 
-[node name="20_tree_roof_mg_1_BLUR3" type="Sprite2D" parent="20/Node2D"]
+[node name="1_22_tree_roof_mg_1_BLUR3" type="Sprite2D" parent="1_22/Node2D/Node2D"]
 use_parent_material = true
-position = Vector2(-4352.86, -1283.59)
+position = Vector2(-4352.86, -1329.03)
 scale = Vector2(1.59054, 1.59054)
 texture = ExtResource("21_rr4ks")
 
-[node name="20_tree_roof_mg_1_BLUR4" type="Sprite2D" parent="20/Node2D"]
+[node name="1_22_tree_roof_mg_1_BLUR4" type="Sprite2D" parent="1_22/Node2D/Node2D"]
 use_parent_material = true
-position = Vector2(-2487.86, -1186.45)
+position = Vector2(-2487.86, -1231.89)
 scale = Vector2(1.59054, 1.59054)
 texture = ExtResource("21_rr4ks")
 
-[node name="20_tree_roof_mg_1_BLUR5" type="Sprite2D" parent="20/Node2D"]
+[node name="1_22_tree_roof_mg_1_BLUR5" type="Sprite2D" parent="1_22/Node2D/Node2D"]
 use_parent_material = true
-position = Vector2(-6034.29, -1046.45)
+position = Vector2(-6034.29, -1091.89)
 scale = Vector2(1.59054, 1.59054)
 texture = ExtResource("21_rr4ks")
 
-[node name="20_tree_roof_mg_1_BLUR6" type="Sprite2D" parent="20/Node2D"]
+[node name="1_22_tree_roof_mg_1_BLUR6" type="Sprite2D" parent="1_22/Node2D/Node2D"]
 use_parent_material = true
-position = Vector2(91.4286, -1283.59)
+position = Vector2(91.4286, -1329.03)
 scale = Vector2(1.59054, 1.59054)
 texture = ExtResource("21_rr4ks")
 
-[node name="20_tree_midground_1_BLUR" type="Sprite2D" parent="20/Node2D"]
+[node name="1_22_tree_midground_1_BLUR" type="Sprite2D" parent="1_22/Node2D/Node2D"]
 use_parent_material = true
 position = Vector2(-4022.86, -1025.91)
 scale = Vector2(1.23744, 1.23744)
 texture = ExtResource("22_5bd8q")
 
-[node name="20_tree_midground_1_BLUR2" type="Sprite2D" parent="20/Node2D"]
+[node name="1_22_tree_midground_1_BLUR2" type="Sprite2D" parent="1_22/Node2D/Node2D"]
 use_parent_material = true
 position = Vector2(-1443.57, -990.907)
 scale = Vector2(1.23744, 1.23744)
 texture = ExtResource("22_5bd8q")
 
-[node name="20_yellow_grass_fg_1_BLUR" type="Sprite2D" parent="20/Node2D"]
+[node name="1_22_yellow_grass_fg_1_BLUR" type="Sprite2D" parent="1_22/Node2D/Node2D"]
 position = Vector2(-2124.29, -110.907)
 scale = Vector2(1.20855, 1.20855)
 texture = ExtResource("23_r3ecp")
 
-[node name="20_yellow_grass_fg_1_BLUR2" type="Sprite2D" parent="20/Node2D"]
+[node name="1_22_yellow_grass_fg_1_BLUR2" type="Sprite2D" parent="1_22/Node2D/Node2D"]
 position = Vector2(-4114.29, -260.193)
 scale = Vector2(1.20855, 1.20855)
 texture = ExtResource("23_r3ecp")
 
-[node name="20_yellow_grass_fg_1_BLUR3" type="Sprite2D" parent="20/Node2D"]
+[node name="1_22_yellow_grass_fg_1_BLUR3" type="Sprite2D" parent="1_22/Node2D/Node2D"]
 position = Vector2(-1092.86, -150.907)
 scale = Vector2(1.20855, 1.20855)
 texture = ExtResource("23_r3ecp")
 
-[node name="20_pebbles_BLUR5" type="Sprite2D" parent="20/Node2D"]
+[node name="1_22_pebbles_BLUR5" type="Sprite2D" parent="1_22/Node2D/Node2D"]
 use_parent_material = true
 position = Vector2(1005.71, 17.6651)
 scale = Vector2(1.48385, 1.48385)
 texture = ExtResource("20_elyak")
 
-[node name="20_tree_midground_1_BLUR3" type="Sprite2D" parent="20/Node2D"]
+[node name="1_22_tree_midground_1_BLUR3" type="Sprite2D" parent="1_22/Node2D/Node2D"]
 use_parent_material = true
 position = Vector2(-5064.29, -1215.19)
 scale = Vector2(1.85119, 1.85119)
 texture = ExtResource("22_5bd8q")
 
-[node name="20_tree_midground_1_BLUR4" type="Sprite2D" parent="20/Node2D"]
+[node name="1_22_tree_midground_1_BLUR4" type="Sprite2D" parent="1_22/Node2D/Node2D"]
 use_parent_material = true
-position = Vector2(457.143, -990.907)
+position = Vector2(-340.35, -990.907)
 scale = Vector2(1.23744, 1.23744)
 texture = ExtResource("22_5bd8q")
 region_enabled = true
 region_rect = Rect2(0, 0, 2236, 1985)
 
-[node name="ColorRect" type="ColorRect" parent="20/Node2D"]
+[node name="ColorRect" type="ColorRect" parent="1_22/Node2D/Node2D"]
 offset_left = -6408.0
 offset_top = 183.0
 offset_right = 2103.0
