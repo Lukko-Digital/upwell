@@ -47,6 +47,9 @@ var crashing = false
 ## Set true and false by entering and exiting cooland pockets
 var in_coolant = false
 
+## Only used in modulate_log
+var log_tween: Tween
+
 var velocity: Vector2 = Vector2.ZERO
 
 var moving = false:
@@ -65,10 +68,14 @@ var destination: Entrypoint = null:
 func _ready() -> void:
 	Global.pod_called.connect(_on_call_pod)
 	launch_button.pressed.connect(_on_launch_button_pressed)
-	launch_info.hide()
+	modulate_log(false)
 	energy_bar.max_value = calculate_max_energy()
 	energy_bar.value = energy_bar.max_value
 	collision_x.reparent.call_deferred(get_parent())
+
+	## Since we tween the modulation of log to show and hide it, we start it at 0
+	launch_info.modulate = Color(Color.WHITE, 0)
+	launch_info.hide()
 
 func _process(delta: float) -> void:
 	if not moving:
@@ -153,7 +160,7 @@ func end_movement(recalled: bool) -> void:
 	starting_position = global_position
 
 	location_deselected()
-	launch_info.show()
+	modulate_log(true)
 
 	if recalled:
 		Global.main_camera.set_shake_lerp(0, 4)
@@ -240,13 +247,13 @@ func location_selected(location: Entrypoint):
 		vec_to_destination.length() / calculate_travellable_distance()
 	)
 	select_destination.emit(location)
-	launch_info.show()
+	modulate_log(true)
 
 func location_deselected():
 	if moving:
 		return
 		
-	launch_info.hide()
+	modulate_log(false)
 	collision_x.hide()
 	destination = null
 	destination_line.set_point_position(1, Vector2.ZERO)
@@ -315,6 +322,27 @@ func update_line(line: Line2D, new_point: Vector2):
 	line.set_point_position(1, new_point)
 
 ## ------------------------- ANIMATION -------------------------
+
+func modulate_log(show_log: bool):
+	if log_tween: log_tween.kill()
+
+	var target_color: Color
+	var tween_duration = 0.2
+
+	if show_log:
+		target_color = Color(Color.WHITE, 1)
+		launch_info.show()
+	else:
+		target_color = Color(Color.WHITE, 0)
+	
+	log_tween = create_tween()
+	log_tween.tween_property(launch_info, "modulate", target_color, tween_duration)
+
+	await log_tween.finished
+
+	launch_info.visible = show_log
+
+
 
 func handle_manual_control_shake(gravity_state: GravitizedComponent.GravityState):
 	match gravity_state:
