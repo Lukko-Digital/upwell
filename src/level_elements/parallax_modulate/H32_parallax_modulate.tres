@@ -43,19 +43,19 @@ modulate = Color(1, 1, 1, 1)
 resource_name = "1_03"
 script = ExtResource("1_no0pr")
 parallax_layer = "1_03"
-modulate = Color(0.994899, 0.725633, 0.483767, 1)
+modulate = Color(1, 0.87935, 0.739648, 1)
 
 [sub_resource type="Resource" id="Resource_vfbu5"]
 resource_name = "1_11"
 script = ExtResource("1_no0pr")
 parallax_layer = "1_11"
-modulate = Color(0.406749, 0.168409, 0, 1)
+modulate = Color(0.657497, 0.348102, 0, 1)
 
 [sub_resource type="Resource" id="Resource_gauxw"]
 resource_name = "1_22"
 script = ExtResource("1_no0pr")
 parallax_layer = "1_22"
-modulate = Color(0, 0, 0, 1)
+modulate = Color(0.282833, 0.138808, 9.62615e-08, 1)
 
 [resource]
 script = ExtResource("1_y27jn")
