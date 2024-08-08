@@ -11,15 +11,19 @@
 shader = ExtResource("4_4mhkd")
 shader_parameter/intensity = 1.0
 
-[node name="DialogueUi" type="CanvasLayer" node_paths=PackedStringArray("display_timer", "response_box", "fullscreen_display", "response_selector")]
+[node name="DialogueUi" type="CanvasLayer" node_paths=PackedStringArray("display_timer", "tail_timer", "response_box", "fullscreen_display", "response_selector")]
 layer = 110
 script = ExtResource("1_28e40")
 display_timer = NodePath("DisplayTimer")
+tail_timer = NodePath("TailTimer")
 response_box = NodePath("ResponseBox")
 fullscreen_display = NodePath("FullscreenDialogue")
 response_selector = NodePath("ResponseButtonSelector")
 
 [node name="DisplayTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="TailTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="ResponseBox" type="VBoxContainer" parent="."]

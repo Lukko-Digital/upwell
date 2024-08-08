@@ -14,18 +14,29 @@ class_name DialogueUI
 ##
 ## {animation [animation_name]} where [animation_name] is a string corresponding
 ##	to an animation on the NPC's AnimatedSprite2D
+##
+## {fade_off} after this command is seen, tail will be advanced with head,
+## making the fade not visible
+##
+## {fade_on} tail is set to its usual trailing state
 const DIALOGUE_COMMANDS = {
 	PAUSE = "pause",
 	SPEED = "speed",
 	SHAKE = "shake",
-	ANIMATION = "animation"
+	ANIMATION = "animation",
+	FADE_OFF = "fade_off",
+	FADE_ON = "fade_on"
 }
 const SHAKE_DEFAULT = {
 	AMOUNT = 50,
 	LERP_SPEED = 10.0
 }
 
+## Default time it takes to advance fade_head
 const TEXT_SPEED = 0.035
+## The time delay between advancing fade_head to advancing fade_tail
+const TAIL_DELAY = 0.07
+const FADE_MAX_LENGTH = 5
 ## How long it will take for the next character to appear, in seconds
 const END_CHARACTER_PAUSE = 0.6
 const COMMA_PAUSE = 0.3
@@ -35,6 +46,7 @@ const SPEECH_BUBBLE_OFFSET = Vector2(-60, -110)
 
 # Timer for animating text display, value set to TEXT_SPEED
 @export var display_timer: Timer
+@export var tail_timer: Timer
 @export var response_box: VBoxContainer
 @export var fullscreen_display: FullscreenDialogue
 @export var response_selector: ResponseButtonSelector
@@ -42,22 +54,58 @@ const SPEECH_BUBBLE_OFFSET = Vector2(-60, -110)
 @onready var response_button_scene = preload("res://src/dialogue/response_button.tscn")
 @onready var speech_bubble_scene = preload("res://src/dialogue/speech_bubble.tscn")
 
+# ------------- Current Interaction -------------
 var active_dialogue_display: DialogueDisplay
 var current_speech_bubble: SpeechBubble
 var current_npc: NPC
 ## Used to track and kill zombie [animate_display] instances
 var interaction_timestamp: int
 var next_branch: String
-var display_speed_coef = 1
+
+# ------------- Display Variables -------------
+var display_speed_coef: float = 1
+var fade_head: int = 0:
+	set(value):
+		fade_head = value
+		# If exceeding max length, pull tail along
+		if fade_head - fade_tail > FADE_MAX_LENGTH:
+			fade_tail += 1
+		# If fade is disabled, set tail to head
+		if fade_disabled:
+			fade_tail = fade_head
+
+var fade_tail: int = 0:
+	set(value):
+		# Don't allow tail to exceed head
+		fade_tail = min(value, fade_head)
+
+var fade_disabled: bool = false
+## Used to speed up tail when head reaches the end
+var all_characters_visible: bool = false
+
 ## Boolean whether the player can hit [esc] to exit dialogue or not
 var locked_in_dialogue: bool
 
 signal display_animation_finished
 signal dialogue_finished
 
+## ------------------------------- CORE -------------------------------
+
 func _ready():
 	hide()
 	clear_responses()
+	tail_timer.timeout.connect(_on_tail_timer_timeout)
+
+func _process(_delta: float) -> void:
+	update_fade()
+	if fade_tail < fade_head - 1 and tail_timer.is_stopped():
+		var wait_time = TAIL_DELAY if not all_characters_visible else TEXT_SPEED
+		tail_timer.start(wait_time)
+
+func _on_tail_timer_timeout():
+	fade_tail += 1
+
+## ------------------------------ ENTER/EXIT ------------------------------
 
 ## [dir_to_npc], either 1 or -1, if the npc is to the right or left,
 ## respectively, of the player
@@ -78,6 +126,22 @@ func start_dialogue(npc: NPC, dir_to_npc: float):
 	npc.add_child(instance)
 
 	play_branch(DialogueParser.START_BRANCH_TAG)
+
+func exit_dialogue():
+	current_npc.reset()
+	current_npc = null
+	interaction_timestamp = 0
+	hide()
+
+	# Despawn speech bubble
+	if current_speech_bubble:
+		current_speech_bubble.get_parent().remove_child(current_speech_bubble)
+		current_speech_bubble.queue_free()
+		current_speech_bubble = null
+
+	dialogue_finished.emit()
+
+## ------------------------------ DIALOGUE LOGIC ------------------------------
 
 func play_branch(branch_id: String):
 	if branch_id == DialogueParser.END_TAG:
@@ -143,16 +207,29 @@ func play_branch(branch_id: String):
 			if not response.is_impulsive_reponse:
 				spawn_reponse(response)
 
+## ---------------------------- DISPLAY ANIMATION ----------------------------
+
+func update_fade():
+	if not active_dialogue_display:
+		return
+	active_dialogue_display.dialogue_label.parse_bbcode(
+		"[fade start=%s length=%s]" % [str(fade_tail), str(fade_head - fade_tail)] + active_dialogue_display.dialogue_label.text + "[/fade]"
+	)
+
 func animate_display(dialogue_line: String):
+	var init_timestamp = interaction_timestamp
+	
+	all_characters_visible = false
+	# Reset head and tail
+	fade_head = 0
+	fade_tail = 0
+
 	## Just the characters that will be seen, no bbcode
 	var command_text = BBCodeParser.strip_bbcode(dialogue_line)
 	var bbcode_text = DialogueParser.strip_dialogue_commands(dialogue_line)
+	## Current idx of the character of the command_text that animate display
+	## is looking at
 	var idx = 0
-	var fade_counter = 0
-	active_dialogue_display.dialogue_label.parse_bbcode(
-		"[fade start=" + str(fade_counter - 2) + " length=2]" + active_dialogue_display.dialogue_label.text + "[/fade]"
-	)
-	var init_timestamp = interaction_timestamp
 	while idx < command_text.length():
 		# Exit if the interaction timestamp changed from what it was when this
 		# function was instantiated. This will happen when the player exits
@@ -168,23 +245,19 @@ func animate_display(dialogue_line: String):
 			return
 
 		var new_char = command_text[idx]
-
 		if new_char == "{":
 			# Dialogue command
 			idx = handle_dialogue_command(command_text, idx)
 		else:
 			var wait_time = calculate_wait_time(new_char, command_text, idx)
 			display_timer.start(wait_time)
-			# Show new character
-			active_dialogue_display.dialogue_label.parse_bbcode(
-				"[fade start=" + str(fade_counter) + " length=2]" + active_dialogue_display.dialogue_label.text + "[/fade]"
-			)
 			idx += 1
-			fade_counter += 1
-			
+			fade_head += 1
+		
 		if not display_timer.is_stopped():
 			await display_timer.timeout
 	display_animation_finished.emit()
+	all_characters_visible = true
 
 ## Returns the index of the end of the command, that should be jumped to
 func handle_dialogue_command(command_text: String, idx: int) -> int:
@@ -215,6 +288,10 @@ func handle_dialogue_command(command_text: String, idx: int) -> int:
 			Global.main_camera.set_shake_and_lerp_to_zero(amount, lerp_speed)
 		DIALOGUE_COMMANDS.ANIMATION:
 			current_npc.npc_sprite.play(command_line[1])
+		DIALOGUE_COMMANDS.FADE_OFF:
+			fade_disabled = true
+		DIALOGUE_COMMANDS.FADE_ON:
+			fade_disabled = false
 	return re_match.get_end()
 
 func calculate_wait_time(new_char: String, command_text: String, idx: int) -> float:
@@ -234,6 +311,8 @@ func calculate_wait_time(new_char: String, command_text: String, idx: int) -> fl
 			return COMMA_PAUSE
 		_:
 			return TEXT_SPEED * display_speed_coef
+
+## ------------------------------- RESPONSES -------------------------------
 
 func spawn_reponse(response: Response):
 	if response.spawn_condition != "":
@@ -259,19 +338,7 @@ func clear_responses():
 		response_box.remove_child(button)
 		button.queue_free()
 
-func exit_dialogue():
-	current_npc.reset()
-	current_npc = null
-	interaction_timestamp = 0
-	hide()
-
-	# Despawn speech bubble
-	if current_speech_bubble:
-		current_speech_bubble.get_parent().remove_child(current_speech_bubble)
-		current_speech_bubble.queue_free()
-		current_speech_bubble = null
-
-	dialogue_finished.emit()
+## ------------------------------- SIGNALS -------------------------------
 
 func _response_button_pressed(response: Response):
 	# Set variables
