@@ -37,7 +37,7 @@ var STARTING_THROW_DIRECTION = Vector2.UP
 @export var dialogue_stand_detector: Area2D
 @export var dialogue_ui: DialogueUI
 @export var level_unlock_popup: CanvasLayer
-@export var clicker_ui : ClickerUI
+@export var clicker_ui: ClickerUI
 @export var coyote_timer: Timer
 @export var jump_buffer_timer: Timer
 @export var min_jump_timer: Timer
@@ -242,10 +242,13 @@ func walk_to_dialogue_start() -> float:
 
 	# If at location or if no location exists, start dialogue
 	if dialogue_stand_detector.has_overlapping_areas() or dialogue_start_location == null:
+		print("at location", "|", Time.get_ticks_msec())
 		var dir_to_npc = sign(current_dialogue_npc.global_position.x - global_position.x)
 		dialogue_start_location = null
 		current_dialogue_npc.face_player(self)
+		print("npc face player", "|", Time.get_ticks_msec())
 		dialogue_ui.start_dialogue(current_dialogue_npc, dir_to_npc)
+		print("start dialogue", "|", Time.get_ticks_msec())
 		# If facing the wrong way, turn to face npc
 		var npc_to_the_right: bool = (dir_to_npc == 1)
 		if player_sprite.flip_h == npc_to_the_right:
@@ -340,7 +343,7 @@ func handle_coyote_timing(gravity_state: GravitizedComponent.GravityState):
 func jump():
 	# No jump when holding shift, when in dialogue, or when using phone
 	if (
-		Input.is_action_pressed("orbit") or 
+		Input.is_action_pressed("orbit") or
 		in_dialogue() or
 		active_phone
 	):
@@ -411,6 +414,7 @@ func in_dialogue():
 ## dialogue. If there is no location to walk to, [walk_to_dialogue_start]
 ## starts dialogue immediately.
 func init_npc_interaction(npc: NPC):
+	print("init npc interaction called", "|", Time.get_ticks_msec())
 	current_dialogue_npc = npc
 	var standing_locations = npc.standing_locations.duplicate()
 	if standing_locations.is_empty():
@@ -420,6 +424,7 @@ func init_npc_interaction(npc: NPC):
 	for loc: DialogueStandLocation in standing_locations:
 		if abs(loc.global_position.x - global_position.x) < abs(dialogue_start_location.global_position.x - global_position.x):
 			dialogue_start_location = loc
+	print("determine start location", "|", Time.get_ticks_msec())
 
 ## Attempt to leave dialogue early by pressing [esc], or leave phone
 func exit_interaction():
