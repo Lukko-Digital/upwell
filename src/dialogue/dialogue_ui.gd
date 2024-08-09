@@ -74,11 +74,13 @@ var fade_head: int = 0:
 		# If fade is disabled, set tail to head
 		if fade_disabled:
 			fade_tail = fade_head
+		update_fade()
 
 var fade_tail: int = 0:
 	set(value):
 		# Don't allow tail to exceed head
 		fade_tail = min(value, fade_head)
+		update_fade()
 
 var fade_disabled: bool = false
 ## Used to speed up tail when head reaches the end
@@ -98,7 +100,6 @@ func _ready():
 	tail_timer.timeout.connect(_on_tail_timer_timeout)
 
 func _process(_delta: float) -> void:
-	update_fade()
 	if fade_tail < fade_head - 1 and tail_timer.is_stopped():
 		var wait_time = TAIL_DELAY if not all_characters_visible else TEXT_SPEED
 		tail_timer.start(wait_time)
