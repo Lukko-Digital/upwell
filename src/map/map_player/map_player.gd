@@ -69,16 +69,16 @@ var destination: Entrypoint = null:
 ## ----------------------------- CORE -----------------------------
 
 func _ready() -> void:
-	Global.pod_called.connect(_on_call_pod)
-	launch_button.pressed.connect(_on_launch_button_pressed)
-	modulate_log(false)
+	# Init energy bar
 	energy_bar.max_value = calculate_max_energy()
 	energy_bar.value = energy_bar.max_value
+	# Init visuals
+	modulate_log(false)
 	collision_x.reparent.call_deferred(get_parent())
-
-	## Since we tween the modulation of log to show and hide it, we start it at 0
-	launch_info.modulate = Color(Color.WHITE, 0)
-	launch_info.hide()
+	# Connect signals
+	Global.pod_called.connect(_on_call_pod)
+	Global.camera_focus_changed.connect(_on_camera_focus_changed)
+	launch_button.pressed.connect(_on_launch_button_pressed)
 
 func _process(delta: float) -> void:
 	if not moving:
@@ -416,3 +416,7 @@ func _on_call_pod(empty_pod: EmptyPod) -> void:
 
 func _on_launch_button_pressed():
 	start_travel()
+
+func _on_camera_focus_changed(focus: Node2D):
+	if focus == null:
+		location_deselected()
