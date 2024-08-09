@@ -1844,6 +1844,7 @@ animation = &"cross_arms"
 offset = Vector2(41.46, 0)
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("28_bo6j8")]
+unique_name_in_owner = true
 position = Vector2(-2560, -256)
 camera = NodePath("../MainCamera")
 

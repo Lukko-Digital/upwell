@@ -38,6 +38,7 @@ func _ready() -> void:
 
 	conversation_tree = DialogueParser.parse_csv(dialogue_file, self)
 	speech_bubble.hide()
+	player_.dialogue_ui.dummy_run(self)
 
 func interact(player: Player):
 	interact_label.hide()
