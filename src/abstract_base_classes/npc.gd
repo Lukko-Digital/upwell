@@ -1,7 +1,8 @@
 extends Interactable
 class_name NPC
 
-@export_file("*.csv") var dialogue_file
+@export var dialogue_loader: DialogueLoader
+
 @export var faces_you_during_dialogue = false
 ## If the NPC sprite is normally facing to the left, check this box
 @export var default_left_facing = false
@@ -13,7 +14,8 @@ class_name NPC
 
 var standing_locations: Array[DialogueStandLocation]
 
-var conversation_tree: ConversationTree
+## Map from [String] of branch ID to [ConversationBranch]
+var conversation_tree: Dictionary
 ## In the case that the npc's body isn't centered in the sprite
 var default_sprite_offset: Vector2
 ## Only on [AnimatedSprite2D]
@@ -34,7 +36,7 @@ func _ready() -> void:
 			continue
 		standing_locations.append(child)
 
-	conversation_tree = DialogueParser.parse_csv(dialogue_file, self)
+	conversation_tree = DialogueParser.parse_csv(dialogue_loader, self)
 	speech_bubble.hide()
 	set_first_line()
 
@@ -75,7 +77,7 @@ func reset():
 ## dialogue that would be said. For an unknown reason, this fixes the lag spike
 ## that happens when first interacting with an npc.
 func set_first_line(branch_id: String = DialogueParser.START_BRANCH_TAG):
-	var branch: ConversationBranch = conversation_tree.branches[branch_id]
+	var branch: ConversationBranch = conversation_tree[branch_id]
 	speech_bubble.dialogue_label.text = DialogueParser.strip_dialogue_commands(branch.dialogue_line)
 	var next_branch = branch.next_branch_id
 	# Check conditional branch advancement
