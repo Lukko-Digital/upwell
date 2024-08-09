@@ -56,8 +56,9 @@ _data = {
 "load": SubResource("Animation_kpdj4")
 }
 
-[node name="Launch_Button" type="Node2D" node_paths=PackedStringArray("backer", "dot_parent", "dot_1", "dot_2", "dot_3", "text_launch", "text_launch_glow", "starsmall", "starmed", "starbig", "scaler", "cross", "animation_player")]
+[node name="Launch_Button" type="Node2D" node_paths=PackedStringArray("animation_player", "backer", "dot_parent", "dot_1", "dot_2", "dot_3", "text_launch", "text_launch_glow", "starsmall", "starmed", "starbig", "scaler", "cross")]
 script = ExtResource("1_vtk60")
+animation_player = NodePath("AnimationPlayer")
 backer = NodePath("Scaler/LaunchBacker")
 dot_parent = NodePath("DotParent")
 dot_1 = NodePath("DotParent/LaunchDot1")
@@ -70,7 +71,6 @@ starmed = NodePath("Scaler/LaunchBacker/StarMedParent")
 starbig = NodePath("Scaler/LaunchBacker/StarBigParent")
 scaler = NodePath("Scaler")
 cross = NodePath("Cross")
-animation_player = NodePath("AnimationPlayer")
 
 [node name="Scaler" type="Sprite2D" parent="."]
 
