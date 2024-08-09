@@ -10,8 +10,6 @@ class_name NPC
 @export var npc_sprite: Node2D
 
 @onready var speech_bubble: SpeechBubble = $SpeechBubble
-# @onready var nodule: Sprite2D = $Nodule
-@onready var player_: Player = %Player
 
 var standing_locations: Array[DialogueStandLocation]
 
@@ -38,7 +36,7 @@ func _ready() -> void:
 
 	conversation_tree = DialogueParser.parse_csv(dialogue_file, self)
 	speech_bubble.hide()
-	player_.dialogue_ui.dummy_run(self)
+	set_first_line()
 
 func interact(player: Player):
 	interact_label.hide()
@@ -72,3 +70,18 @@ func reset():
 	speech_bubble.hide()
 	if npc_sprite is AnimatedSprite2D:
 		npc_sprite.play(default_animation)
+
+## Called on ready. Sets the npc's speech bubble label to the first line of
+## dialogue that would be said. For an unknown reason, this fixes the lag spike
+## that happens when first interacting with an npc.
+func set_first_line(branch_id: String = DialogueParser.START_BRANCH_TAG):
+	var branch: ConversationBranch = conversation_tree.branches[branch_id]
+	speech_bubble.dialogue_label.text = DialogueParser.strip_dialogue_commands(branch.dialogue_line)
+	var next_branch = branch.next_branch_id
+	# Check conditional branch advancement
+	if branch.condition != "":
+		if Global.dialogue_conditions[branch.condition] == branch.expected_condition_value:
+			next_branch = branch.conditional_next_branch_id
+	# Go through boolean algebra lines
+	if branch.dialogue_line.is_empty():
+		set_first_line(next_branch)

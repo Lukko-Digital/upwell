@@ -128,24 +128,6 @@ func exit_dialogue():
 	hide()
 	dialogue_finished.emit()
 
-## ------------------------------ DUMMY RUN ------------------------------
-
-func dummy_run(npc: NPC):
-	dummy_recurse(npc, DialogueParser.START_BRANCH_TAG)
-
-func dummy_recurse(npc: NPC, branch_id: String):
-	var branch: ConversationBranch = npc.conversation_tree.branches[branch_id]
-	npc.speech_bubble.dialogue_label.text = DialogueParser.strip_dialogue_commands(branch.dialogue_line)
-	next_branch = branch.next_branch_id
-	# Check conditional branch advancement
-	if branch.condition != "":
-		if Global.dialogue_conditions[branch.condition] == branch.expected_condition_value:
-			next_branch = branch.conditional_next_branch_id
-	# If there is no dialogue text, immediately play next branch, in the case of boolean algebra lines
-	if branch.dialogue_line.is_empty():
-		dummy_recurse(npc, next_branch)
-		return
-
 ## ------------------------------ DIALOGUE LOGIC ------------------------------
 
 func play_branch(branch_id: String):
