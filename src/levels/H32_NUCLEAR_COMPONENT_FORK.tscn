@@ -1825,8 +1825,9 @@ dialogue_file = "res://assets/dialogue/old/upwell dialogue - dadmvp4.csv"
 faces_you_during_dialogue = true
 npc_sprite = NodePath("AnimatedSprite2D")
 
-[node name="Nodule" parent="NPC" index="2"]
-position = Vector2(-105, -217)
+[node name="SpeechBubble" parent="NPC" index="2"]
+offset_top = -194.0
+offset_bottom = -194.0
 
 [node name="DialogueStandLocation" parent="NPC" index="3"]
 disabled = true
@@ -1850,6 +1851,31 @@ camera = NodePath("../MainCamera")
 position = Vector2(-2176, 0)
 player = NodePath("../Player")
 
+[node name="NPC2" parent="." node_paths=PackedStringArray("npc_sprite") instance=ExtResource("28_eldmr")]
+position = Vector2(-1919, -167)
+dialogue_file = "res://assets/dialogue/old/oldmanmvp3.csv"
+faces_you_during_dialogue = true
+npc_sprite = NodePath("../NPC/AnimatedSprite2D")
+
+[node name="SpeechBubble" parent="NPC2" index="2"]
+offset_top = -193.0
+offset_bottom = -193.0
+
+[node name="DialogueStandLocation" parent="NPC2" index="3"]
+disabled = true
+
+[node name="CollisionShape2D" parent="NPC2/DialogueStandLocation" index="0"]
+disabled = true
+
+[node name="DialogueStandLocation2" parent="NPC2" index="4"]
+position = Vector2(276, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NPC2"]
+sprite_frames = SubResource("SpriteFrames_bokmx")
+animation = &"cross_arms"
+offset = Vector2(41.46, 0)
+
 [connection signal="body_entered" from="LEVEL/EntranceSwitcherArea" to="LEVEL/EntranceSwitcherArea" method="_on_body_entered"]
 
 [editable path="NPC"]
+[editable path="NPC2"]
