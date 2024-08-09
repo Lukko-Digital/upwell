@@ -106,7 +106,7 @@ func phone_picked():
 		Global.set_dialogue_variable(key, true)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	player.dialogue_ui.start_dialogue(npc_node, 0)
+	player.dialogue_ui.start_dialogue(npc_node)
 	await player.dialogue_ui.dialogue_finished
 	reset()
 
