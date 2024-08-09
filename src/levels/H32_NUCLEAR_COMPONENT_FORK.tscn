@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bfkdty013w6pt"]
+[gd_scene load_steps=50 format=3 uid="uid://bfkdty013w6pt"]
 
 [ext_resource type="Script" path="res://src/sublevel.gd" id="1_348v6"]
 [ext_resource type="Script" path="res://src/level_elements/parallax_canvas.gd" id="1_yylm6"]
@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://6aouvsx0hvfm" path="res://src/level_elements/npcs/NPC.tscn" id="28_eldmr"]
 [ext_resource type="PackedScene" uid="uid://bmvh2hsa6mbgd" path="res://src/main_camera.tscn" id="29_8bf22"]
 [ext_resource type="Texture2D" uid="uid://ca17uid471m7i" path="res://assets/mvp4_assets/shitty_dad-sheet.png" id="29_wt3al"]
+[ext_resource type="Resource" uid="uid://c22etw7kfym6d" path="res://assets/dialogue/old/upwell dialogue - dadmvp4.tres" id="31_6vr6y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hvpi1"]
 size = Vector2(276, 1238)
@@ -1821,7 +1822,7 @@ texture = ExtResource("27_6on70")
 
 [node name="NPC" parent="." node_paths=PackedStringArray("npc_sprite") instance=ExtResource("28_eldmr")]
 position = Vector2(-3456, -167)
-dialogue_file = "res://assets/dialogue/old/upwell dialogue - dadmvp4.csv"
+dialogue_loader = ExtResource("31_6vr6y")
 faces_you_during_dialogue = true
 npc_sprite = NodePath("AnimatedSprite2D")
 

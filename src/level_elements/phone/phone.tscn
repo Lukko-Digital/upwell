@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://deur4u61t2ew5"]
+[gd_scene load_steps=19 format=3 uid="uid://deur4u61t2ew5"]
 
 [ext_resource type="Script" path="res://src/level_elements/phone/phone.gd" id="1_g3m3t"]
 [ext_resource type="Shader" path="res://src/shaders/blur.gdshader" id="2_1yboq"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://da2au8h7pb1s2" path="res://assets/phone/Phone_out.png" id="8_8762i"]
 [ext_resource type="PackedScene" uid="uid://6aouvsx0hvfm" path="res://src/level_elements/npcs/NPC.tscn" id="10_7tp37"]
 [ext_resource type="Texture2D" uid="uid://xbpouc4cds5f" path="res://assets/phone/phone_small.png" id="11_i7fmr"]
+[ext_resource type="Resource" uid="uid://csqx5v7tj411y" path="res://assets/dialogue/upwell dialogue - phone.tres" id="14_6uw7c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hqui6"]
 shader = ExtResource("2_1yboq")
@@ -188,7 +189,7 @@ visible = false
 z_index = 100
 collision_layer = 0
 collision_mask = 0
-dialogue_file = "res://assets/dialogue/upwell dialogue - phone.csv"
+dialogue_loader = ExtResource("14_6uw7c")
 
 [node name="DialogueStandLocation" parent="PhoneNPC" index="3"]
 disabled = true

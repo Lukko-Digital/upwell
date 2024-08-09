@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://d2cdeqk64113c"]
+[gd_scene load_steps=44 format=3 uid="uid://d2cdeqk64113c"]
 
 [ext_resource type="Script" path="res://src/sublevel.gd" id="1_lakxx"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="1_qkpke"]
@@ -34,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://co1f1n18nr1gx" path="res://assets/environment/tree_roof/bush_3.png" id="23_ysxvr"]
 [ext_resource type="Texture2D" uid="uid://c6s1qaikc2t6q" path="res://assets/environment/tree_roof/bush_1_blur.png" id="26_f32kk"]
 [ext_resource type="Texture2D" uid="uid://duim3t0v1cmjj" path="res://assets/environment/tree_roof/tree_roof_mg_1.png" id="26_r0ah3"]
+[ext_resource type="Resource" uid="uid://d0t373ppntf4a" path="res://assets/dialogue/dialogue_treewhispers.tres" id="31_spjnm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n7al0"]
 shader = ExtResource("16_h3tnk")
@@ -1215,7 +1216,7 @@ whisper1_end_location = NodePath("Whisper1_End_Location")
 
 [node name="Whisper1" parent="NPCs/TreeWhispers" instance=ExtResource("20_km6fq")]
 position = Vector2(-5998, -1292)
-dialogue_file = "res://assets/dialogue/dialogue_treewhispers.csv"
+dialogue_loader = ExtResource("31_spjnm")
 
 [node name="DialogueStandLocation" parent="NPCs/TreeWhispers/Whisper1" index="3"]
 disabled = true

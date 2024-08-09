@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://bttepvab6oghg"]
+[gd_scene load_steps=93 format=3 uid="uid://bttepvab6oghg"]
 
 [ext_resource type="Script" path="res://src/level.gd" id="1_wrudi"]
 [ext_resource type="PackedScene" uid="uid://5mnlsyicmwh" path="res://src/level_elements/pod/empty_pod.tscn" id="2_bh8lq"]
@@ -16,8 +16,10 @@
 [ext_resource type="PackedScene" uid="uid://bnxmdjk1mqgxv" path="res://src/levels/TEST_screen_puzzle.tscn" id="13_hhdsd"]
 [ext_resource type="Texture2D" uid="uid://ecpowah0vtsn" path="res://assets/environment/red_tree/ground_TM.png" id="13_r75eb"]
 [ext_resource type="Script" path="res://src/level_elements/parallax_canvas.gd" id="16_pcp8g"]
+[ext_resource type="Resource" uid="uid://ib7wx0158c66" path="res://assets/dialogue/old/oldmanmvp3.tres" id="17_ayvqm"]
 [ext_resource type="Texture2D" uid="uid://bso4h5sv02rtd" path="res://assets/mvp3_assets/tutorial/shift.png" id="17_vud3g"]
 [ext_resource type="Texture2D" uid="uid://dnqjj1lqp4wsx" path="res://assets/mvp3_assets/tutorial/space.png" id="18_25d6w"]
+[ext_resource type="Resource" uid="uid://d3wx3ip8xptyf" path="res://assets/dialogue/old/upwell dialogue - adrikmvp3.tres" id="19_dg38b"]
 [ext_resource type="PackedScene" uid="uid://dhjj5tgw8y2es" path="res://src/level_elements/view_blocker.tscn" id="19_eprmi"]
 [ext_resource type="Texture2D" uid="uid://b8gr7s28o11nu" path="res://assets/environment/red_tree/wall_a.png" id="19_mdfdk"]
 [ext_resource type="Texture2D" uid="uid://d0i17rvgmcrj4" path="res://assets/environment/red_tree/tree_b.png" id="20_o1624"]
@@ -979,7 +981,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0.846154, 0.846154, 0.846154, 0.846154, 1,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_sr4fx"]
 gradient = SubResource("Gradient_lu00i")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y7dhe"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3jgds"]
 lifetime_randomness = 0.56
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(4, 4, 4)
@@ -1355,12 +1357,8 @@ power_holder = NodePath("../Holders/ClickerHolder7")
 
 [node name="NPC" parent="LEVEL" node_paths=PackedStringArray("npc_sprite") instance=ExtResource("36_pib2y")]
 position = Vector2(-2378, -186)
-dialogue_file = "res://assets/dialogue/oldmanmvp3.csv"
+dialogue_loader = ExtResource("17_ayvqm")
 npc_sprite = NodePath("OldMan")
-
-[node name="Nodule" parent="LEVEL/NPC" index="2"]
-position = Vector2(99, -151)
-flip_h = true
 
 [node name="OldMan" type="Sprite2D" parent="LEVEL/NPC"]
 position = Vector2(6, 21)
@@ -1369,7 +1367,7 @@ texture = ExtResource("37_e04nw")
 
 [node name="NPC2" parent="LEVEL" node_paths=PackedStringArray("npc_sprite") instance=ExtResource("36_pib2y")]
 position = Vector2(27253, -2372)
-dialogue_file = "res://assets/dialogue/upwell dialogue - adrikmvp3.csv"
+dialogue_loader = ExtResource("19_dg38b")
 npc_sprite = NodePath("Adrik")
 
 [node name="Adrik" type="Sprite2D" parent="LEVEL/NPC2"]
@@ -2004,7 +2002,7 @@ script = ExtResource("16_pcp8g")
 
 [node name="Particles" parent="3/Node2D" instance=ExtResource("34_cqmqj")]
 visible = false
-process_material = SubResource("ParticleProcessMaterial_y7dhe")
+process_material = SubResource("ParticleProcessMaterial_3jgds")
 
 [node name="ground_BLUR" type="Sprite2D" parent="3/Node2D"]
 modulate = Color(0.619608, 0.360784, 0.25098, 1)

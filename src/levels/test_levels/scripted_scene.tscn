@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b8t7ietk25g52"]
+[gd_scene load_steps=19 format=3 uid="uid://b8t7ietk25g52"]
 
 [ext_resource type="Script" path="res://src/levels/test_levels/test_scripted_scene.gd" id="1_1wmro"]
 [ext_resource type="PackedScene" uid="uid://tfy83b2uc6hh" path="res://src/player/player.tscn" id="1_jyelj"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://src/level_elements/parallax_canvas.gd" id="4_dv44j"]
 [ext_resource type="PackedScene" uid="uid://6aouvsx0hvfm" path="res://src/level_elements/npcs/NPC.tscn" id="4_k64o7"]
 [ext_resource type="Texture2D" uid="uid://ca17uid471m7i" path="res://assets/mvp4_assets/shitty_dad-sheet.png" id="5_3n2jq"]
+[ext_resource type="Resource" uid="uid://bkdyir7ifqt2u" path="res://assets/dialogue/dialogue_fraudscripted1.tres" id="5_ghb1s"]
 [ext_resource type="Texture2D" uid="uid://6p7halpsoule" path="res://assets/environment/tree_roof/tree_midground_1_BLUR.png" id="5_ub25s"]
 [ext_resource type="Script" path="res://src/level_elements/npcs/dialogue_stand_location.gd" id="9_h381q"]
 
@@ -90,12 +91,9 @@ player = NodePath("../Player")
 
 [node name="Fraud" parent="." node_paths=PackedStringArray("npc_sprite") instance=ExtResource("4_k64o7")]
 position = Vector2(1537, -167)
-dialogue_file = "res://assets/dialogue/dialogue_fraudscripted1.csv"
+dialogue_loader = ExtResource("5_ghb1s")
 faces_you_during_dialogue = true
 npc_sprite = NodePath("AnimatedSprite2D")
-
-[node name="Nodule" parent="Fraud" index="2"]
-position = Vector2(-105, -217)
 
 [node name="DialogueStandLocation" parent="Fraud" index="3"]
 disabled = true
