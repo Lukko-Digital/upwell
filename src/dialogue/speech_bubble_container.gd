@@ -60,10 +60,10 @@ func set_containter_width():
 	
 	size.x = smallest_viable_width + text_margin + PADDING
 
-## [dir_to_npc], either 1 or -1, if the npc is to the right or left,
-## respectively, of the player
-func orient_towards_player(dir_to_npc):
-	if dir_to_npc == -1.0:
+## [dir_to_player], either 1 or -1, if the player is to the right or left,
+## respectively, of the npc
+func orient_towards_player(dir_to_player):
+	if dir_to_player == 1.0:
 		# NPC on the left, player on the right
 		current_position_percentage = X_POSITION_PERCENTAGE
 	else:

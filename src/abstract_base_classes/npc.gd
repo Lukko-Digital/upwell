@@ -9,7 +9,9 @@ class_name NPC
 ## Can be a [Sprite2D] or [AnimatedSprite2D]
 @export var npc_sprite: Node2D
 
-@onready var nodule: Sprite2D = $Nodule
+@onready var speech_bubble: SpeechBubble = $SpeechBubble
+# @onready var nodule: Sprite2D = $Nodule
+@onready var player_: Player = %Player
 
 var standing_locations: Array[DialogueStandLocation]
 
@@ -35,7 +37,7 @@ func _ready() -> void:
 		standing_locations.append(child)
 
 	conversation_tree = DialogueParser.parse_csv(dialogue_file, self)
-	nodule.hide()
+	speech_bubble.hide()
 
 func interact(player: Player):
 	interact_label.hide()
@@ -61,9 +63,11 @@ func face_player(player: Player):
 	var offset_dir = -1 if npc_sprite.flip_h else 1
 	npc_sprite.offset = offset_dir * default_sprite_offset
 
-	nodule.position.x = sign(vec_to_player.x) * abs(nodule.position.x)
-	nodule.flip_h = player_on_right
+	speech_bubble.bubble_container.orient_towards_player(sign(vec_to_player.x))
+	speech_bubble.position.x = sign(vec_to_player.x) * abs(speech_bubble.position.x)
+	speech_bubble.nodule.flip_h = player_on_right
 
 func reset():
+	speech_bubble.hide()
 	if npc_sprite is AnimatedSprite2D:
 		npc_sprite.play(default_animation)
