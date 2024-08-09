@@ -45,6 +45,9 @@ font_data_dynamic={
 "msdf_size": 128,
 "multichannel_signed_distance_field": true
 }
+texture={
+"mipmaps/generate": true
+}
 
 [input]
 
