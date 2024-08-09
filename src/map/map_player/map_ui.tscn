@@ -561,6 +561,7 @@ offset_top = -182.0
 offset_right = 257.0
 offset_bottom = 262.0
 scale = Vector2(0.835359, 0.835359)
+focus_mode = 0
 texture_normal = ExtResource("6_qrxvy")
 texture_click_mask = ExtResource("8_bjq35")
 stretch_mode = 5
