@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://cgci75byqdbbj"
+path="res://.godot/imported/launch_rotation_parent_clickmask.png-5852969aea2fcaad1617940f7233523f.res"
+
+[deps]
+
+source_file="res://assets/ui/map/log/launch_rotation_parent_clickmask.png"
+dest_files=["res://.godot/imported/launch_rotation_parent_clickmask.png-5852969aea2fcaad1617940f7233523f.res"]
+
+[params]
+
+create_from=1
+threshold=0.1

@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://ccptqx7nidbnu"
+path="res://.godot/imported/launch_clickmask.bmp-18859d80e230610f671800fb3db5503f.res"
+
+[deps]
+
+source_file="res://assets/ui/map/log/launch_clickmask.bmp"
+dest_files=["res://.godot/imported/launch_clickmask.bmp-18859d80e230610f671800fb3db5503f.res"]
+
+[params]
+
+create_from=0
+threshold=0.5
