@@ -1825,8 +1825,9 @@ dialogue_file = "res://assets/dialogue/old/upwell dialogue - dadmvp4.csv"
 faces_you_during_dialogue = true
 npc_sprite = NodePath("AnimatedSprite2D")
 
-[node name="Nodule" parent="NPC" index="2"]
-position = Vector2(-105, -217)
+[node name="SpeechBubble" parent="NPC" index="2"]
+offset_top = -194.0
+offset_bottom = -194.0
 
 [node name="DialogueStandLocation" parent="NPC" index="3"]
 disabled = true

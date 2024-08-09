@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/abstract_base_classes/npc.gd" id="1_wmwre"]
 [ext_resource type="FontFile" uid="uid://cmkra16htorm3" path="res://assets/ui/fonts/LibreBaskerville-Italic.ttf" id="2_avyvd"]
-[ext_resource type="PackedScene" uid="uid://bg636q5nculbs" path="res://src/dialogue/nodule.tscn" id="3_x8mvx"]
+[ext_resource type="PackedScene" uid="uid://cirh13lsj80hm" path="res://src/dialogue/speech_bubble.tscn" id="4_02ye8"]
 [ext_resource type="Script" path="res://src/level_elements/npcs/dialogue_stand_location.gd" id="4_vdy0t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6qdgt"]
@@ -34,9 +34,11 @@ theme_override_font_sizes/font_size = 81
 text = "E to talk"
 horizontal_alignment = 1
 
-[node name="Nodule" parent="." instance=ExtResource("3_x8mvx")]
-position = Vector2(-105, -151)
-metadata/_edit_use_anchors_ = true
+[node name="SpeechBubble" parent="." instance=ExtResource("4_02ye8")]
+offset_left = -106.0
+offset_top = -150.0
+offset_right = -106.0
+offset_bottom = -150.0
 
 [node name="DialogueStandLocation" type="Area2D" parent="."]
 position = Vector2(-200, 0)

@@ -242,11 +242,11 @@ func walk_to_dialogue_start() -> float:
 
 	# If at location or if no location exists, start dialogue
 	if dialogue_stand_detector.has_overlapping_areas() or dialogue_start_location == null:
-		var dir_to_npc = sign(current_dialogue_npc.global_position.x - global_position.x)
 		dialogue_start_location = null
 		current_dialogue_npc.face_player(self)
-		dialogue_ui.start_dialogue(current_dialogue_npc, dir_to_npc)
+		dialogue_ui.start_dialogue(current_dialogue_npc)
 		# If facing the wrong way, turn to face npc
+		var dir_to_npc = sign(current_dialogue_npc.global_position.x - global_position.x)
 		var npc_to_the_right: bool = (dir_to_npc == 1)
 		if player_sprite.flip_h == npc_to_the_right:
 			return dir_to_npc
