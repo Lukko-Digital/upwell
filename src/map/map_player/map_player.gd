@@ -164,18 +164,15 @@ func end_movement(recalled: bool) -> void:
 	energy_bar.value = energy_bar.max_value
 	starting_position = global_position
 
-	location_deselected()
-	modulate_log(true)
-
 	if recalled:
 		Global.main_camera.set_shake_lerp(0, 4)
+		location_deselected()
 	else:
 		successful_landing_animation()
 
 ## Recall due to running out of fuel or crashing
 func recall() -> void:
 	global_position = starting_position
-	location_deselected()
 	end_movement(true)
 
 ## ----------------------------- FUEL -----------------------------
@@ -348,7 +345,6 @@ func modulate_log(show_log: bool):
 	launch_info.visible = show_log
 
 
-
 func handle_manual_control_shake(gravity_state: GravitizedComponent.GravityState):
 	match gravity_state:
 		GravitizedComponent.GravityState.BOOST:
@@ -357,6 +353,7 @@ func handle_manual_control_shake(gravity_state: GravitizedComponent.GravityState
 			Global.main_camera.target_shake_amount = SHAKE.ORBIT_AMOUNT
 
 func successful_landing_animation():
+	modulate_log(true)
 	map_animation_player.play("neutral")
 	game.pod.pod_animation_player.play("neutral")
 	Global.main_camera.set_shake_and_lerp_to_zero(40, 4)
