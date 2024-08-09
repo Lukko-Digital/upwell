@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="DialogueLoader" load_steps=2 format=3 uid="uid://ci3acf64lwghk"]
+
+[ext_resource type="Script" path="res://src/dialogue/dialogue_loader.gd" id="1_s8oh7"]
+
+[resource]
+script = ExtResource("1_s8oh7")
+csv_file = "upwell dialogue - tobymvp3.csv"

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="DialogueLoader" load_steps=2 format=3 uid="uid://d0t373ppntf4a"]
+
+[ext_resource type="Script" path="res://src/dialogue/dialogue_loader.gd" id="1_2nr2c"]
+
+[resource]
+script = ExtResource("1_2nr2c")
+csv_file = "dialogue_treewhispers.csv"
