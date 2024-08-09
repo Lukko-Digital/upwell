@@ -16,8 +16,8 @@ const DEFUALT = {
 
 enum DisplayType {SPEECH_BUBBLE, FULLSCREEN}
 
-static func parse_csv(dialogue_file: String, npc: NPC) -> ConversationTree:
-	var file = FileAccess.open(dialogue_file, FileAccess.READ)
+static func parse_csv(dialogue_loader: DialogueLoader, npc: NPC) -> Dictionary:
+	var file := dialogue_loader.load_csv()
 	var keys := file.get_csv_line()
 
 	# Lambda helpers
@@ -27,7 +27,7 @@ static func parse_csv(dialogue_file: String, npc: NPC) -> ConversationTree:
 			assert(false, "Error when parsing dialogue, cannot find key " + key)
 		return csv_line[idx]
 
-	var conversation_tree = ConversationTree.new()
+	var conversation_tree := {}
 	while not file.eof_reached():
 		var line := file.get_csv_line()
 
@@ -102,7 +102,7 @@ static func parse_csv(dialogue_file: String, npc: NPC) -> ConversationTree:
 		init_global_variable(variable_to_set)
 		init_global_variable(condition)
 
-		conversation_tree.branches[branch_id] = ConversationBranch.new(
+		conversation_tree[branch_id] = ConversationBranch.new(
 			branch_id,
 			dialogue_line,
 			npc_name,

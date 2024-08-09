@@ -136,7 +136,7 @@ func play_branch(branch_id: String):
 		return
 
 	clear_responses()
-	var branch: ConversationBranch = current_npc.conversation_tree.branches[branch_id]
+	var branch: ConversationBranch = current_npc.conversation_tree[branch_id]
 	# Set [locked_in_dialogue]
 	locked_in_dialogue = branch.locked_in_dialogue
 	# Determine if speech bubble or fullscreen should be used
