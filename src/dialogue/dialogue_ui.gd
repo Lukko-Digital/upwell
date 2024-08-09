@@ -58,7 +58,6 @@ const SPEECH_BUBBLE_OFFSET = Vector2(-60, -110)
 
 # ------------- Current Interaction -------------
 var active_dialogue_display: DialogueDisplay
-var current_speech_bubble: SpeechBubble
 var current_npc: NPC
 ## Used to track and kill zombie [animate_display] instances
 var interaction_timestamp: int
@@ -114,21 +113,11 @@ func _on_tail_timer_timeout():
 
 ## [dir_to_npc], either 1 or -1, if the npc is to the right or left,
 ## respectively, of the player
-func start_dialogue(npc: NPC, dir_to_npc: float):
+func start_dialogue(npc: NPC):
 	fullscreen_display.hide()
 	show()
 	current_npc = npc
 	interaction_timestamp = Time.get_ticks_msec()
-	
-	# Spawn speech bubble
-	var instance = speech_bubble_scene.instantiate()
-	instance.init(
-		npc.nodule.position,
-		npc.nodule.flip_h,
-		dir_to_npc
-	)
-	current_speech_bubble = instance
-	npc.add_child(instance)
 
 	play_branch(DialogueParser.START_BRANCH_TAG)
 
@@ -137,14 +126,25 @@ func exit_dialogue():
 	current_npc = null
 	interaction_timestamp = 0
 	hide()
-
-	# Despawn speech bubble
-	if current_speech_bubble:
-		current_speech_bubble.get_parent().remove_child(current_speech_bubble)
-		current_speech_bubble.queue_free()
-		current_speech_bubble = null
-
 	dialogue_finished.emit()
+
+## ------------------------------ DUMMY RUN ------------------------------
+
+func dummy_run(npc: NPC):
+	dummy_recurse(npc, DialogueParser.START_BRANCH_TAG)
+
+func dummy_recurse(npc: NPC, branch_id: String):
+	var branch: ConversationBranch = npc.conversation_tree.branches[branch_id]
+	npc.speech_bubble.dialogue_label.text = DialogueParser.strip_dialogue_commands(branch.dialogue_line)
+	next_branch = branch.next_branch_id
+	# Check conditional branch advancement
+	if branch.condition != "":
+		if Global.dialogue_conditions[branch.condition] == branch.expected_condition_value:
+			next_branch = branch.conditional_next_branch_id
+	# If there is no dialogue text, immediately play next branch, in the case of boolean algebra lines
+	if branch.dialogue_line.is_empty():
+		dummy_recurse(npc, next_branch)
+		return
 
 ## ------------------------------ DIALOGUE LOGIC ------------------------------
 
@@ -160,7 +160,7 @@ func play_branch(branch_id: String):
 	# Determine if speech bubble or fullscreen should be used
 	match branch.display_type:
 		DialogueParser.DisplayType.SPEECH_BUBBLE:
-			active_dialogue_display = current_speech_bubble
+			active_dialogue_display = current_npc.speech_bubble
 			fullscreen_display.hide()
 		DialogueParser.DisplayType.FULLSCREEN:
 			active_dialogue_display = fullscreen_display
