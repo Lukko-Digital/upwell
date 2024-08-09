@@ -24,7 +24,7 @@ class_name ParallaxCanvas
         elif value >= 2:
             layer = roundi(value * 10)
         else:
-            layer = roundi((value-1)/.05)
+            layer = roundi((value - 1) / .05)
         
         follow_viewport_scale = value
         name = str(snapped(value, 0.01)).replace(".", "_")
@@ -36,7 +36,7 @@ class_name ParallaxCanvas
 @export var rename_sprites: bool:
     set(value):
         if value:
-            update_sprite_grandchildren_name()
+            update_descendant_sprites_names()
 
 func _ready() -> void:
     move_children()
@@ -70,18 +70,11 @@ func set_child_modulate():
 
     sublevel.parallax_modulate_color_changed.connect(_on_parallax_modulate_color_changed)
 
-func update_sprite_grandchildren_name():
-    for child in get_children():
-        for grandchild in child.get_children():
-            if grandchild is Sprite2D:
-                rename_sprite(grandchild)
-            elif grandchild is Node2D:
-                for grandestchild in grandchild.get_children():
-                    if not grandestchild is Sprite2D:
-                        continue
-                    rename_sprite(grandestchild)
-            else: continue
-    print("Sprites renamed")
+func update_descendant_sprites_names():
+    var sprites = find_children("*", "Sprite2D")
+    for sprite: Sprite2D in sprites:
+        rename_sprite(sprite)
+    print(sprites.size(), " sprites renamed")
 
 ## Rename a sprite to [layer]_[texture name]
 func rename_sprite(sprite: Sprite2D):
