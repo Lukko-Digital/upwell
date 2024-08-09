@@ -1,0 +1,141 @@
+[gd_scene load_steps=11 format=3 uid="uid://ci7og2dc3enw1"]
+
+[ext_resource type="Texture2D" uid="uid://d342x5i1esy15" path="res://assets/ui/map/log/launch_rotation_parent.png" id="1_s3ts0"]
+[ext_resource type="Script" path="res://src/map/map_player/launch_button.gd" id="1_vtk60"]
+[ext_resource type="Texture2D" uid="uid://cypl5jy0wkyhd" path="res://assets/ui/map/log/launch_dot.png" id="2_p724r"]
+[ext_resource type="Texture2D" uid="uid://bqrwvxcn0ybsr" path="res://assets/ui/map/log/launch_backer.png" id="3_6xckj"]
+[ext_resource type="Texture2D" uid="uid://bono65slwt68c" path="res://assets/ui/map/log/launch_text_launch_GLOW.png" id="4_4ff7e"]
+[ext_resource type="Texture2D" uid="uid://dxxsniwuktryu" path="res://assets/ui/map/log/launch_text_launch.png" id="5_bxwpg"]
+[ext_resource type="Texture2D" uid="uid://cir2jw41qgcpe" path="res://assets/ui/map/log/launch_start.png" id="6_e0wc3"]
+[ext_resource type="Texture2D" uid="uid://b7ohh86utcwp1" path="res://assets/ui/map/log/launch_x.png" id="8_jb2wf"]
+
+[sub_resource type="Animation" id="Animation_kpdj4"]
+resource_name = "load"
+length = 1.2
+loop_mode = 1
+step = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DotParent/LaunchDot1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DotParent/LaunchDot2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.333333), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0.333333)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DotParent/LaunchDot3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.666667), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0.666667)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r7vvi"]
+_data = {
+"load": SubResource("Animation_kpdj4")
+}
+
+[node name="Launch_Button" type="Node2D" node_paths=PackedStringArray("backer", "dot_parent", "dot_1", "dot_2", "dot_3", "text_launch", "text_launch_glow", "starsmall", "starmed", "starbig", "scaler", "cross", "animation_player")]
+script = ExtResource("1_vtk60")
+backer = NodePath("Scaler/LaunchBacker")
+dot_parent = NodePath("DotParent")
+dot_1 = NodePath("DotParent/LaunchDot1")
+dot_2 = NodePath("DotParent/LaunchDot2")
+dot_3 = NodePath("DotParent/LaunchDot3")
+text_launch = NodePath("Scaler/LaunchTextLaunch")
+text_launch_glow = NodePath("Scaler/LaunchTextLaunch/LaunchTextLaunchGlow")
+starsmall = NodePath("Scaler/LaunchBacker/StarSmallParent")
+starmed = NodePath("Scaler/LaunchBacker/StarMedParent")
+starbig = NodePath("Scaler/LaunchBacker/StarBigParent")
+scaler = NodePath("Scaler")
+cross = NodePath("Cross")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="Scaler" type="Sprite2D" parent="."]
+
+[node name="LaunchBacker" type="Sprite2D" parent="Scaler"]
+position = Vector2(0, -5)
+texture = ExtResource("3_6xckj")
+
+[node name="StarSmallParent" type="Sprite2D" parent="Scaler/LaunchBacker"]
+self_modulate = Color(1, 1, 1, 0)
+texture = ExtResource("1_s3ts0")
+
+[node name="LaunchStarSmall" type="Sprite2D" parent="Scaler/LaunchBacker/StarSmallParent"]
+position = Vector2(132, -134)
+scale = Vector2(0.76998, 0.76998)
+texture = ExtResource("6_e0wc3")
+
+[node name="StarBigParent" type="Sprite2D" parent="Scaler/LaunchBacker"]
+self_modulate = Color(1, 1, 1, 0)
+texture = ExtResource("1_s3ts0")
+
+[node name="LaunchStarBig" type="Sprite2D" parent="Scaler/LaunchBacker/StarBigParent"]
+position = Vector2(58, -182)
+scale = Vector2(1.52311, 1.52311)
+texture = ExtResource("6_e0wc3")
+
+[node name="StarMedParent" type="Sprite2D" parent="Scaler/LaunchBacker"]
+self_modulate = Color(1, 1, 1, 0)
+texture = ExtResource("1_s3ts0")
+
+[node name="LaunchStarMed" type="Sprite2D" parent="Scaler/LaunchBacker/StarMedParent"]
+position = Vector2(-122, 146)
+texture = ExtResource("6_e0wc3")
+
+[node name="LaunchTextLaunch" type="Sprite2D" parent="Scaler"]
+visible = false
+position = Vector2(4, -1)
+texture = ExtResource("5_bxwpg")
+
+[node name="LaunchTextLaunchGlow" type="Sprite2D" parent="Scaler/LaunchTextLaunch"]
+texture = ExtResource("4_4ff7e")
+
+[node name="Cross" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-1, -1)
+texture = ExtResource("8_jb2wf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r7vvi")
+}
+autoplay = "load"
+
+[node name="DotParent" type="Sprite2D" parent="."]
+
+[node name="LaunchDot1" type="Sprite2D" parent="DotParent"]
+modulate = Color(1, 1, 1, 0.951753)
+position = Vector2(-73.5, 1)
+texture = ExtResource("2_p724r")
+
+[node name="LaunchDot2" type="Sprite2D" parent="DotParent"]
+modulate = Color(1, 1, 1, 0.714913)
+position = Vector2(1, 1)
+texture = ExtResource("2_p724r")
+
+[node name="LaunchDot3" type="Sprite2D" parent="DotParent"]
+modulate = Color(1, 1, 1, 0.38158)
+position = Vector2(76.5, 1)
+texture = ExtResource("2_p724r")

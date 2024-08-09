@@ -1,12 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://dltpg108effdh"]
+[gd_scene load_steps=26 format=3 uid="uid://dltpg108effdh"]
 
 [ext_resource type="Script" path="res://src/map/map_player/map_ui.gd" id="1_7y0mi"]
 [ext_resource type="FontFile" uid="uid://c3dptkqdore24" path="res://assets/ui/fonts/SourceCodePro-VariableFont_wght.ttf" id="1_jfwm8"]
 [ext_resource type="Texture2D" uid="uid://dbi7p834psfx8" path="res://assets/ui/map/focus_subtract.png" id="2_ky4es"]
 [ext_resource type="Texture2D" uid="uid://dy02yd3yonudp" path="res://assets/ui/map/log/backer.png" id="3_18sc1"]
 [ext_resource type="FontFile" uid="uid://cjmlvobt18yan" path="res://assets/ui/fonts/SourceCodePro-Italic-VariableFont_wght.ttf" id="4_s7rmj"]
-[ext_resource type="Texture2D" uid="uid://bpgo65cx8qfrt" path="res://assets/ui/map/log/launch.png" id="6_itkhn"]
-[ext_resource type="Theme" uid="uid://dnbl83glwnixk" path="res://src/style_boxes/CustomVscroll.tres" id="7_q8pjy"]
+[ext_resource type="Texture2D" uid="uid://d342x5i1esy15" path="res://assets/ui/map/log/launch_rotation_parent.png" id="6_qrxvy"]
+[ext_resource type="PackedScene" uid="uid://ci7og2dc3enw1" path="res://src/map/map_player/launch_button.tscn" id="6_raj6n"]
+[ext_resource type="BitMap" uid="uid://cgci75byqdbbj" path="res://assets/ui/map/log/launch_rotation_parent_clickmask.png" id="8_bjq35"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pdoej"]
 blend_mode = 3
@@ -370,7 +371,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="EnergyBar" type="ProgressBar" parent="Energy"]
-modulate = Color(1, 1, 1, 0.878431)
+modulate = Color(1, 1, 1, 0.882353)
 layout_mode = 0
 offset_left = 542.003
 offset_top = 1688.0
@@ -408,7 +409,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="WarningLabelRich" type="RichTextLabel" parent="CenterContainer"]
-visible = false
 self_modulate = Color(1, 0.501961, 0.372549, 1)
 material = SubResource("CanvasItemMaterial_htyoe")
 layout_mode = 2
@@ -419,7 +419,8 @@ theme_override_fonts/bold_font = SubResource("FontVariation_dnfmk")
 theme_override_font_sizes/normal_font_size = 200
 theme_override_font_sizes/bold_font_size = 200
 bbcode_enabled = true
-text = "[b]INITIATING RECALL[/b]"
+text = "[center][b][font_size=290]DANGER:[/font_size]
+COLLISION DETECTED[/b][/center]"
 fit_content = true
 autowrap_mode = 0
 
@@ -435,11 +436,10 @@ texture = ExtResource("3_18sc1")
 [node name="ScrollContainer" type="ScrollContainer" parent="LaunchInfoBacker"]
 layout_mode = 2
 offset_left = 102.0
-offset_top = 702.0
+offset_top = 604.0
 offset_right = 1040.0
-offset_bottom = 1580.0
+offset_bottom = 1604.0
 size_flags_vertical = 3
-theme = ExtResource("7_q8pjy")
 horizontal_scroll_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="LaunchInfoBacker/ScrollContainer"]
@@ -483,6 +483,7 @@ fwe"
 shortcut_keys_enabled = false
 
 [node name="LaunchDetailsContainer" type="VBoxContainer" parent="LaunchInfoBacker"]
+visible = false
 layout_mode = 2
 offset_left = 124.0
 offset_top = 78.0
@@ -549,13 +550,19 @@ fit_content = true
 shortcut_keys_enabled = false
 visible_characters_behavior = 1
 
-[node name="LaunchButton" type="TextureButton" parent="LaunchInfoBacker"]
-layout_mode = 2
-offset_left = 516.0
-offset_top = 58.0
-offset_right = 1067.0
-offset_bottom = 605.0
-texture_normal = ExtResource("6_itkhn")
+[node name="LaunchButton" parent="LaunchInfoBacker" instance=ExtResource("6_raj6n")]
+position = Vector2(580, 320)
+
+[node name="LaunchButton" type="TextureButton" parent="LaunchInfoBacker/LaunchButton"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -188.0
+offset_top = -182.0
+offset_right = 257.0
+offset_bottom = 262.0
+scale = Vector2(0.835359, 0.835359)
+texture_normal = ExtResource("6_qrxvy")
+texture_click_mask = ExtResource("8_bjq35")
 stretch_mode = 5
 
 [node name="MapAnimationPlayer" type="AnimationPlayer" parent="."]
@@ -566,6 +573,8 @@ libraries = {
 autoplay = "neutral"
 
 [connection signal="gui_input" from="LaunchInfoBacker" to="." method="_on_text_backer_gui_input"]
-[connection signal="mouse_entered" from="LaunchInfoBacker/LaunchButton" to="." method="_on_launch_button_mouse_entered"]
-[connection signal="mouse_exited" from="LaunchInfoBacker/LaunchButton" to="." method="_on_launch_button_mouse_exited"]
-[connection signal="pressed" from="LaunchInfoBacker/LaunchButton" to="." method="_on_launch_button_pressed"]
+[connection signal="button_down" from="LaunchInfoBacker/LaunchButton/LaunchButton" to="LaunchInfoBacker/LaunchButton" method="_on_launch_button_button_down"]
+[connection signal="button_up" from="LaunchInfoBacker/LaunchButton/LaunchButton" to="LaunchInfoBacker/LaunchButton" method="_on_launch_button_button_up"]
+[connection signal="mouse_entered" from="LaunchInfoBacker/LaunchButton/LaunchButton" to="LaunchInfoBacker/LaunchButton" method="_on_launch_button_mouse_entered"]
+[connection signal="mouse_exited" from="LaunchInfoBacker/LaunchButton/LaunchButton" to="LaunchInfoBacker/LaunchButton" method="_on_launch_button_mouse_exited"]
+[connection signal="pressed" from="LaunchInfoBacker/LaunchButton/LaunchButton" to="LaunchInfoBacker/LaunchButton" method="_on_launch_button_pressed"]

@@ -22,6 +22,9 @@ const SHAKE = {
 
 signal select_destination(location: Entrypoint)
 
+## Used to tell launch_button when to stop loading
+signal arrived()
+
 @export var collision_box: Area2D
 @export var grav_component: GravitizedComponent
 @export var destination_line: Line2D
@@ -152,6 +155,8 @@ func start_travel() -> void:
 
 ## Called when you recall or when you reach destination
 func end_movement(recalled: bool) -> void:
+	arrived.emit()
+
 	moving = false
 	manual_control = false
 

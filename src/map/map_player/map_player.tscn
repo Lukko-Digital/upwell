@@ -38,7 +38,7 @@ map_ui = NodePath("MapUI")
 map_animation_player = NodePath("MapUI/MapAnimationPlayer")
 launch_info = NodePath("MapUI/LaunchInfoBacker")
 energy_bar = NodePath("MapUI/Energy/EnergyBar")
-launch_button = NodePath("MapUI/LaunchInfoBacker/LaunchButton")
+launch_button = NodePath("MapUI/LaunchInfoBacker/LaunchButton/LaunchButton")
 
 [node name="PlayerGlow" type="Sprite2D" parent="."]
 position = Vector2(-15, 2)
@@ -108,8 +108,15 @@ shape = SubResource("CircleShape2D_r58ii")
 [node name="FocusTexture" parent="MapUI" index="0"]
 metadata/_edit_use_anchors_ = true
 
+[node name="WarningLabelRich" parent="MapUI/CenterContainer" index="0"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+
 [node name="LaunchInfoBacker" parent="MapUI" index="3"]
 self_modulate = Color(1, 1, 1, 0.545098)
+
+[node name="LaunchButton" parent="MapUI/LaunchInfoBacker" index="2" node_paths=PackedStringArray("map_player")]
+map_player = NodePath("../../..")
 
 [node name="CollisionX" type="Sprite2D" parent="."]
 visible = false
